@@ -1,0 +1,8 @@
+Should be possible to define a nonterminal type as some kind of simple type, As
+it is, the user is forced to make it into a structure which is referenced by a
+pointer.
+
+Should also be possible to set the default type for all nonterminals.
+
+The parse tables use up a lot of static memory. Need a compressed table
+representation.

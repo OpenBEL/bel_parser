@@ -1,0 +1,11 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=4863
+
+Check out these *must have* mappings for working with JSON in Vim:
+
+* `aj` provides a text object for the outermost JSON object, array, string, number, or keyword.
+* `gqaj` "pretty prints" (wraps/indents/sorts keys/otherwise cleans up) the JSON construct under the cursor.
+* `gwaj` takes the JSON object on the clipboard and extends it into the JSON object under the cursor.
+
+There are also `ij` variants that target innermost rather than outermost JSON construct.
+
+https://github.com/tpope/vim-jdaddy

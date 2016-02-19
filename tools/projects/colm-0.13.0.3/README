@@ -1,0 +1,30 @@
+SUPPORTED ON
+============
+
+Colm is supported on Unix-like systems. It depends on GCC at runtime.
+
+BUILDING
+========
+
+Colm is built in the usual autotool way:
+
+$ ./autogen
+$ ./configure
+$ make
+$ make install
+
+Notes on RUNNING
+================
+
+Colm produces a C program as output, then compiles and links it with a runtime
+library. It will leave the C program behind as an artefact.
+
+To find the includes and the runtime library, colm looks at argv[0] to decide
+if it is running out of the source tree. If it is, then compile and link flags
+are derived from argv[0]. Otherwise, it uses the install location (prefix) to
+construct the flags.
+
+SYNTAX HIGHLIGHTING
+===================
+
+There is a vim syntax definition file colm.vim

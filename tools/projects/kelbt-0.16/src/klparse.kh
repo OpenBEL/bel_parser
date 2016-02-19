@@ -1,0 +1,81 @@
+/*
+ *  Copyright 2006 Adrian Thurston <thurston@complang.org>
+ */
+
+/*  This file is part of Kelbt.
+ *
+ *  Kelbt is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  Kelbt is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with Kelbt; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
+ */
+
+#ifndef KLPARSE_H
+#define KLPARSE_H
+
+#include <iostream>
+#include "avltree.h"
+#include "parsedata.h"
+
+struct LangEl;
+struct Token
+{
+	char *data;
+	InputLoc loc;
+};
+
+struct Parser
+{
+	%%{
+		parser Parser;
+
+		token KW_Parser, KW_Include, KW_Write, KW_Class, KW_Commit, KW_Try,
+				KW_Undo, KW_Final, KW_Translate, KW_Token, KW_NonTerm, KW_Uses,
+				KW_Type, KW_Pri, KW_Shortest;
+
+		token TK_Word, TK_String, TK_Number, TK_Inline, TK_Reference,
+				TK_Literal, KW_Access, TK_AccessData;
+
+		write instance_data;
+	}%%
+
+	Parser( const char *fileName, char *parserName, std::ostream &out ) : 
+		pd( fileName, parserName, out ), 
+		sawStart(false), sawInterface(false) {}
+
+	void init();
+	int parseLangEl( int type, const Token *token );
+	int token( int line, int tokid, char *data );
+
+	TypeDef *getTypeDef( char *data );
+
+	ParseData pd;
+	bool sawStart;
+	bool sawInterface;
+	KlangElVect langElVect;
+	FactorVect factorVect;
+};
+
+%% write token_defs;
+
+struct ParserDictEl
+	: public AvlTreeEl<ParserDictEl>
+{
+	char *name;
+	Parser *parser;
+
+	char *getKey() const { return name; };
+};
+
+typedef AvlTree<ParserDictEl, char*, CmpStr> ParserDict;
+
+#endif

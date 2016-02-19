@@ -1,0 +1,219 @@
+Kelbt 0.15 - Jan 22, 2012
+=========================
+ -Eliminated type-punned pointer warnings GCC emits for generated code.
+
+Kelbt 0.14 - Oct 1, 2009
+========================
+ -Added the -I option for specifying directories to look in for included files.
+ -Added the location of the including file to the list of locations to search for
+  included files.
+ -Applied patch from David Keller: Hardcoded "Token" string should be Token().
+ -Fixed many of the test cases. Added missing includes and the <ParserName>_tk
+  prefix to _eof.
+
+Kelbt 0.13 - Oct 6, 2008
+========================
+ -The uses statement can now reference nonterminals before they are defined.
+ -Fixed a typo in an 'undefined type' error message.
+ -Fixed graphviz generation.
+ -Check rhs references for undo and final blocks, not just try blocks.
+ -Now tracking the number of reductions that an token causes.
+ -Use causeReduce counting to maintain a queue of un-translated tokens. When
+  pulling off the queue tokens are translated. When causeReduce drops to zero
+  during backtracking the token is put back onto the queue and un-translated.
+  This balances translation with un-translation.
+ -Fixed distclean target.
+ -Production names and language element names should be const char*.
+ -Updated scanner to Ragel 6.X.
+ -Now fixing the ordering timestamps after advancing reductions. When
+  transferring a reduction copy in the min time from the source transitions.
+  Also remove gaps. This does not affect parsing, but improves graphviz
+  output.
+ -Gave the eof token a better name: <parser_name>_tk_eof. Allows multiple
+  parsers in the same program and prevents clashes with "eof" which seems to
+  be common.
+ -Updated email address.
+ -Fixed const correctness problems.
+
+Kelbt 0.12 - May 1, 2007
+========================
+ -Don't emit empty switch blocks for trial, undo and final actions.
+ -Ignore write statements that are not at the root of the include stack.
+ -Added an option (-l) for turning off the writing of line directives.
+ -Improved error messages.
+ -A commit is now always a full commit of the stack. It induces any remaining
+  final actions and cleans up the stack. Motivation: it should be possible to
+  reliably control when final actions are executed. In the previous scheme
+  reliable control was not possible because if retries existed ahead of the
+  scoped commit then the number of retries would not drop to zero and the final
+  actions would not be executed. Further, no important practical uses for the
+  scoped commit have surfaced. That is, there are no examples of needing to
+  commit a production while preserving earlier alternatives. Therefore the added
+  complexity of the scoped commit feature is not justified.
+ -The malloc used by the final action execution/commit code has been eliminated
+  and replaced with a pointer mechanism.
+ -Added a class keyword for nonterminals and the token type. The keyword goes
+  directly in front of the nonterm/type/token name. Constructors and
+  destructors are invoked for nonterminal class types and the token type when
+  it is a class.
+      nonterm class Foo {};
+      type class Foo {};
+      token uses class MyToken;
+ -Added the "write finish" statement which invokes destructors for the items
+  still on the stack. 
+ -Blocks of LangEls are now tracked and freed in the finish code.
+ -Kelbt now uses Ragel's import feature instead of repeating the definition of
+  tokens inside the section parser.
+ -The branch point printing function (-i) now prints dot sets to give you a
+  sense of where in the grammar the conflicts are.
+ -Added the shortest statement. This changes the default action ordering from
+  a longest-match strategy to a shortest-match strategy. To make this work
+  reliably the nonterminal which is to be made into a shortest match should be
+  wrapped in a fresh nonterminal which is then specified using the shortest
+  statement. This syntax will likely be improved in the future.
+      shortest lifted_list;
+      lifted_list: list;
+      list: list item;
+      list: ;
+ -Did some cleanup of the syntax highlighting. Removed junk left over from the
+  port of the ragel syntax file a long time ago.
+ -Fixed an missing variable initialization. This eliminates errors reported by
+  valgrind. 
+ -Added an install target to the makefiles.
+
+Kelbt 0.11 - Feb 12, 2007
+=========================
+ -The commit and final block execution code now uses malloc to allocate an
+  array of pointers instead of using a variable-sized array on the stack,
+  which is not portable C.
+ -Applied more fixes to cxxprep from Gilles J. Seguin.
+ -Updated to the latest aapl.
+
+Kelbt 0.10 - Jan 27, 2007
+=========================
+ -Applied fixes to cxxprep from Gilles J. Seguin.
+ -Adopted Ragel's write statement style of generating code. The types of
+  statements are:
+      write instance_data;   - the runtime data used by the parser.
+      write token_defs;      - pound defines for the tokens.
+      write types;           - data structures representing language elements.
+      write data;            - static data used by the parser.
+      write init;            - initialization code.
+      write exec;            - the parse loop.
+ -The access statement was added. It can be used to specify where the instance
+  data is located. For example, inside a structure:
+      access parser->;
+ -Removed return statements from the exec loop. Errors and regular exits now
+  just drop out at the bottom of exec.
+ -The generated code has been made compatible with C.
+ -Added a C test.
+ -The generated data structures and static data elements now have their names
+  prefixed with the parser name.
+ -The "token uses" statement was added. This allows the user to change the
+  name of the data structure which contains token data. It defaults to
+  "Token".
+      token uses ParserToken;
+ -Implemented single-line parser specifications. This is useful mostly for
+  write statements.
+ -Fixes to line directive writing were made.
+
+Kelbt 0.9 - Jan 22, 2007
+========================
+ -Fix to initialization code: the sentinel at the top of the stack needs
+  to have its pointers initialized.
+
+Kelbt 0.8 - Jan 16, 2007
+========================
+ -Added a priority mechanism for tweaking control of the parser. Priorities
+  are associated with characters in productions and these take precedence over
+  the default ordered choice strategy. The ordered choice strategy is also an
+  'innermost' strategy where all the possibilities within a non-terminal take
+  precedence over any characters which follow the non-terminal. Priorities let
+  one override this in particular cases.
+ -Line directives are now generated for inline code blocks which are passed
+  through to the output file.
+ -Access to the non-terminal element and the right hand side elements of the
+  production being reduced now works properly in final actions.
+
+Kelbt 0.7 - Dec 8, 2006
+=======================
+ -Added a credits file.
+ -Kelbt no longer generates code which writes 'parse error' when parsing
+  fails. This can be done by the caller of parseLangEl after looking at the
+  return value.
+ -The scanner is now a class. It tracks the current line and guards against
+  passing tokens to the parser if no parser name has been given.
+ -Separated the parsing of the 'parser' and 'include' statements from the
+  scanner.
+
+Kelbt 0.6 - Dec 2, 2006
+=======================
+ -Replaced the Flex scanner with a Ragel scanner.
+ -Replaced the Bison parser with a Kelbt-0.5 parser. Kelbt is now
+  self-hosting. Error handling is now broken and must be added back.
+ -The code was cleaned up: a large amount of code left over from the initial
+  fork from Ragel was removed.
+ -Bug fix: when the retry point is at the root of the stack, meaning it is the
+  only real element, we cannot consult the transition that the sentinel
+  element below it took because that transition does not exist. There is no
+  state and no type associated with the sentinel. This case is now caught and
+  uses the start state directly.
+
+Kelbt 0.5 - Nov 18, 2006
+========================
+ -Fixed production-based commits which became broken when the state table
+  construction was improved in the previous version.
+ -The commit, execFinal and final functions were moved into the main
+  processing loop. The execFinal that was called in finish() is now called
+  from the main loop by setting a commit on the final shift of the eof
+  transition which completes the parse.
+ -The specified parser name is now used as the name of parser class when the
+  functions are generated.
+ -The startState variable was moved to the static table data section. The
+  mutable parser data is no longer static. 
+ -The struct block was removed, as it is now depreciated.
+ -Can no longer compile test cases with -pedantic and -ansi due to variable
+  length arrays on stack.
+
+Kelbt 0.4 - Oct 30, 2006
+========================
+ -A considerable amount of code cleanup and was done. This includes removal of
+  unused code, simplification of data structures and rewrites of LR state
+  table construction functions. The unnecessary complexity was because kelbt
+  was derived from a version of a keller which supported right-regular
+  parsing. Along with the cleanup comes a speedup in LR table construction.
+ -An improvement was made to the ordering algorithm. When it's time to assign
+  an ordering to a reduction after recursing down a production, the old way
+  was to find the expand-to state of the production and assign an ordering to
+  any transition which had a reduction of the production. The problem here is
+  that it assumes that every transition that has the reduction can follow that
+  instance of the production. In reality this is not true. There may be some
+  transitions that have the reduction, but which come from a different
+  instance of the production. Now we make sure that we assign a time only to
+  reductions on characters which can follow the production instance.  We do
+  this by computing the characters on the fly. This gives a more accurate
+  ordering.
+  
+Kelbt 0.3 - Aug 8, 2006
+=======================
+ -Fixed a bug in LALR(1) state table construction which caused reductions
+  actions for some middle-recursive grammars to not be added. For example this
+  grammar fails to set a reduce of A-2 on the ')' character.
+     S: A;
+     S: B;
+     A: '(' A ')'; 
+     A: '(' 'x' ')';
+     B: '(' B ')'; 
+     B: '(' 'x' ')';
+
+Kelbt 0.2 - Aug 1, 2006
+=======================
+ -Fixed the rejection command: It now immediately shifts the nonterminal being
+  rejected before jumping to the parse error handling. Previously this
+  nonterminal would get lost and would muck things up.
+ -Added a test showing variable length list processing.
+ -The cxxprep example can use the aapl in the root kelbt package.
+
+Kelbt 0.1 - Jun 26, 2006
+========================
+ -Initial release.

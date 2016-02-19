@@ -1,0 +1,358 @@
+/*
+ *  Copyright 2006 Adrian Thurston <thurston@complang.org>
+ */
+
+/*  This file is part of Kelbt.
+ *
+ *  Kelbt is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  Kelbt is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with Kelbt; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
+ */
+
+#include "klparse.h"
+#include "kelbt.h"
+#include <iostream>
+
+using std::cout;
+using std::cerr;
+using std::endl;
+
+%%{
+
+parser Parser;
+
+include "klparse.kh";
+
+start: statement_list;
+
+statement_list: statement_list statement;
+statement_list: ;
+
+statement: production_stmt commit;
+statement: token_stmt commit;
+statement: token_uses_stmt commit;
+statement: translate_stmt commit;
+statement: nonterm_stmt commit;
+statement: type_stmt commit;
+statement: access_stmt commit;
+statement: shortest_stmt commit;
+
+access_stmt:
+	KW_Access TK_AccessData ';' 
+	final {
+		pd.access = $2->data;
+	};
+
+production_stmt:
+	TK_Word ':' prod_el_list opt_commit 
+	opt_reduction opt_undo opt_final ';' 
+	final {
+		/* Get the language element. */
+		KlangEl *prodName = getKlangEl( &pd, $1->data, KlangEl::NonTerm );
+
+		/* Check that the element wasn't previously defined as something else. */
+		if ( prodName->type != KlangEl::Unknown 
+				&& prodName->type != KlangEl::NonTerm )
+		{
+			error($1->loc) << "'" << $1->data << "' already defined as something else" << endl;
+		}
+		else {
+			prodName->type = KlangEl::NonTerm;
+			Definition *newDef = new Definition( $1->loc, prodName, $3->prodElList,
+					$4->commit, $5->inlineBlock, $6->inlineBlock, $7->inlineBlock, 
+					pd.prodList.length(), Definition::Production );
+			prodName->defList.append( newDef );
+			pd.prodList.append( newDef );
+
+			/* Start machine will trigger code generation. */
+			if ( strcmp($1->data, startDefName) == 0 )
+				sawStart = true;
+
+			newDef->rhsLelVect = langElVect;
+			newDef->rhsFactorVect = factorVect;
+			langElVect.empty();
+			factorVect.empty();
+		}
+	};
+
+token_stmt: KW_Token token_list ';';
+token_list: token_list ',' token_list_word;
+token_list: token_list_word;
+
+token_list_word: 
+	TK_Word
+	final {
+		/* Token name must be unique. */
+		KlangEl *tokName = getKlangEl( &pd, $1->data, KlangEl::Term );
+		if ( tokName->type != KlangEl::Unknown && tokName->type != KlangEl::Term )
+			error($1->loc) << "'" << $1 << "' already defined as something else" << endl;
+		tokName->type = KlangEl::Term;
+	};
+
+token_uses_stmt: KW_Token KW_Uses opt_class TK_Word ';'
+	final {
+		pd.tokenStruct = $4->data;
+		pd.tokenIsClass = $3->isClass;
+	};
+
+translate_stmt: 
+	KW_Token opt_translate opt_undo opt_final ';'
+	final {
+		pd.translateBlock = $2->inlineBlock;
+		pd.undoTransBlock = $3->inlineBlock;
+		pd.tokenFinalBlock = $4->inlineBlock;
+	};
+
+nonterm_stmt:
+	KW_NonTerm opt_class TK_Word inline_list ';'
+	final {
+		/* Create/get the nonterminal. */
+		KlangEl *nonTerm = getKlangEl( &pd, $3->data, KlangEl::NonTerm );
+
+		/* Make a new inline block. */
+		InlineBlock *typeBlock = new InlineBlock( $3->loc, $4->inlineList );
+
+		/* Create/get the typedef. */
+		TypeDef *typeDef = getTypeDef( $3->data );
+		nonTerm->typeDef = typeDef;
+
+		/* The typeDef should not already exist. */
+		if ( typeDef->typeBlock != 0 )
+			error($3->loc) << "redefintion of nonterminal type " << $3->data << endl;
+		else {
+			typeDef->typeBlock = typeBlock;
+			typeDef->isClass = $2->isClass;
+		}
+	};
+
+nonterm_stmt:
+	KW_NonTerm TK_Word KW_Uses TK_Word ';'
+	final {
+		KlangEl *nonTerm = getKlangEl( &pd, $2->data, KlangEl::NonTerm );
+		nonTerm->typeDef = getTypeDef( $4->data );
+	};
+
+nonterm opt_class
+{
+	bool isClass;
+};
+
+opt_class: KW_Class final { $$->isClass = true; };
+opt_class: final { $$->isClass = false; };
+
+type_stmt:
+	KW_Type opt_class TK_Word inline_list ';'
+	final {
+		/* Create the inline block and create/get the typedef. */
+		InlineBlock *typeBlock = new InlineBlock( InputLoc($4->loc), $4->inlineList );
+		TypeDef *typeDef = getTypeDef( $3->data );
+
+		/* The typeDef should not already exist. */
+		if ( typeDef->typeBlock != 0 )
+			error($3->loc) << "redefintion of nonterminal type " << $3->data << endl;
+		else {
+			typeDef->typeBlock = typeBlock;
+			typeDef->isClass = $2->isClass;
+		}
+	};
+
+shortest_stmt:
+	KW_Shortest TK_Word ';'
+	final {
+		KlangEl *nonTerm = getKlangEl( &pd, $2->data, KlangEl::NonTerm );
+		nonTerm->isShortest = true;
+	};
+
+
+nonterm inline_list
+{
+	InlineList *inlineList;
+	InputLoc loc;
+};
+
+inline_list: 
+	inline_list inline_block_item
+	final {
+		$1->inlineList->append( $2->inlineItem );
+		$$->inlineList = $1->inlineList;
+		$$->loc = $1->loc;
+	};
+
+inline_list: 
+	inline_block_item
+	final {
+		$$->inlineList = new InlineList;
+		$$->inlineList->append( $1->inlineItem );
+		$$->loc = $1->loc;
+	};
+
+nonterm inline_block_item
+{
+	InlineItem *inlineItem;
+	InputLoc loc;
+};
+
+inline_block_item: 
+	TK_Inline 
+	final {
+		$$->inlineItem = new InlineItem( $1->loc, $1->data, InlineItem::Text );
+		$$->loc = $1->loc;
+	};
+
+inline_block_item: 
+	TK_Reference 
+	final {
+		$$->inlineItem = new InlineItem( $1->loc, $1->data, InlineItem::Reference );
+		$$->loc = $1->loc;
+	};
+
+nonterm prod_el_list
+{
+	ProdElList *prodElList;
+};
+
+prod_el_list: 
+	prod_el_list prod_el 
+	final {
+		$1->prodElList->append( $2->factor );
+		$$->prodElList = $1->prodElList;
+	};
+
+prod_el_list: 
+	final { $$->prodElList = new ProdElList; };
+
+nonterm prod_el
+{
+	Factor *factor;
+};
+
+prod_el: 
+	opt_prior opt_commit TK_Word
+	final {
+		KlangEl *langEl = getKlangEl( &pd, $3->data, KlangEl::Unknown );
+		$$->factor = new Factor( $3->loc, $2->commit, langEl, $1->priorVal );
+		langElVect.append( langEl );
+		factorVect.append( $$->factor );
+	};
+
+prod_el: 
+	opt_prior opt_commit TK_Literal
+	final {
+		/* Create a new factor node going to a concat literal. */
+		Literal *literal = new Literal( $3->loc, $3->data[0] );
+		$$->factor = new Factor( $3->loc, $2->commit, literal, $1->priorVal );
+		langElVect.append( 0 );
+		factorVect.append( $$->factor );
+	};
+
+
+nonterm opt_commit
+{
+	bool commit;
+};
+
+opt_commit: final { $$->commit = false; };
+opt_commit: KW_Commit final { $$->commit = true; };
+
+nonterm opt_prior
+{
+	int priorVal;
+};
+
+opt_prior: 
+	KW_Pri '(' TK_Number ')' final { 
+		$$->priorVal = atoi( $3->data );
+	};
+opt_prior: 
+	final { $$->priorVal = 0; };
+
+type opt_inline_block
+{
+	InlineBlock *inlineBlock;
+};
+
+nonterm opt_reduction uses opt_inline_block;
+nonterm opt_undo uses opt_inline_block;
+nonterm opt_final uses opt_inline_block;
+nonterm opt_translate uses opt_inline_block;
+
+
+opt_reduction: final { $$->inlineBlock = 0; };
+opt_reduction: 
+	KW_Try inline_list
+	final { 
+		$$->inlineBlock = new InlineBlock( $2->loc, $2->inlineList );
+	};
+
+opt_undo: final { $$->inlineBlock = 0; };
+opt_undo: 
+	KW_Undo inline_list
+	final { 
+		$$->inlineBlock = new InlineBlock( $2->loc, $2->inlineList );
+	};
+
+opt_final: final { $$->inlineBlock = 0; };
+opt_final: 
+	KW_Final inline_list
+	final { 
+		$$->inlineBlock = new InlineBlock( $2->loc, $2->inlineList );
+	};
+
+opt_translate: final { $$->inlineBlock = 0; };
+opt_translate: 
+	KW_Translate inline_list 
+	final { 
+		$$->inlineBlock = new InlineBlock( $2->loc, $2->inlineList );
+	};
+
+}%%
+
+%%{
+	write types;
+	write data;
+}%%
+
+void Parser::init()
+{
+	%% write init;
+}
+
+TypeDef *Parser::getTypeDef( char *data )
+{
+	TypeDefMapEl *inMap = 0, *inserted;
+	inserted = pd.typeDefMap.insert( data, &inMap );
+	if ( inserted != 0 )
+		inserted->value = new TypeDef( data );
+	return inMap->value;
+}
+
+int Parser::parseLangEl( int type, const Token *token )
+{
+	%% write exec;
+	return errCount == 0 ? 0 : -1;
+}
+
+int Parser::token( int line, int tokid, char *data )
+{
+	Token token;
+	token.data = data;
+	token.loc.line = line;
+	token.loc.col = 1;
+
+	//cout << "SENDING TOKEN: " << lelNames[tokid];
+	//if ( token.data != 0 )
+	//	cout << " data: " << token.data;
+	//cout << endl;
+
+	return parseLangEl( tokid, &token );
+}
