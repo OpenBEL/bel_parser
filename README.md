@@ -8,6 +8,19 @@ The design has potential to:
 2. Sequentially apply discrete parsers to match partial forms like BEL parameters, function names, or relationship names.
 3. Ease maintenance. Reduced complexity vs a single parser.
 
-Issues
+### Plans
+
+- Recognize `{ ... }` LIST constructs.
+- Add `DEFINE` parser.
+- Add BEL parameter parser.
+- Add BEL term parser.
+- Add BEL statement parser.
+- Build line parser.
+  - normalize line terminator
+  - macro expansion of line continuator
+  - skip lines beginning with comment (maybe this is a parser?)
+  - skip lines with only whitespace (maybe this is a parser?)
+
+### Issues
 
 - Applying multiple parsers per line may be difficult to handle the character pointer and switch between. This doesn't seem absolutely necessary though. We could have a function, relationship, and BEL parameter parser but for parsing BEL terms/statements we just include the Ragel definitions.
