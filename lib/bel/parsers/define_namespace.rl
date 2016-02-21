@@ -1,39 +1,52 @@
 # begin: ragel
 %%{
-  machine set;
+  machine define_namespace;
 
-  SET    = [sS][eE][tT];
-  IDENT  = [a-zA-Z0-9_]+;
-  STRING = ('"' ('\\\"' | [^"])** '"');
-  SP     = ' ' | '\t';
-	EQL    = '=';
-  NL     = '\n';
-
-  action set  { puts "SET"   }
-  action s    { buffer = []  }
-  action n    { buffer << fc }
-  action name {
+  # name and value accumulator actions
+  action s      { buffer = []  }
+  action n      { buffer << fc }
+  action name   {
     @name = buffer.pack('C*').force_encoding('utf-8')
-    puts "name: #{@name}"
   }
-  action value {
+  action value  {
     if buffer[0] == 34 && buffer[-1] == 34
       buffer = buffer[1...-1]
     end
     tmp_value = buffer.pack('C*').force_encoding('utf-8')
     tmp_value.gsub!('\"', '"')
     @value = tmp_value
-    puts "val: #{@value}"
   }
 
-  set :=
-	  SET %set SP+ IDENT >s $n %name SP+ EQL SP+ (STRING | IDENT) >s $n %value NL;
+  # keywords
+  DEFINE_KW     = [dD][eE][fF][iI][nN][eE];
+  NAMESPACE_KW  = [nN][aA][mM][eE][sS][pP][aA][cC][eE];
+  AS_KW         = [aA][sS];
+  URL_KW        = [uU][rR][lL];
+
+  # tokens
+  SP            = ' ' | '\t';
+  NL            = '\n';
+	EQL           = '=';
+  IDENT         = [a-zA-Z0-9_]+;
+  STRING        = ('"' ('\\\"' | [^"])** '"') >s $n %value;
+
+  # main actions
+  action define_namespace {
+    puts "Namespace URL: #{@name}, #{@value}"
+  }
+
+  # Define FSM
+  define_namespace :=
+    DEFINE_KW SP+ NAMESPACE_KW SP+
+      IDENT >s $n %name SP+
+    AS_KW SP+
+      URL_KW SP+ STRING SP* NL @define_namespace;
 }%%
 # end: ragel
 
 require_relative 'nonblocking_io_wrapper'
 
-module SET
+module DEFINE_NAMESPACE
 
   class << self
 
@@ -62,9 +75,10 @@ module SET
 
     def each
       buffer = []
-      data = @content.unpack('C*')
-      p   = 0
-      pe  = data.length
+      stack  = []
+      data   = @content.unpack('C*')
+      p      = 0
+      pe     = data.length
 
 # begin: ragel        
       %% write init;
@@ -76,7 +90,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    SET.parse(line) { |obj|
+    DEFINE_NAMESPACE.parse(line) { |obj|
       puts obj
     }
   end

@@ -41,4 +41,18 @@ ragel_run(
   %Q{unset STATEMENT_GROUP},
 )
 
+ragel_run(
+  'lib/bel/parsers/define_annotation.rl',
+  %Q{DEFINE NAMESPACE HGNC AS URL \\"http://resources/hgnc.belns\\"},
+  %Q{Define Annotation Species As Url \\"http://resources/species.belanno\\"},
+  %Q{DEFine ANNOtation Status as LiST { \\"Approved\\", \\"Rejected\\"}},
+  %Q{define annotation Identifier as pattern \\"[-+]?[0-9]+\\"},
+)
+
+ragel_run(
+  'lib/bel/parsers/define_namespace.rl',
+  %Q{DEFINE NAMESPACE HGNC AS URL \\"http://resources/hgnc.belns\\"},
+  %Q{Define Namespace HGNC As Url \\"http://resources/hgnc.belns\\"},
+  %Q{define namespace HGNC as url \\"http://resources/hgnc.belns\\"},
+)
 # vim: ft=ruby

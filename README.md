@@ -10,8 +10,8 @@ The design has potential to:
 
 ### Plans
 
-- Recognize `{ ... }` LIST constructs.
-- Add `DEFINE` parser.
+~- Recognize `{ ... }` LIST constructs.~
+~- Add `DEFINE` parser.~
 - Add BEL parameter parser.
 - Add BEL term parser.
 - Add BEL statement parser.
