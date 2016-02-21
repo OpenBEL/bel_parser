@@ -12,7 +12,7 @@ The design has potential to:
 
 ~- Recognize `{ ... }` LIST constructs.~
 ~- Add `DEFINE` parser.~
-- Add BEL parameter parser.
+~- Add BEL parameter parser.~
 - Add BEL term parser.
 - Add BEL statement parser.
 - Build line parser.

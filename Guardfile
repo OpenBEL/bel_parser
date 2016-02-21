@@ -55,4 +55,12 @@ ragel_run(
   %Q{Define Namespace HGNC As Url \\"http://resources/hgnc.belns\\"},
   %Q{define namespace HGNC as url \\"http://resources/hgnc.belns\\"},
 )
+
+ragel_run(
+  'lib/bel/parsers/bel_parameter.rl',
+  %Q{HGNC:AKT1},
+  %Q{GOBP:\\"apoptotic process\\"},
+  %Q{meshpp: \\"cat-scratch disease\\"},
+  %Q{\\"free entity name\\"},
+)
 # vim: ft=ruby
