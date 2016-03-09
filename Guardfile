@@ -94,6 +94,11 @@ ragel6_9_run(
 )
 
 ragel6_9_run(
+  'lib/bel/parsers/bel_statement.rl',
+  %Q{p(HGNC:AKT1) -> bp(MESHPP:Apoptosis)},
+)
+
+ragel6_9_run(
   'lib/bel/parsers/identifier.rl',
   %Q{AKT1},
   %Q{AKT1_HUMAN},
