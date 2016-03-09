@@ -1,6 +1,6 @@
 # begin: ragel
 %%{
-machine bel;
+machine bel_term;
 
   IDENT  = [a-zA-Z0-9_]+;
   STRING = ('"' ('\\\"' | [^"])** '"');

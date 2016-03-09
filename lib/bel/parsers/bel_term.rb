@@ -12,7 +12,7 @@ module BelTerm
 
     MAX_LENGTH = 1024 * 128 # 128K
 
-    def parse(content, namespaces = {})
+    def parse(content)
       return nil unless content
 
       Parser.new(content).each do |obj|
@@ -31,10 +31,10 @@ module BelTerm
 # begin: ragel        
       
 class << self
-	attr_accessor :_bel_actions
-	private :_bel_actions, :_bel_actions=
+	attr_accessor :_bel_term_actions
+	private :_bel_term_actions, :_bel_term_actions=
 end
-self._bel_actions = [
+self._bel_term_actions = [
 	0, 1, 1, 1, 2, 1, 5, 1, 
 	8, 1, 10, 1, 11, 2, 0, 1, 
 	2, 7, 3, 2, 8, 2, 2, 10, 
@@ -45,19 +45,19 @@ self._bel_actions = [
 ]
 
 class << self
-	attr_accessor :_bel_key_offsets
-	private :_bel_key_offsets, :_bel_key_offsets=
+	attr_accessor :_bel_term_key_offsets
+	private :_bel_term_key_offsets, :_bel_term_key_offsets=
 end
-self._bel_key_offsets = [
+self._bel_term_key_offsets = [
 	0, 0, 7, 17, 20, 21, 31, 33, 
 	37, 41, 42, 55, 60, 70, 81, 88
 ]
 
 class << self
-	attr_accessor :_bel_trans_keys
-	private :_bel_trans_keys, :_bel_trans_keys=
+	attr_accessor :_bel_term_trans_keys
+	private :_bel_term_trans_keys, :_bel_term_trans_keys=
 end
-self._bel_trans_keys = [
+self._bel_term_trans_keys = [
 	95, 48, 57, 65, 90, 97, 122, 9, 
 	32, 40, 95, 48, 57, 65, 90, 97, 
 	122, 9, 32, 40, 10, 9, 32, 34, 
@@ -73,37 +73,37 @@ self._bel_trans_keys = [
 ]
 
 class << self
-	attr_accessor :_bel_single_lengths
-	private :_bel_single_lengths, :_bel_single_lengths=
+	attr_accessor :_bel_term_single_lengths
+	private :_bel_term_single_lengths, :_bel_term_single_lengths=
 end
-self._bel_single_lengths = [
+self._bel_term_single_lengths = [
 	0, 1, 4, 3, 1, 4, 2, 4, 
 	4, 1, 7, 5, 4, 5, 1, 0
 ]
 
 class << self
-	attr_accessor :_bel_range_lengths
-	private :_bel_range_lengths, :_bel_range_lengths=
+	attr_accessor :_bel_term_range_lengths
+	private :_bel_term_range_lengths, :_bel_term_range_lengths=
 end
-self._bel_range_lengths = [
+self._bel_term_range_lengths = [
 	0, 3, 3, 0, 0, 3, 0, 0, 
 	0, 0, 3, 0, 3, 3, 3, 0
 ]
 
 class << self
-	attr_accessor :_bel_index_offsets
-	private :_bel_index_offsets, :_bel_index_offsets=
+	attr_accessor :_bel_term_index_offsets
+	private :_bel_term_index_offsets, :_bel_term_index_offsets=
 end
-self._bel_index_offsets = [
+self._bel_term_index_offsets = [
 	0, 0, 5, 13, 17, 19, 27, 30, 
 	35, 40, 42, 53, 59, 67, 76, 81
 ]
 
 class << self
-	attr_accessor :_bel_indicies
-	private :_bel_indicies, :_bel_indicies=
+	attr_accessor :_bel_term_indicies
+	private :_bel_term_indicies, :_bel_term_indicies=
 end
-self._bel_indicies = [
+self._bel_term_indicies = [
 	0, 0, 0, 0, 1, 2, 2, 3, 
 	4, 4, 4, 4, 1, 5, 5, 6, 
 	1, 7, 1, 8, 8, 9, 10, 10, 
@@ -118,10 +118,10 @@ self._bel_indicies = [
 ]
 
 class << self
-	attr_accessor :_bel_trans_targs
-	private :_bel_trans_targs, :_bel_trans_targs=
+	attr_accessor :_bel_term_trans_targs
+	private :_bel_term_trans_targs, :_bel_term_trans_targs=
 end
-self._bel_trans_targs = [
+self._bel_term_trans_targs = [
 	2, 0, 3, 4, 2, 3, 4, 14, 
 	5, 6, 10, 7, 9, 8, 15, 5, 
 	8, 15, 11, 8, 10, 12, 11, 8, 
@@ -129,10 +129,10 @@ self._bel_trans_targs = [
 ]
 
 class << self
-	attr_accessor :_bel_trans_actions
-	private :_bel_trans_actions, :_bel_trans_actions=
+	attr_accessor :_bel_term_trans_actions
+	private :_bel_term_trans_actions, :_bel_term_trans_actions=
 end
-self._bel_trans_actions = [
+self._bel_term_trans_actions = [
 	13, 0, 3, 41, 1, 0, 29, 5, 
 	0, 9, 37, 9, 9, 7, 46, 7, 
 	0, 33, 19, 25, 22, 11, 0, 16, 
@@ -140,26 +140,26 @@ self._bel_trans_actions = [
 ]
 
 class << self
-	attr_accessor :bel_start
+	attr_accessor :bel_term_start
 end
-self.bel_start = 1;
+self.bel_term_start = 1;
 class << self
-	attr_accessor :bel_first_final
+	attr_accessor :bel_term_first_final
 end
-self.bel_first_final = 14;
+self.bel_term_first_final = 14;
 class << self
-	attr_accessor :bel_error
+	attr_accessor :bel_term_error
 end
-self.bel_error = 0;
+self.bel_term_error = 0;
 
 class << self
-	attr_accessor :bel_en_term
+	attr_accessor :bel_term_en_term
 end
-self.bel_en_term = 5;
+self.bel_term_en_term = 5;
 class << self
-	attr_accessor :bel_en_term_main
+	attr_accessor :bel_term_en_term_main
 end
-self.bel_en_term_main = 1;
+self.bel_term_en_term_main = 1;
 
 
 # end: ragel        
@@ -177,7 +177,7 @@ self.bel_en_term_main = 1;
 begin
 	p ||= 0
 	pe ||= data.length
-	cs = bel_start
+	cs = bel_term_start
 	top = 0
 end
 
@@ -203,9 +203,9 @@ begin
 	end
 	end
 	if _goto_level <= _resume
-	_keys = _bel_key_offsets[cs]
-	_trans = _bel_index_offsets[cs]
-	_klen = _bel_single_lengths[cs]
+	_keys = _bel_term_key_offsets[cs]
+	_trans = _bel_term_index_offsets[cs]
+	_klen = _bel_term_single_lengths[cs]
 	_break_match = false
 	
 	begin
@@ -217,9 +217,9 @@ begin
 	        break if _upper < _lower
 	        _mid = _lower + ( (_upper - _lower) >> 1 )
 
-	        if data[p].ord < _bel_trans_keys[_mid]
+	        if data[p].ord < _bel_term_trans_keys[_mid]
 	           _upper = _mid - 1
-	        elsif data[p].ord > _bel_trans_keys[_mid]
+	        elsif data[p].ord > _bel_term_trans_keys[_mid]
 	           _lower = _mid + 1
 	        else
 	           _trans += (_mid - _keys)
@@ -231,16 +231,16 @@ begin
 	     _keys += _klen
 	     _trans += _klen
 	  end
-	  _klen = _bel_range_lengths[cs]
+	  _klen = _bel_term_range_lengths[cs]
 	  if _klen > 0
 	     _lower = _keys
 	     _upper = _keys + (_klen << 1) - 2
 	     loop do
 	        break if _upper < _lower
 	        _mid = _lower + (((_upper-_lower) >> 1) & ~1)
-	        if data[p].ord < _bel_trans_keys[_mid]
+	        if data[p].ord < _bel_term_trans_keys[_mid]
 	          _upper = _mid - 2
-	        elsif data[p].ord > _bel_trans_keys[_mid+1]
+	        elsif data[p].ord > _bel_term_trans_keys[_mid+1]
 	          _lower = _mid + 2
 	        else
 	          _trans += ((_mid - _keys) >> 1)
@@ -252,16 +252,16 @@ begin
 	     _trans += _klen
 	  end
 	end while false
-	_trans = _bel_indicies[_trans]
-	cs = _bel_trans_targs[_trans]
-	if _bel_trans_actions[_trans] != 0
-		_acts = _bel_trans_actions[_trans]
-		_nacts = _bel_actions[_acts]
+	_trans = _bel_term_indicies[_trans]
+	cs = _bel_term_trans_targs[_trans]
+	if _bel_term_trans_actions[_trans] != 0
+		_acts = _bel_term_trans_actions[_trans]
+		_nacts = _bel_term_actions[_acts]
 		_acts += 1
 		while _nacts > 0
 			_nacts -= 1
 			_acts += 1
-			case _bel_actions[_acts - 1]
+			case _bel_term_actions[_acts - 1]
 when 0 then
 		begin
 
