@@ -37,7 +37,7 @@ module BelParameter
 
     MAX_LENGTH = 1024 * 128 # 128K
 
-    def parse(content, namespaces = {})
+    def parse(content)
       return nil unless content
 
       Parser.new(content).each do |obj|
