@@ -1,5 +1,0 @@
-kelbt-pcheck.o: pcheck.cpp /usr/include/stdc-predef.h pcheck.h
-
-/usr/include/stdc-predef.h:
-
-pcheck.h:
