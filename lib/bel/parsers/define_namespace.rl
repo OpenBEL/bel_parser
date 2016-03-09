@@ -32,7 +32,7 @@
 
   # main actions
   action define_namespace {
-    puts "Namespace URL: #{@name}, #{@value}"
+    yield ({ :prefix => @name, :url => @value })
   }
 
   # Define FSM

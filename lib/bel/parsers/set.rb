@@ -253,7 +253,6 @@ when 3 then
 		begin
 
     @name = buffer.pack('C*').force_encoding('utf-8')
-    puts "name: #{@name}"
   		end
 when 4 then
 		begin
@@ -264,7 +263,8 @@ when 4 then
     tmp_value = buffer.pack('C*').force_encoding('utf-8')
     tmp_value.gsub!('\"', '"')
     @value = tmp_value
-    puts "val: #{@value}"
+
+    yield ({ :name => @name, :value => @value })
   		end
 			end # action switch
 		end

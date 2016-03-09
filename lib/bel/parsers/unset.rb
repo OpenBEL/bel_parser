@@ -246,7 +246,7 @@ when 3 then
 		begin
 
     @name = buffer.pack('C*').force_encoding('utf-8')
-    puts "name: #{@name}"
+    yield ({ :name => @name })
   		end
 			end # action switch
 		end

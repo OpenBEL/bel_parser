@@ -367,17 +367,17 @@ when 7 then
 when 8 then
 		begin
 
-    puts "Annotation List: #{@name}, #{@value}"
+    yield ({ :prefix => @name, :type => :list, :list => @value })
   		end
 when 9 then
 		begin
 
-    puts "Annotation Pattern: #{@name}, #{@value}"
+    yield ({ :prefix => @name, :type => :pattern, :pattern => @value })
   		end
 when 10 then
 		begin
 
-    puts "Annotation Pattern: #{@name}, #{@value}"
+    yield ({ :prefix => @name, :type => :url, :url => @value })
   		end
 			end # action switch
 		end

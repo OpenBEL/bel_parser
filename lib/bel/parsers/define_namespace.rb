@@ -292,7 +292,7 @@ when 3 then
 when 4 then
 		begin
 
-    puts "Namespace URL: #{@name}, #{@value}"
+    yield ({ :prefix => @name, :url => @value })
   		end
 			end # action switch
 		end

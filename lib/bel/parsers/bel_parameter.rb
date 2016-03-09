@@ -257,7 +257,7 @@ when 3 then
     tmp_value.gsub!('\"', '"')
     @value = tmp_value
 
-    puts "BEL Parameter, prefix: #{@prefix}, value: #{@value}"
+    yield ({ :prefix => @prefix, :value => @value })
   		end
 			end # action switch
 		end

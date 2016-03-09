@@ -60,13 +60,13 @@
 
   # main actions
   action define_annotation_list {
-    puts "Annotation List: #{@name}, #{@value}"
+    yield ({ :prefix => @name, :type => :list, :list => @value })
   }
   action define_annotation_pattern {
-    puts "Annotation Pattern: #{@name}, #{@value}"
+    yield ({ :prefix => @name, :type => :pattern, :pattern => @value })
   }
   action define_annotation_uri {
-    puts "Annotation Pattern: #{@name}, #{@value}"
+    yield ({ :prefix => @name, :type => :url, :url => @value })
   }
 
   # Define FSM

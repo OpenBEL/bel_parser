@@ -14,7 +14,6 @@
   action n    { buffer << fc }
   action name {
     @name = buffer.pack('C*').force_encoding('utf-8')
-    puts "name: #{@name}"
   }
   action value {
     if buffer[0] == 34 && buffer[-1] == 34
@@ -23,7 +22,8 @@
     tmp_value = buffer.pack('C*').force_encoding('utf-8')
     tmp_value.gsub!('\"', '"')
     @value = tmp_value
-    puts "val: #{@value}"
+
+    yield ({ :name => @name, :value => @value })
   }
 
   set :=
