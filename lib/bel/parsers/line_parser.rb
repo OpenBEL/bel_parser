@@ -31,7 +31,11 @@ module LINE
           line += line_enum.next
         end
 
-        puts line
+        BEL_PARSERS.each do |parser|
+          parser.parse(line) { |obj|
+            "parser: #{parser.class}, line: #{line}: #{obj}"
+          }
+        end
       rescue StopIteration
         return
       end
