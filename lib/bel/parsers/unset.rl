@@ -7,12 +7,15 @@
   SP     = ' ' | '\t';
   NL     = '\n';
 
-  action unset { puts "UNSET" }
+  action unset {
+    @unset_node = s(:unset)
+  }
   action s     { buffer = []  }
   action n     { buffer << fc }
   action name  {
-    @name = buffer.pack('C*').force_encoding('utf-8')
-    yield ({ :name => @name })
+    name = buffer.pack('C*').force_encoding('utf-8')
+    @unset_node = @unset_node << s(:name, name)
+    yield @unset_node
   }
 
   unset :=
@@ -20,6 +23,7 @@
 }%%
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module UNSET
@@ -41,6 +45,7 @@ module UNSET
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content

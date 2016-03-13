@@ -9,21 +9,24 @@
 	EQL    = '=';
   NL     = '\n';
 
-  action set  { puts "SET"   }
+  action set  {
+    @set_node = s(:set)
+  }
   action s    { buffer = []  }
   action n    { buffer << fc }
   action name {
-    @name = buffer.pack('C*').force_encoding('utf-8')
+    name = buffer.pack('C*').force_encoding('utf-8')
+    @set_node = @set_node << s(:name, name)
   }
   action value {
     if buffer[0] == 34 && buffer[-1] == 34
       buffer = buffer[1...-1]
     end
-    tmp_value = buffer.pack('C*').force_encoding('utf-8')
-    tmp_value.gsub!('\"', '"')
-    @value = tmp_value
+    value = buffer.pack('C*').force_encoding('utf-8')
+    value.gsub!('\"', '"')
+    @set_node = @set_node << s(:value, value)
 
-    yield ({ :name => @name, :value => @value })
+    yield @set_node
   }
 
   set :=
@@ -31,6 +34,7 @@
 }%%
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module SET
@@ -52,6 +56,7 @@ module SET
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content

@@ -3,18 +3,19 @@
   machine define_annotation;
 
   # name and value accumulator actions
-  action s      { buffer = []  }
-  action n      { buffer << fc }
-  action name   {
-    @name = buffer.pack('C*').force_encoding('utf-8')
+  action s       { buffer = []  }
+  action n       { buffer << fc }
+  action keyword {
+    value = buffer.pack('C*').force_encoding('utf-8')
+    @define_anno = @define_anno << s(:keyword, value) 
   }
   action value  {
     if buffer[0] == 34 && buffer[-1] == 34
       buffer = buffer[1...-1]
     end
-    tmp_value = buffer.pack('C*').force_encoding('utf-8')
-    tmp_value.gsub!('\"', '"')
-    @value = tmp_value
+    value = buffer.pack('C*').force_encoding('utf-8')
+    value.gsub!('\"', '"')
+    @define_anno = @define_anno << s(:domain, value)
   }
 
   # list accumulator actions
@@ -59,29 +60,36 @@
                   '}' @liste @listv;
 
   # main actions
-  action define_annotation_list {
-    yield ({ :prefix => @name, :type => :list, :list => @value })
+  action annotation_keyword {
+    @define_anno = s(:define_annotation)
   }
-  action define_annotation_pattern {
-    yield ({ :prefix => @name, :type => :pattern, :pattern => @value })
+  action list_keyword {
+    @define_anno = (@define_anno << s(:annotation_type, :list))
   }
-  action define_annotation_uri {
-    yield ({ :prefix => @name, :type => :url, :url => @value })
+  action pattern_keyword {
+    @define_anno = (@define_anno << s(:annotation_type, :pattern))
+  }
+  action url_keyword {
+    @define_anno = (@define_anno << s(:annotation_type, :url))
+  }
+  action define_annotation {
+    yield @define_anno
   }
 
   # Define FSM
   define_annotation :=
-    DEFINE_KW SP+ ANNOTATION_KW SP+
-      IDENT >s $n %name SP+
+    DEFINE_KW SP+ ANNOTATION_KW @annotation_keyword SP+
+      IDENT >s $n %keyword SP+
     AS_KW SP+
       (
-        (LIST_KW SP+ LIST SP* NL @define_annotation_list) |
-        (PATTERN_KW SP+ STRING SP* NL @define_annotation_pattern) |
-        (URL_KW SP+ STRING SP* NL @define_annotation_uri)
+        (LIST_KW @list_keyword SP+ LIST SP* NL @define_annotation) |
+        (PATTERN_KW @pattern_keyword SP+ STRING SP* NL @define_annotation) |
+        (URL_KW @url_keyword SP+ STRING SP* NL @define_annotation)
       );
 }%%
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module DEFINE_ANNOTATION
@@ -103,6 +111,7 @@ module DEFINE_ANNOTATION
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content

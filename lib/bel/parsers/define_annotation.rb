@@ -4,6 +4,7 @@
 
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module DEFINE_ANNOTATION
@@ -25,6 +26,7 @@ module DEFINE_ANNOTATION
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content
@@ -37,10 +39,10 @@ end
 self._define_annotation_actions = [
 	0, 1, 1, 1, 2, 1, 3, 1, 
 	4, 1, 5, 1, 6, 1, 8, 1, 
-	9, 1, 10, 2, 0, 1, 2, 1, 
-	5, 2, 3, 6, 2, 3, 9, 2, 
-	3, 10, 2, 6, 7, 3, 0, 1, 
-	5, 3, 3, 6, 7
+	9, 1, 10, 1, 11, 1, 12, 2, 
+	0, 1, 2, 1, 5, 2, 3, 6, 
+	2, 3, 12, 2, 6, 7, 3, 0, 
+	1, 5, 3, 3, 6, 7
 ]
 
 class << self
@@ -54,8 +56,7 @@ self._define_annotation_key_offsets = [
 	64, 72, 74, 76, 78, 80, 83, 93, 
 	95, 99, 103, 106, 107, 118, 120, 122, 
 	124, 126, 128, 130, 132, 135, 137, 140, 
-	143, 144, 146, 148, 150, 153, 155, 158, 
-	161, 162
+	141, 143, 145
 ]
 
 class << self
@@ -80,10 +81,8 @@ self._define_annotation_trans_keys = [
 	48, 57, 65, 90, 97, 122, 65, 97, 
 	84, 116, 84, 116, 69, 101, 82, 114, 
 	78, 110, 9, 32, 9, 32, 34, 34, 
-	92, 9, 10, 32, 9, 10, 32, 92, 
-	82, 114, 76, 108, 9, 32, 9, 32, 
-	34, 34, 92, 9, 10, 32, 9, 10, 
-	32, 92, 0
+	92, 9, 10, 32, 92, 82, 114, 76, 
+	108, 0
 ]
 
 class << self
@@ -96,9 +95,8 @@ self._define_annotation_single_lengths = [
 	2, 2, 2, 3, 3, 4, 2, 2, 
 	8, 2, 2, 2, 2, 3, 4, 2, 
 	4, 4, 3, 1, 5, 2, 2, 2, 
-	2, 2, 2, 2, 3, 2, 3, 3, 
-	1, 2, 2, 2, 3, 2, 3, 3, 
-	1, 0
+	2, 2, 2, 2, 3, 2, 3, 1, 
+	2, 2, 0
 ]
 
 class << self
@@ -112,8 +110,7 @@ self._define_annotation_range_lengths = [
 	0, 0, 0, 0, 0, 0, 3, 0, 
 	0, 0, 0, 0, 3, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0
+	0, 0, 0
 ]
 
 class << self
@@ -127,8 +124,7 @@ self._define_annotation_index_offsets = [
 	81, 90, 93, 96, 99, 102, 106, 114, 
 	117, 122, 127, 131, 133, 142, 145, 148, 
 	151, 154, 157, 160, 163, 167, 170, 174, 
-	178, 180, 183, 186, 189, 193, 196, 200, 
-	204, 206
+	176, 179, 182
 ]
 
 class << self
@@ -157,11 +153,8 @@ self._define_annotation_indicies = [
 	1, 49, 49, 1, 50, 50, 1, 51, 
 	51, 1, 52, 52, 1, 53, 53, 1, 
 	54, 54, 1, 54, 54, 55, 1, 57, 
-	58, 56, 59, 60, 59, 1, 61, 62, 
-	61, 1, 58, 56, 63, 63, 1, 64, 
-	64, 1, 65, 65, 1, 65, 65, 66, 
-	1, 68, 69, 67, 70, 71, 70, 1, 
-	72, 73, 72, 1, 69, 67, 1, 0
+	58, 56, 59, 60, 59, 1, 58, 56, 
+	61, 61, 1, 62, 62, 1, 1, 0
 ]
 
 class << self
@@ -172,13 +165,11 @@ self._define_annotation_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
 	17, 18, 19, 20, 21, 20, 21, 22, 
-	23, 24, 25, 37, 49, 26, 27, 28, 
+	23, 24, 25, 37, 48, 26, 27, 28, 
 	29, 30, 30, 31, 36, 31, 32, 35, 
-	33, 30, 34, 33, 30, 34, 34, 57, 
+	33, 30, 34, 33, 30, 34, 34, 50, 
 	38, 39, 40, 41, 42, 43, 44, 45, 
-	45, 46, 48, 47, 57, 47, 57, 50, 
-	51, 52, 53, 53, 54, 56, 55, 57, 
-	55, 57
+	45, 46, 47, 34, 50, 49, 43
 ]
 
 class << self
@@ -188,14 +179,12 @@ end
 self._define_annotation_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 19, 3, 1, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 7, 0, 37, 9, 22, 22, 22, 
-	5, 25, 41, 0, 11, 34, 0, 13, 
-	0, 0, 0, 0, 0, 0, 0, 19, 
-	1, 1, 1, 5, 28, 0, 15, 0, 
-	0, 0, 19, 1, 1, 1, 5, 31, 
-	0, 17
+	0, 13, 0, 23, 3, 1, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 15, 
+	0, 7, 0, 38, 9, 26, 26, 26, 
+	5, 29, 42, 0, 11, 35, 0, 21, 
+	0, 0, 0, 0, 0, 17, 0, 23, 
+	1, 1, 1, 5, 32, 0, 19
 ]
 
 class << self
@@ -205,7 +194,7 @@ self.define_annotation_start = 1;
 class << self
 	attr_accessor :define_annotation_first_final
 end
-self.define_annotation_first_final = 57;
+self.define_annotation_first_final = 50;
 class << self
 	attr_accessor :define_annotation_error
 end
@@ -324,7 +313,8 @@ when 1 then
 when 2 then
 		begin
 
-    @name = buffer.pack('C*').force_encoding('utf-8')
+    value = buffer.pack('C*').force_encoding('utf-8')
+    @define_anno = @define_anno << s(:keyword, value) 
   		end
 when 3 then
 		begin
@@ -332,9 +322,9 @@ when 3 then
     if buffer[0] == 34 && buffer[-1] == 34
       buffer = buffer[1...-1]
     end
-    tmp_value = buffer.pack('C*').force_encoding('utf-8')
-    tmp_value.gsub!('\"', '"')
-    @value = tmp_value
+    value = buffer.pack('C*').force_encoding('utf-8')
+    value.gsub!('\"', '"')
+    @define_anno = @define_anno << s(:domain, value)
   		end
 when 4 then
 		begin
@@ -367,17 +357,27 @@ when 7 then
 when 8 then
 		begin
 
-    yield ({ :prefix => @name, :type => :list, :list => @value })
+    @define_anno = s(:define_annotation)
   		end
 when 9 then
 		begin
 
-    yield ({ :prefix => @name, :type => :pattern, :pattern => @value })
+    @define_anno = (@define_anno << s(:annotation_type, :list))
   		end
 when 10 then
 		begin
 
-    yield ({ :prefix => @name, :type => :url, :url => @value })
+    @define_anno = (@define_anno << s(:annotation_type, :pattern))
+  		end
+when 11 then
+		begin
+
+    @define_anno = (@define_anno << s(:annotation_type, :url))
+  		end
+when 12 then
+		begin
+
+    yield @define_anno
   		end
 			end # action switch
 		end

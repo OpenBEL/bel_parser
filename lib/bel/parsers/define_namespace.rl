@@ -6,15 +6,15 @@
   action s      { buffer = []  }
   action n      { buffer << fc }
   action name   {
-    @name = buffer.pack('C*').force_encoding('utf-8')
+    @define_ns = @define_ns << buffer.pack('C*').force_encoding('utf-8')
   }
   action value  {
     if buffer[0] == 34 && buffer[-1] == 34
       buffer = buffer[1...-1]
     end
-    tmp_value = buffer.pack('C*').force_encoding('utf-8')
-    tmp_value.gsub!('\"', '"')
-    @value = tmp_value
+    value = buffer.pack('C*').force_encoding('utf-8')
+    value.gsub!('\"', '"')
+    @define_ns = @define_ns << s(:keyword, value)
   }
 
   # keywords
@@ -31,19 +31,23 @@
   STRING        = ('"' ('\\\"' | [^"])** '"') >s $n %value;
 
   # main actions
+  action namespace_keyword {
+    @define_ns = s(:define_namespace)
+  }
   action define_namespace {
-    yield ({ :prefix => @name, :url => @value })
+    yield @define_ns
   }
 
   # Define FSM
   define_namespace :=
-    DEFINE_KW SP+ NAMESPACE_KW SP+
+    DEFINE_KW SP+ NAMESPACE_KW @namespace_keyword SP+
       IDENT >s $n %name SP+
     AS_KW SP+
       URL_KW SP+ STRING SP* NL @define_namespace;
 }%%
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module DEFINE_NAMESPACE
@@ -65,6 +69,7 @@ module DEFINE_NAMESPACE
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content

@@ -4,6 +4,7 @@
 
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module Identifier
@@ -25,6 +26,7 @@ module Identifier
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content
@@ -230,7 +232,8 @@ when 1 then
 when 2 then
 		begin
 
-    yield buffer.pack('C*').force_encoding('utf-8')
+    value = buffer.pack('C*').force_encoding('utf-8')
+    yield s(:identifier, value)
   		end
 			end # action switch
 		end

@@ -4,6 +4,7 @@
 
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module UNSET
@@ -25,6 +26,7 @@ module UNSET
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content
@@ -235,7 +237,9 @@ begin
 			case _unset_actions[_acts - 1]
 when 0 then
 		begin
- puts "UNSET" 		end
+
+    @unset_node = s(:unset)
+  		end
 when 1 then
 		begin
  buffer = []  		end
@@ -245,8 +249,9 @@ when 2 then
 when 3 then
 		begin
 
-    @name = buffer.pack('C*').force_encoding('utf-8')
-    yield ({ :name => @name })
+    name = buffer.pack('C*').force_encoding('utf-8')
+    @unset_node = @unset_node << s(:name, name)
+    yield @unset_node
   		end
 			end # action switch
 		end

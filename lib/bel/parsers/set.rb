@@ -4,6 +4,7 @@
 
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module SET
@@ -25,6 +26,7 @@ module SET
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content
@@ -242,7 +244,9 @@ begin
 			case _set_actions[_acts - 1]
 when 0 then
 		begin
- puts "SET"   		end
+
+    @set_node = s(:set)
+  		end
 when 1 then
 		begin
  buffer = []  		end
@@ -252,7 +256,8 @@ when 2 then
 when 3 then
 		begin
 
-    @name = buffer.pack('C*').force_encoding('utf-8')
+    name = buffer.pack('C*').force_encoding('utf-8')
+    @set_node = @set_node << s(:name, name)
   		end
 when 4 then
 		begin
@@ -260,11 +265,11 @@ when 4 then
     if buffer[0] == 34 && buffer[-1] == 34
       buffer = buffer[1...-1]
     end
-    tmp_value = buffer.pack('C*').force_encoding('utf-8')
-    tmp_value.gsub!('\"', '"')
-    @value = tmp_value
+    value = buffer.pack('C*').force_encoding('utf-8')
+    value.gsub!('\"', '"')
+    @set_node = @set_node << s(:value, value)
 
-    yield ({ :name => @name, :value => @value })
+    yield @set_node
   		end
 			end # action switch
 		end

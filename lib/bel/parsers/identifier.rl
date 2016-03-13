@@ -8,7 +8,8 @@
   action s    { buffer = []  }
   action n    { buffer << fc }
   action value {
-    yield buffer.pack('C*').force_encoding('utf-8')
+    value = buffer.pack('C*').force_encoding('utf-8')
+    yield s(:identifier, value)
   }
 
   identifier :=
@@ -16,6 +17,7 @@
 }%%
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module Identifier
@@ -37,6 +39,7 @@ module Identifier
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content

@@ -4,6 +4,7 @@
 
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module DEFINE_NAMESPACE
@@ -25,6 +26,7 @@ module DEFINE_NAMESPACE
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content
@@ -36,7 +38,8 @@ class << self
 end
 self._define_namespace_actions = [
 	0, 1, 1, 1, 2, 1, 3, 1, 
-	4, 2, 0, 1, 2, 3, 4
+	4, 1, 5, 2, 0, 1, 2, 3, 
+	5
 ]
 
 class << self
@@ -145,9 +148,9 @@ end
 self._define_namespace_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 9, 3, 1, 0, 0, 0, 
-	0, 0, 0, 0, 0, 9, 1, 1, 
-	1, 5, 12, 0, 7
+	7, 0, 11, 3, 1, 0, 0, 0, 
+	0, 0, 0, 0, 0, 11, 1, 1, 
+	1, 5, 14, 0, 9
 ]
 
 class << self
@@ -277,7 +280,7 @@ when 1 then
 when 2 then
 		begin
 
-    @name = buffer.pack('C*').force_encoding('utf-8')
+    @define_ns = @define_ns << buffer.pack('C*').force_encoding('utf-8')
   		end
 when 3 then
 		begin
@@ -285,14 +288,19 @@ when 3 then
     if buffer[0] == 34 && buffer[-1] == 34
       buffer = buffer[1...-1]
     end
-    tmp_value = buffer.pack('C*').force_encoding('utf-8')
-    tmp_value.gsub!('\"', '"')
-    @value = tmp_value
+    value = buffer.pack('C*').force_encoding('utf-8')
+    value.gsub!('\"', '"')
+    @define_ns = @define_ns << s(:keyword, value)
   		end
 when 4 then
 		begin
 
-    yield ({ :prefix => @name, :url => @value })
+    @define_ns = s(:define_namespace)
+  		end
+when 5 then
+		begin
+
+    yield @define_ns
   		end
 			end # action switch
 		end
