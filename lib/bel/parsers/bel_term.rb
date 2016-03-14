@@ -25,6 +25,7 @@ module BelTerm
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content
@@ -300,7 +301,9 @@ when 4 then
                  		end
 when 5 then
 		begin
- yield @term           		end
+
+    yield term_to_ast(@term)
+  		end
 when 6 then
 		begin
  @term_stack = [] 		end
@@ -377,6 +380,28 @@ n = 0		end
 	end
 
 # end: ragel        
+    end
+
+    private
+
+    def term_to_ast(term, ast=s(:term))
+      fx, rest = *term
+      ast = ast << s(:function, fx)
+      rest.each do |arg|
+        if arg.is_a?(String)
+          ast = ast << s(:argument, s(:prefix, nil), s(:value, arg))
+        elsif arg.first.is_a?(Symbol)
+          ast = ast << s(:argument, term_to_ast(arg))
+        else
+          if arg.size == 1
+            ast = ast << s(:argument, s(:prefix, nil), s(:value, arg[0]))
+          else
+            ast = ast << s(:argument, s(:prefix, arg[0]), s(:value, arg[1]))
+          end
+        end
+      end
+
+      ast
     end
   end
 end

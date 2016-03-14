@@ -20,7 +20,9 @@ machine bel_term;
   }
   action call_term { fcall term;           }
   action return    { fret;                 }
-  action term      { yield @term           }
+  action term      {
+    yield term_to_ast(@term)
+  }
   action term_init { @term_stack = [] }
   action term_fx {
     fx = @name.to_sym
@@ -97,6 +99,7 @@ module BelTerm
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content
@@ -116,6 +119,28 @@ module BelTerm
       %% write init;
       %% write exec;
 # end: ragel        
+    end
+
+    private
+
+    def term_to_ast(term, ast=s(:term))
+      fx, rest = *term
+      ast = ast << s(:function, fx)
+      rest.each do |arg|
+        if arg.is_a?(String)
+          ast = ast << s(:argument, s(:prefix, nil), s(:value, arg))
+        elsif arg.first.is_a?(Symbol)
+          ast = ast << s(:argument, term_to_ast(arg))
+        else
+          if arg.size == 1
+            ast = ast << s(:argument, s(:prefix, nil), s(:value, arg[0]))
+          else
+            ast = ast << s(:argument, s(:prefix, arg[0]), s(:value, arg[1]))
+          end
+        end
+      end
+
+      ast
     end
   end
 end
