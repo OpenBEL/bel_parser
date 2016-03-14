@@ -2,6 +2,7 @@ require_relative 'spec_helper'
 require 'bel/parsers/identifier'
 require 'bel/parsers/bel_parameter'
 require 'bel/parsers/bel_term'
+require 'bel/parsers/bel_statement_observed_term'
 
 describe Identifier, "#parse" do
   include AST::Sexp
@@ -84,6 +85,62 @@ describe BelTerm, "#parse" do
                 s(:argument,
                   s(:prefix, nil),
                   s(:value, "317")))))))
+    )
+  end
+end
+
+describe BelStatementObservedTerm do
+  include AST::Sexp
+
+  # %Q{p(HGNC:AKT1)},
+  # %Q{p(HGNC:AKT1) // observed in lung},
+  # %Q{kin(complex(SCOMP:"p85/p110 PI3Kinase Complex"))},
+
+  it "yields correct AST" do
+    assert_ast(
+      BelStatementObservedTerm,
+      %Q{p(HGNC:AKT1)},
+      s(:statement,
+        s(:subject,
+          s(:term,
+            s(:function, :p),
+            s(:argument,
+              s(:prefix, "HGNC"),
+              s(:value, "AKT1")))),
+        s(:relationship, nil),
+        s(:object, nil),
+        s(:comment, nil))
+    )
+    assert_ast(
+      BelStatementObservedTerm,
+      %Q{p(HGNC:AKT1) //observed in lung},
+      s(:statement,
+        s(:subject,
+          s(:term,
+            s(:function, :p),
+            s(:argument,
+              s(:prefix, "HGNC"),
+              s(:value, "AKT1")))),
+        s(:relationship, nil),
+        s(:object, nil),
+        s(:comment, "observed in lung"))
+    )
+    assert_ast(
+      BelStatementObservedTerm,
+      %Q{kin(complex(SCOMP:"p85/p110 PI3Kinase Complex"))},
+      s(:statement,
+        s(:subject,
+          s(:term,
+            s(:function, :kin),
+            s(:argument,
+              s(:term,
+                s(:function, :complex),
+                s(:argument,
+                  s(:prefix, "SCOMP"),
+                  s(:value, "p85/p110 PI3Kinase Complex")))))),
+        s(:relationship, nil),
+        s(:object, nil),
+        s(:comment, nil))
     )
   end
 end

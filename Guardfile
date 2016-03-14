@@ -61,11 +61,4 @@ ragel(
   'lib/bel/parsers/bel_statement.rl',
   %Q{p(HGNC:AKT1) -> bp(MESHPP:Apoptosis)},
 )
-
-ragel(
-  'lib/bel/parsers/bel_statement_observed_term.rl',
-  %Q{p(HGNC:AKT1)},
-  %Q{p(HGNC:AKT1) // observed in lung},
-  %Q{kin(complex(SCOMP:"p85/p110 PI3Kinase Complex"))},
-)
 # vim: ft=ruby
