@@ -21,7 +21,9 @@
     tmp_value.gsub!('\"', '"')
     @value = tmp_value
 
-    yield ({ :prefix => @prefix, :value => @value })
+    yield s(:bel_parameter,
+            s(:prefix, @prefix),
+            s(:value, @value))
   }
 
   bel_parameter :=
@@ -29,6 +31,7 @@
 }%%
 # end: ragel
 
+require          'ast'
 require_relative 'nonblocking_io_wrapper'
 
 module BelParameter
@@ -50,6 +53,7 @@ module BelParameter
 
   class Parser
     include Enumerable
+    include AST::Sexp
 
     def initialize(content)
       @content = content
