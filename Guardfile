@@ -1,6 +1,10 @@
 # dummy guard to avoid error
 guard :process, command: 'date' do; end
 
+guard 'rake', :task => 'test' do
+  watch(%r{^my_file.rb})
+end
+
 def ragel(file, *examples)
   watch(%r{^#{file}}) do |rl_files|
 
@@ -53,22 +57,6 @@ ragel(
   %Q{define namespace HGNC as url "http://resources/hgnc.belns"},
 )
 
-
-ragel(
-  'lib/bel/parsers/bel_parameter.rl',
-  %Q{HGNC:AKT1},
-  %Q{GOBP:"apoptotic process"},
-  %Q{meshpp: "cat-scratch disease"},
-  %Q{"free entity name"},
-)
-
-ragel(
-  'lib/bel/parsers/bel_term.rl',
-  %Q{p(HGNC:AKT1)},
-  %Q{tscript(p(HGNC:AKT1,pmod(P,S,317)))},
-  %Q{rxn(reactants(a(SCHEM:"Phosphatidylinositol-3,4,5-trisphosphate")),products(a(SCHEM:"1-Phosphatidyl-D-myo-inositol 4,5-bisphosphate")))},
-)
-
 ragel(
   'lib/bel/parsers/bel_statement.rl',
   %Q{p(HGNC:AKT1) -> bp(MESHPP:Apoptosis)},
@@ -79,12 +67,5 @@ ragel(
   %Q{p(HGNC:AKT1)},
   %Q{p(HGNC:AKT1) // observed in lung},
   %Q{kin(complex(SCOMP:"p85/p110 PI3Kinase Complex"))},
-)
-
-ragel(
-  'lib/bel/parsers/identifier.rl',
-  %Q{AKT1},
-  %Q{AKT1_HUMAN},
-  %Q{MAPK1_GAMMA},
 )
 # vim: ft=ruby
