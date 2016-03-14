@@ -6,7 +6,7 @@
   action s      { buffer = []  }
   action n      { buffer << fc }
   action name   {
-    @define_ns = @define_ns << buffer.pack('C*').force_encoding('utf-8')
+    @define_ns = @define_ns << s(:keyword, buffer.pack('C*').force_encoding('utf-8'))
   }
   action value  {
     if buffer[0] == 34 && buffer[-1] == 34
@@ -14,7 +14,7 @@
     end
     value = buffer.pack('C*').force_encoding('utf-8')
     value.gsub!('\"', '"')
-    @define_ns = @define_ns << s(:keyword, value)
+    @define_ns = @define_ns << s(:url, value)
   }
 
   # keywords

@@ -324,7 +324,11 @@ when 3 then
     end
     value = buffer.pack('C*').force_encoding('utf-8')
     value.gsub!('\"', '"')
-    @define_anno = @define_anno << s(:domain, value)
+    @define_anno = @define_anno.updated(nil, [
+      @define_anno.children[0],
+      s(:domain,
+        s(@type, value))
+    ])
   		end
 when 4 then
 		begin
@@ -348,6 +352,12 @@ when 6 then
 
     @listvals << tmp_listvalue
     @listbuffer = []
+
+    @define_anno = @define_anno.updated(nil, [
+      @define_anno.children[0],
+      s(:domain,
+        s(@type, *@listvals))
+    ])
   		end
 when 7 then
 		begin
@@ -362,17 +372,17 @@ when 8 then
 when 9 then
 		begin
 
-    @define_anno = (@define_anno << s(:annotation_type, :list))
+    @type = :list
   		end
 when 10 then
 		begin
 
-    @define_anno = (@define_anno << s(:annotation_type, :pattern))
+    @type = :pattern
   		end
 when 11 then
 		begin
 
-    @define_anno = (@define_anno << s(:annotation_type, :url))
+    @type = :url
   		end
 when 12 then
 		begin

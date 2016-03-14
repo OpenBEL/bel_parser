@@ -280,7 +280,7 @@ when 1 then
 when 2 then
 		begin
 
-    @define_ns = @define_ns << buffer.pack('C*').force_encoding('utf-8')
+    @define_ns = @define_ns << s(:keyword, buffer.pack('C*').force_encoding('utf-8'))
   		end
 when 3 then
 		begin
@@ -290,7 +290,7 @@ when 3 then
     end
     value = buffer.pack('C*').force_encoding('utf-8')
     value.gsub!('\"', '"')
-    @define_ns = @define_ns << s(:keyword, value)
+    @define_ns = @define_ns << s(:url, value)
   		end
 when 4 then
 		begin

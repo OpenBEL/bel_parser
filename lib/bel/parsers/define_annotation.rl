@@ -15,7 +15,11 @@
     end
     value = buffer.pack('C*').force_encoding('utf-8')
     value.gsub!('\"', '"')
-    @define_anno = @define_anno << s(:domain, value)
+    @define_anno = @define_anno.updated(nil, [
+      @define_anno.children[0],
+      s(:domain,
+        s(@type, value))
+    ])
   }
 
   # list accumulator actions
@@ -35,6 +39,12 @@
 
     @listvals << tmp_listvalue
     @listbuffer = []
+
+    @define_anno = @define_anno.updated(nil, [
+      @define_anno.children[0],
+      s(:domain,
+        s(@type, *@listvals))
+    ])
   }
   action listv {
     @value = @listvals
@@ -64,13 +74,13 @@
     @define_anno = s(:define_annotation)
   }
   action list_keyword {
-    @define_anno = (@define_anno << s(:annotation_type, :list))
+    @type = :list
   }
   action pattern_keyword {
-    @define_anno = (@define_anno << s(:annotation_type, :pattern))
+    @type = :pattern
   }
   action url_keyword {
-    @define_anno = (@define_anno << s(:annotation_type, :url))
+    @type = :url
   }
   action define_annotation {
     yield @define_anno
