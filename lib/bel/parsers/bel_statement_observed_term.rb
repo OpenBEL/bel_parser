@@ -278,7 +278,9 @@ when 4 then
                  		end
 when 5 then
 		begin
- yield @term           		end
+
+    yield term_to_ast(@term)
+  		end
 when 6 then
 		begin
  @term_stack = [] 		end
@@ -706,7 +708,9 @@ when 4 then
                  		end
 when 5 then
 		begin
- yield @term           		end
+
+    yield term_to_ast(@term)
+  		end
 when 6 then
 		begin
  @term_stack = [] 		end

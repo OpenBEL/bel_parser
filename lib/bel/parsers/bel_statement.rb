@@ -497,7 +497,9 @@ when 16 then
                  		end
 when 17 then
 		begin
- yield @term           		end
+
+    yield term_to_ast(@term)
+  		end
 when 18 then
 		begin
  @term_stack = [] 		end
@@ -1113,7 +1115,9 @@ when 16 then
                  		end
 when 17 then
 		begin
- yield @term           		end
+
+    yield term_to_ast(@term)
+  		end
 when 18 then
 		begin
  @term_stack = [] 		end
