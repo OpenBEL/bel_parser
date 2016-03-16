@@ -1,4 +1,5 @@
 require_relative 'identifier'
+require_relative 'string'
 require_relative 'define_annotation'
 require_relative 'define_namespace'
 require_relative 'set'
@@ -18,6 +19,7 @@ module LINE
     DEFINE_ANNOTATION,
     DEFINE_NAMESPACE,
     Identifier,
+    BEL::Parser::String
   ]
 
   def self.parse(io)

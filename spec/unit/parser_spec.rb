@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require 'bel/parsers/identifier'
+require 'bel/parsers/string'
 require 'bel/parsers/bel_parameter'
 require 'bel/parsers/bel_term'
 require 'bel/parsers/bel_statement_observed_term'
@@ -15,6 +16,15 @@ describe Identifier, "#parse" do
     assert_ast(Identifier, "AKT1", s(:identifier, "AKT1"))
     assert_ast(Identifier, "AKT1_HUMAN", s(:identifier, "AKT1_HUMAN"))
     assert_ast(Identifier, "MAPK1_GAMMA", s(:identifier, "MAPK1_GAMMA"))
+  end
+end
+
+describe BEL::Parser::String, "#parse" do
+  include AST::Sexp
+
+  it "yields correct AST" do
+    assert_ast(BEL::Parser::String, '"cat-scratch disease"',  s(:string, '"cat-scratch disease"'))
+    assert_ast(BEL::Parser::String, '"This is a \"quote\""',  s(:string, '"This is a \"quote\""'))
   end
 end
 
