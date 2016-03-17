@@ -1,10 +1,13 @@
 
 # begin: ragel
+=begin
 
 
+=end
 # end: ragel
 
 require          'ast'
+require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
 module BEL
@@ -29,101 +32,103 @@ module BEL
       class Parser
         include Enumerable
         include AST::Sexp
+        include BEL::Parser::Buffer
 
         def initialize(content)
           @content = content
     # begin: ragel        
           
 class << self
-	attr_accessor :_string_actions
-	private :_string_actions, :_string_actions=
+	attr_accessor :_bel_actions
+	private :_bel_actions, :_bel_actions=
 end
-self._string_actions = [
-	0, 1, 1, 1, 2, 2, 0, 1
+self._bel_actions = [
+	0, 1, 1, 2, 0, 1, 2, 2, 
+	3
 ]
 
 class << self
-	attr_accessor :_string_key_offsets
-	private :_string_key_offsets, :_string_key_offsets=
+	attr_accessor :_bel_key_offsets
+	private :_bel_key_offsets, :_bel_key_offsets=
 end
-self._string_key_offsets = [
+self._bel_key_offsets = [
 	0, 0, 1, 3, 4, 5
 ]
 
 class << self
-	attr_accessor :_string_trans_keys
-	private :_string_trans_keys, :_string_trans_keys=
+	attr_accessor :_bel_trans_keys
+	private :_bel_trans_keys, :_bel_trans_keys=
 end
-self._string_trans_keys = [
+self._bel_trans_keys = [
 	34, 34, 92, 10, 92, 0
 ]
 
 class << self
-	attr_accessor :_string_single_lengths
-	private :_string_single_lengths, :_string_single_lengths=
+	attr_accessor :_bel_single_lengths
+	private :_bel_single_lengths, :_bel_single_lengths=
 end
-self._string_single_lengths = [
+self._bel_single_lengths = [
 	0, 1, 2, 1, 1, 0
 ]
 
 class << self
-	attr_accessor :_string_range_lengths
-	private :_string_range_lengths, :_string_range_lengths=
+	attr_accessor :_bel_range_lengths
+	private :_bel_range_lengths, :_bel_range_lengths=
 end
-self._string_range_lengths = [
+self._bel_range_lengths = [
 	0, 0, 0, 0, 0, 0
 ]
 
 class << self
-	attr_accessor :_string_index_offsets
-	private :_string_index_offsets, :_string_index_offsets=
+	attr_accessor :_bel_index_offsets
+	private :_bel_index_offsets, :_bel_index_offsets=
 end
-self._string_index_offsets = [
+self._bel_index_offsets = [
 	0, 0, 2, 5, 7, 9
 ]
 
 class << self
-	attr_accessor :_string_trans_targs
-	private :_string_trans_targs, :_string_trans_targs=
+	attr_accessor :_bel_trans_targs
+	private :_bel_trans_targs, :_bel_trans_targs=
 end
-self._string_trans_targs = [
+self._bel_trans_targs = [
 	2, 0, 3, 4, 2, 5, 0, 4, 
 	2, 0, 0
 ]
 
 class << self
-	attr_accessor :_string_trans_actions
-	private :_string_trans_actions, :_string_trans_actions=
+	attr_accessor :_bel_trans_actions
+	private :_bel_trans_actions, :_bel_trans_actions=
 end
-self._string_trans_actions = [
-	5, 0, 1, 1, 1, 3, 0, 1, 
+self._bel_trans_actions = [
+	3, 0, 1, 1, 1, 6, 0, 1, 
 	1, 0, 0
 ]
 
 class << self
-	attr_accessor :string_start
+	attr_accessor :bel_start
 end
-self.string_start = 1;
+self.bel_start = 1;
 class << self
-	attr_accessor :string_first_final
+	attr_accessor :bel_first_final
 end
-self.string_first_final = 5;
+self.bel_first_final = 5;
 class << self
-	attr_accessor :string_error
+	attr_accessor :bel_error
 end
-self.string_error = 0;
+self.bel_error = 0;
 
 class << self
-	attr_accessor :string_en_string
+	attr_accessor :bel_en_string
 end
-self.string_en_string = 1;
+self.bel_en_string = 1;
 
 
     # end: ragel        
         end
 
         def each
-          buffer = []
+          @buffers = {}
           data = @content.unpack('C*')
           p   = 0
           pe  = data.length
@@ -133,7 +138,7 @@ self.string_en_string = 1;
 begin
 	p ||= 0
 	pe ||= data.length
-	cs = string_start
+	cs = bel_start
 end
 
           
@@ -158,9 +163,9 @@ begin
 	end
 	end
 	if _goto_level <= _resume
-	_keys = _string_key_offsets[cs]
-	_trans = _string_index_offsets[cs]
-	_klen = _string_single_lengths[cs]
+	_keys = _bel_key_offsets[cs]
+	_trans = _bel_index_offsets[cs]
+	_klen = _bel_single_lengths[cs]
 	_break_match = false
 	
 	begin
@@ -172,9 +177,9 @@ begin
 	        break if _upper < _lower
 	        _mid = _lower + ( (_upper - _lower) >> 1 )
 
-	        if data[p].ord < _string_trans_keys[_mid]
+	        if data[p].ord < _bel_trans_keys[_mid]
 	           _upper = _mid - 1
-	        elsif data[p].ord > _string_trans_keys[_mid]
+	        elsif data[p].ord > _bel_trans_keys[_mid]
 	           _lower = _mid + 1
 	        else
 	           _trans += (_mid - _keys)
@@ -186,16 +191,16 @@ begin
 	     _keys += _klen
 	     _trans += _klen
 	  end
-	  _klen = _string_range_lengths[cs]
+	  _klen = _bel_range_lengths[cs]
 	  if _klen > 0
 	     _lower = _keys
 	     _upper = _keys + (_klen << 1) - 2
 	     loop do
 	        break if _upper < _lower
 	        _mid = _lower + (((_upper-_lower) >> 1) & ~1)
-	        if data[p].ord < _string_trans_keys[_mid]
+	        if data[p].ord < _bel_trans_keys[_mid]
 	          _upper = _mid - 2
-	        elsif data[p].ord > _string_trans_keys[_mid+1]
+	        elsif data[p].ord > _bel_trans_keys[_mid+1]
 	          _lower = _mid + 2
 	        else
 	          _trans += ((_mid - _keys) >> 1)
@@ -207,27 +212,35 @@ begin
 	     _trans += _klen
 	  end
 	end while false
-	cs = _string_trans_targs[_trans]
-	if _string_trans_actions[_trans] != 0
-		_acts = _string_trans_actions[_trans]
-		_nacts = _string_actions[_acts]
+	cs = _bel_trans_targs[_trans]
+	if _bel_trans_actions[_trans] != 0
+		_acts = _bel_trans_actions[_trans]
+		_nacts = _bel_actions[_acts]
 		_acts += 1
 		while _nacts > 0
 			_nacts -= 1
 			_acts += 1
-			case _string_actions[_acts - 1]
+			case _bel_actions[_acts - 1]
 when 0 then
 		begin
- buffer = []  		end
+
+    @buffers[:string] = []
+  		end
 when 1 then
 		begin
- buffer << data[p].ord 		end
+
+    @buffers[:string] << data[p].ord
+  		end
 when 2 then
 		begin
 
-    yield s(:string,
-            buffer.pack('C*').force_encoding('utf-8'))
-    # TODO: Move UTF8 packing into a method.
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]))
+  		end
+when 3 then
+		begin
+
+    yield @buffers[:string]
   		end
 			end # action switch
 		end
@@ -264,7 +277,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BEL::Parsers::String.parse(line) { |obj|
+    BEL::Parser::String.parse(line) { |obj|
       puts obj
     }
   end

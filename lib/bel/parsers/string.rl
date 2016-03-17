@@ -1,24 +1,35 @@
 # begin: ragel
+=begin
 %%{
-  machine string;
+  machine bel;
 
-  STRING = ('"' ('\\\"' | [^"])** '"');
-  NL     = '\n';
+  include 'common.rl';
 
-  action start    { buffer = []  }
-  action append   { buffer << fc }
-  action finish {
-    yield s(:string,
-            buffer.pack('C*').force_encoding('utf-8'))
-    # TODO: Move UTF8 packing into a method.
+  action start_string {
+    @buffers[:string] = []
   }
 
-  string :=
-    STRING >start $append %finish NL;
+  action append_string {
+    @buffers[:string] << fc
+  }
+
+  action finish_string {
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]))
+  }
+
+  action yield_string {
+    yield @buffers[:string]
+  }
+
+  STRING  = ('"' ('\\\"' | [^"])** '"') >start_string $append_string %finish_string;
+  string := STRING %yield_string NL;
 }%%
+=end
 # end: ragel
 
 require          'ast'
+require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
 module BEL
@@ -43,6 +54,7 @@ module BEL
       class Parser
         include Enumerable
         include AST::Sexp
+        include BEL::Parser::Buffer
 
         def initialize(content)
           @content = content
@@ -52,7 +64,7 @@ module BEL
         end
 
         def each
-          buffer = []
+          @buffers = {}
           data = @content.unpack('C*')
           p   = 0
           pe  = data.length
@@ -69,7 +81,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BEL::Parsers::String.parse(line) { |obj|
+    BEL::Parser::String.parse(line) { |obj|
       puts obj
     }
   end

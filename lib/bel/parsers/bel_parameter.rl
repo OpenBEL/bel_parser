@@ -1,37 +1,39 @@
 # begin: ragel
+=begin
 %%{
-  machine bel_parameter;
+  machine bel;
 
-  IDENT  = [a-zA-Z0-9_]+;
-  STRING = ('"' ('\\\"' | [^"])** '"');
-  SP     = ' ' | '\t';
-  NL     = '\n';
+  include 'common.rl';
+  include 'identifier.rl';
+  include 'string.rl';
 
-  action s    { buffer = []  }
-  action n    { buffer << fc }
   action prefix {
-    @prefix = buffer.pack('C*').force_encoding('utf-8')
-    buffer  = []
-  }
-  action value {
-    if buffer[0] == 34 && buffer[-1] == 34
-      buffer = buffer[1...-1]
-    end
-    tmp_value = buffer.pack('C*').force_encoding('utf-8')
-    tmp_value.gsub!('\"', '"')
-    @value = tmp_value
-
-    yield s(:bel_parameter,
-            s(:prefix, @prefix),
-            s(:value, @value))
+    @bel_parameter ||= s(:parameter)
+    @bel_parameter   = @bel_parameter << s(:prefix, @buffers[:ident])
   }
 
-  bel_parameter :=
-    (IDENT >s $n ':')? @prefix SP* (STRING >s $n | IDENT >s $n) %value NL;
+  action string {
+    @bel_parameter ||= s(:parameter, s(:prefix, nil))
+    @bel_parameter   = @bel_parameter << s(:value, @buffers[:string])
+  }
+
+  action ident {
+    @bel_parameter ||= s(:parameter, s(:prefix, nil))
+    @bel_parameter   = @bel_parameter << s(:value, @buffers[:ident])
+  }
+
+  action yield_bel_parameter {
+    yield @bel_parameter
+  }
+
+  BEL_PARAMETER  = (IDENT ':')? @prefix SP* (STRING %string | IDENT %ident);
+  bel_parameter := BEL_PARAMETER %yield_bel_parameter NL;
 }%%
+=end
 # end: ragel
 
 require          'ast'
+require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
 module BelParameter
@@ -54,6 +56,7 @@ module BelParameter
   class Parser
     include Enumerable
     include AST::Sexp
+		include BEL::Parser::Buffer
 
     def initialize(content)
       @content = content
@@ -63,7 +66,7 @@ module BelParameter
     end
 
     def each
-      buffer = []
+			@buffers = {}
       data = @content.unpack('C*')
       p   = 0
       pe  = data.length

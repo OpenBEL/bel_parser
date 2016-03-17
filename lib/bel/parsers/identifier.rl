@@ -1,23 +1,36 @@
 # begin: ragel
+=begin
 %%{
-  machine identifier;
+  machine bel;
 
-  IDENT  = [a-zA-Z0-9_]+;
-  NL     = '\n';
+  include 'common.rl';
 
-  action s    { buffer = []  }
-  action n    { buffer << fc }
-  action value {
-    value = buffer.pack('C*').force_encoding('utf-8')
-    yield s(:identifier, value)
+  action start_ident {
+    @buffers[:ident] = []
   }
 
-  identifier :=
-    IDENT >s $n %value NL;
+  action append_ident {
+    @buffers[:ident] << fc
+  }
+
+  action finish_ident {
+    @buffers[:ident] = s(:identifier,
+                         utf8_string(@buffers[:ident]))
+  }
+
+  action yield_ident {
+    yield @buffers[:ident]
+  }
+
+  IDENT = [a-zA-Z0-9_]+ >start_ident $append_ident %finish_ident;
+
+  ident := IDENT %yield_ident NL;
 }%%
+=end
 # end: ragel
 
 require          'ast'
+require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
 module Identifier
@@ -40,6 +53,7 @@ module Identifier
   class Parser
     include Enumerable
     include AST::Sexp
+    include BEL::Parser::Buffer
 
     def initialize(content)
       @content = content
@@ -49,7 +63,7 @@ module Identifier
     end
 
     def each
-      buffer = []
+      @buffers = {}
       data = @content.unpack('C*')
       p   = 0
       pe  = data.length

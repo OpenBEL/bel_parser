@@ -1,10 +1,13 @@
 
 # begin: ragel
+=begin
 
 
+=end
 # end: ragel
 
 require          'ast'
+require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
 module Identifier
@@ -27,109 +30,111 @@ module Identifier
   class Parser
     include Enumerable
     include AST::Sexp
+    include BEL::Parser::Buffer
 
     def initialize(content)
       @content = content
 # begin: ragel        
       
 class << self
-	attr_accessor :_identifier_actions
-	private :_identifier_actions, :_identifier_actions=
+	attr_accessor :_bel_actions
+	private :_bel_actions, :_bel_actions=
 end
-self._identifier_actions = [
-	0, 1, 1, 1, 2, 2, 0, 1
+self._bel_actions = [
+	0, 1, 1, 2, 0, 1, 2, 2, 
+	3
 ]
 
 class << self
-	attr_accessor :_identifier_key_offsets
-	private :_identifier_key_offsets, :_identifier_key_offsets=
+	attr_accessor :_bel_key_offsets
+	private :_bel_key_offsets, :_bel_key_offsets=
 end
-self._identifier_key_offsets = [
+self._bel_key_offsets = [
 	0, 0, 7, 15
 ]
 
 class << self
-	attr_accessor :_identifier_trans_keys
-	private :_identifier_trans_keys, :_identifier_trans_keys=
+	attr_accessor :_bel_trans_keys
+	private :_bel_trans_keys, :_bel_trans_keys=
 end
-self._identifier_trans_keys = [
+self._bel_trans_keys = [
 	95, 48, 57, 65, 90, 97, 122, 10, 
 	95, 48, 57, 65, 90, 97, 122, 0
 ]
 
 class << self
-	attr_accessor :_identifier_single_lengths
-	private :_identifier_single_lengths, :_identifier_single_lengths=
+	attr_accessor :_bel_single_lengths
+	private :_bel_single_lengths, :_bel_single_lengths=
 end
-self._identifier_single_lengths = [
+self._bel_single_lengths = [
 	0, 1, 2, 0
 ]
 
 class << self
-	attr_accessor :_identifier_range_lengths
-	private :_identifier_range_lengths, :_identifier_range_lengths=
+	attr_accessor :_bel_range_lengths
+	private :_bel_range_lengths, :_bel_range_lengths=
 end
-self._identifier_range_lengths = [
+self._bel_range_lengths = [
 	0, 3, 3, 0
 ]
 
 class << self
-	attr_accessor :_identifier_index_offsets
-	private :_identifier_index_offsets, :_identifier_index_offsets=
+	attr_accessor :_bel_index_offsets
+	private :_bel_index_offsets, :_bel_index_offsets=
 end
-self._identifier_index_offsets = [
+self._bel_index_offsets = [
 	0, 0, 5, 11
 ]
 
 class << self
-	attr_accessor :_identifier_indicies
-	private :_identifier_indicies, :_identifier_indicies=
+	attr_accessor :_bel_indicies
+	private :_bel_indicies, :_bel_indicies=
 end
-self._identifier_indicies = [
+self._bel_indicies = [
 	0, 0, 0, 0, 1, 2, 3, 3, 
 	3, 3, 1, 1, 0
 ]
 
 class << self
-	attr_accessor :_identifier_trans_targs
-	private :_identifier_trans_targs, :_identifier_trans_targs=
+	attr_accessor :_bel_trans_targs
+	private :_bel_trans_targs, :_bel_trans_targs=
 end
-self._identifier_trans_targs = [
+self._bel_trans_targs = [
 	2, 0, 3, 2
 ]
 
 class << self
-	attr_accessor :_identifier_trans_actions
-	private :_identifier_trans_actions, :_identifier_trans_actions=
+	attr_accessor :_bel_trans_actions
+	private :_bel_trans_actions, :_bel_trans_actions=
 end
-self._identifier_trans_actions = [
-	5, 0, 3, 1
+self._bel_trans_actions = [
+	3, 0, 6, 1
 ]
 
 class << self
-	attr_accessor :identifier_start
+	attr_accessor :bel_start
 end
-self.identifier_start = 1;
+self.bel_start = 1;
 class << self
-	attr_accessor :identifier_first_final
+	attr_accessor :bel_first_final
 end
-self.identifier_first_final = 3;
+self.bel_first_final = 3;
 class << self
-	attr_accessor :identifier_error
+	attr_accessor :bel_error
 end
-self.identifier_error = 0;
+self.bel_error = 0;
 
 class << self
-	attr_accessor :identifier_en_identifier
+	attr_accessor :bel_en_ident
 end
-self.identifier_en_identifier = 1;
+self.bel_en_ident = 1;
 
 
 # end: ragel        
     end
 
     def each
-      buffer = []
+      @buffers = {}
       data = @content.unpack('C*')
       p   = 0
       pe  = data.length
@@ -139,7 +144,7 @@ self.identifier_en_identifier = 1;
 begin
 	p ||= 0
 	pe ||= data.length
-	cs = identifier_start
+	cs = bel_start
 end
 
       
@@ -164,9 +169,9 @@ begin
 	end
 	end
 	if _goto_level <= _resume
-	_keys = _identifier_key_offsets[cs]
-	_trans = _identifier_index_offsets[cs]
-	_klen = _identifier_single_lengths[cs]
+	_keys = _bel_key_offsets[cs]
+	_trans = _bel_index_offsets[cs]
+	_klen = _bel_single_lengths[cs]
 	_break_match = false
 	
 	begin
@@ -178,9 +183,9 @@ begin
 	        break if _upper < _lower
 	        _mid = _lower + ( (_upper - _lower) >> 1 )
 
-	        if data[p].ord < _identifier_trans_keys[_mid]
+	        if data[p].ord < _bel_trans_keys[_mid]
 	           _upper = _mid - 1
-	        elsif data[p].ord > _identifier_trans_keys[_mid]
+	        elsif data[p].ord > _bel_trans_keys[_mid]
 	           _lower = _mid + 1
 	        else
 	           _trans += (_mid - _keys)
@@ -192,16 +197,16 @@ begin
 	     _keys += _klen
 	     _trans += _klen
 	  end
-	  _klen = _identifier_range_lengths[cs]
+	  _klen = _bel_range_lengths[cs]
 	  if _klen > 0
 	     _lower = _keys
 	     _upper = _keys + (_klen << 1) - 2
 	     loop do
 	        break if _upper < _lower
 	        _mid = _lower + (((_upper-_lower) >> 1) & ~1)
-	        if data[p].ord < _identifier_trans_keys[_mid]
+	        if data[p].ord < _bel_trans_keys[_mid]
 	          _upper = _mid - 2
-	        elsif data[p].ord > _identifier_trans_keys[_mid+1]
+	        elsif data[p].ord > _bel_trans_keys[_mid+1]
 	          _lower = _mid + 2
 	        else
 	          _trans += ((_mid - _keys) >> 1)
@@ -213,27 +218,36 @@ begin
 	     _trans += _klen
 	  end
 	end while false
-	_trans = _identifier_indicies[_trans]
-	cs = _identifier_trans_targs[_trans]
-	if _identifier_trans_actions[_trans] != 0
-		_acts = _identifier_trans_actions[_trans]
-		_nacts = _identifier_actions[_acts]
+	_trans = _bel_indicies[_trans]
+	cs = _bel_trans_targs[_trans]
+	if _bel_trans_actions[_trans] != 0
+		_acts = _bel_trans_actions[_trans]
+		_nacts = _bel_actions[_acts]
 		_acts += 1
 		while _nacts > 0
 			_nacts -= 1
 			_acts += 1
-			case _identifier_actions[_acts - 1]
+			case _bel_actions[_acts - 1]
 when 0 then
 		begin
- buffer = []  		end
+
+    @buffers[:ident] = []
+  		end
 when 1 then
 		begin
- buffer << data[p].ord 		end
+
+    @buffers[:ident] << data[p].ord
+  		end
 when 2 then
 		begin
 
-    value = buffer.pack('C*').force_encoding('utf-8')
-    yield s(:identifier, value)
+    @buffers[:ident] = s(:identifier,
+                         utf8_string(@buffers[:ident]))
+  		end
+when 3 then
+		begin
+
+    yield @buffers[:ident]
   		end
 			end # action switch
 		end

@@ -35,30 +35,37 @@ describe BelParameter, "#parse" do
     assert_ast(
       BelParameter,
       "HGNC:AKT1",
-      s(:bel_parameter,
-        s(:prefix, "HGNC"),
-        s(:value, "AKT1"))
+      s(:parameter,
+        s(:prefix,
+          s(:identifier, "HGNC")),
+        s(:value,
+          s(:identifier, "AKT1")))
     )
     assert_ast(
       BelParameter,
       %Q{GOBP:"apoptotic process"},
-      s(:bel_parameter,
-        s(:prefix, "GOBP"),
-        s(:value, "apoptotic process"))
+      s(:parameter,
+        s(:prefix,
+          s(:identifier, "GOBP")),
+        s(:value,
+          s(:string, '"apoptotic process"')))
     )
     assert_ast(
       BelParameter,
       %Q{meshpp: "cat-scratch disease"},
-      s(:bel_parameter,
-        s(:prefix, "meshpp"),
-        s(:value, "cat-scratch disease"))
+      s(:parameter,
+        s(:prefix,
+          s(:identifier, "meshpp")),
+        s(:value,
+          s(:string, '"cat-scratch disease"')))
     )
     assert_ast(
       BelParameter,
       %Q{"free entity name"},
-      s(:bel_parameter,
+      s(:parameter,
         s(:prefix, nil),
-        s(:value, "free entity name"))
+        s(:value,
+          s(:string, '"free entity name"')))
     )
   end
 end
