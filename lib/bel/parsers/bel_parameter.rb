@@ -261,8 +261,8 @@ when 7 then
 when 8 then
 		begin
 
-    @bel_parameter ||= s(:parameter)
-    @bel_parameter   = @bel_parameter << s(:prefix, @buffers[:ident])
+    @bel_parameter   = s(:parameter,
+                         s(:prefix, @buffers[:ident]))
   		end
 when 9 then
 		begin
@@ -566,8 +566,8 @@ when 7 then
 when 8 then
 		begin
 
-    @bel_parameter ||= s(:parameter)
-    @bel_parameter   = @bel_parameter << s(:prefix, @buffers[:ident])
+    @bel_parameter   = s(:parameter,
+                         s(:prefix, @buffers[:ident]))
   		end
 when 9 then
 		begin
@@ -917,8 +917,8 @@ when 7 then
 when 8 then
 		begin
 
-    @bel_parameter ||= s(:parameter)
-    @bel_parameter   = @bel_parameter << s(:prefix, @buffers[:ident])
+    @bel_parameter   = s(:parameter,
+                         s(:prefix, @buffers[:ident]))
   		end
 when 9 then
 		begin

@@ -8,8 +8,8 @@
   include 'string.rl';
 
   action prefix {
-    @bel_parameter ||= s(:parameter)
-    @bel_parameter   = @bel_parameter << s(:prefix, @buffers[:ident])
+    @bel_parameter   = s(:parameter,
+                         s(:prefix, @buffers[:ident]))
   }
 
   action string {
