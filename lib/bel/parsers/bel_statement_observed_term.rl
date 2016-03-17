@@ -1,9 +1,9 @@
 # begin: ragel
 =begin
 %%{
-  machine bel_statement_observed_term;
+  machine bel;
 
-  include bel_term 'bel_term.rl';
+  include 'bel_term.rl';
 
   action comment_start {
     @comment_buffer = []

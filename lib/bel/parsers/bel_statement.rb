@@ -2,44 +2,44 @@
 # begin: ragel
 
 class << self
-	attr_accessor :_bel_statement_actions
-	private :_bel_statement_actions, :_bel_statement_actions=
+	attr_accessor :_bel_actions
+	private :_bel_actions, :_bel_actions=
 end
-self._bel_statement_actions = [
-	0, 1, 2, 1, 3, 1, 5, 1, 
-	8, 1, 10, 1, 13, 1, 14, 1, 
-	16, 1, 17, 1, 20, 1, 22, 1, 
-	23, 2, 3, 5, 2, 3, 16, 2, 
-	4, 0, 2, 6, 7, 2, 7, 8, 
-	2, 9, 10, 2, 10, 5, 2, 10, 
-	8, 2, 10, 9, 2, 10, 16, 2, 
-	12, 13, 2, 19, 15, 2, 20, 14, 
-	2, 22, 13, 3, 1, 25, 16, 3, 
-	2, 1, 16, 3, 2, 6, 7, 3, 
-	8, 4, 0, 3, 10, 3, 5, 3, 
-	10, 3, 16, 3, 10, 4, 0, 3, 
-	11, 1, 16, 3, 14, 19, 15, 3, 
-	18, 19, 15, 3, 21, 24, 16, 3, 
-	22, 12, 13, 4, 3, 1, 25, 16, 
-	4, 5, 1, 25, 16, 4, 10, 8, 
-	4, 0, 4, 10, 11, 6, 7, 4, 
-	11, 1, 16, 25, 4, 11, 1, 25, 
-	16, 4, 14, 18, 19, 15, 4, 20, 
-	21, 24, 16, 5, 3, 5, 1, 25, 
-	16, 5, 10, 11, 6, 7, 8, 5, 
-	10, 11, 6, 7, 9, 5, 11, 1, 
-	16, 5, 25, 5, 18, 19, 15, 4, 
-	0, 6, 8, 18, 19, 15, 4, 0, 
-	6, 10, 18, 19, 15, 4, 0, 6, 
-	11, 1, 16, 3, 5, 25, 7, 10, 
-	8, 18, 19, 15, 4, 0
+self._bel_actions = [
+	0, 1, 1, 1, 2, 1, 4, 1, 
+	5, 1, 8, 1, 10, 1, 11, 1, 
+	15, 1, 16, 1, 18, 1, 21, 1, 
+	23, 2, 0, 1, 2, 7, 3, 2, 
+	8, 2, 2, 10, 1, 2, 16, 4, 
+	2, 16, 18, 2, 17, 13, 2, 19, 
+	20, 2, 20, 21, 2, 22, 23, 2, 
+	23, 4, 2, 23, 18, 2, 23, 21, 
+	2, 23, 22, 3, 2, 7, 3, 3, 
+	6, 7, 3, 3, 9, 12, 4, 3, 
+	10, 0, 1, 3, 14, 25, 4, 3, 
+	15, 14, 4, 3, 15, 19, 20, 3, 
+	21, 17, 13, 3, 23, 16, 4, 3, 
+	23, 16, 18, 3, 23, 17, 13, 3, 
+	24, 14, 4, 4, 2, 6, 7, 3, 
+	4, 8, 9, 12, 4, 4, 16, 14, 
+	25, 4, 4, 18, 14, 25, 4, 4, 
+	23, 21, 17, 13, 4, 23, 24, 19, 
+	20, 4, 24, 14, 4, 25, 4, 24, 
+	14, 25, 4, 5, 6, 7, 3, 17, 
+	13, 5, 16, 18, 14, 25, 4, 5, 
+	23, 24, 19, 20, 21, 5, 23, 24, 
+	19, 20, 22, 5, 24, 14, 4, 18, 
+	25, 6, 21, 6, 7, 3, 17, 13, 
+	6, 23, 6, 7, 3, 17, 13, 6, 
+	24, 14, 4, 16, 18, 25, 7, 23, 
+	21, 6, 7, 3, 17, 13
 ]
 
 class << self
-	attr_accessor :_bel_statement_key_offsets
-	private :_bel_statement_key_offsets, :_bel_statement_key_offsets=
+	attr_accessor :_bel_key_offsets
+	private :_bel_key_offsets, :_bel_key_offsets=
 end
-self._bel_statement_key_offsets = [
+self._bel_key_offsets = [
 	0, 0, 7, 17, 20, 31, 38, 48, 
 	58, 62, 66, 67, 68, 69, 79, 82, 
 	87, 92, 102, 112, 117, 118, 119, 127, 
@@ -51,10 +51,10 @@ self._bel_statement_key_offsets = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_trans_keys
-	private :_bel_statement_trans_keys, :_bel_statement_trans_keys=
+	attr_accessor :_bel_trans_keys
+	private :_bel_trans_keys, :_bel_trans_keys=
 end
-self._bel_statement_trans_keys = [
+self._bel_trans_keys = [
 	95, 48, 57, 65, 90, 97, 122, 9, 
 	32, 40, 95, 48, 57, 65, 90, 97, 
 	122, 9, 32, 40, 9, 10, 32, 47, 
@@ -114,10 +114,10 @@ self._bel_statement_trans_keys = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_single_lengths
-	private :_bel_statement_single_lengths, :_bel_statement_single_lengths=
+	attr_accessor :_bel_single_lengths
+	private :_bel_single_lengths, :_bel_single_lengths=
 end
-self._bel_statement_single_lengths = [
+self._bel_single_lengths = [
 	0, 1, 4, 3, 5, 1, 4, 4, 
 	4, 4, 1, 1, 1, 4, 3, 5, 
 	5, 4, 4, 5, 1, 1, 2, 5, 
@@ -129,10 +129,10 @@ self._bel_statement_single_lengths = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_range_lengths
-	private :_bel_statement_range_lengths, :_bel_statement_range_lengths=
+	attr_accessor :_bel_range_lengths
+	private :_bel_range_lengths, :_bel_range_lengths=
 end
-self._bel_statement_range_lengths = [
+self._bel_range_lengths = [
 	0, 3, 3, 0, 3, 3, 3, 3, 
 	0, 0, 0, 0, 0, 3, 0, 0, 
 	0, 3, 3, 0, 0, 0, 3, 3, 
@@ -144,10 +144,10 @@ self._bel_statement_range_lengths = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_index_offsets
-	private :_bel_statement_index_offsets, :_bel_statement_index_offsets=
+	attr_accessor :_bel_index_offsets
+	private :_bel_index_offsets, :_bel_index_offsets=
 end
-self._bel_statement_index_offsets = [
+self._bel_index_offsets = [
 	0, 0, 5, 13, 17, 26, 31, 39, 
 	47, 52, 57, 59, 61, 63, 71, 75, 
 	81, 87, 95, 103, 109, 111, 113, 119, 
@@ -159,10 +159,10 @@ self._bel_statement_index_offsets = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_indicies
-	private :_bel_statement_indicies, :_bel_statement_indicies=
+	attr_accessor :_bel_indicies
+	private :_bel_indicies, :_bel_indicies=
 end
-self._bel_statement_indicies = [
+self._bel_indicies = [
 	0, 0, 0, 0, 1, 2, 2, 3, 
 	0, 0, 0, 0, 1, 2, 2, 3, 
 	1, 4, 5, 4, 6, 7, 7, 7, 
@@ -215,10 +215,10 @@ self._bel_statement_indicies = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_trans_targs
-	private :_bel_statement_trans_targs, :_bel_statement_trans_targs=
+	attr_accessor :_bel_trans_targs
+	private :_bel_trans_targs, :_bel_trans_targs=
 end
-self._bel_statement_trans_targs = [
+self._bel_trans_targs = [
 	2, 0, 3, 4, 4, 5, 20, 6, 
 	6, 7, 8, 17, 7, 8, 13, 9, 
 	57, 10, 9, 57, 10, 11, 12, 12, 
@@ -237,58 +237,58 @@ self._bel_statement_trans_targs = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_trans_actions
-	private :_bel_statement_trans_actions, :_bel_statement_trans_actions=
+	attr_accessor :_bel_trans_actions
+	private :_bel_trans_actions, :_bel_trans_actions=
 end
-self._bel_statement_trans_actions = [
-	0, 0, 0, 103, 0, 71, 1, 75, 
-	34, 7, 79, 37, 0, 31, 0, 5, 
-	120, 5, 0, 67, 0, 0, 40, 9, 
-	140, 0, 103, 3, 115, 28, 3, 0, 
-	15, 7, 185, 0, 179, 25, 155, 25, 
-	0, 40, 9, 95, 130, 46, 125, 161, 
-	9, 91, 130, 43, 173, 43, 9, 135, 
-	9, 9, 49, 167, 9, 130, 46, 125, 
-	161, 9, 91, 130, 43, 43, 9, 9, 
-	9, 46, 206, 9, 192, 83, 199, 87, 
-	83, 9, 52, 46, 206, 9, 192, 83, 
-	87, 83, 9, 52, 0, 21, 111, 21, 
-	21, 19, 150, 19, 0, 107, 61, 99, 
-	64, 23, 0, 58, 0, 21, 55, 13, 
-	145, 11, 0, 103, 17
+self._bel_trans_actions = [
+	0, 0, 0, 71, 0, 87, 15, 91, 
+	46, 21, 95, 49, 0, 43, 0, 19, 
+	130, 19, 0, 83, 0, 0, 52, 23, 
+	150, 0, 71, 17, 125, 37, 17, 0, 
+	5, 21, 185, 0, 155, 40, 161, 40, 
+	0, 52, 23, 111, 140, 61, 135, 167, 
+	23, 107, 140, 58, 179, 58, 23, 145, 
+	23, 23, 64, 173, 23, 140, 61, 135, 
+	167, 23, 107, 140, 58, 58, 23, 23, 
+	23, 61, 206, 23, 192, 103, 199, 99, 
+	103, 23, 55, 61, 206, 23, 192, 103, 
+	99, 103, 23, 55, 0, 11, 79, 11, 
+	11, 9, 120, 9, 0, 75, 31, 67, 
+	34, 13, 0, 28, 0, 11, 25, 3, 
+	115, 1, 0, 71, 7
 ]
 
 class << self
-	attr_accessor :bel_statement_start
+	attr_accessor :bel_start
 end
-self.bel_statement_start = 1;
+self.bel_start = 1;
 class << self
-	attr_accessor :bel_statement_first_final
+	attr_accessor :bel_first_final
 end
-self.bel_statement_first_final = 57;
+self.bel_first_final = 57;
 class << self
-	attr_accessor :bel_statement_error
+	attr_accessor :bel_error
 end
-self.bel_statement_error = 0;
+self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_statement_en_term
+	attr_accessor :bel_en_term
 end
-self.bel_statement_en_term = 44;
+self.bel_en_term = 44;
 class << self
-	attr_accessor :bel_statement_en_term_main
+	attr_accessor :bel_en_term_main
 end
-self.bel_statement_en_term_main = 53;
+self.bel_en_term_main = 53;
 class << self
-	attr_accessor :bel_statement_en_statement
+	attr_accessor :bel_en_statement
 end
-self.bel_statement_en_statement = 1;
+self.bel_en_statement = 1;
 
 
 begin
 	p ||= 0
 	pe ||= data.length
-	cs = bel_statement_start
+	cs = bel_start
 	top = 0
 end
 
@@ -313,9 +313,9 @@ begin
 	end
 	end
 	if _goto_level <= _resume
-	_keys = _bel_statement_key_offsets[cs]
-	_trans = _bel_statement_index_offsets[cs]
-	_klen = _bel_statement_single_lengths[cs]
+	_keys = _bel_key_offsets[cs]
+	_trans = _bel_index_offsets[cs]
+	_klen = _bel_single_lengths[cs]
 	_break_match = false
 	
 	begin
@@ -327,9 +327,9 @@ begin
 	        break if _upper < _lower
 	        _mid = _lower + ( (_upper - _lower) >> 1 )
 
-	        if data[p].ord < _bel_statement_trans_keys[_mid]
+	        if data[p].ord < _bel_trans_keys[_mid]
 	           _upper = _mid - 1
-	        elsif data[p].ord > _bel_statement_trans_keys[_mid]
+	        elsif data[p].ord > _bel_trans_keys[_mid]
 	           _lower = _mid + 1
 	        else
 	           _trans += (_mid - _keys)
@@ -341,16 +341,16 @@ begin
 	     _keys += _klen
 	     _trans += _klen
 	  end
-	  _klen = _bel_statement_range_lengths[cs]
+	  _klen = _bel_range_lengths[cs]
 	  if _klen > 0
 	     _lower = _keys
 	     _upper = _keys + (_klen << 1) - 2
 	     loop do
 	        break if _upper < _lower
 	        _mid = _lower + (((_upper-_lower) >> 1) & ~1)
-	        if data[p].ord < _bel_statement_trans_keys[_mid]
+	        if data[p].ord < _bel_trans_keys[_mid]
 	          _upper = _mid - 2
-	        elsif data[p].ord > _bel_statement_trans_keys[_mid+1]
+	        elsif data[p].ord > _bel_trans_keys[_mid+1]
 	          _lower = _mid + 2
 	        else
 	          _trans += ((_mid - _keys) >> 1)
@@ -362,17 +362,107 @@ begin
 	     _trans += _klen
 	  end
 	end while false
-	_trans = _bel_statement_indicies[_trans]
-	cs = _bel_statement_trans_targs[_trans]
-	if _bel_statement_trans_actions[_trans] != 0
-		_acts = _bel_statement_trans_actions[_trans]
-		_nacts = _bel_statement_actions[_acts]
+	_trans = _bel_indicies[_trans]
+	cs = _bel_trans_targs[_trans]
+	if _bel_trans_actions[_trans] != 0
+		_acts = _bel_trans_actions[_trans]
+		_nacts = _bel_actions[_acts]
 		_acts += 1
 		while _nacts > 0
 			_nacts -= 1
 			_acts += 1
-			case _bel_statement_actions[_acts - 1]
+			case _bel_actions[_acts - 1]
 when 0 then
+		begin
+
+    buffer = []
+  		end
+when 1 then
+		begin
+
+    buffer << data[p].ord
+  		end
+when 2 then
+		begin
+
+    @name = buffer.pack('C*').force_encoding('utf-8')
+  		end
+when 3 then
+		begin
+ 	begin
+		stack[top] = cs
+		top+= 1
+		cs = 44
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+           		end
+when 4 then
+		begin
+ 	begin
+		top -= 1
+		cs = stack[top]
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+                 		end
+when 5 then
+		begin
+
+    yield term_to_ast(@term)
+  		end
+when 6 then
+		begin
+ @term_stack = [] 		end
+when 7 then
+		begin
+
+    fx = @name.to_sym
+    @term_stack.push([fx, []])
+    @pfx = nil
+    @pbuf = []
+  		end
+when 8 then
+		begin
+
+    val = @pbuf.map(&:chr).join()
+    if not val.empty?
+      if val.start_with? '"' and val.end_with? '"'
+        val = val.strip()[1...-1]
+      end
+
+      if @pfx
+        @term_stack.last[1] << [@pfx, val]
+      else
+        @term_stack.last[1] << val
+      end
+    end
+    @pbuf = []
+    @pfx = nil
+  		end
+when 9 then
+		begin
+
+    @term = @term_stack.pop
+    if not @term_stack.empty?
+      @term_stack.last[1] << @term
+    end
+  		end
+when 10 then
+		begin
+ @pbuf << data[p].ord 		end
+when 11 then
+		begin
+
+    @pfx = @pbuf.map(&:chr).join()
+    @pbuf = []
+  		end
+when 12 then
+		begin
+n = 0		end
+when 13 then
 		begin
 	begin
 		stack[top] = cs
@@ -383,7 +473,7 @@ when 0 then
 		break
 	end
 		end
-when 1 then
+when 14 then
 		begin
 
     @statement = @statement_stack.pop
@@ -413,142 +503,52 @@ when 1 then
       yield @statement
     end
   		end
-when 2 then
+when 15 then
 		begin
 
     @statement_stack.last.subject = @term
   		end
-when 3 then
+when 16 then
 		begin
 
     @statement_stack.last.object = @term
   		end
-when 4 then
+when 17 then
 		begin
 
     nested = BEL::Model::Statement.new()
     @statement_stack.last.object = nested
     @statement_stack.push nested
   		end
-when 5 then
+when 18 then
 		begin
 
     @statement = @statement_stack.pop
   		end
-when 6 then
+when 19 then
 		begin
 @relbuffer = []		end
-when 7 then
+when 20 then
 		begin
 @relbuffer << data[p].ord		end
-when 8 then
+when 21 then
 		begin
 
     rel = @relbuffer.pack('C*').force_encoding('utf-8')
     @statement_stack.last.relationship = rel.to_sym
   		end
-when 9 then
+when 22 then
 		begin
 @cmtbuffer = []		end
-when 10 then
+when 23 then
 		begin
 @cmtbuffer << data[p].ord		end
-when 11 then
+when 24 then
 		begin
 
     comment = @cmtbuffer.pack('C*').force_encoding('utf-8')
     @statement_stack.first.comment = comment
   		end
-when 12 then
-		begin
-
-    buffer = []
-  		end
-when 13 then
-		begin
-
-    buffer << data[p].ord
-  		end
-when 14 then
-		begin
-
-    @name = buffer.pack('C*').force_encoding('utf-8')
-  		end
-when 15 then
-		begin
- 	begin
-		stack[top] = cs
-		top+= 1
-		cs = 44
-		_trigger_goto = true
-		_goto_level = _again
-		break
-	end
-           		end
-when 16 then
-		begin
- 	begin
-		top -= 1
-		cs = stack[top]
-		_trigger_goto = true
-		_goto_level = _again
-		break
-	end
-                 		end
-when 17 then
-		begin
-
-    yield term_to_ast(@term)
-  		end
-when 18 then
-		begin
- @term_stack = [] 		end
-when 19 then
-		begin
-
-    fx = @name.to_sym
-    @term_stack.push([fx, []])
-    @pfx = nil
-    @pbuf = []
-  		end
-when 20 then
-		begin
-
-    val = @pbuf.map(&:chr).join()
-    if not val.empty?
-      if val.start_with? '"' and val.end_with? '"'
-        val = val.strip()[1...-1]
-      end
-
-      if @pfx
-        @term_stack.last[1] << [@pfx, val]
-      else
-        @term_stack.last[1] << val
-      end
-    end
-    @pbuf = []
-    @pfx = nil
-  		end
-when 21 then
-		begin
-
-    @term = @term_stack.pop
-    if not @term_stack.empty?
-      @term_stack.last[1] << @term
-    end
-  		end
-when 22 then
-		begin
- @pbuf << data[p].ord 		end
-when 23 then
-		begin
-
-    @pfx = @pbuf.map(&:chr).join()
-    @pbuf = []
-  		end
-when 24 then
-		begin
-n = 0		end
 when 25 then
 		begin
 n = 0		end
@@ -608,44 +608,44 @@ module BelStatement
 # begin: ragel        
       
 class << self
-	attr_accessor :_bel_statement_actions
-	private :_bel_statement_actions, :_bel_statement_actions=
+	attr_accessor :_bel_actions
+	private :_bel_actions, :_bel_actions=
 end
-self._bel_statement_actions = [
-	0, 1, 2, 1, 3, 1, 5, 1, 
-	8, 1, 10, 1, 13, 1, 14, 1, 
-	16, 1, 17, 1, 20, 1, 22, 1, 
-	23, 2, 3, 5, 2, 3, 16, 2, 
-	4, 0, 2, 6, 7, 2, 7, 8, 
-	2, 9, 10, 2, 10, 5, 2, 10, 
-	8, 2, 10, 9, 2, 10, 16, 2, 
-	12, 13, 2, 19, 15, 2, 20, 14, 
-	2, 22, 13, 3, 1, 25, 16, 3, 
-	2, 1, 16, 3, 2, 6, 7, 3, 
-	8, 4, 0, 3, 10, 3, 5, 3, 
-	10, 3, 16, 3, 10, 4, 0, 3, 
-	11, 1, 16, 3, 14, 19, 15, 3, 
-	18, 19, 15, 3, 21, 24, 16, 3, 
-	22, 12, 13, 4, 3, 1, 25, 16, 
-	4, 5, 1, 25, 16, 4, 10, 8, 
-	4, 0, 4, 10, 11, 6, 7, 4, 
-	11, 1, 16, 25, 4, 11, 1, 25, 
-	16, 4, 14, 18, 19, 15, 4, 20, 
-	21, 24, 16, 5, 3, 5, 1, 25, 
-	16, 5, 10, 11, 6, 7, 8, 5, 
-	10, 11, 6, 7, 9, 5, 11, 1, 
-	16, 5, 25, 5, 18, 19, 15, 4, 
-	0, 6, 8, 18, 19, 15, 4, 0, 
-	6, 10, 18, 19, 15, 4, 0, 6, 
-	11, 1, 16, 3, 5, 25, 7, 10, 
-	8, 18, 19, 15, 4, 0
+self._bel_actions = [
+	0, 1, 1, 1, 2, 1, 4, 1, 
+	5, 1, 8, 1, 10, 1, 11, 1, 
+	15, 1, 16, 1, 18, 1, 21, 1, 
+	23, 2, 0, 1, 2, 7, 3, 2, 
+	8, 2, 2, 10, 1, 2, 16, 4, 
+	2, 16, 18, 2, 17, 13, 2, 19, 
+	20, 2, 20, 21, 2, 22, 23, 2, 
+	23, 4, 2, 23, 18, 2, 23, 21, 
+	2, 23, 22, 3, 2, 7, 3, 3, 
+	6, 7, 3, 3, 9, 12, 4, 3, 
+	10, 0, 1, 3, 14, 25, 4, 3, 
+	15, 14, 4, 3, 15, 19, 20, 3, 
+	21, 17, 13, 3, 23, 16, 4, 3, 
+	23, 16, 18, 3, 23, 17, 13, 3, 
+	24, 14, 4, 4, 2, 6, 7, 3, 
+	4, 8, 9, 12, 4, 4, 16, 14, 
+	25, 4, 4, 18, 14, 25, 4, 4, 
+	23, 21, 17, 13, 4, 23, 24, 19, 
+	20, 4, 24, 14, 4, 25, 4, 24, 
+	14, 25, 4, 5, 6, 7, 3, 17, 
+	13, 5, 16, 18, 14, 25, 4, 5, 
+	23, 24, 19, 20, 21, 5, 23, 24, 
+	19, 20, 22, 5, 24, 14, 4, 18, 
+	25, 6, 21, 6, 7, 3, 17, 13, 
+	6, 23, 6, 7, 3, 17, 13, 6, 
+	24, 14, 4, 16, 18, 25, 7, 23, 
+	21, 6, 7, 3, 17, 13
 ]
 
 class << self
-	attr_accessor :_bel_statement_key_offsets
-	private :_bel_statement_key_offsets, :_bel_statement_key_offsets=
+	attr_accessor :_bel_key_offsets
+	private :_bel_key_offsets, :_bel_key_offsets=
 end
-self._bel_statement_key_offsets = [
+self._bel_key_offsets = [
 	0, 0, 7, 17, 20, 31, 38, 48, 
 	58, 62, 66, 67, 68, 69, 79, 82, 
 	87, 92, 102, 112, 117, 118, 119, 127, 
@@ -657,10 +657,10 @@ self._bel_statement_key_offsets = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_trans_keys
-	private :_bel_statement_trans_keys, :_bel_statement_trans_keys=
+	attr_accessor :_bel_trans_keys
+	private :_bel_trans_keys, :_bel_trans_keys=
 end
-self._bel_statement_trans_keys = [
+self._bel_trans_keys = [
 	95, 48, 57, 65, 90, 97, 122, 9, 
 	32, 40, 95, 48, 57, 65, 90, 97, 
 	122, 9, 32, 40, 9, 10, 32, 47, 
@@ -720,10 +720,10 @@ self._bel_statement_trans_keys = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_single_lengths
-	private :_bel_statement_single_lengths, :_bel_statement_single_lengths=
+	attr_accessor :_bel_single_lengths
+	private :_bel_single_lengths, :_bel_single_lengths=
 end
-self._bel_statement_single_lengths = [
+self._bel_single_lengths = [
 	0, 1, 4, 3, 5, 1, 4, 4, 
 	4, 4, 1, 1, 1, 4, 3, 5, 
 	5, 4, 4, 5, 1, 1, 2, 5, 
@@ -735,10 +735,10 @@ self._bel_statement_single_lengths = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_range_lengths
-	private :_bel_statement_range_lengths, :_bel_statement_range_lengths=
+	attr_accessor :_bel_range_lengths
+	private :_bel_range_lengths, :_bel_range_lengths=
 end
-self._bel_statement_range_lengths = [
+self._bel_range_lengths = [
 	0, 3, 3, 0, 3, 3, 3, 3, 
 	0, 0, 0, 0, 0, 3, 0, 0, 
 	0, 3, 3, 0, 0, 0, 3, 3, 
@@ -750,10 +750,10 @@ self._bel_statement_range_lengths = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_index_offsets
-	private :_bel_statement_index_offsets, :_bel_statement_index_offsets=
+	attr_accessor :_bel_index_offsets
+	private :_bel_index_offsets, :_bel_index_offsets=
 end
-self._bel_statement_index_offsets = [
+self._bel_index_offsets = [
 	0, 0, 5, 13, 17, 26, 31, 39, 
 	47, 52, 57, 59, 61, 63, 71, 75, 
 	81, 87, 95, 103, 109, 111, 113, 119, 
@@ -765,10 +765,10 @@ self._bel_statement_index_offsets = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_indicies
-	private :_bel_statement_indicies, :_bel_statement_indicies=
+	attr_accessor :_bel_indicies
+	private :_bel_indicies, :_bel_indicies=
 end
-self._bel_statement_indicies = [
+self._bel_indicies = [
 	0, 0, 0, 0, 1, 2, 2, 3, 
 	0, 0, 0, 0, 1, 2, 2, 3, 
 	1, 4, 5, 4, 6, 7, 7, 7, 
@@ -821,10 +821,10 @@ self._bel_statement_indicies = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_trans_targs
-	private :_bel_statement_trans_targs, :_bel_statement_trans_targs=
+	attr_accessor :_bel_trans_targs
+	private :_bel_trans_targs, :_bel_trans_targs=
 end
-self._bel_statement_trans_targs = [
+self._bel_trans_targs = [
 	2, 0, 3, 4, 4, 5, 20, 6, 
 	6, 7, 8, 17, 7, 8, 13, 9, 
 	57, 10, 9, 57, 10, 11, 12, 12, 
@@ -843,52 +843,52 @@ self._bel_statement_trans_targs = [
 ]
 
 class << self
-	attr_accessor :_bel_statement_trans_actions
-	private :_bel_statement_trans_actions, :_bel_statement_trans_actions=
+	attr_accessor :_bel_trans_actions
+	private :_bel_trans_actions, :_bel_trans_actions=
 end
-self._bel_statement_trans_actions = [
-	0, 0, 0, 103, 0, 71, 1, 75, 
-	34, 7, 79, 37, 0, 31, 0, 5, 
-	120, 5, 0, 67, 0, 0, 40, 9, 
-	140, 0, 103, 3, 115, 28, 3, 0, 
-	15, 7, 185, 0, 179, 25, 155, 25, 
-	0, 40, 9, 95, 130, 46, 125, 161, 
-	9, 91, 130, 43, 173, 43, 9, 135, 
-	9, 9, 49, 167, 9, 130, 46, 125, 
-	161, 9, 91, 130, 43, 43, 9, 9, 
-	9, 46, 206, 9, 192, 83, 199, 87, 
-	83, 9, 52, 46, 206, 9, 192, 83, 
-	87, 83, 9, 52, 0, 21, 111, 21, 
-	21, 19, 150, 19, 0, 107, 61, 99, 
-	64, 23, 0, 58, 0, 21, 55, 13, 
-	145, 11, 0, 103, 17
+self._bel_trans_actions = [
+	0, 0, 0, 71, 0, 87, 15, 91, 
+	46, 21, 95, 49, 0, 43, 0, 19, 
+	130, 19, 0, 83, 0, 0, 52, 23, 
+	150, 0, 71, 17, 125, 37, 17, 0, 
+	5, 21, 185, 0, 155, 40, 161, 40, 
+	0, 52, 23, 111, 140, 61, 135, 167, 
+	23, 107, 140, 58, 179, 58, 23, 145, 
+	23, 23, 64, 173, 23, 140, 61, 135, 
+	167, 23, 107, 140, 58, 58, 23, 23, 
+	23, 61, 206, 23, 192, 103, 199, 99, 
+	103, 23, 55, 61, 206, 23, 192, 103, 
+	99, 103, 23, 55, 0, 11, 79, 11, 
+	11, 9, 120, 9, 0, 75, 31, 67, 
+	34, 13, 0, 28, 0, 11, 25, 3, 
+	115, 1, 0, 71, 7
 ]
 
 class << self
-	attr_accessor :bel_statement_start
+	attr_accessor :bel_start
 end
-self.bel_statement_start = 1;
+self.bel_start = 1;
 class << self
-	attr_accessor :bel_statement_first_final
+	attr_accessor :bel_first_final
 end
-self.bel_statement_first_final = 57;
+self.bel_first_final = 57;
 class << self
-	attr_accessor :bel_statement_error
+	attr_accessor :bel_error
 end
-self.bel_statement_error = 0;
+self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_statement_en_term
+	attr_accessor :bel_en_term
 end
-self.bel_statement_en_term = 44;
+self.bel_en_term = 44;
 class << self
-	attr_accessor :bel_statement_en_term_main
+	attr_accessor :bel_en_term_main
 end
-self.bel_statement_en_term_main = 53;
+self.bel_en_term_main = 53;
 class << self
-	attr_accessor :bel_statement_en_statement
+	attr_accessor :bel_en_statement
 end
-self.bel_statement_en_statement = 1;
+self.bel_en_statement = 1;
 
 
 # end: ragel        
@@ -905,7 +905,7 @@ self.bel_statement_en_statement = 1;
 begin
 	p ||= 0
 	pe ||= data.length
-	cs = bel_statement_start
+	cs = bel_start
 	top = 0
 end
 
@@ -931,9 +931,9 @@ begin
 	end
 	end
 	if _goto_level <= _resume
-	_keys = _bel_statement_key_offsets[cs]
-	_trans = _bel_statement_index_offsets[cs]
-	_klen = _bel_statement_single_lengths[cs]
+	_keys = _bel_key_offsets[cs]
+	_trans = _bel_index_offsets[cs]
+	_klen = _bel_single_lengths[cs]
 	_break_match = false
 	
 	begin
@@ -945,9 +945,9 @@ begin
 	        break if _upper < _lower
 	        _mid = _lower + ( (_upper - _lower) >> 1 )
 
-	        if data[p].ord < _bel_statement_trans_keys[_mid]
+	        if data[p].ord < _bel_trans_keys[_mid]
 	           _upper = _mid - 1
-	        elsif data[p].ord > _bel_statement_trans_keys[_mid]
+	        elsif data[p].ord > _bel_trans_keys[_mid]
 	           _lower = _mid + 1
 	        else
 	           _trans += (_mid - _keys)
@@ -959,16 +959,16 @@ begin
 	     _keys += _klen
 	     _trans += _klen
 	  end
-	  _klen = _bel_statement_range_lengths[cs]
+	  _klen = _bel_range_lengths[cs]
 	  if _klen > 0
 	     _lower = _keys
 	     _upper = _keys + (_klen << 1) - 2
 	     loop do
 	        break if _upper < _lower
 	        _mid = _lower + (((_upper-_lower) >> 1) & ~1)
-	        if data[p].ord < _bel_statement_trans_keys[_mid]
+	        if data[p].ord < _bel_trans_keys[_mid]
 	          _upper = _mid - 2
-	        elsif data[p].ord > _bel_statement_trans_keys[_mid+1]
+	        elsif data[p].ord > _bel_trans_keys[_mid+1]
 	          _lower = _mid + 2
 	        else
 	          _trans += ((_mid - _keys) >> 1)
@@ -980,17 +980,107 @@ begin
 	     _trans += _klen
 	  end
 	end while false
-	_trans = _bel_statement_indicies[_trans]
-	cs = _bel_statement_trans_targs[_trans]
-	if _bel_statement_trans_actions[_trans] != 0
-		_acts = _bel_statement_trans_actions[_trans]
-		_nacts = _bel_statement_actions[_acts]
+	_trans = _bel_indicies[_trans]
+	cs = _bel_trans_targs[_trans]
+	if _bel_trans_actions[_trans] != 0
+		_acts = _bel_trans_actions[_trans]
+		_nacts = _bel_actions[_acts]
 		_acts += 1
 		while _nacts > 0
 			_nacts -= 1
 			_acts += 1
-			case _bel_statement_actions[_acts - 1]
+			case _bel_actions[_acts - 1]
 when 0 then
+		begin
+
+    buffer = []
+  		end
+when 1 then
+		begin
+
+    buffer << data[p].ord
+  		end
+when 2 then
+		begin
+
+    @name = buffer.pack('C*').force_encoding('utf-8')
+  		end
+when 3 then
+		begin
+ 	begin
+		stack[top] = cs
+		top+= 1
+		cs = 44
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+           		end
+when 4 then
+		begin
+ 	begin
+		top -= 1
+		cs = stack[top]
+		_trigger_goto = true
+		_goto_level = _again
+		break
+	end
+                 		end
+when 5 then
+		begin
+
+    yield term_to_ast(@term)
+  		end
+when 6 then
+		begin
+ @term_stack = [] 		end
+when 7 then
+		begin
+
+    fx = @name.to_sym
+    @term_stack.push([fx, []])
+    @pfx = nil
+    @pbuf = []
+  		end
+when 8 then
+		begin
+
+    val = @pbuf.map(&:chr).join()
+    if not val.empty?
+      if val.start_with? '"' and val.end_with? '"'
+        val = val.strip()[1...-1]
+      end
+
+      if @pfx
+        @term_stack.last[1] << [@pfx, val]
+      else
+        @term_stack.last[1] << val
+      end
+    end
+    @pbuf = []
+    @pfx = nil
+  		end
+when 9 then
+		begin
+
+    @term = @term_stack.pop
+    if not @term_stack.empty?
+      @term_stack.last[1] << @term
+    end
+  		end
+when 10 then
+		begin
+ @pbuf << data[p].ord 		end
+when 11 then
+		begin
+
+    @pfx = @pbuf.map(&:chr).join()
+    @pbuf = []
+  		end
+when 12 then
+		begin
+n = 0		end
+when 13 then
 		begin
 	begin
 		stack[top] = cs
@@ -1001,7 +1091,7 @@ when 0 then
 		break
 	end
 		end
-when 1 then
+when 14 then
 		begin
 
     @statement = @statement_stack.pop
@@ -1031,142 +1121,52 @@ when 1 then
       yield @statement
     end
   		end
-when 2 then
+when 15 then
 		begin
 
     @statement_stack.last.subject = @term
   		end
-when 3 then
+when 16 then
 		begin
 
     @statement_stack.last.object = @term
   		end
-when 4 then
+when 17 then
 		begin
 
     nested = BEL::Model::Statement.new()
     @statement_stack.last.object = nested
     @statement_stack.push nested
   		end
-when 5 then
+when 18 then
 		begin
 
     @statement = @statement_stack.pop
   		end
-when 6 then
+when 19 then
 		begin
 @relbuffer = []		end
-when 7 then
+when 20 then
 		begin
 @relbuffer << data[p].ord		end
-when 8 then
+when 21 then
 		begin
 
     rel = @relbuffer.pack('C*').force_encoding('utf-8')
     @statement_stack.last.relationship = rel.to_sym
   		end
-when 9 then
+when 22 then
 		begin
 @cmtbuffer = []		end
-when 10 then
+when 23 then
 		begin
 @cmtbuffer << data[p].ord		end
-when 11 then
+when 24 then
 		begin
 
     comment = @cmtbuffer.pack('C*').force_encoding('utf-8')
     @statement_stack.first.comment = comment
   		end
-when 12 then
-		begin
-
-    buffer = []
-  		end
-when 13 then
-		begin
-
-    buffer << data[p].ord
-  		end
-when 14 then
-		begin
-
-    @name = buffer.pack('C*').force_encoding('utf-8')
-  		end
-when 15 then
-		begin
- 	begin
-		stack[top] = cs
-		top+= 1
-		cs = 44
-		_trigger_goto = true
-		_goto_level = _again
-		break
-	end
-           		end
-when 16 then
-		begin
- 	begin
-		top -= 1
-		cs = stack[top]
-		_trigger_goto = true
-		_goto_level = _again
-		break
-	end
-                 		end
-when 17 then
-		begin
-
-    yield term_to_ast(@term)
-  		end
-when 18 then
-		begin
- @term_stack = [] 		end
-when 19 then
-		begin
-
-    fx = @name.to_sym
-    @term_stack.push([fx, []])
-    @pfx = nil
-    @pbuf = []
-  		end
-when 20 then
-		begin
-
-    val = @pbuf.map(&:chr).join()
-    if not val.empty?
-      if val.start_with? '"' and val.end_with? '"'
-        val = val.strip()[1...-1]
-      end
-
-      if @pfx
-        @term_stack.last[1] << [@pfx, val]
-      else
-        @term_stack.last[1] << val
-      end
-    end
-    @pbuf = []
-    @pfx = nil
-  		end
-when 21 then
-		begin
-
-    @term = @term_stack.pop
-    if not @term_stack.empty?
-      @term_stack.last[1] << @term
-    end
-  		end
-when 22 then
-		begin
- @pbuf << data[p].ord 		end
-when 23 then
-		begin
-
-    @pfx = @pbuf.map(&:chr).join()
-    @pbuf = []
-  		end
-when 24 then
-		begin
-n = 0		end
 when 25 then
 		begin
 n = 0		end

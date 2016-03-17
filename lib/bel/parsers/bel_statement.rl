@@ -1,6 +1,8 @@
 # begin: ragel
 %%{
-  machine bel_statement;
+  machine bel;
+
+  include 'bel_term.rl';
 
   action call_statement {fcall statement;}
   action statement {
