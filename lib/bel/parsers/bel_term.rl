@@ -1,83 +1,96 @@
 # begin: ragel
+=begin
 %%{
-machine bel;
+  machine bel;
 
-  IDENT  = [a-zA-Z0-9_]+;
-  STRING = ('"' ('\\\"' | [^"])** '"');
-  SP     = ' ' | '\t';
-  NL     = '\n';
+  include 'bel_parameter.rl';
 
-  action s {
-    buffer = []
+  action start_function {
+    @buffers[:function] = []
   }
 
-  action n {
-    buffer << fc
+  action append_function {
+    @buffers[:function] << fc
   }
 
-  action name {
-    @name = buffer.pack('C*').force_encoding('utf-8')
+  action finish_function {
+    @buffers[:function] = utf8_string(@buffers[:function])
   }
-  action call_term { fcall term;           }
-  action return    { fret;                 }
-  action term      {
-    yield term_to_ast(@term)
+
+  action term_init {
+    @buffers[:term_stack] = [ s(:term) ]
   }
-  action term_init { @term_stack = [] }
+
+  action inner_term_init {
+    @buffers[:term_stack] << s(:term)
+  }
+
   action term_fx {
-    fx = @name.to_sym
-    @term_stack.push([fx, []])
-    @pfx = nil
-    @pbuf = []
+    fx                        = @buffers[:function]
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:function, fx)
   }
-  action term_arg {
-    val = @pbuf.map(&:chr).join()
-    if not val.empty?
-      if val.start_with? '"' and val.end_with? '"'
-        val = val.strip()[1...-1]
-      end
 
-      if @pfx
-        @term_stack.last[1] << [@pfx, val]
-      else
-        @term_stack.last[1] << val
-      end
-    end
-    @pbuf = []
-    @pfx = nil
+  action term_argument {
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @bel_parameter)
   }
-  action term_pop {
-    @term = @term_stack.pop
-    if not @term_stack.empty?
-      @term_stack.last[1] << @term
-    end
+
+  action fxbt {
+    fpc -= @buffers[:function].length + 1
+    fcall inner_term;
   }
-  action pbuf  { @pbuf << fc }
-  action pns {
-    @pfx = @pbuf.map(&:chr).join()
-    @pbuf = []
+
+  action fxret {
+    inner_term = @buffers[:term_stack].pop
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << inner_term
+    fret;
   }
+
+  action term_ast  {
+    yield @buffers[:term_stack][-1]
+  }
+
+  inner_term :=
+    IDENT >inner_term_init >start_function $append_function %finish_function
+    SP*
+    '(' @term_fx
+      (
+        BEL_PARAMETER %term_argument |
+        IDENT >start_function $append_function '(' @fxbt
+      )
+      (
+        SP* ',' SP*
+        (
+          BEL_PARAMETER %term_argument |
+          IDENT >start_function $append_function '(' @fxbt
+        )
+      )*
+    ')' @fxret;
+
+  outer_term =
+    IDENT >term_init >start_function $append_function %finish_function
+    SP*
+    '(' @term_fx
+      (
+        BEL_PARAMETER %term_argument |
+        IDENT >start_function $append_function '(' @fxbt
+      )
+      (
+        SP* ',' SP*
+        (
+          BEL_PARAMETER %term_argument |
+          IDENT >start_function $append_function '(' @fxbt
+        )
+      )*
+    ')';
 
   term :=
-    (
-      SP* (IDENT $pbuf ':')? @pns SP* (STRING $pbuf | IDENT $pbuf) %term_arg |
-      SP* IDENT >s $n %name SP* '(' @term_fx @call_term
-    )
-    (
-      SP* ',' SP* 
-      (
-        (IDENT $pbuf ':')? @pns SP* (STRING $pbuf | IDENT $pbuf) %term_arg |
-        IDENT >s $n %name SP* '(' @term_fx @call_term
-      )
-    )* SP* ')' >term_pop @{n = 0} @return;
-
-  term_main :=
-    (
-      IDENT >s $n %name SP* '(' @term_init @term_fx @call_term NL @term
-    )+;
+    outer_term %term_ast NL;
 }%%
+=end
 # end: ragel
 
+require          'ast'
+require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
 module BelTerm
@@ -100,6 +113,7 @@ module BelTerm
   class Parser
     include Enumerable
     include AST::Sexp
+		include BEL::Parser::Buffer
 
     def initialize(content)
       @content = content
@@ -109,38 +123,16 @@ module BelTerm
     end
 
     def each
-      buffer = []
-      stack  = []
-      data   = @content.unpack('C*')
-      p      = 0
-      pe     = data.length
+      @buffers = {}
+      stack    = []
+      data     = @content.unpack('C*')
+      p        = 0
+      pe       = data.length
 
 # begin: ragel        
       %% write init;
       %% write exec;
 # end: ragel        
-    end
-
-    private
-
-    def term_to_ast(term, ast=s(:term))
-      fx, rest = *term
-      ast = ast << s(:function, fx)
-      rest.each do |arg|
-        if arg.is_a?(String)
-          ast = ast << s(:argument, s(:prefix, nil), s(:value, arg))
-        elsif arg.first.is_a?(Symbol)
-          ast = ast << s(:argument, term_to_ast(arg))
-        else
-          if arg.size == 1
-            ast = ast << s(:argument, s(:prefix, nil), s(:value, arg[0]))
-          else
-            ast = ast << s(:argument, s(:prefix, arg[0]), s(:value, arg[1]))
-          end
-        end
-      end
-
-      ast
     end
   end
 end
@@ -148,7 +140,7 @@ end
 if __FILE__ == $0
   $stdin.each_line do |line|
     BelTerm.parse(line) { |obj|
-      puts obj.join(', ')
+      puts obj
     }
   end
 end
