@@ -1,6 +1,7 @@
 Sequential
 - [x] Make ragel for String (string.rl). Construct AST.
 - [x] Rebuild BelParameter using Identifier and String.
+- [x] Add guard for building parsers and running rspec tests.
 - Rebuild BelTerm using BelParameter.
 - Separate out statement comment parser.
 - Rebuild BelStatementObservedTerm using BelTerm.
