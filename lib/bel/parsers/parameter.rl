@@ -8,26 +8,26 @@
   include 'string.rl';
 
   action prefix {
-    @bel_parameter   = s(:parameter,
-                         s(:prefix, @buffers[:ident]))
+    @parameter = s(:parameter,
+                   s(:prefix, @buffers[:ident]))
   }
 
   action string {
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:string])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:string])
   }
 
   action ident {
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:ident])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:ident])
   }
 
-  action yield_bel_parameter {
-    yield @bel_parameter
+  action yield_parameter_ast {
+    yield @parameter
   }
 
   BEL_PARAMETER  = (IDENT ':')? @prefix SP* (STRING %string | IDENT %ident);
-  bel_parameter := BEL_PARAMETER %yield_bel_parameter NL;
+  bel_parameter := BEL_PARAMETER %yield_parameter_ast NL;
 }%%
 =end
 # end: ragel
@@ -36,7 +36,7 @@ require          'ast'
 require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
-module BelParameter
+module Parameter
 
   class << self
 
@@ -81,7 +81,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BelParameter.parse(line) { |obj|
+    Parameter.parse(line) { |obj|
       puts obj
     }
   end

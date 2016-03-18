@@ -3,7 +3,7 @@
 %%{
   machine bel;
 
-  include 'bel_parameter.rl';
+  include 'parameter.rl';
 
   action start_function {
     @buffers[:function] = []
@@ -31,7 +31,7 @@
   }
 
   action term_argument {
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @bel_parameter)
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
   }
 
   action fxbt {
@@ -45,7 +45,7 @@
     fret;
   }
 
-  action term_ast  {
+  action yield_term_ast  {
     yield @buffers[:term_stack][-1]
   }
 
@@ -84,7 +84,7 @@
     ')';
 
   term :=
-    outer_term %term_ast NL;
+    outer_term %yield_term_ast NL;
 }%%
 =end
 # end: ragel
@@ -93,7 +93,7 @@ require          'ast'
 require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
-module BelTerm
+module Term
 
   class << self
 
@@ -139,7 +139,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BelTerm.parse(line) { |obj|
+    Term.parse(line) { |obj|
       puts obj
     }
   end

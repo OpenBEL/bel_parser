@@ -261,25 +261,25 @@ when 7 then
 when 8 then
 		begin
 
-    @bel_parameter   = s(:parameter,
-                         s(:prefix, @buffers[:ident]))
+    @parameter = s(:parameter,
+                   s(:prefix, @buffers[:ident]))
   		end
 when 9 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:string])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:string])
   		end
 when 10 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:ident])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
 when 11 then
 		begin
 
-    yield @bel_parameter
+    yield @parameter
   		end
 			end # action switch
 		end
@@ -566,25 +566,25 @@ when 7 then
 when 8 then
 		begin
 
-    @bel_parameter   = s(:parameter,
-                         s(:prefix, @buffers[:ident]))
+    @parameter = s(:parameter,
+                   s(:prefix, @buffers[:ident]))
   		end
 when 9 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:string])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:string])
   		end
 when 10 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:ident])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
 when 11 then
 		begin
 
-    yield @bel_parameter
+    yield @parameter
   		end
 			end # action switch
 		end
@@ -620,7 +620,7 @@ require          'ast'
 require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
-module BelParameter
+module Parameter
 
   class << self
 
@@ -917,25 +917,25 @@ when 7 then
 when 8 then
 		begin
 
-    @bel_parameter   = s(:parameter,
-                         s(:prefix, @buffers[:ident]))
+    @parameter = s(:parameter,
+                   s(:prefix, @buffers[:ident]))
   		end
 when 9 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:string])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:string])
   		end
 when 10 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:ident])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
 when 11 then
 		begin
 
-    yield @bel_parameter
+    yield @parameter
   		end
 			end # action switch
 		end
@@ -970,7 +970,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BelParameter.parse(line) { |obj|
+    Parameter.parse(line) { |obj|
       puts obj
     }
   end

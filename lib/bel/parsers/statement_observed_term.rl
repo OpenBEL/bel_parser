@@ -3,54 +3,43 @@
 %%{
   machine bel;
 
-  include 'bel_term.rl';
+  include 'term.rl';
 
-  action comment_start {
-    @comment_buffer = []
+  action start_comment {
+    @buffers[:comment] = []
   }
 
-  action comment_next {
-    @comment_buffer << fc
+  action append_comment {
+    @buffers[:comment] << fc
   }
 
-  action comment_finish {
-    comment    = @comment_buffer.pack('C*').force_encoding('utf-8')
-    @comment   = @comment.updated(nil, [comment])
-    @statement = @statement.updated(nil, [@subject, @relationship, @object, @comment])
+  action finish_comment {
+    @buffers[:comment] = s(:comment,
+                           utf8_string(@buffers[:comment]))
   }
 
-  action statement_init {
-    @statement    = s(:statement)
-    @subject      = s(:subject)
-    @comment      = s(:comment, nil)
-    @statement    = @statement.updated(nil, [@subject, @comment])
-    @relationship = s(:relationship, nil)
-    @object       = s(:object, nil)
+  action yield_statement_observed_term {
+    @buffers[:comment] ||= s(:comment, nil)
+    yield s(:observed_term,
+            @buffers[:term_stack][-1], @buffers[:comment])
   }
 
-  action statement_subject {
-    @subject   = @subject << term_to_ast(@term)
-    @statement = @statement.updated(nil, [@subject, @relationship, @object, @comment])
-  }
+  comment = '//' ^NL+ >start_comment $append_comment %finish_comment;
 
-  action statement {
-    yield @statement
-  }
-
-  comment = '//' ^NL+ >comment_start $comment_next %comment_finish;
-
-  observed_term :=
-    IDENT        >s $n %name
-      SP*
-    '('          @statement_init    @term_init @term_fx @call_term
-      SP*        %statement_subject
-      comment?
-      NL         @statement @return;
+  statement_observed_term :=
+    outer_term 
+    SP*
+    comment? %yield_statement_observed_term
+    NL;
 }%%
 =end
 # end: ragel
 
-module BelStatementObservedTerm
+require          'ast'
+require_relative 'mixin/buffer'
+require_relative 'nonblocking_io_wrapper'
+
+module StatementObservedTerm
 
   class << self
 
@@ -70,6 +59,7 @@ module BelStatementObservedTerm
   class Parser
     include Enumerable
     include AST::Sexp
+		include BEL::Parser::Buffer
 
     def initialize(content)
       @content = content
@@ -79,11 +69,11 @@ module BelStatementObservedTerm
     end
 
     def each
-      stack  = []
-      buffer = []
-      data   = @content.unpack('C*')
-      p      = 0
-      pe     = data.length
+			@buffers = {}
+      stack    = []
+      data     = @content.unpack('C*')
+      p        = 0
+      pe       = data.length
 
 # begin: ragel        
       %% write init;
@@ -137,7 +127,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BelStatementObservedTerm.parse(line) { |obj|
+    StatementObservedTerm.parse(line) { |obj|
       puts obj
     }
   end

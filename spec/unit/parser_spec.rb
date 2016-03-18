@@ -1,9 +1,10 @@
 require_relative 'spec_helper'
 require 'bel/parsers/identifier'
 require 'bel/parsers/string'
-require 'bel/parsers/bel_parameter'
-require 'bel/parsers/bel_term'
-require 'bel/parsers/bel_statement_observed_term'
+require 'bel/parsers/parameter'
+require 'bel/parsers/term'
+require 'bel/parsers/statement_observed_term'
+require 'bel/parsers/statement_simple'
 require 'bel/parsers/set'
 require 'bel/parsers/unset'
 require 'bel/parsers/define_annotation'
@@ -28,12 +29,12 @@ describe BEL::Parser::String, "#parse" do
   end
 end
 
-describe BelParameter, "#parse" do
+describe Parameter, "#parse" do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      BelParameter,
+      Parameter,
       "HGNC:AKT1",
       s(:parameter,
         s(:prefix,
@@ -42,7 +43,7 @@ describe BelParameter, "#parse" do
           s(:identifier, "AKT1")))
     )
     assert_ast(
-      BelParameter,
+      Parameter,
       %Q{GOBP:"apoptotic process"},
       s(:parameter,
         s(:prefix,
@@ -51,7 +52,7 @@ describe BelParameter, "#parse" do
           s(:string, '"apoptotic process"')))
     )
     assert_ast(
-      BelParameter,
+      Parameter,
       %Q{meshpp: "cat-scratch disease"},
       s(:parameter,
         s(:prefix,
@@ -60,7 +61,7 @@ describe BelParameter, "#parse" do
           s(:string, '"cat-scratch disease"')))
     )
     assert_ast(
-      BelParameter,
+      Parameter,
       %Q{"free entity name"},
       s(:parameter,
         s(:prefix, nil),
@@ -70,33 +71,37 @@ describe BelParameter, "#parse" do
   end
 end
 
-describe BelTerm, "#parse" do
+describe Term, "#parse" do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      BelTerm,
+      Term,
       %Q{p(HGNC:AKT1)},
       s(:term,
-        s(:function, :p),
+        s(:function, "p"),
         s(:argument,
-          s(:prefix, "HGNC"),
-          s(:value, "AKT1")))
+          s(:parameter,
+            s(:prefix,
+              s(:identifier, "HGNC")),
+            s(:value,
+              s(:identifier, "AKT1")))))
     )
     assert_ast(
-      BelTerm,
+      Term,
       %Q{tscript(p(HGNC:AKT1,pmod(P,S,317)))},
       s(:term,
-        s(:function, :tscript),
+        s(:function, "tscript"),
         s(:argument,
           s(:term,
-            s(:function, :p),
+            s(:function, "p"),
             s(:argument,
-              s(:prefix, "HGNC"),
-              s(:value, "AKT1")),
+              s(:parameter,
+                s(:prefix, "HGNC"),
+                s(:value, "AKT1"))),
             s(:argument,
               s(:term,
-                s(:function, :pmod),
+                s(:function, "pmod"),
                 s(:argument,
                   s(:prefix, nil),
                   s(:value, "P")),
@@ -110,12 +115,12 @@ describe BelTerm, "#parse" do
   end
 end
 
-describe BelStatementObservedTerm do
+describe StatementObservedTerm do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      BelStatementObservedTerm,
+      StatementObservedTerm,
       %Q{p(HGNC:AKT1)},
       s(:statement,
         s(:subject,
@@ -129,7 +134,7 @@ describe BelStatementObservedTerm do
         s(:comment, nil))
     )
     assert_ast(
-      BelStatementObservedTerm,
+      StatementObservedTerm,
       %Q{p(HGNC:AKT1) //observed in lung},
       s(:statement,
         s(:subject,
@@ -143,7 +148,7 @@ describe BelStatementObservedTerm do
         s(:comment, "observed in lung"))
     )
     assert_ast(
-      BelStatementObservedTerm,
+      StatementObservedTerm,
       %Q{kin(complex(SCOMP:"p85/p110 PI3Kinase Complex"))},
       s(:statement,
         s(:subject,

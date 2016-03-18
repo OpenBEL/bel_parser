@@ -345,25 +345,25 @@ when 7 then
 when 8 then
 		begin
 
-    @bel_parameter   = s(:parameter,
-                         s(:prefix, @buffers[:ident]))
+    @parameter = s(:parameter,
+                   s(:prefix, @buffers[:ident]))
   		end
 when 9 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:string])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:string])
   		end
 when 10 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:ident])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
 when 11 then
 		begin
 
-    yield @bel_parameter
+    yield @parameter
   		end
 when 12 then
 		begin
@@ -399,7 +399,7 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @bel_parameter)
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
   		end
 when 19 then
 		begin
@@ -803,25 +803,25 @@ when 7 then
 when 8 then
 		begin
 
-    @bel_parameter   = s(:parameter,
-                         s(:prefix, @buffers[:ident]))
+    @parameter = s(:parameter,
+                   s(:prefix, @buffers[:ident]))
   		end
 when 9 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:string])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:string])
   		end
 when 10 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:ident])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
 when 11 then
 		begin
 
-    yield @bel_parameter
+    yield @parameter
   		end
 when 12 then
 		begin
@@ -857,7 +857,7 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @bel_parameter)
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
   		end
 when 19 then
 		begin
@@ -1261,25 +1261,25 @@ when 7 then
 when 8 then
 		begin
 
-    @bel_parameter   = s(:parameter,
-                         s(:prefix, @buffers[:ident]))
+    @parameter = s(:parameter,
+                   s(:prefix, @buffers[:ident]))
   		end
 when 9 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:string])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:string])
   		end
 when 10 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:ident])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
 when 11 then
 		begin
 
-    yield @bel_parameter
+    yield @parameter
   		end
 when 12 then
 		begin
@@ -1315,7 +1315,7 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @bel_parameter)
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
   		end
 when 19 then
 		begin
@@ -1384,7 +1384,7 @@ require          'ast'
 require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
-module BelTerm
+module Term
 
   class << self
 
@@ -1766,25 +1766,25 @@ when 7 then
 when 8 then
 		begin
 
-    @bel_parameter   = s(:parameter,
-                         s(:prefix, @buffers[:ident]))
+    @parameter = s(:parameter,
+                   s(:prefix, @buffers[:ident]))
   		end
 when 9 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:string])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:string])
   		end
 when 10 then
 		begin
 
-    @bel_parameter ||= s(:parameter, s(:prefix, nil))
-    @bel_parameter   = @bel_parameter << s(:value, @buffers[:ident])
+    @parameter ||= s(:parameter, s(:prefix, nil))
+    @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
 when 11 then
 		begin
 
-    yield @bel_parameter
+    yield @parameter
   		end
 when 12 then
 		begin
@@ -1820,7 +1820,7 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @bel_parameter)
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
   		end
 when 19 then
 		begin
@@ -1888,7 +1888,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BelTerm.parse(line) { |obj|
+    Term.parse(line) { |obj|
       puts obj
     }
   end
