@@ -3,7 +3,7 @@ Sequential
 - [x] Rebuild BelParameter using Identifier and String.
 - [x] Add guard for building parsers and running rspec tests.
 - [x] Rebuild BelTerm using BelParameter.
-- Separate out statement comment parser.
+- [x] Separate out statement comment parser.
 - [x] Rebuild BelStatementObservedTerm using BelTerm.
 - Add BelStatementSimple parser.
 - Add BelStatementNested parser.

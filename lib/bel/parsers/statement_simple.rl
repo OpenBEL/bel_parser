@@ -4,32 +4,18 @@
   machine bel;
 
   include 'term.rl';
+  include 'statement_comment.rl';
 
-  action start_comment {
-    @buffers[:comment] = []
-  }
-
-  action append_comment {
-    @buffers[:comment] << fc
-  }
-
-  action finish_comment {
-    @buffers[:comment] = s(:comment,
-                           utf8_string(@buffers[:comment]))
-  }
-
-  action yield_statement_observed_term {
+  action yield_statement_simple {
     @buffers[:comment] ||= s(:comment, nil)
-    yield s(:observed_term,
+    yield s(:statement_simple,
             @buffers[:term_stack][-1], @buffers[:comment])
   }
-
-  comment = '//' ^NL+ >start_comment $append_comment %finish_comment;
 
   statement_observed_term :=
     outer_term 
     SP*
-    comment? %yield_statement_observed_term
+    COMMENT? %yield_statement_simple
     NL;
 }%%
 =end
