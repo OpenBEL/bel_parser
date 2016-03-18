@@ -1,25 +1,31 @@
 require_relative 'identifier'
 require_relative 'string'
+require_relative 'parameter'
+require_relative 'term'
+require_relative 'relationship'
+require_relative 'comment'
+require_relative 'statement_observed_term'
+require_relative 'statement_simple'
 require_relative 'define_annotation'
 require_relative 'define_namespace'
 require_relative 'set'
 require_relative 'unset'
-require_relative 'bel_parameter'
-require_relative 'bel_term'
-require_relative 'bel_statement_observed_term'
 
 module LINE
 
   BEL_PARSERS = [
-    SET,
-    UNSET,
-    BelParameter,
-    BelStatementObservedTerm,
-    BelTerm,
+    Identifier,
+    BEL::Parser::String,
+    Parameter,
+    Term,
+    Relationship,
+    Comment,
+    StatementObservedTerm,
+    StatementSimple,
     DEFINE_ANNOTATION,
     DEFINE_NAMESPACE,
-    Identifier,
-    BEL::Parser::String
+    SET,
+    UNSET,
   ]
 
   def self.parse(io)
@@ -50,7 +56,7 @@ module LINE
 
         BEL_PARSERS.each do |parser|
           parser.parse(line) { |obj|
-            puts "parser: #{parser.inspect}, line: #{line.strip}, object: #{obj}"
+            puts "parser: #{parser.inspect}, line: #{line.strip}, object: #{obj.inspect}"
           }
         end
       rescue StopIteration

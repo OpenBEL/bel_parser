@@ -5,26 +5,28 @@
 
   include 'common.rl';
 
-  action start_ident {
-    @buffers[:ident] = []
+  action start_comment {
+    @buffers[:comment] = []
   }
 
-  action append_ident {
-    @buffers[:ident] << fc
+  action append_comment {
+    @buffers[:comment] << fc
   }
 
-  action finish_ident {
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+  action finish_comment {
+    @buffers[:comment] = s(:comment,
+                           utf8_string(@buffers[:comment]))
   }
 
-  action yield_ident {
-    yield @buffers[:ident]
+  action yield_comment {
+    yield @buffers[:comment] || s(:comment, nil)
   }
 
-  IDENT = [a-zA-Z0-9_]+ >start_ident $append_ident %finish_ident;
+  COMMENT = '//' ^NL+ >start_comment $append_comment %finish_comment;
 
-  ident := IDENT %yield_ident NL;
+  comment :=
+    COMMENT? %yield_comment
+    NL;
 }%%
 =end
 # end: ragel
@@ -33,7 +35,7 @@ require          'ast'
 require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
-module Identifier
+module Comment
 
   class << self
 
@@ -64,9 +66,10 @@ module Identifier
 
     def each
       @buffers = {}
-      data = @content.unpack('C*')
-      p   = 0
-      pe  = data.length
+      stack    = []
+      data     = @content.unpack('C*')
+      p        = 0
+      pe       = data.length
 
 # begin: ragel        
       %% write init;
@@ -78,7 +81,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    Identifier.parse(line) { |obj|
+    Comment.parse(line) { |obj|
       puts obj.inspect
     }
   end

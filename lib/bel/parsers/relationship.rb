@@ -10,7 +10,7 @@ require          'ast'
 require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
-module Comment
+module Relationship
 
   class << self
 
@@ -41,8 +41,8 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 3, 2, 0, 1, 
-	2, 2, 3
+	0, 1, 1, 2, 0, 1, 2, 2, 
+	3
 ]
 
 class << self
@@ -50,7 +50,7 @@ class << self
 	private :_bel_key_offsets, :_bel_key_offsets=
 end
 self._bel_key_offsets = [
-	0, 0, 2, 3, 4, 5
+	0, 0, 2, 5
 ]
 
 class << self
@@ -58,7 +58,7 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	10, 47, 47, 10, 10, 0
+	33, 126, 10, 33, 126, 0
 ]
 
 class << self
@@ -66,7 +66,7 @@ class << self
 	private :_bel_single_lengths, :_bel_single_lengths=
 end
 self._bel_single_lengths = [
-	0, 2, 1, 1, 1, 0
+	0, 0, 1, 0
 ]
 
 class << self
@@ -74,7 +74,7 @@ class << self
 	private :_bel_range_lengths, :_bel_range_lengths=
 end
 self._bel_range_lengths = [
-	0, 0, 0, 0, 0, 0
+	0, 1, 1, 0
 ]
 
 class << self
@@ -82,7 +82,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 3, 5, 7, 9
+	0, 0, 2, 5
 ]
 
 class << self
@@ -90,8 +90,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	5, 2, 0, 3, 0, 0, 4, 5, 
-	4, 0, 0
+	2, 0, 3, 2, 0, 0, 0
 ]
 
 class << self
@@ -99,8 +98,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	3, 0, 0, 0, 0, 0, 5, 8, 
-	1, 0, 0
+	3, 0, 6, 1, 0, 0, 0
 ]
 
 class << self
@@ -110,16 +108,16 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 5;
+self.bel_first_final = 3;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_comment
+	attr_accessor :bel_en_relationship
 end
-self.bel_en_comment = 1;
+self.bel_en_relationship = 1;
 
 
 # end: ragel        
@@ -223,23 +221,23 @@ begin
 when 0 then
 		begin
 
-    @buffers[:comment] = []
+    @buffers[:relationship] = []
   		end
 when 1 then
 		begin
 
-    @buffers[:comment] << data[p].ord
+    @buffers[:relationship] << data[p].ord
   		end
 when 2 then
 		begin
 
-    @buffers[:comment] = s(:comment,
-                           utf8_string(@buffers[:comment]))
+    @buffers[:relationship] = s(:relationship,
+                                utf8_string(@buffers[:relationship]))
   		end
 when 3 then
 		begin
 
-    yield @buffers[:comment] || s(:comment, nil)
+    yield @buffers[:relationship]
   		end
 			end # action switch
 		end
@@ -274,8 +272,8 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    Comment.parse(line) { |obj|
-      puts obj
+    Relationship.parse(line) { |obj|
+      puts obj.inspect
     }
   end
 end

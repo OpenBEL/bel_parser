@@ -3,6 +3,7 @@ require 'bel/parsers/identifier'
 require 'bel/parsers/string'
 require 'bel/parsers/parameter'
 require 'bel/parsers/term'
+require 'bel/parsers/relationship'
 require 'bel/parsers/statement_observed_term'
 require 'bel/parsers/statement_simple'
 require 'bel/parsers/set'
@@ -115,6 +116,17 @@ describe Term, "#parse" do
   end
 end
 
+describe Relationship, "#parse" do
+  include AST::Sexp
+
+  it "yields correct AST" do
+    # Ok, a koala, fish, and a robot walk into a bar.
+    assert_ast(Relationship, "@(*O*)@",  s(:relationship, "@(*O*)@"))
+    assert_ast(Relationship, "><(((('>", s(:relationship, "><(((('>"))
+    assert_ast(Relationship, "d[o_0]b",  s(:relationship, "d[o_0]b"))
+  end
+end
+
 describe StatementObservedTerm do
   include AST::Sexp
 
@@ -163,6 +175,75 @@ describe StatementObservedTerm do
         s(:relationship, nil),
         s(:object, nil),
         s(:comment, nil))
+    )
+  end
+end
+
+describe StatementSimple do
+  include AST::Sexp
+
+  it "yields correct AST" do
+    assert_ast(
+      StatementSimple,
+      %Q{p(SP:AKT1_HUMAN) ^(*(oo)*)^ bp(MESHPP:Apoptosis)},
+			s(:statement_simple,
+				s(:subject,
+					s(:term,
+						s(:function, "p"),
+						s(:argument,
+							s(:parameter,
+								s(:prefix,
+									s(:identifier, "SP")),
+								s(:value,
+									s(:identifier, "AKT1_HUMAN")))))),
+				s(:relationship, "^(*(oo)*)^"),
+				s(:object,
+					s(:term,
+						s(:function, "bp"),
+						s(:argument,
+							s(:parameter,
+								s(:prefix,
+									s(:identifier, "MESHPP")),
+								s(:value,
+									s(:identifier, "Apoptosis")))))),
+				s(:comment, nil))
+    )
+    assert_ast(
+      StatementSimple,
+      %Q{complex(p(SFAM:"RXR Family"),p(HGNC:PPARG)) directlyIncreases tscript(p(HGNC:PPARG))//Comment on the end of the unverse.},
+			s(:statement_simple,
+				s(:subject,
+					s(:term,
+						s(:function, "complex"),
+						s(:term,
+							s(:function, "p"),
+							s(:argument,
+								s(:parameter,
+									s(:prefix,
+										s(:identifier, "SFAM")),
+									s(:value,
+										s(:string, "\"RXR Family\""))))),
+						s(:term,
+							s(:function, "p"),
+							s(:argument,
+								s(:parameter,
+									s(:prefix,
+										s(:identifier, "HGNC")),
+									s(:value,
+										s(:identifier, "PPARG"))))))),
+				s(:relationship, "directlyIncreases"),
+				s(:object,
+					s(:term,
+						s(:function, "tscript"),
+						s(:term,
+							s(:function, "p"),
+							s(:argument,
+								s(:parameter,
+									s(:prefix,
+										s(:identifier, "HGNC")),
+									s(:value,
+										s(:identifier, "PPARG"))))))),
+				s(:comment, "Comment on the end of the unverse.")),
     )
   end
 end

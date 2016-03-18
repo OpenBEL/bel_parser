@@ -5,27 +5,28 @@
 
   include 'common.rl';
 
-  action start_comment {
-    @buffers[:comment] = []
+  action start_relationship {
+    @buffers[:relationship] = []
   }
 
-  action append_comment {
-    @buffers[:comment] << fc
+  action append_relationship {
+    @buffers[:relationship] << fc
   }
 
-  action finish_comment {
-    @buffers[:comment] = s(:comment,
-                           utf8_string(@buffers[:comment]))
+  action finish_relationship {
+    @buffers[:relationship] = s(:relationship,
+                                utf8_string(@buffers[:relationship]))
   }
 
-  action yield_comment {
-    yield @buffers[:comment] || s(:comment, nil)
+  action yield_relationship {
+    yield @buffers[:relationship]
   }
 
-  COMMENT = '//' ^NL+ >start_comment $append_comment %finish_comment;
+  RELATIONSHIP =
+    (0x21..0x7e)+ >start_relationship $append_relationship %finish_relationship;
 
-  comment :=
-    COMMENT? %yield_comment
+  relationship :=
+    RELATIONSHIP %yield_relationship
     NL;
 }%%
 =end
@@ -35,7 +36,7 @@ require          'ast'
 require_relative 'mixin/buffer'
 require_relative 'nonblocking_io_wrapper'
 
-module StatementComment
+module Relationship
 
   class << self
 
@@ -81,8 +82,8 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    StatementComment.parse(line) { |obj|
-      puts obj
+    Relationship.parse(line) { |obj|
+      puts obj.inspect
     }
   end
 end

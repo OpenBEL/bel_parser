@@ -1889,7 +1889,7 @@ end
 if __FILE__ == $0
   $stdin.each_line do |line|
     Term.parse(line) { |obj|
-      puts obj
+      puts obj.inspect
     }
   end
 end

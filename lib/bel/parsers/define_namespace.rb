@@ -336,7 +336,7 @@ end
 if __FILE__ == $0
   $stdin.each_line do |line|
     DEFINE_NAMESPACE.parse(line) { |obj|
-      puts obj
+      puts obj.inspect
     }
   end
 end
