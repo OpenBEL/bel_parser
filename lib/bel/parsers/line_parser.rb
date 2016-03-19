@@ -6,6 +6,7 @@ require_relative 'relationship'
 require_relative 'comment'
 require_relative 'statement_observed_term'
 require_relative 'statement_simple'
+require_relative 'statement_nested'
 require_relative 'define_annotation'
 require_relative 'define_namespace'
 require_relative 'set'
@@ -22,6 +23,7 @@ module LINE
     Comment,
     StatementObservedTerm,
     StatementSimple,
+    StatementNested,
     DEFINE_ANNOTATION,
     DEFINE_NAMESPACE,
     SET,

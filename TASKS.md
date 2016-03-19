@@ -5,8 +5,8 @@ Sequential
 - [x] Rebuild BelTerm using BelParameter.
 - [x] Separate out statement comment parser.
 - [x] Rebuild BelStatementObservedTerm using BelTerm.
-- Add BelStatementSimple parser.
-- Add BelStatementNested parser.
+- [x] Add BelStatementSimple parser.
+- [x] Add BelStatementNested parser.
 - Create a BEL Script line parser that uses all ragel machines.
 
 Backlog

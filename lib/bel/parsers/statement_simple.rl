@@ -26,12 +26,15 @@
             @buffers[:comment])
   }
 
-  statement_simple :=
+  STATEMENT_SIMPLE =
     outer_term %statement_subject
     SP+
     RELATIONSHIP
     SP+
-    outer_term %statement_object
+    outer_term %statement_object;
+
+  statement_simple :=
+    STATEMENT_SIMPLE
     SP*
     COMMENT? %yield_statement_simple
     NL;
