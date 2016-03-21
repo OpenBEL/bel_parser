@@ -8,13 +8,15 @@
   include 'comment.rl';
 
   action statement_subject {
-    @buffers[:subject] = s(:subject,
-                           @buffers[:term_stack][-1])
+    @buffers[:subject]    = s(:subject,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   }
 
   action statement_object {
-    @buffers[:object] = s(:object,
-                          @buffers[:term_stack][-1])
+    @buffers[:object]     = s(:object,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   }
 
   action yield_statement_simple {

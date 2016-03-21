@@ -22,8 +22,6 @@
   }
 
   action ast_object {
-    puts "pushing on AST object"
-    puts @buffers[:object].inspect
     @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << s(:object, @buffers[:object])
   }
 
@@ -38,12 +36,11 @@
   action fret {
     inner_statement = @buffers[:statement_stack].pop
     @buffers[:object] = inner_statement
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << inner_statement
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << s(:object, inner_statement)
     fret;
   }
 
   action yield_statement_nested {
-    puts "COMPLETE"
     yield @buffers[:statement_stack][-1]
   }
 
@@ -53,9 +50,9 @@
     RELATIONSHIP %ast_relationship
     SP+
     (
-      outer_term @statement_object |
-      '(' @call_nested_statement ')' @statement_object_statement
-    ) @ast_object @fret;
+      outer_term @statement_object @ast_object |
+      '(' @call_nested_statement ')'
+    ) @fret;
 
   outer_statement =
     outer_term >statement_init %statement_subject %ast_subject

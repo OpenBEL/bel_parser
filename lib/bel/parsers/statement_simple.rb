@@ -518,6 +518,7 @@ when 18 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
+    @parameter                = nil
   		end
 when 19 then
 		begin
@@ -537,7 +538,7 @@ when 20 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << inner_term
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, inner_term)
     	begin
 		top -= 1
 		cs = stack[top]
@@ -597,14 +598,16 @@ when 29 then
 when 30 then
 		begin
 
-    @buffers[:subject] = s(:subject,
-                           @buffers[:term_stack][-1])
+    @buffers[:subject]    = s(:subject,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 31 then
 		begin
 
-    @buffers[:object] = s(:object,
-                          @buffers[:term_stack][-1])
+    @buffers[:object]     = s(:object,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 32 then
 		begin
@@ -1158,6 +1161,7 @@ when 18 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
+    @parameter                = nil
   		end
 when 19 then
 		begin
@@ -1177,7 +1181,7 @@ when 20 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << inner_term
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, inner_term)
     	begin
 		top -= 1
 		cs = stack[top]
@@ -1237,14 +1241,16 @@ when 29 then
 when 30 then
 		begin
 
-    @buffers[:subject] = s(:subject,
-                           @buffers[:term_stack][-1])
+    @buffers[:subject]    = s(:subject,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 31 then
 		begin
 
-    @buffers[:object] = s(:object,
-                          @buffers[:term_stack][-1])
+    @buffers[:object]     = s(:object,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 32 then
 		begin
@@ -1798,6 +1804,7 @@ when 18 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
+    @parameter                = nil
   		end
 when 19 then
 		begin
@@ -1817,7 +1824,7 @@ when 20 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << inner_term
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, inner_term)
     	begin
 		top -= 1
 		cs = stack[top]
@@ -1877,14 +1884,16 @@ when 29 then
 when 30 then
 		begin
 
-    @buffers[:subject] = s(:subject,
-                           @buffers[:term_stack][-1])
+    @buffers[:subject]    = s(:subject,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 31 then
 		begin
 
-    @buffers[:object] = s(:object,
-                          @buffers[:term_stack][-1])
+    @buffers[:object]     = s(:object,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 32 then
 		begin
@@ -2438,6 +2447,7 @@ when 18 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
+    @parameter                = nil
   		end
 when 19 then
 		begin
@@ -2457,7 +2467,7 @@ when 20 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << inner_term
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, inner_term)
     	begin
 		top -= 1
 		cs = stack[top]
@@ -2517,14 +2527,16 @@ when 29 then
 when 30 then
 		begin
 
-    @buffers[:subject] = s(:subject,
-                           @buffers[:term_stack][-1])
+    @buffers[:subject]    = s(:subject,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 31 then
 		begin
 
-    @buffers[:object] = s(:object,
-                          @buffers[:term_stack][-1])
+    @buffers[:object]     = s(:object,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 32 then
 		begin
@@ -3078,6 +3090,7 @@ when 18 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
+    @parameter                = nil
   		end
 when 19 then
 		begin
@@ -3097,7 +3110,7 @@ when 20 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << inner_term
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, inner_term)
     	begin
 		top -= 1
 		cs = stack[top]
@@ -3157,14 +3170,16 @@ when 29 then
 when 30 then
 		begin
 
-    @buffers[:subject] = s(:subject,
-                           @buffers[:term_stack][-1])
+    @buffers[:subject]    = s(:subject,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 31 then
 		begin
 
-    @buffers[:object] = s(:object,
-                          @buffers[:term_stack][-1])
+    @buffers[:object]     = s(:object,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 32 then
 		begin
@@ -3718,6 +3733,7 @@ when 18 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
+    @parameter                = nil
   		end
 when 19 then
 		begin
@@ -3737,7 +3753,7 @@ when 20 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << inner_term
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, inner_term)
     	begin
 		top -= 1
 		cs = stack[top]
@@ -3797,14 +3813,16 @@ when 29 then
 when 30 then
 		begin
 
-    @buffers[:subject] = s(:subject,
-                           @buffers[:term_stack][-1])
+    @buffers[:subject]    = s(:subject,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 31 then
 		begin
 
-    @buffers[:object] = s(:object,
-                          @buffers[:term_stack][-1])
+    @buffers[:object]     = s(:object,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 32 then
 		begin
@@ -4405,6 +4423,7 @@ when 18 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
+    @parameter                = nil
   		end
 when 19 then
 		begin
@@ -4424,7 +4443,7 @@ when 20 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << inner_term
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, inner_term)
     	begin
 		top -= 1
 		cs = stack[top]
@@ -4484,14 +4503,16 @@ when 29 then
 when 30 then
 		begin
 
-    @buffers[:subject] = s(:subject,
-                           @buffers[:term_stack][-1])
+    @buffers[:subject]    = s(:subject,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 31 then
 		begin
 
-    @buffers[:object] = s(:object,
-                          @buffers[:term_stack][-1])
+    @buffers[:object]     = s(:object,
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
   		end
 when 32 then
 		begin

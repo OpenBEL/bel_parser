@@ -32,6 +32,7 @@
 
   action term_argument {
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
+    @parameter                = nil
   }
 
   action fxbt {
@@ -41,7 +42,7 @@
 
   action fxret {
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << inner_term
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, inner_term)
     fret;
   }
 
