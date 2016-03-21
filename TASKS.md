@@ -10,6 +10,6 @@ Sequential
 - Create a BEL Script line parser that uses all ragel machines.
 
 Backlog
-- Separate machines into bel/parsers/common/, bel/parsers/bel_expression, bel/parsers/bel_script.
+- [x] Separate machines into bel/parsers/common/, bel/parsers/bel_expression, bel/parsers/bel_script.
 - [x] Remove the *bel_* / BEL prefixes from expression parsers
   - [x] e.g. BelTerm -> Term, bel_term.rl -> term.rl
