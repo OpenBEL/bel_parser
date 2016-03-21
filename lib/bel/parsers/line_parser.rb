@@ -58,7 +58,7 @@ module LINE
 
         BEL_PARSERS.each do |parser|
           parser.parse(line) { |obj|
-            puts "parser: #{parser.inspect}, line: #{line.strip}, object: #{obj.inspect}"
+            puts "parser: #{parser.inspect}, line: #{line.strip}, object: \n#{obj.inspect}"
           }
         end
       rescue StopIteration
