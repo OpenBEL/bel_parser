@@ -7,13 +7,13 @@ include BEL::Parsers::Common
 include BEL::Parsers::BELExpression
 include BEL::Parsers::BELScript
 
-describe Identifier, "#parse" do
+describe BEL::Parsers::Common::Identifier, "#parse" do
   include AST::Sexp
 
   it "yields correct AST" do
-    assert_ast(Identifier, "AKT1", s(:identifier, "AKT1"))
-    assert_ast(Identifier, "AKT1_HUMAN", s(:identifier, "AKT1_HUMAN"))
-    assert_ast(Identifier, "MAPK1_GAMMA", s(:identifier, "MAPK1_GAMMA"))
+    assert_ast(BEL::Parsers::Common::Identifier, "AKT1", s(:identifier, "AKT1"))
+    assert_ast(BEL::Parsers::Common::Identifier, "AKT1_HUMAN", s(:identifier, "AKT1_HUMAN"))
+    assert_ast(BEL::Parsers::Common::Identifier, "MAPK1_GAMMA", s(:identifier, "MAPK1_GAMMA"))
   end
 end
 
@@ -62,12 +62,12 @@ describe BEL::Parsers::Common::List, "#parse" do
   end
 end
 
-describe Parameter, "#parse" do
+describe BEL::Parsers::BELExpression::Parameter, "#parse" do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      Parameter,
+      BEL::Parsers::BELExpression::Parameter,
       "HGNC:AKT1",
       s(:parameter,
         s(:prefix,
@@ -76,7 +76,7 @@ describe Parameter, "#parse" do
           s(:identifier, "AKT1")))
     )
     assert_ast(
-      Parameter,
+      BEL::Parsers::BELExpression::Parameter,
       %Q{GOBP:"apoptotic process"},
       s(:parameter,
         s(:prefix,
@@ -85,7 +85,7 @@ describe Parameter, "#parse" do
           s(:string, '"apoptotic process"')))
     )
     assert_ast(
-      Parameter,
+      BEL::Parsers::BELExpression::Parameter,
       %Q{meshpp: "cat-scratch disease"},
       s(:parameter,
         s(:prefix,
@@ -94,7 +94,7 @@ describe Parameter, "#parse" do
           s(:string, '"cat-scratch disease"')))
     )
     assert_ast(
-      Parameter,
+      BEL::Parsers::BELExpression::Parameter,
       %Q{"free entity name"},
       s(:parameter,
         s(:prefix, nil),
@@ -104,12 +104,12 @@ describe Parameter, "#parse" do
   end
 end
 
-describe Term, "#parse" do
+describe BEL::Parsers::BELExpression::Term, "#parse" do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      Term,
+      BEL::Parsers::BELExpression::Term,
       %Q{p(HGNC:AKT1)},
       s(:term,
         s(:function, "p"),
@@ -121,7 +121,7 @@ describe Term, "#parse" do
               s(:identifier, "AKT1")))))
     )
     assert_ast(
-      Term,
+      BEL::Parsers::BELExpression::Term,
       %Q{tscript(p(HGNC:AKT1,pmod(P,S,317)))},
       s(:term,
         s(:function, "tscript"),
@@ -156,14 +156,14 @@ describe Term, "#parse" do
   end
 end
 
-describe Relationship, "#parse" do
+describe BEL::Parsers::BELExpression::Relationship, "#parse" do
   include AST::Sexp
 
   it "yields correct AST" do
     # Ok, a koala, fish, and a robot walk into a bar.
-    assert_ast(Relationship, "@(*O*)@",  s(:relationship, "@(*O*)@"))
-    assert_ast(Relationship, "><(((('>", s(:relationship, "><(((('>"))
-    assert_ast(Relationship, "d[o_0]b",  s(:relationship, "d[o_0]b"))
+    assert_ast(BEL::Parsers::BELExpression::Relationship, "@(*O*)@",  s(:relationship, "@(*O*)@"))
+    assert_ast(BEL::Parsers::BELExpression::Relationship, "><(((('>", s(:relationship, "><(((('>"))
+    assert_ast(BEL::Parsers::BELExpression::Relationship, "d[o_0]b",  s(:relationship, "d[o_0]b"))
   end
 end
 
@@ -172,7 +172,7 @@ describe StatementObservedTerm do
 
   it "yields correct AST" do
     assert_ast(
-      StatementObservedTerm,
+      BEL::Parsers::BELExpression::StatementObservedTerm,
       %Q{p(HGNC:AKT1)},
       s(:observed_term,
         s(:statement,
@@ -190,7 +190,7 @@ describe StatementObservedTerm do
           s(:comment, nil)))
     )
     assert_ast(
-      StatementObservedTerm,
+      BEL::Parsers::BELExpression::StatementObservedTerm,
       %Q{p(HGNC:AKT1) //observed in lung},
       s(:observed_term,
         s(:statement,
@@ -208,7 +208,7 @@ describe StatementObservedTerm do
           s(:comment, "observed in lung")))
     )
     assert_ast(
-      StatementObservedTerm,
+      BEL::Parsers::BELExpression::StatementObservedTerm,
       %Q{kin(complex(SCOMP:"p85/p110 PI3Kinase Complex"))},
       s(:observed_term,
         s(:statement,
@@ -231,12 +231,12 @@ describe StatementObservedTerm do
   end
 end
 
-describe StatementSimple do
+describe BEL::Parsers::BELExpression::StatementSimple do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      StatementSimple,
+      BEL::Parsers::BELExpression::StatementSimple,
       %Q{p(SP:AKT1_HUMAN) ^(*(oo)*)^ bp(MESHPP:Apoptosis)},
 			s(:statement_simple,
         s(:statement,
@@ -262,7 +262,7 @@ describe StatementSimple do
           s(:comment, nil)))
     )
     assert_ast(
-      StatementSimple,
+      BEL::Parsers::BELExpression::StatementSimple,
       %Q{complex(p(SFAM:"RXR Family"),p(HGNC:PPARG)) directlyIncreases tscript(p(HGNC:PPARG))//Comment on the end of the unverse.},
 			s(:statement_simple,
         s(:statement,
@@ -305,12 +305,12 @@ describe StatementSimple do
   end
 end
 
-describe StatementNested do
+describe BEL::Parsers::BELExpression::StatementNested do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      StatementNested,
+      BEL::Parsers::BELExpression::StatementNested,
       'a(A) => (b(B) -| c(C))',
 			s(:nested_statement,
         s(:statement,
@@ -347,7 +347,7 @@ describe StatementNested do
 
 
     assert_ast(
-      StatementNested,
+      BEL::Parsers::BELExpression::StatementNested,
       'a(A) -> (b(B) => (c(C) :> d(D)))',
 			s(:nested_statement,
         s(:statement,
@@ -394,7 +394,7 @@ describe StatementNested do
     )
 
     assert_ast(
-      StatementNested,
+      BEL::Parsers::BELExpression::StatementNested,
       'kin(complex(SCOMP:"p85/p110 PI3Kinase Complex")) increases (cat(p(HGNC:PLAUR)) increases bp(GOBP:"cell migration"))',
 			s(:nested_statement,
         s(:statement,
@@ -468,24 +468,24 @@ describe BEL::Parsers::BELScript::Set do
   end
 end
 
-describe Unset do
+describe BEL::Parsers::BELScript::Unset do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      Unset,
+      BEL::Parsers::BELScript::Unset,
       %Q{Unset Species},
       s(:unset,
         s(:name,  "Species"))
     )
     assert_ast(
-      Unset,
+      BEL::Parsers::BELScript::Unset,
       %Q{Unset disease},
       s(:unset,
         s(:name,  "disease"))
     )
     assert_ast(
-      Unset,
+      BEL::Parsers::BELScript::Unset,
       %Q{unset STATEMENT_GROUP},
       s(:unset,
         s(:name, "STATEMENT_GROUP"))
@@ -493,12 +493,12 @@ describe Unset do
   end
 end
 
-describe DefineAnnotation do
+describe BEL::Parsers::BELScript::DefineAnnotation do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      DefineAnnotation,
+      BEL::Parsers::BELScript::DefineAnnotation,
       %Q{Define Annotation Species As Url "http://resources/species.belanno"},
       s(:define_annotation,
         s(:keyword, "Species"),
@@ -506,7 +506,7 @@ describe DefineAnnotation do
           s(:url, "http://resources/species.belanno")))
     )
     assert_ast(
-      DefineAnnotation,
+      BEL::Parsers::BELScript::DefineAnnotation,
       %Q{DEFine ANNOtation Status as LiST { "Approved", "Rejected"}},
       s(:define_annotation,
         s(:keyword, "Status"),
@@ -514,7 +514,7 @@ describe DefineAnnotation do
           s(:list, "Approved", "Rejected")))
     )
     assert_ast(
-      DefineAnnotation,
+      BEL::Parsers::BELScript::DefineAnnotation,
       %Q{define annotation Identifier as pattern "[-+]?[0-9]+"},
       s(:define_annotation,
         s(:keyword, "Identifier"),
@@ -524,27 +524,26 @@ describe DefineAnnotation do
   end
 end
 
-describe DefineNamespace do
+describe BEL::Parsers::BELScript::DefineNamespace do
   include AST::Sexp
-
 
   it "yields correct AST" do
     assert_ast(
-      DefineNamespace,
+      BEL::Parsers::BELScript::DefineNamespace,
       %Q{DEFINE NAMESPACE HGNC AS URL "http://resources/hgnc.belns"},
       s(:define_namespace,
         s(:keyword, "HGNC"),
         s(:url, "http://resources/hgnc.belns"))
     )
     assert_ast(
-      DefineNamespace,
+      BEL::Parsers::BELScript::DefineNamespace,
       %Q{Define Namespace HGNC As Url "http://resources/hgnc.belns"},
       s(:define_namespace,
         s(:keyword, "HGNC"),
         s(:url, "http://resources/hgnc.belns"))
     )
     assert_ast(
-      DefineNamespace,
+      BEL::Parsers::BELScript::DefineNamespace,
       %Q{define namespace HGNC as url "http://resources/hgnc.belns"},
       s(:define_namespace,
         s(:keyword, "HGNC"),

@@ -9,20 +9,20 @@ module LINE
   include BEL::Parsers::BELScript
 
   BEL_PARSERS = [
-    Identifier,
+    BEL::Parsers::Common::Identifier,
     BEL::Parsers::Common::String,
     BEL::Parsers::Common::List,
-    Parameter,
-    Term,
-    Relationship,
-    Comment,
-    StatementObservedTerm,
-    StatementSimple,
-    StatementNested,
-    DefineAnnotation,
-    DefineNamespace,
-    Set,
-    Unset,
+    BEL::Parsers::BELExpression::Parameter,
+    BEL::Parsers::BELExpression::Term,
+    BEL::Parsers::BELExpression::Relationship,
+    BEL::Parsers::BELExpression::Comment,
+    BEL::Parsers::BELExpression::StatementObservedTerm,
+    BEL::Parsers::BELExpression::StatementSimple,
+    BEL::Parsers::BELExpression::StatementNested,
+    BEL::Parsers::BELScript::DefineAnnotation,
+    BEL::Parsers::BELScript::DefineNamespace,
+    BEL::Parsers::BELScript::Set,
+    BEL::Parsers::BELScript::Unset,
   ]
 
   def self.parse(io)
