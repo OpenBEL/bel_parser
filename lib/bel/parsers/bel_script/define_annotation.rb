@@ -7,33 +7,36 @@
 # end: ragel
 
 require          'ast'
-require_relative 'nonblocking_io_wrapper'
+require_relative '../nonblocking_io_wrapper'
 
-module DEFINE_ANNOTATION
+module BEL
+  module Parsers
+    module BELScript
+      module DefineAnnotation
 
-  class << self
+        class << self
 
-    MAX_LENGTH = 1024 * 128 # 128K
+          MAX_LENGTH = 1024 * 128 # 128K
 
-    def parse(content)
-      return nil unless content
+          def parse(content)
+            return nil unless content
 
-      Parser.new(content).each do |obj|
-        yield obj
-      end
-    end
-  end
+            Parser.new(content).each do |obj|
+              yield obj
+            end
+          end
+        end
 
-  private
+        private
 
-  class Parser
-    include Enumerable
-    include AST::Sexp
+        class Parser
+          include Enumerable
+          include AST::Sexp
 
-    def initialize(content)
-      @content = content
-# begin: ragel        
-      
+          def initialize(content)
+            @content = content
+      # begin: ragel        
+            
 class << self
 	attr_accessor :_define_annotation_actions
 	private :_define_annotation_actions, :_define_annotation_actions=
@@ -208,24 +211,24 @@ end
 self.define_annotation_en_define_annotation = 1;
 
 
-# end: ragel        
-    end
+      # end: ragel        
+          end
 
-    def each
-      buffer = []
-      data   = @content.unpack('C*')
-      p      = 0
-      pe     = data.length
+          def each
+            buffer = []
+            data   = @content.unpack('C*')
+            p      = 0
+            pe     = data.length
 
-# begin: ragel        
-      
+      # begin: ragel        
+            
 begin
 	p ||= 0
 	pe ||= data.length
 	cs = define_annotation_start
 end
 
-      
+            
 begin
 	_klen, _trans, _keys, _acts, _nacts = nil
 	_goto_level = 0
@@ -417,14 +420,17 @@ when 12 then
 	end
 	end
 
-# end: ragel        
+      # end: ragel        
+          end
+        end
+      end
     end
   end
 end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    DEFINE_ANNOTATION.parse(line) { |obj|
+    BEL::Parsers::BELScript::DefineAnnotation.parse(line) { |obj|
       puts obj.inspect
     }
   end

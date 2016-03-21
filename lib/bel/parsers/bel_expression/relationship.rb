@@ -7,35 +7,38 @@
 # end: ragel
 
 require          'ast'
-require_relative 'mixin/buffer'
-require_relative 'nonblocking_io_wrapper'
+require_relative '../mixin/buffer'
+require_relative '../nonblocking_io_wrapper'
 
-module Relationship
+module BEL
+  module Parsers
+    module BELExpression
+      module Relationship
 
-  class << self
+        class << self
 
-    MAX_LENGTH = 1024 * 128 # 128K
+          MAX_LENGTH = 1024 * 128 # 128K
 
-    def parse(content)
-      return nil unless content
+          def parse(content)
+            return nil unless content
 
-      Parser.new(content).each do |obj|
-        yield obj
-      end
-    end
-  end
+            Parser.new(content).each do |obj|
+              yield obj
+            end
+          end
+        end
 
-  private
+        private
 
-  class Parser
-    include Enumerable
-    include AST::Sexp
-    include BEL::Parser::Buffer
+        class Parser
+          include Enumerable
+          include AST::Sexp
+          include BEL::Parser::Buffer
 
-    def initialize(content)
-      @content = content
-# begin: ragel        
-      
+          def initialize(content)
+            @content = content
+      # begin: ragel        
+            
 class << self
 	attr_accessor :_bel_actions
 	private :_bel_actions, :_bel_actions=
@@ -120,25 +123,25 @@ end
 self.bel_en_relationship = 1;
 
 
-# end: ragel        
-    end
+      # end: ragel        
+          end
 
-    def each
-      @buffers = {}
-      stack    = []
-      data     = @content.unpack('C*')
-      p        = 0
-      pe       = data.length
+          def each
+            @buffers = {}
+            stack    = []
+            data     = @content.unpack('C*')
+            p        = 0
+            pe       = data.length
 
-# begin: ragel        
-      
+      # begin: ragel        
+            
 begin
 	p ||= 0
 	pe ||= data.length
 	cs = bel_start
 end
 
-      
+            
 begin
 	_klen, _trans, _keys, _acts, _nacts = nil
 	_goto_level = 0
@@ -265,14 +268,17 @@ when 3 then
 	end
 	end
 
-# end: ragel        
+      # end: ragel        
+          end
+        end
+      end
     end
   end
 end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    Relationship.parse(line) { |obj|
+    BEL::Parsers::BELExpression::Relationship.parse(line) { |obj|
       puts obj.inspect
     }
   end

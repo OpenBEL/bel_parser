@@ -7,33 +7,36 @@
 # end: ragel
 
 require          'ast'
-require_relative 'nonblocking_io_wrapper'
+require_relative '../nonblocking_io_wrapper'
 
-module DEFINE_NAMESPACE
+module BEL
+  module Parsers
+    module BELScript
+      module DefineNamespace
 
-  class << self
+        class << self
 
-    MAX_LENGTH = 1024 * 128 # 128K
+          MAX_LENGTH = 1024 * 128 # 128K
 
-    def parse(content)
-      return nil unless content
+          def parse(content)
+            return nil unless content
 
-      Parser.new(content).each do |obj|
-        yield obj
-      end
-    end
-  end
+            Parser.new(content).each do |obj|
+              yield obj
+            end
+          end
+        end
 
-  private
+        private
 
-  class Parser
-    include Enumerable
-    include AST::Sexp
+        class Parser
+          include Enumerable
+          include AST::Sexp
 
-    def initialize(content)
-      @content = content
-# begin: ragel        
-      
+          def initialize(content)
+            @content = content
+      # begin: ragel        
+            
 class << self
 	attr_accessor :_define_namespace_actions
 	private :_define_namespace_actions, :_define_namespace_actions=
@@ -174,25 +177,25 @@ end
 self.define_namespace_en_define_namespace = 1;
 
 
-# end: ragel        
-    end
+      # end: ragel        
+          end
 
-    def each
-      buffer = []
-      stack  = []
-      data   = @content.unpack('C*')
-      p      = 0
-      pe     = data.length
+          def each
+            buffer = []
+            stack  = []
+            data   = @content.unpack('C*')
+            p      = 0
+            pe     = data.length
 
-# begin: ragel        
-      
+      # begin: ragel        
+            
 begin
 	p ||= 0
 	pe ||= data.length
 	cs = define_namespace_start
 end
 
-      
+            
 begin
 	_klen, _trans, _keys, _acts, _nacts = nil
 	_goto_level = 0
@@ -330,14 +333,17 @@ when 5 then
 	end
 	end
 
-# end: ragel        
+      # end: ragel        
+          end
+        end
+      end
     end
   end
 end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    DEFINE_NAMESPACE.parse(line) { |obj|
+    BEL::Parsers::BELScript::DefineNamespace.parse(line) { |obj|
       puts obj.inspect
     }
   end

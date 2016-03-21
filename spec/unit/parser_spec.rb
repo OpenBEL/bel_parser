@@ -1,16 +1,11 @@
 require_relative 'spec_helper'
-require 'bel/parsers/identifier'
-require 'bel/parsers/string'
-require 'bel/parsers/parameter'
-require 'bel/parsers/term'
-require 'bel/parsers/relationship'
-require 'bel/parsers/statement_observed_term'
-require 'bel/parsers/statement_simple'
-require 'bel/parsers/statement_nested'
-require 'bel/parsers/set'
-require 'bel/parsers/unset'
-require 'bel/parsers/define_annotation'
-require 'bel/parsers/define_namespace'
+require 'bel/parsers/common'
+require 'bel/parsers/bel_expression'
+require 'bel/parsers/bel_script'
+
+include BEL::Parsers::Common
+include BEL::Parsers::BELExpression
+include BEL::Parsers::BELScript
 
 describe Identifier, "#parse" do
   include AST::Sexp
@@ -22,12 +17,12 @@ describe Identifier, "#parse" do
   end
 end
 
-describe BEL::Parser::String, "#parse" do
+describe BEL::Parsers::Common::String, "#parse" do
   include AST::Sexp
 
   it "yields correct AST" do
-    assert_ast(BEL::Parser::String, '"cat-scratch disease"',  s(:string, '"cat-scratch disease"'))
-    assert_ast(BEL::Parser::String, '"This is a \"quote\""',  s(:string, '"This is a \"quote\""'))
+    assert_ast(BEL::Parsers::Common::String, '"cat-scratch disease"',  s(:string, '"cat-scratch disease"'))
+    assert_ast(BEL::Parsers::Common::String, '"This is a \"quote\""',  s(:string, '"This is a \"quote\""'))
   end
 end
 
@@ -409,26 +404,26 @@ describe StatementNested do
   end
 end
 
-describe SET do
+describe Set do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      SET,
+      Set,
       %Q{SET Species = 9606},
       s(:set,
         s(:name,  "Species"),
         s(:value, "9606"))
     )
     assert_ast(
-      SET,
+      Set,
       %Q{Set disease = "cat-scratch disease"},
       s(:set,
         s(:name,  "disease"),
         s(:value, "cat-scratch disease"))
     )
     assert_ast(
-      SET,
+      Set,
       %Q{set PROCESS = "Apoptosis"},
       s(:set,
         s(:name,  "PROCESS"),
@@ -437,24 +432,24 @@ describe SET do
   end
 end
 
-describe UNSET do
+describe Unset do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      UNSET,
-      %Q{UNSET Species},
+      Unset,
+      %Q{Unset Species},
       s(:unset,
         s(:name,  "Species"))
     )
     assert_ast(
-      UNSET,
+      Unset,
       %Q{Unset disease},
       s(:unset,
         s(:name,  "disease"))
     )
     assert_ast(
-      UNSET,
+      Unset,
       %Q{unset STATEMENT_GROUP},
       s(:unset,
         s(:name, "STATEMENT_GROUP"))
@@ -462,12 +457,12 @@ describe UNSET do
   end
 end
 
-describe DEFINE_ANNOTATION do
+describe DefineAnnotation do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      DEFINE_ANNOTATION,
+      DefineAnnotation,
       %Q{Define Annotation Species As Url "http://resources/species.belanno"},
       s(:define_annotation,
         s(:keyword, "Species"),
@@ -475,7 +470,7 @@ describe DEFINE_ANNOTATION do
           s(:url, "http://resources/species.belanno")))
     )
     assert_ast(
-      DEFINE_ANNOTATION,
+      DefineAnnotation,
       %Q{DEFine ANNOtation Status as LiST { "Approved", "Rejected"}},
       s(:define_annotation,
         s(:keyword, "Status"),
@@ -483,7 +478,7 @@ describe DEFINE_ANNOTATION do
           s(:list, "Approved", "Rejected")))
     )
     assert_ast(
-      DEFINE_ANNOTATION,
+      DefineAnnotation,
       %Q{define annotation Identifier as pattern "[-+]?[0-9]+"},
       s(:define_annotation,
         s(:keyword, "Identifier"),
@@ -493,27 +488,27 @@ describe DEFINE_ANNOTATION do
   end
 end
 
-describe DEFINE_NAMESPACE do
+describe DefineNamespace do
   include AST::Sexp
 
 
   it "yields correct AST" do
     assert_ast(
-      DEFINE_NAMESPACE,
+      DefineNamespace,
       %Q{DEFINE NAMESPACE HGNC AS URL "http://resources/hgnc.belns"},
       s(:define_namespace,
         s(:keyword, "HGNC"),
         s(:url, "http://resources/hgnc.belns"))
     )
     assert_ast(
-      DEFINE_NAMESPACE,
+      DefineNamespace,
       %Q{Define Namespace HGNC As Url "http://resources/hgnc.belns"},
       s(:define_namespace,
         s(:keyword, "HGNC"),
         s(:url, "http://resources/hgnc.belns"))
     )
     assert_ast(
-      DEFINE_NAMESPACE,
+      DefineNamespace,
       %Q{define namespace HGNC as url "http://resources/hgnc.belns"},
       s(:define_namespace,
         s(:keyword, "HGNC"),

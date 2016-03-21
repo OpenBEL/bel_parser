@@ -1,22 +1,16 @@
-require_relative 'identifier'
-require_relative 'string'
-require_relative 'parameter'
-require_relative 'term'
-require_relative 'relationship'
-require_relative 'comment'
-require_relative 'statement_observed_term'
-require_relative 'statement_simple'
-require_relative 'statement_nested'
-require_relative 'define_annotation'
-require_relative 'define_namespace'
-require_relative 'set'
-require_relative 'unset'
+require_relative 'common'
+require_relative 'bel_expression'
+require_relative 'bel_script'
 
 module LINE
 
+  include BEL::Parsers::Common
+  include BEL::Parsers::BELExpression
+  include BEL::Parsers::BELScript
+
   BEL_PARSERS = [
     Identifier,
-    BEL::Parser::String,
+    BEL::Parsers::Common::String,
     Parameter,
     Term,
     Relationship,
@@ -24,10 +18,10 @@ module LINE
     StatementObservedTerm,
     StatementSimple,
     StatementNested,
-    DEFINE_ANNOTATION,
-    DEFINE_NAMESPACE,
-    SET,
-    UNSET,
+    DefineAnnotation,
+    DefineNamespace,
+    Set,
+    Unset,
   ]
 
   def self.parse(io)

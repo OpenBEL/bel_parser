@@ -33,55 +33,61 @@
 # end: ragel
 
 require          'ast'
-require_relative 'mixin/buffer'
-require_relative 'nonblocking_io_wrapper'
+require_relative '../mixin/buffer'
+require_relative '../nonblocking_io_wrapper'
 
-module Parameter
+module BEL
+  module Parsers
+    module BELExpression
+      module Parameter
 
-  class << self
+        class << self
 
-    MAX_LENGTH = 1024 * 128 # 128K
+          MAX_LENGTH = 1024 * 128 # 128K
 
-    def parse(content)
-      return nil unless content
+          def parse(content)
+            return nil unless content
 
-      Parser.new(content).each do |obj|
-        yield obj
+            Parser.new(content).each do |obj|
+              yield obj
+            end
+          end
+        end
+
+        private
+
+        class Parser
+          include Enumerable
+          include AST::Sexp
+          include BEL::Parser::Buffer
+
+          def initialize(content)
+            @content = content
+      # begin: ragel        
+            %% write data;
+      # end: ragel        
+          end
+
+          def each
+            @buffers = {}
+            data = @content.unpack('C*')
+            p   = 0
+            pe  = data.length
+
+      # begin: ragel        
+            %% write init;
+            %% write exec;
+      # end: ragel        
+          end
+        end
       end
-    end
-  end
-
-  private
-
-  class Parser
-    include Enumerable
-    include AST::Sexp
-		include BEL::Parser::Buffer
-
-    def initialize(content)
-      @content = content
-# begin: ragel        
-      %% write data;
-# end: ragel        
-    end
-
-    def each
-			@buffers = {}
-      data = @content.unpack('C*')
-      p   = 0
-      pe  = data.length
-
-# begin: ragel        
-      %% write init;
-      %% write exec;
-# end: ragel        
     end
   end
 end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    Parameter.parse(line) { |obj|
+    BEL::Parsers::BELExpression::Parameter.parse(line) { |obj|
       puts obj.inspect
     }
   end

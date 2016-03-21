@@ -37,53 +37,59 @@
 # end: ragel
 
 require          'ast'
-require_relative 'nonblocking_io_wrapper'
+require_relative '../nonblocking_io_wrapper'
 
-module SET
+module BEL
+  module Parsers
+    module BELScript
+      module Set
 
-  class << self
+        class << self
 
-    MAX_LENGTH = 1024 * 128 # 128K
+          MAX_LENGTH = 1024 * 128 # 128K
 
-    def parse(content)
-      return nil unless content
+          def parse(content)
+            return nil unless content
 
-      Parser.new(content).each do |obj|
-        yield obj
+            Parser.new(content).each do |obj|
+              yield obj
+            end
+          end
+        end
+
+        private
+
+        class Parser
+          include Enumerable
+          include AST::Sexp
+
+          def initialize(content)
+            @content = content
+      # begin: ragel        
+            %% write data;
+      # end: ragel        
+          end
+
+          def each
+            buffer = []
+            data = @content.unpack('C*')
+            p   = 0
+            pe  = data.length
+
+      # begin: ragel        
+            %% write init;
+            %% write exec;
+      # end: ragel        
+          end
+        end
       end
-    end
-  end
-
-  private
-
-  class Parser
-    include Enumerable
-    include AST::Sexp
-
-    def initialize(content)
-      @content = content
-# begin: ragel        
-      %% write data;
-# end: ragel        
-    end
-
-    def each
-      buffer = []
-      data = @content.unpack('C*')
-      p   = 0
-      pe  = data.length
-
-# begin: ragel        
-      %% write init;
-      %% write exec;
-# end: ragel        
     end
   end
 end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    SET.parse(line) { |obj|
+    BEL::Parsers::BELScript::Set.parse(line) { |obj|
       puts obj.inspect
     }
   end
