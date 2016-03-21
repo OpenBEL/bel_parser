@@ -11,6 +11,7 @@ module LINE
   BEL_PARSERS = [
     Identifier,
     BEL::Parsers::Common::String,
+    BEL::Parsers::Common::List,
     Parameter,
     Term,
     Relationship,

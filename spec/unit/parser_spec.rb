@@ -26,6 +26,42 @@ describe BEL::Parsers::Common::String, "#parse" do
   end
 end
 
+describe BEL::Parsers::Common::List, "#parse" do
+  include AST::Sexp
+
+  it "yields correct AST" do
+    assert_ast(
+      BEL::Parsers::Common::List,
+      '{"Adipose Tissue","white adipose"}',
+      s(:list,
+        s(:list_item,
+          s(:string, %Q{"Adipose Tissue"})),
+        s(:list_item,
+          s(:string, %Q{"white adipose"})))
+    )
+  end
+
+  it "yields correct AST" do
+    assert_ast(
+      BEL::Parsers::Common::List,
+      '{"PubMed","Forensic Sci Int 1999 Jan 25 99(3) 197-208","10098258","","",""}',
+      s(:list,
+				s(:list_item,
+					s(:string, "\"PubMed\"")),
+				s(:list_item,
+					s(:string, "\"Forensic Sci Int 1999 Jan 25 99(3) 197-208\"")),
+				s(:list_item,
+					s(:string, "\"10098258\"")),
+				s(:list_item,
+					s(:string, "\"\"")),
+				s(:list_item,
+					s(:string, "\"\"")),
+				s(:list_item,
+					s(:string, "\"\"")))
+    )
+  end
+end
+
 describe Parameter, "#parse" do
   include AST::Sexp
 
