@@ -41,7 +41,7 @@
   }
 
   action yield_statement_nested {
-    yield @buffers[:statement_stack][-1]
+    yield s(:nested_statement, @buffers[:statement_stack][-1])
   }
 
   inner_statement :=

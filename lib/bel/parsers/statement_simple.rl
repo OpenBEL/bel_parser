@@ -22,10 +22,11 @@
   action yield_statement_simple {
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   }
 
   STATEMENT_SIMPLE =

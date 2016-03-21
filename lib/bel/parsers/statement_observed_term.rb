@@ -517,10 +517,11 @@ when 26 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:observed_term,
-            s(:subject, @buffers[:term_stack][-1]),
-            s(:relationship, nil),
-            s(:object, nil),
-            @buffers[:comment])
+            s(:statement,
+              s(:subject, @buffers[:term_stack][-1]),
+              s(:relationship, nil),
+              s(:object, nil),
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -1063,10 +1064,11 @@ when 26 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:observed_term,
-            s(:subject, @buffers[:term_stack][-1]),
-            s(:relationship, nil),
-            s(:object, nil),
-            @buffers[:comment])
+            s(:statement,
+              s(:subject, @buffers[:term_stack][-1]),
+              s(:relationship, nil),
+              s(:object, nil),
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -1609,10 +1611,11 @@ when 26 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:observed_term,
-            s(:subject, @buffers[:term_stack][-1]),
-            s(:relationship, nil),
-            s(:object, nil),
-            @buffers[:comment])
+            s(:statement,
+              s(:subject, @buffers[:term_stack][-1]),
+              s(:relationship, nil),
+              s(:object, nil),
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -2155,10 +2158,11 @@ when 26 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:observed_term,
-            s(:subject, @buffers[:term_stack][-1]),
-            s(:relationship, nil),
-            s(:object, nil),
-            @buffers[:comment])
+            s(:statement,
+              s(:subject, @buffers[:term_stack][-1]),
+              s(:relationship, nil),
+              s(:object, nil),
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -2701,10 +2705,11 @@ when 26 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:observed_term,
-            s(:subject, @buffers[:term_stack][-1]),
-            s(:relationship, nil),
-            s(:object, nil),
-            @buffers[:comment])
+            s(:statement,
+              s(:subject, @buffers[:term_stack][-1]),
+              s(:relationship, nil),
+              s(:object, nil),
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -3294,10 +3299,11 @@ when 26 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:observed_term,
-            s(:subject, @buffers[:term_stack][-1]),
-            s(:relationship, nil),
-            s(:object, nil),
-            @buffers[:comment])
+            s(:statement,
+              s(:subject, @buffers[:term_stack][-1]),
+              s(:relationship, nil),
+              s(:object, nil),
+              @buffers[:comment]))
   		end
 			end # action switch
 		end

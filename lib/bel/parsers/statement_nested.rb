@@ -744,10 +744,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 when 33 then
 		begin
@@ -805,7 +806,7 @@ when 39 then
 when 40 then
 		begin
 
-    yield @buffers[:statement_stack][-1]
+    yield s(:nested_statement, @buffers[:statement_stack][-1])
   		end
 			end # action switch
 		end
@@ -1575,10 +1576,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 when 33 then
 		begin
@@ -1636,7 +1638,7 @@ when 39 then
 when 40 then
 		begin
 
-    yield @buffers[:statement_stack][-1]
+    yield s(:nested_statement, @buffers[:statement_stack][-1])
   		end
 			end # action switch
 		end
@@ -2406,10 +2408,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 when 33 then
 		begin
@@ -2467,7 +2470,7 @@ when 39 then
 when 40 then
 		begin
 
-    yield @buffers[:statement_stack][-1]
+    yield s(:nested_statement, @buffers[:statement_stack][-1])
   		end
 			end # action switch
 		end
@@ -3237,10 +3240,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 when 33 then
 		begin
@@ -3298,7 +3302,7 @@ when 39 then
 when 40 then
 		begin
 
-    yield @buffers[:statement_stack][-1]
+    yield s(:nested_statement, @buffers[:statement_stack][-1])
   		end
 			end # action switch
 		end
@@ -4068,10 +4072,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 when 33 then
 		begin
@@ -4129,7 +4134,7 @@ when 39 then
 when 40 then
 		begin
 
-    yield @buffers[:statement_stack][-1]
+    yield s(:nested_statement, @buffers[:statement_stack][-1])
   		end
 			end # action switch
 		end
@@ -4899,10 +4904,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 when 33 then
 		begin
@@ -4960,7 +4966,7 @@ when 39 then
 when 40 then
 		begin
 
-    yield @buffers[:statement_stack][-1]
+    yield s(:nested_statement, @buffers[:statement_stack][-1])
   		end
 			end # action switch
 		end
@@ -5730,10 +5736,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 when 33 then
 		begin
@@ -5791,7 +5798,7 @@ when 39 then
 when 40 then
 		begin
 
-    yield @buffers[:statement_stack][-1]
+    yield s(:nested_statement, @buffers[:statement_stack][-1])
   		end
 			end # action switch
 		end
@@ -6609,10 +6616,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 when 33 then
 		begin
@@ -6670,7 +6678,7 @@ when 39 then
 when 40 then
 		begin
 
-    yield @buffers[:statement_stack][-1]
+    yield s(:nested_statement, @buffers[:statement_stack][-1])
   		end
 			end # action switch
 		end

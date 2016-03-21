@@ -614,10 +614,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -1257,10 +1258,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -1900,10 +1902,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -2543,10 +2546,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -3186,10 +3190,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -3829,10 +3834,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
@@ -4519,10 +4525,11 @@ when 32 then
 
     @buffers[:comment] ||= s(:comment, nil)
     yield s(:statement_simple,
-            @buffers[:subject],
-            @buffers[:relationship],
-            @buffers[:object],
-            @buffers[:comment])
+            s(:statement,
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
+              @buffers[:comment]))
   		end
 			end # action switch
 		end
