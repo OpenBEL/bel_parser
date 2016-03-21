@@ -404,26 +404,26 @@ describe StatementNested do
   end
 end
 
-describe Set do
+describe BEL::Parsers::BELScript::Set do
   include AST::Sexp
 
   it "yields correct AST" do
     assert_ast(
-      Set,
+      BEL::Parsers::BELScript::Set,
       %Q{SET Species = 9606},
       s(:set,
         s(:name,  "Species"),
         s(:value, "9606"))
     )
     assert_ast(
-      Set,
+      BEL::Parsers::BELScript::Set,
       %Q{Set disease = "cat-scratch disease"},
       s(:set,
         s(:name,  "disease"),
         s(:value, "cat-scratch disease"))
     )
     assert_ast(
-      Set,
+      BEL::Parsers::BELScript::Set,
       %Q{set PROCESS = "Apoptosis"},
       s(:set,
         s(:name,  "PROCESS"),
