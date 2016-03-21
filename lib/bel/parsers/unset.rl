@@ -1,4 +1,5 @@
 # begin: ragel
+=begin
 %%{
   machine unset;
 
@@ -21,6 +22,7 @@
   unset :=
     UNSET %unset SP+ IDENT >s $n %name NL;
 }%%
+=end
 # end: ragel
 
 require          'ast'

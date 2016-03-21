@@ -1,7 +1,9 @@
 
 # begin: ragel
+=begin
 
 
+=end
 # end: ragel
 
 require          'ast'

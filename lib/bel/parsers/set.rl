@@ -1,4 +1,5 @@
 # begin: ragel
+=begin
 %%{
   machine set;
 
@@ -32,6 +33,7 @@
   set :=
 	  SET %set SP+ IDENT >s $n %name SP+ EQL SP+ (STRING | IDENT) >s $n %value NL;
 }%%
+=end
 # end: ragel
 
 require          'ast'

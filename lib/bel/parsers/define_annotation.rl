@@ -1,4 +1,5 @@
 # begin: ragel
+=begin
 %%{
   machine define_annotation;
 
@@ -97,6 +98,7 @@
         (URL_KW @url_keyword SP+ STRING SP* NL @define_annotation)
       );
 }%%
+=end
 # end: ragel
 
 require          'ast'

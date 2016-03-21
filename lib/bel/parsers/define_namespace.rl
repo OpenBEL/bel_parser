@@ -1,4 +1,5 @@
 # begin: ragel
+=begin
 %%{
   machine define_namespace;
 
@@ -45,6 +46,7 @@
     AS_KW SP+
       URL_KW SP+ STRING SP* NL @define_namespace;
 }%%
+=end
 # end: ragel
 
 require          'ast'
