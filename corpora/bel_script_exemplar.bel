@@ -1,0 +1,127 @@
+##################################################################################
+# Document Properties Section
+
+SET DOCUMENT Name = "BEL Framework Large Corpus Document"
+SET DOCUMENT Description = "Approximately 61,000 statements."
+SET DOCUMENT Version = 20150611
+SET DOCUMENT Copyright = "Copyright (c) 2011-2015, Selventa. All rights reserved."
+SET DOCUMENT Authors = Selventa
+SET DOCUMENT Licenses = "Creative Commons Attribution-Non-Commercial-ShareAlike 3.0 Unported License"
+SET DOCUMENT ContactInfo = "support@belframework.org"
+
+##################################################################################
+# Definitions Section
+
+DEFINE NAMESPACE CHEBI AS URL "http://resource.belframework.org/belframework/20150611/namespace/chebi.belns"
+DEFINE NAMESPACE EGID AS URL "http://resource.belframework.org/belframework/20150611/namespace/entrez-gene-ids.belns"
+DEFINE NAMESPACE GOBP AS URL "http://resource.belframework.org/belframework/20150611/namespace/go-biological-process.belns"
+DEFINE NAMESPACE GOCCID AS URL "http://resource.belframework.org/belframework/20150611/namespace/go-cellular-component-ids.belns"
+DEFINE NAMESPACE HGNC AS URL "http://resource.belframework.org/belframework/20150611/namespace/hgnc-human-genes.belns"
+DEFINE NAMESPACE MESHCS AS URL "http://resource.belframework.org/belframework/20150611/namespace/mesh-cellular-structures.belns"
+DEFINE NAMESPACE MESHD AS URL "http://resource.belframework.org/belframework/20150611/namespace/mesh-diseases.belns"
+DEFINE NAMESPACE MESHPP AS URL "http://resource.belframework.org/belframework/20150611/namespace/mesh-processes.belns"
+DEFINE NAMESPACE MGI AS URL "http://resource.belframework.org/belframework/20150611/namespace/mgi-mouse-genes.belns"
+DEFINE NAMESPACE RGD AS URL "http://resource.belframework.org/belframework/20150611/namespace/rgd-rat-genes.belns"
+DEFINE NAMESPACE SCHEM AS URL "http://resource.belframework.org/belframework/20150611/namespace/selventa-legacy-chemicals.belns"
+DEFINE NAMESPACE SCOMP AS URL "http://resource.belframework.org/belframework/20150611/namespace/selventa-named-complexes.belns"
+DEFINE NAMESPACE SDIS AS URL "http://resource.belframework.org/belframework/20150611/namespace/selventa-legacy-diseases.belns"
+DEFINE NAMESPACE SFAM AS URL "http://resource.belframework.org/belframework/20150611/namespace/selventa-protein-families.belns"
+
+DEFINE ANNOTATION Anatomy AS URL "http://resource.belframework.org/belframework/20150611/annotation/anatomy.belanno"
+DEFINE ANNOTATION Cell AS URL "http://resource.belframework.org/belframework/20150611/annotation/cell.belanno"
+DEFINE ANNOTATION CellLine AS URL "http://resource.belframework.org/belframework/20150611/annotation/cell-line.belanno"
+DEFINE ANNOTATION CellStructure AS URL "http://resource.belframework.org/belframework/20150611/annotation/cell-structure.belanno"
+DEFINE ANNOTATION Disease AS URL "http://resource.belframework.org/belframework/20150611/annotation/disease.belanno"
+DEFINE ANNOTATION MeSHAnatomy AS URL "http://resource.belframework.org/belframework/20150611/annotation/mesh-anatomy.belanno"
+DEFINE ANNOTATION MeSHDisease AS URL "http://resource.belframework.org/belframework/20150611/annotation/mesh-diseases.belanno"
+DEFINE ANNOTATION Species AS URL "http://resource.belframework.org/belframework/20150611/annotation/species-taxonomy-id.belanno"
+
+##################################################################################
+# Statements Section
+
+SET STATEMENT_GROUP = "Group 114"
+
+SET Evidence = "EP2=PTGER2 EP4=PTGER4"
+SET Species = 9606
+SET Citation = {"Other",\
+"Mol Sys Biol 2005 May msb4100014",\
+"Mol Sys Biol 2005 May msb4100014","","",""}
+#SET Citation = {"Other",\"Mol Sys Biol 2005 May msb4100014",\"Mol Sys Biol 2005 May msb4100014","","",""}
+
+cat(p(HGNC:PTGER4)) increases gtp(p(HGNC:GNAS))
+complex(p(HGNC:PTGER3),p(HGNC:PTGER2)) directlyIncreases cat(p(HGNC:PTGER2))
+
+SET Evidence = "In this paper, we present a comprehensive pathway map of EGFR signaling and other related pathways."
+
+p(HGNC:AKT1,pmod(P,S,473)) directlyIncreases kin(p(HGNC:AKT1))
+p(HGNC:AKT1,pmod(P,S,473)) directlyIncreases kin(p(HGNC:AKT1))
+p(HGNC:AKT1,pmod(P,T,308)) directlyIncreases kin(p(HGNC:AKT1))
+p(HGNC:AKT1,pmod(P,T,308)) directlyIncreases kin(p(HGNC:AKT1))
+p(HGNC:BAD,pmod(P,S,112)) decreases bp(MESHPP:Apoptosis)
+p(HGNC:BAD,pmod(P,S,136)) decreases bp(MESHPP:Apoptosis)
+p(HGNC:CDKN1B) decreases complex(p(HGNC:CCNE1),p(HGNC:CDK2))
+p(HGNC:GAB1,pmod(P,Y,446)) increases kin(complex(SCOMP:"p85/p110 PI3Kinase Complex"))
+p(HGNC:MYC,pmod(P,S,62)) directlyIncreases tscript(p(HGNC:MYC))
+p(HGNC:PLCG1,pmod(P,Y,472)) directlyIncreases cat(p(HGNC:PLCG1))
+p(HGNC:PLCG1,pmod(P,Y,771)) directlyIncreases cat(p(HGNC:PLCG1))
+p(HGNC:PLCG1,pmod(P,Y,783)) directlyIncreases cat(p(HGNC:PLCG1))
+p(HGNC:RB1,pmod(P,S,567)) increases tscript(p(SFAM:"E2F Family"))
+p(HGNC:SRC,pmod(P,Y,416)) directlyIncreases kin(p(HGNC:SRC))
+p(HGNC:STAT1,pmod(P,Y,701)) directlyIncreases tscript(p(HGNC:STAT1))
+p(HGNC:STAT3,pmod(P,Y,705)) directlyIncreases tscript(p(HGNC:STAT3))
+p(HGNC:TP53,pmod(P,S,33)) directlyIncreases tscript(p(HGNC:TP53))
+rxn(reactants(a(SCHEM:"1-Phosphatidyl-D-myo-inositol 4,5-bisphosphate")),products(a(SCHEM:"Phosphatidylinositol-3,4,5-trisphosphate"))) directlyIncreases kin(complex(SCOMP:"p85/p110 PI3Kinase Complex"))
+rxn(reactants(a(SCHEM:"Phosphatidylinositol-3,4,5-trisphosphate")),products(a(SCHEM:"1-Phosphatidyl-D-myo-inositol 4,5-bisphosphate"))) directlyIncreases phos(p(HGNC:PTEN))
+complex(p(HGNC:EGFR),p(HGNC:PLCG1)) increases (kin(p(HGNC:EGFR)) directlyIncreases p(HGNC:PLCG1,pmod(P,Y,472)))
+complex(p(HGNC:EGFR),p(HGNC:PLCG1)) increases (kin(p(HGNC:EGFR)) directlyIncreases p(HGNC:PLCG1,pmod(P,Y,771)))
+complex(p(HGNC:PTPN11),p(HGNC:EGFR)) directlyIncreases phos(p(HGNC:PTPN11))
+gtp(p(HGNC:HRAS)) increases kin(complex(SCOMP:"p85/p110 PI3Kinase Complex"))
+kin(p(HGNC:AKT1)) decreases bp(MESHPP:Apoptosis)
+kin(p(HGNC:AKT1)) increases p(HGNC:BAD,pmod(P,S,112))
+kin(p(HGNC:CDK4)) increases tscript(p(SFAM:"E2F Family"))
+kin(p(HGNC:CDK6)) increases tscript(p(SFAM:"E2F Family"))
+kin(p(HGNC:EGFR)) directlyIncreases p(HGNC:PLCG1,pmod(P,Y,472))
+kin(p(HGNC:EGFR)) directlyIncreases p(HGNC:PLCG1,pmod(P,Y,771))
+kin(p(HGNC:EGFR)) increases p(HGNC:PTK2B,pmod(P,Y,402))
+kin(p(HGNC:EGFR)) increases p(HGNC:STAT3,pmod(P,Y,705))
+kin(p(HGNC:EGFR)) increases kin(p(HGNC:SRC))
+kin(p(HGNC:MAPK1)) directlyIncreases p(HGNC:MYC,pmod(P,S,62))
+kin(p(HGNC:MAPK14)) increases bp(MESHPP:Apoptosis)
+kin(p(HGNC:MAPK3)) directlyIncreases p(HGNC:MYC,pmod(P,S,62))
+kin(p(HGNC:PAK1)) decreases bp(MESHPP:Apoptosis)
+kin(p(SFAM:"PRKC Family")) increases cat(p(SFAM:"PLD Family"))
+phos(p(SFAM:"PPP2C Family")) decreases kin(p(HGNC:AKT1))
+phos(complex(SCOMP:"PP2A Complex")) decreases kin(p(SFAM:"AKT Family"))
+phos(p(HGNC:PTPN11)) decreases tscript(p(HGNC:STAT1))
+tscript(p(SFAM:"E2F Family")) decreases r(HGNC:CCND1)
+tscript(p(SFAM:"E2F Family")) increases r(HGNC:CCNE1)
+tloc(p(HGNC:STAT3),GOCCID:0005737,GOCCID:0005634) increases tscript(p(HGNC:STAT3))
+
+SET Evidence = "LARG=ARHGEF12 cleaved proteins will be added to basics file"
+
+kin(p(SFAM:"PRKA Family")) increases p(HGNC:PLCB3,pmod(P))
+kin(p(SFAM:"PRKA Family")) increases p(HGNC:PLCB4,pmod(P))
+kin(p(SFAM:"PRKA Family")) increases p(HGNC:RHOA,pmod(P))
+
+SET Evidence = "LPA2=EDG4"
+
+cat(p(HGNC:LPAR2)) increases gtp(p(HGNC:GNAQ))
+
+SET Evidence = "S1P1=EDG1"
+
+cat(p(HGNC:S1PR1)) increases gtp(p(HGNC:GNAI2))
+cat(p(HGNC:S1PR1)) increases gtp(p(HGNC:GNAI3))
+cat(p(HGNC:S1PR1)) increases gtp(p(HGNC:GNAI1))
+
+SET Evidence = "S1P3=EDG3 S1P2=EDG5"
+
+cat(p(HGNC:S1PR2)) increases gtp(p(HGNC:GNAQ))
+cat(p(HGNC:S1PR3)) increases gtp(p(HGNC:GNAQ))
+complex(p(HGNC:S1PR1),p(HGNC:S1PR3)) directlyIncreases cat(p(HGNC:S1PR1))
+
+SET Evidence = "The epidermal growth factor receptor (EGFR) signaling pathway is one of the most important pathways that regulate growth, survival, proliferation, and differentiation in mammalian cells. Reflecting this importance, it is one of the best-investigated signaling systems, both experimentally and computationally, and several computational models have been developed for dynamic analysis. A map of molecular interactions of the EGFR signaling system is a valuable resource for research in this area. In this paper, we present a comprehensive pathway map of EGFR signaling and other related pathways. The map reveals that the overall architecture of the pathway is a bow-tie (or hourglass) structure with several feedback loops. The map is created using CellDesigner software that enables us to graphically represent interactions using a welldefined and consistent graphical notation, and to store it in Systems Biology Markup Language (SBML)."
+
+kin(p(SFAM:"PRKA Family")) increases p(HGNC:PLD1,pmod(P))
+kin(p(SFAM:"PRKC Family")) increases cat(p(HGNC:PLD1))
+
+UNSET STATEMENT_GROUP
