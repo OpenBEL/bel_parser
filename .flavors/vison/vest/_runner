@@ -1,6 +1,0 @@
-:Unite vesting:.
-*
-:call unite#action#do('start')
-:w vest/test_result.log
-:quitall
-vim:ft=vim
