@@ -1,0 +1,103 @@
+BEL/BEL Script Parser
+- Syntactic validation of BEL expressions (ASTs)
+- BEL, version 1.0.
+  * Represent language semantics (functions, relationships, encoding, signatures, etc.)
+  * Syntax validation
+  * Semantic validation
+- BEL, version 2.0.
+  * Represent language semantics (functions, relationships, encoding, signatures, etc.)
+  * Syntax validation
+  * Semantic validation
+- BEL Script, version 1.1
+  * Syntax validation (document level)
+  * Add document property for BEL version (e.g. SET Document BELVersion = "2.0.0")
+  * Add URI support for BEL namespace and annotation.
+  * Revisit supporting annotation domain (e.g. Anatomy) that comprise multiple datasets (e.g. MESH, UBERON).
+    - Conversation with Natalie: http://wiki.openbel.org/display/~abargnesi/Resolving+annotations+and+namespaces+by+type+URI
+  * BEL Script parser with adapters for BEL versions 1.0 and 2.0.
+
+XBEL
+- New schema for XBEL; support BEL, version 2.0.
+  * Add document property for BEL version (e.g. `<bel:version>2.0.0</bel:version>`)
+  * Add URI support for BEL namespace and annotation.
+  * Revisit supporting annotation domain (e.g. Anatomy) that comprise multiple datasets (e.g. MESH, UBERON).
+    - Conversation with Natalie: http://wiki.openbel.org/display/~abargnesi/Resolving+annotations+and+namespaces+by+type+URI
+- Rewrite XBEL translator within bel.rb.
+- Parse XBEL for BEL, version 2.0, for AST
+
+JGF
+- Review BEL JGF format for conformity.
+- Support specifying BEL language in graph metadata
+- Add document property for BEL version (e.g. `<bel:version>2.0.0</bel:version>`)
+- Add URI support for BEL namespace and annotation.
+- Revisit supporting annotation domain (e.g. Anatomy) that comprise multiple datasets (e.g. MESH, UBERON).
+  * Conversation with Natalie: http://wiki.openbel.org/display/~abargnesi/Resolving+annotations+and+namespaces+by+type+URI
+
+RDF
+- Review RDF representation for BEL 1.0
+- Design and document RDF representation for BEL 2.0
+- Implement AST to RDF conversion
+
+API
+- Review/document nanopublication (BEL evidence) resulting from processing BEL 2.0
+- OpenBEL API autocomplete, syntax, semantic, and component analysis
+- Automatable deployment solution for installing
+
+Upgrade content
+- Upgrade tools for BEL 1.0 to BEL 2.0 (e.g., activities, locations, etc.)
+- Command-line tool (e.g. `bel ugprade` in bel.rb).
+- Upgrade content on import into OpenBEL API from BEL, version 1.0 to version 2.0.
+- Upgrade BEL/XBEL documents (corpora, abstracts, etc.)
+
+Vocabulary
+- Upgrade BEL terminology throughout (including nanopublications, BEL knowledge networks (BKNs), etc.)
+
+Documentation
+
+- Language specification and documentation
+- Provide Integration test documentation
+- Provide full user documentation on new features & functionality available in BEL 2.0
+
+Process
+
+- Work closely with PMP and Fraunhofer to test the updated functionality & features
+
+-----
+
+- [x] [prototype] Implement BEL structural parsers, producing AST.
+- [x] [prototype] Implement BEL line parser.
+  - [x] normalize new lines
+  - [x] line continuator
+  - [x] apply BEL structural parsers
+- [prototype] Implement BEL Script line parser.
+  - normalize new lines
+  - line continuator
+- [prototype] Implement BEL Script record parsers, producing AST.
+- [prototype] Define BEL version 1.0.
+  - function types
+  - relationship types
+  - modification types
+  - amino acids
+- [prototype] Implement BEL structural validation rules (condition, error messages).
+  - [error] Incomplete parameter at column N.
+  - [error] Incomplete term at column N.
+  - [error] Missing relationship at column N.
+- [prototype] Implement BEL version 1.0 syntax validation rules (condition, error messages).
+  - [error] Invalid function type.
+  - [error] Invalid relationship type.
+  - [error] Invalid modification.
+  - [error] Invalid amino acid.
+- [prototype] Implement BEL version 2.0 syntax validation rules (condition, error messages).
+  - [error]
+  - [warning]
+- [prototype] Implement BEL Script version 1.0 syntax validation rules (condition, error messages).
+  - [error]   SET DOCUMENT record is invalid.
+  - [error]   SET DOCUMENT records must occur at the top of the document.
+  - [error]   DEFINE ANNOTATION record is invalid.
+  - [error]   DEFINE NAMESPACE record is invalid.
+  - [error]   DEFINE records must occur at the top of the document after all SET DOCUMENT records.
+  - [error]   SET record is invalid.
+  - [error]   Annotation "{NAME}" has not been defined using a DEFINE ANNOTATION record.
+  - [error]   BEL statement is invalid.
+  - [warning] The document does not set a Name property. Try SET DOCUMENT Name = "Document Name".
+  - [warning] The document does not set a Version property. Try SET DOCUMENT Version = "Document Version".
