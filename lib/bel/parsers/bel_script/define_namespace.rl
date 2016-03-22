@@ -4,51 +4,58 @@
   machine bel;
 
   include 'common.rl';
+  include 'identifier.rl';
+  include 'string.rl';
 
-  # name and value accumulator actions
-  action s      { buffer = []  }
-  action n      { buffer << fc }
-  action name   {
-    @define_ns = @define_ns << s(:keyword, buffer.pack('C*').force_encoding('utf-8'))
-  }
-  action value  {
-    if buffer[0] == 34 && buffer[-1] == 34
-      buffer = buffer[1...-1]
-    end
-    value = buffer.pack('C*').force_encoding('utf-8')
-    value.gsub!('\"', '"')
-    @define_ns = @define_ns << s(:url, value)
-  }
-
-  # keywords
   DEFINE_KW     = [dD][eE][fF][iI][nN][eE];
   NAMESPACE_KW  = [nN][aA][mM][eE][sS][pP][aA][cC][eE];
   AS_KW         = [aA][sS];
   URL_KW        = [uU][rR][lL];
 
-  # tokens
-  IDENT         = [a-zA-Z0-9_]+;
-  STRING        = ('"' ('\\\"' | [^"])** '"') >s $n %value;
-
-  # main actions
   action namespace_keyword {
-    @define_ns = s(:define_namespace)
+    @buffers[:define_namespace] = s(:define_namespace)
   }
-  action define_namespace {
-    yield @define_ns
+
+  action keyword {
+    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+  }
+
+  action url_keyword {
+    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+  }
+
+  action string {
+    keyword, domain             = @buffers[:define_namespace].children
+    domain                      = s(:domain,
+                                     domain.children[0] << @buffers[:string])
+    @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
+  }
+
+  action yield_define_namespace {
+    yield @buffers[:define_namespace]
   }
 
   # Define FSM
   define_namespace :=
-    DEFINE_KW SP+ NAMESPACE_KW @namespace_keyword SP+
-      IDENT >s $n %name SP+
-    AS_KW SP+
-      URL_KW SP+ STRING SP* NL @define_namespace;
+    DEFINE_KW
+    SP+
+    NAMESPACE_KW @namespace_keyword
+    SP+
+    IDENT %keyword
+    SP+
+    AS_KW
+    SP+
+    URL_KW @url_keyword
+    SP+
+    STRING %string
+    SP*
+    NL @yield_define_namespace;
 }%%
 =end
 # end: ragel
 
 require          'ast'
+require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
 module BEL
@@ -74,6 +81,7 @@ module BEL
         class Parser
           include Enumerable
           include AST::Sexp
+          include BEL::Parser::Buffer
 
           def initialize(content)
             @content = content
@@ -83,11 +91,11 @@ module BEL
           end
 
           def each
-            buffer = []
-            stack  = []
-            data   = @content.unpack('C*')
-            p      = 0
-            pe     = data.length
+            @buffers = {}
+            stack    = []
+            data     = @content.unpack('C*')
+            p        = 0
+            pe       = data.length
 
       # begin: ragel        
             %% write init;

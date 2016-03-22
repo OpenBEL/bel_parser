@@ -563,22 +563,31 @@ describe BEL::Parsers::BELScript::DefineNamespace do
       BEL::Parsers::BELScript::DefineNamespace,
       %Q{DEFINE NAMESPACE HGNC AS URL "http://resources/hgnc.belns"},
       s(:define_namespace,
-        s(:keyword, "HGNC"),
-        s(:url, "http://resources/hgnc.belns"))
+        s(:keyword,
+          s(:identifier, "HGNC")),
+        s(:domain,
+          s(:url,
+            s(:string, "\"http://resources/hgnc.belns\""))))
     )
     assert_ast(
       BEL::Parsers::BELScript::DefineNamespace,
       %Q{Define Namespace HGNC As Url "http://resources/hgnc.belns"},
-      s(:define_namespace,
-        s(:keyword, "HGNC"),
-        s(:url, "http://resources/hgnc.belns"))
+			s(:define_namespace,
+        s(:keyword,
+          s(:identifier, "HGNC")),
+        s(:domain,
+          s(:url,
+            s(:string, "\"http://resources/hgnc.belns\""))))
     )
     assert_ast(
       BEL::Parsers::BELScript::DefineNamespace,
       %Q{define namespace HGNC as url "http://resources/hgnc.belns"},
       s(:define_namespace,
-        s(:keyword, "HGNC"),
-        s(:url, "http://resources/hgnc.belns"))
+        s(:keyword,
+          s(:identifier, "HGNC")),
+        s(:domain,
+          s(:url,
+            s(:string, "\"http://resources/hgnc.belns\""))))
     )
   end
 end
