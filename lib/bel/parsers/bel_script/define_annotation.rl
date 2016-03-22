@@ -1,57 +1,13 @@
 # begin: ragel
 =begin
 %%{
-  machine define_annotation;
+  machine bel;
 
-  # name and value accumulator actions
-  action s       { buffer = []  }
-  action n       { buffer << fc }
-  action keyword {
-    value = buffer.pack('C*').force_encoding('utf-8')
-    @define_anno = @define_anno << s(:keyword, value) 
-  }
-  action value  {
-    if buffer[0] == 34 && buffer[-1] == 34
-      buffer = buffer[1...-1]
-    end
-    value = buffer.pack('C*').force_encoding('utf-8')
-    value.gsub!('\"', '"')
-    @define_anno = @define_anno.updated(nil, [
-      @define_anno.children[0],
-      s(:domain,
-        s(@type, value))
-    ])
-  }
+  include 'common.rl';
+  include 'identifier.rl';
+  include 'string.rl';
+  include 'list.rl';
 
-  # list accumulator actions
-  action lists {
-    @listvals = []
-    @listbuffer = []
-  }
-  action listn {
-    @listbuffer << fc
-  }
-  action liste {
-    if @listbuffer[0] == 34 && @listbuffer[-1] == 34
-      @listbuffer = @listbuffer[1...-1]
-    end
-    tmp_listvalue = @listbuffer.pack('C*').force_encoding('utf-8')
-    tmp_listvalue.gsub!('\"', '"')
-
-    @listvals << tmp_listvalue
-    @listbuffer = []
-
-    @define_anno = @define_anno.updated(nil, [
-      @define_anno.children[0],
-      s(:domain,
-        s(@type, *@listvals))
-    ])
-  }
-  action listv {
-    @value = @listvals
-  }
-
-  # keywords
   DEFINE_KW     = [dD][eE][fF][iI][nN][eE];
   ANNOTATION_KW = [aA][nN][nN][oO][tT][aA][tT][iI][oO][nN];
   AS_KW         = [aA][sS];
@@ -59,49 +15,68 @@
   PATTERN_KW    = [pP][aA][tT][tT][eE][rR][nN];
   URL_KW        = [uU][rR][lL];
 
-  # tokens
-  SP            = ' ' | '\t';
-  NL            = '\n';
-	EQL           = '=';
-  IDENT         = [a-zA-Z0-9_]+;
-  STRING        = ('"' ('\\\"' | [^"])** '"') >s $n %value;
-  LIST          = '{' @lists SP*
-                    (STRING | IDENT) $listn SP*
-                    (',' @liste SP* (STRING | IDENT) $listn SP*)*
-                  '}' @liste @listv;
-
-  # main actions
   action annotation_keyword {
-    @define_anno = s(:define_annotation)
+    @buffers[:define_annotation] = s(:define_annotation)
   }
+
+  action keyword {
+    @buffers[:define_annotation] = s(:define_annotation,
+                                     s(:keyword, @buffers[:ident]))
+  }
+
   action list_keyword {
-    @type = :list
+    @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain)
   }
+
   action pattern_keyword {
-    @type = :pattern
+    @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:pattern))
   }
+
   action url_keyword {
-    @type = :url
+    @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:url))
   }
+
+  action pattern {
+    keyword, domain              = @buffers[:define_annotation].children
+    domain                       = s(:domain,
+                                     domain.children[0] << @buffers[:string])
+    @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
+  }
+
+  action url {
+    keyword, domain              = @buffers[:define_annotation].children
+    domain                       = s(:domain,
+                                     domain.children[0] << @buffers[:string])
+    @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
+  }
+
+  action list {
+    keyword, domain              = @buffers[:define_annotation].children
+    domain                       = s(:domain,
+                                     @buffers[:list])
+    @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
+  }
+
   action define_annotation {
-    yield @define_anno
+    yield @buffers[:define_annotation]
   }
 
   # Define FSM
   define_annotation :=
     DEFINE_KW SP+ ANNOTATION_KW @annotation_keyword SP+
-      IDENT >s $n %keyword SP+
+      IDENT %keyword SP+
     AS_KW SP+
       (
-        (LIST_KW @list_keyword SP+ LIST SP* NL @define_annotation) |
-        (PATTERN_KW @pattern_keyword SP+ STRING SP* NL @define_annotation) |
-        (URL_KW @url_keyword SP+ STRING SP* NL @define_annotation)
+        (LIST_KW    %list_keyword    SP+ LIST   %list    SP* NL @define_annotation) |
+        (PATTERN_KW %pattern_keyword SP+ STRING %pattern SP* NL @define_annotation) |
+        (URL_KW     %url_keyword     SP+ STRING %url     SP* NL @define_annotation)
       );
 }%%
 =end
 # end: ragel
 
 require          'ast'
+require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
 module BEL
@@ -127,6 +102,7 @@ module BEL
         class Parser
           include Enumerable
           include AST::Sexp
+          include BEL::Parser::Buffer
 
           def initialize(content)
             @content = content
@@ -136,10 +112,10 @@ module BEL
           end
 
           def each
-            buffer = []
-            data   = @content.unpack('C*')
-            p      = 0
-            pe     = data.length
+            @buffers = {}
+            data     = @content.unpack('C*')
+            p        = 0
+            pe       = data.length
 
       # begin: ragel        
             %% write init;

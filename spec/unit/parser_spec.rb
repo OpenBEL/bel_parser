@@ -501,25 +501,34 @@ describe BEL::Parsers::BELScript::DefineAnnotation do
       BEL::Parsers::BELScript::DefineAnnotation,
       %Q{Define Annotation Species As Url "http://resources/species.belanno"},
       s(:define_annotation,
-        s(:keyword, "Species"),
+        s(:keyword,
+          s(:identifier, "Species")),
         s(:domain,
-          s(:url, "http://resources/species.belanno")))
+          s(:url,
+            s(:string, %Q{"http://resources/species.belanno"}))))
     )
     assert_ast(
       BEL::Parsers::BELScript::DefineAnnotation,
       %Q{DEFine ANNOtation Status as LiST { "Approved", "Rejected"}},
       s(:define_annotation,
-        s(:keyword, "Status"),
-        s(:domain,
-          s(:list, "Approved", "Rejected")))
+        s(:keyword,
+          s(:identifier, "Status")),
+				s(:domain,
+				 s(:list,
+					 s(:list_item,
+						 s(:string, "\"Approved\"")),
+					 s(:list_item,
+						 s(:string, "\"Rejected\"")))))
     )
     assert_ast(
       BEL::Parsers::BELScript::DefineAnnotation,
       %Q{define annotation Identifier as pattern "[-+]?[0-9]+"},
-      s(:define_annotation,
-        s(:keyword, "Identifier"),
-        s(:domain,
-          s(:pattern, "[-+]?[0-9]+")))
+			s(:define_annotation,
+			 s(:keyword,
+				 s(:identifier, "Identifier")),
+			 s(:domain,
+				 s(:pattern,
+					 s(:string, "\"[-+]?[0-9]+\""))))
     )
   end
 end
