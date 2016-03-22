@@ -1,14 +1,13 @@
 # begin: ragel
 =begin
 %%{
-  machine set;
+  machine bel;
+
+  include 'common.rl';
 
   SET    = [sS][eE][tT];
   IDENT  = [a-zA-Z0-9_]+;
   STRING = ('"' ('\\\"' | [^"])** '"');
-  SP     = ' ' | '\t';
-	EQL    = '=';
-  NL     = '\n';
 
   action set  {
     @set_node = s(:set)

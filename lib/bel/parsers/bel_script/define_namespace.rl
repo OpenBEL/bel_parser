@@ -1,7 +1,9 @@
 # begin: ragel
 =begin
 %%{
-  machine define_namespace;
+  machine bel;
+
+  include 'common.rl';
 
   # name and value accumulator actions
   action s      { buffer = []  }
@@ -25,9 +27,6 @@
   URL_KW        = [uU][rR][lL];
 
   # tokens
-  SP            = ' ' | '\t';
-  NL            = '\n';
-	EQL           = '=';
   IDENT         = [a-zA-Z0-9_]+;
   STRING        = ('"' ('\\\"' | [^"])** '"') >s $n %value;
 

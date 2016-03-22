@@ -2,8 +2,9 @@
 %%{
 machine bel;
 
-  NL = '\n';
-  SP = ' ' | '\t';
+  NL  = '\n';
+  SP  = ' ' | '\t';
+  EQL = '=';
 
 }%%
 =end
