@@ -495,19 +495,22 @@ describe BEL::Parsers::BELScript::Unset do
       BEL::Parsers::BELScript::Unset,
       %Q{Unset Species},
       s(:unset,
-        s(:name,  "Species"))
+        s(:name,
+          s(:identifier, "Species")))
     )
     assert_ast(
       BEL::Parsers::BELScript::Unset,
       %Q{Unset disease},
       s(:unset,
-        s(:name,  "disease"))
+        s(:name,
+          s(:identifier, "disease")))
     )
     assert_ast(
       BEL::Parsers::BELScript::Unset,
       %Q{unset STATEMENT_GROUP},
       s(:unset,
-        s(:name, "STATEMENT_GROUP"))
+        s(:name,
+          s(:identifier, "STATEMENT_GROUP")))
     )
   end
 end

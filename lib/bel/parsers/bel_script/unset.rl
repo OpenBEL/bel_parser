@@ -1,31 +1,36 @@
 # begin: ragel
 =begin
 %%{
-  machine unset;
+  machine bel;
+
+  include 'common.rl';
+  include 'identifier.rl';
 
   UNSET  = [uU][nN][sS][eE][tT];
-  IDENT  = [a-zA-Z0-9_]+;
-  SP     = ' ' | '\t';
-  NL     = '\n';
 
-  action unset {
-    @unset_node = s(:unset)
+  action unset_keyword {
+    @buffers[:unset] = s(:unset)
   }
-  action s     { buffer = []  }
-  action n     { buffer << fc }
+
   action name  {
-    name = buffer.pack('C*').force_encoding('utf-8')
-    @unset_node = @unset_node << s(:name, name)
-    yield @unset_node
+    @buffers[:unset] = @buffers[:unset] << s(:name, @buffers[:ident])
+  }
+
+  action yield_set {
+    yield @buffers[:unset]
   }
 
   unset :=
-    UNSET %unset SP+ IDENT >s $n %name NL;
+    UNSET %unset_keyword
+    SP+
+    IDENT %name
+    NL @yield_set;
 }%%
 =end
 # end: ragel
 
 require          'ast'
+require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
 module BEL
@@ -51,6 +56,7 @@ module BEL
         class Parser
           include Enumerable
           include AST::Sexp
+          include BEL::Parser::Buffer
 
           def initialize(content)
             @content = content
@@ -60,10 +66,10 @@ module BEL
           end
 
           def each
-            buffer = []
-            data = @content.unpack('C*')
-            p   = 0
-            pe  = data.length
+            @buffers = {}
+            data     = @content.unpack('C*')
+            p        = 0
+            pe       = data.length
 
       # begin: ragel        
             %% write init;
