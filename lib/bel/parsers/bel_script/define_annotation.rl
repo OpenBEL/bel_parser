@@ -57,7 +57,7 @@
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   }
 
-  action define_annotation {
+  action yield_define_annotation {
     yield @buffers[:define_annotation]
   }
 
@@ -67,9 +67,9 @@
       IDENT %keyword SP+
     AS_KW SP+
       (
-        (LIST_KW    %list_keyword    SP+ LIST   %list    SP* NL @define_annotation) |
-        (PATTERN_KW %pattern_keyword SP+ STRING %pattern SP* NL @define_annotation) |
-        (URL_KW     %url_keyword     SP+ STRING %url     SP* NL @define_annotation)
+        (LIST_KW    %list_keyword    SP+ LIST   %list    SP* NL @yield_define_annotation) |
+        (PATTERN_KW %pattern_keyword SP+ STRING %pattern SP* NL @yield_define_annotation) |
+        (URL_KW     %url_keyword     SP+ STRING %url     SP* NL @yield_define_annotation)
       );
 }%%
 =end
