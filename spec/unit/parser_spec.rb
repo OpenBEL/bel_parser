@@ -447,23 +447,42 @@ describe BEL::Parsers::BELScript::Set do
     assert_ast(
       BEL::Parsers::BELScript::Set,
       %Q{SET Species = 9606},
-      s(:set,
-        s(:name,  "Species"),
-        s(:value, "9606"))
+			s(:set,
+        s(:name,
+          s(:identifier, "Species")),
+        s(:value,
+          s(:identifier, "9606")))
     )
     assert_ast(
       BEL::Parsers::BELScript::Set,
       %Q{Set disease = "cat-scratch disease"},
-      s(:set,
-        s(:name,  "disease"),
-        s(:value, "cat-scratch disease"))
+			s(:set,
+        s(:name,
+          s(:identifier, "disease")),
+        s(:value,
+          s(:string, "\"cat-scratch disease\"")))
     )
     assert_ast(
       BEL::Parsers::BELScript::Set,
       %Q{set PROCESS = "Apoptosis"},
-      s(:set,
-        s(:name,  "PROCESS"),
-        s(:value, "Apoptosis"))
+			s(:set,
+        s(:name,
+          s(:identifier, "PROCESS")),
+        s(:value,
+          s(:string, "\"Apoptosis\"")))
+    )
+    assert_ast(
+      BEL::Parsers::BELScript::Set,
+      %Q{SET Cell = {"Monocytes","peripheral blood mononuclear cell"}},
+			s(:set,
+        s(:name,
+          s(:identifier, "Cell")),
+        s(:value,
+          s(:list,
+            s(:list_item,
+              s(:string, "\"Monocytes\"")),
+            s(:list_item,
+              s(:string, "\"peripheral blood mononuclear cell\"")))))
     )
   end
 end

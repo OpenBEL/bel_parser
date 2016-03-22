@@ -4,38 +4,54 @@
   machine bel;
 
   include 'common.rl';
+  include 'identifier.rl';
+  include 'string.rl';
+  include 'list.rl';
 
-  SET    = [sS][eE][tT];
-  IDENT  = [a-zA-Z0-9_]+;
-  STRING = ('"' ('\\\"' | [^"])** '"');
+  SET_KW = [sS][eE][tT];
 
-  action set  {
-    @set_node = s(:set)
+  action set_keyword {
+    @buffers[:set] = s(:set)
   }
-  action s    { buffer = []  }
-  action n    { buffer << fc }
+
   action name {
-    name = buffer.pack('C*').force_encoding('utf-8')
-    @set_node = @set_node << s(:name, name)
+    @buffers[:set] = @buffers[:set] << s(:name, @buffers[:ident])
   }
-  action value {
-    if buffer[0] == 34 && buffer[-1] == 34
-      buffer = buffer[1...-1]
-    end
-    value = buffer.pack('C*').force_encoding('utf-8')
-    value.gsub!('\"', '"')
-    @set_node = @set_node << s(:value, value)
 
-    yield @set_node
+  action string_value {
+    @buffers[:set] = @buffers[:set] << s(:value, @buffers[:string])
+  }
+
+  action ident_value {
+    @buffers[:set] = @buffers[:set] << s(:value, @buffers[:ident])
+  }
+
+  action list_value {
+    @buffers[:set] = @buffers[:set] << s(:value, @buffers[:list])
+  }
+
+  action yield_set {
+    yield @buffers[:set]
   }
 
   set :=
-	  SET %set SP+ IDENT >s $n %name SP+ EQL SP+ (STRING | IDENT) >s $n %value NL;
+	  SET_KW %set_keyword
+    SP+
+    IDENT %name
+    SP+
+    EQL
+    SP+
+    (
+      STRING %string_value |
+      LIST %list_value     |
+      IDENT %ident_value
+    ) NL @yield_set;
 }%%
 =end
 # end: ragel
 
 require          'ast'
+require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
 module BEL
@@ -61,6 +77,7 @@ module BEL
         class Parser
           include Enumerable
           include AST::Sexp
+          include BEL::Parser::Buffer
 
           def initialize(content)
             @content = content
@@ -70,10 +87,10 @@ module BEL
           end
 
           def each
-            buffer = []
-            data = @content.unpack('C*')
-            p   = 0
-            pe  = data.length
+            @buffers = {}
+            data     = @content.unpack('C*')
+            p        = 0
+            pe       = data.length
 
       # begin: ragel        
             %% write init;
