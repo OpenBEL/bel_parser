@@ -2,10 +2,12 @@ require_relative 'parsers/common'
 require_relative 'parsers/bel_expression'
 require_relative 'parsers/bel_script'
 require_relative 'mixin/line_mapping'
+require_relative 'mixin/line_continuator'
 
 module BEL
   class ASTGenerator
     include LineMapping
+    include LineContinuator
 
     PARSERS = [
       BEL::Parsers::Common.constants.map { |c|
@@ -73,12 +75,19 @@ module BEL
       if block_given?
         line_enumerator = map_lines(io.each_line.lazy)
 
-        line_enumerator.each do |line|
-          ast_results = []
-          PARSERS.map { |parser|
-            parser.parse(line) { |ast| ast_results << ast }
-          }
-          yield([line, ast_results])
+        while true
+          begin
+            line = line_enumerator.next
+            line = expand_line_continuator(line, line_enumerator)
+
+            ast_results = []
+            PARSERS.map { |parser|
+              parser.parse(line) { |ast| ast_results << ast }
+            }
+            yield([line, ast_results])
+          rescue StopIteration
+            return
+          end
         end
       else
         enum_for(:each, io)
