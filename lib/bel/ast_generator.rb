@@ -1,9 +1,11 @@
 require_relative 'parsers/common'
 require_relative 'parsers/bel_expression'
 require_relative 'parsers/bel_script'
+require_relative 'mixin/line_mapping'
 
 module BEL
   class ASTGenerator
+    include LineMapping
 
     PARSERS = [
       BEL::Parsers::Common.constants.map { |c|
@@ -69,7 +71,9 @@ module BEL
     #         with {Enumerator#each}
     def each(io)
       if block_given?
-        io.each_line.lazy.each do |line|
+        line_enumerator = map_lines(io.each_line.lazy)
+
+        line_enumerator.each do |line|
           ast_results = []
           PARSERS.map { |parser|
             parser.parse(line) { |ast| ast_results << ast }
