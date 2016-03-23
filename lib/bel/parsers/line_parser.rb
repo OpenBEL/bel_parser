@@ -9,6 +9,7 @@ module LINE
   include BEL::Parsers::BELScript
 
   BEL_PARSERS = [
+    BEL::Parsers::Common::BlankLine,
     BEL::Parsers::Common::Identifier,
     BEL::Parsers::Common::String,
     BEL::Parsers::Common::List,
@@ -28,9 +29,6 @@ module LINE
   def self.parse(io)
     # single line transform
     line_enum = io.each_line.lazy.
-      map { |line|
-        LINE.map_empty_line(line)
-      }.
       map { |line|
         LINE.map_comment_line(line)
       }.

@@ -7,6 +7,17 @@ include BEL::Parsers::Common
 include BEL::Parsers::BELExpression
 include BEL::Parsers::BELScript
 
+describe BEL::Parsers::Common::BlankLine, "#parse" do
+  include AST::Sexp
+
+  it "yields correct AST" do
+    assert_ast(BEL::Parsers::Common::BlankLine, "\t\t\t\t\t", s(:blank_line))
+    assert_ast(BEL::Parsers::Common::BlankLine, "          ", s(:blank_line))
+    assert_ast(BEL::Parsers::Common::BlankLine, "    \t    ", s(:blank_line))
+    assert_ast(BEL::Parsers::Common::BlankLine, "",           s(:blank_line))
+  end
+end
+
 describe BEL::Parsers::Common::Identifier, "#parse" do
   include AST::Sexp
 
