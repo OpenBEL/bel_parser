@@ -2,9 +2,10 @@
 %%{
 machine bel;
 
-  NL  = '\n';
-  SP  = ' ' | '\t';
-  EQL = '=';
+  NL          = '\n';
+  SP          = ' ' | '\t';
+  EQL         = '=';
+	NUMBER_SIGN = '#';
 
 }%%
 =end

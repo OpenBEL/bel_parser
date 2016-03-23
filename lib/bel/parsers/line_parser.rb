@@ -10,6 +10,7 @@ module LINE
 
   BEL_PARSERS = [
     BEL::Parsers::Common::BlankLine,
+    BEL::Parsers::Common::CommentLine,
     BEL::Parsers::Common::Identifier,
     BEL::Parsers::Common::String,
     BEL::Parsers::Common::List,
@@ -30,13 +31,7 @@ module LINE
     # single line transform
     line_enum = io.each_line.lazy.
       map { |line|
-        LINE.map_comment_line(line)
-      }.
-      map { |line|
         LINE.normalize_line_terminators(line)
-      }.
-      reject { |line|
-        !line
       }
 
     # multi-line transform

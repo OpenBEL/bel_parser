@@ -18,6 +18,16 @@ describe BEL::Parsers::Common::BlankLine, "#parse" do
   end
 end
 
+describe BEL::Parsers::Common::CommentLine, "#parse" do
+  include AST::Sexp
+
+  it "yields correct AST" do
+    assert_ast(BEL::Parsers::Common::CommentLine, "  #\tHi",   s(:comment_line, "\tHi"))
+    assert_ast(BEL::Parsers::Common::CommentLine, "# Hi",      s(:comment_line, " Hi"))
+    assert_ast(BEL::Parsers::Common::CommentLine, "      #Hi", s(:comment_line, "Hi"))
+  end
+end
+
 describe BEL::Parsers::Common::Identifier, "#parse" do
   include AST::Sexp
 
