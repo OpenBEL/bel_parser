@@ -2,8 +2,8 @@ require_relative 'common'
 require_relative 'bel_expression'
 require_relative 'bel_script'
 
+# Top-level LINE module.
 module LINE
-
   include BEL::Parsers::Common
   include BEL::Parsers::BELExpression
   include BEL::Parsers::BELScript
@@ -24,18 +24,19 @@ module LINE
     BEL::Parsers::BELScript::DefineAnnotation,
     BEL::Parsers::BELScript::DefineNamespace,
     BEL::Parsers::BELScript::Set,
-    BEL::Parsers::BELScript::Unset,
-  ]
+    BEL::Parsers::BELScript::Unset
+  ].freeze
 
+  # rubocop:disable MethodLength, AbcSize
   def self.parse(io)
     # single line transform
-    line_enum = io.each_line.lazy.
-      map { |line|
-        LINE.normalize_line_terminators(line)
-      }
+    line_enum = io
+                .each_line
+                .lazy
+                .map { |line| LINE.normalize_line_terminators(line) }
 
     # multi-line transform
-    while true
+    loop do
       begin
         line = line_enum.next
 
@@ -45,8 +46,11 @@ module LINE
         end
 
         BEL_PARSERS.each do |parser|
+          # rubocop:disable BlockDelimiters
           parser.parse(line) { |obj|
-            puts "parser: #{parser.inspect}, line: #{line.strip}, object: \n#{obj.inspect}"
+            puts "parser: #{parser.inspect},"\
+                 "line: #{line.strip},"\
+                 "object: \n#{obj.inspect}"
           }
         end
       rescue StopIteration
@@ -85,6 +89,4 @@ module LINE
   end
 end
 
-if __FILE__ == $0
-  LINE.parse($stdin)
-end
+LINE.parse($stdin) if FILE == $PROGRAM_NAME

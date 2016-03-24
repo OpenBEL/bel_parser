@@ -1,7 +1,7 @@
 module BEL
+  # LineContinuator module.
   module LineContinuator
-
-    LINE_CONTINUATOR = "\\\n"
+    LINE_CONTINUATOR = "\\\n".freeze
 
     def expand_line_continuator(line, line_enumerator)
       while line.end_with?(LINE_CONTINUATOR)
