@@ -6,6 +6,11 @@ module BEL
     module AST
       # BEL application-specific AST node.
       class Node < AST::Node
+        # New BEL AST node.
+        def initialize(type, children = [], properties = {})
+          super(type, children: children, properties: properties)
+        end
+
         # Get the line number where this AST node originates.
         attr_reader :line_number
 
