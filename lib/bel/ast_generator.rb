@@ -5,20 +5,22 @@ require_relative 'mixin/line_mapping'
 require_relative 'mixin/line_continuator'
 
 module BEL
+  # ASTGenerator yields AST results for each line in some {IO}.
+  # See #{ASTGenerator#each}.
   class ASTGenerator
     include LineMapping
     include LineContinuator
 
     PARSERS = [
-      BEL::Parsers::Common.constants.map { |c|
+      BEL::Parsers::Common.constants.map do |c|
         BEL::Parsers::Common.const_get(c)
-      },
-      BEL::Parsers::BELExpression.constants.map { |c|
+      end,
+      BEL::Parsers::BELExpression.constants.map do |c|
         BEL::Parsers::BELExpression.const_get(c)
-      },
-      BEL::Parsers::BELScript.constants.map { |c|
+      end,
+      BEL::Parsers::BELScript.constants.map do |c|
         BEL::Parsers::BELScript.const_get(c)
-      }
+      end
     ].flatten!
 
     # Yields AST results for each line of the IO.
@@ -75,15 +77,15 @@ module BEL
       if block_given?
         line_enumerator = map_lines(io.each_line.lazy)
 
-        while true
+        loop do
           begin
             line = line_enumerator.next
             line = expand_line_continuator(line, line_enumerator)
 
             ast_results = []
-            PARSERS.map { |parser|
+            PARSERS.map do |parser|
               parser.parse(line) { |ast| ast_results << ast }
-            }
+            end
             yield([line, ast_results])
           rescue StopIteration
             return
@@ -96,7 +98,7 @@ module BEL
   end
 end
 
-if __FILE__ == $0
+if __FILE__ == $PROGRAM_NAME
   INDENT = 2
   BEL::ASTGenerator.new.each($stdin) do |(line, ast_results)|
     puts "Line: #{line}"
