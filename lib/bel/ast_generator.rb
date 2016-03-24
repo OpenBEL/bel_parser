@@ -11,16 +11,11 @@ module BEL
     include LineMapping
     include LineContinuator
 
+    map_const = ->(x) { x.constants.map { |c| x.const_get(c) } }
     PARSERS = [
-      BEL::Parsers::Common.constants.map do |c|
-        BEL::Parsers::Common.const_get(c)
-      end,
-      BEL::Parsers::BELExpression.constants.map do |c|
-        BEL::Parsers::BELExpression.const_get(c)
-      end,
-      BEL::Parsers::BELScript.constants.map do |c|
-        BEL::Parsers::BELScript.const_get(c)
-      end
+      map_const.call(BEL::Parsers::Common),
+      map_const.call(BEL::Parsers::BELExpression),
+      map_const.call(BEL::Parsers::BELScript)
     ].flatten!
 
     # Yields AST results for each line of the IO.
@@ -73,7 +68,7 @@ module BEL
     #         object is returned if a block is given, otherwise an
     #         {Enumerator} object is returned that can be iterated
     #         with {Enumerator#each}
-    def each(io)
+    def each(io) # rubocop:disable MethodLength
       if block_given?
         line_enumerator = map_lines(io.each_line.lazy)
 

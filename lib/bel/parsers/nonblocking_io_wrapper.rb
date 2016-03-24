@@ -2,7 +2,6 @@
 # {http://ruby-doc.org/core-2.2.2/IO.html IO}-like object. This wrapper
 # object must be enumerated using the {#each} method.
 class NonblockingIOWrapper
-
   # Initialize this wrapper around the +io+ object and read at most
   # +read_length+ bytes in a non-blocking manner.
   #
@@ -20,16 +19,15 @@ class NonblockingIOWrapper
   # @yield the buffers read from the IO-like object
   # @yieldparam [String] buffer the read buffer as uninterpreted bytes
   def each
-    begin
-      while buffer = @read_method.call(@read_length)
-        yield buffer
-      end
-    rescue IO::WaitReadable
-      IO.select([@io])
-      retry
-    rescue EOFError
-      # end of stream; parsing complete
+    while (buffer = @read_method.call(@read_length))
+      yield buffer
     end
+  rescue IO::WaitReadable
+    IO.select([@io])
+    retry
+  # rubocop:disable HandleExceptions
+  rescue EOFError
+    # end of stream; parsing complete
   end
 
   private

@@ -1,9 +1,8 @@
 require 'rantly'
 
 def assert_ast(parser, input, output)
-  expect { |b|
-    parser.parse(%Q{#{input}\n}, &b)
-  }.to yield_with_args(output)
+  expect { |b| parser.parse("#{input}\n", &b) }
+    .to yield_with_args(output)
 end
 
 def parse_ast(parser, input)
