@@ -7,11 +7,12 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 8, 1, 
-	10, 1, 12, 2, 0, 1, 2, 2, 
-	3, 2, 2, 9, 2, 4, 5, 2, 
-	6, 7, 2, 6, 11, 3, 6, 11, 
-	12
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 12, 1, 14, 1, 16, 2, 
+	0, 1, 2, 2, 3, 2, 2, 13, 
+	2, 4, 5, 2, 6, 7, 2, 8, 
+	10, 2, 8, 15, 2, 9, 11, 3, 
+	8, 15, 16
 ]
 
 class << self
@@ -98,17 +99,17 @@ self._bel_indicies = [
 	8, 1, 9, 9, 1, 10, 10, 1, 
 	11, 11, 1, 12, 12, 1, 13, 13, 
 	1, 14, 14, 1, 15, 15, 1, 16, 
-	16, 1, 17, 17, 1, 17, 17, 18, 
-	18, 18, 18, 1, 19, 19, 20, 20, 
-	20, 20, 1, 21, 21, 22, 22, 1, 
-	23, 23, 1, 24, 24, 1, 24, 24, 
-	25, 25, 1, 26, 26, 1, 27, 27, 
-	1, 28, 28, 1, 28, 28, 29, 1, 
-	31, 32, 30, 33, 34, 33, 1, 35, 
-	36, 35, 1, 32, 30, 37, 37, 37, 
-	37, 1, 38, 39, 39, 39, 39, 1, 
-	40, 1, 42, 43, 41, 44, 1, 43, 
-	41, 1, 1, 1, 0
+	16, 1, 17, 17, 1, 17, 17, 19, 
+	19, 19, 19, 18, 20, 20, 21, 21, 
+	21, 21, 18, 22, 22, 23, 23, 1, 
+	24, 24, 1, 25, 25, 1, 25, 25, 
+	26, 26, 1, 27, 27, 1, 28, 28, 
+	1, 29, 29, 1, 29, 29, 31, 30, 
+	33, 34, 32, 35, 36, 35, 30, 37, 
+	38, 37, 1, 34, 32, 40, 40, 40, 
+	40, 39, 41, 42, 42, 42, 42, 39, 
+	44, 43, 46, 47, 45, 48, 43, 47, 
+	45, 1, 1, 1, 0
 ]
 
 class << self
@@ -118,10 +119,11 @@ end
 self._bel_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
-	17, 18, 19, 20, 19, 20, 21, 22, 
-	23, 24, 25, 26, 27, 28, 28, 29, 
-	31, 30, 38, 30, 38, 33, 39, 33, 
-	35, 35, 36, 37, 40
+	17, 18, 0, 19, 20, 19, 20, 21, 
+	22, 23, 24, 25, 26, 27, 0, 28, 
+	28, 29, 31, 30, 38, 30, 38, 0, 
+	33, 39, 33, 0, 35, 35, 36, 37, 
+	40
 ]
 
 class << self
@@ -131,10 +133,24 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	5, 0, 11, 17, 1, 0, 0, 0, 
-	0, 0, 0, 7, 0, 20, 3, 3, 
-	3, 26, 29, 0, 9, 11, 14, 1, 
-	20, 3, 3, 3, 23
+	9, 0, 3, 15, 21, 1, 0, 0, 
+	0, 0, 0, 0, 11, 0, 7, 27, 
+	5, 5, 5, 33, 39, 0, 13, 24, 
+	15, 18, 1, 36, 27, 5, 5, 5, 
+	30
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 3, 3, 0, 0, 0, 0, 
+	0, 0, 0, 7, 7, 7, 0, 7, 
+	24, 24, 36, 36, 36, 36, 0, 0, 
+	0
 ]
 
 class << self
@@ -258,7 +274,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -274,40 +290,66 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
-		begin
-
-    yield @buffers[:string]
-  		end
-when 8 then
-		begin
-
-    @buffers[:define_namespace] = s(:define_namespace)
-  		end
 when 9 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 when 10 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+    yield @buffers[:string]
   		end
 when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
+		begin
+
+    @buffers[:define_namespace] = s(:define_namespace)
+  		end
+when 13 then
+		begin
+
+    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+  		end
+when 14 then
+		begin
+
+    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+  		end
+when 15 then
 		begin
 
     keyword, domain             = @buffers[:define_namespace].children
@@ -315,7 +357,7 @@ when 11 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
   		end
-when 12 then
+when 16 then
 		begin
 
     yield @buffers[:define_namespace]
@@ -339,6 +381,46 @@ when 12 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -351,11 +433,12 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 8, 1, 
-	10, 1, 12, 2, 0, 1, 2, 2, 
-	3, 2, 2, 9, 2, 4, 5, 2, 
-	6, 7, 2, 6, 11, 3, 6, 11, 
-	12
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 12, 1, 14, 1, 16, 2, 
+	0, 1, 2, 2, 3, 2, 2, 13, 
+	2, 4, 5, 2, 6, 7, 2, 8, 
+	10, 2, 8, 15, 2, 9, 11, 3, 
+	8, 15, 16
 ]
 
 class << self
@@ -442,17 +525,17 @@ self._bel_indicies = [
 	8, 1, 9, 9, 1, 10, 10, 1, 
 	11, 11, 1, 12, 12, 1, 13, 13, 
 	1, 14, 14, 1, 15, 15, 1, 16, 
-	16, 1, 17, 17, 1, 17, 17, 18, 
-	18, 18, 18, 1, 19, 19, 20, 20, 
-	20, 20, 1, 21, 21, 22, 22, 1, 
-	23, 23, 1, 24, 24, 1, 24, 24, 
-	25, 25, 1, 26, 26, 1, 27, 27, 
-	1, 28, 28, 1, 28, 28, 29, 1, 
-	31, 32, 30, 33, 34, 33, 1, 35, 
-	36, 35, 1, 32, 30, 37, 37, 37, 
-	37, 1, 38, 39, 39, 39, 39, 1, 
-	40, 1, 42, 43, 41, 44, 1, 43, 
-	41, 1, 1, 1, 0
+	16, 1, 17, 17, 1, 17, 17, 19, 
+	19, 19, 19, 18, 20, 20, 21, 21, 
+	21, 21, 18, 22, 22, 23, 23, 1, 
+	24, 24, 1, 25, 25, 1, 25, 25, 
+	26, 26, 1, 27, 27, 1, 28, 28, 
+	1, 29, 29, 1, 29, 29, 31, 30, 
+	33, 34, 32, 35, 36, 35, 30, 37, 
+	38, 37, 1, 34, 32, 40, 40, 40, 
+	40, 39, 41, 42, 42, 42, 42, 39, 
+	44, 43, 46, 47, 45, 48, 43, 47, 
+	45, 1, 1, 1, 0
 ]
 
 class << self
@@ -462,10 +545,11 @@ end
 self._bel_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
-	17, 18, 19, 20, 19, 20, 21, 22, 
-	23, 24, 25, 26, 27, 28, 28, 29, 
-	31, 30, 38, 30, 38, 33, 39, 33, 
-	35, 35, 36, 37, 40
+	17, 18, 0, 19, 20, 19, 20, 21, 
+	22, 23, 24, 25, 26, 27, 0, 28, 
+	28, 29, 31, 30, 38, 30, 38, 0, 
+	33, 39, 33, 0, 35, 35, 36, 37, 
+	40
 ]
 
 class << self
@@ -475,10 +559,24 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	5, 0, 11, 17, 1, 0, 0, 0, 
-	0, 0, 0, 7, 0, 20, 3, 3, 
-	3, 26, 29, 0, 9, 11, 14, 1, 
-	20, 3, 3, 3, 23
+	9, 0, 3, 15, 21, 1, 0, 0, 
+	0, 0, 0, 0, 11, 0, 7, 27, 
+	5, 5, 5, 33, 39, 0, 13, 24, 
+	15, 18, 1, 36, 27, 5, 5, 5, 
+	30
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 3, 3, 0, 0, 0, 0, 
+	0, 0, 0, 7, 7, 7, 0, 7, 
+	24, 24, 36, 36, 36, 36, 0, 0, 
+	0
 ]
 
 class << self
@@ -602,7 +700,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -618,40 +716,66 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
-		begin
-
-    yield @buffers[:string]
-  		end
-when 8 then
-		begin
-
-    @buffers[:define_namespace] = s(:define_namespace)
-  		end
 when 9 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 when 10 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+    yield @buffers[:string]
   		end
 when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
+		begin
+
+    @buffers[:define_namespace] = s(:define_namespace)
+  		end
+when 13 then
+		begin
+
+    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+  		end
+when 14 then
+		begin
+
+    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+  		end
+when 15 then
 		begin
 
     keyword, domain             = @buffers[:define_namespace].children
@@ -659,7 +783,7 @@ when 11 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
   		end
-when 12 then
+when 16 then
 		begin
 
     yield @buffers[:define_namespace]
@@ -683,6 +807,46 @@ when 12 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -732,11 +896,12 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 8, 1, 
-	10, 1, 12, 2, 0, 1, 2, 2, 
-	3, 2, 2, 9, 2, 4, 5, 2, 
-	6, 7, 2, 6, 11, 3, 6, 11, 
-	12
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 12, 1, 14, 1, 16, 2, 
+	0, 1, 2, 2, 3, 2, 2, 13, 
+	2, 4, 5, 2, 6, 7, 2, 8, 
+	10, 2, 8, 15, 2, 9, 11, 3, 
+	8, 15, 16
 ]
 
 class << self
@@ -823,17 +988,17 @@ self._bel_indicies = [
 	8, 1, 9, 9, 1, 10, 10, 1, 
 	11, 11, 1, 12, 12, 1, 13, 13, 
 	1, 14, 14, 1, 15, 15, 1, 16, 
-	16, 1, 17, 17, 1, 17, 17, 18, 
-	18, 18, 18, 1, 19, 19, 20, 20, 
-	20, 20, 1, 21, 21, 22, 22, 1, 
-	23, 23, 1, 24, 24, 1, 24, 24, 
-	25, 25, 1, 26, 26, 1, 27, 27, 
-	1, 28, 28, 1, 28, 28, 29, 1, 
-	31, 32, 30, 33, 34, 33, 1, 35, 
-	36, 35, 1, 32, 30, 37, 37, 37, 
-	37, 1, 38, 39, 39, 39, 39, 1, 
-	40, 1, 42, 43, 41, 44, 1, 43, 
-	41, 1, 1, 1, 0
+	16, 1, 17, 17, 1, 17, 17, 19, 
+	19, 19, 19, 18, 20, 20, 21, 21, 
+	21, 21, 18, 22, 22, 23, 23, 1, 
+	24, 24, 1, 25, 25, 1, 25, 25, 
+	26, 26, 1, 27, 27, 1, 28, 28, 
+	1, 29, 29, 1, 29, 29, 31, 30, 
+	33, 34, 32, 35, 36, 35, 30, 37, 
+	38, 37, 1, 34, 32, 40, 40, 40, 
+	40, 39, 41, 42, 42, 42, 42, 39, 
+	44, 43, 46, 47, 45, 48, 43, 47, 
+	45, 1, 1, 1, 0
 ]
 
 class << self
@@ -843,10 +1008,11 @@ end
 self._bel_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
-	17, 18, 19, 20, 19, 20, 21, 22, 
-	23, 24, 25, 26, 27, 28, 28, 29, 
-	31, 30, 38, 30, 38, 33, 39, 33, 
-	35, 35, 36, 37, 40
+	17, 18, 0, 19, 20, 19, 20, 21, 
+	22, 23, 24, 25, 26, 27, 0, 28, 
+	28, 29, 31, 30, 38, 30, 38, 0, 
+	33, 39, 33, 0, 35, 35, 36, 37, 
+	40
 ]
 
 class << self
@@ -856,10 +1022,24 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	5, 0, 11, 17, 1, 0, 0, 0, 
-	0, 0, 0, 7, 0, 20, 3, 3, 
-	3, 26, 29, 0, 9, 11, 14, 1, 
-	20, 3, 3, 3, 23
+	9, 0, 3, 15, 21, 1, 0, 0, 
+	0, 0, 0, 0, 11, 0, 7, 27, 
+	5, 5, 5, 33, 39, 0, 13, 24, 
+	15, 18, 1, 36, 27, 5, 5, 5, 
+	30
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 3, 3, 0, 0, 0, 0, 
+	0, 0, 0, 7, 7, 7, 0, 7, 
+	24, 24, 36, 36, 36, 36, 0, 0, 
+	0
 ]
 
 class << self
@@ -898,6 +1078,7 @@ self.bel_en_define_namespace = 1;
             data     = @content.unpack('C*')
             p        = 0
             pe       = data.length
+            eof      = data.length
 
       # begin: ragel        
             
@@ -996,7 +1177,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -1012,40 +1193,66 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
-		begin
-
-    yield @buffers[:string]
-  		end
-when 8 then
-		begin
-
-    @buffers[:define_namespace] = s(:define_namespace)
-  		end
 when 9 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 when 10 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+    yield @buffers[:string]
   		end
 when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
+		begin
+
+    @buffers[:define_namespace] = s(:define_namespace)
+  		end
+when 13 then
+		begin
+
+    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+  		end
+when 14 then
+		begin
+
+    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+  		end
+when 15 then
 		begin
 
     keyword, domain             = @buffers[:define_namespace].children
@@ -1053,7 +1260,7 @@ when 11 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
   		end
-when 12 then
+when 16 then
 		begin
 
     yield @buffers[:define_namespace]
@@ -1077,6 +1284,46 @@ when 12 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break

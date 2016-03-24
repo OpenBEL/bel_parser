@@ -7,10 +7,12 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 2, 0, 1, 
-	2, 2, 3, 2, 2, 8, 2, 4, 
-	5, 2, 6, 7, 3, 2, 10, 11, 
-	3, 6, 9, 11
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 2, 0, 1, 2, 2, 3, 2, 
+	2, 12, 2, 4, 5, 2, 4, 9, 
+	2, 6, 7, 2, 8, 10, 2, 9, 
+	4, 2, 9, 11, 3, 2, 14, 15, 
+	3, 8, 13, 15
 ]
 
 class << self
@@ -73,14 +75,14 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 0, 2, 3, 3, 3, 3, 1, 
-	0, 0, 2, 4, 4, 4, 4, 1, 
-	6, 7, 5, 8, 1, 7, 5, 9, 
-	10, 10, 10, 10, 1, 9, 12, 11, 
-	11, 11, 11, 1, 13, 13, 13, 13, 
-	1, 14, 15, 15, 15, 15, 1, 16, 
-	1, 18, 19, 17, 20, 1, 19, 17, 
-	1, 1, 1, 0
+	1, 1, 2, 3, 3, 3, 3, 0, 
+	1, 1, 2, 5, 5, 5, 5, 4, 
+	7, 8, 6, 10, 9, 8, 6, 12, 
+	13, 13, 13, 13, 11, 12, 15, 14, 
+	14, 14, 14, 11, 17, 17, 17, 17, 
+	16, 18, 19, 19, 19, 19, 16, 21, 
+	20, 23, 24, 22, 25, 20, 24, 22, 
+	26, 26, 26, 0
 ]
 
 class << self
@@ -88,9 +90,10 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 7, 6, 3, 4, 5, 
-	14, 14, 6, 7, 2, 9, 15, 9, 
-	11, 11, 12, 13, 16
+	0, 2, 3, 7, 0, 6, 3, 4, 
+	5, 0, 14, 0, 14, 6, 7, 2, 
+	0, 9, 15, 9, 0, 11, 11, 12, 
+	13, 16, 0
 ]
 
 class << self
@@ -98,9 +101,20 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 14, 5, 5, 3, 3, 3, 
-	24, 20, 1, 1, 11, 5, 8, 1, 
-	14, 3, 3, 3, 17
+	21, 0, 24, 9, 30, 9, 5, 5, 
+	5, 7, 40, 3, 36, 1, 1, 15, 
+	18, 9, 12, 1, 33, 24, 5, 5, 
+	5, 27, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 21, 30, 7, 7, 7, 3, 3, 
+	18, 18, 33, 33, 33, 33, 0, 0, 
+	0
 ]
 
 class << self
@@ -224,7 +238,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -240,43 +254,69 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 10 then
 		begin
 
     yield @buffers[:string]
   		end
-when 8 then
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
 		begin
 
     @parameter = s(:parameter,
                    s(:prefix, @buffers[:ident]))
   		end
-when 9 then
+when 13 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:string])
   		end
-when 10 then
+when 14 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
-when 11 then
+when 15 then
 		begin
 
     yield @parameter
@@ -300,6 +340,46 @@ when 11 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -312,10 +392,12 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 2, 0, 1, 
-	2, 2, 3, 2, 2, 8, 2, 4, 
-	5, 2, 6, 7, 3, 2, 10, 11, 
-	3, 6, 9, 11
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 2, 0, 1, 2, 2, 3, 2, 
+	2, 12, 2, 4, 5, 2, 4, 9, 
+	2, 6, 7, 2, 8, 10, 2, 9, 
+	4, 2, 9, 11, 3, 2, 14, 15, 
+	3, 8, 13, 15
 ]
 
 class << self
@@ -378,14 +460,14 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 0, 2, 3, 3, 3, 3, 1, 
-	0, 0, 2, 4, 4, 4, 4, 1, 
-	6, 7, 5, 8, 1, 7, 5, 9, 
-	10, 10, 10, 10, 1, 9, 12, 11, 
-	11, 11, 11, 1, 13, 13, 13, 13, 
-	1, 14, 15, 15, 15, 15, 1, 16, 
-	1, 18, 19, 17, 20, 1, 19, 17, 
-	1, 1, 1, 0
+	1, 1, 2, 3, 3, 3, 3, 0, 
+	1, 1, 2, 5, 5, 5, 5, 4, 
+	7, 8, 6, 10, 9, 8, 6, 12, 
+	13, 13, 13, 13, 11, 12, 15, 14, 
+	14, 14, 14, 11, 17, 17, 17, 17, 
+	16, 18, 19, 19, 19, 19, 16, 21, 
+	20, 23, 24, 22, 25, 20, 24, 22, 
+	26, 26, 26, 0
 ]
 
 class << self
@@ -393,9 +475,10 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 7, 6, 3, 4, 5, 
-	14, 14, 6, 7, 2, 9, 15, 9, 
-	11, 11, 12, 13, 16
+	0, 2, 3, 7, 0, 6, 3, 4, 
+	5, 0, 14, 0, 14, 6, 7, 2, 
+	0, 9, 15, 9, 0, 11, 11, 12, 
+	13, 16, 0
 ]
 
 class << self
@@ -403,9 +486,20 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 14, 5, 5, 3, 3, 3, 
-	24, 20, 1, 1, 11, 5, 8, 1, 
-	14, 3, 3, 3, 17
+	21, 0, 24, 9, 30, 9, 5, 5, 
+	5, 7, 40, 3, 36, 1, 1, 15, 
+	18, 9, 12, 1, 33, 24, 5, 5, 
+	5, 27, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 21, 30, 7, 7, 7, 3, 3, 
+	18, 18, 33, 33, 33, 33, 0, 0, 
+	0
 ]
 
 class << self
@@ -529,7 +623,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -545,43 +639,69 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 10 then
 		begin
 
     yield @buffers[:string]
   		end
-when 8 then
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
 		begin
 
     @parameter = s(:parameter,
                    s(:prefix, @buffers[:ident]))
   		end
-when 9 then
+when 13 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:string])
   		end
-when 10 then
+when 14 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
-when 11 then
+when 15 then
 		begin
 
     yield @parameter
@@ -605,6 +725,46 @@ when 11 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -654,10 +814,12 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 2, 0, 1, 
-	2, 2, 3, 2, 2, 8, 2, 4, 
-	5, 2, 6, 7, 3, 2, 10, 11, 
-	3, 6, 9, 11
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 2, 0, 1, 2, 2, 3, 2, 
+	2, 12, 2, 4, 5, 2, 4, 9, 
+	2, 6, 7, 2, 8, 10, 2, 9, 
+	4, 2, 9, 11, 3, 2, 14, 15, 
+	3, 8, 13, 15
 ]
 
 class << self
@@ -720,14 +882,14 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 0, 2, 3, 3, 3, 3, 1, 
-	0, 0, 2, 4, 4, 4, 4, 1, 
-	6, 7, 5, 8, 1, 7, 5, 9, 
-	10, 10, 10, 10, 1, 9, 12, 11, 
-	11, 11, 11, 1, 13, 13, 13, 13, 
-	1, 14, 15, 15, 15, 15, 1, 16, 
-	1, 18, 19, 17, 20, 1, 19, 17, 
-	1, 1, 1, 0
+	1, 1, 2, 3, 3, 3, 3, 0, 
+	1, 1, 2, 5, 5, 5, 5, 4, 
+	7, 8, 6, 10, 9, 8, 6, 12, 
+	13, 13, 13, 13, 11, 12, 15, 14, 
+	14, 14, 14, 11, 17, 17, 17, 17, 
+	16, 18, 19, 19, 19, 19, 16, 21, 
+	20, 23, 24, 22, 25, 20, 24, 22, 
+	26, 26, 26, 0
 ]
 
 class << self
@@ -735,9 +897,10 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 7, 6, 3, 4, 5, 
-	14, 14, 6, 7, 2, 9, 15, 9, 
-	11, 11, 12, 13, 16
+	0, 2, 3, 7, 0, 6, 3, 4, 
+	5, 0, 14, 0, 14, 6, 7, 2, 
+	0, 9, 15, 9, 0, 11, 11, 12, 
+	13, 16, 0
 ]
 
 class << self
@@ -745,9 +908,20 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 14, 5, 5, 3, 3, 3, 
-	24, 20, 1, 1, 11, 5, 8, 1, 
-	14, 3, 3, 3, 17
+	21, 0, 24, 9, 30, 9, 5, 5, 
+	5, 7, 40, 3, 36, 1, 1, 15, 
+	18, 9, 12, 1, 33, 24, 5, 5, 
+	5, 27, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 21, 30, 7, 7, 7, 3, 3, 
+	18, 18, 33, 33, 33, 33, 0, 0, 
+	0
 ]
 
 class << self
@@ -782,9 +956,10 @@ self.bel_en_bel_parameter = 1;
 
           def each
             @buffers = {}
-            data = @content.unpack('C*')
-            p   = 0
-            pe  = data.length
+            data     = @content.unpack('C*')
+            p        = 0
+            pe       = data.length
+            eof      = data.length
 
       # begin: ragel        
             
@@ -883,7 +1058,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -899,43 +1074,69 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 10 then
 		begin
 
     yield @buffers[:string]
   		end
-when 8 then
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
 		begin
 
     @parameter = s(:parameter,
                    s(:prefix, @buffers[:ident]))
   		end
-when 9 then
+when 13 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:string])
   		end
-when 10 then
+when 14 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
-when 11 then
+when 15 then
 		begin
 
     yield @parameter
@@ -959,6 +1160,46 @@ when 11 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break

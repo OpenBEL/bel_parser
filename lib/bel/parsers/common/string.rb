@@ -32,8 +32,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include AST::Sexp
           include BEL::Parser::Buffer
+          include AST::Sexp
 
           def initialize(content)
             @content = content
@@ -45,7 +45,7 @@ class << self
 end
 self._bel_actions = [
 	0, 1, 1, 2, 0, 1, 2, 2, 
-	3
+	4, 2, 3, 5
 ]
 
 class << self
@@ -102,8 +102,16 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	3, 0, 1, 1, 1, 6, 0, 1, 
+	3, 9, 1, 1, 1, 6, 9, 1, 
 	1, 0, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 9, 9, 9, 9, 0
 ]
 
 class << self
@@ -133,6 +141,7 @@ self.bel_en_string = 1;
             data     = @content.unpack('C*')
             p        = 0
             pe       = data.length
+            eof      = data.length
 
       # begin: ragel        
             
@@ -230,7 +239,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    (@buffers[:string] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -241,6 +250,19 @@ when 2 then
 when 3 then
 		begin
 
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 4 then
+		begin
+
+    yield @buffers[:string]
+  		end
+when 5 then
+		begin
+
+    @buffers[:string] ||= []
     yield @buffers[:string]
   		end
 			end # action switch
@@ -262,6 +284,33 @@ when 3 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 3 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break

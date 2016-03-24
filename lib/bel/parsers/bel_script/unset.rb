@@ -7,8 +7,9 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 4, 2, 0, 1, 
-	2, 2, 3, 3, 2, 5, 6
+	0, 1, 1, 1, 4, 1, 6, 2, 
+	0, 1, 2, 2, 3, 2, 4, 5, 
+	3, 2, 7, 8
 ]
 
 class << self
@@ -67,10 +68,10 @@ end
 self._bel_indicies = [
 	0, 0, 1, 2, 2, 1, 3, 3, 
 	1, 4, 4, 1, 5, 5, 1, 6, 
-	6, 1, 7, 7, 8, 8, 8, 8, 
-	1, 9, 10, 10, 10, 10, 1, 11, 
-	11, 11, 11, 1, 12, 13, 13, 13, 
-	13, 1, 1, 1, 0
+	6, 1, 8, 8, 9, 9, 9, 9, 
+	7, 10, 11, 11, 11, 11, 7, 13, 
+	13, 13, 13, 12, 14, 15, 15, 15, 
+	15, 12, 1, 1, 0
 ]
 
 class << self
@@ -78,8 +79,8 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 4, 5, 6, 7, 7, 
-	8, 11, 8, 10, 12, 10
+	2, 0, 3, 4, 5, 6, 7, 0, 
+	7, 8, 11, 8, 0, 10, 12, 10
 ]
 
 class << self
@@ -87,8 +88,17 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 0, 0, 3, 0, 
-	5, 11, 1, 5, 8, 1
+	0, 0, 0, 0, 0, 0, 5, 3, 
+	0, 7, 16, 1, 13, 7, 10, 1
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 0, 0, 0, 0, 3, 
+	3, 13, 13, 0, 0
 ]
 
 class << self
@@ -208,7 +218,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -224,14 +234,27 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:unset] = s(:unset)
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:unset] = @buffers[:unset] << s(:name, @buffers[:ident])
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:unset] = s(:unset)
+  		end
+when 7 then
+		begin
+
+    @buffers[:unset] = @buffers[:unset] << s(:name, @buffers[:ident])
+  		end
+when 8 then
 		begin
 
     yield @buffers[:unset]
@@ -255,6 +278,33 @@ when 6 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -304,8 +354,9 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 4, 2, 0, 1, 
-	2, 2, 3, 3, 2, 5, 6
+	0, 1, 1, 1, 4, 1, 6, 2, 
+	0, 1, 2, 2, 3, 2, 4, 5, 
+	3, 2, 7, 8
 ]
 
 class << self
@@ -364,10 +415,10 @@ end
 self._bel_indicies = [
 	0, 0, 1, 2, 2, 1, 3, 3, 
 	1, 4, 4, 1, 5, 5, 1, 6, 
-	6, 1, 7, 7, 8, 8, 8, 8, 
-	1, 9, 10, 10, 10, 10, 1, 11, 
-	11, 11, 11, 1, 12, 13, 13, 13, 
-	13, 1, 1, 1, 0
+	6, 1, 8, 8, 9, 9, 9, 9, 
+	7, 10, 11, 11, 11, 11, 7, 13, 
+	13, 13, 13, 12, 14, 15, 15, 15, 
+	15, 12, 1, 1, 0
 ]
 
 class << self
@@ -375,8 +426,8 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 4, 5, 6, 7, 7, 
-	8, 11, 8, 10, 12, 10
+	2, 0, 3, 4, 5, 6, 7, 0, 
+	7, 8, 11, 8, 0, 10, 12, 10
 ]
 
 class << self
@@ -384,8 +435,17 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 0, 0, 3, 0, 
-	5, 11, 1, 5, 8, 1
+	0, 0, 0, 0, 0, 0, 5, 3, 
+	0, 7, 16, 1, 13, 7, 10, 1
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 0, 0, 0, 0, 3, 
+	3, 13, 13, 0, 0
 ]
 
 class << self
@@ -419,6 +479,7 @@ self.bel_en_unset = 1;
             data     = @content.unpack('C*')
             p        = 0
             pe       = data.length
+            eof      = data.length
 
       # begin: ragel        
             
@@ -517,7 +578,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -533,14 +594,27 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:unset] = s(:unset)
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:unset] = @buffers[:unset] << s(:name, @buffers[:ident])
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:unset] = s(:unset)
+  		end
+when 7 then
+		begin
+
+    @buffers[:unset] = @buffers[:unset] << s(:name, @buffers[:ident])
+  		end
+when 8 then
 		begin
 
     yield @buffers[:unset]
@@ -564,6 +638,33 @@ when 6 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break

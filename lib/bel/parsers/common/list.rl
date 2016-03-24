@@ -6,6 +6,11 @@
   include 'identifier.rl';
   include 'string.rl';
 
+  action clear {
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
+  }
+
   action string {
     @buffers[:list_arg] = s(:list_item, @buffers[:string])
   }
@@ -15,29 +20,60 @@
   }
 
   action start_list {
-    @buffers[:list] = []
+    @buffers[:list] = s(:list)
   }
 
   action append_list {
-    @buffers[:list] << @buffers[:list_arg]
+    # Append list argument if its value is not empty.
+    list_arg_value = @buffers[:list_arg].children[0].children[0]
+    if list_arg_value != ''
+      @buffers[:list] <<= @buffers[:list_arg]
+    end
   }
 
   action finish_list {
-    #FIXME: Mark list as complete?
-    @buffers[:list] = s(:list, *@buffers[:list])
+    #TODO: Mark @buffers[:list] as complete.
   }
 
-  action yield_list {
+  action error_list_string {
+    #TODO: Mark @buffers[:list_arg] string as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+  }
+
+  action error_list_ident {
+    #TODO: Mark @buffers[:list_arg] identifier as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+  }
+
+  action yield_complete_list {
+    yield @buffers[:list]
+  }
+
+  action yield_error_list {
+    @buffers[:list] ||= s(:list)
     yield @buffers[:list]
   }
 
   LIST  =
-    '{' @start_list SP*
-      (STRING %string | IDENT %ident) %append_list SP*
-      (',' SP* (STRING %string | IDENT %ident) %append_list SP*)*
+    '{' @start_list
+    SP*
+    (
+      STRING %string $err(error_list_string) |
+      IDENT  %ident  $err(error_list_ident)
+    ) $err(append_list) %append_list
+    SP*
+    (
+      ',' @clear
+      SP*
+      (
+        STRING %string $err(error_list_string) |
+        IDENT  %ident  $err(error_list_ident)
+      ) $err(append_list) %append_list
+      SP*
+    )*
     '}' @finish_list;
 
-  list := LIST %yield_list NL;
+  list := LIST $err(yield_error_list) %yield_complete_list NL;
 }%%
 =end
 # end: ragel
@@ -83,6 +119,7 @@ module BEL
             data     = @content.unpack('C*')
             p        = 0
             pe       = data.length
+            eof      = data.length
 
       # begin: ragel        
             %% write init;

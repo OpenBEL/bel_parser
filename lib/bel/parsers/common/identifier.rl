@@ -10,7 +10,7 @@
   }
 
   action append_ident {
-    @buffers[:ident] << fc
+    (@buffers[:ident] ||= []) << fc
   }
 
   action finish_ident {
@@ -18,13 +18,24 @@
                          utf8_string(@buffers[:ident]))
   }
 
-  action yield_ident {
+  action yield_complete_ident {
     yield @buffers[:ident]
   }
 
-  IDENT = [a-zA-Z0-9_]+ >start_ident $append_ident %finish_ident;
+  action error_ident {
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  }
 
-  ident := IDENT %yield_ident NL;
+  action yield_error_ident {
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  }
+
+  IDENT = [a-zA-Z0-9_]+ >start_ident $append_ident %finish_ident $err(error_ident);
+
+  ident := IDENT $err(yield_error_ident) %yield_complete_ident NL;
 }%%
 =end
 # end: ragel
@@ -70,6 +81,7 @@ module BEL
             data = @content.unpack('C*')
             p   = 0
             pe  = data.length
+            eof = data.length
 
       # begin: ragel        
             %% write init;

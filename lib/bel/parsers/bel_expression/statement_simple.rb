@@ -7,21 +7,23 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 17, 1, 
-	20, 1, 21, 1, 23, 1, 24, 1, 
-	27, 1, 29, 1, 30, 1, 31, 1, 
-	32, 2, 0, 1, 2, 1, 13, 2, 
-	2, 3, 2, 2, 8, 2, 2, 14, 
-	2, 2, 19, 2, 4, 5, 2, 6, 
-	7, 2, 22, 23, 2, 24, 25, 2, 
-	26, 27, 2, 28, 29, 2, 28, 32, 
-	2, 31, 32, 3, 2, 10, 11, 3, 
-	2, 10, 18, 3, 2, 14, 17, 3, 
-	6, 9, 11, 3, 6, 9, 18, 4, 
-	0, 1, 12, 13, 4, 2, 10, 18, 
-	20, 4, 6, 9, 18, 20, 5, 15, 
-	12, 0, 1, 13, 5, 16, 12, 0, 
-	1, 13
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 21, 1, 24, 1, 25, 1, 
+	27, 1, 28, 1, 31, 1, 33, 1, 
+	34, 1, 35, 1, 36, 2, 0, 1, 
+	2, 1, 17, 2, 2, 3, 2, 2, 
+	12, 2, 2, 18, 2, 2, 23, 2, 
+	4, 5, 2, 4, 9, 2, 6, 7, 
+	2, 8, 10, 2, 9, 4, 2, 9, 
+	11, 2, 26, 27, 2, 28, 29, 2, 
+	30, 31, 2, 32, 33, 2, 32, 36, 
+	2, 35, 36, 3, 2, 14, 15, 3, 
+	2, 14, 22, 3, 2, 18, 21, 3, 
+	8, 13, 15, 3, 8, 13, 22, 4, 
+	0, 1, 16, 17, 4, 2, 14, 22, 
+	24, 4, 8, 13, 22, 24, 5, 19, 
+	16, 0, 1, 17, 5, 20, 16, 0, 
+	1, 17
 ]
 
 class << self
@@ -229,60 +231,79 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	102, 102, 102, 102, 0, 37, 37, 75, 
-	28, 28, 28, 28, 0, 0, 0, 5, 
-	0, 0, 0, 43, 87, 87, 87, 87, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 83, 83, 83, 83, 
-	0, 0, 0, 0, 0, 0, 0, 43, 
-	87, 87, 87, 87, 0, 71, 71, 40, 
-	71, 71, 34, 28, 28, 28, 28, 0, 
-	0, 0, 0, 0, 0, 19, 19, 0, 
-	0, 0, 49, 0, 13, 13, 11, 0, 
-	0, 0, 102, 102, 102, 102, 0, 37, 
-	37, 75, 28, 28, 28, 28, 0, 0, 
-	0, 5, 0, 0, 0, 43, 87, 87, 
-	87, 87, 0, 0, 0, 43, 25, 25, 
-	25, 25, 0, 3, 3, 3, 83, 83, 
-	83, 83, 0, 0, 0, 0, 0, 0, 
-	0, 43, 87, 87, 87, 87, 0, 71, 
-	71, 40, 71, 71, 34, 28, 28, 28, 
-	28, 0, 0, 0, 0, 0, 0, 21, 
-	64, 21, 21, 0, 0, 23, 0, 0, 
-	0, 0, 0, 0, 55, 61, 15, 3, 
-	3, 71, 71, 71, 71, 1, 1, 1, 
-	1, 0, 3, 3, 71, 71, 71, 71, 
-	1, 1, 1, 1, 0, 25, 25, 25, 
-	25, 0, 31, 1, 1, 1, 1, 0, 
-	43, 0, 3, 3, 3, 46, 0, 3, 
-	3, 0, 0, 43, 25, 25, 25, 25, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 79, 0, 3, 3, 
-	67, 1, 1, 1, 1, 0, 67, 34, 
-	1, 1, 1, 1, 0, 108, 108, 108, 
-	108, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 97, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 92, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 7, 
-	0, 0, 3, 3, 71, 71, 92, 71, 
-	1, 1, 1, 1, 0, 102, 102, 102, 
-	102, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 83, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 71, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 0, 
-	0, 0, 9, 0, 3, 3, 71, 71, 
-	71, 71, 1, 1, 1, 1, 0, 49, 
-	0, 52, 11, 0, 17, 0, 0, 0, 
-	0, 0, 55, 58, 15, 0, 0, 0, 
+	118, 118, 118, 118, 3, 41, 41, 91, 
+	32, 32, 32, 32, 3, 0, 0, 9, 
+	0, 0, 0, 53, 103, 103, 103, 103, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 99, 99, 99, 99, 
+	7, 0, 0, 0, 0, 0, 0, 53, 
+	103, 103, 103, 103, 50, 87, 87, 44, 
+	87, 87, 38, 32, 32, 32, 32, 3, 
+	0, 0, 0, 0, 0, 23, 23, 0, 
+	0, 0, 65, 0, 17, 17, 15, 0, 
+	0, 0, 118, 118, 118, 118, 3, 41, 
+	41, 91, 32, 32, 32, 32, 3, 0, 
+	0, 9, 0, 0, 0, 53, 103, 103, 
+	103, 103, 50, 0, 0, 53, 29, 29, 
+	29, 29, 59, 5, 5, 5, 99, 99, 
+	99, 99, 7, 0, 0, 0, 0, 0, 
+	0, 53, 103, 103, 103, 103, 50, 87, 
+	87, 44, 87, 87, 38, 32, 32, 32, 
+	32, 3, 0, 0, 0, 0, 0, 25, 
+	80, 25, 25, 0, 0, 27, 0, 0, 
+	0, 0, 0, 0, 71, 77, 19, 5, 
+	5, 87, 87, 87, 87, 1, 1, 1, 
+	1, 3, 5, 5, 87, 87, 87, 87, 
+	1, 1, 1, 1, 3, 29, 29, 29, 
+	29, 47, 35, 1, 1, 1, 1, 47, 
+	53, 62, 5, 5, 5, 56, 62, 5, 
+	5, 0, 0, 53, 29, 29, 29, 29, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 95, 7, 5, 5, 
+	83, 1, 1, 1, 1, 3, 83, 38, 
+	1, 1, 1, 1, 3, 124, 124, 124, 
+	124, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 113, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 108, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 11, 
+	0, 0, 5, 5, 87, 87, 108, 87, 
+	1, 1, 1, 1, 3, 118, 118, 118, 
+	118, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 99, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 87, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 0, 
+	0, 0, 13, 0, 5, 5, 87, 87, 
+	87, 87, 1, 1, 1, 1, 3, 65, 
+	0, 68, 15, 0, 21, 0, 0, 0, 
+	0, 0, 71, 74, 19, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 3, 3, 0, 50, 59, 7, 7, 
+	0, 50, 3, 0, 0, 0, 0, 3, 
+	3, 0, 50, 59, 7, 7, 0, 50, 
+	3, 0, 0, 0, 0, 0, 0, 7, 
+	3, 7, 3, 47, 47, 62, 62, 62, 
+	62, 50, 59, 7, 7, 7, 3, 3, 
+	3, 3, 0, 50, 59, 7, 7, 0, 
+	50, 3, 0, 7, 3, 3, 3, 0, 
+	50, 59, 7, 7, 0, 50, 3, 0, 
+	0, 7, 3, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0
 ]
 
 class << self
@@ -426,7 +447,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -442,85 +463,111 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 10 then
 		begin
 
     yield @buffers[:string]
   		end
-when 8 then
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
 		begin
 
     @parameter = s(:parameter,
                    s(:prefix, @buffers[:ident]))
   		end
-when 9 then
+when 13 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:string])
   		end
-when 10 then
+when 14 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
-when 11 then
+when 15 then
 		begin
 
     yield @parameter
   		end
-when 12 then
+when 16 then
 		begin
 
     @buffers[:function] = []
   		end
-when 13 then
+when 17 then
 		begin
 
     @buffers[:function] << data[p].ord
   		end
-when 14 then
+when 18 then
 		begin
 
     @buffers[:function] = utf8_string(@buffers[:function])
   		end
-when 15 then
+when 19 then
 		begin
 
     @buffers[:term_stack] = [ s(:term) ]
   		end
-when 16 then
+when 20 then
 		begin
 
     @buffers[:term_stack] << s(:term)
   		end
-when 17 then
+when 21 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:function, fx)
   		end
-when 18 then
+when 22 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
     @parameter                = nil
   		end
-when 19 then
+when 23 then
 		begin
 
     p -= @buffers[:function].length + 1
@@ -534,7 +581,7 @@ when 19 then
 	end
 
   		end
-when 20 then
+when 24 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -548,68 +595,68 @@ when 20 then
 	end
 
   		end
-when 21 then
+when 25 then
 		begin
 
     yield @buffers[:term_stack][-1]
   		end
-when 22 then
+when 26 then
 		begin
 
     @buffers[:relationship] = []
   		end
-when 23 then
+when 27 then
 		begin
 
     @buffers[:relationship] << data[p].ord
   		end
-when 24 then
+when 28 then
 		begin
 
     @buffers[:relationship] = s(:relationship,
                                 utf8_string(@buffers[:relationship]))
   		end
-when 25 then
+when 29 then
 		begin
 
     yield @buffers[:relationship]
   		end
-when 26 then
+when 30 then
 		begin
 
     @buffers[:comment] = []
   		end
-when 27 then
+when 31 then
 		begin
 
     @buffers[:comment] << data[p].ord
   		end
-when 28 then
+when 32 then
 		begin
 
     @buffers[:comment] = s(:comment,
                            utf8_string(@buffers[:comment]))
   		end
-when 29 then
+when 33 then
 		begin
 
     yield @buffers[:comment] || s(:comment, nil)
   		end
-when 30 then
+when 34 then
 		begin
 
     @buffers[:subject]    = s(:subject,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 31 then
+when 35 then
 		begin
 
     @buffers[:object]     = s(:object,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 32 then
+when 36 then
 		begin
 
     @buffers[:comment] ||= s(:comment, nil)
@@ -639,6 +686,46 @@ when 32 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -651,21 +738,23 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 17, 1, 
-	20, 1, 21, 1, 23, 1, 24, 1, 
-	27, 1, 29, 1, 30, 1, 31, 1, 
-	32, 2, 0, 1, 2, 1, 13, 2, 
-	2, 3, 2, 2, 8, 2, 2, 14, 
-	2, 2, 19, 2, 4, 5, 2, 6, 
-	7, 2, 22, 23, 2, 24, 25, 2, 
-	26, 27, 2, 28, 29, 2, 28, 32, 
-	2, 31, 32, 3, 2, 10, 11, 3, 
-	2, 10, 18, 3, 2, 14, 17, 3, 
-	6, 9, 11, 3, 6, 9, 18, 4, 
-	0, 1, 12, 13, 4, 2, 10, 18, 
-	20, 4, 6, 9, 18, 20, 5, 15, 
-	12, 0, 1, 13, 5, 16, 12, 0, 
-	1, 13
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 21, 1, 24, 1, 25, 1, 
+	27, 1, 28, 1, 31, 1, 33, 1, 
+	34, 1, 35, 1, 36, 2, 0, 1, 
+	2, 1, 17, 2, 2, 3, 2, 2, 
+	12, 2, 2, 18, 2, 2, 23, 2, 
+	4, 5, 2, 4, 9, 2, 6, 7, 
+	2, 8, 10, 2, 9, 4, 2, 9, 
+	11, 2, 26, 27, 2, 28, 29, 2, 
+	30, 31, 2, 32, 33, 2, 32, 36, 
+	2, 35, 36, 3, 2, 14, 15, 3, 
+	2, 14, 22, 3, 2, 18, 21, 3, 
+	8, 13, 15, 3, 8, 13, 22, 4, 
+	0, 1, 16, 17, 4, 2, 14, 22, 
+	24, 4, 8, 13, 22, 24, 5, 19, 
+	16, 0, 1, 17, 5, 20, 16, 0, 
+	1, 17
 ]
 
 class << self
@@ -873,60 +962,79 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	102, 102, 102, 102, 0, 37, 37, 75, 
-	28, 28, 28, 28, 0, 0, 0, 5, 
-	0, 0, 0, 43, 87, 87, 87, 87, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 83, 83, 83, 83, 
-	0, 0, 0, 0, 0, 0, 0, 43, 
-	87, 87, 87, 87, 0, 71, 71, 40, 
-	71, 71, 34, 28, 28, 28, 28, 0, 
-	0, 0, 0, 0, 0, 19, 19, 0, 
-	0, 0, 49, 0, 13, 13, 11, 0, 
-	0, 0, 102, 102, 102, 102, 0, 37, 
-	37, 75, 28, 28, 28, 28, 0, 0, 
-	0, 5, 0, 0, 0, 43, 87, 87, 
-	87, 87, 0, 0, 0, 43, 25, 25, 
-	25, 25, 0, 3, 3, 3, 83, 83, 
-	83, 83, 0, 0, 0, 0, 0, 0, 
-	0, 43, 87, 87, 87, 87, 0, 71, 
-	71, 40, 71, 71, 34, 28, 28, 28, 
-	28, 0, 0, 0, 0, 0, 0, 21, 
-	64, 21, 21, 0, 0, 23, 0, 0, 
-	0, 0, 0, 0, 55, 61, 15, 3, 
-	3, 71, 71, 71, 71, 1, 1, 1, 
-	1, 0, 3, 3, 71, 71, 71, 71, 
-	1, 1, 1, 1, 0, 25, 25, 25, 
-	25, 0, 31, 1, 1, 1, 1, 0, 
-	43, 0, 3, 3, 3, 46, 0, 3, 
-	3, 0, 0, 43, 25, 25, 25, 25, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 79, 0, 3, 3, 
-	67, 1, 1, 1, 1, 0, 67, 34, 
-	1, 1, 1, 1, 0, 108, 108, 108, 
-	108, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 97, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 92, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 7, 
-	0, 0, 3, 3, 71, 71, 92, 71, 
-	1, 1, 1, 1, 0, 102, 102, 102, 
-	102, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 83, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 71, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 0, 
-	0, 0, 9, 0, 3, 3, 71, 71, 
-	71, 71, 1, 1, 1, 1, 0, 49, 
-	0, 52, 11, 0, 17, 0, 0, 0, 
-	0, 0, 55, 58, 15, 0, 0, 0, 
+	118, 118, 118, 118, 3, 41, 41, 91, 
+	32, 32, 32, 32, 3, 0, 0, 9, 
+	0, 0, 0, 53, 103, 103, 103, 103, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 99, 99, 99, 99, 
+	7, 0, 0, 0, 0, 0, 0, 53, 
+	103, 103, 103, 103, 50, 87, 87, 44, 
+	87, 87, 38, 32, 32, 32, 32, 3, 
+	0, 0, 0, 0, 0, 23, 23, 0, 
+	0, 0, 65, 0, 17, 17, 15, 0, 
+	0, 0, 118, 118, 118, 118, 3, 41, 
+	41, 91, 32, 32, 32, 32, 3, 0, 
+	0, 9, 0, 0, 0, 53, 103, 103, 
+	103, 103, 50, 0, 0, 53, 29, 29, 
+	29, 29, 59, 5, 5, 5, 99, 99, 
+	99, 99, 7, 0, 0, 0, 0, 0, 
+	0, 53, 103, 103, 103, 103, 50, 87, 
+	87, 44, 87, 87, 38, 32, 32, 32, 
+	32, 3, 0, 0, 0, 0, 0, 25, 
+	80, 25, 25, 0, 0, 27, 0, 0, 
+	0, 0, 0, 0, 71, 77, 19, 5, 
+	5, 87, 87, 87, 87, 1, 1, 1, 
+	1, 3, 5, 5, 87, 87, 87, 87, 
+	1, 1, 1, 1, 3, 29, 29, 29, 
+	29, 47, 35, 1, 1, 1, 1, 47, 
+	53, 62, 5, 5, 5, 56, 62, 5, 
+	5, 0, 0, 53, 29, 29, 29, 29, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 95, 7, 5, 5, 
+	83, 1, 1, 1, 1, 3, 83, 38, 
+	1, 1, 1, 1, 3, 124, 124, 124, 
+	124, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 113, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 108, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 11, 
+	0, 0, 5, 5, 87, 87, 108, 87, 
+	1, 1, 1, 1, 3, 118, 118, 118, 
+	118, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 99, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 87, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 0, 
+	0, 0, 13, 0, 5, 5, 87, 87, 
+	87, 87, 1, 1, 1, 1, 3, 65, 
+	0, 68, 15, 0, 21, 0, 0, 0, 
+	0, 0, 71, 74, 19, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 3, 3, 0, 50, 59, 7, 7, 
+	0, 50, 3, 0, 0, 0, 0, 3, 
+	3, 0, 50, 59, 7, 7, 0, 50, 
+	3, 0, 0, 0, 0, 0, 0, 7, 
+	3, 7, 3, 47, 47, 62, 62, 62, 
+	62, 50, 59, 7, 7, 7, 3, 3, 
+	3, 3, 0, 50, 59, 7, 7, 0, 
+	50, 3, 0, 7, 3, 3, 3, 0, 
+	50, 59, 7, 7, 0, 50, 3, 0, 
+	0, 7, 3, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0
 ]
 
 class << self
@@ -1070,7 +1178,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -1086,85 +1194,111 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 10 then
 		begin
 
     yield @buffers[:string]
   		end
-when 8 then
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
 		begin
 
     @parameter = s(:parameter,
                    s(:prefix, @buffers[:ident]))
   		end
-when 9 then
+when 13 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:string])
   		end
-when 10 then
+when 14 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
-when 11 then
+when 15 then
 		begin
 
     yield @parameter
   		end
-when 12 then
+when 16 then
 		begin
 
     @buffers[:function] = []
   		end
-when 13 then
+when 17 then
 		begin
 
     @buffers[:function] << data[p].ord
   		end
-when 14 then
+when 18 then
 		begin
 
     @buffers[:function] = utf8_string(@buffers[:function])
   		end
-when 15 then
+when 19 then
 		begin
 
     @buffers[:term_stack] = [ s(:term) ]
   		end
-when 16 then
+when 20 then
 		begin
 
     @buffers[:term_stack] << s(:term)
   		end
-when 17 then
+when 21 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:function, fx)
   		end
-when 18 then
+when 22 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
     @parameter                = nil
   		end
-when 19 then
+when 23 then
 		begin
 
     p -= @buffers[:function].length + 1
@@ -1178,7 +1312,7 @@ when 19 then
 	end
 
   		end
-when 20 then
+when 24 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -1192,68 +1326,68 @@ when 20 then
 	end
 
   		end
-when 21 then
+when 25 then
 		begin
 
     yield @buffers[:term_stack][-1]
   		end
-when 22 then
+when 26 then
 		begin
 
     @buffers[:relationship] = []
   		end
-when 23 then
+when 27 then
 		begin
 
     @buffers[:relationship] << data[p].ord
   		end
-when 24 then
+when 28 then
 		begin
 
     @buffers[:relationship] = s(:relationship,
                                 utf8_string(@buffers[:relationship]))
   		end
-when 25 then
+when 29 then
 		begin
 
     yield @buffers[:relationship]
   		end
-when 26 then
+when 30 then
 		begin
 
     @buffers[:comment] = []
   		end
-when 27 then
+when 31 then
 		begin
 
     @buffers[:comment] << data[p].ord
   		end
-when 28 then
+when 32 then
 		begin
 
     @buffers[:comment] = s(:comment,
                            utf8_string(@buffers[:comment]))
   		end
-when 29 then
+when 33 then
 		begin
 
     yield @buffers[:comment] || s(:comment, nil)
   		end
-when 30 then
+when 34 then
 		begin
 
     @buffers[:subject]    = s(:subject,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 31 then
+when 35 then
 		begin
 
     @buffers[:object]     = s(:object,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 32 then
+when 36 then
 		begin
 
     @buffers[:comment] ||= s(:comment, nil)
@@ -1283,6 +1417,46 @@ when 32 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -1295,21 +1469,23 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 17, 1, 
-	20, 1, 21, 1, 23, 1, 24, 1, 
-	27, 1, 29, 1, 30, 1, 31, 1, 
-	32, 2, 0, 1, 2, 1, 13, 2, 
-	2, 3, 2, 2, 8, 2, 2, 14, 
-	2, 2, 19, 2, 4, 5, 2, 6, 
-	7, 2, 22, 23, 2, 24, 25, 2, 
-	26, 27, 2, 28, 29, 2, 28, 32, 
-	2, 31, 32, 3, 2, 10, 11, 3, 
-	2, 10, 18, 3, 2, 14, 17, 3, 
-	6, 9, 11, 3, 6, 9, 18, 4, 
-	0, 1, 12, 13, 4, 2, 10, 18, 
-	20, 4, 6, 9, 18, 20, 5, 15, 
-	12, 0, 1, 13, 5, 16, 12, 0, 
-	1, 13
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 21, 1, 24, 1, 25, 1, 
+	27, 1, 28, 1, 31, 1, 33, 1, 
+	34, 1, 35, 1, 36, 2, 0, 1, 
+	2, 1, 17, 2, 2, 3, 2, 2, 
+	12, 2, 2, 18, 2, 2, 23, 2, 
+	4, 5, 2, 4, 9, 2, 6, 7, 
+	2, 8, 10, 2, 9, 4, 2, 9, 
+	11, 2, 26, 27, 2, 28, 29, 2, 
+	30, 31, 2, 32, 33, 2, 32, 36, 
+	2, 35, 36, 3, 2, 14, 15, 3, 
+	2, 14, 22, 3, 2, 18, 21, 3, 
+	8, 13, 15, 3, 8, 13, 22, 4, 
+	0, 1, 16, 17, 4, 2, 14, 22, 
+	24, 4, 8, 13, 22, 24, 5, 19, 
+	16, 0, 1, 17, 5, 20, 16, 0, 
+	1, 17
 ]
 
 class << self
@@ -1517,60 +1693,79 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	102, 102, 102, 102, 0, 37, 37, 75, 
-	28, 28, 28, 28, 0, 0, 0, 5, 
-	0, 0, 0, 43, 87, 87, 87, 87, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 83, 83, 83, 83, 
-	0, 0, 0, 0, 0, 0, 0, 43, 
-	87, 87, 87, 87, 0, 71, 71, 40, 
-	71, 71, 34, 28, 28, 28, 28, 0, 
-	0, 0, 0, 0, 0, 19, 19, 0, 
-	0, 0, 49, 0, 13, 13, 11, 0, 
-	0, 0, 102, 102, 102, 102, 0, 37, 
-	37, 75, 28, 28, 28, 28, 0, 0, 
-	0, 5, 0, 0, 0, 43, 87, 87, 
-	87, 87, 0, 0, 0, 43, 25, 25, 
-	25, 25, 0, 3, 3, 3, 83, 83, 
-	83, 83, 0, 0, 0, 0, 0, 0, 
-	0, 43, 87, 87, 87, 87, 0, 71, 
-	71, 40, 71, 71, 34, 28, 28, 28, 
-	28, 0, 0, 0, 0, 0, 0, 21, 
-	64, 21, 21, 0, 0, 23, 0, 0, 
-	0, 0, 0, 0, 55, 61, 15, 3, 
-	3, 71, 71, 71, 71, 1, 1, 1, 
-	1, 0, 3, 3, 71, 71, 71, 71, 
-	1, 1, 1, 1, 0, 25, 25, 25, 
-	25, 0, 31, 1, 1, 1, 1, 0, 
-	43, 0, 3, 3, 3, 46, 0, 3, 
-	3, 0, 0, 43, 25, 25, 25, 25, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 79, 0, 3, 3, 
-	67, 1, 1, 1, 1, 0, 67, 34, 
-	1, 1, 1, 1, 0, 108, 108, 108, 
-	108, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 97, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 92, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 7, 
-	0, 0, 3, 3, 71, 71, 92, 71, 
-	1, 1, 1, 1, 0, 102, 102, 102, 
-	102, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 83, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 71, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 0, 
-	0, 0, 9, 0, 3, 3, 71, 71, 
-	71, 71, 1, 1, 1, 1, 0, 49, 
-	0, 52, 11, 0, 17, 0, 0, 0, 
-	0, 0, 55, 58, 15, 0, 0, 0, 
+	118, 118, 118, 118, 3, 41, 41, 91, 
+	32, 32, 32, 32, 3, 0, 0, 9, 
+	0, 0, 0, 53, 103, 103, 103, 103, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 99, 99, 99, 99, 
+	7, 0, 0, 0, 0, 0, 0, 53, 
+	103, 103, 103, 103, 50, 87, 87, 44, 
+	87, 87, 38, 32, 32, 32, 32, 3, 
+	0, 0, 0, 0, 0, 23, 23, 0, 
+	0, 0, 65, 0, 17, 17, 15, 0, 
+	0, 0, 118, 118, 118, 118, 3, 41, 
+	41, 91, 32, 32, 32, 32, 3, 0, 
+	0, 9, 0, 0, 0, 53, 103, 103, 
+	103, 103, 50, 0, 0, 53, 29, 29, 
+	29, 29, 59, 5, 5, 5, 99, 99, 
+	99, 99, 7, 0, 0, 0, 0, 0, 
+	0, 53, 103, 103, 103, 103, 50, 87, 
+	87, 44, 87, 87, 38, 32, 32, 32, 
+	32, 3, 0, 0, 0, 0, 0, 25, 
+	80, 25, 25, 0, 0, 27, 0, 0, 
+	0, 0, 0, 0, 71, 77, 19, 5, 
+	5, 87, 87, 87, 87, 1, 1, 1, 
+	1, 3, 5, 5, 87, 87, 87, 87, 
+	1, 1, 1, 1, 3, 29, 29, 29, 
+	29, 47, 35, 1, 1, 1, 1, 47, 
+	53, 62, 5, 5, 5, 56, 62, 5, 
+	5, 0, 0, 53, 29, 29, 29, 29, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 95, 7, 5, 5, 
+	83, 1, 1, 1, 1, 3, 83, 38, 
+	1, 1, 1, 1, 3, 124, 124, 124, 
+	124, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 113, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 108, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 11, 
+	0, 0, 5, 5, 87, 87, 108, 87, 
+	1, 1, 1, 1, 3, 118, 118, 118, 
+	118, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 99, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 87, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 0, 
+	0, 0, 13, 0, 5, 5, 87, 87, 
+	87, 87, 1, 1, 1, 1, 3, 65, 
+	0, 68, 15, 0, 21, 0, 0, 0, 
+	0, 0, 71, 74, 19, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 3, 3, 0, 50, 59, 7, 7, 
+	0, 50, 3, 0, 0, 0, 0, 3, 
+	3, 0, 50, 59, 7, 7, 0, 50, 
+	3, 0, 0, 0, 0, 0, 0, 7, 
+	3, 7, 3, 47, 47, 62, 62, 62, 
+	62, 50, 59, 7, 7, 7, 3, 3, 
+	3, 3, 0, 50, 59, 7, 7, 0, 
+	50, 3, 0, 7, 3, 3, 3, 0, 
+	50, 59, 7, 7, 0, 50, 3, 0, 
+	0, 7, 3, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0
 ]
 
 class << self
@@ -1714,7 +1909,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -1730,85 +1925,111 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 10 then
 		begin
 
     yield @buffers[:string]
   		end
-when 8 then
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
 		begin
 
     @parameter = s(:parameter,
                    s(:prefix, @buffers[:ident]))
   		end
-when 9 then
+when 13 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:string])
   		end
-when 10 then
+when 14 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
-when 11 then
+when 15 then
 		begin
 
     yield @parameter
   		end
-when 12 then
+when 16 then
 		begin
 
     @buffers[:function] = []
   		end
-when 13 then
+when 17 then
 		begin
 
     @buffers[:function] << data[p].ord
   		end
-when 14 then
+when 18 then
 		begin
 
     @buffers[:function] = utf8_string(@buffers[:function])
   		end
-when 15 then
+when 19 then
 		begin
 
     @buffers[:term_stack] = [ s(:term) ]
   		end
-when 16 then
+when 20 then
 		begin
 
     @buffers[:term_stack] << s(:term)
   		end
-when 17 then
+when 21 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:function, fx)
   		end
-when 18 then
+when 22 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
     @parameter                = nil
   		end
-when 19 then
+when 23 then
 		begin
 
     p -= @buffers[:function].length + 1
@@ -1822,7 +2043,7 @@ when 19 then
 	end
 
   		end
-when 20 then
+when 24 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -1836,68 +2057,68 @@ when 20 then
 	end
 
   		end
-when 21 then
+when 25 then
 		begin
 
     yield @buffers[:term_stack][-1]
   		end
-when 22 then
+when 26 then
 		begin
 
     @buffers[:relationship] = []
   		end
-when 23 then
+when 27 then
 		begin
 
     @buffers[:relationship] << data[p].ord
   		end
-when 24 then
+when 28 then
 		begin
 
     @buffers[:relationship] = s(:relationship,
                                 utf8_string(@buffers[:relationship]))
   		end
-when 25 then
+when 29 then
 		begin
 
     yield @buffers[:relationship]
   		end
-when 26 then
+when 30 then
 		begin
 
     @buffers[:comment] = []
   		end
-when 27 then
+when 31 then
 		begin
 
     @buffers[:comment] << data[p].ord
   		end
-when 28 then
+when 32 then
 		begin
 
     @buffers[:comment] = s(:comment,
                            utf8_string(@buffers[:comment]))
   		end
-when 29 then
+when 33 then
 		begin
 
     yield @buffers[:comment] || s(:comment, nil)
   		end
-when 30 then
+when 34 then
 		begin
 
     @buffers[:subject]    = s(:subject,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 31 then
+when 35 then
 		begin
 
     @buffers[:object]     = s(:object,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 32 then
+when 36 then
 		begin
 
     @buffers[:comment] ||= s(:comment, nil)
@@ -1927,6 +2148,46 @@ when 32 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -1939,21 +2200,23 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 17, 1, 
-	20, 1, 21, 1, 23, 1, 24, 1, 
-	27, 1, 29, 1, 30, 1, 31, 1, 
-	32, 2, 0, 1, 2, 1, 13, 2, 
-	2, 3, 2, 2, 8, 2, 2, 14, 
-	2, 2, 19, 2, 4, 5, 2, 6, 
-	7, 2, 22, 23, 2, 24, 25, 2, 
-	26, 27, 2, 28, 29, 2, 28, 32, 
-	2, 31, 32, 3, 2, 10, 11, 3, 
-	2, 10, 18, 3, 2, 14, 17, 3, 
-	6, 9, 11, 3, 6, 9, 18, 4, 
-	0, 1, 12, 13, 4, 2, 10, 18, 
-	20, 4, 6, 9, 18, 20, 5, 15, 
-	12, 0, 1, 13, 5, 16, 12, 0, 
-	1, 13
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 21, 1, 24, 1, 25, 1, 
+	27, 1, 28, 1, 31, 1, 33, 1, 
+	34, 1, 35, 1, 36, 2, 0, 1, 
+	2, 1, 17, 2, 2, 3, 2, 2, 
+	12, 2, 2, 18, 2, 2, 23, 2, 
+	4, 5, 2, 4, 9, 2, 6, 7, 
+	2, 8, 10, 2, 9, 4, 2, 9, 
+	11, 2, 26, 27, 2, 28, 29, 2, 
+	30, 31, 2, 32, 33, 2, 32, 36, 
+	2, 35, 36, 3, 2, 14, 15, 3, 
+	2, 14, 22, 3, 2, 18, 21, 3, 
+	8, 13, 15, 3, 8, 13, 22, 4, 
+	0, 1, 16, 17, 4, 2, 14, 22, 
+	24, 4, 8, 13, 22, 24, 5, 19, 
+	16, 0, 1, 17, 5, 20, 16, 0, 
+	1, 17
 ]
 
 class << self
@@ -2161,60 +2424,79 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	102, 102, 102, 102, 0, 37, 37, 75, 
-	28, 28, 28, 28, 0, 0, 0, 5, 
-	0, 0, 0, 43, 87, 87, 87, 87, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 83, 83, 83, 83, 
-	0, 0, 0, 0, 0, 0, 0, 43, 
-	87, 87, 87, 87, 0, 71, 71, 40, 
-	71, 71, 34, 28, 28, 28, 28, 0, 
-	0, 0, 0, 0, 0, 19, 19, 0, 
-	0, 0, 49, 0, 13, 13, 11, 0, 
-	0, 0, 102, 102, 102, 102, 0, 37, 
-	37, 75, 28, 28, 28, 28, 0, 0, 
-	0, 5, 0, 0, 0, 43, 87, 87, 
-	87, 87, 0, 0, 0, 43, 25, 25, 
-	25, 25, 0, 3, 3, 3, 83, 83, 
-	83, 83, 0, 0, 0, 0, 0, 0, 
-	0, 43, 87, 87, 87, 87, 0, 71, 
-	71, 40, 71, 71, 34, 28, 28, 28, 
-	28, 0, 0, 0, 0, 0, 0, 21, 
-	64, 21, 21, 0, 0, 23, 0, 0, 
-	0, 0, 0, 0, 55, 61, 15, 3, 
-	3, 71, 71, 71, 71, 1, 1, 1, 
-	1, 0, 3, 3, 71, 71, 71, 71, 
-	1, 1, 1, 1, 0, 25, 25, 25, 
-	25, 0, 31, 1, 1, 1, 1, 0, 
-	43, 0, 3, 3, 3, 46, 0, 3, 
-	3, 0, 0, 43, 25, 25, 25, 25, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 79, 0, 3, 3, 
-	67, 1, 1, 1, 1, 0, 67, 34, 
-	1, 1, 1, 1, 0, 108, 108, 108, 
-	108, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 97, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 92, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 7, 
-	0, 0, 3, 3, 71, 71, 92, 71, 
-	1, 1, 1, 1, 0, 102, 102, 102, 
-	102, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 83, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 71, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 0, 
-	0, 0, 9, 0, 3, 3, 71, 71, 
-	71, 71, 1, 1, 1, 1, 0, 49, 
-	0, 52, 11, 0, 17, 0, 0, 0, 
-	0, 0, 55, 58, 15, 0, 0, 0, 
+	118, 118, 118, 118, 3, 41, 41, 91, 
+	32, 32, 32, 32, 3, 0, 0, 9, 
+	0, 0, 0, 53, 103, 103, 103, 103, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 99, 99, 99, 99, 
+	7, 0, 0, 0, 0, 0, 0, 53, 
+	103, 103, 103, 103, 50, 87, 87, 44, 
+	87, 87, 38, 32, 32, 32, 32, 3, 
+	0, 0, 0, 0, 0, 23, 23, 0, 
+	0, 0, 65, 0, 17, 17, 15, 0, 
+	0, 0, 118, 118, 118, 118, 3, 41, 
+	41, 91, 32, 32, 32, 32, 3, 0, 
+	0, 9, 0, 0, 0, 53, 103, 103, 
+	103, 103, 50, 0, 0, 53, 29, 29, 
+	29, 29, 59, 5, 5, 5, 99, 99, 
+	99, 99, 7, 0, 0, 0, 0, 0, 
+	0, 53, 103, 103, 103, 103, 50, 87, 
+	87, 44, 87, 87, 38, 32, 32, 32, 
+	32, 3, 0, 0, 0, 0, 0, 25, 
+	80, 25, 25, 0, 0, 27, 0, 0, 
+	0, 0, 0, 0, 71, 77, 19, 5, 
+	5, 87, 87, 87, 87, 1, 1, 1, 
+	1, 3, 5, 5, 87, 87, 87, 87, 
+	1, 1, 1, 1, 3, 29, 29, 29, 
+	29, 47, 35, 1, 1, 1, 1, 47, 
+	53, 62, 5, 5, 5, 56, 62, 5, 
+	5, 0, 0, 53, 29, 29, 29, 29, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 95, 7, 5, 5, 
+	83, 1, 1, 1, 1, 3, 83, 38, 
+	1, 1, 1, 1, 3, 124, 124, 124, 
+	124, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 113, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 108, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 11, 
+	0, 0, 5, 5, 87, 87, 108, 87, 
+	1, 1, 1, 1, 3, 118, 118, 118, 
+	118, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 99, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 87, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 0, 
+	0, 0, 13, 0, 5, 5, 87, 87, 
+	87, 87, 1, 1, 1, 1, 3, 65, 
+	0, 68, 15, 0, 21, 0, 0, 0, 
+	0, 0, 71, 74, 19, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 3, 3, 0, 50, 59, 7, 7, 
+	0, 50, 3, 0, 0, 0, 0, 3, 
+	3, 0, 50, 59, 7, 7, 0, 50, 
+	3, 0, 0, 0, 0, 0, 0, 7, 
+	3, 7, 3, 47, 47, 62, 62, 62, 
+	62, 50, 59, 7, 7, 7, 3, 3, 
+	3, 3, 0, 50, 59, 7, 7, 0, 
+	50, 3, 0, 7, 3, 3, 3, 0, 
+	50, 59, 7, 7, 0, 50, 3, 0, 
+	0, 7, 3, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0
 ]
 
 class << self
@@ -2358,7 +2640,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -2374,85 +2656,111 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 10 then
 		begin
 
     yield @buffers[:string]
   		end
-when 8 then
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
 		begin
 
     @parameter = s(:parameter,
                    s(:prefix, @buffers[:ident]))
   		end
-when 9 then
+when 13 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:string])
   		end
-when 10 then
+when 14 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
-when 11 then
+when 15 then
 		begin
 
     yield @parameter
   		end
-when 12 then
+when 16 then
 		begin
 
     @buffers[:function] = []
   		end
-when 13 then
+when 17 then
 		begin
 
     @buffers[:function] << data[p].ord
   		end
-when 14 then
+when 18 then
 		begin
 
     @buffers[:function] = utf8_string(@buffers[:function])
   		end
-when 15 then
+when 19 then
 		begin
 
     @buffers[:term_stack] = [ s(:term) ]
   		end
-when 16 then
+when 20 then
 		begin
 
     @buffers[:term_stack] << s(:term)
   		end
-when 17 then
+when 21 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:function, fx)
   		end
-when 18 then
+when 22 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
     @parameter                = nil
   		end
-when 19 then
+when 23 then
 		begin
 
     p -= @buffers[:function].length + 1
@@ -2466,7 +2774,7 @@ when 19 then
 	end
 
   		end
-when 20 then
+when 24 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -2480,68 +2788,68 @@ when 20 then
 	end
 
   		end
-when 21 then
+when 25 then
 		begin
 
     yield @buffers[:term_stack][-1]
   		end
-when 22 then
+when 26 then
 		begin
 
     @buffers[:relationship] = []
   		end
-when 23 then
+when 27 then
 		begin
 
     @buffers[:relationship] << data[p].ord
   		end
-when 24 then
+when 28 then
 		begin
 
     @buffers[:relationship] = s(:relationship,
                                 utf8_string(@buffers[:relationship]))
   		end
-when 25 then
+when 29 then
 		begin
 
     yield @buffers[:relationship]
   		end
-when 26 then
+when 30 then
 		begin
 
     @buffers[:comment] = []
   		end
-when 27 then
+when 31 then
 		begin
 
     @buffers[:comment] << data[p].ord
   		end
-when 28 then
+when 32 then
 		begin
 
     @buffers[:comment] = s(:comment,
                            utf8_string(@buffers[:comment]))
   		end
-when 29 then
+when 33 then
 		begin
 
     yield @buffers[:comment] || s(:comment, nil)
   		end
-when 30 then
+when 34 then
 		begin
 
     @buffers[:subject]    = s(:subject,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 31 then
+when 35 then
 		begin
 
     @buffers[:object]     = s(:object,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 32 then
+when 36 then
 		begin
 
     @buffers[:comment] ||= s(:comment, nil)
@@ -2571,6 +2879,46 @@ when 32 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -2583,21 +2931,23 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 17, 1, 
-	20, 1, 21, 1, 23, 1, 24, 1, 
-	27, 1, 29, 1, 30, 1, 31, 1, 
-	32, 2, 0, 1, 2, 1, 13, 2, 
-	2, 3, 2, 2, 8, 2, 2, 14, 
-	2, 2, 19, 2, 4, 5, 2, 6, 
-	7, 2, 22, 23, 2, 24, 25, 2, 
-	26, 27, 2, 28, 29, 2, 28, 32, 
-	2, 31, 32, 3, 2, 10, 11, 3, 
-	2, 10, 18, 3, 2, 14, 17, 3, 
-	6, 9, 11, 3, 6, 9, 18, 4, 
-	0, 1, 12, 13, 4, 2, 10, 18, 
-	20, 4, 6, 9, 18, 20, 5, 15, 
-	12, 0, 1, 13, 5, 16, 12, 0, 
-	1, 13
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 21, 1, 24, 1, 25, 1, 
+	27, 1, 28, 1, 31, 1, 33, 1, 
+	34, 1, 35, 1, 36, 2, 0, 1, 
+	2, 1, 17, 2, 2, 3, 2, 2, 
+	12, 2, 2, 18, 2, 2, 23, 2, 
+	4, 5, 2, 4, 9, 2, 6, 7, 
+	2, 8, 10, 2, 9, 4, 2, 9, 
+	11, 2, 26, 27, 2, 28, 29, 2, 
+	30, 31, 2, 32, 33, 2, 32, 36, 
+	2, 35, 36, 3, 2, 14, 15, 3, 
+	2, 14, 22, 3, 2, 18, 21, 3, 
+	8, 13, 15, 3, 8, 13, 22, 4, 
+	0, 1, 16, 17, 4, 2, 14, 22, 
+	24, 4, 8, 13, 22, 24, 5, 19, 
+	16, 0, 1, 17, 5, 20, 16, 0, 
+	1, 17
 ]
 
 class << self
@@ -2805,60 +3155,79 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	102, 102, 102, 102, 0, 37, 37, 75, 
-	28, 28, 28, 28, 0, 0, 0, 5, 
-	0, 0, 0, 43, 87, 87, 87, 87, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 83, 83, 83, 83, 
-	0, 0, 0, 0, 0, 0, 0, 43, 
-	87, 87, 87, 87, 0, 71, 71, 40, 
-	71, 71, 34, 28, 28, 28, 28, 0, 
-	0, 0, 0, 0, 0, 19, 19, 0, 
-	0, 0, 49, 0, 13, 13, 11, 0, 
-	0, 0, 102, 102, 102, 102, 0, 37, 
-	37, 75, 28, 28, 28, 28, 0, 0, 
-	0, 5, 0, 0, 0, 43, 87, 87, 
-	87, 87, 0, 0, 0, 43, 25, 25, 
-	25, 25, 0, 3, 3, 3, 83, 83, 
-	83, 83, 0, 0, 0, 0, 0, 0, 
-	0, 43, 87, 87, 87, 87, 0, 71, 
-	71, 40, 71, 71, 34, 28, 28, 28, 
-	28, 0, 0, 0, 0, 0, 0, 21, 
-	64, 21, 21, 0, 0, 23, 0, 0, 
-	0, 0, 0, 0, 55, 61, 15, 3, 
-	3, 71, 71, 71, 71, 1, 1, 1, 
-	1, 0, 3, 3, 71, 71, 71, 71, 
-	1, 1, 1, 1, 0, 25, 25, 25, 
-	25, 0, 31, 1, 1, 1, 1, 0, 
-	43, 0, 3, 3, 3, 46, 0, 3, 
-	3, 0, 0, 43, 25, 25, 25, 25, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 79, 0, 3, 3, 
-	67, 1, 1, 1, 1, 0, 67, 34, 
-	1, 1, 1, 1, 0, 108, 108, 108, 
-	108, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 97, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 92, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 7, 
-	0, 0, 3, 3, 71, 71, 92, 71, 
-	1, 1, 1, 1, 0, 102, 102, 102, 
-	102, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 83, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 71, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 0, 
-	0, 0, 9, 0, 3, 3, 71, 71, 
-	71, 71, 1, 1, 1, 1, 0, 49, 
-	0, 52, 11, 0, 17, 0, 0, 0, 
-	0, 0, 55, 58, 15, 0, 0, 0, 
+	118, 118, 118, 118, 3, 41, 41, 91, 
+	32, 32, 32, 32, 3, 0, 0, 9, 
+	0, 0, 0, 53, 103, 103, 103, 103, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 99, 99, 99, 99, 
+	7, 0, 0, 0, 0, 0, 0, 53, 
+	103, 103, 103, 103, 50, 87, 87, 44, 
+	87, 87, 38, 32, 32, 32, 32, 3, 
+	0, 0, 0, 0, 0, 23, 23, 0, 
+	0, 0, 65, 0, 17, 17, 15, 0, 
+	0, 0, 118, 118, 118, 118, 3, 41, 
+	41, 91, 32, 32, 32, 32, 3, 0, 
+	0, 9, 0, 0, 0, 53, 103, 103, 
+	103, 103, 50, 0, 0, 53, 29, 29, 
+	29, 29, 59, 5, 5, 5, 99, 99, 
+	99, 99, 7, 0, 0, 0, 0, 0, 
+	0, 53, 103, 103, 103, 103, 50, 87, 
+	87, 44, 87, 87, 38, 32, 32, 32, 
+	32, 3, 0, 0, 0, 0, 0, 25, 
+	80, 25, 25, 0, 0, 27, 0, 0, 
+	0, 0, 0, 0, 71, 77, 19, 5, 
+	5, 87, 87, 87, 87, 1, 1, 1, 
+	1, 3, 5, 5, 87, 87, 87, 87, 
+	1, 1, 1, 1, 3, 29, 29, 29, 
+	29, 47, 35, 1, 1, 1, 1, 47, 
+	53, 62, 5, 5, 5, 56, 62, 5, 
+	5, 0, 0, 53, 29, 29, 29, 29, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 95, 7, 5, 5, 
+	83, 1, 1, 1, 1, 3, 83, 38, 
+	1, 1, 1, 1, 3, 124, 124, 124, 
+	124, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 113, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 108, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 11, 
+	0, 0, 5, 5, 87, 87, 108, 87, 
+	1, 1, 1, 1, 3, 118, 118, 118, 
+	118, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 99, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 87, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 0, 
+	0, 0, 13, 0, 5, 5, 87, 87, 
+	87, 87, 1, 1, 1, 1, 3, 65, 
+	0, 68, 15, 0, 21, 0, 0, 0, 
+	0, 0, 71, 74, 19, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 3, 3, 0, 50, 59, 7, 7, 
+	0, 50, 3, 0, 0, 0, 0, 3, 
+	3, 0, 50, 59, 7, 7, 0, 50, 
+	3, 0, 0, 0, 0, 0, 0, 7, 
+	3, 7, 3, 47, 47, 62, 62, 62, 
+	62, 50, 59, 7, 7, 7, 3, 3, 
+	3, 3, 0, 50, 59, 7, 7, 0, 
+	50, 3, 0, 7, 3, 3, 3, 0, 
+	50, 59, 7, 7, 0, 50, 3, 0, 
+	0, 7, 3, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0
 ]
 
 class << self
@@ -3002,7 +3371,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -3018,85 +3387,111 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 10 then
 		begin
 
     yield @buffers[:string]
   		end
-when 8 then
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
 		begin
 
     @parameter = s(:parameter,
                    s(:prefix, @buffers[:ident]))
   		end
-when 9 then
+when 13 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:string])
   		end
-when 10 then
+when 14 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
-when 11 then
+when 15 then
 		begin
 
     yield @parameter
   		end
-when 12 then
+when 16 then
 		begin
 
     @buffers[:function] = []
   		end
-when 13 then
+when 17 then
 		begin
 
     @buffers[:function] << data[p].ord
   		end
-when 14 then
+when 18 then
 		begin
 
     @buffers[:function] = utf8_string(@buffers[:function])
   		end
-when 15 then
+when 19 then
 		begin
 
     @buffers[:term_stack] = [ s(:term) ]
   		end
-when 16 then
+when 20 then
 		begin
 
     @buffers[:term_stack] << s(:term)
   		end
-when 17 then
+when 21 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:function, fx)
   		end
-when 18 then
+when 22 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
     @parameter                = nil
   		end
-when 19 then
+when 23 then
 		begin
 
     p -= @buffers[:function].length + 1
@@ -3110,7 +3505,7 @@ when 19 then
 	end
 
   		end
-when 20 then
+when 24 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -3124,68 +3519,68 @@ when 20 then
 	end
 
   		end
-when 21 then
+when 25 then
 		begin
 
     yield @buffers[:term_stack][-1]
   		end
-when 22 then
+when 26 then
 		begin
 
     @buffers[:relationship] = []
   		end
-when 23 then
+when 27 then
 		begin
 
     @buffers[:relationship] << data[p].ord
   		end
-when 24 then
+when 28 then
 		begin
 
     @buffers[:relationship] = s(:relationship,
                                 utf8_string(@buffers[:relationship]))
   		end
-when 25 then
+when 29 then
 		begin
 
     yield @buffers[:relationship]
   		end
-when 26 then
+when 30 then
 		begin
 
     @buffers[:comment] = []
   		end
-when 27 then
+when 31 then
 		begin
 
     @buffers[:comment] << data[p].ord
   		end
-when 28 then
+when 32 then
 		begin
 
     @buffers[:comment] = s(:comment,
                            utf8_string(@buffers[:comment]))
   		end
-when 29 then
+when 33 then
 		begin
 
     yield @buffers[:comment] || s(:comment, nil)
   		end
-when 30 then
+when 34 then
 		begin
 
     @buffers[:subject]    = s(:subject,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 31 then
+when 35 then
 		begin
 
     @buffers[:object]     = s(:object,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 32 then
+when 36 then
 		begin
 
     @buffers[:comment] ||= s(:comment, nil)
@@ -3215,6 +3610,46 @@ when 32 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -3227,21 +3662,23 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 17, 1, 
-	20, 1, 21, 1, 23, 1, 24, 1, 
-	27, 1, 29, 1, 30, 1, 31, 1, 
-	32, 2, 0, 1, 2, 1, 13, 2, 
-	2, 3, 2, 2, 8, 2, 2, 14, 
-	2, 2, 19, 2, 4, 5, 2, 6, 
-	7, 2, 22, 23, 2, 24, 25, 2, 
-	26, 27, 2, 28, 29, 2, 28, 32, 
-	2, 31, 32, 3, 2, 10, 11, 3, 
-	2, 10, 18, 3, 2, 14, 17, 3, 
-	6, 9, 11, 3, 6, 9, 18, 4, 
-	0, 1, 12, 13, 4, 2, 10, 18, 
-	20, 4, 6, 9, 18, 20, 5, 15, 
-	12, 0, 1, 13, 5, 16, 12, 0, 
-	1, 13
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 21, 1, 24, 1, 25, 1, 
+	27, 1, 28, 1, 31, 1, 33, 1, 
+	34, 1, 35, 1, 36, 2, 0, 1, 
+	2, 1, 17, 2, 2, 3, 2, 2, 
+	12, 2, 2, 18, 2, 2, 23, 2, 
+	4, 5, 2, 4, 9, 2, 6, 7, 
+	2, 8, 10, 2, 9, 4, 2, 9, 
+	11, 2, 26, 27, 2, 28, 29, 2, 
+	30, 31, 2, 32, 33, 2, 32, 36, 
+	2, 35, 36, 3, 2, 14, 15, 3, 
+	2, 14, 22, 3, 2, 18, 21, 3, 
+	8, 13, 15, 3, 8, 13, 22, 4, 
+	0, 1, 16, 17, 4, 2, 14, 22, 
+	24, 4, 8, 13, 22, 24, 5, 19, 
+	16, 0, 1, 17, 5, 20, 16, 0, 
+	1, 17
 ]
 
 class << self
@@ -3449,60 +3886,79 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	102, 102, 102, 102, 0, 37, 37, 75, 
-	28, 28, 28, 28, 0, 0, 0, 5, 
-	0, 0, 0, 43, 87, 87, 87, 87, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 83, 83, 83, 83, 
-	0, 0, 0, 0, 0, 0, 0, 43, 
-	87, 87, 87, 87, 0, 71, 71, 40, 
-	71, 71, 34, 28, 28, 28, 28, 0, 
-	0, 0, 0, 0, 0, 19, 19, 0, 
-	0, 0, 49, 0, 13, 13, 11, 0, 
-	0, 0, 102, 102, 102, 102, 0, 37, 
-	37, 75, 28, 28, 28, 28, 0, 0, 
-	0, 5, 0, 0, 0, 43, 87, 87, 
-	87, 87, 0, 0, 0, 43, 25, 25, 
-	25, 25, 0, 3, 3, 3, 83, 83, 
-	83, 83, 0, 0, 0, 0, 0, 0, 
-	0, 43, 87, 87, 87, 87, 0, 71, 
-	71, 40, 71, 71, 34, 28, 28, 28, 
-	28, 0, 0, 0, 0, 0, 0, 21, 
-	64, 21, 21, 0, 0, 23, 0, 0, 
-	0, 0, 0, 0, 55, 61, 15, 3, 
-	3, 71, 71, 71, 71, 1, 1, 1, 
-	1, 0, 3, 3, 71, 71, 71, 71, 
-	1, 1, 1, 1, 0, 25, 25, 25, 
-	25, 0, 31, 1, 1, 1, 1, 0, 
-	43, 0, 3, 3, 3, 46, 0, 3, 
-	3, 0, 0, 43, 25, 25, 25, 25, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 79, 0, 3, 3, 
-	67, 1, 1, 1, 1, 0, 67, 34, 
-	1, 1, 1, 1, 0, 108, 108, 108, 
-	108, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 97, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 92, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 7, 
-	0, 0, 3, 3, 71, 71, 92, 71, 
-	1, 1, 1, 1, 0, 102, 102, 102, 
-	102, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 83, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 71, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 0, 
-	0, 0, 9, 0, 3, 3, 71, 71, 
-	71, 71, 1, 1, 1, 1, 0, 49, 
-	0, 52, 11, 0, 17, 0, 0, 0, 
-	0, 0, 55, 58, 15, 0, 0, 0, 
+	118, 118, 118, 118, 3, 41, 41, 91, 
+	32, 32, 32, 32, 3, 0, 0, 9, 
+	0, 0, 0, 53, 103, 103, 103, 103, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 99, 99, 99, 99, 
+	7, 0, 0, 0, 0, 0, 0, 53, 
+	103, 103, 103, 103, 50, 87, 87, 44, 
+	87, 87, 38, 32, 32, 32, 32, 3, 
+	0, 0, 0, 0, 0, 23, 23, 0, 
+	0, 0, 65, 0, 17, 17, 15, 0, 
+	0, 0, 118, 118, 118, 118, 3, 41, 
+	41, 91, 32, 32, 32, 32, 3, 0, 
+	0, 9, 0, 0, 0, 53, 103, 103, 
+	103, 103, 50, 0, 0, 53, 29, 29, 
+	29, 29, 59, 5, 5, 5, 99, 99, 
+	99, 99, 7, 0, 0, 0, 0, 0, 
+	0, 53, 103, 103, 103, 103, 50, 87, 
+	87, 44, 87, 87, 38, 32, 32, 32, 
+	32, 3, 0, 0, 0, 0, 0, 25, 
+	80, 25, 25, 0, 0, 27, 0, 0, 
+	0, 0, 0, 0, 71, 77, 19, 5, 
+	5, 87, 87, 87, 87, 1, 1, 1, 
+	1, 3, 5, 5, 87, 87, 87, 87, 
+	1, 1, 1, 1, 3, 29, 29, 29, 
+	29, 47, 35, 1, 1, 1, 1, 47, 
+	53, 62, 5, 5, 5, 56, 62, 5, 
+	5, 0, 0, 53, 29, 29, 29, 29, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 95, 7, 5, 5, 
+	83, 1, 1, 1, 1, 3, 83, 38, 
+	1, 1, 1, 1, 3, 124, 124, 124, 
+	124, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 113, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 108, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 11, 
+	0, 0, 5, 5, 87, 87, 108, 87, 
+	1, 1, 1, 1, 3, 118, 118, 118, 
+	118, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 99, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 87, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 0, 
+	0, 0, 13, 0, 5, 5, 87, 87, 
+	87, 87, 1, 1, 1, 1, 3, 65, 
+	0, 68, 15, 0, 21, 0, 0, 0, 
+	0, 0, 71, 74, 19, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 3, 3, 0, 50, 59, 7, 7, 
+	0, 50, 3, 0, 0, 0, 0, 3, 
+	3, 0, 50, 59, 7, 7, 0, 50, 
+	3, 0, 0, 0, 0, 0, 0, 7, 
+	3, 7, 3, 47, 47, 62, 62, 62, 
+	62, 50, 59, 7, 7, 7, 3, 3, 
+	3, 3, 0, 50, 59, 7, 7, 0, 
+	50, 3, 0, 7, 3, 3, 3, 0, 
+	50, 59, 7, 7, 0, 50, 3, 0, 
+	0, 7, 3, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0
 ]
 
 class << self
@@ -3646,7 +4102,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -3662,85 +4118,111 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 10 then
 		begin
 
     yield @buffers[:string]
   		end
-when 8 then
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
 		begin
 
     @parameter = s(:parameter,
                    s(:prefix, @buffers[:ident]))
   		end
-when 9 then
+when 13 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:string])
   		end
-when 10 then
+when 14 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
-when 11 then
+when 15 then
 		begin
 
     yield @parameter
   		end
-when 12 then
+when 16 then
 		begin
 
     @buffers[:function] = []
   		end
-when 13 then
+when 17 then
 		begin
 
     @buffers[:function] << data[p].ord
   		end
-when 14 then
+when 18 then
 		begin
 
     @buffers[:function] = utf8_string(@buffers[:function])
   		end
-when 15 then
+when 19 then
 		begin
 
     @buffers[:term_stack] = [ s(:term) ]
   		end
-when 16 then
+when 20 then
 		begin
 
     @buffers[:term_stack] << s(:term)
   		end
-when 17 then
+when 21 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:function, fx)
   		end
-when 18 then
+when 22 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
     @parameter                = nil
   		end
-when 19 then
+when 23 then
 		begin
 
     p -= @buffers[:function].length + 1
@@ -3754,7 +4236,7 @@ when 19 then
 	end
 
   		end
-when 20 then
+when 24 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -3768,68 +4250,68 @@ when 20 then
 	end
 
   		end
-when 21 then
+when 25 then
 		begin
 
     yield @buffers[:term_stack][-1]
   		end
-when 22 then
+when 26 then
 		begin
 
     @buffers[:relationship] = []
   		end
-when 23 then
+when 27 then
 		begin
 
     @buffers[:relationship] << data[p].ord
   		end
-when 24 then
+when 28 then
 		begin
 
     @buffers[:relationship] = s(:relationship,
                                 utf8_string(@buffers[:relationship]))
   		end
-when 25 then
+when 29 then
 		begin
 
     yield @buffers[:relationship]
   		end
-when 26 then
+when 30 then
 		begin
 
     @buffers[:comment] = []
   		end
-when 27 then
+when 31 then
 		begin
 
     @buffers[:comment] << data[p].ord
   		end
-when 28 then
+when 32 then
 		begin
 
     @buffers[:comment] = s(:comment,
                            utf8_string(@buffers[:comment]))
   		end
-when 29 then
+when 33 then
 		begin
 
     yield @buffers[:comment] || s(:comment, nil)
   		end
-when 30 then
+when 34 then
 		begin
 
     @buffers[:subject]    = s(:subject,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 31 then
+when 35 then
 		begin
 
     @buffers[:object]     = s(:object,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 32 then
+when 36 then
 		begin
 
     @buffers[:comment] ||= s(:comment, nil)
@@ -3859,6 +4341,46 @@ when 32 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -3908,21 +4430,23 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 17, 1, 
-	20, 1, 21, 1, 23, 1, 24, 1, 
-	27, 1, 29, 1, 30, 1, 31, 1, 
-	32, 2, 0, 1, 2, 1, 13, 2, 
-	2, 3, 2, 2, 8, 2, 2, 14, 
-	2, 2, 19, 2, 4, 5, 2, 6, 
-	7, 2, 22, 23, 2, 24, 25, 2, 
-	26, 27, 2, 28, 29, 2, 28, 32, 
-	2, 31, 32, 3, 2, 10, 11, 3, 
-	2, 10, 18, 3, 2, 14, 17, 3, 
-	6, 9, 11, 3, 6, 9, 18, 4, 
-	0, 1, 12, 13, 4, 2, 10, 18, 
-	20, 4, 6, 9, 18, 20, 5, 15, 
-	12, 0, 1, 13, 5, 16, 12, 0, 
-	1, 13
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 21, 1, 24, 1, 25, 1, 
+	27, 1, 28, 1, 31, 1, 33, 1, 
+	34, 1, 35, 1, 36, 2, 0, 1, 
+	2, 1, 17, 2, 2, 3, 2, 2, 
+	12, 2, 2, 18, 2, 2, 23, 2, 
+	4, 5, 2, 4, 9, 2, 6, 7, 
+	2, 8, 10, 2, 9, 4, 2, 9, 
+	11, 2, 26, 27, 2, 28, 29, 2, 
+	30, 31, 2, 32, 33, 2, 32, 36, 
+	2, 35, 36, 3, 2, 14, 15, 3, 
+	2, 14, 22, 3, 2, 18, 21, 3, 
+	8, 13, 15, 3, 8, 13, 22, 4, 
+	0, 1, 16, 17, 4, 2, 14, 22, 
+	24, 4, 8, 13, 22, 24, 5, 19, 
+	16, 0, 1, 17, 5, 20, 16, 0, 
+	1, 17
 ]
 
 class << self
@@ -4130,60 +4654,79 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	102, 102, 102, 102, 0, 37, 37, 75, 
-	28, 28, 28, 28, 0, 0, 0, 5, 
-	0, 0, 0, 43, 87, 87, 87, 87, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 83, 83, 83, 83, 
-	0, 0, 0, 0, 0, 0, 0, 43, 
-	87, 87, 87, 87, 0, 71, 71, 40, 
-	71, 71, 34, 28, 28, 28, 28, 0, 
-	0, 0, 0, 0, 0, 19, 19, 0, 
-	0, 0, 49, 0, 13, 13, 11, 0, 
-	0, 0, 102, 102, 102, 102, 0, 37, 
-	37, 75, 28, 28, 28, 28, 0, 0, 
-	0, 5, 0, 0, 0, 43, 87, 87, 
-	87, 87, 0, 0, 0, 43, 25, 25, 
-	25, 25, 0, 3, 3, 3, 83, 83, 
-	83, 83, 0, 0, 0, 0, 0, 0, 
-	0, 43, 87, 87, 87, 87, 0, 71, 
-	71, 40, 71, 71, 34, 28, 28, 28, 
-	28, 0, 0, 0, 0, 0, 0, 21, 
-	64, 21, 21, 0, 0, 23, 0, 0, 
-	0, 0, 0, 0, 55, 61, 15, 3, 
-	3, 71, 71, 71, 71, 1, 1, 1, 
-	1, 0, 3, 3, 71, 71, 71, 71, 
-	1, 1, 1, 1, 0, 25, 25, 25, 
-	25, 0, 31, 1, 1, 1, 1, 0, 
-	43, 0, 3, 3, 3, 46, 0, 3, 
-	3, 0, 0, 43, 25, 25, 25, 25, 
-	0, 0, 0, 43, 25, 25, 25, 25, 
-	0, 3, 3, 3, 79, 0, 3, 3, 
-	67, 1, 1, 1, 1, 0, 67, 34, 
-	1, 1, 1, 1, 0, 108, 108, 108, 
-	108, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 97, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 92, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 7, 
-	0, 0, 3, 3, 71, 71, 92, 71, 
-	1, 1, 1, 1, 0, 102, 102, 102, 
-	102, 0, 37, 37, 75, 28, 28, 28, 
-	28, 0, 0, 0, 5, 0, 0, 0, 
-	43, 87, 87, 87, 87, 0, 0, 0, 
-	43, 25, 25, 25, 25, 0, 3, 3, 
-	3, 83, 83, 83, 83, 0, 0, 0, 
-	0, 0, 0, 0, 43, 87, 87, 87, 
-	87, 0, 71, 71, 40, 71, 71, 34, 
-	28, 28, 28, 28, 0, 0, 0, 0, 
-	0, 0, 9, 0, 3, 3, 71, 71, 
-	71, 71, 1, 1, 1, 1, 0, 49, 
-	0, 52, 11, 0, 17, 0, 0, 0, 
-	0, 0, 55, 58, 15, 0, 0, 0, 
+	118, 118, 118, 118, 3, 41, 41, 91, 
+	32, 32, 32, 32, 3, 0, 0, 9, 
+	0, 0, 0, 53, 103, 103, 103, 103, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 99, 99, 99, 99, 
+	7, 0, 0, 0, 0, 0, 0, 53, 
+	103, 103, 103, 103, 50, 87, 87, 44, 
+	87, 87, 38, 32, 32, 32, 32, 3, 
+	0, 0, 0, 0, 0, 23, 23, 0, 
+	0, 0, 65, 0, 17, 17, 15, 0, 
+	0, 0, 118, 118, 118, 118, 3, 41, 
+	41, 91, 32, 32, 32, 32, 3, 0, 
+	0, 9, 0, 0, 0, 53, 103, 103, 
+	103, 103, 50, 0, 0, 53, 29, 29, 
+	29, 29, 59, 5, 5, 5, 99, 99, 
+	99, 99, 7, 0, 0, 0, 0, 0, 
+	0, 53, 103, 103, 103, 103, 50, 87, 
+	87, 44, 87, 87, 38, 32, 32, 32, 
+	32, 3, 0, 0, 0, 0, 0, 25, 
+	80, 25, 25, 0, 0, 27, 0, 0, 
+	0, 0, 0, 0, 71, 77, 19, 5, 
+	5, 87, 87, 87, 87, 1, 1, 1, 
+	1, 3, 5, 5, 87, 87, 87, 87, 
+	1, 1, 1, 1, 3, 29, 29, 29, 
+	29, 47, 35, 1, 1, 1, 1, 47, 
+	53, 62, 5, 5, 5, 56, 62, 5, 
+	5, 0, 0, 53, 29, 29, 29, 29, 
+	50, 0, 0, 53, 29, 29, 29, 29, 
+	59, 5, 5, 5, 95, 7, 5, 5, 
+	83, 1, 1, 1, 1, 3, 83, 38, 
+	1, 1, 1, 1, 3, 124, 124, 124, 
+	124, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 113, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 108, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 11, 
+	0, 0, 5, 5, 87, 87, 108, 87, 
+	1, 1, 1, 1, 3, 118, 118, 118, 
+	118, 3, 41, 41, 91, 32, 32, 32, 
+	32, 3, 0, 0, 9, 0, 0, 0, 
+	53, 103, 103, 103, 103, 50, 0, 0, 
+	53, 29, 29, 29, 29, 59, 5, 5, 
+	5, 99, 99, 99, 99, 7, 0, 0, 
+	0, 0, 0, 0, 53, 103, 103, 103, 
+	103, 50, 87, 87, 44, 87, 87, 38, 
+	32, 32, 32, 32, 3, 0, 0, 0, 
+	0, 0, 13, 0, 5, 5, 87, 87, 
+	87, 87, 1, 1, 1, 1, 3, 65, 
+	0, 68, 15, 0, 21, 0, 0, 0, 
+	0, 0, 71, 74, 19, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 3, 3, 0, 50, 59, 7, 7, 
+	0, 50, 3, 0, 0, 0, 0, 3, 
+	3, 0, 50, 59, 7, 7, 0, 50, 
+	3, 0, 0, 0, 0, 0, 0, 7, 
+	3, 7, 3, 47, 47, 62, 62, 62, 
+	62, 50, 59, 7, 7, 7, 3, 3, 
+	3, 3, 0, 50, 59, 7, 7, 0, 
+	50, 3, 0, 7, 3, 3, 3, 0, 
+	50, 59, 7, 7, 0, 50, 3, 0, 
+	0, 7, 3, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0
 ]
 
 class << self
@@ -4242,6 +4785,7 @@ self.bel_en_statement_simple = 1;
             data     = @content.unpack('C*')
             p        = 0
             pe       = data.length
+            eof      = data.length
 
       # begin: ragel        
             
@@ -4340,7 +4884,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -4356,85 +4900,111 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 10 then
 		begin
 
     yield @buffers[:string]
   		end
-when 8 then
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 12 then
 		begin
 
     @parameter = s(:parameter,
                    s(:prefix, @buffers[:ident]))
   		end
-when 9 then
+when 13 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:string])
   		end
-when 10 then
+when 14 then
 		begin
 
     @parameter ||= s(:parameter, s(:prefix, nil))
     @parameter   = @parameter << s(:value, @buffers[:ident])
   		end
-when 11 then
+when 15 then
 		begin
 
     yield @parameter
   		end
-when 12 then
+when 16 then
 		begin
 
     @buffers[:function] = []
   		end
-when 13 then
+when 17 then
 		begin
 
     @buffers[:function] << data[p].ord
   		end
-when 14 then
+when 18 then
 		begin
 
     @buffers[:function] = utf8_string(@buffers[:function])
   		end
-when 15 then
+when 19 then
 		begin
 
     @buffers[:term_stack] = [ s(:term) ]
   		end
-when 16 then
+when 20 then
 		begin
 
     @buffers[:term_stack] << s(:term)
   		end
-when 17 then
+when 21 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:function, fx)
   		end
-when 18 then
+when 22 then
 		begin
 
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
     @parameter                = nil
   		end
-when 19 then
+when 23 then
 		begin
 
     p -= @buffers[:function].length + 1
@@ -4448,7 +5018,7 @@ when 19 then
 	end
 
   		end
-when 20 then
+when 24 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -4462,68 +5032,68 @@ when 20 then
 	end
 
   		end
-when 21 then
+when 25 then
 		begin
 
     yield @buffers[:term_stack][-1]
   		end
-when 22 then
+when 26 then
 		begin
 
     @buffers[:relationship] = []
   		end
-when 23 then
+when 27 then
 		begin
 
     @buffers[:relationship] << data[p].ord
   		end
-when 24 then
+when 28 then
 		begin
 
     @buffers[:relationship] = s(:relationship,
                                 utf8_string(@buffers[:relationship]))
   		end
-when 25 then
+when 29 then
 		begin
 
     yield @buffers[:relationship]
   		end
-when 26 then
+when 30 then
 		begin
 
     @buffers[:comment] = []
   		end
-when 27 then
+when 31 then
 		begin
 
     @buffers[:comment] << data[p].ord
   		end
-when 28 then
+when 32 then
 		begin
 
     @buffers[:comment] = s(:comment,
                            utf8_string(@buffers[:comment]))
   		end
-when 29 then
+when 33 then
 		begin
 
     yield @buffers[:comment] || s(:comment, nil)
   		end
-when 30 then
+when 34 then
 		begin
 
     @buffers[:subject]    = s(:subject,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 31 then
+when 35 then
 		begin
 
     @buffers[:object]     = s(:object,
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-when 32 then
+when 36 then
 		begin
 
     @buffers[:comment] ||= s(:comment, nil)
@@ -4553,6 +5123,46 @@ when 32 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break

@@ -45,7 +45,7 @@ class << self
 end
 self._bel_actions = [
 	0, 1, 1, 2, 0, 1, 2, 2, 
-	3
+	3, 2, 4, 5
 ]
 
 class << self
@@ -94,8 +94,8 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 0, 0, 0, 1, 2, 3, 3, 
-	3, 3, 1, 1, 0
+	1, 1, 1, 1, 0, 2, 3, 3, 
+	3, 3, 0, 4, 0
 ]
 
 class << self
@@ -103,7 +103,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 2
+	0, 2, 3, 2, 0
 ]
 
 class << self
@@ -111,7 +111,15 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	3, 0, 6, 1
+	9, 3, 6, 1, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 9, 9, 0
 ]
 
 class << self
@@ -141,6 +149,7 @@ self.bel_en_ident = 1;
             data = @content.unpack('C*')
             p   = 0
             pe  = data.length
+            eof = data.length
 
       # begin: ragel        
             
@@ -239,7 +248,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -250,6 +259,19 @@ when 2 then
 when 3 then
 		begin
 
+    yield @buffers[:ident]
+  		end
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
     yield @buffers[:ident]
   		end
 			end # action switch
@@ -271,6 +293,33 @@ when 3 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break

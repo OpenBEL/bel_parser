@@ -4,3 +4,4 @@ Gemfile.lock
 .flavors
 VimFlavor
 VimFlavor.lock
+gem.deps.rb.lock

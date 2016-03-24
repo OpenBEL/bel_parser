@@ -10,7 +10,7 @@
   }
 
   action append_string {
-    @buffers[:string] << fc
+    (@buffers[:string] ||= []) << fc
   }
 
   action finish_string {
@@ -18,12 +18,27 @@
                           utf8_string(@buffers[:string]))
   }
 
-  action yield_string {
+  action error_string {
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  }
+
+  action yield_complete_string {
     yield @buffers[:string]
   }
 
-  STRING  = ('"' ('\\\"' | [^"])** '"') >start_string $append_string %finish_string;
-  string := STRING %yield_string NL;
+  action yield_error_string {
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  }
+
+  STRING  =
+    ('"' ('\\\"' | [^"])** '"') >start_string $append_string %finish_string $err(error_string);
+
+  string :=
+    STRING $err(yield_error_string) %yield_complete_string
+    NL;
 }%%
 =end
 # end: ragel
@@ -54,8 +69,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include AST::Sexp
           include BEL::Parser::Buffer
+          include AST::Sexp
 
           def initialize(content)
             @content = content
@@ -69,6 +84,7 @@ module BEL
             data     = @content.unpack('C*')
             p        = 0
             pe       = data.length
+            eof      = data.length
 
       # begin: ragel        
             %% write init;

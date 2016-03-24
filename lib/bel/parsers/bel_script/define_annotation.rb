@@ -7,16 +7,22 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 10, 1, 
-	12, 1, 13, 1, 14, 1, 16, 1, 
-	17, 1, 18, 1, 21, 1, 22, 2, 
-	0, 1, 2, 2, 3, 2, 2, 15, 
-	2, 4, 5, 2, 6, 7, 2, 6, 
-	19, 2, 6, 20, 2, 21, 22, 3, 
-	2, 9, 11, 3, 6, 8, 11, 3, 
-	6, 19, 22, 3, 6, 20, 22, 4, 
-	2, 9, 11, 12, 4, 6, 8, 11, 
-	12
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 12, 1, 15, 1, 17, 1, 
+	20, 1, 21, 1, 22, 1, 24, 1, 
+	25, 1, 26, 1, 29, 1, 30, 2, 
+	0, 1, 2, 2, 3, 2, 2, 23, 
+	2, 4, 5, 2, 6, 7, 2, 8, 
+	10, 2, 8, 27, 2, 8, 28, 2, 
+	9, 11, 2, 29, 30, 3, 2, 14, 
+	16, 3, 4, 19, 16, 3, 8, 13, 
+	16, 3, 8, 27, 30, 3, 8, 28, 
+	30, 3, 9, 18, 16, 4, 2, 14, 
+	16, 12, 4, 2, 14, 16, 17, 4, 
+	4, 19, 16, 21, 4, 8, 13, 16, 
+	12, 4, 8, 13, 16, 17, 4, 9, 
+	18, 16, 21, 5, 9, 18, 4, 19, 
+	16, 6, 9, 18, 4, 19, 16, 21
 ]
 
 class << self
@@ -133,32 +139,32 @@ self._bel_indicies = [
 	11, 11, 1, 12, 12, 1, 13, 13, 
 	1, 14, 14, 1, 15, 15, 1, 16, 
 	16, 1, 17, 17, 1, 18, 18, 1, 
-	18, 18, 19, 19, 19, 19, 1, 20, 
-	20, 21, 21, 21, 21, 1, 22, 22, 
-	23, 23, 1, 24, 24, 1, 25, 25, 
-	1, 25, 25, 26, 27, 28, 26, 27, 
-	28, 1, 29, 29, 1, 30, 30, 1, 
-	31, 31, 1, 32, 32, 1, 33, 33, 
-	34, 1, 35, 35, 36, 37, 37, 37, 
-	37, 1, 39, 40, 38, 41, 41, 42, 
-	43, 1, 44, 44, 35, 45, 1, 46, 
-	47, 46, 1, 48, 49, 48, 1, 40, 
-	38, 50, 50, 51, 52, 53, 52, 52, 
-	52, 1, 54, 54, 1, 55, 55, 1, 
-	56, 56, 1, 57, 57, 1, 58, 58, 
-	1, 59, 59, 1, 60, 60, 1, 61, 
-	61, 62, 1, 64, 65, 63, 66, 67, 
-	66, 1, 65, 63, 68, 68, 1, 69, 
-	69, 1, 70, 70, 1, 71, 71, 72, 
-	1, 74, 75, 73, 76, 77, 76, 1, 
-	75, 73, 78, 78, 78, 78, 1, 79, 
-	80, 80, 80, 80, 1, 81, 1, 83, 
-	84, 82, 85, 1, 84, 82, 86, 1, 
-	87, 87, 88, 89, 89, 89, 89, 1, 
-	91, 92, 90, 93, 93, 94, 95, 1, 
-	96, 96, 87, 97, 1, 98, 1, 92, 
-	90, 99, 99, 100, 101, 102, 101, 101, 
-	101, 1, 1, 1, 1, 1, 0
+	18, 18, 20, 20, 20, 20, 19, 21, 
+	21, 22, 22, 22, 22, 19, 23, 23, 
+	24, 24, 1, 25, 25, 1, 26, 26, 
+	1, 26, 26, 27, 28, 29, 27, 28, 
+	29, 1, 30, 30, 1, 31, 31, 1, 
+	32, 32, 1, 33, 33, 1, 34, 34, 
+	35, 1, 37, 37, 38, 39, 39, 39, 
+	39, 36, 41, 42, 40, 44, 44, 45, 
+	46, 43, 47, 47, 48, 49, 1, 50, 
+	51, 50, 1, 52, 53, 52, 1, 42, 
+	40, 55, 55, 56, 57, 58, 57, 57, 
+	57, 54, 59, 59, 1, 60, 60, 1, 
+	61, 61, 1, 62, 62, 1, 63, 63, 
+	1, 64, 64, 1, 65, 65, 1, 67, 
+	67, 68, 66, 70, 71, 69, 72, 73, 
+	72, 66, 71, 69, 74, 74, 1, 75, 
+	75, 1, 76, 76, 1, 77, 77, 78, 
+	66, 80, 81, 79, 82, 83, 82, 66, 
+	81, 79, 85, 85, 85, 85, 84, 86, 
+	87, 87, 87, 87, 84, 89, 88, 91, 
+	92, 90, 93, 88, 92, 90, 95, 94, 
+	97, 97, 98, 99, 99, 99, 99, 96, 
+	101, 102, 100, 104, 104, 105, 106, 103, 
+	107, 107, 108, 109, 94, 110, 94, 102, 
+	100, 112, 112, 113, 114, 115, 114, 114, 
+	114, 111, 1, 1, 1, 1, 0
 ]
 
 class << self
@@ -168,17 +174,19 @@ end
 self._bel_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
-	17, 18, 19, 20, 21, 20, 21, 22, 
-	23, 24, 25, 38, 49, 26, 27, 28, 
-	29, 29, 30, 30, 31, 37, 31, 32, 
-	36, 33, 30, 34, 33, 34, 35, 70, 
-	35, 70, 33, 30, 37, 34, 39, 40, 
-	41, 42, 43, 44, 45, 45, 46, 46, 
-	47, 48, 35, 70, 50, 51, 52, 52, 
-	53, 53, 54, 55, 35, 70, 57, 71, 
-	57, 59, 59, 60, 61, 72, 63, 63, 
-	64, 69, 64, 65, 68, 66, 63, 67, 
-	66, 67, 73, 66, 63, 69, 67
+	17, 18, 19, 0, 20, 21, 20, 21, 
+	22, 23, 24, 25, 38, 49, 26, 27, 
+	28, 29, 29, 30, 0, 30, 31, 37, 
+	31, 32, 36, 0, 33, 30, 34, 33, 
+	30, 34, 35, 70, 35, 70, 0, 33, 
+	30, 37, 34, 39, 40, 41, 42, 43, 
+	44, 45, 0, 45, 46, 46, 47, 48, 
+	35, 70, 50, 51, 52, 52, 53, 53, 
+	54, 55, 35, 70, 0, 57, 71, 57, 
+	0, 59, 59, 60, 61, 72, 0, 63, 
+	0, 63, 64, 69, 64, 65, 68, 0, 
+	66, 63, 67, 66, 63, 67, 73, 0, 
+	66, 63, 69, 67
 ]
 
 class << self
@@ -188,17 +196,36 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 11, 0, 23, 29, 1, 0, 0, 
+	0, 19, 0, 3, 31, 37, 1, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	13, 0, 5, 0, 32, 23, 3, 3, 
-	3, 51, 51, 68, 0, 7, 19, 44, 
-	0, 21, 47, 47, 1, 63, 0, 0, 
-	0, 0, 0, 0, 15, 0, 32, 3, 
-	3, 3, 38, 55, 0, 0, 17, 0, 
-	32, 3, 3, 3, 41, 59, 23, 26, 
-	1, 32, 3, 3, 3, 35, 5, 0, 
-	32, 23, 3, 3, 3, 51, 51, 68, 
-	0, 7, 9, 47, 47, 1, 63
+	0, 21, 0, 11, 115, 0, 43, 31, 
+	5, 5, 5, 81, 69, 100, 105, 0, 
+	9, 13, 27, 58, 0, 29, 65, 61, 
+	85, 1, 90, 0, 0, 0, 0, 0, 
+	0, 23, 7, 0, 43, 5, 5, 5, 
+	49, 73, 0, 0, 25, 0, 43, 5, 
+	5, 5, 52, 77, 40, 31, 34, 1, 
+	55, 43, 5, 5, 5, 46, 17, 11, 
+	121, 0, 43, 31, 5, 5, 5, 110, 
+	69, 100, 105, 0, 9, 13, 15, 95, 
+	61, 85, 1, 90
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 3, 3, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 115, 81, 
+	81, 0, 0, 0, 81, 65, 0, 0, 
+	0, 0, 0, 0, 0, 7, 7, 7, 
+	7, 0, 0, 0, 7, 7, 7, 7, 
+	40, 40, 55, 55, 55, 55, 17, 121, 
+	110, 110, 17, 17, 110, 95, 0, 0, 
+	0, 0
 ]
 
 class << self
@@ -326,7 +353,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -342,82 +369,135 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
-		begin
-
-    yield @buffers[:string]
-  		end
-when 8 then
-		begin
-
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
-  		end
 when 9 then
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 when 10 then
 		begin
 
-    @buffers[:list] = []
+    yield @buffers[:string]
   		end
 when 11 then
 		begin
 
-    @buffers[:list] << @buffers[:list_arg]
+    @buffers[:string] ||= []
+    yield @buffers[:string]
   		end
 when 12 then
 		begin
 
-    #FIXME: Mark list as complete?
-    @buffers[:list] = s(:list, *@buffers[:list])
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
   		end
 when 13 then
 		begin
 
-    yield @buffers[:list]
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
   		end
 when 14 then
 		begin
 
-    @buffers[:define_annotation] = s(:define_annotation)
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
   		end
 when 15 then
+		begin
+
+    @buffers[:list] = s(:list)
+  		end
+when 16 then
+		begin
+
+    # Append list argument if its value is not empty.
+    list_arg_value = @buffers[:list_arg].children[0].children[0]
+    if list_arg_value != ''
+      @buffers[:list] <<= @buffers[:list_arg]
+    end
+  		end
+when 17 then
+		begin
+
+    #TODO: Mark @buffers[:list] as complete.
+  		end
+when 18 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] string as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+  		end
+when 19 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] identifier as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+  		end
+when 20 then
+		begin
+
+    yield @buffers[:list]
+  		end
+when 21 then
+		begin
+
+    @buffers[:list] ||= s(:list)
+    yield @buffers[:list]
+  		end
+when 22 then
+		begin
+
+    @buffers[:define_annotation] = s(:define_annotation)
+  		end
+when 23 then
 		begin
 
     @buffers[:define_annotation] = s(:define_annotation,
                                      s(:keyword, @buffers[:ident]))
   		end
-when 16 then
+when 24 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain)
   		end
-when 17 then
+when 25 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:pattern))
   		end
-when 18 then
+when 26 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:url))
   		end
-when 19 then
+when 27 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -425,7 +505,7 @@ when 19 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 20 then
+when 28 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -433,7 +513,7 @@ when 20 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 21 then
+when 29 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -441,7 +521,7 @@ when 21 then
                                      @buffers[:list])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 22 then
+when 30 then
 		begin
 
     yield @buffers[:define_annotation]
@@ -465,6 +545,73 @@ when 22 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 16 then
+		begin
+
+    # Append list argument if its value is not empty.
+    list_arg_value = @buffers[:list_arg].children[0].children[0]
+    if list_arg_value != ''
+      @buffers[:list] <<= @buffers[:list_arg]
+    end
+  		end
+when 18 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] string as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+  		end
+when 19 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] identifier as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+  		end
+when 21 then
+		begin
+
+    @buffers[:list] ||= s(:list)
+    yield @buffers[:list]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -477,16 +624,22 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 10, 1, 
-	12, 1, 13, 1, 14, 1, 16, 1, 
-	17, 1, 18, 1, 21, 1, 22, 2, 
-	0, 1, 2, 2, 3, 2, 2, 15, 
-	2, 4, 5, 2, 6, 7, 2, 6, 
-	19, 2, 6, 20, 2, 21, 22, 3, 
-	2, 9, 11, 3, 6, 8, 11, 3, 
-	6, 19, 22, 3, 6, 20, 22, 4, 
-	2, 9, 11, 12, 4, 6, 8, 11, 
-	12
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 12, 1, 15, 1, 17, 1, 
+	20, 1, 21, 1, 22, 1, 24, 1, 
+	25, 1, 26, 1, 29, 1, 30, 2, 
+	0, 1, 2, 2, 3, 2, 2, 23, 
+	2, 4, 5, 2, 6, 7, 2, 8, 
+	10, 2, 8, 27, 2, 8, 28, 2, 
+	9, 11, 2, 29, 30, 3, 2, 14, 
+	16, 3, 4, 19, 16, 3, 8, 13, 
+	16, 3, 8, 27, 30, 3, 8, 28, 
+	30, 3, 9, 18, 16, 4, 2, 14, 
+	16, 12, 4, 2, 14, 16, 17, 4, 
+	4, 19, 16, 21, 4, 8, 13, 16, 
+	12, 4, 8, 13, 16, 17, 4, 9, 
+	18, 16, 21, 5, 9, 18, 4, 19, 
+	16, 6, 9, 18, 4, 19, 16, 21
 ]
 
 class << self
@@ -603,32 +756,32 @@ self._bel_indicies = [
 	11, 11, 1, 12, 12, 1, 13, 13, 
 	1, 14, 14, 1, 15, 15, 1, 16, 
 	16, 1, 17, 17, 1, 18, 18, 1, 
-	18, 18, 19, 19, 19, 19, 1, 20, 
-	20, 21, 21, 21, 21, 1, 22, 22, 
-	23, 23, 1, 24, 24, 1, 25, 25, 
-	1, 25, 25, 26, 27, 28, 26, 27, 
-	28, 1, 29, 29, 1, 30, 30, 1, 
-	31, 31, 1, 32, 32, 1, 33, 33, 
-	34, 1, 35, 35, 36, 37, 37, 37, 
-	37, 1, 39, 40, 38, 41, 41, 42, 
-	43, 1, 44, 44, 35, 45, 1, 46, 
-	47, 46, 1, 48, 49, 48, 1, 40, 
-	38, 50, 50, 51, 52, 53, 52, 52, 
-	52, 1, 54, 54, 1, 55, 55, 1, 
-	56, 56, 1, 57, 57, 1, 58, 58, 
-	1, 59, 59, 1, 60, 60, 1, 61, 
-	61, 62, 1, 64, 65, 63, 66, 67, 
-	66, 1, 65, 63, 68, 68, 1, 69, 
-	69, 1, 70, 70, 1, 71, 71, 72, 
-	1, 74, 75, 73, 76, 77, 76, 1, 
-	75, 73, 78, 78, 78, 78, 1, 79, 
-	80, 80, 80, 80, 1, 81, 1, 83, 
-	84, 82, 85, 1, 84, 82, 86, 1, 
-	87, 87, 88, 89, 89, 89, 89, 1, 
-	91, 92, 90, 93, 93, 94, 95, 1, 
-	96, 96, 87, 97, 1, 98, 1, 92, 
-	90, 99, 99, 100, 101, 102, 101, 101, 
-	101, 1, 1, 1, 1, 1, 0
+	18, 18, 20, 20, 20, 20, 19, 21, 
+	21, 22, 22, 22, 22, 19, 23, 23, 
+	24, 24, 1, 25, 25, 1, 26, 26, 
+	1, 26, 26, 27, 28, 29, 27, 28, 
+	29, 1, 30, 30, 1, 31, 31, 1, 
+	32, 32, 1, 33, 33, 1, 34, 34, 
+	35, 1, 37, 37, 38, 39, 39, 39, 
+	39, 36, 41, 42, 40, 44, 44, 45, 
+	46, 43, 47, 47, 48, 49, 1, 50, 
+	51, 50, 1, 52, 53, 52, 1, 42, 
+	40, 55, 55, 56, 57, 58, 57, 57, 
+	57, 54, 59, 59, 1, 60, 60, 1, 
+	61, 61, 1, 62, 62, 1, 63, 63, 
+	1, 64, 64, 1, 65, 65, 1, 67, 
+	67, 68, 66, 70, 71, 69, 72, 73, 
+	72, 66, 71, 69, 74, 74, 1, 75, 
+	75, 1, 76, 76, 1, 77, 77, 78, 
+	66, 80, 81, 79, 82, 83, 82, 66, 
+	81, 79, 85, 85, 85, 85, 84, 86, 
+	87, 87, 87, 87, 84, 89, 88, 91, 
+	92, 90, 93, 88, 92, 90, 95, 94, 
+	97, 97, 98, 99, 99, 99, 99, 96, 
+	101, 102, 100, 104, 104, 105, 106, 103, 
+	107, 107, 108, 109, 94, 110, 94, 102, 
+	100, 112, 112, 113, 114, 115, 114, 114, 
+	114, 111, 1, 1, 1, 1, 0
 ]
 
 class << self
@@ -638,17 +791,19 @@ end
 self._bel_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
-	17, 18, 19, 20, 21, 20, 21, 22, 
-	23, 24, 25, 38, 49, 26, 27, 28, 
-	29, 29, 30, 30, 31, 37, 31, 32, 
-	36, 33, 30, 34, 33, 34, 35, 70, 
-	35, 70, 33, 30, 37, 34, 39, 40, 
-	41, 42, 43, 44, 45, 45, 46, 46, 
-	47, 48, 35, 70, 50, 51, 52, 52, 
-	53, 53, 54, 55, 35, 70, 57, 71, 
-	57, 59, 59, 60, 61, 72, 63, 63, 
-	64, 69, 64, 65, 68, 66, 63, 67, 
-	66, 67, 73, 66, 63, 69, 67
+	17, 18, 19, 0, 20, 21, 20, 21, 
+	22, 23, 24, 25, 38, 49, 26, 27, 
+	28, 29, 29, 30, 0, 30, 31, 37, 
+	31, 32, 36, 0, 33, 30, 34, 33, 
+	30, 34, 35, 70, 35, 70, 0, 33, 
+	30, 37, 34, 39, 40, 41, 42, 43, 
+	44, 45, 0, 45, 46, 46, 47, 48, 
+	35, 70, 50, 51, 52, 52, 53, 53, 
+	54, 55, 35, 70, 0, 57, 71, 57, 
+	0, 59, 59, 60, 61, 72, 0, 63, 
+	0, 63, 64, 69, 64, 65, 68, 0, 
+	66, 63, 67, 66, 63, 67, 73, 0, 
+	66, 63, 69, 67
 ]
 
 class << self
@@ -658,17 +813,36 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 11, 0, 23, 29, 1, 0, 0, 
+	0, 19, 0, 3, 31, 37, 1, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	13, 0, 5, 0, 32, 23, 3, 3, 
-	3, 51, 51, 68, 0, 7, 19, 44, 
-	0, 21, 47, 47, 1, 63, 0, 0, 
-	0, 0, 0, 0, 15, 0, 32, 3, 
-	3, 3, 38, 55, 0, 0, 17, 0, 
-	32, 3, 3, 3, 41, 59, 23, 26, 
-	1, 32, 3, 3, 3, 35, 5, 0, 
-	32, 23, 3, 3, 3, 51, 51, 68, 
-	0, 7, 9, 47, 47, 1, 63
+	0, 21, 0, 11, 115, 0, 43, 31, 
+	5, 5, 5, 81, 69, 100, 105, 0, 
+	9, 13, 27, 58, 0, 29, 65, 61, 
+	85, 1, 90, 0, 0, 0, 0, 0, 
+	0, 23, 7, 0, 43, 5, 5, 5, 
+	49, 73, 0, 0, 25, 0, 43, 5, 
+	5, 5, 52, 77, 40, 31, 34, 1, 
+	55, 43, 5, 5, 5, 46, 17, 11, 
+	121, 0, 43, 31, 5, 5, 5, 110, 
+	69, 100, 105, 0, 9, 13, 15, 95, 
+	61, 85, 1, 90
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 3, 3, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 115, 81, 
+	81, 0, 0, 0, 81, 65, 0, 0, 
+	0, 0, 0, 0, 0, 7, 7, 7, 
+	7, 0, 0, 0, 7, 7, 7, 7, 
+	40, 40, 55, 55, 55, 55, 17, 121, 
+	110, 110, 17, 17, 110, 95, 0, 0, 
+	0, 0
 ]
 
 class << self
@@ -796,7 +970,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -812,82 +986,135 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
-		begin
-
-    yield @buffers[:string]
-  		end
-when 8 then
-		begin
-
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
-  		end
 when 9 then
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 when 10 then
 		begin
 
-    @buffers[:list] = []
+    yield @buffers[:string]
   		end
 when 11 then
 		begin
 
-    @buffers[:list] << @buffers[:list_arg]
+    @buffers[:string] ||= []
+    yield @buffers[:string]
   		end
 when 12 then
 		begin
 
-    #FIXME: Mark list as complete?
-    @buffers[:list] = s(:list, *@buffers[:list])
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
   		end
 when 13 then
 		begin
 
-    yield @buffers[:list]
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
   		end
 when 14 then
 		begin
 
-    @buffers[:define_annotation] = s(:define_annotation)
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
   		end
 when 15 then
+		begin
+
+    @buffers[:list] = s(:list)
+  		end
+when 16 then
+		begin
+
+    # Append list argument if its value is not empty.
+    list_arg_value = @buffers[:list_arg].children[0].children[0]
+    if list_arg_value != ''
+      @buffers[:list] <<= @buffers[:list_arg]
+    end
+  		end
+when 17 then
+		begin
+
+    #TODO: Mark @buffers[:list] as complete.
+  		end
+when 18 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] string as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+  		end
+when 19 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] identifier as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+  		end
+when 20 then
+		begin
+
+    yield @buffers[:list]
+  		end
+when 21 then
+		begin
+
+    @buffers[:list] ||= s(:list)
+    yield @buffers[:list]
+  		end
+when 22 then
+		begin
+
+    @buffers[:define_annotation] = s(:define_annotation)
+  		end
+when 23 then
 		begin
 
     @buffers[:define_annotation] = s(:define_annotation,
                                      s(:keyword, @buffers[:ident]))
   		end
-when 16 then
+when 24 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain)
   		end
-when 17 then
+when 25 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:pattern))
   		end
-when 18 then
+when 26 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:url))
   		end
-when 19 then
+when 27 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -895,7 +1122,7 @@ when 19 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 20 then
+when 28 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -903,7 +1130,7 @@ when 20 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 21 then
+when 29 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -911,7 +1138,7 @@ when 21 then
                                      @buffers[:list])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 22 then
+when 30 then
 		begin
 
     yield @buffers[:define_annotation]
@@ -935,6 +1162,73 @@ when 22 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 16 then
+		begin
+
+    # Append list argument if its value is not empty.
+    list_arg_value = @buffers[:list_arg].children[0].children[0]
+    if list_arg_value != ''
+      @buffers[:list] <<= @buffers[:list_arg]
+    end
+  		end
+when 18 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] string as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+  		end
+when 19 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] identifier as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+  		end
+when 21 then
+		begin
+
+    @buffers[:list] ||= s(:list)
+    yield @buffers[:list]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -947,16 +1241,22 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 10, 1, 
-	12, 1, 13, 1, 14, 1, 16, 1, 
-	17, 1, 18, 1, 21, 1, 22, 2, 
-	0, 1, 2, 2, 3, 2, 2, 15, 
-	2, 4, 5, 2, 6, 7, 2, 6, 
-	19, 2, 6, 20, 2, 21, 22, 3, 
-	2, 9, 11, 3, 6, 8, 11, 3, 
-	6, 19, 22, 3, 6, 20, 22, 4, 
-	2, 9, 11, 12, 4, 6, 8, 11, 
-	12
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 12, 1, 15, 1, 17, 1, 
+	20, 1, 21, 1, 22, 1, 24, 1, 
+	25, 1, 26, 1, 29, 1, 30, 2, 
+	0, 1, 2, 2, 3, 2, 2, 23, 
+	2, 4, 5, 2, 6, 7, 2, 8, 
+	10, 2, 8, 27, 2, 8, 28, 2, 
+	9, 11, 2, 29, 30, 3, 2, 14, 
+	16, 3, 4, 19, 16, 3, 8, 13, 
+	16, 3, 8, 27, 30, 3, 8, 28, 
+	30, 3, 9, 18, 16, 4, 2, 14, 
+	16, 12, 4, 2, 14, 16, 17, 4, 
+	4, 19, 16, 21, 4, 8, 13, 16, 
+	12, 4, 8, 13, 16, 17, 4, 9, 
+	18, 16, 21, 5, 9, 18, 4, 19, 
+	16, 6, 9, 18, 4, 19, 16, 21
 ]
 
 class << self
@@ -1073,32 +1373,32 @@ self._bel_indicies = [
 	11, 11, 1, 12, 12, 1, 13, 13, 
 	1, 14, 14, 1, 15, 15, 1, 16, 
 	16, 1, 17, 17, 1, 18, 18, 1, 
-	18, 18, 19, 19, 19, 19, 1, 20, 
-	20, 21, 21, 21, 21, 1, 22, 22, 
-	23, 23, 1, 24, 24, 1, 25, 25, 
-	1, 25, 25, 26, 27, 28, 26, 27, 
-	28, 1, 29, 29, 1, 30, 30, 1, 
-	31, 31, 1, 32, 32, 1, 33, 33, 
-	34, 1, 35, 35, 36, 37, 37, 37, 
-	37, 1, 39, 40, 38, 41, 41, 42, 
-	43, 1, 44, 44, 35, 45, 1, 46, 
-	47, 46, 1, 48, 49, 48, 1, 40, 
-	38, 50, 50, 51, 52, 53, 52, 52, 
-	52, 1, 54, 54, 1, 55, 55, 1, 
-	56, 56, 1, 57, 57, 1, 58, 58, 
-	1, 59, 59, 1, 60, 60, 1, 61, 
-	61, 62, 1, 64, 65, 63, 66, 67, 
-	66, 1, 65, 63, 68, 68, 1, 69, 
-	69, 1, 70, 70, 1, 71, 71, 72, 
-	1, 74, 75, 73, 76, 77, 76, 1, 
-	75, 73, 78, 78, 78, 78, 1, 79, 
-	80, 80, 80, 80, 1, 81, 1, 83, 
-	84, 82, 85, 1, 84, 82, 86, 1, 
-	87, 87, 88, 89, 89, 89, 89, 1, 
-	91, 92, 90, 93, 93, 94, 95, 1, 
-	96, 96, 87, 97, 1, 98, 1, 92, 
-	90, 99, 99, 100, 101, 102, 101, 101, 
-	101, 1, 1, 1, 1, 1, 0
+	18, 18, 20, 20, 20, 20, 19, 21, 
+	21, 22, 22, 22, 22, 19, 23, 23, 
+	24, 24, 1, 25, 25, 1, 26, 26, 
+	1, 26, 26, 27, 28, 29, 27, 28, 
+	29, 1, 30, 30, 1, 31, 31, 1, 
+	32, 32, 1, 33, 33, 1, 34, 34, 
+	35, 1, 37, 37, 38, 39, 39, 39, 
+	39, 36, 41, 42, 40, 44, 44, 45, 
+	46, 43, 47, 47, 48, 49, 1, 50, 
+	51, 50, 1, 52, 53, 52, 1, 42, 
+	40, 55, 55, 56, 57, 58, 57, 57, 
+	57, 54, 59, 59, 1, 60, 60, 1, 
+	61, 61, 1, 62, 62, 1, 63, 63, 
+	1, 64, 64, 1, 65, 65, 1, 67, 
+	67, 68, 66, 70, 71, 69, 72, 73, 
+	72, 66, 71, 69, 74, 74, 1, 75, 
+	75, 1, 76, 76, 1, 77, 77, 78, 
+	66, 80, 81, 79, 82, 83, 82, 66, 
+	81, 79, 85, 85, 85, 85, 84, 86, 
+	87, 87, 87, 87, 84, 89, 88, 91, 
+	92, 90, 93, 88, 92, 90, 95, 94, 
+	97, 97, 98, 99, 99, 99, 99, 96, 
+	101, 102, 100, 104, 104, 105, 106, 103, 
+	107, 107, 108, 109, 94, 110, 94, 102, 
+	100, 112, 112, 113, 114, 115, 114, 114, 
+	114, 111, 1, 1, 1, 1, 0
 ]
 
 class << self
@@ -1108,17 +1408,19 @@ end
 self._bel_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
-	17, 18, 19, 20, 21, 20, 21, 22, 
-	23, 24, 25, 38, 49, 26, 27, 28, 
-	29, 29, 30, 30, 31, 37, 31, 32, 
-	36, 33, 30, 34, 33, 34, 35, 70, 
-	35, 70, 33, 30, 37, 34, 39, 40, 
-	41, 42, 43, 44, 45, 45, 46, 46, 
-	47, 48, 35, 70, 50, 51, 52, 52, 
-	53, 53, 54, 55, 35, 70, 57, 71, 
-	57, 59, 59, 60, 61, 72, 63, 63, 
-	64, 69, 64, 65, 68, 66, 63, 67, 
-	66, 67, 73, 66, 63, 69, 67
+	17, 18, 19, 0, 20, 21, 20, 21, 
+	22, 23, 24, 25, 38, 49, 26, 27, 
+	28, 29, 29, 30, 0, 30, 31, 37, 
+	31, 32, 36, 0, 33, 30, 34, 33, 
+	30, 34, 35, 70, 35, 70, 0, 33, 
+	30, 37, 34, 39, 40, 41, 42, 43, 
+	44, 45, 0, 45, 46, 46, 47, 48, 
+	35, 70, 50, 51, 52, 52, 53, 53, 
+	54, 55, 35, 70, 0, 57, 71, 57, 
+	0, 59, 59, 60, 61, 72, 0, 63, 
+	0, 63, 64, 69, 64, 65, 68, 0, 
+	66, 63, 67, 66, 63, 67, 73, 0, 
+	66, 63, 69, 67
 ]
 
 class << self
@@ -1128,17 +1430,36 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 11, 0, 23, 29, 1, 0, 0, 
+	0, 19, 0, 3, 31, 37, 1, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	13, 0, 5, 0, 32, 23, 3, 3, 
-	3, 51, 51, 68, 0, 7, 19, 44, 
-	0, 21, 47, 47, 1, 63, 0, 0, 
-	0, 0, 0, 0, 15, 0, 32, 3, 
-	3, 3, 38, 55, 0, 0, 17, 0, 
-	32, 3, 3, 3, 41, 59, 23, 26, 
-	1, 32, 3, 3, 3, 35, 5, 0, 
-	32, 23, 3, 3, 3, 51, 51, 68, 
-	0, 7, 9, 47, 47, 1, 63
+	0, 21, 0, 11, 115, 0, 43, 31, 
+	5, 5, 5, 81, 69, 100, 105, 0, 
+	9, 13, 27, 58, 0, 29, 65, 61, 
+	85, 1, 90, 0, 0, 0, 0, 0, 
+	0, 23, 7, 0, 43, 5, 5, 5, 
+	49, 73, 0, 0, 25, 0, 43, 5, 
+	5, 5, 52, 77, 40, 31, 34, 1, 
+	55, 43, 5, 5, 5, 46, 17, 11, 
+	121, 0, 43, 31, 5, 5, 5, 110, 
+	69, 100, 105, 0, 9, 13, 15, 95, 
+	61, 85, 1, 90
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 3, 3, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 115, 81, 
+	81, 0, 0, 0, 81, 65, 0, 0, 
+	0, 0, 0, 0, 0, 7, 7, 7, 
+	7, 0, 0, 0, 7, 7, 7, 7, 
+	40, 40, 55, 55, 55, 55, 17, 121, 
+	110, 110, 17, 17, 110, 95, 0, 0, 
+	0, 0
 ]
 
 class << self
@@ -1266,7 +1587,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -1282,82 +1603,135 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
-		begin
-
-    yield @buffers[:string]
-  		end
-when 8 then
-		begin
-
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
-  		end
 when 9 then
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 when 10 then
 		begin
 
-    @buffers[:list] = []
+    yield @buffers[:string]
   		end
 when 11 then
 		begin
 
-    @buffers[:list] << @buffers[:list_arg]
+    @buffers[:string] ||= []
+    yield @buffers[:string]
   		end
 when 12 then
 		begin
 
-    #FIXME: Mark list as complete?
-    @buffers[:list] = s(:list, *@buffers[:list])
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
   		end
 when 13 then
 		begin
 
-    yield @buffers[:list]
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
   		end
 when 14 then
 		begin
 
-    @buffers[:define_annotation] = s(:define_annotation)
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
   		end
 when 15 then
+		begin
+
+    @buffers[:list] = s(:list)
+  		end
+when 16 then
+		begin
+
+    # Append list argument if its value is not empty.
+    list_arg_value = @buffers[:list_arg].children[0].children[0]
+    if list_arg_value != ''
+      @buffers[:list] <<= @buffers[:list_arg]
+    end
+  		end
+when 17 then
+		begin
+
+    #TODO: Mark @buffers[:list] as complete.
+  		end
+when 18 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] string as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+  		end
+when 19 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] identifier as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+  		end
+when 20 then
+		begin
+
+    yield @buffers[:list]
+  		end
+when 21 then
+		begin
+
+    @buffers[:list] ||= s(:list)
+    yield @buffers[:list]
+  		end
+when 22 then
+		begin
+
+    @buffers[:define_annotation] = s(:define_annotation)
+  		end
+when 23 then
 		begin
 
     @buffers[:define_annotation] = s(:define_annotation,
                                      s(:keyword, @buffers[:ident]))
   		end
-when 16 then
+when 24 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain)
   		end
-when 17 then
+when 25 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:pattern))
   		end
-when 18 then
+when 26 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:url))
   		end
-when 19 then
+when 27 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -1365,7 +1739,7 @@ when 19 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 20 then
+when 28 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -1373,7 +1747,7 @@ when 20 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 21 then
+when 29 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -1381,7 +1755,7 @@ when 21 then
                                      @buffers[:list])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 22 then
+when 30 then
 		begin
 
     yield @buffers[:define_annotation]
@@ -1405,6 +1779,73 @@ when 22 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 16 then
+		begin
+
+    # Append list argument if its value is not empty.
+    list_arg_value = @buffers[:list_arg].children[0].children[0]
+    if list_arg_value != ''
+      @buffers[:list] <<= @buffers[:list_arg]
+    end
+  		end
+when 18 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] string as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+  		end
+when 19 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] identifier as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+  		end
+when 21 then
+		begin
+
+    @buffers[:list] ||= s(:list)
+    yield @buffers[:list]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
@@ -1454,16 +1895,22 @@ class << self
 	private :_bel_actions, :_bel_actions=
 end
 self._bel_actions = [
-	0, 1, 1, 1, 5, 1, 10, 1, 
-	12, 1, 13, 1, 14, 1, 16, 1, 
-	17, 1, 18, 1, 21, 1, 22, 2, 
-	0, 1, 2, 2, 3, 2, 2, 15, 
-	2, 4, 5, 2, 6, 7, 2, 6, 
-	19, 2, 6, 20, 2, 21, 22, 3, 
-	2, 9, 11, 3, 6, 8, 11, 3, 
-	6, 19, 22, 3, 6, 20, 22, 4, 
-	2, 9, 11, 12, 4, 6, 8, 11, 
-	12
+	0, 1, 1, 1, 4, 1, 7, 1, 
+	9, 1, 12, 1, 15, 1, 17, 1, 
+	20, 1, 21, 1, 22, 1, 24, 1, 
+	25, 1, 26, 1, 29, 1, 30, 2, 
+	0, 1, 2, 2, 3, 2, 2, 23, 
+	2, 4, 5, 2, 6, 7, 2, 8, 
+	10, 2, 8, 27, 2, 8, 28, 2, 
+	9, 11, 2, 29, 30, 3, 2, 14, 
+	16, 3, 4, 19, 16, 3, 8, 13, 
+	16, 3, 8, 27, 30, 3, 8, 28, 
+	30, 3, 9, 18, 16, 4, 2, 14, 
+	16, 12, 4, 2, 14, 16, 17, 4, 
+	4, 19, 16, 21, 4, 8, 13, 16, 
+	12, 4, 8, 13, 16, 17, 4, 9, 
+	18, 16, 21, 5, 9, 18, 4, 19, 
+	16, 6, 9, 18, 4, 19, 16, 21
 ]
 
 class << self
@@ -1580,32 +2027,32 @@ self._bel_indicies = [
 	11, 11, 1, 12, 12, 1, 13, 13, 
 	1, 14, 14, 1, 15, 15, 1, 16, 
 	16, 1, 17, 17, 1, 18, 18, 1, 
-	18, 18, 19, 19, 19, 19, 1, 20, 
-	20, 21, 21, 21, 21, 1, 22, 22, 
-	23, 23, 1, 24, 24, 1, 25, 25, 
-	1, 25, 25, 26, 27, 28, 26, 27, 
-	28, 1, 29, 29, 1, 30, 30, 1, 
-	31, 31, 1, 32, 32, 1, 33, 33, 
-	34, 1, 35, 35, 36, 37, 37, 37, 
-	37, 1, 39, 40, 38, 41, 41, 42, 
-	43, 1, 44, 44, 35, 45, 1, 46, 
-	47, 46, 1, 48, 49, 48, 1, 40, 
-	38, 50, 50, 51, 52, 53, 52, 52, 
-	52, 1, 54, 54, 1, 55, 55, 1, 
-	56, 56, 1, 57, 57, 1, 58, 58, 
-	1, 59, 59, 1, 60, 60, 1, 61, 
-	61, 62, 1, 64, 65, 63, 66, 67, 
-	66, 1, 65, 63, 68, 68, 1, 69, 
-	69, 1, 70, 70, 1, 71, 71, 72, 
-	1, 74, 75, 73, 76, 77, 76, 1, 
-	75, 73, 78, 78, 78, 78, 1, 79, 
-	80, 80, 80, 80, 1, 81, 1, 83, 
-	84, 82, 85, 1, 84, 82, 86, 1, 
-	87, 87, 88, 89, 89, 89, 89, 1, 
-	91, 92, 90, 93, 93, 94, 95, 1, 
-	96, 96, 87, 97, 1, 98, 1, 92, 
-	90, 99, 99, 100, 101, 102, 101, 101, 
-	101, 1, 1, 1, 1, 1, 0
+	18, 18, 20, 20, 20, 20, 19, 21, 
+	21, 22, 22, 22, 22, 19, 23, 23, 
+	24, 24, 1, 25, 25, 1, 26, 26, 
+	1, 26, 26, 27, 28, 29, 27, 28, 
+	29, 1, 30, 30, 1, 31, 31, 1, 
+	32, 32, 1, 33, 33, 1, 34, 34, 
+	35, 1, 37, 37, 38, 39, 39, 39, 
+	39, 36, 41, 42, 40, 44, 44, 45, 
+	46, 43, 47, 47, 48, 49, 1, 50, 
+	51, 50, 1, 52, 53, 52, 1, 42, 
+	40, 55, 55, 56, 57, 58, 57, 57, 
+	57, 54, 59, 59, 1, 60, 60, 1, 
+	61, 61, 1, 62, 62, 1, 63, 63, 
+	1, 64, 64, 1, 65, 65, 1, 67, 
+	67, 68, 66, 70, 71, 69, 72, 73, 
+	72, 66, 71, 69, 74, 74, 1, 75, 
+	75, 1, 76, 76, 1, 77, 77, 78, 
+	66, 80, 81, 79, 82, 83, 82, 66, 
+	81, 79, 85, 85, 85, 85, 84, 86, 
+	87, 87, 87, 87, 84, 89, 88, 91, 
+	92, 90, 93, 88, 92, 90, 95, 94, 
+	97, 97, 98, 99, 99, 99, 99, 96, 
+	101, 102, 100, 104, 104, 105, 106, 103, 
+	107, 107, 108, 109, 94, 110, 94, 102, 
+	100, 112, 112, 113, 114, 115, 114, 114, 
+	114, 111, 1, 1, 1, 1, 0
 ]
 
 class << self
@@ -1615,17 +2062,19 @@ end
 self._bel_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
-	17, 18, 19, 20, 21, 20, 21, 22, 
-	23, 24, 25, 38, 49, 26, 27, 28, 
-	29, 29, 30, 30, 31, 37, 31, 32, 
-	36, 33, 30, 34, 33, 34, 35, 70, 
-	35, 70, 33, 30, 37, 34, 39, 40, 
-	41, 42, 43, 44, 45, 45, 46, 46, 
-	47, 48, 35, 70, 50, 51, 52, 52, 
-	53, 53, 54, 55, 35, 70, 57, 71, 
-	57, 59, 59, 60, 61, 72, 63, 63, 
-	64, 69, 64, 65, 68, 66, 63, 67, 
-	66, 67, 73, 66, 63, 69, 67
+	17, 18, 19, 0, 20, 21, 20, 21, 
+	22, 23, 24, 25, 38, 49, 26, 27, 
+	28, 29, 29, 30, 0, 30, 31, 37, 
+	31, 32, 36, 0, 33, 30, 34, 33, 
+	30, 34, 35, 70, 35, 70, 0, 33, 
+	30, 37, 34, 39, 40, 41, 42, 43, 
+	44, 45, 0, 45, 46, 46, 47, 48, 
+	35, 70, 50, 51, 52, 52, 53, 53, 
+	54, 55, 35, 70, 0, 57, 71, 57, 
+	0, 59, 59, 60, 61, 72, 0, 63, 
+	0, 63, 64, 69, 64, 65, 68, 0, 
+	66, 63, 67, 66, 63, 67, 73, 0, 
+	66, 63, 69, 67
 ]
 
 class << self
@@ -1635,17 +2084,36 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 11, 0, 23, 29, 1, 0, 0, 
+	0, 19, 0, 3, 31, 37, 1, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	13, 0, 5, 0, 32, 23, 3, 3, 
-	3, 51, 51, 68, 0, 7, 19, 44, 
-	0, 21, 47, 47, 1, 63, 0, 0, 
-	0, 0, 0, 0, 15, 0, 32, 3, 
-	3, 3, 38, 55, 0, 0, 17, 0, 
-	32, 3, 3, 3, 41, 59, 23, 26, 
-	1, 32, 3, 3, 3, 35, 5, 0, 
-	32, 23, 3, 3, 3, 51, 51, 68, 
-	0, 7, 9, 47, 47, 1, 63
+	0, 21, 0, 11, 115, 0, 43, 31, 
+	5, 5, 5, 81, 69, 100, 105, 0, 
+	9, 13, 27, 58, 0, 29, 65, 61, 
+	85, 1, 90, 0, 0, 0, 0, 0, 
+	0, 23, 7, 0, 43, 5, 5, 5, 
+	49, 73, 0, 0, 25, 0, 43, 5, 
+	5, 5, 52, 77, 40, 31, 34, 1, 
+	55, 43, 5, 5, 5, 46, 17, 11, 
+	121, 0, 43, 31, 5, 5, 5, 110, 
+	69, 100, 105, 0, 9, 13, 15, 95, 
+	61, 85, 1, 90
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 3, 3, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 115, 81, 
+	81, 0, 0, 0, 81, 65, 0, 0, 
+	0, 0, 0, 0, 0, 7, 7, 7, 
+	7, 0, 0, 0, 7, 7, 7, 7, 
+	40, 40, 55, 55, 55, 55, 17, 121, 
+	110, 110, 17, 17, 110, 95, 0, 0, 
+	0, 0
 ]
 
 class << self
@@ -1687,6 +2155,7 @@ self.bel_en_define_annotation = 1;
             data     = @content.unpack('C*')
             p        = 0
             pe       = data.length
+            eof      = data.length
 
       # begin: ragel        
             
@@ -1785,7 +2254,7 @@ when 0 then
 when 1 then
 		begin
 
-    @buffers[:ident] << data[p].ord
+    (@buffers[:ident] ||= []) << data[p].ord
   		end
 when 2 then
 		begin
@@ -1801,82 +2270,135 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:string] = []
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
   		end
 when 5 then
 		begin
 
-    @buffers[:string] << data[p].ord
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
   		end
 when 6 then
+		begin
+
+    @buffers[:string] = []
+  		end
+when 7 then
+		begin
+
+    (@buffers[:string] ||= []) << data[p].ord
+  		end
+when 8 then
 		begin
 
     @buffers[:string] = s(:string,
                           utf8_string(@buffers[:string]))
   		end
-when 7 then
-		begin
-
-    yield @buffers[:string]
-  		end
-when 8 then
-		begin
-
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
-  		end
 when 9 then
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 when 10 then
 		begin
 
-    @buffers[:list] = []
+    yield @buffers[:string]
   		end
 when 11 then
 		begin
 
-    @buffers[:list] << @buffers[:list_arg]
+    @buffers[:string] ||= []
+    yield @buffers[:string]
   		end
 when 12 then
 		begin
 
-    #FIXME: Mark list as complete?
-    @buffers[:list] = s(:list, *@buffers[:list])
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
   		end
 when 13 then
 		begin
 
-    yield @buffers[:list]
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
   		end
 when 14 then
 		begin
 
-    @buffers[:define_annotation] = s(:define_annotation)
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
   		end
 when 15 then
+		begin
+
+    @buffers[:list] = s(:list)
+  		end
+when 16 then
+		begin
+
+    # Append list argument if its value is not empty.
+    list_arg_value = @buffers[:list_arg].children[0].children[0]
+    if list_arg_value != ''
+      @buffers[:list] <<= @buffers[:list_arg]
+    end
+  		end
+when 17 then
+		begin
+
+    #TODO: Mark @buffers[:list] as complete.
+  		end
+when 18 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] string as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+  		end
+when 19 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] identifier as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+  		end
+when 20 then
+		begin
+
+    yield @buffers[:list]
+  		end
+when 21 then
+		begin
+
+    @buffers[:list] ||= s(:list)
+    yield @buffers[:list]
+  		end
+when 22 then
+		begin
+
+    @buffers[:define_annotation] = s(:define_annotation)
+  		end
+when 23 then
 		begin
 
     @buffers[:define_annotation] = s(:define_annotation,
                                      s(:keyword, @buffers[:ident]))
   		end
-when 16 then
+when 24 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain)
   		end
-when 17 then
+when 25 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:pattern))
   		end
-when 18 then
+when 26 then
 		begin
 
     @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:url))
   		end
-when 19 then
+when 27 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -1884,7 +2406,7 @@ when 19 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 20 then
+when 28 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -1892,7 +2414,7 @@ when 20 then
                                      domain.children[0] << @buffers[:string])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 21 then
+when 29 then
 		begin
 
     keyword, domain              = @buffers[:define_annotation].children
@@ -1900,7 +2422,7 @@ when 21 then
                                      @buffers[:list])
     @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
   		end
-when 22 then
+when 30 then
 		begin
 
     yield @buffers[:define_annotation]
@@ -1924,6 +2446,73 @@ when 22 then
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	__acts = _bel_eof_actions[cs]
+	__nacts =  _bel_actions[__acts]
+	__acts += 1
+	while __nacts > 0
+		__nacts -= 1
+		__acts += 1
+		case _bel_actions[__acts - 1]
+when 4 then
+		begin
+
+    @buffers[:ident] ||= []
+    @buffers[:ident]   = s(:identifier,
+                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  		end
+when 5 then
+		begin
+
+    @buffers[:ident] ||= []
+    yield @buffers[:ident]
+  		end
+when 9 then
+		begin
+
+    @buffers[:string] ||= []
+    @buffers[:string] = s(:string,
+                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+  		end
+when 11 then
+		begin
+
+    @buffers[:string] ||= []
+    yield @buffers[:string]
+  		end
+when 16 then
+		begin
+
+    # Append list argument if its value is not empty.
+    list_arg_value = @buffers[:list_arg].children[0].children[0]
+    if list_arg_value != ''
+      @buffers[:list] <<= @buffers[:list_arg]
+    end
+  		end
+when 18 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] string as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+  		end
+when 19 then
+		begin
+
+    #TODO: Mark @buffers[:list_arg] identifier as error.
+    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+  		end
+when 21 then
+		begin
+
+    @buffers[:list] ||= s(:list)
+    yield @buffers[:list]
+  		end
+		end # eof action switch
+	end
+	if _trigger_goto
+		next
+	end
+end
 	end
 	if _goto_level <= _out
 		break
