@@ -34,15 +34,6 @@ module BEL
     #     line, ast_res = results
     #   }
     #
-    #   # tests
-    #   line       == %Q{"AKT1"\n}                 #=> true
-    #   ast_res[0] == s(:string, %Q{"AKT1"})       #=> true
-    #   ast_res[1] == s(:parameter,
-    #                   s(:prefix, nil),
-    #                   s(:value,
-    #                     s(:string, "\"AKT1\""))) #=> true
-    #   ast_res[2] == s(:relationship, %Q{"AKT1"}) #=> true
-    #
     # @example Receive AST results as an enumerator.
     #   # doctest setup
     #   require 'lib/bel/ast_generator'
@@ -52,15 +43,6 @@ module BEL
     #   # example usage
     #   line_io = StringIO.new("\"AKT1\"\n")
     #   line, ast_res = ::BEL::ASTGenerator.new.each(line_io).first.to_a
-    #
-    #   # tests
-    #   line       == %Q{"AKT1"\n}                 #=> true
-    #   ast_res[0] == s(:string, %Q{"AKT1"})       #=> true
-    #   ast_res[1] == s(:parameter,
-    #                   s(:prefix, nil),
-    #                   s(:value,
-    #                     s(:string, "\"AKT1\""))) #=> true
-    #   ast_res[2] == s(:relationship, %Q{"AKT1"}) #=> true
     #
     # @param  [IO] io the IO-object to read each line from
     # @yield  [[String, Array<AST::Node>]] to the block for each line
