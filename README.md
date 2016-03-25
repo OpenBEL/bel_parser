@@ -15,6 +15,12 @@ The design has potential to:
 3. Build all ragels and run tests: `rake`
 4. Continuously build/test ragels with guard: `./run_guard.sh`.
 
+### Checking your code
+
+You can run rubocop to check your code.
+
+Run `./check_all.sh` or run continually using `guard`.
+
 ### Plans
 
 - ~Recognize `{ ... }` LIST constructs.~
