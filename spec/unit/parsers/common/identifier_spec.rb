@@ -8,16 +8,19 @@ describe Identifier, '#parse' do
   include AST::Sexp
 
   context 'when input represents complete identifiers' do
+    let(:random_identifier) do
+      property_of do
+        random_identifier
+      end
+    end
 
     it 'yields identifier AST with complete value' do
-      property_of {
-        random_identifier
-      }.check { |example|
+      random_identifier.check do |example|
         assert_ast(
           Identifier,
           example,
           s(:identifier, example))
-      }
+      end
     end
 
     xit 'yields identifier AST with "complete" metadata' do
@@ -34,17 +37,21 @@ describe Identifier, '#parse' do
   end
 
   context 'when input starts with an invalid character' do
-    it 'yields identifier AST with empty value' do
-      property_of {
-        Rantly {
+    let(:invalid_first_character) do
+      property_of do
+        Rantly do
           sized(1) { string(/[^0-9A-za-z_]/) } + random_identifier
-        }
-      }.check { |example|
+        end
+      end
+    end
+
+    it 'yields identifier AST with empty value' do
+      invalid_first_character.check do |example|
         assert_ast(
           Identifier,
           example,
           s(:identifier, ''))
-      }
+      end
     end
 
     xit 'yields identifier AST with "error" metadata' do
@@ -61,19 +68,22 @@ describe Identifier, '#parse' do
   end
 
   context 'when input encounters an invalid character' do
-    it 'yields identifier AST with partial value' do
-      property_of {
-        Rantly {
-          identifier = random_identifier
-          identifier[range(0, identifier.length - 1)] = sized(1) {
-            string(/[^0-9A-za-z_]/)
-          }
+    let(:encounters_invalid_character) do
+      property_of do
+        Rantly do
+          identifier  = random_identifier
+          string_char = sized(1) { string(/[^0-9A-za-z_]/) }
+          identifier[range(0, identifier.length - 1)] = string_char
           identifier
-        }
-      }.check { |example|
+        end
+      end
+    end
+
+    it 'yields identifier AST with partial value' do
+      encounters_invalid_character.check do |example|
         value = parse_ast(Identifier, example).children.first
         expect(example).to start_with(value)
-      }
+      end
     end
 
     xit 'yields identifier AST with "error" metadata' do

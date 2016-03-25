@@ -4,26 +4,27 @@ require 'bel/parsers/common/string'
 
 CommonString = BEL::Parsers::Common::String
 
-describe CommonString, "#parse" do
+describe CommonString, '#parse' do
   include AST::Sexp
 
   context 'when input represents complete strings' do
+    let(:random_string) do
+      property_of do
+        Rantly do
+          example = sized(range(1, 50)) { string(:graph) }
+          example.gsub!(/(?<!\\)"/, '') # removes unescaped double quotes
+          %("#{example}")
+        end
+      end
+    end
 
     it 'yields string AST with complete value' do
-      property_of {
-        Rantly {
-          example = sized(range(1, 50)) {
-            string(:graph)
-          }
-          example.gsub!(/(?<!\\)"/, '') # removes unescaped double quotes
-          %Q{"#{example}"}
-        }
-      }.check { |example|
+      random_string.check do |example|
         assert_ast(
           CommonString,
           example,
           s(:string, example))
-      }
+      end
     end
 
     xit 'yields string AST with "complete" metadata' do
@@ -40,19 +41,27 @@ describe CommonString, "#parse" do
   end
 
   context 'when input starts with an invalid character' do
+    let(:missing_start_quote) do
+      property_of do
+        Rantly do
+          string = random_string
+
+          if string.length > 1
+            string.sub(/\A"/, '')
+          else
+            string
+          end
+        end
+      end
+    end
 
     it 'yields string AST with empty value' do
-      property_of {
-        Rantly {
-          string = random_string
-          string = string.sub(/\A"/, '') if string.length > 1
-        }
-      }.check { |example|
+      missing_start_quote.check do |example|
         assert_ast(
           CommonString,
           example,
           s(:string, ''))
-      }
+      end
     end
 
     xit 'yields string AST with "error" metadata' do
@@ -69,19 +78,20 @@ describe CommonString, "#parse" do
   end
 
   context 'when input encounters an invalid character' do
+    let(:encounters_invalid_character) do
+      property_of do
+        Rantly do
+          example = sized(range(1, 50)) { string(:graph) }
+          %("#{example}")
+        end
+      end
+    end
 
     it 'yields string AST with partial value' do
-      property_of {
-        Rantly {
-          example = sized(range(1, 50)) {
-            string(:graph)
-          }
-          %Q{"#{example}"}
-        }
-      }.check { |example|
+      encounters_invalid_character.check do |example|
         value = parse_ast(CommonString, example).children.first
         expect(example).to start_with(value)
-      }
+      end
     end
 
     xit 'yields string AST with "error" metadata' do
@@ -98,22 +108,23 @@ describe CommonString, "#parse" do
   end
 
   context 'when input does not end with double quote' do
+    let(:missing_end_quote) do
+      property_of do
+        Rantly do
+          example = sized(range(1, 50)) { string(:graph) }
+          example.gsub!(/(?<!\\)"/, '') # removes unescaped double quotes
+          %("#{example})
+        end
+      end
+    end
 
     it 'yields string AST with partial value' do
-      property_of {
-        Rantly {
-          example = sized(range(1, 50)) {
-            string(:graph)
-          }
-          example.gsub!(/(?<!\\)"/, '') # removes unescaped double quotes
-          %Q{"#{example}}
-        }
-      }.check { |example|
+      missing_end_quote.check do |example|
         assert_ast(
           CommonString,
           example,
           s(:string, example))
-      }
+      end
     end
 
     xit 'yields string AST with "error" metadata' do
