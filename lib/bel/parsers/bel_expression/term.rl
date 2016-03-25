@@ -14,7 +14,8 @@
   }
 
   action finish_function {
-    @buffers[:function] = utf8_string(@buffers[:function])
+    @buffers[:function] = s(:identifier,
+                            utf8_string(@buffers[:function]))
   }
 
   action term_init {

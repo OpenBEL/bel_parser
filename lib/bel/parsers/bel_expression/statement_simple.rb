@@ -543,7 +543,8 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:function] = utf8_string(@buffers[:function])
+    @buffers[:function] = s(:identifier,
+                            utf8_string(@buffers[:function]))
   		end
 when 19 then
 		begin
@@ -1274,7 +1275,8 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:function] = utf8_string(@buffers[:function])
+    @buffers[:function] = s(:identifier,
+                            utf8_string(@buffers[:function]))
   		end
 when 19 then
 		begin
@@ -2005,7 +2007,8 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:function] = utf8_string(@buffers[:function])
+    @buffers[:function] = s(:identifier,
+                            utf8_string(@buffers[:function]))
   		end
 when 19 then
 		begin
@@ -2736,7 +2739,8 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:function] = utf8_string(@buffers[:function])
+    @buffers[:function] = s(:identifier,
+                            utf8_string(@buffers[:function]))
   		end
 when 19 then
 		begin
@@ -3467,7 +3471,8 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:function] = utf8_string(@buffers[:function])
+    @buffers[:function] = s(:identifier,
+                            utf8_string(@buffers[:function]))
   		end
 when 19 then
 		begin
@@ -4198,7 +4203,8 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:function] = utf8_string(@buffers[:function])
+    @buffers[:function] = s(:identifier,
+                            utf8_string(@buffers[:function]))
   		end
 when 19 then
 		begin
@@ -4980,7 +4986,8 @@ when 17 then
 when 18 then
 		begin
 
-    @buffers[:function] = utf8_string(@buffers[:function])
+    @buffers[:function] = s(:identifier,
+                            utf8_string(@buffers[:function]))
   		end
 when 19 then
 		begin
