@@ -7,8 +7,8 @@ module BEL
       # BEL application-specific AST node.
       class Node < ::AST::Node
         # New BEL AST node.
-        def initialize(type, children = [], properties = {})
-          super(type, children: children, properties: properties)
+        def initialize(type, children: [], properties: {})
+          super(type, children, properties)
         end
 
         # Get the line number where this AST node originates.
@@ -42,7 +42,7 @@ module BEL
 
         # Get whether the AST node should be considered _incomplete_.
         def incomplete?
-          @incomplete
+          !@complete
         end
       end
     end
