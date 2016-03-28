@@ -7,7 +7,7 @@ module BEL
       # BEL application-specific AST node.
       class Node < ::AST::Node
         # New BEL AST node.
-        def initialize(type, children: [], properties: {})
+        def initialize(type, children = [], properties = {})
           super(type, children, properties)
         end
 
