@@ -46,61 +46,76 @@ describe BEL::Parsers::AST::Node do
       expect(node.children).to eq([])
     end
 
+    it 'can have a child' do
+      child = cls.new('child')
+      parent = cls.new('parent', [child])
+      expect(parent.children.length).to eq(1)
+      expect(parent.children[0]).to eq(child)
+    end
+
+    it 'can have children' do
+      child1 = cls.new('child1')
+      child2 = cls.new('child2')
+      parent = cls.new('parent', [child1, child2])
+      expect(parent.children.length).to eq(2)
+      expect(parent.children).to eq([child1, child2])
+    end
+
     it 'cannot have arbitrary properties' do
-      node = cls.new('test_type', properties: { foo: 'bar' })
+      node = cls.new('test_type', foo: 'bar')
       expect(node).not_to respond_to(:foo)
     end
 
     it 'can have line_number properties' do
-      node = cls.new('test_type', properties: { line_number: 42 })
+      node = cls.new('test_type', [], line_number: 42)
       expect(node).to respond_to(:line_number)
       expect(node.line_number).to eq(42)
     end
 
     it 'can have character_range properties' do
-      node = cls.new('test_type', properties: { character_range: [0, 10] })
+      node = cls.new('test_type', [], character_range: [0, 10])
       expect(node).to respond_to(:character_range)
       expect(node.character_range).to eq([0, 10])
     end
 
     it 'expose access to character_range a' do
-      node = cls.new('test_type', properties: { character_range: [0, 10] })
+      node = cls.new('test_type', [], character_range: [0, 10])
       expect(node).to respond_to(:range_a)
       expect(node.range_a).to eq(0)
     end
 
     it 'expose access to character_range start' do
-      node = cls.new('test_type', properties: { character_range: [0, 10] })
+      node = cls.new('test_type', [], character_range: [0, 10])
       expect(node).to respond_to(:range_start)
       expect(node.range_start).to eq(0)
     end
 
     it 'expose access to character_range b' do
-      node = cls.new('test_type', properties: { character_range: [0, 10] })
+      node = cls.new('test_type', [], character_range: [0, 10])
       expect(node).to respond_to(:range_b)
       expect(node.range_b).to eq(10)
     end
 
     it 'expose access to character_range end' do
-      node = cls.new('test_type', properties: { character_range: [0, 10] })
+      node = cls.new('test_type', [], character_range: [0, 10])
       expect(node).to respond_to(:range_end)
       expect(node.range_end).to eq(10)
     end
 
     it 'convey completeness' do
-      node = cls.new('test_type', properties: { complete: true })
+      node = cls.new('test_type', [], complete: true)
       expect(node).to respond_to(:complete?)
       expect(node.complete?).to eq(true)
-      node = cls.new('test_type', properties: { complete: false })
+      node = cls.new('test_type', [], complete: false)
       expect(node).to respond_to(:complete?)
       expect(node.complete?).to eq(false)
     end
 
     it 'convey incompleteness' do
-      node = cls.new('test_type', properties: { complete: true })
+      node = cls.new('test_type', [], complete: true)
       expect(node).to respond_to(:incomplete?)
       expect(node.incomplete?).to eq(false)
-      node = cls.new('test_type', properties: { complete: false })
+      node = cls.new('test_type', [], complete: false)
       expect(node).to respond_to(:incomplete?)
       expect(node.incomplete?).to eq(true)
     end
