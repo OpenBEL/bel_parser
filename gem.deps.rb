@@ -18,3 +18,7 @@ gem 'guard'
 gem 'guard-rake'
 gem 'guard-rubocop'
 gem 'rantly'
+
+group :ci do
+  gem 'rspec_junit_formatter'
+end
