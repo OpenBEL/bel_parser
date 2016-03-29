@@ -14,7 +14,18 @@ module BEL
       # BEL application-specific AST node.
       class Node < ::AST::Node
         # New BEL AST node.
+        #
+        # * *Args*:
+        # - +type+ -> the node type symbol
+        # - +children+ -> optional Array of children
+        # - +properties+ -> optional Hash of supported properties
+        #
+        # *Raises*:
+        # - +ArgumentError+ -> If anything other than an Array or Hash are
+        #                      supplied as children and properties
         def initialize(type, children = [], properties = {})
+          AST.assert_is_a(Array, children, 'children')
+          AST.assert_is_a(Hash, properties, 'properties')
           super(type, children, properties)
         end
 
