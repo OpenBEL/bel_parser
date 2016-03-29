@@ -4,6 +4,13 @@ module BEL
   module Parsers
     # BEL AST module.
     module AST
+      # Raises +ArgumentError+ if *argument* is not a *expected*.
+      def self.assert_is_a(expected, actual, argument)
+        msg = ->(x, y, z) { "Expected #{x} of #{y}, but got #{z}" }
+        return if actual.is_a? expected
+        raise ArgumentError, msg.call(expected, argument, actual.class)
+      end
+
       # BEL application-specific AST node.
       class Node < ::AST::Node
         # New BEL AST node.
