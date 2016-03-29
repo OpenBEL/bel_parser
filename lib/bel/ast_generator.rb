@@ -1,5 +1,5 @@
 require_relative 'parsers/common'
-require_relative 'parsers/bel_expression'
+require_relative 'parsers/expression'
 require_relative 'parsers/bel_script'
 require_relative 'mixin/line_mapping'
 require_relative 'mixin/line_continuator'
@@ -14,7 +14,7 @@ module BEL
     map_const = ->(x) { x.constants.map { |c| x.const_get(c) } }
     PARSERS = [
       map_const.call(BEL::Parsers::Common),
-      map_const.call(BEL::Parsers::BELExpression),
+      map_const.call(BEL::Parsers::Expression),
       map_const.call(BEL::Parsers::BELScript)
     ].flatten!
 

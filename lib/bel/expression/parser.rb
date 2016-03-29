@@ -1,7 +1,7 @@
 require_relative '../ast_filter'
 require_relative '../ast_generator'
 require_relative '../parsers/common'
-require_relative '../parsers/bel_expression'
+require_relative '../parsers/expression'
 require_relative '../mixin/line_mapping'
 
 module BEL
@@ -9,7 +9,7 @@ module BEL
     # Parser for BEL Expression.
     class Parser
       include BEL::Parsers::Common
-      include BEL::Parsers::BELExpression
+      include BEL::Parsers::Expression
 
       FILTER = BEL::ASTFilter.new(
         :statement_simple,

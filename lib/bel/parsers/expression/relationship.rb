@@ -12,7 +12,7 @@ require_relative '../nonblocking_io_wrapper'
 
 module BEL
   module Parsers
-    module BELExpression
+    module Expression
       module Relationship
 
         class << self
@@ -278,7 +278,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BEL::Parsers::BELExpression::Relationship.parse(line) { |obj|
+    BEL::Parsers::Expression::Relationship.parse(line) { |obj|
       puts obj.inspect
     }
   end

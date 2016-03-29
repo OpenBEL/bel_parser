@@ -97,7 +97,7 @@ require_relative '../nonblocking_io_wrapper'
 
 module BEL
   module Parsers
-    module BELExpression
+    module Expression
       module Term
 
         class << self
@@ -148,7 +148,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BEL::Parsers::BELExpression::Term.parse(line) { |obj|
+    BEL::Parsers::Expression::Term.parse(line) { |obj|
       puts obj.inspect
     }
   end

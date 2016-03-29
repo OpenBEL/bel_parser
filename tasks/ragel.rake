@@ -1,7 +1,7 @@
 ROOT_DIR       = File.join(File.expand_path(File.dirname(__FILE__)), '..')
 RAGEL_INCLUDES = [
   "#{ROOT_DIR}/lib/bel/parsers/common",
-  "#{ROOT_DIR}/lib/bel/parsers/bel_expression",
+  "#{ROOT_DIR}/lib/bel/parsers/expression",
   "#{ROOT_DIR}/lib/bel/parsers/bel_script",
 ]
 

@@ -1,7 +1,0 @@
-require_relative 'bel_expression/parameter'
-require_relative 'bel_expression/term'
-require_relative 'bel_expression/relationship'
-require_relative 'bel_expression/comment'
-require_relative 'bel_expression/statement_observed_term'
-require_relative 'bel_expression/statement_simple'
-require_relative 'bel_expression/statement_nested'

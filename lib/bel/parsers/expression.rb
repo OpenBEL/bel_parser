@@ -1,0 +1,7 @@
+require_relative 'expression/parameter'
+require_relative 'expression/term'
+require_relative 'expression/relationship'
+require_relative 'expression/comment'
+require_relative 'expression/statement_observed_term'
+require_relative 'expression/statement_simple'
+require_relative 'expression/statement_nested'

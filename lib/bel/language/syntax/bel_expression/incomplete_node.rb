@@ -1,7 +1,7 @@
 module BEL
   module Language
     module Syntax
-      module BELExpression
+      module Expression
         # AST traversal observer that reports if any node is incomplete.
         class IncompleteNode
           def update(node)

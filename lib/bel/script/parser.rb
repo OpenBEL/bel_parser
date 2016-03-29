@@ -1,7 +1,7 @@
 require_relative '../ast_filter'
 require_relative '../ast_generator'
 require_relative '../parsers/common'
-require_relative '../parsers/bel_expression'
+require_relative '../parsers/expression'
 require_relative '../parsers/bel_script'
 
 module BEL
@@ -9,7 +9,7 @@ module BEL
     # Parser for BEL Script.
     class Parser
       include BEL::Parsers::Common
-      include BEL::Parsers::BELExpression
+      include BEL::Parsers::Expression
       include BEL::Parsers::BELScript
 
       FILTER = BEL::ASTFilter.new(

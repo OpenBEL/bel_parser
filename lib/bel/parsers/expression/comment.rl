@@ -3,43 +3,29 @@
 %%{
   machine bel;
 
-  include 'term.rl';
-  include 'relationship.rl';
-  include 'comment.rl';
+  include 'common.rl';
 
-  action statement_subject {
-    @buffers[:subject]    = s(:subject,
-                              @buffers[:term_stack][-1])
-    @buffers[:term_stack] = nil
+  action start_comment {
+    @buffers[:comment] = []
   }
 
-  action statement_object {
-    @buffers[:object]     = s(:object,
-                              @buffers[:term_stack][-1])
-    @buffers[:term_stack] = nil
+  action append_comment {
+    @buffers[:comment] << fc
   }
 
-  action yield_statement_simple {
-    @buffers[:comment] ||= s(:comment, nil)
-    yield s(:statement_simple,
-            s(:statement,
-              @buffers[:subject],
-              @buffers[:relationship],
-              @buffers[:object],
-              @buffers[:comment]))
+  action finish_comment {
+    @buffers[:comment] = s(:comment,
+                           utf8_string(@buffers[:comment]))
   }
 
-  STATEMENT_SIMPLE =
-    outer_term %statement_subject
-    SP+
-    RELATIONSHIP
-    SP+
-    outer_term %statement_object;
+  action yield_comment {
+    yield @buffers[:comment] || s(:comment, nil)
+  }
 
-  statement_simple :=
-    STATEMENT_SIMPLE
-    SP*
-    COMMENT? %yield_statement_simple
+  COMMENT = '//' ^NL+ >start_comment $append_comment %finish_comment;
+
+  comment :=
+    COMMENT? %yield_comment
     NL;
 }%%
 =end
@@ -51,8 +37,8 @@ require_relative '../nonblocking_io_wrapper'
 
 module BEL
   module Parsers
-    module BELExpression
-      module StatementSimple
+    module Expression
+      module Comment
 
         class << self
 
@@ -87,7 +73,6 @@ module BEL
             data     = @content.unpack('C*')
             p        = 0
             pe       = data.length
-            eof      = data.length
 
       # begin: ragel        
             %% write init;
@@ -102,7 +87,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BEL::Parsers::BELExpression::StatementSimple.parse(line) { |obj|
+    BEL::Parsers::Expression::Comment.parse(line) { |obj|
       puts obj.inspect
     }
   end

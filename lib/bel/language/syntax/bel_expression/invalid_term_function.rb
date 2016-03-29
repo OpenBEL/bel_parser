@@ -1,7 +1,7 @@
 module BEL
   module Language
     module Syntax
-      module BELExpression
+      module Expression
         # AST traversal observer that reports if term functions are invalid
         # according to a {BEL::Language::Specification}.
         class InvalidTermFunction

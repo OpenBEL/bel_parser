@@ -1,11 +1,11 @@
 require_relative 'common'
-require_relative 'bel_expression'
+require_relative 'expression'
 require_relative 'bel_script'
 
 # Top-level LINE module.
 module LINE
   include BEL::Parsers::Common
-  include BEL::Parsers::BELExpression
+  include BEL::Parsers::Expression
   include BEL::Parsers::BELScript
 
   BEL_PARSERS = [
@@ -14,13 +14,13 @@ module LINE
     BEL::Parsers::Common::Identifier,
     BEL::Parsers::Common::String,
     BEL::Parsers::Common::List,
-    BEL::Parsers::BELExpression::Parameter,
-    BEL::Parsers::BELExpression::Term,
-    BEL::Parsers::BELExpression::Relationship,
-    BEL::Parsers::BELExpression::Comment,
-    BEL::Parsers::BELExpression::StatementObservedTerm,
-    BEL::Parsers::BELExpression::StatementSimple,
-    BEL::Parsers::BELExpression::StatementNested,
+    BEL::Parsers::Expression::Parameter,
+    BEL::Parsers::Expression::Term,
+    BEL::Parsers::Expression::Relationship,
+    BEL::Parsers::Expression::Comment,
+    BEL::Parsers::Expression::StatementObservedTerm,
+    BEL::Parsers::Expression::StatementSimple,
+    BEL::Parsers::Expression::StatementNested,
     BEL::Parsers::BELScript::DefineAnnotation,
     BEL::Parsers::BELScript::DefineNamespace,
     BEL::Parsers::BELScript::Set,
