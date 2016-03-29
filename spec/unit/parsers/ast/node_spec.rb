@@ -62,7 +62,7 @@ describe BEL::Parsers::AST::Node do
     end
 
     it 'cannot have arbitrary properties' do
-      node = cls.new('test_type', foo: 'bar')
+      node = cls.new('test_type', [], foo: 'bar')
       expect(node).not_to respond_to(:foo)
     end
 
