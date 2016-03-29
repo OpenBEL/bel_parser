@@ -10,9 +10,7 @@ module BEL
         @hash        = [@type, @parent_type].hash
       end
 
-      def hash
-        @hash
-      end
+      attr_reader :hash
 
       def ==(other)
         return false if other.nil?
