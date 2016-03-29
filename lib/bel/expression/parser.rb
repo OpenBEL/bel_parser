@@ -2,26 +2,19 @@ require_relative '../ast_filter'
 require_relative '../ast_generator'
 require_relative '../parsers/common'
 require_relative '../parsers/bel_expression'
-require_relative '../parsers/bel_script'
+require_relative '../mixin/line_mapping'
 
 module BEL
-  module Script
-    # Parser for BEL Script.
+  module Expression
+    # Parser for BEL Expression.
     class Parser
       include BEL::Parsers::Common
       include BEL::Parsers::BELExpression
-      include BEL::Parsers::BELScript
 
       FILTER = BEL::ASTFilter.new(
         :statement_simple,
         :observed_term,
-        :nested_statement,
-        :define_annotation,
-        :define_namespace,
-        :set,
-        :unset,
-        :blank_line,
-        :comment_line
+        :nested_statement
       )
 
       def each(io)
@@ -39,7 +32,7 @@ module BEL
 end
 
 if __FILE__ == $PROGRAM_NAME
-  BEL::Script::Parser.new.each($stdin) do |line_result|
+  BEL::Expression::Parser.new.each($stdin) do |line_result|
     line_number, line, ast_results = line_result
     puts "#{line_number}: #{line}"
     ast_results.each do |ast|

@@ -44,6 +44,17 @@ module BEL
         def incomplete?
           !@complete
         end
+
+        def traverse(&block)
+          if block_given?
+            children.each do |child_node|
+              child_node.traverse(&block) if child_node.respond_to?(:traverse)
+            end
+            yield self
+          else
+            enum_for(:traverse)
+          end
+        end
       end
     end
   end

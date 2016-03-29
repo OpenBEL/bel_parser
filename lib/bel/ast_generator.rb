@@ -30,8 +30,8 @@ module BEL
     #   line_io = StringIO.new("\"AKT1\"\n")
     #   line    = nil
     #   ast_res = nil
-    #   ::BEL::ASTGenerator.new.each(line_io) { |results|
-    #     line, ast_res = results
+    #   ::BEL::ASTGenerator.new.each(line_io) { |(line_number, line, results)|
+    #     # do something
     #   }
     #
     # @example Receive AST results as an enumerator.
@@ -45,7 +45,8 @@ module BEL
     #   line, ast_res = ::BEL::ASTGenerator.new.each(line_io).first.to_a
     #
     # @param  [IO] io the IO-object to read each line from
-    # @yield  [[String, Array<AST::Node>]] to the block for each line
+    # @yield  [[Integer, String, Array<AST::Node>]] yields line number, line,
+    #         and AST results as an {Array}
     # @return [IO, #<Enumerator: #<BEL::ASTGenerator#each>] the {IO}
     #         object is returned if a block is given, otherwise an
     #         {Enumerator} object is returned that can be iterated
@@ -54,16 +55,17 @@ module BEL
       if block_given?
         line_enumerator = map_lines(io.each_line.lazy)
 
+        line_number = 1
         loop do
           begin
-            line = line_enumerator.next
-            line = expand_line_continuator(line, line_enumerator)
+            line = expand_line_continuator(line_enumerator)
 
             ast_results = []
             PARSERS.map do |parser|
               parser.parse(line) { |ast| ast_results << ast }
             end
-            yield([line, ast_results])
+            yield([line_number, line, ast_results])
+            line_number += 1
           rescue StopIteration
             return
           end
@@ -76,11 +78,11 @@ module BEL
 end
 
 if __FILE__ == $PROGRAM_NAME
-  INDENT = 2
-  BEL::ASTGenerator.new.each($stdin) do |(line, ast_results)|
-    puts "Line: #{line}"
+  BEL::ASTGenerator.new.each($stdin) do |line_results|
+    line_number, line, ast_results = line_results
+    puts "#{line_number}: #{line}"
     ast_results.each do |ast|
-      puts ast.to_s(INDENT)
+      puts ast.to_s(1)
     end
   end
 end
