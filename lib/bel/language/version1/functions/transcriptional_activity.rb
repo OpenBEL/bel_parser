@@ -3,14 +3,15 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Transcriptionalactivity
+      class Transcriptionalactivity
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :tscript
+        LONG        = :transcriptionalActivity
+        RETURN_TYPE = :a
+        DESCRIPTION = 'Denotes the frequency or abundance of events in which a
+member directly acts to control transcription of genes'.freeze
         SIGNATURES  = [].freeze
 
         def short

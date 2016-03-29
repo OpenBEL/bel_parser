@@ -3,14 +3,15 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Micrornaabundance
+      class Micrornaabundance
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :m
+        LONG        = :microRNAAbundance
+        RETURN_TYPE = :m
+        DESCRIPTION = 'Denotes the abundance of a processed, functional
+microRNA'.freeze
         SIGNATURES  = [].freeze
 
         def short

@@ -3,14 +3,15 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Catalyticactivity
+      class Catalyticactivity
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :cat
+        LONG        = :catalyticActivity
+        RETURN_TYPE = :a
+        DESCRIPTION = 'Denotes the frequency or abundance of events where a
+member acts as an enzymatic catalyst of biochecmial reactions'.freeze
         SIGNATURES  = [].freeze
 
         def short

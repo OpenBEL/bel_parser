@@ -3,14 +3,14 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # List
+      class List
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :list
+        LONG        = :list
+        RETURN_TYPE = :list
+        DESCRIPTION = 'Groups a list of terms together'.freeze
         SIGNATURES  = [].freeze
 
         def short

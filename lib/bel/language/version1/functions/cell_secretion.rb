@@ -3,14 +3,15 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Cellsecretion
+      class Cellsecretion
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :sec
+        LONG        = :cellSecretion
+        RETURN_TYPE = :a
+        DESCRIPTION = 'Denotes the frequency or abundance of events in which
+members of an abundance move from cells to regions outside of the cells'.freeze
         SIGNATURES  = [].freeze
 
         def short

@@ -3,14 +3,15 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Gtpboundactivity
+      class Gtpboundactivity
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :gtp
+        LONG        = :gtpBoundActivity
+        RETURN_TYPE = :a
+        DESCRIPTION = 'Denotes the frequency or abundance of events in which a
+member of a G-protein abundance is GTP-bound'.freeze
         SIGNATURES  = [].freeze
 
         def short

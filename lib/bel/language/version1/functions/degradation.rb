@@ -3,14 +3,15 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Degradation
+      class Degradation
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :deg
+        LONG        = :degradation
+        RETURN_TYPE = :a
+        DESCRIPTION = 'Denotes the frequency or abundance of events in which a
+member is degraded in some way such that it is no longer a member'.freeze
         SIGNATURES  = [].freeze
 
         def short

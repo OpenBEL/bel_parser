@@ -3,14 +3,14 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Proteinabundance
+      class Proteinabundance
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :p
+        LONG        = :proteinAbundance
+        RETURN_TYPE = :p
+        DESCRIPTION = 'Denotes the abundance of a protein'.freeze
         SIGNATURES  = [].freeze
 
         def short

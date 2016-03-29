@@ -3,14 +3,15 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Substitution
+      class Substitution
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :sub
+        LONG        = :substitution
+        RETURN_TYPE = :sub
+        DESCRIPTION = 'Indicates the abundance of proteins with amino acid
+substitution sequence'.freeze
         SIGNATURES  = [].freeze
 
         def short

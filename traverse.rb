@@ -1,6 +1,6 @@
 require './lib/bel/ast_generator'
 require './lib/bel/ast_validator'
-require './lib/bel/language/version10'
+require './lib/bel/language/version1'
 require './lib/bel/language/syntax/expression/incomplete_node'
 require './lib/bel/language/syntax/expression/invalid_term_function'
 
@@ -8,11 +8,11 @@ require './lib/bel/language/syntax/expression/invalid_term_function'
 ast_enum = BEL::ASTGenerator.new.each($stdin)
 
 # Map to validated AST.
-version10 = BEL::Language::Version10::Version10Specification.new
+version1 = BEL::Language::Version1::Specification.new
 validator = BEL::ASTValidator.new(
   observers: [
     # BEL::Language::Syntax::Expression::IncompleteNode.new,
-    BEL::Language::Syntax::Expression::InvalidTermFunction.new(version10)
+    BEL::Language::Syntax::Expression::InvalidTermFunction.new(version1)
   ]
 )
 validator.each(ast_enum) do |(line_number, line, node, results)|

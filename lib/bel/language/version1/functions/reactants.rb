@@ -3,14 +3,14 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Reactants
+      class Reactants
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :reactants
+        LONG        = :reactants
+        RETURN_TYPE = :reactants
+        DESCRIPTION = 'Denotes the reactants of a reaction'.freeze
         SIGNATURES  = [].freeze
 
         def short

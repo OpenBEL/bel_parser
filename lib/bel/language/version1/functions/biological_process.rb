@@ -3,14 +3,14 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Biologicalprocess
+      class Biologicalprocess
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :bp
+        LONG        = :biologicalProcess
+        RETURN_TYPE = :bp
+        DESCRIPTION = 'Denotes a process or population of events'.freeze
         SIGNATURES  = [].freeze
 
         def short

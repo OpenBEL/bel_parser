@@ -3,14 +3,15 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # <%= opts[:class_doc] %>
-      class <%= opts[:class_name] %>
+      # Cellsurfaceexpression
+      class Cellsurfaceexpression
         include Function
 
-        SHORT       = :<%= opts[:short] %>
-        LONG        = :<%= opts[:long] %>
-        RETURN_TYPE = :<%= opts[:return_type] %>
-        DESCRIPTION = '<%= opts[:description] %>'.freeze
+        SHORT       = :surf
+        LONG        = :cellSurfaceExpression
+        RETURN_TYPE = :a
+        DESCRIPTION = 'Denotes the frequency or abundance of events in which
+members of an abundance move to the surface of cells'.freeze
         SIGNATURES  = [].freeze
 
         def short

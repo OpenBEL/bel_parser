@@ -1,13 +1,8 @@
 module BEL
   module Language
-    # Specification provides a definition of the language. It includes the
-    # functions, relationships, and expansion semantics.
-    class Specification
-      def initialize(functions)
-        @functions         = functions.freeze
-        @indexed_functions = index_functions(@functions)
-      end
-
+    # Specification defines the common behavior of any language specification.
+    # It includes the syntactic and semantic rules of the language.
+    module Specification
       def function(short_or_long_form)
         @indexed_functions[short_or_long_form]
       end
@@ -27,7 +22,7 @@ module BEL
           end
         ]
       end
-      private :index_functions
+      protected :index_functions
     end
   end
 end
