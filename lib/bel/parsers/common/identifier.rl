@@ -23,9 +23,11 @@
   }
 
   action error_ident {
-    @buffers[:ident] ||= []
-    @buffers[:ident]   = s(:identifier,
-                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    unless @buffers[:ident].is_a?(::AST::Node)
+      @buffers[:ident] ||= []
+      @buffers[:ident]   = s(:identifier,
+                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    end
   }
 
   action yield_error_ident {
