@@ -120,4 +120,40 @@ describe BEL::Parsers::AST::Node do
       expect(node.incomplete?).to eq(true)
     end
   end
+
+  describe '#updated' do
+    let(:cls) { BEL::Parsers::AST::Node }
+
+    context 'when data is not updated' do
+      it 'returns the same object' do
+        node1 = cls.new('test_type', [])
+        node2 = node1.updated(nil, nil, nil)
+        expect(node1).to be(node2)
+      end
+
+      it 'string type is equivalent to symbol type' do
+        node1 = cls.new('test_type', [])
+        node2 = cls.new(:test_type, [])
+        expect(node1).to eql(node2)
+      end
+    end
+
+    context 'when type is updated' do
+      it 'produces a new object' do
+        node1 = cls.new('test_type', [])
+        node2 = node1.updated('new_type', nil, nil)
+        expect(node1).not_to be(node2)
+        expect(node1).not_to eql(node2)
+      end
+    end
+
+    context 'when children are updated' do
+      it 'produces a new object' do
+        node1 = cls.new('test_type', [])
+        node2 = node1.updated('test_type', ['string'], nil)
+        expect(node1).not_to be(node2)
+        expect(node1).not_to eql(node2)
+      end
+    end
+  end
 end
