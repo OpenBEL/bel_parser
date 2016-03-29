@@ -1,5 +1,5 @@
 module BEL
-  module Parser
+  module Parsers
     # Buffer module.
     module Buffer
       def utf8_string(buffer)

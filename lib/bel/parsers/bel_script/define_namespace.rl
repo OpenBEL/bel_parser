@@ -80,8 +80,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include AST::Sexp
-          include BEL::Parser::Buffer
+          include ::AST::Sexp
+          include BEL::Parsers::Buffer
 
           def initialize(content)
             @content = content

@@ -290,9 +290,11 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:ident] ||= []
-    @buffers[:ident]   = s(:identifier,
-                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    unless @buffers[:ident].is_a?(::AST::Node)
+      @buffers[:ident] ||= []
+      @buffers[:ident]   = s(:identifier,
+                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    end
   		end
 when 5 then
 		begin
@@ -392,9 +394,11 @@ when 16 then
 when 4 then
 		begin
 
-    @buffers[:ident] ||= []
-    @buffers[:ident]   = s(:identifier,
-                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    unless @buffers[:ident].is_a?(::AST::Node)
+      @buffers[:ident] ||= []
+      @buffers[:ident]   = s(:identifier,
+                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    end
   		end
 when 5 then
 		begin
@@ -716,9 +720,11 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:ident] ||= []
-    @buffers[:ident]   = s(:identifier,
-                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    unless @buffers[:ident].is_a?(::AST::Node)
+      @buffers[:ident] ||= []
+      @buffers[:ident]   = s(:identifier,
+                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    end
   		end
 when 5 then
 		begin
@@ -818,9 +824,11 @@ when 16 then
 when 4 then
 		begin
 
-    @buffers[:ident] ||= []
-    @buffers[:ident]   = s(:identifier,
-                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    unless @buffers[:ident].is_a?(::AST::Node)
+      @buffers[:ident] ||= []
+      @buffers[:ident]   = s(:identifier,
+                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    end
   		end
 when 5 then
 		begin
@@ -884,8 +892,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include AST::Sexp
-          include BEL::Parser::Buffer
+          include ::AST::Sexp
+          include BEL::Parsers::Buffer
 
           def initialize(content)
             @content = content
@@ -1193,9 +1201,11 @@ when 3 then
 when 4 then
 		begin
 
-    @buffers[:ident] ||= []
-    @buffers[:ident]   = s(:identifier,
-                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    unless @buffers[:ident].is_a?(::AST::Node)
+      @buffers[:ident] ||= []
+      @buffers[:ident]   = s(:identifier,
+                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    end
   		end
 when 5 then
 		begin
@@ -1295,9 +1305,11 @@ when 16 then
 when 4 then
 		begin
 
-    @buffers[:ident] ||= []
-    @buffers[:ident]   = s(:identifier,
-                           utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    unless @buffers[:ident].is_a?(::AST::Node)
+      @buffers[:ident] ||= []
+      @buffers[:ident]   = s(:identifier,
+                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    end
   		end
 when 5 then
 		begin
