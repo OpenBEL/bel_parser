@@ -15,14 +15,22 @@ module BEL
       class Node < ::AST::Node
         # New BEL AST node.
         #
-        # * *Args*:
+        # *Args*:
         # - +type+ -> the node type symbol
         # - +children+ -> optional Array of children
         # - +properties+ -> optional Hash of supported properties
         #
+        # === Supported properties
+        # - +line_number+ -> #line_number
+        # - +character_range+ -> #character_range, #range_start, #range_end
+        # - +complete+ -> #complete?
+        # - +return_type+ #return_type
+        # - +encoding+ -> #encoding
+        # - +has_semantics+ -> #has_semantics
+        #
         # *Raises*:
-        # - +ArgumentError+ -> If anything other than an Array or Hash are
-        #                      supplied as children and properties
+        # - +ArgumentError+ -> If _children_ is not an Array or _properties_ is
+        #   not a Hash
         def initialize(type, children = [], properties = {})
           AST.assert_is_a(Array, children, 'children')
           AST.assert_is_a(Hash, properties, 'properties')
