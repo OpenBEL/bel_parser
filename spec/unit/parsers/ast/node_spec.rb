@@ -8,7 +8,7 @@ describe BEL::Parsers::AST::Node do
       expect(subject).to respond_to(:new)
     end
     it 'derives from AST::Node' do
-      expect(subject.ancestors).to include(AST::Node)
+      expect(subject < AST::Node).to be(true)
     end
   end
 
@@ -119,40 +119,77 @@ describe BEL::Parsers::AST::Node do
       expect(node).to respond_to(:incomplete?)
       expect(node.incomplete?).to eq(true)
     end
-  end
 
-  describe '#updated' do
-    let(:cls) { BEL::Parsers::AST::Node }
+    describe 'when updated' do
+      let(:cls) { BEL::Parsers::AST::Node }
 
-    context 'when data is not updated' do
-      it 'returns the same object' do
-        node1 = cls.new('test_type', [])
-        node2 = node1.updated(nil, nil, nil)
-        expect(node1).to be(node2)
+      context 'without changes' do
+        it 'return identical objects' do
+          # expectations are for object identity, not equality
+          node1 = cls.new(:test_type, [])
+          node2 = node1.updated(:test_type, [])
+          expect(node1).to be(node2)
+          node2 = node1.updated(:test_type, nil)
+          expect(node1).to be(node2)
+        end
       end
 
-      it 'string type is equivalent to symbol type' do
-        node1 = cls.new('test_type', [])
-        node2 = cls.new(:test_type, [])
-        expect(node1).to eql(node2)
-      end
-    end
+      context 'with different Classes of type' do
+        it 'return unindentical objects' do
+          # expectations are for object identity, not equality
+          node1 = cls.new('test_type')
+          node2 = cls.new(:test_type)
+          expect(node1).not_to be(node2)
+        end
 
-    context 'when type is updated' do
-      it 'produces a new object' do
-        node1 = cls.new('test_type', [])
-        node2 = node1.updated('new_type', nil, nil)
-        expect(node1).not_to be(node2)
-        expect(node1).not_to eql(node2)
+        it 'return equivalent objects' do
+          # expectations are for object equality, not identity
+          node1 = cls.new('test_type')
+          node2 = cls.new(:test_type)
+          expect(node1).to eq(node2)
+        end
       end
-    end
 
-    context 'when children are updated' do
-      it 'produces a new object' do
-        node1 = cls.new('test_type', [])
-        node2 = node1.updated('test_type', ['string'], nil)
-        expect(node1).not_to be(node2)
-        expect(node1).not_to eql(node2)
+      context 'with different types' do
+        it 'return a different object' do
+          # expectations are for object equality, not identity
+          node1 = cls.new('test_type')
+          node2 = node1.updated('new_type')
+          expect(node1).not_to eq(node2)
+        end
+      end
+
+      context 'with different children' do
+        it 'return a different object' do
+          # expectations are for object equality, not identity
+          node1 = cls.new('test_type', [0])
+          node2 = node1.updated('test_type', [1])
+          expect(node1).not_to eq(node2)
+          node2 = node1.updated('test_type', [1])
+          expect(node1).not_to eq(node2)
+        end
+      end
+
+      context 'with more children' do
+        it 'return a different object' do
+          # expectations are for object equality, not identity
+          children = [:Collin, :Tessa]
+          node1 = cls.new('test_type', children)
+          node2 = node1.updated('test_type', [:Collin, :Tessa, :Oliver])
+          expect(node1).not_to eq(node2)
+        end
+      end
+
+      context 'with less children' do
+        it 'return a different object' do
+          # expectations are for object equality, not identity
+          children = [:Collin, :Tessa, :Oliver]
+          node1 = cls.new('test_type', children)
+          # No one liked Oliver anyway...
+          children = [:Collin, :Tessa]
+          node2 = node1.updated('test_type', children)
+          expect(node1).not_to eq(node2)
+        end
       end
     end
   end
