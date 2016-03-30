@@ -3,35 +3,37 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # Compositeabundance
-      class Compositeabundance
-        include Function
+      module Functions
+        # CompositeAbundance
+        class CompositeAbundance
+          include Function
 
-        SHORT       = :composite
-        LONG        = :compositeAbundance
-        RETURN_TYPE = :a
-        DESCRIPTION = 'Denotes the frequency or abundance of events in which
-members are present'.freeze
-        SIGNATURES  = [].freeze
+          SHORT       = :composite
+          LONG        = :compositeAbundance
+          RETURN_TYPE = :a
+          DESCRIPTION = 'Denotes the frequency or abundance of events in which
+  members are present'.freeze
+          SIGNATURES  = [].freeze
 
-        def short
-          SHORT
-        end
+          def short
+            SHORT
+          end
 
-        def long
-          LONG
-        end
+          def long
+            LONG
+          end
 
-        def return_type
-          RETURN_TYPE
-        end
+          def return_type
+            RETURN_TYPE
+          end
 
-        def description
-          DESCRIPTION
-        end
+          def description
+            DESCRIPTION
+          end
 
-        def signatures
-          SIGNATURES
+          def signatures
+            SIGNATURES
+          end
         end
       end
     end

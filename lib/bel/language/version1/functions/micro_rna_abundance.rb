@@ -4,15 +4,15 @@ module BEL
   module Language
     module Version1
       module Functions
-        # MolecularActivity
-        class MolecularActivity
+        # MicroRNAAbundance
+        class MicroRNAAbundance
           include Function
 
-          SHORT       = :act
-          LONG        = :molecularActivity
-          RETURN_TYPE = :a
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a
-  member acts as a causal agent at the molecular scale'.freeze
+          SHORT       = :m
+          LONG        = :microRNAAbundance
+          RETURN_TYPE = :m
+          DESCRIPTION = 'Denotes the abundance of a processed, functional
+  microRNA'.freeze
           SIGNATURES  = [].freeze
 
           def short

@@ -3,34 +3,36 @@ require_relative '../../function'
 module BEL
   module Language
     module Version1
-      # Complexabundance
-      class Complexabundance
-        include Function
+      module Functions
+        # ComplexAbundance
+        class ComplexAbundance
+          include Function
 
-        SHORT       = :complex
-        LONG        = :complexAbundance
-        RETURN_TYPE = :complex
-        DESCRIPTION = 'Denotes the abundance of a molecular complex'.freeze
-        SIGNATURES  = [].freeze
+          SHORT       = :complex
+          LONG        = :complexAbundance
+          RETURN_TYPE = :complex
+          DESCRIPTION = 'Denotes the abundance of a molecular complex'.freeze
+          SIGNATURES  = [].freeze
 
-        def short
-          SHORT
-        end
+          def short
+            SHORT
+          end
 
-        def long
-          LONG
-        end
+          def long
+            LONG
+          end
 
-        def return_type
-          RETURN_TYPE
-        end
+          def return_type
+            RETURN_TYPE
+          end
 
-        def description
-          DESCRIPTION
-        end
+          def description
+            DESCRIPTION
+          end
 
-        def signatures
-          SIGNATURES
+          def signatures
+            SIGNATURES
+          end
         end
       end
     end
