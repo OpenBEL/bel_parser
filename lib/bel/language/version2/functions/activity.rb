@@ -10,7 +10,7 @@ module BEL
 
           SHORT       = :act
           LONG        = :activity
-          RETURN_TYPE = :activity
+          RETURN_TYPE = :a
           DESCRIPTION = 'Specify events resulting from the molecular activity of
   an abundance. The activity function provides distinct terms that enable
   differentiation of the increase or decrease of the molecular activity of a
