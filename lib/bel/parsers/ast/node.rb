@@ -82,6 +82,142 @@ module BEL
           end
         end
       end
+
+      # AST node representing a blank line.
+      class BlankLine < Node
+        @type = :blank_line
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a statement comment.
+      class Comment < Node
+        @type = :comment
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a line comment.
+      class CommentLine < Node
+        @type = :comment_line
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing the definition of an annotation.
+      class AnnotationDefinition < Node
+        @type = :annotation_definition
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing the definition of a namespace.
+      class NamespaceDefinition < Node
+        @type = :namespace_definition
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing the definition of a namespace.
+      class Identifier < Node
+        @type = :identifier
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a list.
+      class List < Node
+        @type = :list
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a parameter.
+      class Parameter < Node
+        @type = :parameter
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a relationship.
+      class Relationship < Node
+        @type = :relationship
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a set.
+      class Set < Node
+        @type = :set
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a statement.
+      class Statement < Node
+        @type = :statement
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a nested statement.
+      class NestedStatement < Statement
+        @type = :nested_statement
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a observed term statement.
+      class ObservedTerm < Statement
+        @type = :observed_term
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a simple statement.
+      class SimpleStatement < Statement
+        @type = :simple_statement
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a UTF-8 encoded string
+      class String < Node
+        @type = :string
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing a term.
+      class Term < Node
+        @type = :term
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
+
+      # AST node representing an unset.
+      class Unset < Node
+        @type = :unset
+        def initialize(children = [], properties = {})
+          super(@type, children, properties)
+        end
+      end
     end
   end
 end
