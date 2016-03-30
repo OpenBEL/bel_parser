@@ -1,4 +1,3 @@
-require 'English'
 require_relative 'any'
 
 module BEL
