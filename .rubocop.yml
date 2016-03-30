@@ -19,6 +19,8 @@ AllCops:
     - 'lib/bel/parsers/expression/statement_simple.rl'
     - 'lib/bel/parsers/expression/statement_nested.rb'
     - 'lib/bel/parsers/expression/statement_nested.rl'
+    - 'lib/bel/parsers/expression/statement_observed_term.rb'
+    - 'lib/bel/parsers/expression/statement_observed_term.rl'
     - 'lib/bel/parsers/bel_script/define_annotation.rb'
     - 'lib/bel/parsers/bel_script/define_annotation.rl'
     - 'lib/bel/parsers/bel_script/define_namespace.rb'
