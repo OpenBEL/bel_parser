@@ -21,12 +21,13 @@ module BEL
         # - +properties+ -> optional Hash of supported properties
         #
         # === Supported properties
-        # - +line_number+ -> #line_number
-        # - +character_range+ -> #character_range, #range_start, #range_end
-        # - +complete+ -> #complete?
-        # - +return_type+ #return_type
-        # - +encoding+ -> #encoding
-        # - +has_semantics+ -> #has_semantics
+        # - +line_number+ -> {#line_number}
+        # - +character_range+ -> {#character_range}, {#range_start},
+            {#range_end}
+        # - +complete+ -> {#complete?}
+        # - +return_type+ {#return_type}
+        # - +encoding+ -> {#encoding}
+        # - +has_semantics+ -> {#has_semantics}
         #
         # *Raises*:
         # - +ArgumentError+ -> If _children_ is not an Array or _properties_ is
