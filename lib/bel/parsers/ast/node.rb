@@ -23,7 +23,7 @@ module BEL
         # === Supported properties
         # - +line_number+ -> {#line_number}
         # - +character_range+ -> {#character_range}, {#range_start},
-            {#range_end}
+        #   {#range_end}
         # - +complete+ -> {#complete?}
         # - +return_type+ {#return_type}
         # - +encoding+ -> {#encoding}
