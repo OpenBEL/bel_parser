@@ -33,7 +33,7 @@ module BEL
 
       def ==(other)
         return false if other.nil?
-        short == other.short && long == other.long
+        short == other || long == other
       end
 
       alias :eql? ==

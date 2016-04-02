@@ -6,7 +6,7 @@ module BEL
       module Functions
         # ProteinAbundance
         class ProteinAbundance
-          include Function
+          include BEL::Language::Function
 
           SHORT       = :p
           LONG        = :proteinAbundance
@@ -32,6 +32,10 @@ module BEL
 
           def signatures
             SIGNATURES
+          end
+
+          def inspect
+            [short, long].to_s
           end
         end
       end
