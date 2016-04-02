@@ -197,6 +197,11 @@ module BEL
         def initialize(children = [], properties = {})
           super(NamespaceDefinition.type, children, properties)
         end
+
+        # Get the namespace definition's keyword.
+        def keyword
+          # TODO: access children for content
+        end
       end
 
       # AST node representing the definition of a namespace.
@@ -272,6 +277,16 @@ module BEL
         def initialize(children = [], properties = {})
           super(Set.type, children, properties)
         end
+
+        # Get what is being set.
+        def name
+          # TODO: access children for content
+        end
+
+        # Get the value of what is being set.
+        def value
+          # TODO: access children for content
+        end
       end
 
       # AST node representing a statement.
@@ -287,6 +302,11 @@ module BEL
         def initialize(children = [], properties = {})
           super(Statement.type, children, properties)
         end
+
+        # Get the subject of the statement.
+        def subject
+          # TODO: access children for content
+        end
       end
 
       # AST node representing a nested statement.
@@ -301,6 +321,16 @@ module BEL
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
           super(NestedStatement.type, children, properties)
+        end
+
+        # Get the relationship of the nested statement.
+        def relatitonship
+          # TODO: access children for content
+        end
+
+        # Get the object of the nested statement.
+        def object
+          # TODO: access children for content
         end
       end
 
@@ -332,6 +362,16 @@ module BEL
         def initialize(children = [], properties = {})
           super(SimpleStatement.type, children, properties)
         end
+
+        # Get the relationship of the nested statement.
+        def relatitonship
+          # TODO: access children for content
+        end
+
+        # Get the object of the nested statement.
+        def object
+          # TODO: access children for content
+        end
       end
 
       # AST node representing a UTF-8 encoded string
@@ -362,6 +402,11 @@ module BEL
         def initialize(children = [], properties = {})
           super(Term.type, children, properties)
         end
+
+        # Get the term's function.
+        def function
+          # TODO: access children for content
+        end
       end
 
       # AST node representing an unset.
@@ -376,6 +421,11 @@ module BEL
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
           super(Unset.type, children, properties)
+        end
+
+        # Get what is being unset.
+        def name
+          # TODO: access children for content
         end
       end
 
