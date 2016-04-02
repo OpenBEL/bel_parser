@@ -4,7 +4,7 @@ module BEL
   module Parsers
     # BEL AST module.
     module AST
-      # Raises +ArgumentError+ if *argument* is not a *expected*.
+      # @raise ArgumentError if _argument_ is not _expected_
       def self.assert_is_a(expected, actual, argument)
         msg = ->(x, y, z) { "Expected #{x} of #{y}, but got #{z}" }
         return if actual.is_a? expected
@@ -12,31 +12,49 @@ module BEL
       end
 
       # BEL application-specific AST node.
+      #
+      # All BEL AST nodes have a basic set of properties. Additional properties
+      # may be specified by subclasses. Each class in the hierarchy describes
+      # its type through the class variable _ast_type_. This is equivalent to
+      # its _type_ instance variable but the former is not used by the AST
+      # library itself.
+      #
+      # @see Node.ast_type
+      # @see Node.initialize
+      #
       class Node < ::AST::Node
+        # AST node type
+        @ast_type = :node
+        # Basic AST node has no meaning
+        @has_semantics = false
+
         # New BEL AST node.
         #
-        # *Args*:
-        # - +type+ -> the node type symbol
-        # - +children+ -> optional Array of children
-        # - +properties+ -> optional Hash of supported properties
+        # @param [Symbol] type The node type symbol
+        # @param [Array] children Optional children of node
+        # @param [Hash] properties Optional supported node properties
         #
         # === Supported properties
         # - +line_number+ -> {#line_number}
         # - +character_range+ -> {#character_range}, {#range_start},
         #   {#range_end}
         # - +complete+ -> {#complete?}
-        # - +return_type+ {#return_type}
-        # - +encoding+ -> {#encoding}
-        # - +has_semantics+ -> {#has_semantics}
         #
-        # *Raises*:
-        # - +ArgumentError+ -> If _children_ is not an Array or _properties_ is
-        #   not a Hash
+        # @raise ArgumentError If _children_ is not an Array or _properties_
+        #        is not a Hash
         def initialize(type, children = [], properties = {})
           AST.assert_is_a(Array, children, 'children')
           AST.assert_is_a(Hash, properties, 'properties')
           super(type, children, properties)
         end
+
+        # Get the class AST node type.
+        # @return [Symbol]
+        class << self; attr_reader :ast_type end
+
+        # Get whether this class AST node has semantics.
+        # @return [boolean]
+        class << self; attr_reader :has_semantics end
 
         # Get the line number where this AST node originates.
         attr_reader :line_number
@@ -86,138 +104,301 @@ module BEL
 
       # AST node representing a blank line.
       class BlankLine < Node
-        @type = :blank_line
+        # AST node type
+        @ast_type = :blank_line
+        # Blank lines have no meaning
+        @has_semantics = false
+
+        # New BlankLine AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(BlankLine.type, children, properties)
         end
       end
 
       # AST node representing a statement comment.
       class Comment < Node
-        @type = :comment
+        # AST node type
+        @ast_type = :comment
+        # Comments have no meaning
+        @has_semantics = false
+
+        # New Comment AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(Comment.type, children, properties)
         end
       end
 
       # AST node representing a line comment.
       class CommentLine < Node
-        @type = :comment_line
+        # AST node type
+        @ast_type = :comment_line
+        # Comment lines have no meaning
+        @has_semantics = false
+
+        # New CommentLine AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(CommentLine.type, children, properties)
         end
       end
 
       # AST node representing the definition of an annotation.
       class AnnotationDefinition < Node
-        @type = :annotation_definition
+        # AST node type
+        @ast_type = :annotation_definition
+        # Content is has semantic meaning
+        @has_semantics = true
+
+        # New AnnotationDefinition AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(AnnotationDefinition.type, children, properties)
         end
+      end
+
+      # AST node representing the function of a BEL term.
+      #
+      # === Special node properties
+      # - _return_type_: {#return_type}
+      #
+      class Function < Node
+        # AST node type
+        @ast_type = :function
+        # Functions have semantic meaning
+        @has_semantics = true
+
+        # New Function AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Function.type, children, properties)
+        end
+
+        # Get the return type property.
+        attr_reader :return_type
       end
 
       # AST node representing the definition of a namespace.
       class NamespaceDefinition < Node
-        @type = :namespace_definition
+        # AST node type
+        @ast_type = :namespace_definition
+        # Namespace definitions have semantic meaning
+        @has_semantics = true
+
+        # New NamespaceDefinition AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(NamespaceDefinition.type, children, properties)
         end
       end
 
       # AST node representing the definition of a namespace.
       class Identifier < Node
-        @type = :identifier
+        # AST node type
+        @ast_type = :identifier
+        # Identifier have no semantics
+        @has_semantics = false
+
+        # New Identifier AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(Identifier.type, children, properties)
         end
       end
 
       # AST node representing a list.
       class List < Node
-        @type = :list
+        # AST node type
+        @ast_type = :list
+        # List have semantics (content is meaningful)
+        @has_semantics = true
+
+        # New List AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(List.type, children, properties)
         end
       end
 
       # AST node representing a parameter.
       class Parameter < Node
-        @type = :parameter
+        # AST node type
+        @ast_type = :parameter
+        # Parameters have semantics (encodings, namespaces)
+        @has_semantics = true
+
+        # New Parameter AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(Parameter.type, children, properties)
         end
       end
 
       # AST node representing a relationship.
       class Relationship < Node
-        @type = :relationship
+        # AST node type
+        @ast_type = :relationship
+        # Relationship have no semantics, statements do
+        @has_semantics = false
+
+        # New Relationship AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(Relationship.type, children, properties)
         end
       end
 
       # AST node representing a set.
       class Set < Node
-        @type = :set
+        # AST node type
+        @ast_type = :set
+        # Set has semantics (what was set?)
+        @has_semantics = true
+
+        # New Set AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(Set.type, children, properties)
         end
       end
 
       # AST node representing a statement.
       class Statement < Node
-        @type = :statement
+        # AST node type
+        @ast_type = :statement
+        # Statements have semantics
+        @has_semantics = true
+
+        # New Statement AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(Statement.type, children, properties)
         end
       end
 
       # AST node representing a nested statement.
       class NestedStatement < Statement
-        @type = :nested_statement
+        # AST node type
+        @ast_type = :nested_statement
+        # Nested statements have semantics
+        @has_semantics = true
+
+        # New NestedStatement AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(NestedStatement.type, children, properties)
         end
       end
 
       # AST node representing a observed term statement.
       class ObservedTerm < Statement
-        @type = :observed_term
+        # AST node type
+        @ast_type = :observed_term
+        # Observed terms have semantics
+        @has_semantics = true
+
+        # New ObservedTerm AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(ObservedTerm.type, children, properties)
         end
       end
 
       # AST node representing a simple statement.
       class SimpleStatement < Statement
-        @type = :simple_statement
+        # AST node type
+        @ast_type = :simple_statement
+        # Simple statements have semantics
+        @has_semantics = true
+
+        # New SimpleStatement AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(SimpleStatement.type, children, properties)
         end
       end
 
       # AST node representing a UTF-8 encoded string
       class String < Node
-        @type = :string
+        # AST node type
+        @ast_type = :string
+        # String have no semantic meaning
+        @has_semantics = false
+
+        # New String AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(String.type, children, properties)
         end
       end
 
       # AST node representing a term.
       class Term < Node
-        @type = :term
+        # AST node type
+        @ast_type = :term
+        # Terms have semantics
+        @has_semantics = true
+
+        # New Term AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(Term.type, children, properties)
         end
       end
 
       # AST node representing an unset.
       class Unset < Node
-        @type = :unset
+        # AST node type
+        @ast_type = :unset
+        # Unset has semantics; what was unset?
+        @has_semantics = true
+
+        # New Unset AST node.
+        #
+        # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(@type, children, properties)
+          super(Unset.type, children, properties)
         end
+      end
+
+      # AST node representing a value.
+      #
+      # === Special node properties
+      # - _encoding_: {#encoding}
+      #
+      class Value < Node
+        # AST node type
+        @ast_type = :value
+        # Values have semantics (encodings)
+        @has_semantics = true
+
+        # New Value AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Value.type, children, properties)
+        end
+
+        # Get the value's encoding.
+        attr_reader :encoding
       end
     end
   end
