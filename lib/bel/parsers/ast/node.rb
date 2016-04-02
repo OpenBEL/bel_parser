@@ -113,7 +113,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(BlankLine.type, children, properties)
+          super(BlankLine.ast_type, children, properties)
         end
       end
 
@@ -128,7 +128,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(Comment.type, children, properties)
+          super(Comment.ast_type, children, properties)
         end
       end
 
@@ -143,7 +143,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(CommentLine.type, children, properties)
+          super(CommentLine.ast_type, children, properties)
         end
       end
 
@@ -158,7 +158,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(AnnotationDefinition.type, children, properties)
+          super(AnnotationDefinition.ast_type, children, properties)
         end
       end
 
@@ -177,7 +177,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(Function.type, children, properties)
+          super(Function.ast_type, children, properties)
         end
 
         # Get the return type property.
@@ -195,7 +195,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(NamespaceDefinition.type, children, properties)
+          super(NamespaceDefinition.ast_type, children, properties)
         end
 
         # Get the namespace definition's keyword.
@@ -215,7 +215,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(Identifier.type, children, properties)
+          super(Identifier.ast_type, children, properties)
         end
       end
 
@@ -230,7 +230,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(List.type, children, properties)
+          super(List.ast_type, children, properties)
         end
       end
 
@@ -245,7 +245,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(Parameter.type, children, properties)
+          super(Parameter.ast_type, children, properties)
         end
       end
 
@@ -260,7 +260,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(Relationship.type, children, properties)
+          super(Relationship.ast_type, children, properties)
         end
       end
 
@@ -275,7 +275,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(Set.type, children, properties)
+          super(Set.ast_type, children, properties)
         end
 
         # Get what is being set.
@@ -300,7 +300,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(Statement.type, children, properties)
+          super(Statement.ast_type, children, properties)
         end
 
         # Get the subject of the statement.
@@ -320,7 +320,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(NestedStatement.type, children, properties)
+          super(NestedStatement.ast_type, children, properties)
         end
 
         # Get the relationship of the nested statement.
@@ -345,7 +345,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(ObservedTerm.type, children, properties)
+          super(ObservedTerm.ast_type, children, properties)
         end
       end
 
@@ -360,7 +360,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(SimpleStatement.type, children, properties)
+          super(SimpleStatement.ast_type, children, properties)
         end
 
         # Get the relationship of the nested statement.
@@ -385,7 +385,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(String.type, children, properties)
+          super(String.ast_type, children, properties)
         end
       end
 
@@ -400,7 +400,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(Term.type, children, properties)
+          super(Term.ast_type, children, properties)
         end
 
         # Get the term's function.
@@ -420,7 +420,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(Unset.type, children, properties)
+          super(Unset.ast_type, children, properties)
         end
 
         # Get what is being unset.
@@ -444,7 +444,7 @@ module BEL
         #
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
-          super(Value.type, children, properties)
+          super(Value.ast_type, children, properties)
         end
 
         # Get the value's encoding.
