@@ -134,6 +134,10 @@ module BEL
         def covalent_modification_of(*covalent_mod_types, **properties)
           SemanticCovalentModificationOf.new(covalent_mod_types, **properties)
         end
+
+        def amino_acid_of(*amino_acids, **properties)
+          SemanticAminoAcidOf.new(amino_acids, **properties)
+        end
       end
 
       class SemanticASTNode < AST::Node
@@ -392,6 +396,27 @@ module BEL
         end
 
         def covalent_mod_types
+          children
+        end
+
+        def match(value_type)
+          string_literal_sym = value_type.children[0].to_sym
+					return success(value_type) if @hashed[:*]
+
+          @hashed.has_key?(string_literal_sym) ?
+            success(value_type) :
+            failure(value_type)
+        end
+      end
+
+      # AST node for AminoAcidOf is a semantic AST.
+      class SemanticAminoAcidOf < SemanticASTNode
+        def initialize(amino_acids, **properties)
+          properties[:hashed] = Hash[amino_acids.map { |t| [t, true] }]
+          super(:amino_acid_of, amino_acids, properties)
+        end
+
+        def amino_acids
           children
         end
 
