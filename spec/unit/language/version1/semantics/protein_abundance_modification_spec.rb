@@ -12,6 +12,9 @@ describe BEL::Language::Semantics do
   subject {
     BEL::Language::Semantics
   }
+  let(:spec) {
+    BEL::Language::Version1::Specification.new
+  }
 
   context 'match valid modified protein: p(E:P,F:pmod)p' do
     let(:input_ast) {
@@ -49,7 +52,7 @@ describe BEL::Language::Semantics do
     }
 
     it 'debugs' do
-      success, failure = subject.match(input_ast, semantic_ast).
+      success, failure = subject.match(input_ast, semantic_ast, spec).
         partition { |x| x.success? }.
         map do |set|
           set.map(&:semantic_node).map(&:class)
@@ -61,13 +64,13 @@ describe BEL::Language::Semantics do
     end
 
     it 'returns match results' do
-      results = subject.match(input_ast, semantic_ast)
+      results = subject.match(input_ast, semantic_ast, spec)
       expect(results).to_not be_nil
       expect(results).to be_an(Array)
     end
 
     it 'is valid' do
-      results  = subject.match(input_ast, semantic_ast)
+      results  = subject.match(input_ast, semantic_ast, spec)
       expect(results.select(&:failure?)).to be_empty
     end
   end

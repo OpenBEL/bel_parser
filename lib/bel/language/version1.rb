@@ -26,8 +26,8 @@ module BEL
       class Specification
         include BEL::Language::Specification
         def initialize
-          function_classes = Version1.constants.collect do |symbol|
-            const = Version1.const_get(symbol)
+          function_classes = Version1::Functions.constants.collect do |symbol|
+            const = Version1::Functions.const_get(symbol)
             const if
               const.respond_to?(:include?) &&
               const.include?(BEL::Language::Function)

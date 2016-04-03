@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/protein_abundance'
 
 module BEL
   module Language
@@ -6,11 +7,12 @@ module BEL
       module Functions
         # ProteinAbundance
         class ProteinAbundance
+          include BEL::Language::Version1
           include BEL::Language::Function
 
           SHORT       = :p
           LONG        = :proteinAbundance
-          RETURN_TYPE = :p
+          RETURN_TYPE = ReturnTypes::ProteinAbundance
           DESCRIPTION = 'Denotes the abundance of a protein'.freeze
           SIGNATURES  = [].freeze
 
@@ -32,10 +34,6 @@ module BEL
 
           def signatures
             SIGNATURES
-          end
-
-          def inspect
-            [short, long].to_s
           end
         end
       end

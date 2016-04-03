@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/protein_modification'
 
 module BEL
   module Language
@@ -6,11 +7,12 @@ module BEL
       module Functions
         # ProteinModification
         class ProteinModification
-          include Function
+          include BEL::Language::Version1
+          include BEL::Language::Function
 
           SHORT       = :pmod
           LONG        = :proteinModification
-          RETURN_TYPE = :pmod
+          RETURN_TYPE = ReturnTypes::ProteinModification
           DESCRIPTION = 'Denotes a covalently modified protein abundance'.freeze
           SIGNATURES  = [].freeze
 

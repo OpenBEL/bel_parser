@@ -1,5 +1,5 @@
-require_relative '../functions/protein_modification'
-require_relative '../return_types/protein_modification'
+require_relative '../functions/complex_abundance'
+require_relative '../return_types/abundance'
 require_relative '../../signature'
 require_relative '../../semantic_ast'
 
@@ -7,8 +7,8 @@ module BEL
   module Language
     module Version1
       module Signatures
-        # Protein modification signature.
-        class ProteinAbundanceModification
+        # Composed complex signature.
+        class ComplexAbundanceComposedComplex
           extend BEL::Language::Version1
           extend BEL::Language::Signature
 
@@ -19,31 +19,19 @@ module BEL
               function(
                 identifier(
                   function_of(
-                    Functions::ProteinAbundance.new))),
-              argument(
-                parameter(
-                  prefix(
-                    identifier(
-                      has_namespace,
-                      namespace_of(:*))),
-                  value(
-                    value_type(
-                      has_encoding,
-                      encoding_of(:Protein)
-                    )))),
-              argument(
+                    Functions::ComplexAbundanceComposedComplex.new))),
+              variadic_arguments(
                 term(
                   function(
                     identifier(
                       return_type_of(
-                        ReturnTypes::ProteinModification)))))
-            )
+                        ReturnTypes::Abundance))))))
           end
           private_constant :AST
 
           def self.string_form
             # TODO: This should return the traditional signature.
-            #       p(E:P,F:proteinModification)p
+            #       complex(RT:A)abundance
             AST.to_s
           end
 
