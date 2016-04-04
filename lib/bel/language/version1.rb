@@ -35,6 +35,7 @@ module BEL
       class Specification
         include BEL::Language::Specification
         def initialize
+          # Establish functions
           function_classes = Version1::Functions.constants.collect do |symbol|
             const = Version1::Functions.const_get(symbol)
             const if
@@ -43,6 +44,14 @@ module BEL
           end
           @functions = function_classes.compact
           @indexed_functions = index_functions(@functions)
+
+          # Establish return types
+          ret_classes = Version1::ReturnTypes.constants.collect do |symbol|
+            const = Version1::ReturnTypes.const_get(symbol)
+            const if const.respond_to?(:subtypes)
+          end
+          @return_types = ret_classes.compact
+          @indexed_return_types = index_return_types(@return_types)
         end
       end
     end

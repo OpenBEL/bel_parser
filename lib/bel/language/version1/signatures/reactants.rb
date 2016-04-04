@@ -6,8 +6,8 @@ module BEL
   module Language
     module Version1
       module Signatures
-        # ProteinAbundance signature.
-        class ProteinAbundance
+        # Reactants signature.
+        class Reactants
           extend BEL::Language::Version1
           extend BEL::Language::Signature
 
@@ -17,21 +17,16 @@ module BEL
             term(
               function(
                 identifier(
-                  function_of(BEL::Language::Version1::Functions::ProteinAbundance))),
-              argument(
-                parameter(
-                  prefix(
+                  function_of(BEL::Language::Version1::Functions::Reactants))),
+              variadic_arguments(
+                term(
+                  function(
                     identifier(
-                      has_namespace(),
-                      namespace_of(:*))),
-                  value(
-                    value_type(
-                      has_encoding(),
-                      encoding_of(:ProteinAbundance))))))
+                      return_type_of(BEL::Language::Version1::ReturnTypes::Abundance))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'proteinAbundance(E:proteinAbundance)proteinAbundance'
+          STRING_FORM = 'reactants(F:abundance...)reactants'
           private_constant :STRING_FORM
 
           def self.semantic_ast

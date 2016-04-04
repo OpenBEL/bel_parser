@@ -6,8 +6,8 @@ module BEL
   module Language
     module Version1
       module Signatures
-        # ProteinAbundance signature.
-        class ProteinAbundance
+        # FusionProteinAbundanceWithBreakpoints signature.
+        class FusionProteinAbundanceWithBreakpoints
           extend BEL::Language::Version1
           extend BEL::Language::Signature
 
@@ -17,7 +17,7 @@ module BEL
             term(
               function(
                 identifier(
-                  function_of(BEL::Language::Version1::Functions::ProteinAbundance))),
+                  function_of(BEL::Language::Version1::Functions::Fusion))),
               argument(
                 parameter(
                   prefix(
@@ -27,11 +27,25 @@ module BEL
                   value(
                     value_type(
                       has_encoding(),
-                      encoding_of(:ProteinAbundance))))))
+                      encoding_of(:ProteinAbundance))))),
+              argument(
+                parameter(
+                  prefix(
+                    any()),
+                  value(
+                    value_type(
+                      encoding_of(:*))))),
+              argument(
+                parameter(
+                  prefix(
+                    any()),
+                  value(
+                    value_type(
+                      encoding_of(:*))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'proteinAbundance(E:proteinAbundance)proteinAbundance'
+          STRING_FORM = 'fusion(E:proteinAbundance,E:*,E:*)fusion'
           private_constant :STRING_FORM
 
           def self.semantic_ast

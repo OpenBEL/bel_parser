@@ -1,5 +1,4 @@
-require_relative '../functions/protein_modification'
-require_relative '../return_types/protein_modification'
+require_relative '../../version1'
 require_relative '../../signature'
 require_relative '../../semantic_ast'
 
@@ -7,8 +6,8 @@ module BEL
   module Language
     module Version1
       module Signatures
-        # Protein modification signature.
-        class ProteinAbundanceModification
+        # ProteinAbundanceWithTruncation signature.
+        class ProteinAbundanceWithTruncation
           extend BEL::Language::Version1
           extend BEL::Language::Signature
 
@@ -18,37 +17,34 @@ module BEL
             term(
               function(
                 identifier(
-                  function_of(
-                    Functions::ProteinAbundance))),
+                  function_of(BEL::Language::Version1::Functions::ProteinAbundance))),
               argument(
                 parameter(
                   prefix(
                     identifier(
-                      has_namespace,
+                      has_namespace(),
                       namespace_of(:*))),
                   value(
                     value_type(
-                      has_encoding,
-                      encoding_of(:Protein)
-                    )))),
+                      has_encoding(),
+                      encoding_of(:ProteinAbundance))))),
               argument(
                 term(
                   function(
                     identifier(
-                      return_type_of(
-                        ReturnTypes::ProteinModification)))))
-            )
+                      return_type_of(BEL::Language::Version1::ReturnTypes::Truncation))))))
           end
           private_constant :AST
 
-          def self.string_form
-            # TODO: This should return the traditional signature.
-            #       p(E:P,F:proteinModification)p
-            AST.to_s
-          end
+          STRING_FORM = 'proteinAbundance(E:proteinAbundance,F:truncation)proteinAbundance'
+          private_constant :STRING_FORM
 
           def self.semantic_ast
             AST
+          end
+
+          def self.string_form
+            STRING_FORM
           end
         end
       end

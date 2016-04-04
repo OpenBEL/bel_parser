@@ -6,8 +6,8 @@ module BEL
   module Language
     module Version1
       module Signatures
-        # ProteinAbundance signature.
-        class ProteinAbundance
+        # BiologicalProcess signature.
+        class BiologicalProcess
           extend BEL::Language::Version1
           extend BEL::Language::Signature
 
@@ -17,7 +17,7 @@ module BEL
             term(
               function(
                 identifier(
-                  function_of(BEL::Language::Version1::Functions::ProteinAbundance))),
+                  function_of(BEL::Language::Version1::Functions::BiologicalProcess))),
               argument(
                 parameter(
                   prefix(
@@ -27,11 +27,11 @@ module BEL
                   value(
                     value_type(
                       has_encoding(),
-                      encoding_of(:ProteinAbundance))))))
+                      encoding_of(:BiologicalProcess))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'proteinAbundance(E:proteinAbundance)proteinAbundance'
+          STRING_FORM = 'biologicalProcess(E:biologicalProcess)biologicalProcess'
           private_constant :STRING_FORM
 
           def self.semantic_ast

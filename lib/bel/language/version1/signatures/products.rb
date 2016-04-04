@@ -1,4 +1,4 @@
-require_relative '../functions/protein_modification'
+require_relative '../../version1'
 require_relative '../../signature'
 require_relative '../../semantic_ast'
 
@@ -6,8 +6,8 @@ module BEL
   module Language
     module Version1
       module Signatures
-        # Protein modification signature.
-        class ProteinModificationEmpty
+        # Products signature.
+        class Products
           extend BEL::Language::Version1
           extend BEL::Language::Signature
 
@@ -17,19 +17,24 @@ module BEL
             term(
               function(
                 identifier(
-                  function_of(
-                    Functions::ProteinModification))))
+                  function_of(BEL::Language::Version1::Functions::Products))),
+              variadic_arguments(
+                term(
+                  function(
+                    identifier(
+                      return_type_of(BEL::Language::Version1::ReturnTypes::Abundance))))))
           end
           private_constant :AST
 
-          def self.string_form
-            # TODO: This should return the traditional signature.
-            #       pmod()pmod
-            AST.to_s
-          end
+          STRING_FORM = 'products(F:abundance...)products'
+          private_constant :STRING_FORM
 
           def self.semantic_ast
             AST
+          end
+
+          def self.string_form
+            STRING_FORM
           end
         end
       end

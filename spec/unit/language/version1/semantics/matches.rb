@@ -38,7 +38,7 @@ MATCHES = [
                 s(:prefix, nil),
                 s(:value,
                   s(:identifier, '320'))))))),
-    semantic: V1::Signatures::ProteinAbundanceModification.semantic_ast
+    semantic: V1::Signatures::ProteinAbundanceWithProteinModification.semantic_ast
   },
   {
     test: 'match valid protein abundance: p(E:P)p',
@@ -55,7 +55,30 @@ MATCHES = [
     semantic: V1::Signatures::ProteinAbundance.semantic_ast
   },
   {
-    test: 'protein mod with covalent & amino acid: pmod(CMT,AA)pmod',
+    test: 'protein mod with covalent, amino acid, and position: pmod(E:*,E:*,E:*)pmod',
+    input:
+      s(:term,
+        s(:function,
+          s(:identifier, 'pmod')),
+        s(:argument,
+          s(:parameter,
+            s(:prefix, nil),
+            s(:value,
+              s(:identifier, 'Phosphorylation')))),
+        s(:argument,
+          s(:parameter,
+            s(:prefix, nil),
+            s(:value,
+              s(:identifier, 'Arginine')))),
+        s(:argument,
+          s(:parameter,
+            s(:prefix, nil),
+            s(:value,
+              s(:identifier, '300'))))),
+    semantic: V1::Signatures::ProteinModificationWithCovalentAmino.semantic_ast
+  },
+  {
+    test: 'protein mod with covalent and amino acid: pmod(E:*,E:*)pmod',
     input:
       s(:term,
         s(:function,
@@ -70,10 +93,10 @@ MATCHES = [
             s(:prefix, nil),
             s(:value,
               s(:identifier, 'Arginine'))))),
-    semantic: V1::Signatures::ProteinModificationCovalentAminoAcid.semantic_ast
+    semantic: V1::Signatures::ProteinModificationWithCovalentAmino.semantic_ast
   },
   {
-    test: 'match valid protein mod with covalent type: pmod(CMT)pmod',
+    test: 'match valid protein mod with covalent type: pmod(E:*)pmod',
     input:
       s(:term,
         s(:function,
@@ -84,7 +107,7 @@ MATCHES = [
             s(:value,
               s(:identifier, 'Phosphorylation'))))),
     semantic:
-      V1::Signatures::ProteinModificationCovalentModification.semantic_ast
+      V1::Signatures::ProteinModificationWithCovalent.semantic_ast
   },
   {
     test: 'match composed complex: complex(F:A...)pmod',
@@ -103,7 +126,7 @@ MATCHES = [
                 s(:value,
                   s(:identifier, 'TIMP3'))))))),
     semantic:
-      V1::Signatures::ComplexAbundanceComposedComplex.semantic_ast
+      V1::Signatures::ComposedComplexAbundance.semantic_ast
   },
   {
     test: 'match composed complex: complex(F:A...)pmod',
@@ -132,7 +155,7 @@ MATCHES = [
                 s(:value,
                   s(:identifier, 'KDR'))))))),
     semantic:
-      V1::Signatures::ComplexAbundanceComposedComplex.semantic_ast
+      V1::Signatures::ComposedComplexAbundance.semantic_ast
   },
   {
     test: 'match composed complex: complex(F:A...)pmod',
@@ -171,6 +194,6 @@ MATCHES = [
                 s(:value,
                   s(:string, "\"ARRB Family\""))))))),
     semantic:
-      V1::Signatures::ComplexAbundanceComposedComplex.semantic_ast
+      V1::Signatures::ComposedComplexAbundance.semantic_ast
   }
 ].freeze

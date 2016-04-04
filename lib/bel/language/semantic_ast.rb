@@ -11,8 +11,8 @@ module BEL
       # rubocop:disable Metrics/AbcSize
       def self.match(input_ast, semantic_ast, spec, match_results = [])
         res = semantic_ast.match(input_ast, spec)
-        match_results << res
-        if res.success? && !semantic_ast.terminal?
+        match_results.concat(res)
+        if res.flatten.all?(&:success?) && !semantic_ast.terminal?
           return match_results if semantic_ast.children.empty?
 
           var_test = semantic_ast.children.any? { |x| x.is_a?(SemanticVariadicArguments) }
@@ -29,7 +29,7 @@ module BEL
                 input_arguments.each do |argument_child|
                   res = semantic_child.match(argument_child, spec)
                   match_results << res
-                  if res.success?
+                  if res.all?(&:success?)
                     param_or_term = argument_child.children.first
                     match(param_or_term, argument_pattern, spec, match_results)
                   end
@@ -47,7 +47,7 @@ module BEL
               end
           end
         end
-        match_results
+        match_results.flatten
       end
 
       # MatchResult holds the results of an input AST to semantic AST match.
@@ -137,6 +137,10 @@ module BEL
           SemanticValueType.new(value_patterns, **properties)
         end
 
+        def any(**properties)
+          SemanticAny.new(**properties)
+        end
+
         # rubocop:disable Style/PredicateName
         def is_nil(**properties)
           SemanticIsNil.new(**properties)
@@ -191,12 +195,25 @@ module BEL
 
         protected
 
+        def updated(_=nil, children=nil, properties=nil)
+          new_children   = children   || @children
+          new_properties = properties || {}
+
+          if @children == new_children &&
+              properties.nil?
+            self
+          else
+            # Maybe change call?
+            original_dup.send :initialize, new_children, new_properties
+          end
+        end
+
         def success(node)
-          MatchResult.new(true, node, self)
+          [MatchResult.new(true, node, self)]
         end
 
         def failure(node)
-          MatchResult.new(false, node, self)
+          [MatchResult.new(false, node, self)]
         end
       end
 
@@ -324,9 +341,28 @@ module BEL
         def match(identifier, spec)
           return failure(identifier) if type != identifier.type
 
-          value_patterns
-            .map { |pattern| pattern.match(identifier, spec) }
-            .find(&:failure?) || success(identifier)
+          value_results = value_patterns.map do |pattern|
+            pattern.match(identifier, spec)
+          end
+
+          failure_result = value_results.flatten.find(&:failure?)
+
+          if failure_result
+            [failure(identifier), failure_result]
+          else
+            value_results.unshift(success(identifier))
+          end
+        end
+      end
+
+      # AST node for Any is a semantic AST.
+      class SemanticAny < SemanticASTNode
+        def initialize(**properties)
+          super(:any, [], properties)
+        end
+
+        def match(parse_node, _)
+          success(parse_node)
         end
       end
 
@@ -387,12 +423,15 @@ module BEL
         end
 
         def match(value_type, _)
+          encoding_set = children
+          return success(value_type) if encoding_set.include?(:*)
+
           return failure(value_type) unless value_type.respond_to?(:encoding)
+
           input_encoding = value_type.encoding
           return failure(value_type) if input_encoding.nil?
 
-          encoding_set = children
-          if encoding_set.any? { |i| i == :* || i == input_encoding }
+          if encoding_set.include?(input_encoding)
             success(value_type)
           else
             failure(value_type)
@@ -452,7 +491,7 @@ module BEL
         ].freeze
 
         def initialize(children = [], **properties)
-          super(:valueType, children, properties)
+          super(:value_type, children, properties)
         end
 
         def terminal?
@@ -466,9 +505,17 @@ module BEL
         def match(value_type, spec)
           return failure(value_type) unless TYPES.include?(value_type.type)
 
-          value_patterns
-            .map { |pattern| pattern.match(value_type, spec) }
-            .find(&:failure?) || success(value_type)
+          value_results = value_patterns.map do |pattern|
+            pattern.match(value_type, spec)
+          end
+
+          failure_result = value_results.flatten.find(&:failure?)
+
+          if failure_result
+            [failure(value_type), failure_result]
+          else
+            value_results.unshift(success(value_type))
+          end
         end
       end
 
