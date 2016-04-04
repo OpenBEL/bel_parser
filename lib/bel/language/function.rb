@@ -27,16 +27,10 @@ module BEL
         raise NotImplementedError, "#{__method__} is not implemented."
       end
 
-      def hash
-        [short, long].hash
-      end
-
-      def ==(other)
+      def ===(other)
         return false if other.nil?
         short == other || long == other
       end
-
-      alias :eql? ==
 
       def to_sym(form = :short)
         value = _form_value(form)

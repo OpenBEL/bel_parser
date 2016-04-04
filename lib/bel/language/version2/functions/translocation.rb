@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/abundance'
 
 module BEL
   module Language
@@ -6,32 +7,33 @@ module BEL
       module Functions
         # Translocation
         class Translocation
-          include Function
+          include BEL::Language::Version2
+          extend Function
 
           SHORT       = :tloc
           LONG        = :translocation
-          RETURN_TYPE = :a
+          RETURN_TYPE = ReturnTypes::Abundance
           DESCRIPTION = 'Denotes the frequency or abundance of events in which
   members move between locations'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

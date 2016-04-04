@@ -8,7 +8,7 @@ module BEL
         # ProteinModification
         class ProteinModification
           include BEL::Language::Version1
-          include BEL::Language::Function
+          extend Function
 
           SHORT       = :pmod
           LONG        = :proteinModification
@@ -16,23 +16,23 @@ module BEL
           DESCRIPTION = 'Denotes a covalently modified protein abundance'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

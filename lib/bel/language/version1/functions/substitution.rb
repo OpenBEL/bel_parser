@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/substitution'
 
 module BEL
   module Language
@@ -6,32 +7,33 @@ module BEL
       module Functions
         # Substitution
         class Substitution
-          include Function
+          include BEL::Language::Version1
+          extend Function
 
           SHORT       = :sub
           LONG        = :substitution
-          RETURN_TYPE = :sub
+          RETURN_TYPE = ReturnTypes::Substitution
           DESCRIPTION = 'Indicates the abundance of proteins with amino acid
   substitution sequence'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

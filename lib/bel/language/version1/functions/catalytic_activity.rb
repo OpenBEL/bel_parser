@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/catalytic_activity'
 
 module BEL
   module Language
@@ -6,32 +7,33 @@ module BEL
       module Functions
         # CatalyticActivity
         class CatalyticActivity
-          include Function
+          include BEL::Language::Version1
+          extend Function
 
           SHORT       = :cat
           LONG        = :catalyticActivity
-          RETURN_TYPE = :a
+          RETURN_TYPE = ReturnTypes::CatalyticActivity
           DESCRIPTION = 'Denotes the frequency or abundance of events where a
   member acts as an enzymatic catalyst of biochecmial reactions'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

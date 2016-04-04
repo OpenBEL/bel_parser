@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/micro_rna_abundance'
 
 module BEL
   module Language
@@ -6,32 +7,33 @@ module BEL
       module Functions
         # MicroRNAAbundance
         class MicroRNAAbundance
-          include Function
+          include BEL::Language::Version1
+          extend Function
 
           SHORT       = :m
           LONG        = :microRNAAbundance
-          RETURN_TYPE = :m
+          RETURN_TYPE = ReturnTypes::MicroRNAAbundance
           DESCRIPTION = 'Denotes the abundance of a processed, functional
   microRNA'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

@@ -8,7 +8,7 @@ module BEL
         # ProteinAbundance
         class ProteinAbundance
           include BEL::Language::Version1
-          include BEL::Language::Function
+          extend Function
 
           SHORT       = :p
           LONG        = :proteinAbundance
@@ -16,23 +16,23 @@ module BEL
           DESCRIPTION = 'Denotes the abundance of a protein'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

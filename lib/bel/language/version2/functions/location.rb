@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/location'
 
 module BEL
   module Language
@@ -6,31 +7,32 @@ module BEL
       module Functions
         # Location
         class Location
-          include Function
+          extend Function
+          include BEL::Language::Version2
 
           SHORT       = :loc
           LONG        = :location
-          RETURN_TYPE = :location
+          RETURN_TYPE = ReturnTypes::Location
           DESCRIPTION = 'Denotes the cellular location of the abundance.'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

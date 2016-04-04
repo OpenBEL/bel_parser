@@ -19,7 +19,7 @@ module BEL
               function(
                 identifier(
                   function_of(
-                    Functions::ComplexAbundanceComposedComplex.new))),
+                    Functions::ComplexAbundanceComposedComplex))),
               variadic_arguments(
                 term(
                   function(

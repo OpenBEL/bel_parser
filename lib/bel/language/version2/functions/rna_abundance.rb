@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/gene_abundance'
 
 module BEL
   module Language
@@ -6,31 +7,32 @@ module BEL
       module Functions
         # RnaAbundance
         class RnaAbundance
-          include Function
+          include BEL::Language::Version2
+          extend Function
 
           SHORT       = :r
           LONG        = :rnaAbundance
-          RETURN_TYPE = :g
+          RETURN_TYPE = ReturnTypes::GeneAbundance
           DESCRIPTION = 'Denotes the abundance of a gene'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

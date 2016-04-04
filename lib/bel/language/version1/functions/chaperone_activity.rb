@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/abundance'
 
 module BEL
   module Language
@@ -6,33 +7,34 @@ module BEL
       module Functions
         # ChaperoneActivity
         class ChaperoneActivity
-          include Function
+          include BEL::Language::Version1
+          extend Function
 
           SHORT       = :chap
           LONG        = :chaperoneActivity
-          RETURN_TYPE = :a
+          RETURN_TYPE = ReturnTypes::Abundance
           DESCRIPTION = 'Denotes the frequency or abundance of events
   in which a member binds to some substrate and acts as a chaperone for
   the substrate'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

@@ -18,7 +18,7 @@ module BEL
               function(
                 identifier(
                   function_of(
-                    Functions::ProteinAbundance.new))),
+                    Functions::ProteinAbundance))),
               argument(
                 parameter(
                   prefix(

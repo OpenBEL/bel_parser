@@ -7,7 +7,7 @@ module BEL
     module Version1
       module Signatures
         # Protein modification signature with covalent modification and
-	# amino acid.
+        # amino acid.
         class ProteinModificationCovalentAminoAcid
           extend BEL::Language::Version1
           extend BEL::Language::Signature
@@ -19,7 +19,7 @@ module BEL
               function(
                 identifier(
                   function_of(
-                    Functions::ProteinModification.new))),
+                    Functions::ProteinModification))),
               argument(
                 parameter(
                   prefix(

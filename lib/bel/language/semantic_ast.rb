@@ -4,14 +4,18 @@ require 'pry'
 
 module BEL
   module Language
+    # Semantics capture BEL version-independent semantics for terms and
+    # statements.
     module Semantics
-
+      # rubocop:disable Metrics/MethodLength
       def self.match(input_ast, semantic_ast, spec, match_results = [])
-        res            = semantic_ast.match(input_ast, spec)
+        res = semantic_ast.match(input_ast, spec)
         match_results << res
         if res.success? && !semantic_ast.terminal?
-          semantic_ast.children.zip(input_ast.children).
-            each do |semantic_child, input_child|
+          semantic_ast
+            .children
+            .zip(input_ast.children)
+            .each do |semantic_child, input_child|
               match(input_child, semantic_child, spec, match_results)
             end
         end
@@ -23,8 +27,9 @@ module BEL
         attr_reader :input_node, :semantic_node
 
         def initialize(success, input_node, semantic_node)
-          @success                    = success
-          @input_node, @semantic_node = input_node, semantic_node
+          @success       = success
+          @input_node    = input_node
+          @semantic_node = semantic_node
         end
 
         def success?
@@ -69,7 +74,7 @@ module BEL
 
         def term(function, *arguments, **properties)
           SemanticTerm.new([function, *arguments], **properties)
-       end
+        end
 
         def function(identifier, **properties)
           SemanticFunction.new([identifier], **properties)
@@ -109,12 +114,10 @@ module BEL
           SemanticIsNil.new(**properties)
         end
 
-        # rubocop:disable Style/PredicateName
         def has_namespace(**properties)
           SemanticHasNamespace.new(**properties)
         end
 
-        # rubocop:disable Style/PredicateName
         def has_encoding(**properties)
           SemanticHasEncoding.new(**properties)
         end
@@ -144,8 +147,8 @@ module BEL
         end
       end
 
+      # SemanticASTNode represents a node in the semantic tree structure.
       class SemanticASTNode < AST::Node
-
         def initialize(type, children = [], **properties)
           super(type, children, properties)
         end
@@ -167,12 +170,11 @@ module BEL
 
       # AST node for Term is a semantic AST.
       class SemanticTerm < SemanticASTNode
-
         def initialize(children = [], **properties)
           super(:term, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, _)
           type == parse_node.type ? success(parse_node) : failure(parse_node)
         end
       end
@@ -183,7 +185,7 @@ module BEL
           super(:statement, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, _)
           type == parse_node.type ? success(parse_node) : failure(parse_node)
         end
       end
@@ -194,7 +196,7 @@ module BEL
           super(:parameter, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, _)
           type == parse_node.type ? success(parse_node) : failure(parse_node)
         end
       end
@@ -205,7 +207,7 @@ module BEL
           super(:function, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, _)
           type == parse_node.type ? success(parse_node) : failure(parse_node)
         end
       end
@@ -216,7 +218,7 @@ module BEL
           super(:argument, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, _)
           type == parse_node.type ? success(parse_node) : failure(parse_node)
         end
       end
@@ -227,7 +229,7 @@ module BEL
           super(:prefix, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, _)
           type == parse_node.type ? success(parse_node) : failure(parse_node)
         end
       end
@@ -238,7 +240,7 @@ module BEL
           super(:value, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, _)
           type == parse_node.type ? success(parse_node) : failure(parse_node)
         end
       end
@@ -253,7 +255,7 @@ module BEL
           true
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, _)
           parse_node.nil? ? success(parse_node) : failure(parse_node)
         end
       end
@@ -275,9 +277,9 @@ module BEL
         def match(identifier, spec)
           return failure(identifier) if type != identifier.type
 
-          value_patterns.
-            map { |pattern| pattern.match(identifier, spec) }.
-            find { |result| result.failure? } || success(identifier)
+          value_patterns
+            .map { |pattern| pattern.match(identifier, spec) }
+            .find(&:failure?) || success(identifier)
         end
       end
 
@@ -287,9 +289,12 @@ module BEL
           super(:has_namespace, [], properties)
         end
 
-        def match(identifier, spec)
-          identifier.respond_to?(:namespace) ?
-            success(identifier) : failure(identifier)
+        def match(identifier, _)
+          if identifier.respond_to?(:namespace)
+            success(identifier)
+          else
+            failure(identifier)
+          end
         end
       end
 
@@ -299,10 +304,10 @@ module BEL
           super(:namespace_of, namespaces, properties)
         end
 
-        def match(identifier, spec)
+        def match(identifier, _)
           return failure(identifier) unless identifier.respond_to?(:namespace)
           input_namespace = identifier.namespace
-          return failure(identifier) if input_namespace == nil
+          return failure(identifier) if input_namespace.nil?
 
           namespace_set = children
           if namespace_set.any? { |i| i == :* || i == input_namespace }
@@ -319,9 +324,12 @@ module BEL
           super(:has_encoding, [], properties)
         end
 
-        def match(value_type, spec)
-          value_type.respond_to?(:encoding) ?
-            success(value_type) : failure(value_type)
+        def match(value_type, _)
+          if value_type.respond_to?(:encoding)
+            success(value_type)
+          else
+            failure(value_type)
+          end
         end
       end
 
@@ -331,10 +339,10 @@ module BEL
           super(:encoding_of, encodings, properties)
         end
 
-        def match(value_type, spec)
+        def match(value_type, _)
           return failure(value_type) unless value_type.respond_to?(:encoding)
           input_encoding = value_type.encoding
-          return failure(value_type) if input_encoding == nil
+          return failure(value_type) if input_encoding.nil?
 
           encoding_set = children
           if encoding_set.any? { |i| i == :* || i == input_encoding }
@@ -358,9 +366,12 @@ module BEL
         def match(identifier, spec)
           return success(identifier) if functions.include?(:*)
 
-          function = identifier.children[0].to_sym
-          functions.include?(function) ?
-            success(identifier) : failure(identifier)
+          function = spec.function(identifier.children[0].to_sym)
+          if functions.include?(function)
+            success(identifier)
+          else
+            failure(identifier)
+          end
         end
       end
 
@@ -378,8 +389,11 @@ module BEL
           return success(identifier) if return_types.include?(:*)
 
           fx_return = spec.function(identifier.children[0].to_sym).return_type
-          return_types.any? { |rt| fx_return <= rt } ?
-            success(identifier) : failure(identifier)
+          if return_types.any? { |rt| fx_return <= rt }
+            success(identifier)
+          else
+            failure(identifier)
+          end
         end
       end
 
@@ -405,9 +419,9 @@ module BEL
         def match(value_type, spec)
           return failure(value_type) unless TYPES.include?(value_type.type)
 
-          value_patterns.
-            map { |pattern| pattern.match(value_type, spec) }.
-            find { |result| result.failure? } || success(value_type)
+          value_patterns
+            .map { |pattern| pattern.match(value_type, spec) }
+            .find(&:failure?) || success(value_type)
         end
       end
 
@@ -422,13 +436,15 @@ module BEL
           children
         end
 
-        def match(value_type, spec)
+        def match(value_type, _)
           string_literal_sym = value_type.children[0].to_sym
-					return success(value_type) if @hashed[:*]
+          return success(value_type) if @hashed[:*]
 
-          @hashed.has_key?(string_literal_sym) ?
-            success(value_type) :
+          if @hashed.key?(string_literal_sym)
+            success(value_type)
+          else
             failure(value_type)
+          end
         end
       end
 
@@ -443,13 +459,15 @@ module BEL
           children
         end
 
-        def match(value_type, spec)
+        def match(value_type, _)
           string_literal_sym = value_type.children[0].to_sym
-					return success(value_type) if @hashed[:*]
+          return success(value_type) if @hashed[:*]
 
-          @hashed.has_key?(string_literal_sym) ?
-            success(value_type) :
+          if @hashed.key?(string_literal_sym)
+            success(value_type)
+          else
             failure(value_type)
+          end
         end
       end
     end

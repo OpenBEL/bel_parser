@@ -18,8 +18,7 @@ module BEL
               function(
                 identifier(
                   function_of(
-                    Functions::ProteinModification.new))))
-            )
+                    Functions::ProteinModification))))
           end
           private_constant :AST
 

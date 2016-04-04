@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/truncation'
 
 module BEL
   module Language
@@ -6,32 +7,33 @@ module BEL
       module Functions
         # Truncation
         class Truncation
-          include Function
+          include BEL::Language::Version1
+          extend Function
 
           SHORT       = :trunc
           LONG        = :truncation
-          RETURN_TYPE = :trunc
+          RETURN_TYPE = ReturnTypes::Truncation
           DESCRIPTION = 'Indicates an abundance of proteins with truncation
   sequence variants'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

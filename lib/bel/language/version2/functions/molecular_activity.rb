@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/molecular_activity'
 
 module BEL
   module Language
@@ -6,32 +7,33 @@ module BEL
       module Functions
         # MolecularActivity
         class MolecularActivity
-          include Function
+          include BEL::Language::Version2
+          extend Function
 
-          SHORT       = :ma
+          SHORT       = :act
           LONG        = :molecularActivity
-          RETURN_TYPE = :molecularActivity
+          RETURN_TYPE = ReturnTypes::MolecularActivity
           DESCRIPTION = 'Denotes the frequency or abundance of events in which a
   member acts as a causal agent at the molecular scale'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

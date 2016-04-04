@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/transcriptional_activity'
 
 module BEL
   module Language
@@ -6,32 +7,33 @@ module BEL
       module Functions
         # TranscriptionalActivity
         class TranscriptionalActivity
-          include Function
+          include BEL::Language::Version1
+          extend Function
 
           SHORT       = :tscript
           LONG        = :transcriptionalActivity
-          RETURN_TYPE = :a
+          RETURN_TYPE = ReturnTypes::TranscriptionalActivity
           DESCRIPTION = 'Denotes the frequency or abundance of events in which a
   member directly acts to control transcription of genes'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end

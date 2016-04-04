@@ -29,10 +29,10 @@ module BEL
           function_classes = Version1::Functions.constants.collect do |symbol|
             const = Version1::Functions.const_get(symbol)
             const if
-              const.respond_to?(:include?) &&
-              const.include?(BEL::Language::Function)
+              const.respond_to?(:short) &&
+              const.respond_to?(:long)
           end
-          @functions = function_classes.compact.map(&:new)
+          @functions = function_classes.compact
           @indexed_functions = index_functions(@functions)
         end
       end

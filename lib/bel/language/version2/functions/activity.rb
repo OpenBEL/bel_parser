@@ -1,4 +1,5 @@
 require_relative '../../function'
+require_relative '../return_types/activity'
 
 module BEL
   module Language
@@ -6,34 +7,35 @@ module BEL
       module Functions
         # Activity
         class Activity
-          include Function
+          extend Function
+          include BEL::Language::Version2
 
           SHORT       = :act
           LONG        = :activity
-          RETURN_TYPE = :a
+          RETURN_TYPE = ReturnTypes::Activity
           DESCRIPTION = 'Specify events resulting from the molecular activity of
   an abundance. The activity function provides distinct terms that enable
   differentiation of the increase or decrease of the molecular activity of a
   protein from changes in the abundance of the protein.'.freeze
           SIGNATURES  = [].freeze
 
-          def short
+          def self.short
             SHORT
           end
 
-          def long
+          def self.long
             LONG
           end
 
-          def return_type
+          def self.return_type
             RETURN_TYPE
           end
 
-          def description
+          def self.description
             DESCRIPTION
           end
 
-          def signatures
+          def self.signatures
             SIGNATURES
           end
         end
