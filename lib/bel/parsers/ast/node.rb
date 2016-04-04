@@ -234,6 +234,21 @@ module BEL
         end
       end
 
+      # AST node representing an argument.
+      class Argument < Node
+        # AST node type
+        @ast_type = :argument
+        # Arguments have semantics (position is meaningful)
+        @has_semantics = true
+
+        # New Argument AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Argument.ast_type, children, properties)
+        end
+      end
+
       # AST node representing a parameter.
       class Parameter < Node
         # AST node type
