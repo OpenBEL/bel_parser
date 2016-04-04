@@ -19,6 +19,15 @@ Dir[
   require_relative "version1/return_types/#{File.basename(path)}"
 end
 
+# Require all version 1.0 signatures
+Dir[
+  File.join(
+    File.dirname(File.expand_path(__FILE__)),
+    'version1', 'signatures', '*.rb')
+].each do |path|
+  require_relative "version1/signatures/#{File.basename(path)}"
+end
+
 module BEL
   module Language
     module Version1

@@ -145,6 +145,10 @@ module BEL
         def amino_acid_of(*amino_acids, **properties)
           SemanticAminoAcidOf.new(amino_acids, **properties)
         end
+
+        def variadic_arguments(*params_or_terms, **properties)
+          SemanticVariadicArguments.new(params_or_terms, **properties)
+        end
       end
 
       # SemanticASTNode represents a node in the semantic tree structure.
@@ -216,6 +220,17 @@ module BEL
       class SemanticArgument < SemanticASTNode
         def initialize(children = [], **properties)
           super(:argument, children, properties)
+        end
+
+        def match(parse_node, _)
+          type == parse_node.type ? success(parse_node) : failure(parse_node)
+        end
+      end
+
+      # AST node for VariadicArguments is a semantic AST.
+      class SemanticVariadicArguments < SemanticASTNode
+        def initialize(children = [], **properties)
+          super(:variadic_arguments, children, properties)
         end
 
         def match(parse_node, _)
