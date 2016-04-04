@@ -4,11 +4,11 @@ require_relative '../../semantic_ast'
 
 module BEL
   module Language
-    module Version1
+    module Version2
       module Signatures
         # RNAAbundance signature.
         class RNAAbundance
-          extend BEL::Language::Version1
+          extend BEL::Language::Version2
           extend BEL::Language::Signature
 
           private_class_method :new

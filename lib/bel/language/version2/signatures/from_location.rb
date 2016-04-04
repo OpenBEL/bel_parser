@@ -4,11 +4,11 @@ require_relative '../../semantic_ast'
 
 module BEL
   module Language
-    module Version1
+    module Version2
       module Signatures
-        # FromLoc signature.
-        class FromLoc
-          extend BEL::Language::Version1
+        # FromLocation signature.
+        class FromLocation
+          extend BEL::Language::Version2
           extend BEL::Language::Signature
 
           private_class_method :new
@@ -17,7 +17,7 @@ module BEL
             term(
               function(
                 identifier(
-                  function_of(nil))),
+                  function_of(BEL::Language::Version2::Functions::FromLocation))),
               argument(
                 parameter(
                   prefix(
@@ -31,7 +31,7 @@ module BEL
           end
           private_constant :AST
 
-          STRING_FORM = 'fromLoc(E:location)fromLoc'.freeze
+          STRING_FORM = 'toLocation(E:location)toLocation'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

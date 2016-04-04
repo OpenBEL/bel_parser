@@ -4,11 +4,11 @@ require_relative '../../semantic_ast'
 
 module BEL
   module Language
-    module Version1
+    module Version2
       module Signatures
         # Translocation signature.
         class Translocation
-          extend BEL::Language::Version1
+          extend BEL::Language::Version2
           extend BEL::Language::Signature
 
           private_class_method :new
@@ -27,16 +27,16 @@ module BEL
                 term(
                   function(
                     identifier(
-                      return_type_of(nil))))),
+                      return_type_of(BEL::Language::Version2::ReturnTypes::FromLocation))))),
               argument(
                 term(
                   function(
                     identifier(
-                      return_type_of(nil))))))
+                      return_type_of(BEL::Language::Version2::ReturnTypes::ToLocation))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'translocation(F:abundance,F:fromLoc,F:toLoc)abundance'.freeze
+          STRING_FORM = 'translocation(F:abundance,F:fromLocation,F:toLocation)abundance'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

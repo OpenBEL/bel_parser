@@ -4,11 +4,11 @@ require_relative '../../semantic_ast'
 
 module BEL
   module Language
-    module Version1
+    module Version2
       module Signatures
         # AbundanceWithMolecularActivity signature.
         class AbundanceWithMolecularActivity
-          extend BEL::Language::Version1
+          extend BEL::Language::Version2
           extend BEL::Language::Signature
 
           private_class_method :new
@@ -32,7 +32,7 @@ module BEL
                 term(
                   function(
                     identifier(
-                      return_type_of(nil))))))
+                      return_type_of(BEL::Language::Version2::ReturnTypes::MolecularActivity))))))
           end
           private_constant :AST
 
