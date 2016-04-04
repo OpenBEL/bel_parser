@@ -2,11 +2,11 @@
 $LOAD_PATH.unshift('lib')
 require 'ast'
 require 'erb'
-require 'bel/language/version1'
+require 'bel/language/version2'
 require 'bel/language/semantic_ast'
-require_relative 'version1_signatures'
+require_relative 'version2_signatures'
 include AST::Sexp
-V1 = BEL::Language::Version1::Specification.new
+V2 = BEL::Language::Version2::Specification.new
 
 class ArgBuilder
   include BEL::Language::Semantics::Builder
@@ -26,7 +26,7 @@ class ArgBuilder
 end
 
 def term_sexp(function_identifier, spec)
-  function = V1.function(function_identifier.to_sym)
+  function = V2.function(function_identifier.to_sym)
   BEL::Language::Semantics::Builder.build do
     term(
       function(
@@ -95,7 +95,7 @@ def ast(string_form)
   return_type = tokens.delete_at(-1)
   arguments   = tokens
 
-  ast = term_sexp(function, V1)
+  ast = term_sexp(function, V2)
   arguments.each do |arg|
     case arg
     when /E:([a-zA-Z]+)/
@@ -106,16 +106,16 @@ def ast(string_form)
       ast = ast  << arg_wild_parameter_sexp
     when /F:([a-zA-Z]+)\.\.\./
       return_type  = Regexp.last_match[1]
-      ast = ast   << variadic_function_return_type_sexp(return_type, V1)
+      ast = ast   << variadic_function_return_type_sexp(return_type, V2)
     when /F:([a-zA-Z]+)/
       return_type  = Regexp.last_match[1]
-      ast = ast   << arg_function_return_type_sexp(return_type, V1)
+      ast = ast   << arg_function_return_type_sexp(return_type, V2)
     end
   end
   ast
 end
 
-OUT_DIR = 'lib/bel/language/version1/gen_signatures'
+OUT_DIR = 'lib/bel/language/version2/gen_signatures'
 template = ERB.new(File.read('semantic_template.erb'))
 Dir.mkdir(OUT_DIR) unless Dir.exists?(OUT_DIR)
 VERSION1_SIGNATURES.each do |data|
@@ -146,10 +146,14 @@ VERSION1_SIGNATURES.each do |data|
     "gtp_bound_activity_of_complex_abundance"
   when "_tp_bound_activity_of_protein_abundance"
     "gtp_bound_activity_of_protein_abundance"
+  when "_na_abundance_with_location"
+    "rna_abundance_with_location"
+  when "_na_abundance_with_variant"
+    "rna_abundance_with_variant"
   else
     file_name
 	end
-  File.open("lib/bel/language/version1/gen_signatures/#{file_name}.rb", 'w') do |f|
+  File.open("lib/bel/language/version2/gen_signatures/#{file_name}.rb", 'w') do |f|
     f.write(contents)
 	end
 end

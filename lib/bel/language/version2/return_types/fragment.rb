@@ -10,7 +10,7 @@ module BEL
           #
           # @note This method should be overridden in subclasses.
           def self.to_sym
-            raise_not_implemented(__method__) if self != Abundance
+            raise_not_implemented(__method__) if self != Fragment
             :fragment
           end
         end
