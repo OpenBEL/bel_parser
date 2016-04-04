@@ -17,6 +17,7 @@ guard(
 ) do
   watch(/^Guardfile$/)
   watch(/^Rakefile$/)
+  watch(%r{^([^/]+)\.rb$})
   watch(%r{^lib/(.+)\.rb$})
   watch(%r{^spec/(.+)\.rb$})
 end
