@@ -178,6 +178,10 @@ module BEL
           SemanticAminoAcidOf.new(amino_acids, **properties)
         end
 
+        def is_amino_acid_range_pattern(**properties)
+          SemanticIsAminoAcidRange.new(**properties)
+        end
+
         def variadic_arguments(*params_or_terms, **properties)
           SemanticVariadicArguments.new(params_or_terms, **properties)
         end
@@ -561,6 +565,20 @@ module BEL
           else
             failure(value_type)
           end
+        end
+      end
+
+      # AST node for IsAminoAcidRange is a semantic AST.
+      class SemanticIsAminoAcidRange < SemanticASTNode
+        def initialize(**properties)
+          super(:is_amino_acid_range, [], properties)
+        end
+
+        def match(string, _)
+          string_literal = string.children[0]
+
+          # TODO: Check string_literal against patterns
+          success(string)
         end
       end
     end
