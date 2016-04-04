@@ -8,16 +8,44 @@ module BEL
     # statements.
     module Semantics
       # rubocop:disable Metrics/MethodLength
+      # rubocop:disable Metrics/AbcSize
       def self.match(input_ast, semantic_ast, spec, match_results = [])
         res = semantic_ast.match(input_ast, spec)
         match_results << res
         if res.success? && !semantic_ast.terminal?
-          semantic_ast
-            .children
-            .zip(input_ast.children)
-            .each do |semantic_child, input_child|
-              match(input_child, semantic_child, spec, match_results)
+          return match_results if semantic_ast.children.empty?
+
+          var_test = semantic_ast.children.any? { |x| x.is_a?(SemanticVariadicArguments) }
+          if var_test
+            test_pairs = input_ast.children.zip(semantic_ast.children).select do |pair|
+              !pair.include?(nil)
             end
+
+            test_pairs.each do |(input_child, semantic_child)|
+              if semantic_child.is_a?(SemanticVariadicArguments)
+                input_children   = input_ast.children
+                input_arguments  = input_children[input_children.index(input_child)..-1]
+                argument_pattern = semantic_child.children.first
+                input_arguments.each do |argument_child|
+                  res = semantic_child.match(argument_child, spec)
+                  match_results << res
+                  if res.success?
+                    param_or_term = argument_child.children.first
+                    match(param_or_term, argument_pattern, spec, match_results)
+                  end
+                end
+              else
+                match(input_child, semantic_child, spec, match_results)
+              end
+            end
+          else
+            semantic_ast
+              .children
+              .zip(input_ast.children)
+              .each do |semantic_child, input_child|
+                match(input_child, semantic_child, spec, match_results)
+              end
+          end
         end
         match_results
       end
@@ -234,7 +262,11 @@ module BEL
         end
 
         def match(parse_node, _)
-          type == parse_node.type ? success(parse_node) : failure(parse_node)
+          if parse_node.type == BEL::Parsers::AST::Argument.ast_type
+            success(parse_node)
+          else
+            failure(parse_node)
+          end
         end
       end
 
