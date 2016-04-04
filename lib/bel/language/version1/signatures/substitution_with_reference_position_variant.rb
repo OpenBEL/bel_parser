@@ -21,28 +21,28 @@ module BEL
               argument(
                 parameter(
                   prefix(
-                    any()),
+                    any),
                   value(
                     value_type(
                       encoding_of(:*))))),
               argument(
                 parameter(
                   prefix(
-                    any()),
+                    any),
                   value(
                     value_type(
                       encoding_of(:*))))),
               argument(
                 parameter(
                   prefix(
-                    any()),
+                    any),
                   value(
                     value_type(
                       encoding_of(:*))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'substitution(E:*,E:*,E:*)substitution'
+          STRING_FORM = 'substitution(E:*,E:*,E:*)substitution'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

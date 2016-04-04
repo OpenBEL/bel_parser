@@ -27,26 +27,26 @@ module BEL
                 parameter(
                   prefix(
                     identifier(
-                      has_namespace(),
+                      has_namespace,
                       namespace_of(:*))),
                   value(
                     value_type(
-                      has_encoding(),
+                      has_encoding,
                       encoding_of(:Abundance))))),
               argument(
                 parameter(
                   prefix(
                     identifier(
-                      has_namespace(),
+                      has_namespace,
                       namespace_of(:*))),
                   value(
                     value_type(
-                      has_encoding(),
+                      has_encoding,
                       encoding_of(:Abundance))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'translocation(F:abundance,E:abundance,E:abundance)abundance'
+          STRING_FORM = 'translocation(F:abundance,E:abundance,E:abundance)abundance'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

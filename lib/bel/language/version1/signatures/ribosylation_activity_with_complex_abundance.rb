@@ -26,7 +26,7 @@ module BEL
           end
           private_constant :AST
 
-          STRING_FORM = 'ribosylationActivity(F:complexAbundance)ribosylationActivity'
+          STRING_FORM = 'ribosylationActivity(F:complexAbundance)ribosylationActivity'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

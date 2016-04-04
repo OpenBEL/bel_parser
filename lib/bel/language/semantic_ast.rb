@@ -195,12 +195,11 @@ module BEL
 
         protected
 
-        def updated(_=nil, children=nil, properties=nil)
+        def updated(_ = nil, children = nil, properties = nil)
           new_children   = children   || @children
           new_properties = properties || {}
 
-          if @children == new_children &&
-              properties.nil?
+          if @children == new_children && properties.nil?
             self
           else
             # Maybe change call?

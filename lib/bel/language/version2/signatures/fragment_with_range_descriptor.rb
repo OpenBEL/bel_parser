@@ -22,23 +22,23 @@ module BEL
                 parameter(
                   prefix(
                     identifier(
-                      has_namespace(),
+                      has_namespace,
                       namespace_of(:*))),
                   value(
                     value_type(
-                      has_encoding(),
+                      has_encoding,
                       encoding_of(:AminoAcidRange))))),
               argument(
                 parameter(
                   prefix(
-                    any()),
+                    any),
                   value(
                     value_type(
                       encoding_of(:*))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'fragment(E:aminoAcidRange,E:*)abundance'
+          STRING_FORM = 'fragment(E:aminoAcidRange,E:*)abundance'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

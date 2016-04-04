@@ -22,16 +22,16 @@ module BEL
                 parameter(
                   prefix(
                     identifier(
-                      has_namespace(),
+                      has_namespace,
                       namespace_of(:*))),
                   value(
                     value_type(
-                      has_encoding(),
+                      has_encoding,
                       encoding_of(:Location))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'toLoc(E:location)toLoc'
+          STRING_FORM = 'toLoc(E:location)toLoc'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

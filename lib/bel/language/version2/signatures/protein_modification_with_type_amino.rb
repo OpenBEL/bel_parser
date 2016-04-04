@@ -22,23 +22,23 @@ module BEL
                 parameter(
                   prefix(
                     identifier(
-                      has_namespace(),
+                      has_namespace,
                       namespace_of(:*))),
                   value(
                     value_type(
-                      has_encoding(),
+                      has_encoding,
                       encoding_of(:ModificationType))))),
               argument(
                 parameter(
                   prefix(
-                    any()),
+                    any),
                   value(
                     value_type(
                       encoding_of(:*))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'proteinModification(E:modificationType,E:*)proteinModification'
+          STRING_FORM = 'proteinModification(E:modificationType,E:*)proteinModification'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

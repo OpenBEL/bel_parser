@@ -31,7 +31,7 @@ module BEL
           end
           private_constant :AST
 
-          STRING_FORM = 'complexAbundance(F:abundance...,F:location)complexAbundance'
+          STRING_FORM = 'complexAbundance(F:abundance...,F:location)complexAbundance'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

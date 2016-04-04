@@ -26,7 +26,7 @@ module BEL
           end
           private_constant :AST
 
-          STRING_FORM = 'catalyticActivity(F:complexAbundance)catalyticActivity'
+          STRING_FORM = 'catalyticActivity(F:complexAbundance)catalyticActivity'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

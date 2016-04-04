@@ -26,7 +26,7 @@ module BEL
           end
           private_constant :AST
 
-          STRING_FORM = 'products(F:abundance...)products'
+          STRING_FORM = 'products(F:abundance...)products'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

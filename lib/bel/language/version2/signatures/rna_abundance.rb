@@ -22,16 +22,16 @@ module BEL
                 parameter(
                   prefix(
                     identifier(
-                      has_namespace(),
+                      has_namespace,
                       namespace_of(:*))),
                   value(
                     value_type(
-                      has_encoding(),
+                      has_encoding,
                       encoding_of(:RnaAbundance))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'rnaAbundance(E:rnaAbundance)geneAbundance'
+          STRING_FORM = 'rnaAbundance(E:rnaAbundance)geneAbundance'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

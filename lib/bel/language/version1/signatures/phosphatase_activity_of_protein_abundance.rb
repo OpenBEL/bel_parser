@@ -26,7 +26,7 @@ module BEL
           end
           private_constant :AST
 
-          STRING_FORM = 'phosphataseActivity(F:proteinAbundance)phosphataseActivity'
+          STRING_FORM = 'phosphataseActivity(F:proteinAbundance)phosphataseActivity'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

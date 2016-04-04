@@ -22,11 +22,11 @@ module BEL
                 parameter(
                   prefix(
                     identifier(
-                      has_namespace(),
+                      has_namespace,
                       namespace_of(:*))),
                   value(
                     value_type(
-                      has_encoding(),
+                      has_encoding,
                       encoding_of(:ProteinAbundance))))),
               argument(
                 term(
@@ -37,16 +37,16 @@ module BEL
                     parameter(
                       prefix(
                         identifier(
-                          has_namespace(),
+                          has_namespace,
                           namespace_of(:*))),
                       value(
                         value_type(
-                          has_encoding(),
+                          has_encoding,
                           encoding_of(:ProteinAbundance))))),
                   argument(
                     parameter(
                       prefix(
-                        any()),
+                        any),
                       value(
                         value_type(
                           encoding_of(:*))))),
@@ -54,16 +54,16 @@ module BEL
                     parameter(
                       prefix(
                         identifier(
-                          has_namespace(),
+                          has_namespace,
                           namespace_of(:*))),
                       value(
                         value_type(
-                          has_encoding(),
+                          has_encoding,
                           encoding_of(:ProteinAbundance))))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'proteinAbundance(E:proteinAbundance,fusion(E:proteinAbundance,E:*,E:proteinAbundance,E:*))proteinAbundance'
+          STRING_FORM = 'proteinAbundance(E:proteinAbundance,fusion(E:proteinAbundance,E:*,E:proteinAbundance,E:*))proteinAbundance'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast

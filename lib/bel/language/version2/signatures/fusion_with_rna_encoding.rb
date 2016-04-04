@@ -22,16 +22,16 @@ module BEL
                 parameter(
                   prefix(
                     identifier(
-                      has_namespace(),
+                      has_namespace,
                       namespace_of(:*))),
                   value(
                     value_type(
-                      has_encoding(),
+                      has_encoding,
                       encoding_of(:RnaAbundance))))),
               argument(
                 parameter(
                   prefix(
-                    any()),
+                    any),
                   value(
                     value_type(
                       encoding_of(:*))))),
@@ -39,23 +39,23 @@ module BEL
                 parameter(
                   prefix(
                     identifier(
-                      has_namespace(),
+                      has_namespace,
                       namespace_of(:*))),
                   value(
                     value_type(
-                      has_encoding(),
+                      has_encoding,
                       encoding_of(:RnaAbundance))))),
               argument(
                 parameter(
                   prefix(
-                    any()),
+                    any),
                   value(
                     value_type(
                       encoding_of(:*))))))
           end
           private_constant :AST
 
-          STRING_FORM = 'fusion(E:rnaAbundance,E:*,E:rnaAbundance,E:*)fusion'
+          STRING_FORM = 'fusion(E:rnaAbundance,E:*,E:rnaAbundance,E:*)fusion'.freeze
           private_constant :STRING_FORM
 
           def self.semantic_ast
