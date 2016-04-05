@@ -1,6 +1,6 @@
 require 'ast'
+require 'bel/quoting'
 require_relative '../parsers/ast/node'
-require 'pry'
 
 module BEL
   module Language
@@ -570,15 +570,24 @@ module BEL
 
       # AST node for IsAminoAcidRange is a semantic AST.
       class SemanticIsAminoAcidRange < SemanticASTNode
+        START_STOP         = /[1-9][0-9]*_[1-9][0-9]*/
+        UNDETERMINED       = /[1?]_[?*]/
+        UNKNOWN_START_STOP = "?"
+
+        include BEL::Quoting
+
         def initialize(**properties)
           super(:is_amino_acid_range, [], properties)
         end
 
-        def match(string, _)
-          string_literal = string.children[0]
-
-          # TODO: Check string_literal against patterns
-          success(string)
+        def match(value_type, _)
+          string_literal = unquote(value_type.children[0])
+          case string_literal
+          when START_STOP, UNDETERMINED, UNKNOWN_START_STOP
+            success(value_type)
+          else
+            failure(value_type)
+          end
         end
       end
     end

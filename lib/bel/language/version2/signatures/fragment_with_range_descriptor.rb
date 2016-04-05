@@ -20,18 +20,13 @@ module BEL
                   function_of(BEL::Language::Version2::Functions::Fragment))),
               argument(
                 parameter(
-                  prefix(
-                    identifier(
-                      has_namespace,
-                      namespace_of(:*))),
+                  prefix(any),
                   value(
                     value_type(
-                      has_encoding,
-                      encoding_of(:AminoAcidRange))))),
+                      is_amino_acid_range_pattern)))),
               argument(
                 parameter(
-                  prefix(
-                    any),
+                  prefix(any),
                   value(
                     value_type(
                       encoding_of(:*))))))

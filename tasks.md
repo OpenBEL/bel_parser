@@ -1,3 +1,23 @@
+Punchlist
+- [x] Amino acid range semantics
+- Associate signatures to functions.
+- Implement semantic API for terms.
+- Report semantic success/failure for BEL Expression parser.
+- Error messages for version1 and version2 semantics.
+
+- Enumerate all synax and semantic checks.
+  - How can all of these be implemented quickly with AST reuse?
+  - Syntax check outlined previously (phone capture).
+
+- Add namespace and encoding properties to expression ASTs.
+  - Add bel.rb as dependency.
+  - Provide AST processor that decorates prefix.identifier nodes with "namespace".
+  - Provide AST processor that decorates value.identifier|string nodes with "encoding".
+  - use RDF Repository plugin and Resource API
+
+
+=====
+
 BEL/BEL Script Parser
 - Syntactic validation of BEL expressions (ASTs)
 - BEL, version 1.0.
@@ -54,6 +74,7 @@ Vocabulary
 
 Documentation
 
+- OpenBEL API documentation
 - Language specification and documentation
 - Provide Integration test documentation
 - Provide full user documentation on new features & functionality available in BEL 2.0

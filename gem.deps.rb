@@ -7,6 +7,7 @@ source 'https://rubygems.org'
 
 # Gems used at runtime.
 gem 'ast'
+gem 'bel'
 
 # Gems used in development.
 gem 'rake'
