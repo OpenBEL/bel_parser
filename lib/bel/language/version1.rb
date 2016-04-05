@@ -1,15 +1,6 @@
 require_relative 'function'
 require_relative 'specification'
 
-# Require all version 1.0 functions.
-Dir[
-  File.join(
-    File.dirname(File.expand_path(__FILE__)),
-    'version1', 'functions', '*.rb')
-].each do |path|
-  require_relative "version1/functions/#{File.basename(path)}"
-end
-
 # Require all version 1.0 return types
 Dir[
   File.join(
@@ -19,13 +10,13 @@ Dir[
   require_relative "version1/return_types/#{File.basename(path)}"
 end
 
-# Require all version 1.0 signatures
+# Require all version 1.0 functions.
 Dir[
   File.join(
     File.dirname(File.expand_path(__FILE__)),
-    'version1', 'signatures', '*.rb')
+    'version1', 'functions', '*.rb')
 ].each do |path|
-  require_relative "version1/signatures/#{File.basename(path)}"
+  require_relative "version1/functions/#{File.basename(path)}"
 end
 
 module BEL

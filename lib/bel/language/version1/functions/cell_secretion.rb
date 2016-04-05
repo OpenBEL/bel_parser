@@ -1,22 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/abundance'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version1
       module Functions
-        # CellSecretion
+        # CellSecretion: Denotes the frequency or abundance of events in which members of an abundance move from cells to regions outside of the cells
         class CellSecretion
-          include BEL::Language::Version1
           extend Function
 
           SHORT       = :sec
           LONG        = :cellSecretion
-          RETURN_TYPE = ReturnTypes::Abundance
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which
-members of an abundance move from cells to regions outside of the
-cells'.freeze
-          SIGNATURES  = [].freeze
+          RETURN_TYPE = BEL::Language::Version1::ReturnTypes::Abundance
+          DESCRIPTION = 'Denotes the frequency or abundance of events in which members of an abundance move from cells to regions outside of the cells'.freeze
 
           def self.short
             SHORT
@@ -37,6 +35,44 @@ cells'.freeze
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class CellSecretionSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(CellSecretion))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version1::ReturnTypes::Abundance))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'cellSecretion(F:abundance)abundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

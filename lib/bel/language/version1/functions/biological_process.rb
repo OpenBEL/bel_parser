@@ -1,20 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/biological_process'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version1
       module Functions
-        # BiologicalProcess
+        # BiologicalProcess: Denotes a process or population of events
         class BiologicalProcess
-          include BEL::Language::Version1
           extend Function
 
           SHORT       = :bp
           LONG        = :biologicalProcess
-          RETURN_TYPE = ReturnTypes::BiologicalProcess
+          RETURN_TYPE = BEL::Language::Version1::ReturnTypes::BiologicalProcess
           DESCRIPTION = 'Denotes a process or population of events'.freeze
-          SIGNATURES  = [].freeze
 
           def self.short
             SHORT
@@ -35,6 +35,49 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class BiologicalProcessSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(BiologicalProcess))),
+                argument(
+                  parameter(
+                    prefix(
+                      identifier(
+                        has_namespace,
+                        namespace_of(:*))),
+                    value(
+                      value_type(
+                        has_encoding,
+                        encoding_of(:BiologicalProcess))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'biologicalProcess(E:biologicalProcess)biologicalProcess'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

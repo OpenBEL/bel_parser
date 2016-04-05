@@ -1,22 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/abundance'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version1
       module Functions
-        # ChaperoneActivity
+        # ChaperoneActivity: Denotes the frequency or abundance of events in which a member binds to some substrate and acts as a chaperone for the substrate
         class ChaperoneActivity
-          include BEL::Language::Version1
           extend Function
 
           SHORT       = :chap
           LONG        = :chaperoneActivity
-          RETURN_TYPE = ReturnTypes::Abundance
-          DESCRIPTION = 'Denotes the frequency or abundance of events
-  in which a member binds to some substrate and acts as a chaperone for
-  the substrate'.freeze
-          SIGNATURES  = [].freeze
+          RETURN_TYPE = BEL::Language::Version1::ReturnTypes::ChaperoneActivity
+          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member binds to some substrate and acts as a chaperone for the substrate'.freeze
 
           def self.short
             SHORT
@@ -37,6 +35,74 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class ChaperoneActivityOfComplexAbundanceSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(ChaperoneActivity))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version1::ReturnTypes::ComplexAbundance))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'chaperoneActivity(F:complexAbundance)chaperoneActivity'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+            class ChaperoneActivityOfProteinAbundanceSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(ChaperoneActivity))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version1::ReturnTypes::ProteinAbundance))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'chaperoneActivity(F:proteinAbundance)chaperoneActivity'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

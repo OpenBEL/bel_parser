@@ -1,21 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/truncation'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version1
       module Functions
-        # Truncation
+        # Truncation: Indicates an abundance of proteins with truncation sequence variants
         class Truncation
-          include BEL::Language::Version1
           extend Function
 
           SHORT       = :trunc
           LONG        = :truncation
-          RETURN_TYPE = ReturnTypes::Truncation
-          DESCRIPTION = 'Indicates an abundance of proteins with truncation
-  sequence variants'.freeze
-          SIGNATURES  = [].freeze
+          RETURN_TYPE = BEL::Language::Version1::ReturnTypes::Truncation
+          DESCRIPTION = 'Indicates an abundance of proteins with truncation sequence variants'.freeze
 
           def self.short
             SHORT
@@ -36,6 +35,46 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class TruncationWithPositionSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(Truncation))),
+                argument(
+                  parameter(
+                    prefix(
+                      any),
+                    value(
+                      value_type(
+                        encoding_of(:*))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'truncation(E:*)truncation'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

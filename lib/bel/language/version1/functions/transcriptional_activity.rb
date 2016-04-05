@@ -1,21 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/transcriptional_activity'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version1
       module Functions
-        # TranscriptionalActivity
+        # TranscriptionalActivity: Denotes the frequency or abundance of events in which a member directly acts to control transcription of genes
         class TranscriptionalActivity
-          include BEL::Language::Version1
           extend Function
 
           SHORT       = :tscript
           LONG        = :transcriptionalActivity
-          RETURN_TYPE = ReturnTypes::TranscriptionalActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a
-  member directly acts to control transcription of genes'.freeze
-          SIGNATURES  = [].freeze
+          RETURN_TYPE = BEL::Language::Version1::ReturnTypes::TranscriptionalActivity
+          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member directly acts to control transcription of genes'.freeze
 
           def self.short
             SHORT
@@ -36,6 +35,74 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class TranscriptionalActivityOfComplexAbundanceSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(TranscriptionalActivity))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version1::ReturnTypes::ComplexAbundance))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'transcriptionalActivity(F:complexAbundance)transcriptionalActivity'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+            class TranscriptionalActivityOfProteinAbundanceSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(TranscriptionalActivity))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version1::ReturnTypes::ProteinAbundance))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'transcriptionalActivity(F:proteinAbundance)transcriptionalActivity'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

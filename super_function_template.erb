@@ -7,14 +7,14 @@ module BEL
   module Language
     module Version1
       module Functions
-        # MolecularActivity: Denotes the frequency or abundance of events in which a member acts as a causal agent at the molecular scale
-        class MolecularActivity
+        # <%= name %>: <%= description %>
+        class <%= name %>
           extend Function
 
-          SHORT       = :act
-          LONG        = :molecularActivity
-          RETURN_TYPE = BEL::Language::Version1::ReturnTypes::MolecularActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member acts as a causal agent at the molecular scale'.freeze
+          SHORT       = :<%= short %>
+          LONG        = :<%= long %>
+          RETURN_TYPE = <%= return_type %>
+          DESCRIPTION = '<%= description %>'.freeze
 
           def self.short
             SHORT
@@ -37,26 +37,18 @@ module BEL
           end
 
           module Signatures
-  
-            class MolecularActivityOfAbundanceSignature
+  <% for sig in signatures %>
+            class <%= sig[:name] %>
               extend BEL::Language::Signature
 
               private_class_method :new
 
               AST = BEL::Language::Semantics::Builder.build do
-                term(
-                function(
-                  identifier(
-                    function_of(MolecularActivity))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BEL::Language::Version1::ReturnTypes::Abundance))))))              
+  <%= sig[:ast] %>              
               end
               private_constant :AST
 
-              STRING_FORM = 'molecularActivity(F:abundance)molecularActivity'.freeze
+              STRING_FORM = '<%= sig[:string_form] %>'.freeze
               private_constant :STRING_FORM
 
               def self.semantic_ast
@@ -67,7 +59,7 @@ module BEL
                 STRING_FORM
               end
             end
-  
+  <% end %>
           end
 
           SIGNATURES = Signatures.constants.map do |const|

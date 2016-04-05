@@ -1,11 +1,11 @@
-require_relative 'activity'
+require_relative 'molecular_activity'
 
 module BEL
   module Language
     module Version1
       module ReturnTypes
         # MolecularActivity return type.
-        class MolecularActivity < Activity
+        class MolecularActivity < Any
           # Return the {Symbol} value.
           #
           # @note This method should be overridden in subclasses.

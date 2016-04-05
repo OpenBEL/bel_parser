@@ -1,21 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/ribosylation_activity'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version1
       module Functions
-        # RibosylationActivity
+        # RibosylationActivity: Denotes the frequency or abundance of events in which a member acts to perform post-translational modification of proteins
         class RibosylationActivity
-          include BEL::Language::Version1
           extend Function
 
           SHORT       = :ribo
           LONG        = :ribosylationActivity
-          RETURN_TYPE = ReturnTypes::RibosylationActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a
-  member acts to perform post-translational modification of proteins'.freeze
-          SIGNATURES  = [].freeze
+          RETURN_TYPE = BEL::Language::Version1::ReturnTypes::RibosylationActivity
+          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member acts to perform post-translational modification of proteins'.freeze
 
           def self.short
             SHORT
@@ -36,6 +35,74 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class RibosylationActivityWithComplexAbundanceSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(RibosylationActivity))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version1::ReturnTypes::ComplexAbundance))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'ribosylationActivity(F:complexAbundance)ribosylationActivity'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+            class RibosylationActivityWithProteinAbundanceSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(RibosylationActivity))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version1::ReturnTypes::ProteinAbundance))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'ribosylationActivity(F:proteinAbundance)ribosylationActivity'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

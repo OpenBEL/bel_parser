@@ -1,21 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/substitution'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version1
       module Functions
-        # Substitution
+        # Substitution: Indicates the abundance of proteins with amino acid substitution sequence
         class Substitution
-          include BEL::Language::Version1
           extend Function
 
           SHORT       = :sub
           LONG        = :substitution
-          RETURN_TYPE = ReturnTypes::Substitution
-          DESCRIPTION = 'Indicates the abundance of proteins with amino acid
-  substitution sequence'.freeze
-          SIGNATURES  = [].freeze
+          RETURN_TYPE = BEL::Language::Version1::ReturnTypes::Substitution
+          DESCRIPTION = 'Indicates the abundance of proteins with amino acid substitution sequence'.freeze
 
           def self.short
             SHORT
@@ -36,6 +35,60 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class SubstitutionWithReferencePositionVariantSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(Substitution))),
+                argument(
+                  parameter(
+                    prefix(
+                      any),
+                    value(
+                      value_type(
+                        encoding_of(:*))))),
+                argument(
+                  parameter(
+                    prefix(
+                      any),
+                    value(
+                      value_type(
+                        encoding_of(:*))))),
+                argument(
+                  parameter(
+                    prefix(
+                      any),
+                    value(
+                      value_type(
+                        encoding_of(:*))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'substitution(E:*,E:*,E:*)substitution'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

@@ -1,20 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/gene_abundance'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version1
       module Functions
-        # GeneAbundance
+        # GeneAbundance: Denotes the abundance of a gene
         class GeneAbundance
-          include BEL::Language::Version1
           extend Function
 
           SHORT       = :g
           LONG        = :geneAbundance
-          RETURN_TYPE = ReturnTypes::GeneAbundance
+          RETURN_TYPE = BEL::Language::Version1::ReturnTypes::GeneAbundance
           DESCRIPTION = 'Denotes the abundance of a gene'.freeze
-          SIGNATURES  = [].freeze
 
           def self.short
             SHORT
@@ -35,6 +35,89 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class GeneAbundanceWithFusionSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(GeneAbundance))),
+                argument(
+                  parameter(
+                    prefix(
+                      identifier(
+                        has_namespace,
+                        namespace_of(:*))),
+                    value(
+                      value_type(
+                        has_encoding,
+                        encoding_of(:GeneAbundance))))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version1::ReturnTypes::Fusion))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'geneAbundance(E:geneAbundance,F:fusion)geneAbundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+            class GeneAbundanceSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(GeneAbundance))),
+                argument(
+                  parameter(
+                    prefix(
+                      identifier(
+                        has_namespace,
+                        namespace_of(:*))),
+                    value(
+                      value_type(
+                        has_encoding,
+                        encoding_of(:GeneAbundance))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'geneAbundance(E:geneAbundance)geneAbundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end
