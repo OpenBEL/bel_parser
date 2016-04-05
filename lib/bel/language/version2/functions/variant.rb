@@ -38,11 +38,12 @@ module BEL
 
           module Signatures
   
-            class Variant
+            class VariantSignature
               extend BEL::Language::Signature
 
               private_class_method :new
 
+              # TODO: More strict prefix validation for variant namespace?
               AST = BEL::Language::Semantics::Builder.build do
                 term(
                 function(
@@ -50,10 +51,7 @@ module BEL
                     function_of(Variant))),
                 argument(
                   parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
+                    prefix(any),
                     value(
                       value_type(
                         has_encoding,
