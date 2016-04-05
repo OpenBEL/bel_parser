@@ -14,14 +14,12 @@
   }
 
   action finish_string {
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   }
 
   action error_string {
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   }
 
   action yield_complete_string {
@@ -43,7 +41,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -69,8 +67,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content

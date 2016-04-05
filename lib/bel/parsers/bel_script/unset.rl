@@ -9,11 +9,11 @@
   UNSET  = [uU][nN][sS][eE][tT];
 
   action unset_keyword {
-    @buffers[:unset] = s(:unset)
+    @buffers[:unset] = unset()
   }
 
   action name  {
-    @buffers[:unset] = @buffers[:unset] << s(:name, @buffers[:ident])
+    @buffers[:unset] = @buffers[:unset] << name(@buffers[:ident])
   }
 
   action yield_set {
@@ -29,7 +29,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -55,8 +55,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content

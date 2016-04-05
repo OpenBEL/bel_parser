@@ -100,6 +100,17 @@ module BEL
             enum_for(:traverse)
           end
         end
+
+        def updated(children = nil, properties = nil)
+          new_children   = children   || @children
+          new_properties = properties || {}
+
+          if @children == new_children && properties.nil?
+            self
+          else
+            original_dup.send :initialize, @type, new_children, new_properties
+          end
+        end
       end
 
       # AST node representing a blank line.
@@ -180,6 +191,11 @@ module BEL
           super(Function.ast_type, children, properties)
         end
 
+        # Get the function's identifier.
+        def identifier
+          children[0]
+        end
+
         # Get the return type property.
         attr_reader :return_type
       end
@@ -217,6 +233,11 @@ module BEL
         def initialize(children = [], properties = {})
           super(Identifier.ast_type, children, properties)
         end
+
+        # Get the string literal.
+        def string_literal
+          children[0]
+        end
       end
 
       # AST node representing a list.
@@ -246,6 +267,41 @@ module BEL
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
           super(Argument.ast_type, children, properties)
+        end
+
+        # Does the argument have a {Parameter} child?
+        def has_parameter?
+          children[0].is_a?(Parameter)
+        end
+
+        # Does the argument have a {Term} child?
+        def has_term?
+          children[0].is_a?(Term)
+        end
+
+        # Get the {Parameter} or {Term} child.
+        def child
+          children[0]
+        end
+      end
+
+      # AST node representing a parameter.
+      class Prefix < Node
+        # AST node type
+        @ast_type = :prefix
+        # Prefix have semantics (indicates namespace)
+        @has_semantics = true
+
+        # New Prefix AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Prefix.ast_type, children, properties)
+        end
+
+        # Get the identifier for the prefix.
+        def identifier
+          children[0]
         end
       end
 
@@ -325,7 +381,7 @@ module BEL
       end
 
       # AST node representing a nested statement.
-      class NestedStatement < Statement
+      class NestedStatement < Node
         # AST node type
         @ast_type = :nested_statement
         # Nested statements have semantics
@@ -350,7 +406,7 @@ module BEL
       end
 
       # AST node representing a observed term statement.
-      class ObservedTerm < Statement
+      class ObservedTerm < Node
         # AST node type
         @ast_type = :observed_term
         # Observed terms have semantics
@@ -365,7 +421,7 @@ module BEL
       end
 
       # AST node representing a simple statement.
-      class SimpleStatement < Statement
+      class SimpleStatement < Node
         # AST node type
         @ast_type = :simple_statement
         # Simple statements have semantics
@@ -389,6 +445,56 @@ module BEL
         end
       end
 
+      # AST node representing the subject of a statement.
+      class Subject < Node
+        # AST node type
+        @ast_type = :subject
+        # Subject have semantics
+        @has_semantics = true
+
+        # New Subject AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Subject.ast_type, children, properties)
+        end
+
+        # Get the subject's term.
+        def term
+          children[0]
+        end
+      end
+
+      # AST node representing the object of a statement.
+      class Object < Node
+        # AST node type
+        @ast_type = :object
+        # Object have semantics
+        @has_semantics = true
+
+        # New Object AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Object.ast_type, children, properties)
+        end
+
+        # Does the object have a {Term} child?
+        def has_term?
+          children[0].is_a?(Term)
+        end
+
+        # Does the object have a {Statement} child?
+        def has_statement?
+          children[0].is_a?(Statement)
+        end
+
+        # Get the {Term} or {Statement} child.
+        def child
+          children[0]
+        end
+      end
+
       # AST node representing a UTF-8 encoded string
       class String < Node
         # AST node type
@@ -401,6 +507,11 @@ module BEL
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
           super(String.ast_type, children, properties)
+        end
+
+        # Get the string literal.
+        def string_literal
+          children[0]
         end
       end
 
@@ -420,7 +531,7 @@ module BEL
 
         # Get the term's function.
         def function
-          # TODO: access children for content
+          children[0]
         end
       end
 
@@ -464,6 +575,84 @@ module BEL
 
         # Get the value's encoding.
         attr_reader :encoding
+      end
+
+      module Sexp
+        def nested_statement(*children)
+          NestedStatement.new(children)
+        end
+
+        def simple_statement(*children)
+          SimpleStatement.new(children)
+        end
+
+        def observed_term(*children)
+          ObservedTerm.new(children)
+        end
+
+        def statement(*children)
+          Statement.new(children)
+        end
+
+        def subject(*children)
+          Subject.new(children)
+        end
+
+        def object(*children)
+          Object.new(children)
+        end
+
+        def relationship(*children)
+          Relationship.new(children)
+        end
+
+        def term(*children)
+          Term.new(children)
+        end
+
+        def function(*children)
+          Function.new(children)
+        end
+
+        def argument(*children)
+          Argument.new(children)
+        end
+
+        def parameter(*children)
+          Parameter.new(children)
+        end
+
+        def prefix(*children)
+          Prefix.new(children)
+        end
+
+        def value(*children)
+          Value.new(children)
+        end
+
+        def identifier(*children)
+          Identifier.new(children)
+        end
+
+        def string(*children)
+          String.new(children)
+        end
+
+        def comment(*children)
+          Comment.new(children)
+        end
+
+        def comment_line(*children)
+          CommentLine.new(children)
+        end
+
+        def annotation_definition(*children)
+          AnnotationDefinition.new(children)
+        end
+
+        def namespace_definition(*children)
+          NamespaceDefinition.new(children)
+        end
       end
     end
   end

@@ -16,45 +16,45 @@
   URL_KW        = [uU][rR][lL];
 
   action annotation_keyword {
-    @buffers[:define_annotation] = s(:define_annotation)
+    @buffers[:define_annotation] = define_annotation()
   }
 
   action keyword {
-    @buffers[:define_annotation] = s(:define_annotation,
-                                     s(:keyword, @buffers[:ident]))
+    @buffers[:define_annotation] = define_annotation(
+                                     keyword(@buffers[:ident]))
   }
 
   action list_keyword {
-    @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain)
+    @buffers[:define_annotation] = @buffers[:define_annotation] << domain()
   }
 
   action pattern_keyword {
-    @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:pattern))
+    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(pattern())
   }
 
   action url_keyword {
-    @buffers[:define_annotation] = @buffers[:define_annotation] << s(:domain, s(:url))
+    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(url())
   }
 
   action pattern {
     keyword, domain              = @buffers[:define_annotation].children
-    domain                       = s(:domain,
+    domain                       = domain(
                                      domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
+    @buffers[:define_annotation] = define_annotation(keyword, domain)
   }
 
   action url {
     keyword, domain              = @buffers[:define_annotation].children
-    domain                       = s(:domain,
+    domain                       = domain(
                                      domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
+    @buffers[:define_annotation] = define_annotation(keyword, domain)
   }
 
   action list {
     keyword, domain              = @buffers[:define_annotation].children
-    domain                       = s(:domain,
+    domain                       = domain(
                                      @buffers[:list])
-    @buffers[:define_annotation] = s(:define_annotation, keyword, domain)
+    @buffers[:define_annotation] = define_annotation(keyword, domain)
   }
 
   action yield_define_annotation {
@@ -75,7 +75,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -101,8 +101,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content

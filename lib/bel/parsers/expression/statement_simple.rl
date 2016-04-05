@@ -8,21 +8,21 @@
   include 'comment.rl';
 
   action statement_subject {
-    @buffers[:subject]    = s(:subject,
+    @buffers[:subject]    = subject(
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   }
 
   action statement_object {
-    @buffers[:object]     = s(:object,
+    @buffers[:object]     = object(
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   }
 
   action yield_statement_simple {
-    @buffers[:comment] ||= s(:comment, nil)
-    yield s(:statement_simple,
-            s(:statement,
+    @buffers[:comment] ||= comment(nil)
+    yield statement_simple(
+            statement(
               @buffers[:subject],
               @buffers[:relationship],
               @buffers[:object],
@@ -45,7 +45,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -71,8 +71,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content

@@ -6,7 +6,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -32,8 +32,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content
@@ -210,8 +210,7 @@ begin
 	when 3 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
@@ -222,8 +221,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -253,8 +251,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin

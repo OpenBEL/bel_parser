@@ -1,6 +1,6 @@
 Punchlist
 - [x] Amino acid range semantics
-- Associate signatures to functions.
+- [x] Associate signatures to functions.
 - Implement semantic API for terms.
 - Report semantic success/failure for BEL Expression parser.
 - Error messages for version1 and version2 semantics.

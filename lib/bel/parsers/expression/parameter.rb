@@ -252,8 +252,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 6 then
@@ -265,8 +264,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 3 then
 		begin
@@ -280,8 +278,7 @@ begin
 	when 13 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
@@ -290,21 +287,18 @@ begin
 	when 11 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @parameter = s(:parameter,
-                   s(:prefix, @buffers[:ident]))
+    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
   		end
 	when 12 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -317,15 +311,13 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 2 then
 		begin
@@ -339,8 +331,7 @@ begin
 	when 15 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
@@ -350,23 +341,20 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 14 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -376,32 +364,30 @@ begin
 	when 9 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @parameter ||= s(:parameter, s(:prefix, nil))
-    @parameter   = @parameter << s(:value, @buffers[:ident])
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
   		end
 		begin
 
-    yield @parameter
+    yield @buffers[:parameter]
   		end
 	when 7 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @parameter ||= s(:parameter, s(:prefix, nil))
-    @parameter   = @parameter << s(:value, @buffers[:string])
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
   		end
 		begin
 
-    yield @parameter
+    yield @buffers[:parameter]
   		end
 	end
 	end
@@ -425,24 +411,21 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 5 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 12 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -455,37 +438,32 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 4 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 14 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -752,8 +730,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 6 then
@@ -765,8 +742,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 3 then
 		begin
@@ -780,8 +756,7 @@ begin
 	when 13 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
@@ -790,21 +765,18 @@ begin
 	when 11 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @parameter = s(:parameter,
-                   s(:prefix, @buffers[:ident]))
+    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
   		end
 	when 12 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -817,15 +789,13 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 2 then
 		begin
@@ -839,8 +809,7 @@ begin
 	when 15 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
@@ -850,23 +819,20 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 14 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -876,32 +842,30 @@ begin
 	when 9 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @parameter ||= s(:parameter, s(:prefix, nil))
-    @parameter   = @parameter << s(:value, @buffers[:ident])
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
   		end
 		begin
 
-    yield @parameter
+    yield @buffers[:parameter]
   		end
 	when 7 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @parameter ||= s(:parameter, s(:prefix, nil))
-    @parameter   = @parameter << s(:value, @buffers[:string])
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
   		end
 		begin
 
-    yield @parameter
+    yield @buffers[:parameter]
   		end
 	end
 	end
@@ -925,24 +889,21 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 5 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 12 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -955,37 +916,32 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 4 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 14 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -1007,6 +963,7 @@ end
 # end: ragel
 
 require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -1032,8 +989,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content
@@ -1302,8 +1259,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 6 then
@@ -1315,8 +1271,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 3 then
 		begin
@@ -1330,8 +1285,7 @@ begin
 	when 13 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
@@ -1340,21 +1294,18 @@ begin
 	when 11 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @parameter = s(:parameter,
-                   s(:prefix, @buffers[:ident]))
+    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
   		end
 	when 12 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -1367,15 +1318,13 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 2 then
 		begin
@@ -1389,8 +1338,7 @@ begin
 	when 15 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
@@ -1400,23 +1348,20 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 14 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -1426,32 +1371,30 @@ begin
 	when 9 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @parameter ||= s(:parameter, s(:prefix, nil))
-    @parameter   = @parameter << s(:value, @buffers[:ident])
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
   		end
 		begin
 
-    yield @parameter
+    yield @buffers[:parameter]
   		end
 	when 7 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @parameter ||= s(:parameter, s(:prefix, nil))
-    @parameter   = @parameter << s(:value, @buffers[:string])
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
   		end
 		begin
 
-    yield @parameter
+    yield @buffers[:parameter]
   		end
 	end
 	end
@@ -1475,24 +1418,21 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 5 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 12 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -1505,37 +1445,32 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 4 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 14 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 

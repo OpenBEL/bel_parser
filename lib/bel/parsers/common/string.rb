@@ -6,7 +6,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -32,8 +32,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content
@@ -196,8 +196,7 @@ begin
 	when 4 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
@@ -207,8 +206,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -236,8 +234,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 

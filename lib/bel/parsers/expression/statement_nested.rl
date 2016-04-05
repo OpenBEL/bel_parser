@@ -6,11 +6,11 @@
   include 'statement_simple.rl';
 
   action statement_init {
-    @buffers[:statement_stack] = [ s(:statement) ]
+    @buffers[:statement_stack] = [ statement() ]
   }
 
   action inner_statement_init {
-    @buffers[:statement_stack] << s(:statement)
+    @buffers[:statement_stack] << statement()
   }
 
   action ast_subject {
@@ -22,7 +22,7 @@
   }
 
   action ast_object {
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << s(:object, @buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
   }
 
   action statement_object_statement {
@@ -36,12 +36,12 @@
   action fret {
     inner_statement = @buffers[:statement_stack].pop
     @buffers[:object] = inner_statement
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << s(:object, inner_statement)
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(inner_statement)
     fret;
   }
 
   action yield_statement_nested {
-    yield s(:nested_statement, @buffers[:statement_stack][-1])
+    yield nested_statement(@buffers[:statement_stack][-1])
   }
 
   inner_statement :=
@@ -73,7 +73,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -99,8 +99,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content

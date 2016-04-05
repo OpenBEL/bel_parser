@@ -8,22 +8,21 @@
   include 'string.rl';
 
   action prefix {
-    @parameter = s(:parameter,
-                   s(:prefix, @buffers[:ident]))
+    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
   }
 
   action string {
-    @parameter ||= s(:parameter, s(:prefix, nil))
-    @parameter   = @parameter << s(:value, @buffers[:string])
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
   }
 
   action ident {
-    @parameter ||= s(:parameter, s(:prefix, nil))
-    @parameter   = @parameter << s(:value, @buffers[:ident])
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
   }
 
   action yield_parameter_ast {
-    yield @parameter
+    yield @buffers[:parameter]
   }
 
   BEL_PARAMETER  = (IDENT ':')? @prefix SP* (STRING %string | IDENT %ident);
@@ -33,6 +32,7 @@
 # end: ragel
 
 require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -58,8 +58,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content

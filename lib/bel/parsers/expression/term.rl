@@ -14,26 +14,25 @@
   }
 
   action finish_function {
-    @buffers[:function] = s(:identifier,
-                            utf8_string(@buffers[:function]))
+    @buffers[:function] = identifier(utf8_string(@buffers[:function]))
   }
 
   action term_init {
-    @buffers[:term_stack] = [ s(:term) ]
+    @buffers[:term_stack] = [ term() ]
   }
 
   action inner_term_init {
-    @buffers[:term_stack] << s(:term)
+    @buffers[:term_stack] << term()
   }
 
   action term_fx {
     fx                        = @buffers[:function]
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:function, fx)
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   }
 
   action term_argument {
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, @parameter)
-    @parameter                = nil
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << argument(@buffers[:parameter])
+    @buffers[:parameter]      = nil
   }
 
   action fxbt {
@@ -43,7 +42,7 @@
 
   action fxret {
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << s(:argument, inner_term)
+    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << argument(inner_term)
     fret;
   }
 
@@ -91,7 +90,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -117,8 +116,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content

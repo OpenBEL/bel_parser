@@ -380,8 +380,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 9 then
@@ -393,18 +392,17 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 1 then
 		begin
 
-    @buffers[:define_namespace] = s(:define_namespace)
+    @buffers[:define_namespace] = define_namespace()
   		end
 	when 6 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+    @buffers[:define_namespace] = @buffers[:define_namespace] << domain(url())
   		end
 	when 12 then
 		begin
@@ -423,8 +421,7 @@ begin
 	when 14 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
@@ -433,20 +430,18 @@ begin
 	when 4 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+    @buffers[:define_namespace] = @buffers[:define_namespace] << keyword(@buffers[:ident])
   		end
 	when 13 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -466,8 +461,7 @@ begin
 	when 16 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
@@ -476,22 +470,20 @@ begin
 	when 10 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
     keyword, domain             = @buffers[:define_namespace].children
-    domain                      = s(:domain,
+    domain                      = domain(
                                      domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
+    @buffers[:define_namespace] = define_namespace(keyword, domain)
   		end
 	when 15 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -501,15 +493,14 @@ begin
 	when 11 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
     keyword, domain             = @buffers[:define_namespace].children
-    domain                      = s(:domain,
+    domain                      = domain(
                                      domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
+    @buffers[:define_namespace] = define_namespace(keyword, domain)
   		end
 		begin
 
@@ -537,24 +528,21 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 7 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 13 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -566,8 +554,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -962,8 +949,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 9 then
@@ -975,18 +961,17 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 1 then
 		begin
 
-    @buffers[:define_namespace] = s(:define_namespace)
+    @buffers[:define_namespace] = define_namespace()
   		end
 	when 6 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+    @buffers[:define_namespace] = @buffers[:define_namespace] << domain(url())
   		end
 	when 12 then
 		begin
@@ -1005,8 +990,7 @@ begin
 	when 14 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
@@ -1015,20 +999,18 @@ begin
 	when 4 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+    @buffers[:define_namespace] = @buffers[:define_namespace] << keyword(@buffers[:ident])
   		end
 	when 13 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -1048,8 +1030,7 @@ begin
 	when 16 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
@@ -1058,22 +1039,20 @@ begin
 	when 10 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
     keyword, domain             = @buffers[:define_namespace].children
-    domain                      = s(:domain,
+    domain                      = domain(
                                      domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
+    @buffers[:define_namespace] = define_namespace(keyword, domain)
   		end
 	when 15 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -1083,15 +1062,14 @@ begin
 	when 11 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
     keyword, domain             = @buffers[:define_namespace].children
-    domain                      = s(:domain,
+    domain                      = domain(
                                      domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
+    @buffers[:define_namespace] = define_namespace(keyword, domain)
   		end
 		begin
 
@@ -1119,24 +1097,21 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 7 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 13 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -1148,8 +1123,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -1170,7 +1144,7 @@ end
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -1196,8 +1170,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content
@@ -1595,8 +1569,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 9 then
@@ -1608,18 +1581,17 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 1 then
 		begin
 
-    @buffers[:define_namespace] = s(:define_namespace)
+    @buffers[:define_namespace] = define_namespace()
   		end
 	when 6 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+    @buffers[:define_namespace] = @buffers[:define_namespace] << domain(url())
   		end
 	when 12 then
 		begin
@@ -1638,8 +1610,7 @@ begin
 	when 14 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
@@ -1648,20 +1619,18 @@ begin
 	when 4 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+    @buffers[:define_namespace] = @buffers[:define_namespace] << keyword(@buffers[:ident])
   		end
 	when 13 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -1681,8 +1650,7 @@ begin
 	when 16 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
@@ -1691,22 +1659,20 @@ begin
 	when 10 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
     keyword, domain             = @buffers[:define_namespace].children
-    domain                      = s(:domain,
+    domain                      = domain(
                                      domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
+    @buffers[:define_namespace] = define_namespace(keyword, domain)
   		end
 	when 15 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -1716,15 +1682,14 @@ begin
 	when 11 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
     keyword, domain             = @buffers[:define_namespace].children
-    domain                      = s(:domain,
+    domain                      = domain(
                                      domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
+    @buffers[:define_namespace] = define_namespace(keyword, domain)
   		end
 		begin
 
@@ -1752,24 +1717,21 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 	when 7 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 	when 13 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -1781,8 +1743,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 

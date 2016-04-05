@@ -265,7 +265,7 @@ begin
 	when 2 then
 		begin
 
-    @buffers[:list] = s(:list)
+    @buffers[:list] = list()
   		end
 	when 12 then
 		begin
@@ -280,7 +280,7 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 5 then
@@ -295,8 +295,7 @@ begin
 	when 20 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
@@ -307,8 +306,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -328,8 +326,7 @@ begin
 	when 22 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
@@ -339,8 +336,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -350,12 +346,11 @@ begin
 	when 15 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -368,12 +363,11 @@ begin
 	when 8 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -386,12 +380,11 @@ begin
 	when 16 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -409,12 +402,11 @@ begin
 	when 18 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -433,14 +425,13 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -452,18 +443,17 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 9 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -481,12 +471,11 @@ begin
 	when 10 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -504,13 +493,12 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -522,33 +510,31 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 3 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -560,7 +546,7 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	end
@@ -583,7 +569,7 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 19 then
@@ -591,8 +577,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -604,8 +589,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -617,14 +601,13 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -636,20 +619,19 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 6 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -661,33 +643,31 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 3 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -699,7 +679,7 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	  end
@@ -975,7 +955,7 @@ begin
 	when 2 then
 		begin
 
-    @buffers[:list] = s(:list)
+    @buffers[:list] = list()
   		end
 	when 12 then
 		begin
@@ -990,7 +970,7 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 5 then
@@ -1005,8 +985,7 @@ begin
 	when 20 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
@@ -1017,8 +996,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -1038,8 +1016,7 @@ begin
 	when 22 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
@@ -1049,8 +1026,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -1060,12 +1036,11 @@ begin
 	when 15 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1078,12 +1053,11 @@ begin
 	when 8 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -1096,12 +1070,11 @@ begin
 	when 16 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1119,12 +1092,11 @@ begin
 	when 18 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1143,14 +1115,13 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1162,18 +1133,17 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 9 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -1191,12 +1161,11 @@ begin
 	when 10 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -1214,13 +1183,12 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -1232,33 +1200,31 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 3 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1270,7 +1236,7 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	end
@@ -1293,7 +1259,7 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 19 then
@@ -1301,8 +1267,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -1314,8 +1279,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -1327,14 +1291,13 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1346,20 +1309,19 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 6 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -1371,33 +1333,31 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 3 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1409,7 +1369,7 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	  end
@@ -1426,7 +1386,7 @@ end
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -1452,8 +1412,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content
@@ -1735,7 +1695,7 @@ begin
 	when 2 then
 		begin
 
-    @buffers[:list] = s(:list)
+    @buffers[:list] = list()
   		end
 	when 12 then
 		begin
@@ -1750,7 +1710,7 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 5 then
@@ -1765,8 +1725,7 @@ begin
 	when 20 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
@@ -1777,8 +1736,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -1798,8 +1756,7 @@ begin
 	when 22 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
@@ -1809,8 +1766,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -1820,12 +1776,11 @@ begin
 	when 15 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1838,12 +1793,11 @@ begin
 	when 8 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -1856,12 +1810,11 @@ begin
 	when 16 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1879,12 +1832,11 @@ begin
 	when 18 then
 		begin
 
-    @buffers[:ident] = s(:identifier,
-                         utf8_string(@buffers[:ident]))
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1903,14 +1855,13 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -1922,18 +1873,17 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 9 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -1951,12 +1901,11 @@ begin
 	when 10 then
 		begin
 
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]))
+    @buffers[:string] = string(utf8_string(@buffers[:string]))
   		end
 		begin
 
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -1974,13 +1923,12 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -1992,33 +1940,31 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 3 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -2030,7 +1976,7 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	end
@@ -2053,7 +1999,7 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 19 then
@@ -2061,8 +2007,7 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
@@ -2074,8 +2019,7 @@ begin
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
@@ -2087,14 +2031,13 @@ begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -2106,20 +2049,19 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 6 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
@@ -2131,33 +2073,31 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	when 3 then
 		begin
 
     @buffers[:string] ||= []
-    @buffers[:string] = s(:string,
-                          utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   		end
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
       @buffers[:ident] ||= []
-      @buffers[:ident]   = s(:identifier,
-                             utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   		end
 		begin
 
@@ -2169,7 +2109,7 @@ begin
   		end
 		begin
 
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
 	  end

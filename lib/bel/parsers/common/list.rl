@@ -12,15 +12,15 @@
   }
 
   action string {
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   }
 
   action ident {
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   }
 
   action start_list {
-    @buffers[:list] = s(:list)
+    @buffers[:list] = list()
   }
 
   action append_list {
@@ -37,12 +37,12 @@
 
   action error_list_string {
     #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:string])
+    @buffers[:list_arg] = list_item(@buffers[:string])
   }
 
   action error_list_ident {
     #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = s(:list_item, @buffers[:ident])
+    @buffers[:list_arg] = list_item(@buffers[:ident])
   }
 
   action yield_complete_list {
@@ -50,7 +50,7 @@
   }
 
   action yield_error_list {
-    @buffers[:list] ||= s(:list)
+    @buffers[:list] ||= list()
     yield @buffers[:list]
   }
 
@@ -78,7 +78,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -104,8 +104,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content

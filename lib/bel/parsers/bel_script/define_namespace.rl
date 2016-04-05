@@ -13,22 +13,22 @@
   URL_KW        = [uU][rR][lL];
 
   action namespace_keyword {
-    @buffers[:define_namespace] = s(:define_namespace)
+    @buffers[:define_namespace] = define_namespace()
   }
 
   action keyword {
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:keyword, @buffers[:ident])
+    @buffers[:define_namespace] = @buffers[:define_namespace] << keyword(@buffers[:ident])
   }
 
   action url_keyword {
-    @buffers[:define_namespace] = @buffers[:define_namespace] << s(:domain, s(:url))
+    @buffers[:define_namespace] = @buffers[:define_namespace] << domain(url())
   }
 
   action string {
     keyword, domain             = @buffers[:define_namespace].children
-    domain                      = s(:domain,
+    domain                      = domain(
                                      domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = s(:define_namespace, keyword, domain)
+    @buffers[:define_namespace] = define_namespace(keyword, domain)
   }
 
   action yield_define_namespace {
@@ -54,7 +54,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -80,8 +80,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content

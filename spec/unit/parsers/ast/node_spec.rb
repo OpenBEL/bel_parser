@@ -127,9 +127,9 @@ describe BEL::Parsers::AST::Node do
         it 'return identical objects' do
           # expectations are for object identity, not equality
           node1 = cls.new(:test_type, [])
-          node2 = node1.updated(:test_type, [])
+          node2 = node1.updated([])
           expect(node1).to be(node2)
-          node2 = node1.updated(:test_type, nil)
+          node2 = node1.updated(nil)
           expect(node1).to be(node2)
         end
       end
@@ -150,22 +150,13 @@ describe BEL::Parsers::AST::Node do
         end
       end
 
-      context 'with different types' do
-        it 'return a different object' do
-          # expectations are for object equality, not identity
-          node1 = cls.new('test_type')
-          node2 = node1.updated('new_type')
-          expect(node1).not_to eq(node2)
-        end
-      end
-
       context 'with different children' do
         it 'return a different object' do
           # expectations are for object equality, not identity
           node1 = cls.new('test_type', [0])
-          node2 = node1.updated('test_type', [1])
+          node2 = node1.updated([1])
           expect(node1).not_to eq(node2)
-          node2 = node1.updated('test_type', [1])
+          node2 = node1.updated([2])
           expect(node1).not_to eq(node2)
         end
       end
@@ -175,7 +166,7 @@ describe BEL::Parsers::AST::Node do
           # expectations are for object equality, not identity
           children = [:Collin, :Tessa]
           node1 = cls.new('test_type', children)
-          node2 = node1.updated('test_type', [:Collin, :Tessa, :Oliver])
+          node2 = node1.updated([:Collin, :Tessa, :Oliver])
           expect(node1).not_to eq(node2)
         end
       end
@@ -187,7 +178,7 @@ describe BEL::Parsers::AST::Node do
           node1 = cls.new('test_type', children)
           # No one liked Oliver anyway...
           children = [:Collin, :Tessa]
-          node2 = node1.updated('test_type', children)
+          node2 = node1.updated(children)
           expect(node1).not_to eq(node2)
         end
       end

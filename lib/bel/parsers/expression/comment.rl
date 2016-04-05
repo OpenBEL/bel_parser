@@ -14,12 +14,12 @@
   }
 
   action finish_comment {
-    @buffers[:comment] = s(:comment,
+    @buffers[:comment] = comment(
                            utf8_string(@buffers[:comment]))
   }
 
   action yield_comment {
-    yield @buffers[:comment] || s(:comment, nil)
+    yield @buffers[:comment] || comment(nil)
   }
 
   COMMENT = '//' ^NL+ >start_comment $append_comment %finish_comment;
@@ -31,7 +31,7 @@
 =end
 # end: ragel
 
-require          'ast'
+require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 
@@ -57,8 +57,8 @@ module BEL
 
         class Parser
           include Enumerable
-          include ::AST::Sexp
           include BEL::Parsers::Buffer
+          include BEL::Parsers::AST::Sexp
 
           def initialize(content)
             @content = content
