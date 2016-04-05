@@ -1,20 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/gene_abundance'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version2
       module Functions
-        # RnaAbundance
-        class RnaAbundance
-          include BEL::Language::Version2
+        # RNAAbundance: Denotes the abundance of a gene
+        class RNAAbundance
           extend Function
 
           SHORT       = :r
           LONG        = :rnaAbundance
-          RETURN_TYPE = ReturnTypes::GeneAbundance
+          RETURN_TYPE = BEL::Language::Version2::ReturnTypes::GeneAbundance
           DESCRIPTION = 'Denotes the abundance of a gene'.freeze
-          SIGNATURES  = [].freeze
 
           def self.short
             SHORT
@@ -35,6 +35,159 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class RNAAbundance
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(RNAAbundance))),
+                argument(
+                  parameter(
+                    prefix(
+                      identifier(
+                        has_namespace,
+                        namespace_of(:*))),
+                    value(
+                      value_type(
+                        has_encoding,
+                        encoding_of(:RnaAbundance))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'rnaAbundance(E:rnaAbundance)geneAbundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+            class RNAAbundanceWithFusion
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(RNAAbundance))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version2::ReturnTypes::Fusion))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'rnaAbundance(F:fusion)geneAbundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+            class RNAAbundanceWithLocation
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(RNAAbundance))),
+                argument(
+                  parameter(
+                    prefix(
+                      identifier(
+                        has_namespace,
+                        namespace_of(:*))),
+                    value(
+                      value_type(
+                        has_encoding,
+                        encoding_of(:RnaAbundance))))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version2::ReturnTypes::Location))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'rnaAbundance(E:rnaAbundance,F:location)geneAbundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+            class RNAAbundanceWithVariant
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(RNAAbundance))),
+                argument(
+                  parameter(
+                    prefix(
+                      identifier(
+                        has_namespace,
+                        namespace_of(:*))),
+                    value(
+                      value_type(
+                        has_encoding,
+                        encoding_of(:RnaAbundance))))),
+                argument(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version2::ReturnTypes::Variant))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'rnaAbundance(E:rnaAbundance,F:variant)geneAbundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

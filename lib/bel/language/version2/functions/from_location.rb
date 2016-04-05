@@ -1,20 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/from_location'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version2
       module Functions
-        # FromLocation
+        # FromLocation: Denotes the from cellular location of the abundance.
         class FromLocation
           extend Function
-          include BEL::Language::Version2
 
           SHORT       = :fromLoc
           LONG        = :fromLocation
-          RETURN_TYPE = ReturnTypes::FromLocation
+          RETURN_TYPE = BEL::Language::Version2::ReturnTypes::FromLocation
           DESCRIPTION = 'Denotes the from cellular location of the abundance.'.freeze
-          SIGNATURES  = [].freeze
 
           def self.short
             SHORT
@@ -35,6 +35,49 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class FromLocationSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(FromLocation))),
+                argument(
+                  parameter(
+                    prefix(
+                      identifier(
+                        has_namespace,
+                        namespace_of(:*))),
+                    value(
+                      value_type(
+                        has_encoding,
+                        encoding_of(:Location))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'fromLocation(E:location)fromLocation'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

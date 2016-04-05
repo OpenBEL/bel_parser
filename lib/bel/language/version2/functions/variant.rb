@@ -1,21 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/variant'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version2
       module Functions
-        # Variant
+        # Variant: Denotes a sequence variant of the specified abundance.
         class Variant
           extend Function
-          include BEL::Language::Version2
 
           SHORT       = :var
           LONG        = :variant
-          RETURN_TYPE = ReturnTypes::Variant
-          DESCRIPTION = 'Denotes a sequence variant of the specified
-  abundance.'.freeze
-          SIGNATURES  = [].freeze
+          RETURN_TYPE = BEL::Language::Version2::ReturnTypes::Variant
+          DESCRIPTION = 'Denotes a sequence variant of the specified abundance.'.freeze
 
           def self.short
             SHORT
@@ -36,6 +35,49 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class Variant
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(Variant))),
+                argument(
+                  parameter(
+                    prefix(
+                      identifier(
+                        has_namespace,
+                        namespace_of(:*))),
+                    value(
+                      value_type(
+                        has_encoding,
+                        encoding_of(:HgvsVariantDescription))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'variant(E:hgvsVariantDescription)variant'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

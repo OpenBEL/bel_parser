@@ -1,21 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/fragment'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version2
       module Functions
-        # Fragment
+        # Fragment: Denotes a protein fragment, e.g., a product of proteolytic cleavage.
         class Fragment
           extend Function
-          include BEL::Language::Version2
 
           SHORT       = :frag
           LONG        = :fragment
-          RETURN_TYPE = ReturnTypes::Fragment
-          DESCRIPTION = 'Denotes a protein fragment, e.g., a product of
-  proteolytic cleavage.'.freeze
-          SIGNATURES  = [].freeze
+          RETURN_TYPE = BEL::Language::Version2::ReturnTypes::Fragment
+          DESCRIPTION = 'Denotes a protein fragment, e.g., a product of proteolytic cleavage.'.freeze
 
           def self.short
             SHORT
@@ -36,6 +35,83 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class FragmentWithRangeSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                  function(
+                    identifier(
+                      function_of(Fragment))),
+                  argument(
+                    parameter(
+                      prefix(any),
+                      value(
+                        value_type(
+                          is_amino_acid_range_pattern)))))
+              end
+              private_constant :AST
+
+              STRING_FORM = 'fragment(E:aminoAcidRange)abundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+            class FragmentWithRangeDescriptorSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                  function(
+                    identifier(
+                      function_of(Fragment))),
+                  argument(
+                    parameter(
+                      prefix(any),
+                      value(
+                        value_type(
+                          is_amino_acid_range_pattern)))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'fragment(E:aminoAcidRange,E:*)abundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

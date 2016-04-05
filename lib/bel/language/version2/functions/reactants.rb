@@ -1,20 +1,20 @@
+require_relative '../../version1'
 require_relative '../../function'
-require_relative '../return_types/reactants'
+require_relative '../../signature'
+require_relative '../../semantic_ast'
 
 module BEL
   module Language
     module Version2
       module Functions
-        # Reactants
+        # Reactants: Denotes the reactants of a reaction
         class Reactants
-          include BEL::Language::Version2
           extend Function
 
           SHORT       = :reactants
           LONG        = :reactants
-          RETURN_TYPE = ReturnTypes::Reactants
+          RETURN_TYPE = BEL::Language::Version2::ReturnTypes::Reactants
           DESCRIPTION = 'Denotes the reactants of a reaction'.freeze
-          SIGNATURES  = [].freeze
 
           def self.short
             SHORT
@@ -35,6 +35,44 @@ module BEL
           def self.signatures
             SIGNATURES
           end
+
+          module Signatures
+  
+            class ReactantsSignature
+              extend BEL::Language::Signature
+
+              private_class_method :new
+
+              AST = BEL::Language::Semantics::Builder.build do
+                term(
+                function(
+                  identifier(
+                    function_of(Reactants))),
+                variadic_arguments(
+                  term(
+                    function(
+                      identifier(
+                        return_type_of(BEL::Language::Version2::ReturnTypes::Abundance))))))              
+              end
+              private_constant :AST
+
+              STRING_FORM = 'reactants(F:abundance...)reactants'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+  
+          end
+
+          SIGNATURES = Signatures.constants.map do |const|
+            Signatures.const_get(const)
+          end.freeze
         end
       end
     end

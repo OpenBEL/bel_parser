@@ -4,7 +4,7 @@ require 'bel/language/semantic_ast'
 require 'bel/parsers/expression'
 
 include AST::Sexp
-V2 = BEL::Language::Version2
+FX = BEL::Language::Version2::Functions
 
 MATCHES = [
   {
@@ -18,7 +18,7 @@ MATCHES = [
             s(:prefix, nil),
             s(:value,
               s(:identifier, '5_20'))))),
-    semantic: V2::Signatures::FragmentWithRange.semantic_ast
+    semantic: FX::Fragment::Signatures::FragmentWithRangeSignature.semantic_ast
   },
   {
     test: 'fragment, range and descriptor: fragment(5_20, 55kD)fragment',
@@ -36,6 +36,6 @@ MATCHES = [
 						s(:prefix, nil),
 						s(:value,
 							s(:identifier, "55kD"))))),
-    semantic: V2::Signatures::FragmentWithRangeDescriptor.semantic_ast
+    semantic: FX::Fragment::Signatures::FragmentWithRangeDescriptorSignature.semantic_ast
   }
 ].freeze
