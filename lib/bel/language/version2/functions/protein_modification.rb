@@ -43,6 +43,7 @@ module BEL
 
               private_class_method :new
 
+              # TODO: More strict prefix validation for modification type?
               AST = BEL::Language::Semantics::Builder.build do
                 term(
                 function(
@@ -50,10 +51,7 @@ module BEL
                     function_of(ProteinModification))),
                 argument(
                   parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
+                    prefix(any),
                     value(
                       value_type(
                         has_encoding,
@@ -78,6 +76,7 @@ module BEL
 
               private_class_method :new
 
+              # TODO: More strict prefix validation for modification type?
               AST = BEL::Language::Semantics::Builder.build do
                 term(
                 function(
@@ -85,18 +84,14 @@ module BEL
                     function_of(ProteinModification))),
                 argument(
                   parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
+                    prefix(any),
                     value(
                       value_type(
                         has_encoding,
                         encoding_of(:ModificationType))))),
                 argument(
                   parameter(
-                    prefix(
-                      any),
+                    prefix(any),
                     value(
                       value_type(
                         encoding_of(:*))))))              
@@ -120,6 +115,7 @@ module BEL
 
               private_class_method :new
 
+              # TODO: More strict prefix validation for modification type?
               AST = BEL::Language::Semantics::Builder.build do
                 term(
                 function(
@@ -127,25 +123,20 @@ module BEL
                     function_of(ProteinModification))),
                 argument(
                   parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
+                    prefix(any),
                     value(
                       value_type(
                         has_encoding,
                         encoding_of(:ModificationType))))),
                 argument(
                   parameter(
-                    prefix(
-                      any),
+                    prefix(any),
                     value(
                       value_type(
                         encoding_of(:*))))),
                 argument(
                   parameter(
-                    prefix(
-                      any),
+                    prefix(any),
                     value(
                       value_type(
                         encoding_of(:*))))))              

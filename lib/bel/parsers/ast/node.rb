@@ -101,6 +101,12 @@ module BEL
           end
         end
 
+        def freeze
+          # no freeze...nothing
+          # I want to be able to modify properties!
+          self
+        end
+
         def updated(children = nil, properties = nil)
           new_children   = children   || @children
           new_properties = properties || {}
@@ -108,9 +114,27 @@ module BEL
           if @children == new_children && properties.nil?
             self
           else
-            original_dup.send :initialize, @type, new_children, new_properties
+            original_dup.send :initialize, new_children, new_properties
           end
         end
+
+        # Concatenates `array` with `children` and returns the resulting node.
+        #
+        # @return [Node]
+        def concat(array)
+          updated(@children + array.to_a)
+        end
+
+        alias + concat
+
+        # Appends `element` to `children` and returns the resulting node.
+        #
+        # @return [Node]
+        def append(element)
+          updated(@children + [element])
+        end
+
+        alias << append
       end
 
       # AST node representing a blank line.
@@ -533,6 +557,24 @@ module BEL
         def function
           children[0]
         end
+
+        # Get the term's arguments.
+        def arguments
+          children[1..-1]
+        end
+
+        # Get the term's function semantics.
+        def function_semantics
+          @function_semantics
+        end
+
+        # Sets the term's function semantics.
+        def function_semantics=(function_semantics)
+          if function_semantics != nil && !function_semantics.is_a?(BEL::Language::Signature)
+            raise ArgumentError, "function_semantics: expected nil or BEL::Language::Signature"
+          end
+          assign_properties({function_semantics: function_semantics})
+        end
       end
 
       # AST node representing an unset.
@@ -636,6 +678,10 @@ module BEL
 
         def string(*children)
           String.new(children)
+        end
+
+        def list(*children)
+          List.new(children)
         end
 
         def comment(*children)

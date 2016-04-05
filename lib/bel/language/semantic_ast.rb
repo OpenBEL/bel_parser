@@ -271,6 +271,7 @@ module BEL
         end
 
         def match(parse_node, _)
+          return failure(nil) if parse_node.nil?
           type == parse_node.type ? success(parse_node) : failure(parse_node)
         end
       end
@@ -323,7 +324,7 @@ module BEL
         end
 
         def match(parse_node, _)
-          parse_node.nil? ? success(parse_node) : failure(parse_node)
+          parse_node.nil? ? success(parse_node) : failure(nil)
         end
       end
 
@@ -342,6 +343,7 @@ module BEL
         end
 
         def match(identifier, spec)
+          return failure(nil) if identifier.nil?
           return failure(identifier) if type != identifier.type
 
           value_results = value_patterns.map do |pattern|
@@ -376,6 +378,8 @@ module BEL
         end
 
         def match(identifier, _)
+          # FIXME: Implement :namespace property assignment to AST.
+          return success(identifier)
           if identifier.respond_to?(:namespace)
             success(identifier)
           else
@@ -391,6 +395,8 @@ module BEL
         end
 
         def match(identifier, _)
+          # FIXME: Implement :namespace property assignment to AST.
+          return success(identifier)
           return failure(identifier) unless identifier.respond_to?(:namespace)
           input_namespace = identifier.namespace
           return failure(identifier) if input_namespace.nil?
@@ -411,6 +417,8 @@ module BEL
         end
 
         def match(value_type, _)
+          # FIXME: Implement :encoding property assignment to AST.
+          return success(value_type)
           if value_type.respond_to?(:encoding)
             success(value_type)
           else
@@ -426,6 +434,8 @@ module BEL
         end
 
         def match(value_type, _)
+          # FIXME: Implement :encoding property assignment to AST.
+          return success(value_type)
           encoding_set = children
           return success(value_type) if encoding_set.include?(:*)
 
