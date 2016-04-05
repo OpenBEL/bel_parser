@@ -5,14 +5,14 @@ module BEL
   module Language
     module Version1
       module Functions
-        # GtpBoundActivity
-        class GtpBoundActivity
+        # GTPBoundActivity
+        class GTPBoundActivity
           include BEL::Language::Version1
           extend Function
 
           SHORT       = :gtp
           LONG        = :gtpBoundActivity
-          RETURN_TYPE = ReturnTypes::GtpBoundActivity
+          RETURN_TYPE = ReturnTypes::GTPBoundActivity
           DESCRIPTION = 'Denotes the frequency or abundance of events in which a
   member of a G-protein abundance is GTP-bound'.freeze
           SIGNATURES  = [].freeze
