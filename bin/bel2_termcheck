@@ -30,12 +30,10 @@ module BELParser
   end
 end
 
-if __FILE__ == $PROGRAM_NAME
-  BELParser::Expression::TermSemanticsParser.new.each($stdin) do |signature|
-    valid_signatures = signature.compact
-    puts 'Signatures:'
-    valid_signatures.each do |sig|
-      puts "  #{sig}"
-    end
+BELParser::Expression::TermSemanticsParser.new.each($stdin) do |signature|
+  valid_signatures = signature.compact
+  puts 'Signatures:'
+  valid_signatures.each do |sig|
+    puts "  #{sig}"
   end
 end
