@@ -1,8 +1,8 @@
 require_relative '../../spec_helper'
 require 'rantly/rspec'
-require 'bel/parsers/common/string'
+require 'bel_parser/parsers/common/string'
 
-CommonString = BEL::Parsers::Common::String
+CommonString = BELParser::Parsers::Common::String
 
 describe CommonString, '#parse' do
   include AST::Sexp

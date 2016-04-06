@@ -1,8 +1,8 @@
 require_relative '../../spec_helper'
 require 'rantly/rspec'
-require 'bel/parsers/common/list'
+require 'bel_parser/parsers/common/list'
 
-include BEL::Parsers::Common
+include BELParser::Parsers::Common
 
 describe List, '#parse' do
   include AST::Sexp

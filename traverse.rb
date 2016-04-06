@@ -5,14 +5,14 @@ require './lib/bel/language/syntax/expression/incomplete_node'
 require './lib/bel/language/syntax/expression/invalid_term_function'
 
 # Parse to an enumerator of AST.
-ast_enum = BEL::ASTGenerator.new.each($stdin)
+ast_enum = BELParser::ASTGenerator.new.each($stdin)
 
 # Map to validated AST.
-version1 = BEL::Language::Version1::Specification.new
-validator = BEL::ASTValidator.new(
+version1 = BELParser::Language::Version1::Specification.new
+validator = BELParser::ASTValidator.new(
   observers: [
-    # BEL::Language::Syntax::Expression::IncompleteNode.new,
-    BEL::Language::Syntax::Expression::InvalidTermFunction.new(version1)
+    # BELParser::Language::Syntax::Expression::IncompleteNode.new,
+    BELParser::Language::Syntax::Expression::InvalidTermFunction.new(version1)
   ]
 )
 validator.each(ast_enum) do |(line_number, line, node, results)|

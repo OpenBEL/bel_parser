@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift('lib')
-require 'ast'
+require 'bel_parser/vendor/ast'
 require 'erb'
-require 'bel/language/version1'
-require 'bel/language/semantic_ast'
+require 'bel_parser/language/version1'
+require 'bel_parser/language/semantic_ast'
 require_relative 'version1_functions'
 include AST::Sexp
-V1 = BEL::Language::Version1::Specification.new
+V1 = BELParser::Language::Version1::Specification.new
 
 class ArgBuilder
-  include BEL::Language::Semantics::Builder
+  include BELParser::Language::Semantics::Builder
 
   def build(&block)
     instance_eval(&block)
@@ -27,7 +27,7 @@ end
 
 def term_sexp(function_identifier, _spec)
   function = V1.function(function_identifier.to_sym)
-  BEL::Language::Semantics::Builder.build do
+  BELParser::Language::Semantics::Builder.build do
     term(
       function(
         identifier(
@@ -135,7 +135,7 @@ VERSION1_FUNCTIONS.each do |func|
       type = type.match(/([a-zA-Z_]+)/)[1]
       "#{type}"
     end
-    ast.gsub!(/BEL::Language::Version1::Functions::/, '')
+    ast.gsub!(/BELParser::Language::Version1::Functions::/, '')
     sig[:ast] = ast
   end
   b = binding

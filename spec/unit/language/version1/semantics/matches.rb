@@ -1,10 +1,9 @@
-require 'ast'
-require 'bel/language/version1'
-require 'bel/language/semantic_ast'
-require 'bel/parsers/expression'
+require 'bel_parser/language/version1'
+require 'bel_parser/language/semantic_ast'
+require 'bel_parser/parsers/expression'
 
 include AST::Sexp
-FX = BEL::Language::Version1::Functions
+FX = BELParser::Language::Version1::Functions
 
 MATCHES = [
   {

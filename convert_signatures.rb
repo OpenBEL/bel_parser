@@ -6,10 +6,10 @@ require 'bel/language/version2'
 require 'bel/language/semantic_ast'
 require_relative 'version2_signatures'
 include AST::Sexp
-V2 = BEL::Language::Version2::Specification.new
+V2 = BELParser::Language::Version2::Specification.new
 
 class ArgBuilder
-  include BEL::Language::Semantics::Builder
+  include BELParser::Language::Semantics::Builder
 
   def build(&block)
     instance_eval(&block)
@@ -27,7 +27,7 @@ end
 
 def term_sexp(function_identifier, _spec)
   function = V2.function(function_identifier.to_sym)
-  BEL::Language::Semantics::Builder.build do
+  BELParser::Language::Semantics::Builder.build do
     term(
       function(
         identifier(

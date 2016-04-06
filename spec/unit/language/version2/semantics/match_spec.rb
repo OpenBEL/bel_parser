@@ -1,14 +1,14 @@
 require_relative 'matches'
 require 'ap'
 
-include BEL::Parsers::Expression
+include BELParser::Parsers::Expression
 
-describe BEL::Language::Semantics do
+describe BELParser::Language::Semantics do
   subject do
-    BEL::Language::Semantics
+    BELParser::Language::Semantics
   end
   let(:spec) do
-    BEL::Language::Version2::Specification.new
+    BELParser::Language::Version2::Specification.new
   end
 
   MATCHES.each do |test|

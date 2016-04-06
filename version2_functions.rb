@@ -4,7 +4,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the abundance of an entity.',
     short: :a,
     long: :abundance,
-    return_type: "BEL::Language::Version1::ReturnTypes::Abundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Abundance",
     signatures: [
       {
         name:        'AbundanceSignature',
@@ -28,7 +28,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes a process or population of events.',
     short: :bp,
     long: :biologicalProcess,
-    return_type: "BEL::Language::Version1::ReturnTypes::BiologicalProcess",
+    return_type: "BELParser::Language::Version1::ReturnTypes::BiologicalProcess",
     signatures: [
       {
         name: 'BiologicalProcessSignature',
@@ -41,7 +41,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the frequency or abundance of events in which members of an abundance move from cells to regions outside of the cells.',
     short: :sec,
     long: :cellSecretion,
-    return_type: "BEL::Language::Version1::ReturnTypes::Abundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Abundance",
     signatures: [
       {
         name: 'CellSecretionSignature',
@@ -54,7 +54,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the frequency or abundance of events in which members of an abundance move to the surface of cells.',
     short: :surf,
     long: :cellSurfaceExpression,
-    return_type: "BEL::Language::Version1::ReturnTypes::Abundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Abundance",
     signatures: [
       {
         name: 'CellSurfaceExpressionSignature',
@@ -67,7 +67,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the abundance of a molecular complex.',
     short: :complex,
     long: :complexAbundance,
-    return_type: "BEL::Language::Version1::ReturnTypes::ComplexAbundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::ComplexAbundance",
     signatures: [
       {
         name:        'NamedComplexAbundanceSignature',
@@ -92,7 +92,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the frequency or abundance of events in which members are present.',
     short: :composite,
     long: :compositeAbundance,
-    return_type: "BEL::Language::Version1::ReturnTypes::Abundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Abundance",
     signatures: [
       {
         name:        'CompositeAbundanceSignature',
@@ -105,7 +105,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the frequency or abundance of events in which a member is degraded in some way such that it is no longer a member.',
     short: :deg,
     long: :degradation,
-    return_type: "BEL::Language::Version1::ReturnTypes::Abundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Abundance",
     signatures: [
       {
         name:        'DegradationSignature',
@@ -118,7 +118,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes a protein fragment, e.g., a product of proteolytic cleavage.',
     short: :frag,
     long: :fragment,
-    return_type: "BEL::Language::Version1::ReturnTypes::Fragment",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Fragment",
     signatures: [
       {
         name:        'FragmentWithRangeSignature',
@@ -135,7 +135,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the from cellular location of the abundance.',
     short: :fromLoc,
     long: :fromLocation,
-    return_type: "BEL::Language::Version1::ReturnTypes::FromLocation",
+    return_type: "BELParser::Language::Version1::ReturnTypes::FromLocation",
     signatures: [
       {
         name:        'FromLocationSignature',
@@ -148,7 +148,7 @@ VERSION2_FUNCTIONS = [
     description: 'Specifies the abundance of a protein translated from the fusion of a gene.',
     short: :fus,
     long: :fusion,
-    return_type: "BEL::Language::Version1::ReturnTypes::Fusion",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Fusion",
     signatures: [
       {
         name:        'FusionWithGeneEncodingSignature',
@@ -169,7 +169,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the abundance of a gene.',
     short: :g,
     long: :geneAbundance,
-    return_type: "BEL::Language::Version1::ReturnTypes::GeneAbundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::GeneAbundance",
     signatures: [
       {
         name:        'GeneAbundanceSignature',
@@ -194,7 +194,7 @@ VERSION2_FUNCTIONS = [
     description: 'Groups a list of terms together.',
     short: :list,
     long: :list,
-    return_type: "BEL::Language::Version1::ReturnTypes::List",
+    return_type: "BELParser::Language::Version1::ReturnTypes::List",
     signatures: [
       {
         name:        'ListOfAbundanceEncodingSignature',
@@ -211,7 +211,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the cellular location of the abundance.',
     short: :list,
     long: :list,
-    return_type: "BEL::Language::Version1::ReturnTypes::List",
+    return_type: "BELParser::Language::Version1::ReturnTypes::List",
     signatures: [
       {
         name:        'LocationSignature',
@@ -224,7 +224,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the abundance of a processed, functional microRNA',
     short: :m,
     long: :microRNAAbundance,
-    return_type: "BEL::Language::Version1::ReturnTypes::MicroRNAAbundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::MicroRNAAbundance",
     signatures: [
       {
         name:        'MicroRNAAbundanceSignature',
@@ -245,7 +245,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the frequency or abundance of events in which a member acts as a causal agent at the molecular scale',
     short: :act,
     long: :molecularActivity,
-    return_type: "BEL::Language::Version1::ReturnTypes::MolecularActivity",
+    return_type: "BELParser::Language::Version1::ReturnTypes::MolecularActivity",
     signatures: [
       {
         name:        'MolecularActivitySignature',
@@ -258,7 +258,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes a disease or pathology process',
     short: :path,
     long: :pathology,
-    return_type: "BEL::Language::Version1::ReturnTypes::Pathology",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Pathology",
     signatures: [
       {
         name:        'PathologySignature',
@@ -271,7 +271,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the products of a reaction',
     short: :products,
     long: :products,
-    return_type: "BEL::Language::Version1::ReturnTypes::Products",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Products",
     signatures: [
       {
         name:        'ProductsSignature',
@@ -284,7 +284,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the abundance of a protein',
     short: :p,
     long: :proteinAbundance,
-    return_type: "BEL::Language::Version1::ReturnTypes::ProteinAbundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::ProteinAbundance",
     signatures: [
       {
         name:        'ProteinAbundanceSignature',
@@ -317,7 +317,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes a covalently modified protein abundance',
     short: :pmod,
     long: :proteinModification,
-    return_type: "BEL::Language::Version1::ReturnTypes::ProteinModification",
+    return_type: "BELParser::Language::Version1::ReturnTypes::ProteinModification",
     signatures: [
       {
         name:        'ProteinModificationWithType',
@@ -338,7 +338,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the reactants of a reaction',
     short: :reactants,
     long: :reactants,
-    return_type: "BEL::Language::Version1::ReturnTypes::Reactants",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Reactants",
     signatures: [
       {
         name:        'ReactantsSignature',
@@ -351,7 +351,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the frequency or abundance of events in a reaction',
     short: :rxn,
     long: :reaction,
-    return_type: "BEL::Language::Version1::ReturnTypes::Abundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Abundance",
     signatures: [
       {
         name:        'ReactionSignature',
@@ -364,7 +364,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the abundance of a gene',
     short: :r,
     long: :rnaAbundance,
-    return_type: "BEL::Language::Version1::ReturnTypes::GeneAbundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::GeneAbundance",
     signatures: [
       {
         name:        'RNAAbundance',
@@ -393,7 +393,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the to cellular location of the abundance.',
     short: :toLoc,
     long: :toLocation,
-    return_type: "BEL::Language::Version1::ReturnTypes::ToLocation",
+    return_type: "BELParser::Language::Version1::ReturnTypes::ToLocation",
     signatures: [
       {
         name:        'ToLocationSignature',
@@ -406,7 +406,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes the frequency or abundance of events in which members move between locations',
     short: :tloc,
     long: :translocation,
-    return_type: "BEL::Language::Version1::ReturnTypes::Abundance",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Abundance",
     signatures: [
       {
         name:        'Translocation',
@@ -419,7 +419,7 @@ VERSION2_FUNCTIONS = [
     description: 'Denotes a sequence variant of the specified abundance.',
     short: :var,
     long: :variant,
-    return_type: "BEL::Language::Version1::ReturnTypes::Variant",
+    return_type: "BELParser::Language::Version1::ReturnTypes::Variant",
     signatures: [
       {
         name:        'Variant',

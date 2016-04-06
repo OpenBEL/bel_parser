@@ -1,13 +1,13 @@
-require 'bel/ast_generator'
-require 'bel/ast_filter'
-require 'bel/language/version2'
-require 'bel/language/semantics/analyzer'
+require 'bel_parser/ast_generator'
+require 'bel_parser/ast_filter'
+require 'bel_parser/language/version2'
+require 'bel_parser/language/semantics/analyzer'
 
-V2 = BEL::Language::Version2::Specification.new
+V2 = BELParser::Language::Version2::Specification.new
 
-describe BEL::Language::Semantics, '.check_term' do
+describe BELParser::Language::Semantics, '.check_term' do
   subject do
-    BEL::Language::Semantics
+    BELParser::Language::Semantics
   end
   let(:terms) do
     line = <<-BEL.gsub(/^ {6}/, '')
@@ -16,9 +16,9 @@ describe BEL::Language::Semantics, '.check_term' do
       p(HGNC:MAPK1, pmod(Ph, Thr, 185), pmod(Ph, Tyr, 187))
     BEL
     io   = StringIO.new(line)
-    BEL::ASTFilter
+    BELParser::ASTFilter
       .new(:term)
-      .each(BEL::ASTGenerator.new.each(io))
+      .each(BELParser::ASTGenerator.new.each(io))
       .to_a.map(&:last).map(&:first)
   end
 

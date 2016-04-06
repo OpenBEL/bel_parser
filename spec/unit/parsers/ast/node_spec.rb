@@ -1,8 +1,8 @@
-require 'bel/parsers/ast/node'
+require 'bel_parser/parsers/ast/node'
 
-describe BEL::Parsers::AST::Node do
+describe BELParser::Parsers::AST::Node do
   describe 'the class' do
-    subject { BEL::Parsers::AST::Node }
+    subject { BELParser::Parsers::AST::Node }
     it { should_not be_nil }
     it 'is instantiable' do
       expect(subject).to respond_to(:new)
@@ -13,7 +13,7 @@ describe BEL::Parsers::AST::Node do
   end
 
   describe 'instances' do
-    let(:cls) { BEL::Parsers::AST::Node }
+    let(:cls) { BELParser::Parsers::AST::Node }
 
     it 'have a type' do
       node = cls.new('test_type')
@@ -121,7 +121,7 @@ describe BEL::Parsers::AST::Node do
     end
 
     describe 'when updated' do
-      let(:cls) { BEL::Parsers::AST::Node }
+      let(:cls) { BELParser::Parsers::AST::Node }
 
       context 'without changes' do
         it 'return identical objects' do
