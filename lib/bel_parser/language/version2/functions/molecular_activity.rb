@@ -43,6 +43,7 @@ module BELParser
 
               private_class_method :new
 
+              # TODO: More constraints on prefix for activity namespace?
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
                 function(
@@ -50,10 +51,7 @@ module BELParser
                     function_of(MolecularActivity))),
                 argument(
                   parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
+                    prefix(any),
                     value(
                       value_type(
                         has_encoding,
