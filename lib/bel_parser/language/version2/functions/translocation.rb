@@ -38,7 +38,7 @@ module BELParser
 
           module Signatures
   
-            class Translocation
+            class TranslocationSignature
               extend BELParser::Language::Signature
 
               private_class_method :new
