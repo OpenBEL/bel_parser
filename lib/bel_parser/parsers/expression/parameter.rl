@@ -31,7 +31,6 @@
 =end
 # end: ragel
 
-require          'ast'
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
