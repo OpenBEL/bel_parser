@@ -3,7 +3,7 @@ require_relative '../../function'
 require_relative '../../signature'
 require_relative '../../semantic_ast'
 
-module BEL
+module BELParser
   module Language
     module Version1
       module Functions
@@ -39,11 +39,11 @@ module BEL
           module Signatures
   <% for sig in signatures %>
             class <%= sig[:name] %>
-              extend BEL::Language::Signature
+              extend BELParser::Language::Signature
 
               private_class_method :new
 
-              AST = BEL::Language::Semantics::Builder.build do
+              AST = BELParser::Language::Semantics::Builder.build do
   <%= sig[:ast] %>              
               end
               private_constant :AST

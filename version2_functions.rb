@@ -24,6 +24,25 @@ VERSION2_FUNCTIONS = [
     ]
   },
   {
+    name:        'Activity',
+    description: 'Denotes the frequency or abundance of events in which a member acts as a causal agent at the molecular scale.',
+    short: :act,
+    long: :activity,
+    return_type: "BELParser::Language::Version1::ReturnTypes::Activity",
+    signatures: [
+      {
+        name:        'ActivitySignature',
+        description: 'Molecular Activity of an abundance.',
+        string_form: 'activity(F:abundance)activity'
+      },
+      {
+        name:        'ActivityWithSpecificActivityTypeSignature',
+        description: 'Type-specific Activity of an abundance.',
+        string_form: 'activity(F:abundance, F:molecularActivity)activity'
+      }
+    ]
+  },
+  {
     name:        'BiologicalProcess',
     description: 'Denotes a process or population of events.',
     short: :bp,

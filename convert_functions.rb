@@ -115,7 +115,7 @@ def ast(string_form)
   ast
 end
 
-OUT_DIR = 'lib/bel/language/version1/gen_functions'.freeze
+OUT_DIR = 'lib/bel_parser/language/version1/gen_functions'.freeze
 template = ERB.new(File.read('super_function_template.erb'))
 Dir.mkdir(OUT_DIR) unless Dir.exist?(OUT_DIR)
 VERSION1_FUNCTIONS.each do |func|
@@ -162,7 +162,7 @@ VERSION1_FUNCTIONS.each do |func|
               else
                 file_name
   end
-  File.open("lib/bel/language/version1/gen_functions/#{file_name}.rb", 'w') do |f|
+  File.open("lib/bel_parser/language/version1/gen_functions/#{file_name}.rb", 'w') do |f|
     f.write(contents)
   end
 end
