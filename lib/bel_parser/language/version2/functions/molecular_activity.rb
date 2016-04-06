@@ -11,7 +11,7 @@ module BELParser
         class MolecularActivity
           extend Function
 
-          SHORT       = :act
+          SHORT       = :ma
           LONG        = :molecularActivity
           RETURN_TYPE = BELParser::Language::Version2::ReturnTypes::MolecularActivity
           DESCRIPTION = 'Denotes the frequency or abundance of events in which a member acts as a causal agent at the molecular scale'.freeze
