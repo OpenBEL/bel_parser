@@ -11,9 +11,9 @@ module BELParser
         class Location
           extend Function
 
-          SHORT       = :list
-          LONG        = :list
-          RETURN_TYPE = BELParser::Language::Version2::ReturnTypes::List
+          SHORT       = :loc
+          LONG        = :location
+          RETURN_TYPE = BELParser::Language::Version2::ReturnTypes::Location
           DESCRIPTION = 'Denotes the cellular location of the abundance.'.freeze
 
           def self.short
