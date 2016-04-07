@@ -27,6 +27,10 @@ module BELParser
         end
       end
 
+      def syntax
+        @syntax
+      end
+
       def index_functions(functions)
         Hash[
           functions.flat_map do |function|

@@ -64,6 +64,16 @@ module BELParser
         # of this AST node.
         attr_reader :character_range
 
+        # Get the syntax errors for this AST node.
+        def syntax_errors
+          (@syntax_errors ||= [])
+        end
+
+        # Add a syntax error to thie AST node.
+        def add_syntax_error(syntax_error)
+          syntax_errors << syntax_error
+        end
+
         # Get the start of the character range enclosing this AST node.
         def range_start
           @character_range[0]
@@ -92,10 +102,10 @@ module BELParser
 
         def traverse(&block)
           if block_given?
+            yield self
             children.each do |child_node|
               child_node.traverse(&block) if child_node.respond_to?(:traverse)
             end
-            yield self
           else
             enum_for(:traverse)
           end
