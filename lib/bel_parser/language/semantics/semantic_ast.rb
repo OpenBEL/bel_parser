@@ -1,3 +1,4 @@
+require_relative 'semantic_match'
 require_relative '../quoting'
 require_relative '../../parsers/ast/node'
 
@@ -47,29 +48,6 @@ module BELParser
           end
         end
         match_results.flatten
-      end
-
-      # MatchResult holds the results of an input AST to semantic AST match.
-      class MatchResult
-        attr_reader :input_node, :semantic_node
-
-        def initialize(success, input_node, semantic_node)
-          @success       = success
-          @input_node    = input_node
-          @semantic_node = semantic_node
-        end
-
-        def success?
-          @success
-        end
-
-        def failure?
-          !@success
-        end
-
-        def to_s
-          msg
-        end
       end
 
       # Builder contains methods to build semantic AST nodes.
@@ -211,11 +189,11 @@ module BELParser
         end
 
         def success(node)
-          [MatchResult.new(true, node, self)]
+          [SemanticMatch.new(true, node, self)]
         end
 
         def failure(node)
-          [MatchResult.new(false, node, self)]
+          [SemanticMatch.new(false, node, self)]
         end
       end
 
