@@ -1,7 +1,7 @@
 require_relative '../../version2'
 require_relative '../../function'
 require_relative '../../signature'
-require_relative '../../semantic_ast'
+require_relative '../../semantics'
 
 module BELParser
   module Language

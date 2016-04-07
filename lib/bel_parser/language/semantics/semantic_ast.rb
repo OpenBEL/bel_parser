@@ -1,5 +1,5 @@
-require_relative 'quoting'
-require_relative '../parsers/ast/node'
+require_relative '../quoting'
+require_relative '../../parsers/ast/node'
 
 module BELParser
   module Language

@@ -1,3 +1,25 @@
+OpenBEL API
+- Validation
+  - BEL 2 only
+- Autocomplete
+  - BEL 2 only
+- Import / Export functionality only supports BEL 2.0. An error will be returned if a document's BEL version is != 2.0.
+
+bel.rb
+- Language conversion command in bel.rb (e.g. "bel langconvert") to convert from BEL 1.0 to 2.0.
+  - Can we use bel.rb's evidence model for the substrate?
+
+BEL Script
+- Support BEL version in document properties header.
+- Move "Evidence" to "Support". Particularly important for mapping to Evidence model.
+
+(William)
+BEL Nanopub JSON (BNJ, pronounced "binge") / JGF
+- BNJ naming, binge pronounciation
+- Evidence -> Nanopub
+- Summary Text -> Support
+(/William)
+
 Punchlist
 - [x] Amino acid range semantics
 - [x] Associate signatures to functions.
@@ -14,7 +36,6 @@ Punchlist
   - Provide AST processor that decorates prefix.identifier nodes with "namespace".
   - Provide AST processor that decorates value.identifier|string nodes with "encoding".
   - use RDF Repository plugin and Resource API
-
 
 =====
 
