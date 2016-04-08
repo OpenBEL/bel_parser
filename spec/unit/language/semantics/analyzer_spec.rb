@@ -1,9 +1,9 @@
 require 'bel_parser/ast_generator'
 require 'bel_parser/ast_filter'
-require 'bel_parser/language/version2'
+require 'bel_parser/language/version2_0'
 require 'bel_parser/language/semantics/analyzer'
 
-V2 = BELParser::Language::Version2::Specification.new
+V2 = BELParser::Language::Version2_0::Specification.new
 
 describe BELParser::Language::Semantics, '.check_term' do
   subject do

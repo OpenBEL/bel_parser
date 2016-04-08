@@ -2,7 +2,7 @@
 $:.unshift(File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
 
 require 'bel_parser'
-require 'bel_parser/language/version2'
+require 'bel_parser/language/version2_0'
 require 'bel_parser/language/semantics/analyzer'
 
 module BELParser
@@ -16,7 +16,7 @@ module BELParser
 
       def each(io)
         if block_given?
-          v2           = BELParser::Language::Version2::Specification.new
+          v2           = BELParser::Language::Version2_0::Specification.new
           filtered_ast = FILTER.each(BELParser::ASTGenerator.new.each(io))
           filtered_ast.each do |results|
             term = results.last.first

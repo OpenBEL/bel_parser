@@ -1,14 +1,14 @@
-require_relative '../../version1'
+require_relative '../../version1_0'
 require_relative '../../signature'
 require_relative '../../semantic_ast'
 
 module BEL
   module Language
-    module Version1
+    module Version1_0
       module Signatures
         # <%= description %>
         class <%= name %>
-          extend BEL::Language::Version1
+          extend BEL::Language::Version1_0
           extend BEL::Language::Signature
 
           private_class_method :new

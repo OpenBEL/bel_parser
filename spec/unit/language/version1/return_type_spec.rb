@@ -1,15 +1,15 @@
-require 'bel_parser/language/version1'
+require 'bel_parser/language/version1_0'
 
-describe BELParser::Language::Version1::ReturnTypes do
-  RETURN_TYPES = BELParser::Language::Version1::ReturnTypes.constants.map do |const|
-    BELParser::Language::Version1::ReturnTypes.const_get(const)
+describe BELParser::Language::Version1_0::ReturnTypes do
+  RETURN_TYPES = BELParser::Language::Version1_0::ReturnTypes.constants.map do |const|
+    BELParser::Language::Version1_0::ReturnTypes.const_get(const)
   end
 
   RETURN_TYPES.each do |return_type|
     type_name = return_type.name.split('::')[-1]
     describe type_name do
       let(:any_type) do
-        BELParser::Language::Version1::ReturnTypes::Any
+        BELParser::Language::Version1_0::ReturnTypes::Any
       end
 
       it 'provides symbol value' do

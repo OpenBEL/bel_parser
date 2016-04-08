@@ -2,11 +2,11 @@
 $LOAD_PATH.unshift('lib')
 require 'ast'
 require 'erb'
-require 'bel/language/version2'
+require 'bel/language/version2_0'
 require 'bel/language/semantic_ast'
 require_relative 'version2_signatures'
 include AST::Sexp
-V2 = BELParser::Language::Version2::Specification.new
+V2 = BELParser::Language::Version2_0::Specification.new
 
 class ArgBuilder
   include BELParser::Language::Semantics::Builder
@@ -115,7 +115,7 @@ def ast(string_form)
   ast
 end
 
-OUT_DIR = 'lib/bel/language/version2/gen_signatures'.freeze
+OUT_DIR = 'lib/bel/language/version2_0/gen_signatures'.freeze
 template = ERB.new(File.read('semantic_template.erb'))
 Dir.mkdir(OUT_DIR) unless Dir.exist?(OUT_DIR)
 VERSION1_SIGNATURES.each do |data|
@@ -153,7 +153,7 @@ VERSION1_SIGNATURES.each do |data|
               else
                 file_name
   end
-  File.open("lib/bel/language/version2/gen_signatures/#{file_name}.rb", 'w') do |f|
+  File.open("lib/bel/language/version2_0/gen_signatures/#{file_name}.rb", 'w') do |f|
     f.write(contents)
   end
 end

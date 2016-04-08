@@ -8,7 +8,7 @@ describe BELParser::Language::Semantics do
     BELParser::Language::Semantics
   end
   let(:spec) do
-    BELParser::Language::Version2::Specification.new
+    BELParser::Language::Version2_0::Specification.new
   end
 
   MATCHES.each do |test|

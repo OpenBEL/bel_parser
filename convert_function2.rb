@@ -2,11 +2,11 @@
 $LOAD_PATH.unshift('lib')
 require 'bel_parser/vendor/ast'
 require 'erb'
-require 'bel_parser/language/version2'
+require 'bel_parser/language/version2_0'
 require 'bel_parser/language/semantic_ast'
 require_relative 'version2_functions'
 include AST::Sexp
-V2 = BELParser::Language::Version2::Specification.new
+V2 = BELParser::Language::Version2_0::Specification.new
 
 class ArgBuilder
   include BELParser::Language::Semantics::Builder
@@ -115,7 +115,7 @@ def ast(string_form)
   ast
 end
 
-OUT_DIR = 'lib/bel_parser/language/version2/gen_functions'.freeze
+OUT_DIR = 'lib/bel_parser/language/version2_0/gen_functions'.freeze
 template = ERB.new(File.read('super_function_template.erb'))
 Dir.mkdir(OUT_DIR) unless Dir.exist?(OUT_DIR)
 VERSION2_FUNCTIONS.each do |func|
@@ -135,7 +135,7 @@ VERSION2_FUNCTIONS.each do |func|
       type = type.match(/([a-zA-Z_]+)/)[1]
       "#{type}"
     end
-    ast.gsub!(/BELParser::Language::Version2::Functions::/, '')
+    ast.gsub!(/BELParser::Language::Version2_0::Functions::/, '')
     sig[:ast] = ast
   end
   b = binding
@@ -162,7 +162,7 @@ VERSION2_FUNCTIONS.each do |func|
               else
                 file_name
   end
-  File.open("lib/bel_parser/language/version2/gen_functions/#{file_name}.rb", 'w') do |f|
+  File.open("lib/bel_parser/language/version2_0/gen_functions/#{file_name}.rb", 'w') do |f|
     f.write(contents)
   end
 end

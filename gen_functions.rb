@@ -279,6 +279,6 @@ FUNCTIONS.each do |_, opts|
     "_#{Regexp.last_match[1].downcase}"
   end
   File.write(
-    "lib/bel/language/version1/functions/#{file_name}.rb",
+    "lib/bel/language/version1_0/functions/#{file_name}.rb",
     ruby_class_str)
 end
