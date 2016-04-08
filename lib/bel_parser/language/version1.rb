@@ -13,8 +13,8 @@ module BELParser
             const = Version1::ReturnTypes.const_get(symbol)
             const if const.respond_to?(:subtypes)
           end
-          @return_types = ret_classes.compact
-          @indexed_return_types = index_return_types(@return_types)
+          @return_types         = ret_classes.compact
+          @indexed_return_types = index_sym(@return_types)
 
           # Collect functions
           function_classes = Version1::Functions.constants.collect do |symbol|
@@ -23,8 +23,18 @@ module BELParser
               const.respond_to?(:short) &&
               const.respond_to?(:long)
           end
-          @functions = function_classes.compact
-          @indexed_functions = index_functions(@functions)
+          @functions         = function_classes.compact
+          @indexed_functions = index_long_short(@functions)
+
+          # Collect relationships
+          rel_classes = Version1::Relationships.constants.collect do |symbol|
+            const = Version1::Relationships.const_get(symbol)
+            const if
+              const.respond_to?(:short) &&
+              const.respond_to?(:long)
+          end
+          @relationships         = rel_classes.compact
+          @indexed_relationships = index_long_short(@relationships)
 
           # Collect syntax checkers.
           syntax_classes = Version1::Syntax.constants.collect do |symbol|
@@ -54,6 +64,15 @@ Dir[
     'version1', 'functions', '*.rb')
 ].each do |path|
   require_relative "version1/functions/#{File.basename(path)}"
+end
+
+# Require all version 1.0 relationships.
+Dir[
+  File.join(
+    File.dirname(File.expand_path(__FILE__)),
+    'version1', 'relationships', '*.rb')
+].each do |path|
+  require_relative "version1/relationships/#{File.basename(path)}"
 end
 
 # Require all version 1.0 syntax checkers.
