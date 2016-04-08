@@ -64,6 +64,10 @@ module BELParser
         ]
       end
       protected :index_sym
+
+      def version
+        @version
+      end
     end
   end
 end

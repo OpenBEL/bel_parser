@@ -8,6 +8,8 @@ module BELParser
       class Specification
         include BELParser::Language::Specification
         def initialize
+          @version = '1.0'.freeze
+
           # Collect return types
           ret_classes = Version1_0::ReturnTypes.constants.collect do |symbol|
             const = Version1_0::ReturnTypes.const_get(symbol)
@@ -42,6 +44,8 @@ module BELParser
             const if const.respond_to?(:match)
           end
           @syntax = syntax_classes.compact
+
+          freeze
         end
       end
     end

@@ -8,6 +8,8 @@ module BELParser
       class Specification
         include BELParser::Language::Specification
         def initialize
+          @version = '2.0'.freeze
+
           # Establish functions
           function_classes = Version2_0::Functions.constants.collect do |symbol|
             const = Version2_0::Functions.const_get(symbol)
@@ -35,6 +37,8 @@ module BELParser
           end
           @return_types         = ret_classes.compact
           @indexed_return_types = index_sym(@return_types)
+
+          freeze
         end
       end
     end
