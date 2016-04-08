@@ -18,6 +18,16 @@ module BELParser
           @functions         = function_classes.compact
           @indexed_functions = index_long_short(@functions)
 
+          # Collect relationships
+          rel_classes = Version2::Relationships.constants.collect do |symbol|
+            const = Version2::Relationships.const_get(symbol)
+            const if
+              const.respond_to?(:short) &&
+              const.respond_to?(:long)
+          end
+          @relationships         = rel_classes.compact
+          @indexed_relationships = index_long_short(@relationships)
+
           # Establish return types
           ret_classes = Version2::ReturnTypes.constants.collect do |symbol|
             const = Version2::ReturnTypes.const_get(symbol)
@@ -47,4 +57,13 @@ Dir[
     'version2', 'functions', '*.rb')
 ].each do |path|
   require_relative "version2/functions/#{File.basename(path)}"
+end
+
+# Require all version 1.0 relationships.
+Dir[
+  File.join(
+    File.dirname(File.expand_path(__FILE__)),
+    'version2', 'relationships', '*.rb')
+].each do |path|
+  require_relative "version2/relationships/#{File.basename(path)}"
 end

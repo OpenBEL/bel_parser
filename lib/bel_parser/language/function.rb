@@ -27,6 +27,14 @@ module BELParser
         raise NotImplementedError, "#{__method__} is not implemented."
       end
 
+      # Indicates whether this function is deprecated. Override in your
+      # function to mark as deprecated.
+      #
+      # @return [Boolean] false
+      def deprecated?
+        false
+      end
+
       def ===(other)
         return false if other.nil?
         short == other || long == other
