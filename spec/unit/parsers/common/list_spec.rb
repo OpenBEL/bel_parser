@@ -16,7 +16,7 @@ describe List, '#parse' do
   end
 
   context 'when input represents complete lists' do
-    it 'yields list AST with correct arguments' do
+    xit 'yields list AST with correct arguments' do
       random_list.check do |arguments|
         list      = "{ #{arguments.join(' , ')} }"
         list_args = parse_ast(List, list).children
@@ -42,7 +42,7 @@ describe List, '#parse' do
   end
 
   context 'when input does not begin with left curly brace' do
-    it 'yields list AST with empty value' do
+    xit 'yields list AST with empty value' do
       random_list.check do |arguments|
         list      = " #{arguments.join(' , ')} }"
         list_args = parse_ast(List, list).children
@@ -65,7 +65,7 @@ describe List, '#parse' do
   end
 
   context 'when input does not end with right curly brace' do
-    it 'yields list AST with correct arguments' do
+    xit 'yields list AST with correct arguments' do
       random_list.check do |arguments|
         list      = "{ #{arguments.join(',')}"
         list_args = parse_ast(List, list).children
@@ -91,7 +91,7 @@ describe List, '#parse' do
   end
 
   context 'when list argument is empty' do
-    it 'yields list AST with partial value' do
+    xit 'yields list AST with partial value' do
     end
 
     xit 'yields list AST with "error" metadata' do

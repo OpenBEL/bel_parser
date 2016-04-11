@@ -1,6 +1,6 @@
-require 'bel_parser/language/version1_0'
-require 'bel_parser/language/semantic_ast'
 require 'bel_parser/parsers/expression'
+require 'bel_parser/language/semantics'
+require 'bel_parser/language/version1_0'
 
 include AST::Sexp
 FX = BELParser::Language::Version1_0::Functions

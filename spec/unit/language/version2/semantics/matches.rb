@@ -1,5 +1,5 @@
 require 'bel_parser/language/version2_0'
-require 'bel_parser/language/semantic_ast'
+require 'bel_parser/language/semantics'
 require 'bel_parser/parsers/expression'
 
 include AST::Sexp
