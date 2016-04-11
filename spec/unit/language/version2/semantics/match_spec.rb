@@ -1,5 +1,4 @@
 require_relative 'matches'
-require 'ap'
 
 include BELParser::Parsers::Expression
 
@@ -24,9 +23,9 @@ describe BELParser::Language::Semantics do
             set.map(&:semantic_node).map(&:class)
           end
         puts 'Successes'
-        ap success, index: false
+        puts success
         puts "\nFailures"
-        ap failure, index: false
+        puts failure
 
         failed, _ =
           subject
