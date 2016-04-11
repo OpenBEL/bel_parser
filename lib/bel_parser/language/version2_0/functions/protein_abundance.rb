@@ -120,28 +120,18 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ProteinAbundance))))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Fusion))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinAbundance))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Fusion))))))
               end
               private_constant :AST
 
-              STRING_FORM = 'proteinAbundance(E:proteinAbundance,F:fusion)proteinAbundance'.freeze
+              STRING_FORM = 'proteinAbundance(F:fusion)proteinAbundance'.freeze
               private_constant :STRING_FORM
 
               def self.semantic_ast
