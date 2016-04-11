@@ -1,4 +1,4 @@
-require_relative 'molecular_activity'
+require_relative 'any'
 
 module BELParser
   module Language
