@@ -10,22 +10,16 @@ module BELParser
 
         private_class_method :new
 
-        def self.map(term_node, spec, namespaces)
-          syntax_results = []
-          term_node.arguments
-            .select(&:has_parameter?)
-            .map(&:child)
-            .each do |child_parameter|
-              prefix_identifier = child_parameter.prefix.identifier
-              next if prefix_identifier.nil?
+        def self.map(prefix_node, spec, namespaces)
+          return nil unless prefix_node.is_a?(BELParser::Parsers::AST::Prefix)
 
-              namespace_prefix = prefix_identifier.string_literal
-              unless namespaces[namespace_prefix]
-                syntax_results << UndefinedNamespaceError.new(
-                  term_node, spec, namespace_prefix, namespaces)
-              end
-            end
-          syntax_results
+          prefix_identifier = prefix_node.identifier
+          return nil if prefix_identifier.nil?
+
+          prefix = prefix_identifier.string_literal
+          unless namespaces[prefix]
+            UndefinedNamespaceError.new(prefix_node, spec, prefix, namespaces)
+          end
         end
       end
 
@@ -37,8 +31,8 @@ module BELParser
         # Gets the defined namespaces.
         attr_reader :defined_namespaces
 
-        def initialize(term_node, spec, invalid_prefix, defined_namespaces)
-          super(term_node, spec)
+        def initialize(prefix_node, spec, invalid_prefix, defined_namespaces)
+          super(prefix_node, spec)
           @invalid_prefix     = invalid_prefix
           @defined_namespaces = defined_namespaces.dup
         end

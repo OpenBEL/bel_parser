@@ -7,11 +7,16 @@ require_relative '../language/expression_validator'
 module BELParser
   module Expression
     # Parser for BEL Expression.
-    class TermValidator
+    class Validator
       include BELParser::Parsers::Common
       include BELParser::Parsers::Expression
 
-      FILTER = BELParser::ASTFilter.new(:term)
+      FILTER = BELParser::ASTFilter.new(
+        :parameter,
+        :term,
+        :observed_term,
+        :simple_statement,
+        :nested_statement)
 
       def initialize(specification_version, namespaces)
         @spec      = BELParser::Language.specification(specification_version)
@@ -42,7 +47,7 @@ if __FILE__ == $PROGRAM_NAME
     exit 1
   end
   namespaces = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
-  BELParser::Expression::TermValidator.new(ARGV.first, namespaces).each($stdin) do |res|
+  BELParser::Expression::Validator.new(ARGV.first, namespaces).each($stdin) do |res|
     res.each do |res|
       puts res.each_line.map { |l| "  #{l}" }.join
     end

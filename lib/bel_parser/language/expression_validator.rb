@@ -11,51 +11,27 @@ module BELParser
         @semantics_functions = Semantics.semantics_functions
       end
 
-      def validate(term_ast)
-        results = syntax(term_ast)
+      def validate(expression_node)
+        results = syntax(expression_node)
         if results.empty?
-          results << Syntax::Valid.new(term_ast, @spec)
-          results.concat(semantics(term_ast))
+          results << Syntax::Valid.new(expression_node, @spec)
+          results.concat(semantics(expression_node))
         end
         results
       end
 
       private
 
-      def syntax(term_ast)
-        syntax_results = syntax_term(term_ast).compact
+      def syntax(expression_node)
+        expression_node.traverse.flat_map do |node|
+          @syntax_functions.map { |func| func.map(node, @spec, @namespaces) }
+        end.compact
       end
 
-      def semantics(term_ast)
-        semantics_term(term_ast)
-      end
-
-      def syntax_term(term_ast)
-        syntax_results = @syntax_functions.flat_map do |syntax_func|
-          syntax_func.map(term_ast, @spec, @namespaces)
-        end
-
-        term_ast.arguments
-          .select(&:has_term?)
-          .map(&:child)
-          .each do |child_term|
-            syntax_results.concat(syntax_term(child_term))
-          end
-        syntax_results
-      end
-
-      def semantics_term(term_ast)
-        semantics_results = @semantics_functions.flat_map do |semantics_func|
-          semantics_func.map(term_ast, @spec, @namespaces)
-        end
-
-        term_ast.arguments
-          .select(&:has_term?)
-          .map(&:child)
-          .each do |child_term|
-            semantics_results.concat(semantics_term(child_term))
-          end
-        semantics_results
+      def semantics(expression_node)
+        expression_node.traverse.flat_map do |node|
+          @semantics_functions.map { |func| func.map(node, @spec, @namespaces) }
+        end.compact
       end
     end
   end

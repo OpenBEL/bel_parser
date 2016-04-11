@@ -11,7 +11,7 @@ end
 namespaces = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
 
 require 'bel_parser'
-require 'bel_parser/expression/term_validator'
-BELParser::Expression::TermValidator.new(ARGV.first, namespaces).each($stdin) do |res|
+require 'bel_parser/expression/validator'
+BELParser::Expression::Validator.new(ARGV.first, namespaces).each($stdin) do |res|
   puts res.map { |r| "#{r}\n" }.join.each_line.map { |l| "  #{l}" }.join
 end

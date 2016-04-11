@@ -11,25 +11,21 @@ module BELParser
         # Map {BELParser::Parsers::AST::Term term} to BEL signatures defined
         # by a {BELParser::Language::Specification}. The mapping includes both
         # successful and failed signature matches.
-        def self.map(term_ast, spec, namespaces)
-          unless term_ast.is_a?(BELParser::Parsers::AST::Term)
-            raise(
-              ArgumentError,
-              "term_ast: expected BELParser::Parsers::AST::Term")
-          end
+        def self.map(term_node, spec, namespaces)
+          return nil unless term_node.is_a?(BELParser::Parsers::AST::Term)
 
-          function_name = term_ast.function.identifier.string_literal
+          function_name = term_node.function.identifier.string_literal
           function      = spec.function(function_name.to_sym)
           match         = BELParser::Language::Semantics.method(:match)
 
           successes, failures = function.signatures
-            .map       { |sig| [sig, match.call(term_ast, sig.semantic_ast, spec)] }
+            .map       { |sig| [sig, match.call(term_node, sig.semantic_ast, spec)] }
             .partition { |(sig, results)| results.all?(&:success?) }
 
           if successes.empty?
-            SignatureMappingWarning.new(term_ast, spec, failures)
+            SignatureMappingWarning.new(term_node, spec, failures)
           else
-            SignatureMappingSuccess.new(term_ast, spec, successes, failures)
+            SignatureMappingSuccess.new(term_node, spec, successes, failures)
           end
         end
       end
@@ -38,8 +34,8 @@ module BELParser
         attr_reader :success_signatures
         attr_reader :failure_signatures
 
-        def initialize(expression_node, spec, successes, failures)
-          super(expression_node, spec)
+        def initialize(term_node, spec, successes, failures)
+          super(term_node, spec)
           @success_signatures = successes
           @failure_signatures  = failures
         end
@@ -58,8 +54,8 @@ module BELParser
       class SignatureMappingWarning < SemanticsWarning
         attr_reader :failure_signatures
 
-        def initialize(expression_node, spec, failure_signatures)
-          super(expression_node, spec)
+        def initialize(term_node, spec, failure_signatures)
+          super(term_node, spec)
           @failure_signatures = failure_signatures
         end
 
