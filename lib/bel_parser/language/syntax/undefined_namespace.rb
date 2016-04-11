@@ -21,7 +21,8 @@ module BELParser
 
               namespace_prefix = prefix_identifier.string_literal
               unless namespaces[namespace_prefix]
-                syntax_results << UndefinedNamespaceError.new(term_node, node, namespaces)
+                syntax_results << UndefinedNamespaceError.new(
+                  term_node, spec, namespace_prefix, namespaces)
               end
             end
           syntax_results
@@ -37,7 +38,7 @@ module BELParser
         attr_reader :defined_namespaces
 
         def initialize(term_node, spec, invalid_prefix, defined_namespaces)
-          super(term_node, spec, error_node)
+          super(term_node, spec)
           @invalid_prefix     = invalid_prefix
           @defined_namespaces = defined_namespaces.dup
         end
