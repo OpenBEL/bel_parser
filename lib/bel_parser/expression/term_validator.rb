@@ -44,7 +44,7 @@ if __FILE__ == $PROGRAM_NAME
   namespaces = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
   BELParser::Expression::TermValidator.new(ARGV.first, namespaces).each($stdin) do |res|
     res.each do |res|
-      puts "  #{res}"
+      puts res.each_line.map { |l| "  #{l}" }.join
     end
   end
 end

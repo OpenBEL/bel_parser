@@ -352,6 +352,16 @@ module BELParser
         def initialize(children = [], properties = {})
           super(Parameter.ast_type, children, properties)
         end
+
+        # Get the prefix for the parameter.
+        def prefix
+          children[0]
+        end
+
+        # Get the value for the parameter.
+        def value
+          children[1]
+        end
       end
 
       # AST node representing a relationship.

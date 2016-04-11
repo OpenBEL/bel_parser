@@ -10,33 +10,27 @@ module BELParser
 
         private_class_method :new
 
-        def self.map(expression_ast, spec, namespaces)
-          errors = []
-          expression_ast.traverse.map do |node|
-            next unless node.is_a?(BELParser::Parsers::AST::Function)
-            function_name = node.identifier.string_literal
-            unless spec.function(function_name.to_sym)
-              errors << InvalidFunctionSyntaxError.new(
-                expression_ast, spec, node, spec.functions)
-            end
+        def self.map(term_node, spec, namespaces)
+          function_name = term_node.function.identifier.string_literal
+          unless spec.function(function_name.to_sym)
+            InvalidFunctionSyntaxError.new(term_node, spec, function_name)
           end
-          errors
         end
       end
 
       # InvalidFunctionSyntaxError indicates a function name was invalid.
       class InvalidFunctionSyntaxError < SyntaxError
-        # Gets the functions defined by a BEL specification.
-        attr_reader :bel_functions
+        # Gets the function literal that was invalid according to a
+        # BEL specification.
+        attr_reader :function
 
-        def initialize(expression_node, spec, error_node, bel_functions)
-          super(expression_node, spec, error_node)
-          @bel_functions = bel_functions
+        def initialize(term_node, spec, function)
+          super(term_node, spec)
+          @function = function
         end
 
         def msg
-          invalid_function = error_node.identifier.string_literal
-          %Q{Invalid function "#{invalid_function}".}
+          %Q{Invalid function "#{function}".}
         end
       end
     end

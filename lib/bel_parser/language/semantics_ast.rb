@@ -1,6 +1,6 @@
-require_relative 'semantic_match'
-require_relative '../quoting'
-require_relative '../../parsers/ast/node'
+require_relative 'semantics_match'
+require_relative 'quoting'
+require_relative '../parsers/ast/node'
 
 module BELParser
   module Language

@@ -10,36 +10,43 @@ module BELParser
 
         private_class_method :new
 
-        def self.map(expression_ast, spec, namespaces)
-          errors = []
-          expression_ast.traverse.map do |node|
-            next unless node.is_a?(BELParser::Parsers::AST::Prefix)
-            next if node.identifier.nil?
+        def self.map(term_node, spec, namespaces)
+          syntax_results = []
+          term_node.arguments
+            .select(&:has_parameter?)
+            .map(&:child)
+            .each do |child_parameter|
+              prefix_identifier = child_parameter.prefix.identifier
+              next if prefix_identifier.nil?
 
-            namespace_prefix = node.identifier.string_literal
-            unless namespaces[namespace_prefix]
-              errors << UndefinedNamespaceError.new(
-                expression_ast, node, namespaces)
+              namespace_prefix = prefix_identifier.string_literal
+              unless namespaces[namespace_prefix]
+                syntax_results << UndefinedNamespaceError.new(term_node, node, namespaces)
+              end
             end
-          end
-          errors
+          syntax_results
         end
       end
 
       # UndefinedNamespaceError indicates a parameter prefix is referencing
       # an undefined namespace.
       class UndefinedNamespaceError < SyntaxError
+        # Gets the invalid prefix.
+        attr_reader :invalid_prefix
         # Gets the defined namespaces.
         attr_reader :defined_namespaces
 
-        def initialize(expression_node, spec, error_node, defined_namespaces)
-          super(expression_node, spec, error_node)
+        def initialize(term_node, spec, invalid_prefix, defined_namespaces)
+          super(term_node, spec, error_node)
+          @invalid_prefix     = invalid_prefix
           @defined_namespaces = defined_namespaces.dup
         end
 
         def msg
-          undefined_namespace = error_node.identifier.string_literal
-          %Q{Undefined namespace "#{undefined_namespace}".}
+          <<-MSG.gsub(/ {10}/, '')
+            Undefined namespace "#{invalid_prefix}".
+            Defined namespaces are: #{defined_namespaces.keys.join(', ')}
+          MSG
         end
       end
     end

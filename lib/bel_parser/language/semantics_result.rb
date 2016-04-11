@@ -1,11 +1,12 @@
-require_relative 'syntax_result'
-
 module BELParser
   module Language
-    module Syntax
-      class SyntaxError < SyntaxResult
+    module Semantics
+      class SemanticsResult
+        attr_reader :expression_node, :specification
+
         def initialize(expression_node, specification)
-          super(expression_node, specification)
+          @expression_node = expression_node
+          @specification   = specification
         end
 
         # @abstract Subclass and override {#msg} to provide the message.
@@ -14,7 +15,7 @@ module BELParser
         end
 
         def to_s
-          "Error: #{msg}"
+          "Info: #{msg}"
         end
       end
     end
