@@ -1,5 +1,6 @@
 require_relative 'language/function'
 require_relative 'language/quoting'
+require_relative 'language/syntax'
 require_relative 'language/semantics'
 require_relative 'language/signature'
 require_relative 'language/specification'
