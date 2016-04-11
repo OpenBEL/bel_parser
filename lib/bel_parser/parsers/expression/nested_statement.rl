@@ -3,7 +3,7 @@
 %%{
   machine bel;
 
-  include 'statement_simple.rl';
+  include 'simple_statement.rl';
 
   action statement_init {
     @buffers[:statement_stack] = [ statement() ]
@@ -40,7 +40,7 @@
     fret;
   }
 
-  action yield_statement_nested {
+  action yield_nested_statement {
     yield nested_statement(@buffers[:statement_stack][-1])
   }
 
@@ -64,10 +64,10 @@
     # ')' @ast_object
     ;
 
-  statement_nested :=
+  nested_statement :=
     outer_statement
     SP*
-    COMMENT? %yield_statement_nested
+    COMMENT? %yield_nested_statement
     NL;
 }%%
 =end
@@ -80,7 +80,7 @@ require_relative '../nonblocking_io_wrapper'
 module BELParser
   module Parsers
     module Expression
-      module StatementNested
+      module NestedStatement
 
         class << self
 
@@ -131,7 +131,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BELParser::Parsers::Expression::StatementNested.parse(line) { |obj|
+    BELParser::Parsers::Expression::NestedStatement.parse(line) { |obj|
       puts obj.inspect
     }
   end

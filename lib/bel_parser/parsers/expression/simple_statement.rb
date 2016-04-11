@@ -869,9 +869,9 @@ class << self
 end
 self.bel_en_comment = 77;
 class << self
-	attr_accessor :bel_en_statement_simple
+	attr_accessor :bel_en_simple_statement
 end
-self.bel_en_statement_simple = 1;
+self.bel_en_simple_statement = 1;
 
 
 begin
@@ -1004,7 +1004,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -1188,7 +1188,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -1205,7 +1205,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -2355,9 +2355,9 @@ class << self
 end
 self.bel_en_comment = 77;
 class << self
-	attr_accessor :bel_en_statement_simple
+	attr_accessor :bel_en_simple_statement
 end
-self.bel_en_statement_simple = 1;
+self.bel_en_simple_statement = 1;
 
 
 begin
@@ -2490,7 +2490,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -2674,7 +2674,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -2691,7 +2691,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -3841,9 +3841,9 @@ class << self
 end
 self.bel_en_comment = 77;
 class << self
-	attr_accessor :bel_en_statement_simple
+	attr_accessor :bel_en_simple_statement
 end
-self.bel_en_statement_simple = 1;
+self.bel_en_simple_statement = 1;
 
 
 begin
@@ -3976,7 +3976,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -4160,7 +4160,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -4177,7 +4177,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -5327,9 +5327,9 @@ class << self
 end
 self.bel_en_comment = 77;
 class << self
-	attr_accessor :bel_en_statement_simple
+	attr_accessor :bel_en_simple_statement
 end
-self.bel_en_statement_simple = 1;
+self.bel_en_simple_statement = 1;
 
 
 begin
@@ -5462,7 +5462,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -5646,7 +5646,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -5663,7 +5663,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -6813,9 +6813,9 @@ class << self
 end
 self.bel_en_comment = 77;
 class << self
-	attr_accessor :bel_en_statement_simple
+	attr_accessor :bel_en_simple_statement
 end
-self.bel_en_statement_simple = 1;
+self.bel_en_simple_statement = 1;
 
 
 begin
@@ -6948,7 +6948,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -7132,7 +7132,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -7149,7 +7149,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -8299,9 +8299,9 @@ class << self
 end
 self.bel_en_comment = 77;
 class << self
-	attr_accessor :bel_en_statement_simple
+	attr_accessor :bel_en_simple_statement
 end
-self.bel_en_statement_simple = 1;
+self.bel_en_simple_statement = 1;
 
 
 begin
@@ -8434,7 +8434,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -8618,7 +8618,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -8635,7 +8635,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -8929,7 +8929,7 @@ require_relative '../nonblocking_io_wrapper'
 module BELParser
   module Parsers
     module Expression
-      module StatementSimple
+      module SimpleStatement
 
         class << self
 
@@ -9822,9 +9822,9 @@ class << self
 end
 self.bel_en_comment = 77;
 class << self
-	attr_accessor :bel_en_statement_simple
+	attr_accessor :bel_en_simple_statement
 end
-self.bel_en_statement_simple = 1;
+self.bel_en_simple_statement = 1;
 
 
       # end: ragel        
@@ -9971,7 +9971,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -10155,7 +10155,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -10172,7 +10172,7 @@ begin
 		begin
 
     @buffers[:comment] ||= comment(nil)
-    yield statement_simple(
+    yield simple_statement(
             statement(
               @buffers[:subject],
               @buffers[:relationship],
@@ -10465,7 +10465,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BELParser::Parsers::Expression::StatementSimple.parse(line) { |obj|
+    BELParser::Parsers::Expression::SimpleStatement.parse(line) { |obj|
       puts obj.inspect
     }
   end

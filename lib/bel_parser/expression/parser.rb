@@ -14,7 +14,7 @@ module BELParser
       FILTER = BELParser::ASTFilter.new(
         :parameter,
         :term,
-        :statement_simple,
+        :simple_statement,
         :observed_term,
         :nested_statement
       )

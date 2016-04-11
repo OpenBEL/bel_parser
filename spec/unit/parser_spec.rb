@@ -199,12 +199,12 @@ describe BELParser::Parsers::Expression::Relationship, '#parse' do
   end
 end
 
-describe StatementObservedTerm do
+describe ObservedTerm do
   include AST::Sexp
 
   it 'yields correct AST' do
     assert_ast(
-      BELParser::Parsers::Expression::StatementObservedTerm,
+      BELParser::Parsers::Expression::ObservedTerm,
       'p(HGNC:AKT1)',
       s(:observed_term,
         s(:statement,
@@ -223,7 +223,7 @@ describe StatementObservedTerm do
           s(:comment, nil)))
     )
     assert_ast(
-      BELParser::Parsers::Expression::StatementObservedTerm,
+      BELParser::Parsers::Expression::ObservedTerm,
       'p(HGNC:AKT1) //observed in lung',
       s(:observed_term,
         s(:statement,
@@ -242,7 +242,7 @@ describe StatementObservedTerm do
           s(:comment, 'observed in lung')))
     )
     assert_ast(
-      BELParser::Parsers::Expression::StatementObservedTerm,
+      BELParser::Parsers::Expression::ObservedTerm,
       'kin(complex(SCOMP:"p85/p110 PI3Kinase Complex"))',
       s(:observed_term,
         s(:statement,
@@ -267,14 +267,14 @@ describe StatementObservedTerm do
   end
 end
 
-describe BELParser::Parsers::Expression::StatementSimple do
+describe BELParser::Parsers::Expression::SimpleStatement do
   include AST::Sexp
 
   xit 'yields correct AST' do
     assert_ast(
-      BELParser::Parsers::Expression::StatementSimple,
+      BELParser::Parsers::Expression::SimpleStatement,
       'p(SP:AKT1_HUMAN) ^(*(oo)*)^ bp(MESHPP:Apoptosis)',
-      s(:statement_simple,
+      s(:simple_statement,
         s(:statement,
           s(:subject,
             s(:term,
@@ -300,10 +300,10 @@ describe BELParser::Parsers::Expression::StatementSimple do
           s(:comment, nil)))
     )
     assert_ast(
-      BELParser::Parsers::Expression::StatementSimple,
+      BELParser::Parsers::Expression::SimpleStatement,
       'complex(p(SFAM:"RXR Family"),p(HGNC:PPARG)) directlyIncreases '\
       'tscript(p(HGNC:PPARG))//Comment on the end of the unverse.',
-      s(:statement_simple,
+      s(:simple_statement,
         s(:statement,
           s(:subject,
             s(:term,
@@ -349,12 +349,12 @@ describe BELParser::Parsers::Expression::StatementSimple do
   end
 end
 
-describe BELParser::Parsers::Expression::StatementNested do
+describe BELParser::Parsers::Expression::NestedStatement do
   include AST::Sexp
 
   it 'yields correct AST' do
     assert_ast(
-      BELParser::Parsers::Expression::StatementNested,
+      BELParser::Parsers::Expression::NestedStatement,
       'a(A) => (b(B) -| c(C))',
       s(:nested_statement,
         s(:statement,
@@ -393,7 +393,7 @@ describe BELParser::Parsers::Expression::StatementNested do
     )
 
     assert_ast(
-      BELParser::Parsers::Expression::StatementNested,
+      BELParser::Parsers::Expression::NestedStatement,
       'a(A) -> (b(B) => (c(C) :> d(D)))',
       s(:nested_statement,
         s(:statement,
@@ -444,7 +444,7 @@ describe BELParser::Parsers::Expression::StatementNested do
     )
 
     assert_ast(
-      BELParser::Parsers::Expression::StatementNested,
+      BELParser::Parsers::Expression::NestedStatement,
       'kin(complex(SCOMP:"p85/p110 PI3Kinase Complex")) increases '\
       '(cat(p(HGNC:PLAUR)) increases bp(GOBP:"cell migration"))',
       s(:nested_statement,

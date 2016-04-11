@@ -13,7 +13,7 @@ module BELParser
       include BELParser::Parsers::BELScript
 
       FILTER = BELParser::ASTFilter.new(
-        :statement_simple,
+        :simple_statement,
         :observed_term,
         :nested_statement,
         :define_annotation,

@@ -22,7 +22,7 @@ module BELParser
       :term,
       :relationship,
       :observed_term,
-      :statement_simple,
+      :simple_statement,
       :nested_statement,
       :define_annotation,
       :define_namespace,

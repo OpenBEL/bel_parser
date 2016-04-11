@@ -4,22 +4,42 @@
   machine bel;
 
   include 'term.rl';
+  include 'relationship.rl';
   include 'comment.rl';
 
-  action yield_statement_observed_term {
+  action statement_subject {
+    @buffers[:subject]    = subject(
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
+  }
+
+  action statement_object {
+    @buffers[:object]     = object(
+                              @buffers[:term_stack][-1])
+    @buffers[:term_stack] = nil
+  }
+
+  action yield_simple_statement {
     @buffers[:comment] ||= comment(nil)
-    yield observed_term(
+    yield simple_statement(
             statement(
-              subject(@buffers[:term_stack][-1]),
-              relationship(nil),
-              object(nil),
+              @buffers[:subject],
+              @buffers[:relationship],
+              @buffers[:object],
               @buffers[:comment]))
   }
 
-  statement_observed_term :=
-    outer_term 
+  STATEMENT_SIMPLE =
+    outer_term %statement_subject
+    SP+
+    RELATIONSHIP
+    SP+
+    outer_term %statement_object;
+
+  simple_statement :=
+    STATEMENT_SIMPLE
     SP*
-    COMMENT? %yield_statement_observed_term
+    COMMENT? %yield_simple_statement
     NL;
 }%%
 =end
@@ -32,7 +52,7 @@ require_relative '../nonblocking_io_wrapper'
 module BELParser
   module Parsers
     module Expression
-      module StatementObservedTerm
+      module SimpleStatement
 
         class << self
 
@@ -82,7 +102,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BELParser::Parsers::Expression::StatementObservedTerm.parse(line) { |obj|
+    BELParser::Parsers::Expression::SimpleStatement.parse(line) { |obj|
       puts obj.inspect
     }
   end

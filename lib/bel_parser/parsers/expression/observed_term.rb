@@ -647,9 +647,9 @@ class << self
 end
 self.bel_en_comment = 58;
 class << self
-	attr_accessor :bel_en_statement_observed_term
+	attr_accessor :bel_en_observed_term
 end
-self.bel_en_statement_observed_term = 1;
+self.bel_en_observed_term = 1;
 
 
 begin
@@ -1850,9 +1850,9 @@ class << self
 end
 self.bel_en_comment = 58;
 class << self
-	attr_accessor :bel_en_statement_observed_term
+	attr_accessor :bel_en_observed_term
 end
-self.bel_en_statement_observed_term = 1;
+self.bel_en_observed_term = 1;
 
 
 begin
@@ -3053,9 +3053,9 @@ class << self
 end
 self.bel_en_comment = 58;
 class << self
-	attr_accessor :bel_en_statement_observed_term
+	attr_accessor :bel_en_observed_term
 end
-self.bel_en_statement_observed_term = 1;
+self.bel_en_observed_term = 1;
 
 
 begin
@@ -4256,9 +4256,9 @@ class << self
 end
 self.bel_en_comment = 58;
 class << self
-	attr_accessor :bel_en_statement_observed_term
+	attr_accessor :bel_en_observed_term
 end
-self.bel_en_statement_observed_term = 1;
+self.bel_en_observed_term = 1;
 
 
 begin
@@ -5459,9 +5459,9 @@ class << self
 end
 self.bel_en_comment = 58;
 class << self
-	attr_accessor :bel_en_statement_observed_term
+	attr_accessor :bel_en_observed_term
 end
-self.bel_en_statement_observed_term = 1;
+self.bel_en_observed_term = 1;
 
 
 begin
@@ -6028,7 +6028,7 @@ require_relative '../nonblocking_io_wrapper'
 module BELParser
   module Parsers
     module Expression
-      module StatementObservedTerm
+      module ObservedTerm
 
         class << self
 
@@ -6699,9 +6699,9 @@ class << self
 end
 self.bel_en_comment = 58;
 class << self
-	attr_accessor :bel_en_statement_observed_term
+	attr_accessor :bel_en_observed_term
 end
-self.bel_en_statement_observed_term = 1;
+self.bel_en_observed_term = 1;
 
 
       # end: ragel        
@@ -7281,7 +7281,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BELParser::Parsers::Expression::StatementObservedTerm.parse(line) { |obj|
+    BELParser::Parsers::Expression::ObservedTerm.parse(line) { |obj|
       puts obj.inspect
     }
   end
