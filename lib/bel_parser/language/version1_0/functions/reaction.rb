@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # Reaction: Denotes the frequency or abundance of events in a reaction
+        # Reaction: Denotes the frequency or abundance of events in
+        # a reaction
         class Reaction
           extend Function
 

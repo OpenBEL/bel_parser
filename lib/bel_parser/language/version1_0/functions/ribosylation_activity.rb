@@ -7,7 +7,9 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # RibosylationActivity: Denotes the frequency or abundance of events in which a member acts to perform post-translational modification of proteins
+        # RibosylationActivity: Denotes the frequency or abundance of
+        # events in which a member acts to perform post-translational
+        # modification of proteins
         class RibosylationActivity
           extend Function
 

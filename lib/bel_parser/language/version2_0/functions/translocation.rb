@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version2_0
       module Functions
-        # Translocation: Denotes the frequency or abundance of events in which members move between locations
+        # Translocation: Denotes the frequency or abundance of events
+        # in which members move between locations
         class Translocation
           extend Function
 

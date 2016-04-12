@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # PeptidaseActivity: Denotes the frequency or abundance of events in which a member acts to cleave a protein
+        # PeptidaseActivity: Denotes the frequency or abundance of events
+        # in which a member acts to cleave a protein
         class PeptidaseActivity
           extend Function
 

@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # Truncation: Indicates an abundance of proteins with truncation sequence variants
+        # Truncation: Indicates an abundance of proteins with truncation
+        # sequence variants
         class Truncation
           extend Function
 

@@ -5,7 +5,11 @@ module BELParser
   module Language
     module Version1_0
       module Relationships
-        # PrognosticBiomarkerFor:  +A prognosticBiomarkerFor P+ -  For term A and process term P, +A prognosticBiomarkerFor P+ indicates that changes in or detection of A is used in some way to be a prognostic biomarker for the subsequent development of pathology or biological process P.
+        # PrognosticBiomarkerFor:  +A prognosticBiomarkerFor P+ -
+        # For term A and process term P, +A prognosticBiomarkerFor P+
+        # indicates that changes in or detection of A is used in some
+        # way to be a prognostic biomarker for the subsequent development
+        # of pathology or biological process P.
         class PrognosticBiomarkerFor
           extend Relationship
 

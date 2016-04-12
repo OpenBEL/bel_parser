@@ -13,14 +13,13 @@ module BELParser
 
       # BEL application-specific AST node.
       #
-      # All BEL AST nodes have a basic set of properties. Additional properties
-      # may be specified by subclasses. Each class in the hierarchy describes
-      # its type through the class variable _ast_type_. This is equivalent to
-      # its _type_ instance variable but the former is not used by the AST
-      # library itself.
+      # All BEL AST nodes have a basic set of properties. Additional
+      # properties may be specified by subclasses. Each class in
+      # the hierarchy describes its type through the class variable
+      # _ast_type_. This is equivalent to its _type_ instance variable
+      # but the former is not used by the AST library itself.
       #
-      # @see Node.ast_type
-      # @see Node.initialize
+      # @see Node.ast_type @see Node.initialize
       #
       class Node < ::AST::Node
         # AST node type
@@ -30,17 +29,17 @@ module BELParser
 
         # New BEL AST node.
         #
-        # @param [Symbol] type The node type symbol
-        # @param [Array] children Optional children of node
-        # @param [Hash] properties Optional supported node properties
+        # @param [Symbol] type The node type symbol @param [Array]
+        # children Optional children of node @param [Hash] properties
+        # Optional supported node properties
         #
-        # === Supported properties
-        # - +line_number+ -> {#line_number}
-        # - +character_range+ -> {#character_range}, {#range_start},
+        # === Supported properties - +line_number+ -> {#line_number} -
+        # +character_range+ -> {#character_range}, {#range_start},
         #   {#range_end}
         # - +complete+ -> {#complete?}
         #
-        # @raise ArgumentError If _children_ is not an Array or _properties_
+        # @raise ArgumentError If _children_ is not an Array or
+        # _properties_
         #        is not a Hash
         def initialize(type, children = [], properties = {})
           AST.assert_is_a(Array, children, 'children')
@@ -48,20 +47,19 @@ module BELParser
           super(type, children, properties)
         end
 
-        # Get the class AST node type.
-        # @return [Symbol]
+        # Get the class AST node type.  @return [Symbol]
         class << self; attr_reader :ast_type end
 
-        # Get whether this class AST node has semantics.
-        # @return [boolean]
+        # Get whether this class AST node has semantics.  @return
+        # [boolean]
         class << self; attr_reader :has_semantics end
 
         # Get the line number where this AST node originates.
         attr_reader :line_number
 
-        # Get the character range enclosing this AST node.
-        # It is defined as the close interval containing all the characters
-        # of this AST node.
+        # Get the character range enclosing this AST node.  It is defined
+        # as the close interval containing all the characters of this
+        # AST node.
         attr_reader :character_range
 
         # Get the syntax errors for this AST node.
@@ -112,8 +110,7 @@ module BELParser
         end
 
         def freeze
-          # no freeze...nothing
-          # I want to be able to modify properties!
+          # no freeze...nothing I want to be able to modify properties!
           self
         end
 
@@ -128,7 +125,8 @@ module BELParser
           end
         end
 
-        # Concatenates `array` with `children` and returns the resulting node.
+        # Concatenates `array` with `children` and returns the resulting
+        # node.
         #
         # @return [Node]
         def concat(array)
@@ -209,8 +207,7 @@ module BELParser
 
       # AST node representing the function of a BEL term.
       #
-      # === Special node properties
-      # - _return_type_: {#return_type}
+      # === Special node properties - _return_type_: {#return_type}
       #
       class Function < Node
         # AST node type
@@ -514,7 +511,8 @@ module BELParser
         end
       end
 
-      # AST node representing a document property (e.g. +SET DOCUMENT ...+).
+      # AST node representing a document property (e.g. +SET DOCUMENT
+      # ...+).
       class DocumentProperty < Node
         # AST node type
         @ast_type = :document_property
@@ -812,8 +810,7 @@ module BELParser
 
       # AST node representing a value.
       #
-      # === Special node properties
-      # - _encoding_: {#encoding}
+      # === Special node properties - _encoding_: {#encoding}
       #
       class Value < Node
         # AST node type
@@ -832,8 +829,8 @@ module BELParser
         attr_reader :encoding
       end
 
-      # Sexp defines a module that creates
-      # {BELParser::Parsers::AST::Node AST nodes} using S-expression syntax.
+      # Sexp defines a module that creates {BELParser::Parsers::AST::Node
+      # AST nodes} using S-expression syntax.
       #
       # @see https://en.wikipedia.org/wiki/S-expression S-expression
       module Sexp

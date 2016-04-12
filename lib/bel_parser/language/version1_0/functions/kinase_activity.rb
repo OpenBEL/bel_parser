@@ -7,7 +7,9 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # KinaseActivity: Denotes the frequency or abundance of events in which a member acts as a kinase, performing enzymatic phosphorylation of a substrate
+        # KinaseActivity: Denotes the frequency or abundance of events
+        # in which a member acts as a kinase, performing enzymatic
+        # phosphorylation of a substrate
         class KinaseActivity
           extend Function
 

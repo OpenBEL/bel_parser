@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # ProteinModification: Denotes a covalently modified protein abundance
+        # ProteinModification: Denotes a covalently modified protein
+        # abundance
         class ProteinModification
           extend Function
 

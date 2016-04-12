@@ -7,7 +7,9 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # CellSecretion: Denotes the frequency or abundance of events in which members of an abundance move from cells to regions outside of the cells
+        # CellSecretion: Denotes the frequency or abundance of events
+        # in which members of an abundance move from cells to regions
+        # outside of the cells
         class CellSecretion
           extend Function
 

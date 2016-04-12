@@ -5,7 +5,13 @@ module BELParser
   module Language
     module Version2_0
       module Relationships
-        # ReactantIn:  +A reactantIn reaction(reactants(A), products(B))+ -  This relationship links abundance terms from the +reactants(<list>)+ in a reaction to the reaction. This is a direct relationship because it is a _self_ relationship. Reactants are consumed directly by a reaction. This relationship is introduced by the BEL Compiler and may not be used by statements in BEL documents.
+        # ReactantIn:  +A reactantIn reaction(reactants(A),
+        # products(B))+ -  This relationship links abundance
+        # terms from the +reactants(<list>)+ in a reaction to the
+        # reaction. This is a direct relationship because it is a
+        # _self_ relationship. Reactants are consumed directly by a
+        # reaction. This relationship is introduced by the BEL Compiler
+        # and may not be used by statements in BEL documents.
         class ReactantIn
           extend Relationship
 

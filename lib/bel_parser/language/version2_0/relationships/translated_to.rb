@@ -5,7 +5,12 @@ module BELParser
   module Language
     module Version2_0
       module Relationships
-        # TranslatedTo:  +R >> P+ -  For rnaAbundance term R and proteinAbundance term P, +R translatedTo P+ or +R >> P+ indicates that members of P are produced by the translation of members of R. For example: +r(HGNC:AKT1) >> p(HGNC:AKT1)+ indicates that AKT1 protein is produced by translation of AKT1 RNA.
+        # TranslatedTo:  +R >> P+ -  For rnaAbundance term R and
+        # proteinAbundance term P, +R translatedTo P+ or +R >> P+
+        # indicates that members of P are produced by the translation
+        # of members of R. For example: +r(HGNC:AKT1) >> p(HGNC:AKT1)+
+        # indicates that AKT1 protein is produced by translation of
+        # AKT1 RNA.
         class TranslatedTo
           extend Relationship
 

@@ -5,7 +5,10 @@ module BELParser
   module Language
     module Version1_0
       module Relationships
-        # BiomarkerFor:  +A biomarkerFor P+ -  For term A and process term P, +A biomarkerFor P+ indicates that changes in or detection of A is used in some way to be a biomarker for pathology or biological process P.
+        # BiomarkerFor:  +A biomarkerFor P+ -  For term A and process term
+        # P, +A biomarkerFor P+ indicates that changes in or detection
+        # of A is used in some way to be a biomarker for pathology or
+        # biological process P.
         class BiomarkerFor
           extend Relationship
 

@@ -7,7 +7,9 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # CellSurfaceExpression: Denotes the frequency or abundance of events in which members of an abundance move to the surface of cells
+        # CellSurfaceExpression: Denotes the frequency or abundance of
+        # events in which members of an abundance move to the surface
+        # of cells
         class CellSurfaceExpression
           extend Function
 

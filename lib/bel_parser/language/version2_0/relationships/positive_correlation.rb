@@ -5,7 +5,10 @@ module BELParser
   module Language
     module Version2_0
       module Relationships
-        # PositiveCorrelation:  +A positiveCorrelation B+ -  For terms A and B, +A positiveCorrelation B+ indicates that changes in A and B have been observed to be positively correlated, thus B positiveCorrelation A is equivalent to A positiveCorrelation B.
+        # PositiveCorrelation:  +A positiveCorrelation B+ -  For terms
+        # A and B, +A positiveCorrelation B+ indicates that changes in
+        # A and B have been observed to be positively correlated, thus B
+        # positiveCorrelation A is equivalent to A positiveCorrelation B.
         class PositiveCorrelation
           extend Relationship
 

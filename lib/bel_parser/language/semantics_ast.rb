@@ -4,11 +4,11 @@ require_relative '../parsers/ast/node'
 
 module BELParser
   module Language
-    # Semantics capture BEL version-independent semantics for terms and
-    # statements.
+    # Semantics capture BEL version-independent semantics for terms
+    # and statements.
     module Semantics
-      # rubocop:disable Metrics/MethodLength
-      # rubocop:disable Metrics/AbcSize
+      # rubocop:disable Metrics/MethodLength rubocop:disable
+      # Metrics/AbcSize
       def self.match(input_ast, semantic_ast, spec, match_results = [])
         res = semantic_ast.match(input_ast, spec)
         match_results.concat(res)

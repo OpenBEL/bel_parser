@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version2_0
       module Functions
-        # Fragment: Denotes a protein fragment, e.g., a product of proteolytic cleavage.
+        # Fragment: Denotes a protein fragment, e.g., a product of
+        # proteolytic cleavage.
         class Fragment
           extend Function
 

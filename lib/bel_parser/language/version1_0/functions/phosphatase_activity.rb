@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # PhosphataseActivity: Denotes the frequency or abundance of events in which a member acts as a phosphatase
+        # PhosphataseActivity: Denotes the frequency or abundance of
+        # events in which a member acts as a phosphatase
         class PhosphataseActivity
           extend Function
 

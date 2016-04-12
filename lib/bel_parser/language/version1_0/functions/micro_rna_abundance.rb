@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # MicroRNAAbundance: Denotes the abundance of a processed, functional microRNA
+        # MicroRNAAbundance: Denotes the abundance of a processed,
+        # functional microRNA
         class MicroRNAAbundance
           extend Function
 

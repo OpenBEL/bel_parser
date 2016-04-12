@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version2_0
       module Functions
-        # Fusion: Specifies the abundance of a protein translated from the fusion of a gene.
+        # Fusion: Specifies the abundance of a protein translated from
+        # the fusion of a gene.
         class Fusion
           extend Function
 

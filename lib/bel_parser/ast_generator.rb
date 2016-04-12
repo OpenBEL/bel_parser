@@ -21,34 +21,27 @@ module BELParser
     # Yields AST results for each line of the IO.
     #
     # @example Receive AST results in given block.
-    #   # doctest setup
-    #   require 'bel_parser'
-    #   self.class.include AST::Sexp
+    #   # doctest setup require 'bel_parser' self.class.include AST::Sexp
     #
-    #   # example usage
-    #   line_io = StringIO.new("\"AKT1\"\n")
-    #   line    = nil
-    #   ast_res = nil
-    #   ::BELParser::ASTGenerator.new.each(line_io) { |(line_number, line, results)|
+    #   # example usage line_io = StringIO.new("\"AKT1\"\n") line    =
+    #   nil ast_res = nil ::BELParser::ASTGenerator.new.each(line_io)
+    #   { |(line_number, line, results)|
     #     # do something
     #   }
     #
     # @example Receive AST results as an enumerator.
-    #   # doctest setup
-    #   require 'bel_parser'
-    #   self.class.include AST::Sexp
+    #   # doctest setup require 'bel_parser' self.class.include AST::Sexp
     #
-    #   # example usage
-    #   line_io = StringIO.new("\"AKT1\"\n")
-    #   line, ast_res = ::BELParser::ASTGenerator.new.each(line_io).first.to_a
+    #   # example usage line_io = StringIO.new("\"AKT1\"\n") line,
+    #   ast_res = ::BELParser::ASTGenerator.new.each(line_io).first.to_a
     #
-    # @param  [IO] io the IO-object to read each line from
-    # @yield  [[Integer, String, Array<AST::Node>]] yields line number, line,
+    # @param  [IO] io the IO-object to read each line from @yield
+    # [[Integer, String, Array<AST::Node>]] yields line number, line,
     #         and AST results as an {Array}
     # @return [IO, #<Enumerator: #<BELParser::ASTGenerator#each>] the {IO}
     #         object is returned if a block is given, otherwise an
-    #         {Enumerator} object is returned that can be iterated
-    #         with {Enumerator#each}
+    #         {Enumerator} object is returned that can be iterated with
+    #         {Enumerator#each}
     def each(io) # rubocop:disable MethodLength
       if block_given?
         line_enumerator = map_lines(io.each_line.lazy)

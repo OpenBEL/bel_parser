@@ -5,7 +5,11 @@ module BELParser
   module Language
     module Version2_0
       module Relationships
-        # DirectlyDecreases:  +A =| B+ -  For terms A and B, +A directlyDecreases B or A =| B+ indicates A decreases B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a direct version of the decreases relationship.
+        # DirectlyDecreases:  +A =| B+ -  For terms A and B, +A
+        # directlyDecreases B or A =| B+ indicates A decreases B and that
+        # the mechanism of the causal relationship is based on physical
+        # interaction of entities related to A and B. This is a direct
+        # version of the decreases relationship.
         class DirectlyDecreases
           extend Relationship
 

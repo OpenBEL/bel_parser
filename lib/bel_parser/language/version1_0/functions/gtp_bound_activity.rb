@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # GTPBoundActivity: Denotes the frequency or abundance of events in which a member of a G-protein abundance is GTP-bound
+        # GTPBoundActivity: Denotes the frequency or abundance of events
+        # in which a member of a G-protein abundance is GTP-bound
         class GTPBoundActivity
           extend Function
 

@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version2_0
       module Functions
-        # Activity: Denotes the frequency or abundance of events in which a member acts as a causal agent at the molecular scale.
+        # Activity: Denotes the frequency or abundance of events in
+        # which a member acts as a causal agent at the molecular scale.
         class Activity
           extend BELParser::Language::Function
 

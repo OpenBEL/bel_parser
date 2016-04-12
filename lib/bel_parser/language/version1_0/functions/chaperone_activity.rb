@@ -7,7 +7,9 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # ChaperoneActivity: Denotes the frequency or abundance of events in which a member binds to some substrate and acts as a chaperone for the substrate
+        # ChaperoneActivity: Denotes the frequency or abundance of
+        # events in which a member binds to some substrate and acts as
+        # a chaperone for the substrate
         class ChaperoneActivity
           extend Function
 

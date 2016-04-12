@@ -5,7 +5,13 @@ module BELParser
   module Language
     module Version2_0
       module Relationships
-        # RateLimitingStepOf:  +A rateLimitingStepOf B+ -  For process, activity, or transformation term A and process term B, +A rateLimitingStepOf B+ indicates +A subProcessOf B+ and +A -> B+. For example, the catalytic activity of HMG CoA reductase is a rate-limiting step for cholesterol biosynthesis: <pre> <code> cat(p(HGNC:HMGCR)) rateLimitingStepOf\ bp(GO:"cholesterol biosynthetic process") </code> </pre>
+        # RateLimitingStepOf:  +A rateLimitingStepOf B+ -  For process,
+        # activity, or transformation term A and process term B, +A
+        # rateLimitingStepOf B+ indicates +A subProcessOf B+ and +A ->
+        # B+. For example, the catalytic activity of HMG CoA reductase
+        # is a rate-limiting step for cholesterol biosynthesis: <pre>
+        # <code> cat(p(HGNC:HMGCR)) rateLimitingStepOf\ bp(GO:"cholesterol
+        # biosynthetic process") </code> </pre>
         class RateLimitingStepOf
           extend Relationship
 

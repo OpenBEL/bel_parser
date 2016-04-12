@@ -5,7 +5,12 @@ module BELParser
   module Language
     module Version2_0
       module Relationships
-        # HasModification:  +p(A) hasModification p(A, pmod(P, S, 473))+ -  This relationship links abundance terms modified by the +pmod()+ function to the unmodified abundance term. This is a direct relationship because it is a _self_ relationship. This relationship is introduced by the BEL Compiler and may not be used by statements in BEL documents.
+        # HasModification:  +p(A) hasModification p(A, pmod(P, S, 473))+
+        # -  This relationship links abundance terms modified by the
+        # +pmod()+ function to the unmodified abundance term. This is a
+        # direct relationship because it is a _self_ relationship. This
+        # relationship is introduced by the BEL Compiler and may not be
+        # used by statements in BEL documents.
         class HasModification
           extend Relationship
 

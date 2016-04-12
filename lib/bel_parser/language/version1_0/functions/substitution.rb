@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # Substitution: Indicates the abundance of proteins with amino acid substitution sequence
+        # Substitution: Indicates the abundance of proteins with amino
+        # acid substitution sequence
         class Substitution
           extend Function
 

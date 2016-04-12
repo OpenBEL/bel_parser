@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version2_0
       module Functions
-        # FromLocation: Denotes the from cellular location of the abundance.
+        # FromLocation: Denotes the from cellular location of the
+        # abundance.
         class FromLocation
           extend Function
 

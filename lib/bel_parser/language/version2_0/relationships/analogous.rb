@@ -5,7 +5,10 @@ module BELParser
   module Language
     module Version2_0
       module Relationships
-        # Analogous:  +A analogous B+ -  For terms A and B, +A analogousTo B+ indicates that A and B represent abundances or molecular activities in different species which function in a similar manner.
+        # Analogous:  +A analogous B+ -  For terms A and B, +A analogousTo
+        # B+ indicates that A and B represent abundances or molecular
+        # activities in different species which function in a similar
+        # manner.
         class Analogous
           extend Relationship
 

@@ -7,7 +7,9 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # Degradation: Denotes the frequency or abundance of events in which a member is degraded in some way such that it is no longer a member
+        # Degradation: Denotes the frequency or abundance of events
+        # in which a member is degraded in some way such that it is no
+        # longer a member
         class Degradation
           extend Function
 

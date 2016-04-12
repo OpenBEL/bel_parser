@@ -3,10 +3,10 @@ require 'bel_parser/parsers/ast/node'
 module BELParser
   module Language
     module Semantics
-      # SignatureMapping implements a {SemanticsFunction} that maps a
-      # {BELParser::Parsers::AST::Node} to {SemanticsResult} by checking each
-      # {BELParser::Language::Signature signature} for the
-      # {BELParser::Language::Function}.
+      # SignatureMapping implements a {SemanticsFunction} that maps
+      # a {BELParser::Parsers::AST::Node} to {SemanticsResult} by
+      # checking each {BELParser::Language::Signature signature} for
+      # the {BELParser::Language::Function}.
       #
       # @see BELParser::Language::Function#signatures
       class SignatureMapping
@@ -14,9 +14,9 @@ module BELParser
 
         private_class_method :new
 
-        # Map {BELParser::Parsers::AST::Term term} to BEL signatures defined
-        # by a {BELParser::Language::Specification}. The mapping includes both
-        # successful and failed signature matches.
+        # Map {BELParser::Parsers::AST::Term term} to BEL signatures
+        # defined by a {BELParser::Language::Specification}. The mapping
+        # includes both successful and failed signature matches.
         def self.map(term_node, spec, _namespaces)
           return nil unless term_node.is_a?(BELParser::Parsers::AST::Term)
 

@@ -7,7 +7,9 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # CatalyticActivity: Denotes the frequency or abundance of events where a member acts as an enzymatic catalyst of biochecmial reactions
+        # CatalyticActivity: Denotes the frequency or abundance of events
+        # where a member acts as an enzymatic catalyst of biochecmial
+        # reactions
         class CatalyticActivity
           extend Function
 

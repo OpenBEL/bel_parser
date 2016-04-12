@@ -7,7 +7,9 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # TransportActivity: Denotes the frequency or abundance of events in which a member directs acts to enable the directed movement of substances into, out of, within, or between cells
+        # TransportActivity: Denotes the frequency or abundance of events
+        # in which a member directs acts to enable the directed movement
+        # of substances into, out of, within, or between cells
         class TransportActivity
           extend Function
 

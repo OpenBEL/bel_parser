@@ -5,7 +5,16 @@ module BELParser
   module Language
     module Version1_0
       module Relationships
-        # SubProcessOf:  +A subProcessOf B+ -  For process, activity, or transformation term A and process term B, +A subProcessOf B+ indicates that instances of process B, by default, include one or more instances of A in their composition. For example, the reduction of HMG-CoA to mevalonate is a subprocess of cholesterol biosynthesis: <pre> <code> rxn(reactants(a(CHEBI:"(S)-3-hydroxy-3-methylglutaryl-CoA"),\ a(CHEBI:NADPH), a(CHEBI:hydron)), products(a(CHEBI:Mevalonate),\ a(CHEBI:"CoA-SH"), a(CHEBI:"NADP+"))) subProcessOf bp(GO:"cholesterol\ biosynthetic process") </code> </pre>
+        # SubProcessOf:  +A subProcessOf B+ -  For process, activity, or
+        # transformation term A and process term B, +A subProcessOf B+
+        # indicates that instances of process B, by default, include
+        # one or more instances of A in their composition. For
+        # example, the reduction of HMG-CoA to mevalonate is
+        # a subprocess of cholesterol biosynthesis: <pre> <code>
+        # rxn(reactants(a(CHEBI:"(S)-3-hydroxy-3-methylglutaryl-CoA"),\
+        # a(CHEBI:NADPH), a(CHEBI:hydron)), products(a(CHEBI:Mevalonate),\
+        # a(CHEBI:"CoA-SH"), a(CHEBI:"NADP+"))) subProcessOf
+        # bp(GO:"cholesterol\ biosynthetic process") </code> </pre>
         class SubProcessOf
           extend Relationship
 

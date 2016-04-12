@@ -7,7 +7,8 @@ module BELParser
   module Language
     module Version2_0
       module Functions
-        # CompositeAbundance: Denotes the frequency or abundance of events in which members are present.
+        # CompositeAbundance: Denotes the frequency or abundance of
+        # events in which members are present.
         class CompositeAbundance
           extend Function
 

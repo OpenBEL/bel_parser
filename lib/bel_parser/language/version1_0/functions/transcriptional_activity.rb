@@ -7,7 +7,9 @@ module BELParser
   module Language
     module Version1_0
       module Functions
-        # TranscriptionalActivity: Denotes the frequency or abundance of events in which a member directly acts to control transcription of genes
+        # TranscriptionalActivity: Denotes the frequency or abundance of
+        # events in which a member directly acts to control transcription
+        # of genes
         class TranscriptionalActivity
           extend Function
 
