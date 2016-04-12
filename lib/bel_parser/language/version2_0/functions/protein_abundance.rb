@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class ProteinAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -45,19 +44,19 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ProteinAbundance))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:ProteinAbundance))))))
               end
               private_constant :AST
 
@@ -72,7 +71,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ProteinAbundanceWithFragmentSignature
               extend BELParser::Language::Signature
 
@@ -80,24 +79,24 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ProteinAbundance))))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Fragment))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:ProteinAbundance))))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Fragment))))))
               end
               private_constant :AST
 
@@ -112,7 +111,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ProteinAbundanceWithFusionSignature
               extend BELParser::Language::Signature
 
@@ -142,7 +141,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ProteinAbundanceWithLocationSignature
               extend BELParser::Language::Signature
 
@@ -150,24 +149,24 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ProteinAbundance))))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Location))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:ProteinAbundance))))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Location))))))
               end
               private_constant :AST
 
@@ -182,7 +181,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ProteinAbundanceWithProteinModificationSignature
               extend BELParser::Language::Signature
 
@@ -190,24 +189,24 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ProteinAbundance))))),
-                variadic_arguments(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::ProteinModification))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:ProteinAbundance))))),
+                  variadic_arguments(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::ProteinModification))))))
               end
               private_constant :AST
 
@@ -222,7 +221,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ProteinAbundanceWithVariantSignature
               extend BELParser::Language::Signature
 
@@ -230,24 +229,24 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ProteinAbundance))))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Variant))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:ProteinAbundance))))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Variant))))))
               end
               private_constant :AST
 
@@ -262,7 +261,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

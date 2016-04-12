@@ -7,7 +7,6 @@ module Main
   # TermASTGenerator reads an IO object line by line and only yields AST nodes
   # of type {BELParser::Parsers::AST::Term}.
   class TermASTGenerator
-
     # Filter out AST results of node type
     # +:term+ (i.e. {BELParser::Parsers::AST::Term}).
     FILTER = BELParser::ASTFilter.new(
@@ -39,7 +38,7 @@ module Main
     def on_term(term_node)
       # Return original term node unless the function is kin/kinaseActivity.
       function = term_node.function
-      return term_node unless ['kin', 'kinaseActivity'].include?(function.identifier.string_literal)
+      return term_node unless %w(kin kinaseActivity).include?(function.identifier.string_literal)
 
       # If kinaseActivity update the children of the term (produces new AST).
       term_node.updated([
@@ -54,11 +53,11 @@ module Main
 
     # Called by {#on_term} to create a +molecularActivity+ argument using the
     # AST Sexpressions.
-    def add_molecular_activity(activity_identifier)
+    def add_molecular_activity(_activity_identifier)
       argument(
         term(
           function(
-            identifier("molecularActivity")),
+            identifier('molecularActivity')),
           argument(
             parameter(
               prefix(nil),
@@ -75,8 +74,8 @@ module Main
     #
     def on_function(function_node)
       function_node.updated([
-        identifier('activity')
-      ])
+                              identifier('activity')
+                            ])
     end
   end
 
@@ -104,9 +103,7 @@ module Main
 
     # Called when visiting nodes of type +argument+.
     def on_argument(argument_node)
-      if defined? @separate_by_comma
-        bel_string << ', '
-      end
+      bel_string << ', ' if defined? @separate_by_comma
 
       process(argument_node.child)
       @separate_by_comma = true
@@ -126,9 +123,7 @@ module Main
     # Called when visiting nodes of type +prefix+.
     def on_prefix(prefix_node)
       prefix = prefix_node.identifier
-      unless prefix.nil?
-        bel_string << "#{prefix.string_literal}:"
-      end
+      bel_string << "#{prefix.string_literal}:" unless prefix.nil?
     end
 
     # Called when visiting nodes of type +value+.
@@ -152,21 +147,21 @@ if __FILE__ == $PROGRAM_NAME
 
     # Grab the first one which should be a term or nil.
     ast = results.first
-    puts "Original AST"
+    puts 'Original AST'
     puts ast.inspect(1)
     puts
 
     # Transform into a BEL 2.0 kinase.
     transformer = Main::KinaseTransformation.new
     transformed_node = transformer.process(ast)
-    puts "Transformed AST"
+    puts 'Transformed AST'
     puts transformed_node.inspect(1)
     puts
 
     # Serialize new Term node to BEL string.
     serializer = Main::SerializeToBEL.new
     serializer.process(transformed_node)
-    puts "BEL serialization"
+    puts 'BEL serialization'
     puts serializer.bel_string
   end
 end

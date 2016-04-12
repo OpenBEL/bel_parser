@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class ReactantsSignature
               extend BELParser::Language::Signature
 
@@ -45,14 +44,14 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(Reactants))),
-                variadic_arguments(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Abundance))))))              
+                  function(
+                    identifier(
+                      function_of(Reactants))),
+                  variadic_arguments(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Abundance))))))
               end
               private_constant :AST
 
@@ -67,7 +66,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

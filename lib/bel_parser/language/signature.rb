@@ -16,17 +16,17 @@ module BELParser
       def size
         count = 0
         nodes = [semantic_ast]
-        while !nodes.empty?
+        until nodes.empty?
           n = nodes.shift
           if n
-            count += 1 
+            count += 1
             nodes.concat(n.children) if n.respond_to?(:children)
           end
         end
         count
       end
 
-      def <=> (other)
+      def <=>(other)
         return 1 if other.nil?
         size <=> other.size
       end

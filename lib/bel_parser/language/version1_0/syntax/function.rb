@@ -8,7 +8,6 @@ module BELParser
         # {BELParser::Parsers::AST::Function} nodes that do not have a valid
         # BEL 1.0 functon name.
         class Function
-
           private_class_method :new
 
           V1 = ::BELParser::Language::Version1_0::Specification.new

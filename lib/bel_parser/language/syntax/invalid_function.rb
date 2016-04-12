@@ -10,7 +10,7 @@ module BELParser
 
         private_class_method :new
 
-        def self.map(func_node, spec, namespaces)
+        def self.map(func_node, spec, _namespaces)
           return nil unless func_node.is_a?(BELParser::Parsers::AST::Function)
 
           function_name = func_node.identifier.string_literal
@@ -31,7 +31,7 @@ module BELParser
         end
 
         def msg
-          %Q{Invalid function "#{invalid_function}".}
+          %(Invalid function "#{invalid_function}".)
         end
       end
     end

@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class ToLocationSignature
               extend BELParser::Language::Signature
 
@@ -45,19 +44,19 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ToLocation))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:Location))))))              
+                  function(
+                    identifier(
+                      function_of(ToLocation))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:Location))))))
               end
               private_constant :AST
 
@@ -72,7 +71,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

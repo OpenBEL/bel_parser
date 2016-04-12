@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class ActivitySignature
               extend BELParser::Language::Signature
 
@@ -67,7 +66,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ActivityWithSpecificActivityTypeSignature
               extend BELParser::Language::Signature
 
@@ -102,7 +101,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

@@ -4,7 +4,7 @@ module BELParser
       module SyntaxFunction
         # @abstract Include {SyntaxFunction} and override {#map} to check
         # expression syntax.
-        def self.map(expression_ast, spec, namespaces)
+        def self.map(_expression_ast, _spec, _namespaces)
           raise NotImplementedError, "#{__method__} is not implemented."
         end
       end

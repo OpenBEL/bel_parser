@@ -24,17 +24,17 @@ MATCHES = [
     input:
       s(:term,
         s(:function,
-          s(:identifier, "fragment")),
+          s(:identifier, 'fragment')),
         s(:argument,
           s(:parameter,
             s(:prefix, nil),
             s(:value,
-              s(:identifier, "5_20")))),
+              s(:identifier, '5_20')))),
         s(:argument,
           s(:parameter,
             s(:prefix, nil),
             s(:value,
-              s(:identifier, "55kD"))))),
+              s(:identifier, '55kD'))))),
     semantic: FX::Fragment::Signatures::FragmentWithRangeDescriptorSignature.semantic_ast
   }
 ].freeze

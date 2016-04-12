@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class FragmentWithRangeSignature
               extend BELParser::Language::Signature
 
@@ -68,7 +67,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class FragmentWithRangeDescriptorSignature
               extend BELParser::Language::Signature
 
@@ -91,7 +90,7 @@ module BELParser
                         any),
                       value(
                         value_type(
-                          encoding_of(:*))))))              
+                          encoding_of(:*))))))
               end
               private_constant :AST
 
@@ -106,7 +105,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

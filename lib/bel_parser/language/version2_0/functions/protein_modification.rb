@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class ProteinModificationWithTypeSignature
               extend BELParser::Language::Signature
 
@@ -46,16 +45,16 @@ module BELParser
               # TODO: More strict prefix validation for modification type?
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinModification))),
-                argument(
-                  parameter(
-                    prefix(any),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ModificationType))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinModification))),
+                  argument(
+                    parameter(
+                      prefix(any),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:ModificationType))))))
               end
               private_constant :AST
 
@@ -70,7 +69,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ProteinModificationWithTypeAminoSignature
               extend BELParser::Language::Signature
 
@@ -79,22 +78,22 @@ module BELParser
               # TODO: More strict prefix validation for modification type?
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinModification))),
-                argument(
-                  parameter(
-                    prefix(any),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ModificationType))))),
-                argument(
-                  parameter(
-                    prefix(any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinModification))),
+                  argument(
+                    parameter(
+                      prefix(any),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:ModificationType))))),
+                  argument(
+                    parameter(
+                      prefix(any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))))
               end
               private_constant :AST
 
@@ -109,7 +108,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ProteinModificationWithTypeAminoPositionSignature
               extend BELParser::Language::Signature
 
@@ -118,28 +117,28 @@ module BELParser
               # TODO: More strict prefix validation for modification type?
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinModification))),
-                argument(
-                  parameter(
-                    prefix(any),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ModificationType))))),
-                argument(
-                  parameter(
-                    prefix(any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))),
-                argument(
-                  parameter(
-                    prefix(any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinModification))),
+                  argument(
+                    parameter(
+                      prefix(any),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:ModificationType))))),
+                  argument(
+                    parameter(
+                      prefix(any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))),
+                  argument(
+                    parameter(
+                      prefix(any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))))
               end
               private_constant :AST
 
@@ -154,7 +153,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

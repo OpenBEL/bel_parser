@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class GeneAbundanceWithFusionSignature
               extend BELParser::Language::Signature
 
@@ -45,24 +44,24 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(GeneAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:GeneAbundance))))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version1_0::ReturnTypes::Fusion))))))              
+                  function(
+                    identifier(
+                      function_of(GeneAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:GeneAbundance))))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version1_0::ReturnTypes::Fusion))))))
               end
               private_constant :AST
 
@@ -77,7 +76,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class GeneAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -85,19 +84,19 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(GeneAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:GeneAbundance))))))              
+                  function(
+                    identifier(
+                      function_of(GeneAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:GeneAbundance))))))
               end
               private_constant :AST
 
@@ -112,7 +111,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

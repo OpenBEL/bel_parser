@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class ListOfAbundanceEncodingSignature
               extend BELParser::Language::Signature
 
@@ -45,19 +44,19 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(List))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:Abundance))))))              
+                  function(
+                    identifier(
+                      function_of(List))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:Abundance))))))
               end
               private_constant :AST
 
@@ -72,7 +71,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ListOfAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -80,14 +79,14 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(List))),
-                variadic_arguments(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Abundance))))))              
+                  function(
+                    identifier(
+                      function_of(List))),
+                  variadic_arguments(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Abundance))))))
               end
               private_constant :AST
 
@@ -102,7 +101,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

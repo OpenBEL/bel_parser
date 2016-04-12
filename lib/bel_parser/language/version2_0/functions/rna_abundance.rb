@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class RNAAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -45,19 +44,19 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(RNAAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:RnaAbundance))))))              
+                  function(
+                    identifier(
+                      function_of(RNAAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:RnaAbundance))))))
               end
               private_constant :AST
 
@@ -72,7 +71,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class RNAAbundanceWithFusionSignature
               extend BELParser::Language::Signature
 
@@ -80,14 +79,14 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(RNAAbundance))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Fusion))))))              
+                  function(
+                    identifier(
+                      function_of(RNAAbundance))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Fusion))))))
               end
               private_constant :AST
 
@@ -102,7 +101,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class RNAAbundanceWithLocationSignature
               extend BELParser::Language::Signature
 
@@ -110,24 +109,24 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(RNAAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:RnaAbundance))))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Location))))))              
+                  function(
+                    identifier(
+                      function_of(RNAAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:RnaAbundance))))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Location))))))
               end
               private_constant :AST
 
@@ -142,7 +141,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class RNAAbundanceWithVariantSignature
               extend BELParser::Language::Signature
 
@@ -150,24 +149,24 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(RNAAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:RnaAbundance))))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Variant))))))              
+                  function(
+                    identifier(
+                      function_of(RNAAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:RnaAbundance))))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Variant))))))
               end
               private_constant :AST
 
@@ -182,7 +181,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

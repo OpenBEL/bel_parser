@@ -8,7 +8,6 @@ require_relative 'language/expression_validator'
 
 module BELParser
   module Language
-
     # Mutex to synchronize creation of BEL specifications.
     LOCK = Mutex.new
     private_constant :LOCK
@@ -18,12 +17,10 @@ module BELParser
     # @param  [#to_s] version the BEL version string (e.g. +"2.0"+)
     # @return [Boolean] +true+ if +version+ is defined; +false+ if not
     def self.defines_version?(version)
-      begin
-        specification(version)
-        true
-      rescue ArgumentError, LoadError
-        false
-      end
+      specification(version)
+      true
+    rescue ArgumentError, LoadError
+      false
     end
 
     # Returns all version strings that are defined and supported by this
@@ -60,7 +57,7 @@ module BELParser
     def self.specification(version)
       version_string = version.to_s
       unless version_string =~ /^[0-9]+\.[0-9]+/
-        raise ArgumentError, "Version format incorrect; expecting MAJOR.MINOR"
+        raise ArgumentError, 'Version format incorrect; expecting MAJOR.MINOR'
       end
 
       LOCK.synchronize do

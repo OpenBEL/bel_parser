@@ -8,8 +8,8 @@ module BELParser
   module Language
     module Semantics
       def self.semantics_functions
-        self.constants.collect do |symbol|
-          const = self.const_get(symbol)
+        constants.collect do |symbol|
+          const = const_get(symbol)
           const if
             const.respond_to?(:include?) &&
             const.include?(SemanticsFunction)

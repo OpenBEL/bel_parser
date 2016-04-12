@@ -47,4 +47,3 @@ module BELParser
     end
   end
 end
-

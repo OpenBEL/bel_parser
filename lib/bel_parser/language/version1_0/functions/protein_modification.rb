@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class ProteinModificationWithCovalentAminoPositionSignature
               extend BELParser::Language::Signature
 
@@ -45,30 +44,30 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinModification))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinModification))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))))
               end
               private_constant :AST
 
@@ -83,7 +82,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ProteinModificationWithCovalentAminoSignature
               extend BELParser::Language::Signature
 
@@ -91,23 +90,23 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinModification))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinModification))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))))
               end
               private_constant :AST
 
@@ -122,7 +121,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ProteinModificationWithCovalentSignature
               extend BELParser::Language::Signature
 
@@ -130,16 +129,16 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ProteinModification))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))))              
+                  function(
+                    identifier(
+                      function_of(ProteinModification))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))))
               end
               private_constant :AST
 
@@ -154,7 +153,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

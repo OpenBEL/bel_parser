@@ -133,7 +133,7 @@ VERSION1_FUNCTIONS.each do |func|
     end
     ast.gsub!(/([a-zA-Z_]+\(\))/) do |type|
       type = type.match(/([a-zA-Z_]+)/)[1]
-      "#{type}"
+      type.to_s
     end
     ast.gsub!(/BELParser::Language::Version1_0::Functions::/, '')
     sig[:ast] = ast

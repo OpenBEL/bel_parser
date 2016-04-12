@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class VariantSignature
               extend BELParser::Language::Signature
 
@@ -46,16 +45,16 @@ module BELParser
               # TODO: More strict prefix validation for variant namespace?
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(Variant))),
-                argument(
-                  parameter(
-                    prefix(any),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:HgvsVariantDescription))))))              
+                  function(
+                    identifier(
+                      function_of(Variant))),
+                  argument(
+                    parameter(
+                      prefix(any),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:HgvsVariantDescription))))))
               end
               private_constant :AST
 
@@ -70,7 +69,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

@@ -27,7 +27,7 @@ describe BELParser::Language::Semantics do
         puts "\nFailures"
         puts failure
 
-        failed, _ =
+        failed, =
           subject
           .match(input, semantic, spec)
           .partition(&:failure?)

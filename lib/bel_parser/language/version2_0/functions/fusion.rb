@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class FusionWithGeneEncodingSignature
               extend BELParser::Language::Signature
 
@@ -45,43 +44,43 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(Fusion))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:GeneAbundance))))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:GeneAbundance))))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))))              
+                  function(
+                    identifier(
+                      function_of(Fusion))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:GeneAbundance))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:GeneAbundance))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))))
               end
               private_constant :AST
 
@@ -96,7 +95,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class FusionWithProteinEncodingSignature
               extend BELParser::Language::Signature
 
@@ -104,43 +103,43 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(Fusion))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ProteinAbundance))))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:ProteinAbundance))))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))))              
+                  function(
+                    identifier(
+                      function_of(Fusion))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:ProteinAbundance))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:ProteinAbundance))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))))
               end
               private_constant :AST
 
@@ -155,7 +154,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class FusionWithRNAEncodingSignature
               extend BELParser::Language::Signature
 
@@ -163,43 +162,43 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(Fusion))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:RnaAbundance))))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:RnaAbundance))))),
-                argument(
-                  parameter(
-                    prefix(
-                      any),
-                    value(
-                      value_type(
-                        encoding_of(:*))))))              
+                  function(
+                    identifier(
+                      function_of(Fusion))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:RnaAbundance))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:RnaAbundance))))),
+                  argument(
+                    parameter(
+                      prefix(
+                        any),
+                      value(
+                        value_type(
+                          encoding_of(:*))))))
               end
               private_constant :AST
 
@@ -214,7 +213,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

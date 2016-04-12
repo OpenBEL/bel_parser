@@ -1,5 +1,4 @@
 module BELParser
-
   # The Quoting module implements quoting rules consistent with BEL
   # and BEL Script. Double quotes are used to group a string together
   # which may contain whitespace or special characters.
@@ -16,10 +15,9 @@ module BELParser
   # BEL Script: BEL parameters, document property values, and annotation
   # values must be an identifier or string value.
   module Quoting
-
     # Declares BEL Script keywords that cause problems with the OpenBEL
     # Framework parser.
-    Keywords               = %w(SET DEFINE a g p r m)
+    Keywords               = %w(SET DEFINE a g p r m).freeze
 
     # Regular expression that matches one of {Quoting::Keywords}.
     KeywordMatcher         = Regexp.compile(/^(#{Keywords.join('|')})$/)
@@ -54,8 +52,8 @@ module BELParser
     def quote(value)
       string   = value.to_s
       unquoted = unquote(string)
-      escaped  = unquoted.gsub(QuoteNotEscapedMatcher, "\\\"")
-      %Q{"#{escaped}"}
+      escaped  = unquoted.gsub(QuoteNotEscapedMatcher, '\\"')
+      %("#{escaped}")
     end
 
     # Returns +value+ with surrounded quotes removed.
@@ -150,9 +148,9 @@ module BELParser
     #            +false+ if +value+ is not an identifier
     def identifier_value?(value)
       string = value.to_s
-      [NonWordMatcher, KeywordMatcher].none? { |matcher|
+      [NonWordMatcher, KeywordMatcher].none? do |matcher|
         matcher.match string
-      }
+      end
     end
 
     # Returns whether the +value+ represents a string value. A string
@@ -171,16 +169,16 @@ module BELParser
     #            +false+ if +value+ is not a string value
     def string_value?(value)
       string = value.to_s
-      [NonWordMatcher, KeywordMatcher].any? { |matcher|
+      [NonWordMatcher, KeywordMatcher].any? do |matcher|
         matcher.match string
-      }
+      end
     end
 
     ## Deprecated, remove in [0.6.0].
 
     # @deprecated Use {#quote_if_needed} instead. Will be removed in a
     #             future release.
-    def ensure_quotes identifier
+    def ensure_quotes(identifier)
       warn <<-DOC.gsub(/^\s+/, '')
         Deprecation Warning
         -------------------
@@ -193,7 +191,7 @@ module BELParser
 
     # @deprecated Use {#unquote} instead. Will be removed in a
     #             future release.
-    def remove_quotes identifier
+    def remove_quotes(identifier)
       warn <<-DOC.gsub(/^\s+/, '')
         Deprecation Warning
         -------------------
@@ -206,7 +204,7 @@ module BELParser
 
     # @deprecated Use {#quote} instead. Will be removed in a
     #             future release.
-    def always_quote identifier
+    def always_quote(identifier)
       warn <<-DOC.gsub(/^\s+/, '')
         Deprecation Warning
         -------------------
@@ -219,18 +217,18 @@ module BELParser
 
     # @deprecated Use {#quoted?} or {#unquoted?} instead. Will be removed
     #             in a future release.
-    def quotes_required? identifier
+    def quotes_required?(identifier)
       warn <<-DOC.gsub(/^\s+/, '')
         Deprecation Warning
         -------------------
-        The BEL::Quoting::quotes_required? method is deprecated and 
+        The BEL::Quoting::quotes_required? method is deprecated and
         will be removed in a future relase.
         You can use BEL::Quoting.quoted? and BEL::Quoting.unquoted?
         going forward.
       DOC
-      [NonWordMatcher, KeywordMatcher].any? { |m|
+      [NonWordMatcher, KeywordMatcher].any? do |m|
         m.match identifier.to_s
-      }
+      end
     end
   end
 end

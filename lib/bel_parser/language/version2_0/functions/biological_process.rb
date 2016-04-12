@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class BiologicalProcessSignature
               extend BELParser::Language::Signature
 
@@ -45,19 +44,19 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(BiologicalProcess))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:BiologicalProcess))))))              
+                  function(
+                    identifier(
+                      function_of(BiologicalProcess))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:BiologicalProcess))))))
               end
               private_constant :AST
 
@@ -72,7 +71,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

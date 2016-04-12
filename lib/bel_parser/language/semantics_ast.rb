@@ -559,7 +559,7 @@ module BELParser
       class SemanticIsAminoAcidRange < SemanticASTNode
         START_STOP         = /[1-9][0-9]*_[1-9][0-9]*/
         UNDETERMINED       = /[1?]_[?*]/
-        UNKNOWN_START_STOP = "?"
+        UNKNOWN_START_STOP = '?'.freeze
 
         include BELParser::Quoting
 

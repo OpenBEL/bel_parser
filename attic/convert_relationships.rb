@@ -8,7 +8,7 @@ template = ERB.new(File.read('relationship_template.rb'))
 Dir.mkdir(OUT_DIR) unless Dir.exist?(OUT_DIR)
 VERSION1_RELATIONSHIPS.each do |rel|
   description, short, long = rel.values_at(:description, :short, :long)
-  name = long.sub(/^([a-z])/) { |x| x.upcase }
+  name = long.sub(/^([a-z])/, &:upcase)
 
   b = binding
   contents = template.result(b)

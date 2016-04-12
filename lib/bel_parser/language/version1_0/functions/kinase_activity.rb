@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class KinaseActivityOfComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -45,14 +44,14 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(KinaseActivity))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version1_0::ReturnTypes::ComplexAbundance))))))              
+                  function(
+                    identifier(
+                      function_of(KinaseActivity))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version1_0::ReturnTypes::ComplexAbundance))))))
               end
               private_constant :AST
 
@@ -67,7 +66,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class KinaseActivityOfProteinAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -75,14 +74,14 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(KinaseActivity))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version1_0::ReturnTypes::ProteinAbundance))))))              
+                  function(
+                    identifier(
+                      function_of(KinaseActivity))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version1_0::ReturnTypes::ProteinAbundance))))))
               end
               private_constant :AST
 
@@ -97,7 +96,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

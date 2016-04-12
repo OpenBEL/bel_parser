@@ -37,7 +37,6 @@ module BELParser
           end
 
           module Signatures
-  
             class NamedComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -45,19 +44,19 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ComplexAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:Abundance))))))              
+                  function(
+                    identifier(
+                      function_of(ComplexAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:Abundance))))))
               end
               private_constant :AST
 
@@ -72,7 +71,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class NamedComplexAbundanceWithLocationSignature
               extend BELParser::Language::Signature
 
@@ -80,24 +79,24 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ComplexAbundance))),
-                argument(
-                  parameter(
-                    prefix(
-                      identifier(
-                        has_namespace,
-                        namespace_of(:*))),
-                    value(
-                      value_type(
-                        has_encoding,
-                        encoding_of(:Abundance))))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Location))))))              
+                  function(
+                    identifier(
+                      function_of(ComplexAbundance))),
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          has_namespace,
+                          namespace_of(:*))),
+                      value(
+                        value_type(
+                          has_encoding,
+                          encoding_of(:Abundance))))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Location))))))
               end
               private_constant :AST
 
@@ -112,7 +111,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ComposedComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -120,14 +119,14 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ComplexAbundance))),
-                variadic_arguments(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Abundance))))))              
+                  function(
+                    identifier(
+                      function_of(ComplexAbundance))),
+                  variadic_arguments(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Abundance))))))
               end
               private_constant :AST
 
@@ -142,7 +141,7 @@ module BELParser
                 STRING_FORM
               end
             end
-  
+
             class ComposedComplexAbundanceWithLocationSignature
               extend BELParser::Language::Signature
 
@@ -150,19 +149,19 @@ module BELParser
 
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
-                function(
-                  identifier(
-                    function_of(ComplexAbundance))),
-                variadic_arguments(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Abundance))))),
-                argument(
-                  term(
-                    function(
-                      identifier(
-                        return_type_of(BELParser::Language::Version2_0::ReturnTypes::Location))))))              
+                  function(
+                    identifier(
+                      function_of(ComplexAbundance))),
+                  variadic_arguments(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Abundance))))),
+                  argument(
+                    term(
+                      function(
+                        identifier(
+                          return_type_of(BELParser::Language::Version2_0::ReturnTypes::Location))))))
               end
               private_constant :AST
 
@@ -177,7 +176,6 @@ module BELParser
                 STRING_FORM
               end
             end
-  
           end
 
           SIGNATURES = Signatures.constants.map do |const|

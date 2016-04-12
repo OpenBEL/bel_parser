@@ -11,7 +11,7 @@ module BELParser
         # Map {BELParser::Parsers::AST::Term term} to BEL signatures defined
         # by a {BELParser::Language::Specification}. The mapping includes both
         # successful and failed signature matches.
-        def self.map(term_node, spec, namespaces)
+        def self.map(term_node, spec, _namespaces)
           return nil unless term_node.is_a?(BELParser::Parsers::AST::Term)
 
           function_name = term_node.function.identifier.string_literal
@@ -19,8 +19,8 @@ module BELParser
           match         = BELParser::Language::Semantics.method(:match)
 
           successes, failures = function.signatures
-            .map       { |sig| [sig, match.call(term_node, sig.semantic_ast, spec)] }
-            .partition { |(sig, results)| results.all?(&:success?) }
+                                        .map       { |sig| [sig, match.call(term_node, sig.semantic_ast, spec)] }
+                                        .partition { |(_sig, results)| results.all?(&:success?) }
 
           if successes.empty?
             SignatureMappingWarning.new(term_node, spec, failures)
@@ -37,13 +37,13 @@ module BELParser
         def initialize(term_node, spec, successes, failures)
           super(term_node, spec)
           @success_signatures = successes
-          @failure_signatures  = failures
+          @failure_signatures = failures
         end
 
         def to_s
           sig_list = success_signatures
-            .map { |(sig, results)| sig.string_form }
-            .join("\n  ")
+                     .map { |(sig, _results)| sig.string_form }
+                     .join("\n  ")
           <<-MSG.gsub(/ {12}/, '').gsub(/\n$/, '')
             Term matches function signatures:
               #{sig_list}
@@ -61,8 +61,8 @@ module BELParser
 
         def to_s
           sig_list = failure_signatures
-            .map { |(sig, results)| sig.string_form }
-            .join("\n  ")
+                     .map { |(sig, _results)| sig.string_form }
+                     .join("\n  ")
           <<-MSG.gsub(/ {12}/, '').gsub(/\n$/, '')
             Term did not conform to function signatures:
               #{sig_list}

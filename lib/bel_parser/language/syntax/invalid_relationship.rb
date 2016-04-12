@@ -10,7 +10,7 @@ module BELParser
 
         private_class_method :new
 
-        def self.map(stmt_node, spec, namespaces)
+        def self.map(stmt_node, spec, _namespaces)
           return nil unless stmt_node.is_a?(BELParser::Parsers::AST::Statement)
 
           rel_name = stmt_node.relationship.string_literal
@@ -34,7 +34,7 @@ module BELParser
         end
 
         def msg
-          %Q{Invalid relationship "#{relationship}".}
+          %(Invalid relationship "#{relationship}".)
         end
       end
     end
