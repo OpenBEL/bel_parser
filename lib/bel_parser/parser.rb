@@ -24,8 +24,8 @@ module BELParser
       :observed_term,
       :simple_statement,
       :nested_statement,
-      :define_annotation,
-      :define_namespace,
+      :annotation_definition,
+      :namespace_definition,
       :set,
       :unset
     )
