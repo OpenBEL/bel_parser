@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # RNAAbundanceWithFusionSignature
             class RNAAbundanceWithFusionSignature
               extend BELParser::Language::Signature
 
@@ -77,6 +78,7 @@ module BELParser
               end
             end
 
+            # RNAAbundanceSignature
             class RNAAbundanceSignature
               extend BELParser::Language::Signature
 

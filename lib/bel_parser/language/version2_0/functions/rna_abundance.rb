@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # RNAAbundanceSignature
             class RNAAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -72,6 +73,7 @@ module BELParser
               end
             end
 
+            # RNAAbundanceWithFusionSignature
             class RNAAbundanceWithFusionSignature
               extend BELParser::Language::Signature
 
@@ -102,6 +104,7 @@ module BELParser
               end
             end
 
+            # RNAAbundanceWithLocationSignature
             class RNAAbundanceWithLocationSignature
               extend BELParser::Language::Signature
 
@@ -142,6 +145,7 @@ module BELParser
               end
             end
 
+            # RNAAbundanceWithVariantSignature
             class RNAAbundanceWithVariantSignature
               extend BELParser::Language::Signature
 

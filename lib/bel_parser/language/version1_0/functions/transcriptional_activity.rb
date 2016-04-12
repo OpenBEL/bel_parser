@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # TranscriptionalActivityOfComplexAbundanceSignature
             class TranscriptionalActivityOfComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -67,6 +68,7 @@ module BELParser
               end
             end
 
+            # TranscriptionalActivityOfProteinAbundanceSignature
             class TranscriptionalActivityOfProteinAbundanceSignature
               extend BELParser::Language::Signature
 

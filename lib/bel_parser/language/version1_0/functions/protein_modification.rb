@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # ProteinModificationWithCovalentAminoPositionSignature
             class ProteinModificationWithCovalentAminoPositionSignature
               extend BELParser::Language::Signature
 
@@ -83,6 +84,7 @@ module BELParser
               end
             end
 
+            # ProteinModificationWithCovalentAminoSignature
             class ProteinModificationWithCovalentAminoSignature
               extend BELParser::Language::Signature
 
@@ -122,6 +124,7 @@ module BELParser
               end
             end
 
+            # ProteinModificationWithCovalentSignature
             class ProteinModificationWithCovalentSignature
               extend BELParser::Language::Signature
 

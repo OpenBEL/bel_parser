@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # GTPBoundActivityOfComplexAbundanceSignature
             class GTPBoundActivityOfComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -67,6 +68,7 @@ module BELParser
               end
             end
 
+            # GTPBoundActivityOfProteinAbundanceSignature
             class GTPBoundActivityOfProteinAbundanceSignature
               extend BELParser::Language::Signature
 

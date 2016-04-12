@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # ProteinAbundanceSignature
             class ProteinAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -72,6 +73,7 @@ module BELParser
               end
             end
 
+            # ProteinAbundanceWithFragmentSignature
             class ProteinAbundanceWithFragmentSignature
               extend BELParser::Language::Signature
 
@@ -112,6 +114,7 @@ module BELParser
               end
             end
 
+            # ProteinAbundanceWithFusionSignature
             class ProteinAbundanceWithFusionSignature
               extend BELParser::Language::Signature
 
@@ -142,6 +145,7 @@ module BELParser
               end
             end
 
+            # ProteinAbundanceWithLocationSignature
             class ProteinAbundanceWithLocationSignature
               extend BELParser::Language::Signature
 
@@ -182,6 +186,7 @@ module BELParser
               end
             end
 
+            # ProteinAbundanceWithProteinModificationSignature
             class ProteinAbundanceWithProteinModificationSignature
               extend BELParser::Language::Signature
 
@@ -222,6 +227,7 @@ module BELParser
               end
             end
 
+            # ProteinAbundanceWithVariantSignature
             class ProteinAbundanceWithVariantSignature
               extend BELParser::Language::Signature
 

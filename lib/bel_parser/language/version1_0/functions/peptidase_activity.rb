@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # PeptidaseActivityOfComplexAbundanceSignature
             class PeptidaseActivityOfComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -67,6 +68,7 @@ module BELParser
               end
             end
 
+            # PeptidaseActivityOfProteinAbundanceSignature
             class PeptidaseActivityOfProteinAbundanceSignature
               extend BELParser::Language::Signature
 

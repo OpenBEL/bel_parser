@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # KinaseActivityOfComplexAbundanceSignature
             class KinaseActivityOfComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -67,6 +68,7 @@ module BELParser
               end
             end
 
+            # KinaseActivityOfProteinAbundanceSignature
             class KinaseActivityOfProteinAbundanceSignature
               extend BELParser::Language::Signature
 

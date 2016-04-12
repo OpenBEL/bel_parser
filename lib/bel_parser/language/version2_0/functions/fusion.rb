@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # FusionWithGeneEncodingSignature
             class FusionWithGeneEncodingSignature
               extend BELParser::Language::Signature
 
@@ -96,6 +97,7 @@ module BELParser
               end
             end
 
+            # FusionWithProteinEncodingSignature
             class FusionWithProteinEncodingSignature
               extend BELParser::Language::Signature
 
@@ -155,6 +157,7 @@ module BELParser
               end
             end
 
+            # FusionWithRNAEncodingSignature
             class FusionWithRNAEncodingSignature
               extend BELParser::Language::Signature
 

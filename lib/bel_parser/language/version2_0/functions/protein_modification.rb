@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # ProteinModificationWithTypeSignature
             class ProteinModificationWithTypeSignature
               extend BELParser::Language::Signature
 
@@ -70,6 +71,7 @@ module BELParser
               end
             end
 
+            # ProteinModificationWithTypeAminoSignature
             class ProteinModificationWithTypeAminoSignature
               extend BELParser::Language::Signature
 
@@ -109,6 +111,7 @@ module BELParser
               end
             end
 
+            # ProteinModificationWithTypeAminoPositionSignature
             class ProteinModificationWithTypeAminoPositionSignature
               extend BELParser::Language::Signature
 

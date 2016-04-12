@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # PhosphataseActivityOfComplexAbundanceSignature
             class PhosphataseActivityOfComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -67,6 +68,7 @@ module BELParser
               end
             end
 
+            # PhosphataseActivityOfProteinAbundanceSignature
             class PhosphataseActivityOfProteinAbundanceSignature
               extend BELParser::Language::Signature
 

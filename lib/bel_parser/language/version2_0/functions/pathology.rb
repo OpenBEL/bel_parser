@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # PathologySignature
             class PathologySignature
               extend BELParser::Language::Signature
 

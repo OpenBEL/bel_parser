@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # ChaperoneActivityOfComplexAbundanceSignature
             class ChaperoneActivityOfComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -67,6 +68,7 @@ module BELParser
               end
             end
 
+            # ChaperoneActivityOfProteinAbundanceSignature
             class ChaperoneActivityOfProteinAbundanceSignature
               extend BELParser::Language::Signature
 

@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # ActivitySignature
             class ActivitySignature
               extend BELParser::Language::Signature
 
@@ -67,6 +68,7 @@ module BELParser
               end
             end
 
+            # ActivityWithSpecificActivityTypeSignature
             class ActivityWithSpecificActivityTypeSignature
               extend BELParser::Language::Signature
 

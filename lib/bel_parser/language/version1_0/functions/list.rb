@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # ListOfAbundanceEncodingSignature
             class ListOfAbundanceEncodingSignature
               extend BELParser::Language::Signature
 
@@ -72,6 +73,7 @@ module BELParser
               end
             end
 
+            # ListOfAbundanceSignature
             class ListOfAbundanceSignature
               extend BELParser::Language::Signature
 

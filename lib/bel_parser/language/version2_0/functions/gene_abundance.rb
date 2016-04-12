@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # GeneAbundanceSignature
             class GeneAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -72,6 +73,7 @@ module BELParser
               end
             end
 
+            # GeneAbundanceWithFusionSignature
             class GeneAbundanceWithFusionSignature
               extend BELParser::Language::Signature
 
@@ -102,6 +104,7 @@ module BELParser
               end
             end
 
+            # GeneAbundanceWithLocationSignature
             class GeneAbundanceWithLocationSignature
               extend BELParser::Language::Signature
 
@@ -142,6 +145,7 @@ module BELParser
               end
             end
 
+            # GeneAbundanceWithVariantSignature
             class GeneAbundanceWithVariantSignature
               extend BELParser::Language::Signature
 

@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # FusionGeneAbundanceWithBreakpointsSignature
             class FusionGeneAbundanceWithBreakpointsSignature
               extend BELParser::Language::Signature
 
@@ -86,6 +87,7 @@ module BELParser
               end
             end
 
+            # FusionGeneAbundanceSignature
             class FusionGeneAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -121,6 +123,7 @@ module BELParser
               end
             end
 
+            # FusionProteinAbundanceWithBreakpointsSignature
             class FusionProteinAbundanceWithBreakpointsSignature
               extend BELParser::Language::Signature
 
@@ -170,6 +173,7 @@ module BELParser
               end
             end
 
+            # FusionProteinAbundanceSignature
             class FusionProteinAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -205,6 +209,7 @@ module BELParser
               end
             end
 
+            # FusionRNAAbundanceWithBreakpointsSignature
             class FusionRNAAbundanceWithBreakpointsSignature
               extend BELParser::Language::Signature
 
@@ -254,6 +259,7 @@ module BELParser
               end
             end
 
+            # FusionRNAAbundanceSignature
             class FusionRNAAbundanceSignature
               extend BELParser::Language::Signature
 

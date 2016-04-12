@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # LocationSignature
             class LocationSignature
               extend BELParser::Language::Signature
 

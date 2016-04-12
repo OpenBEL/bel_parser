@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # AbundanceSignature
             class AbundanceSignature
               extend BELParser::Language::Signature
 
@@ -72,6 +73,7 @@ module BELParser
               end
             end
 
+            # AbundanceWithLocationSignature
             class AbundanceWithLocationSignature
               extend BELParser::Language::Signature
 
@@ -112,6 +114,7 @@ module BELParser
               end
             end
 
+            # AbundanceWithMolecularActivitySignature
             class AbundanceWithMolecularActivitySignature
               extend BELParser::Language::Signature
 

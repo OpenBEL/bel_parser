@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # ReactantsSignature
             class ReactantsSignature
               extend BELParser::Language::Signature
 

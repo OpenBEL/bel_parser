@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # AbundanceSignature
             class AbundanceSignature
               extend BELParser::Language::Signature
 

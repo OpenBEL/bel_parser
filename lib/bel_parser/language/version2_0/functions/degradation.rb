@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # DegradationSignature
             class DegradationSignature
               extend BELParser::Language::Signature
 

@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # ProductsSignature
             class ProductsSignature
               extend BELParser::Language::Signature
 

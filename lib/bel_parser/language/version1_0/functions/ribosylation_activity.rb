@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # RibosylationActivityWithComplexAbundanceSignature
             class RibosylationActivityWithComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -67,6 +68,7 @@ module BELParser
               end
             end
 
+            # RibosylationActivityWithProteinAbundanceSignature
             class RibosylationActivityWithProteinAbundanceSignature
               extend BELParser::Language::Signature
 

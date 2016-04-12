@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # CellSurfaceExpressionSignature
             class CellSurfaceExpressionSignature
               extend BELParser::Language::Signature
 

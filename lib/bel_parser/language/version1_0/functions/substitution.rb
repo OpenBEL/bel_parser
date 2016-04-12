@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # SubstitutionWithReferencePositionVariantSignature
             class SubstitutionWithReferencePositionVariantSignature
               extend BELParser::Language::Signature
 

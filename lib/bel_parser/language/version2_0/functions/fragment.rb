@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # FragmentWithRangeSignature
             class FragmentWithRangeSignature
               extend BELParser::Language::Signature
 
@@ -68,6 +69,7 @@ module BELParser
               end
             end
 
+            # FragmentWithRangeDescriptorSignature
             class FragmentWithRangeDescriptorSignature
               extend BELParser::Language::Signature
 

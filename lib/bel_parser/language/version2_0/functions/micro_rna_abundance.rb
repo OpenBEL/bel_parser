@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # MicroRNAAbundanceSignature
             class MicroRNAAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -72,6 +73,7 @@ module BELParser
               end
             end
 
+            # MicroRNAAbundanceWithLocationSignature
             class MicroRNAAbundanceWithLocationSignature
               extend BELParser::Language::Signature
 
@@ -112,6 +114,7 @@ module BELParser
               end
             end
 
+            # MicroRNAAbundanceWithVariantSignature
             class MicroRNAAbundanceWithVariantSignature
               extend BELParser::Language::Signature
 

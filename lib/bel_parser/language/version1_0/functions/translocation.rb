@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # TranslocationSignature
             class TranslocationSignature
               extend BELParser::Language::Signature
 

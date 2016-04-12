@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # TruncationWithPositionSignature
             class TruncationWithPositionSignature
               extend BELParser::Language::Signature
 

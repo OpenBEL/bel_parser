@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # MolecularActivitySignature
             class MolecularActivitySignature
               extend BELParser::Language::Signature
 

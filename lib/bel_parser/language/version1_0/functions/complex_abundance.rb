@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # NamedComplexAbundanceSignature
             class NamedComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -72,6 +73,7 @@ module BELParser
               end
             end
 
+            # ComposedComplexAbundanceSignature
             class ComposedComplexAbundanceSignature
               extend BELParser::Language::Signature
 

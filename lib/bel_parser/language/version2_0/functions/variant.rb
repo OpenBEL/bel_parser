@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # VariantSignature
             class VariantSignature
               extend BELParser::Language::Signature
 

@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # CellSecretionSignature
             class CellSecretionSignature
               extend BELParser::Language::Signature
 

@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # TransportActivityOfComplexAbundanceSignature
             class TransportActivityOfComplexAbundanceSignature
               extend BELParser::Language::Signature
 
@@ -67,6 +68,7 @@ module BELParser
               end
             end
 
+            # TransportActivityOfProteinAbundanceSignature
             class TransportActivityOfProteinAbundanceSignature
               extend BELParser::Language::Signature
 

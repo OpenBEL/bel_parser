@@ -37,6 +37,7 @@ module BELParser
           end
 
           module Signatures
+            # FromLocationSignature
             class FromLocationSignature
               extend BELParser::Language::Signature
 
