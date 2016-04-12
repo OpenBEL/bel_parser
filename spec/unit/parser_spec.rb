@@ -10,7 +10,7 @@ include BELParser::Parsers::BELScript
 describe BELParser::Parsers::Common::BlankLine, '#parse' do
   include AST::Sexp
 
-  xit 'yields correct AST' do
+  it 'yields correct AST' do
     assert_ast(BELParser::Parsers::Common::BlankLine, "\t\t\t\t\t", s(:blank_line))
     assert_ast(BELParser::Parsers::Common::BlankLine, '          ', s(:blank_line))
     assert_ast(BELParser::Parsers::Common::BlankLine, "    \t    ", s(:blank_line))

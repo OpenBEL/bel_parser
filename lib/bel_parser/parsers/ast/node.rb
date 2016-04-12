@@ -758,6 +758,10 @@ module BELParser
           CommentLine.new(children)
         end
 
+        def blank_line
+          BlankLine.new
+        end
+
         def annotation_definition(*children)
           AnnotationDefinition.new(children)
         end
