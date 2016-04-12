@@ -25,3 +25,16 @@ module BELParser
     end
   end
 end
+
+if __FILE__ == $PROGRAM_NAME
+  require_relative 'ast_generator'
+
+  types = ARGV.map(&:to_sym)
+  ast   = BELParser::ASTGenerator.new.each($stdin)
+  BELParser::ASTFilter.new(*types).each(ast) do |(line_number, line, results)|
+    puts "#{line_number}: #{line}"
+    results.each do |ast|
+      puts ast.to_s(1)
+    end
+  end
+end
