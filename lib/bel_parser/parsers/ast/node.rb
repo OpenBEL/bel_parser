@@ -294,13 +294,13 @@ module BELParser
         end
 
         # Determine if this is a URL domain.
-        def has_url?
+        def url?
           children[0] && children[0].is_a?(Url)
         end
 
         # Get the domain's Url.
         def url
-          has_url? ? children[0] : nil
+          url? ? children[0] : nil
         end
       end
 
@@ -409,12 +409,12 @@ module BELParser
         end
 
         # Does the argument have a {Parameter} child?
-        def has_parameter?
+        def parameter?
           children[0].is_a?(Parameter)
         end
 
         # Does the argument have a {Term} child?
-        def has_term?
+        def term?
           children[0].is_a?(Term)
         end
 
@@ -558,30 +558,30 @@ module BELParser
           children[0]
         end
 
-        def has_relationship?
+        def relationship?
           children[1] && children[1].is_a?(Relationship)
         end
 
         # Get the relationship of the nested statement.
         def relationship
-          has_relationship? ? children[1] : nil
+          relationship? ? children[1] : nil
         end
 
-        def has_object?
+        def object?
           children[2] && children[2].is_a?(Object)
         end
 
         # Get the object of the nested statement.
         def object
-          has_object? ? children[2] : nil
+          object? ? children[2] : nil
         end
 
-        def has_comment?
+        def comment?
           children[-1] && children[-1].is_a?(Comment)
         end
 
         def comment
-          has_comment? ? children[-1] : nil
+          comment? ? children[-1] : nil
         end
       end
 
@@ -700,12 +700,12 @@ module BELParser
         end
 
         # Does the object have a {Term} child?
-        def has_term?
+        def term?
           children[0].is_a?(Term)
         end
 
         # Does the object have a {Statement} child?
-        def has_statement?
+        def statement?
           children[0].is_a?(Statement)
         end
 
@@ -832,6 +832,10 @@ module BELParser
         attr_reader :encoding
       end
 
+      # Sexp defines a module that creates
+      # {BELParser::Parsers::AST::Node AST nodes} using S-expression syntax.
+      #
+      # @see https://en.wikipedia.org/wiki/S-expression S-expression
       module Sexp
         def nested_statement(*children)
           NestedStatement.new(children)

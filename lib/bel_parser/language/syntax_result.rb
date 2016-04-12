@@ -1,6 +1,7 @@
 module BELParser
   module Language
     module Syntax
+      # SyntaxResult represents the result of running a {SyntaxFunction}.
       class SyntaxResult
         attr_reader :expression_node, :specification
 

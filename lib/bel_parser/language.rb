@@ -7,6 +7,19 @@ require_relative 'language/specification'
 require_relative 'language/expression_validator'
 
 module BELParser
+  # Language defines the concepts needed to define, represent, and
+  # validate a BEL specification. This includes:
+  #
+  # - {BELParser::Language::Specification BEL specifications}
+  #   - Functions
+  #   - ReturnTypes
+  #   - Signatures
+  #   - Relationships
+  #   - Encodings
+  #   - Syntax validations
+  #   - Semantic validations
+  # - Generic Syntax validations
+  # - Generic signature validation
   module Language
     # Mutex to synchronize creation of BEL specifications.
     LOCK = Mutex.new

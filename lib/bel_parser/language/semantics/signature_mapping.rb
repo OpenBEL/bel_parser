@@ -3,6 +3,12 @@ require 'bel_parser/parsers/ast/node'
 module BELParser
   module Language
     module Semantics
+      # SignatureMapping implements a {SemanticsFunction} that maps a
+      # {BELParser::Parsers::AST::Node} to {SemanticsResult} by checking each
+      # {BELParser::Language::Signature signature} for the
+      # {BELParser::Language::Function}.
+      #
+      # @see BELParser::Language::Function#signatures
       class SignatureMapping
         include SemanticsFunction
 
@@ -30,6 +36,8 @@ module BELParser
         end
       end
 
+      # SignatureMappingSuccess defines a {SemanticsResult} that indicates
+      # a successful signature match.
       class SignatureMappingSuccess < SemanticsResult
         attr_reader :success_signatures
         attr_reader :failure_signatures
@@ -51,6 +59,8 @@ module BELParser
         end
       end
 
+      # SignatureMappingWarning defines a {SemanticsResult} that indicates
+      # an unsuccessful signature match.
       class SignatureMappingWarning < SemanticsWarning
         attr_reader :failure_signatures
 

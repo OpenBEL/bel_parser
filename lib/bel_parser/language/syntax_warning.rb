@@ -3,6 +3,8 @@ require_relative 'syntax_result'
 module BELParser
   module Language
     module Syntax
+      # SyntaxWarning defines a {SyntaxResult} that should be regarded as an
+      # warning with the expression.
       class SyntaxWarning < SyntaxResult
         attr_reader :target_node
 

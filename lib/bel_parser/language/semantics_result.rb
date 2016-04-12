@@ -1,6 +1,7 @@
 module BELParser
   module Language
     module Semantics
+      # SemanticsResult represents the result of running a {SemanticsFunction}.
       class SemanticsResult
         attr_reader :expression_node, :specification
 

@@ -33,8 +33,8 @@ if __FILE__ == $PROGRAM_NAME
   ast   = BELParser::ASTGenerator.new.each($stdin)
   BELParser::ASTFilter.new(*types).each(ast) do |(line_number, line, results)|
     puts "#{line_number}: #{line}"
-    results.each do |ast|
-      puts ast.to_s(1)
+    results.each do |result_ast|
+      puts result_ast.to_s(1)
     end
   end
 end

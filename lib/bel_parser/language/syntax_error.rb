@@ -3,6 +3,8 @@ require_relative 'syntax_result'
 module BELParser
   module Language
     module Syntax
+      # SyntaxError defines a {SyntaxResult} that should be regarded as an
+      # error with the expression.
       class SyntaxError < SyntaxResult
         def initialize(expression_node, specification)
           super(expression_node, specification)

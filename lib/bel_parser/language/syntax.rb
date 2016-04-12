@@ -4,6 +4,9 @@ require_relative 'syntax_warning'
 
 module BELParser
   module Language
+    # Syntax module aggregates the generic {SyntaxFunction}
+    # implementations that apply to all
+    # {BELParser::Language::Specification BEL specifications}.
     module Syntax
       def self.syntax_functions
         constants.collect do |symbol|
@@ -14,6 +17,8 @@ module BELParser
         end.compact
       end
 
+      # Valid defines a {SyntaxResult} that indicates successful syntax
+      # validation.
       class Valid < SyntaxResult
         def msg
           'Syntax is valid.'
