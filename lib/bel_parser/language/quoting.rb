@@ -183,7 +183,7 @@ module BELParser
         Deprecation Warning
         -------------------
         The BEL::Quoting::ensure_quotes method is deprecated and
-        will be removed in a future relase.
+        will be removed in a future release.
         Call module method BEL::Quoting.quote_if_needed instead.
       DOC
       quote_if_needed(identifier)
@@ -196,7 +196,7 @@ module BELParser
         Deprecation Warning
         -------------------
         The BEL::Quoting::remove_quotes method is deprecated and
-        will be removed in a future relase.
+        will be removed in a future release.
         Call module method BEL::Quoting.unquote instead.
       DOC
       unquote(identifier)
@@ -209,7 +209,7 @@ module BELParser
         Deprecation Warning
         -------------------
         The BEL::Quoting::always_quote method is deprecated and
-        will be removed in a future relase.
+        will be removed in a future release.
         Call module method BEL::Quoting.quote instead.
       DOC
       quote(identifier)
@@ -222,9 +222,8 @@ module BELParser
         Deprecation Warning
         -------------------
         The BEL::Quoting::quotes_required? method is deprecated and
-        will be removed in a future relase.
-        You can use BEL::Quoting.quoted? and BEL::Quoting.unquoted?
-        going forward.
+        will be removed in a future release. Use BEL::Quoting.quoted? and
+        BEL::Quoting.unquoted?.
       DOC
       [NonWordMatcher, KeywordMatcher].any? do |m|
         m.match identifier.to_s

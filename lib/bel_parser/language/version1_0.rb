@@ -9,7 +9,14 @@ module BELParser
         include BELParser::Language::Specification
         def initialize
           @version = '1.0'.freeze
+          load_return_types
+          load_functions
+          load_relationships
+          load_syntax
+          freeze
+        end
 
+        def load_return_types
           # Collect return types
           ret_classes = Version1_0::ReturnTypes.constants.collect do |symbol|
             const = Version1_0::ReturnTypes.const_get(symbol)
@@ -17,7 +24,9 @@ module BELParser
           end
           @return_types         = ret_classes.compact
           @indexed_return_types = index_sym(@return_types)
+        end
 
+        def load_functions
           # Collect functions
           function_classes = Version1_0::Functions.constants.collect do |symbol|
             const = Version1_0::Functions.const_get(symbol)
@@ -27,7 +36,9 @@ module BELParser
           end
           @functions         = function_classes.compact
           @indexed_functions = index_long_short(@functions)
+        end
 
+        def load_relationships
           # Collect relationships
           rel_classes = Version1_0::Relationships.constants.collect do |symbol|
             const = Version1_0::Relationships.const_get(symbol)
@@ -37,15 +48,15 @@ module BELParser
           end
           @relationships         = rel_classes.compact
           @indexed_relationships = index_long_short(@relationships)
+        end
 
+        def load_syntax
           # Collect syntax checkers.
           syntax_classes = Version1_0::Syntax.constants.collect do |symbol|
             const = Version1_0::Syntax.const_get(symbol)
             const if const.respond_to?(:match)
           end
           @syntax = syntax_classes.compact
-
-          freeze
         end
       end
     end

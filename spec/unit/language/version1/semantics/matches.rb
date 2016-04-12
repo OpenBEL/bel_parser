@@ -3,7 +3,10 @@ require 'bel_parser/language/semantics'
 require 'bel_parser/language/version1_0'
 
 include AST::Sexp
-FX = BELParser::Language::Version1_0::Functions
+FX    = BELParser::Language::Version1_0::Functions
+PSIG  = FX::ProteinAbundance::Signatures
+PMSIG = FX::ProteinModification::Signatures
+CSIG  = FX::ComplexAbundance::Signatures
 
 MATCHES = [
   {
@@ -37,7 +40,8 @@ MATCHES = [
                 s(:prefix, nil),
                 s(:value,
                   s(:identifier, '320'))))))),
-    semantic: FX::ProteinAbundance::Signatures::ProteinAbundanceWithProteinModificationSignature.semantic_ast
+    semantic: PSIG::
+      ProteinAbundanceWithProteinModificationSignature.semantic_ast
   },
   {
     test: 'match valid protein abundance: p(E:P)p',
@@ -51,10 +55,11 @@ MATCHES = [
               s(:identifier, 'HGNC')),
             s(:value,
               s(:identifier, 'AKT1'))))),
-    semantic: FX::ProteinAbundance::Signatures::ProteinAbundanceSignature.semantic_ast
+    semantic: PSIG::
+      ProteinAbundanceSignature.semantic_ast
   },
   {
-    test: 'protein mod with covalent, amino acid, and position: pmod(E:*,E:*,E:*)pmod',
+    test: 'protein mod with covalent/amino/position: pmod(E:*,E:*,E:*)pmod',
     input:
       s(:term,
         s(:function,
@@ -74,7 +79,8 @@ MATCHES = [
             s(:prefix, nil),
             s(:value,
               s(:identifier, '300'))))),
-    semantic: FX::ProteinModification::Signatures::ProteinModificationWithCovalentAminoPositionSignature.semantic_ast
+    semantic: PMSIG::
+      ProteinModificationWithCovalentAminoPositionSignature.semantic_ast
   },
   {
     test: 'protein mod with covalent and amino acid: pmod(E:*,E:*)pmod',
@@ -92,7 +98,8 @@ MATCHES = [
             s(:prefix, nil),
             s(:value,
               s(:identifier, 'Arginine'))))),
-    semantic: FX::ProteinModification::Signatures::ProteinModificationWithCovalentAminoSignature.semantic_ast
+    semantic: PMSIG::
+      ProteinModificationWithCovalentAminoSignature.semantic_ast
   },
   {
     test: 'match valid protein mod with covalent type: pmod(E:*)pmod',
@@ -105,7 +112,8 @@ MATCHES = [
             s(:prefix, nil),
             s(:value,
               s(:identifier, 'Phosphorylation'))))),
-    semantic: FX::ProteinModification::Signatures::ProteinModificationWithCovalentSignature.semantic_ast
+    semantic: PMSIG::
+      ProteinModificationWithCovalentSignature.semantic_ast
   },
   {
     test: 'match composed complex: complex(F:A...)pmod',
@@ -123,7 +131,8 @@ MATCHES = [
                   s(:identifier, 'HGNC')),
                 s(:value,
                   s(:identifier, 'TIMP3'))))))),
-    semantic: FX::ComplexAbundance::Signatures::ComposedComplexAbundanceSignature.semantic_ast
+    semantic: CSIG::
+      ComposedComplexAbundanceSignature.semantic_ast
   },
   {
     test: 'match composed complex: complex(F:A...)pmod',
@@ -151,7 +160,8 @@ MATCHES = [
                   s(:identifier, 'HGNC')),
                 s(:value,
                   s(:identifier, 'KDR'))))))),
-    semantic: FX::ComplexAbundance::Signatures::ComposedComplexAbundanceSignature.semantic_ast
+    semantic: CSIG::
+      ComposedComplexAbundanceSignature.semantic_ast
   },
   {
     test: 'match composed complex: complex(F:A...)pmod',
@@ -189,6 +199,6 @@ MATCHES = [
                   s(:identifier, 'SFAM')),
                 s(:value,
                   s(:string, '"ARRB Family"'))))))),
-    semantic: FX::ComplexAbundance::Signatures::ComposedComplexAbundanceSignature.semantic_ast
+    semantic: CSIG::ComposedComplexAbundanceSignature.semantic_ast
   }
 ].freeze

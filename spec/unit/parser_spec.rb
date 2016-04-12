@@ -11,10 +11,14 @@ describe BELParser::Parsers::Common::BlankLine, '#parse' do
   include AST::Sexp
 
   it 'yields correct AST' do
-    assert_ast(BELParser::Parsers::Common::BlankLine, "\t\t\t\t\t", s(:blank_line))
-    assert_ast(BELParser::Parsers::Common::BlankLine, '          ', s(:blank_line))
-    assert_ast(BELParser::Parsers::Common::BlankLine, "    \t    ", s(:blank_line))
-    assert_ast(BELParser::Parsers::Common::BlankLine, '',           s(:blank_line))
+    assert_ast(BELParser::Parsers::Common::BlankLine,
+               "\t\t\t\t\t", s(:blank_line))
+    assert_ast(BELParser::Parsers::Common::BlankLine,
+               '          ', s(:blank_line))
+    assert_ast(BELParser::Parsers::Common::BlankLine,
+               "    \t    ", s(:blank_line))
+    assert_ast(BELParser::Parsers::Common::BlankLine,
+               '',           s(:blank_line))
   end
 end
 

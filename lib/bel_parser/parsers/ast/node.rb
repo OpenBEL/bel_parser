@@ -762,8 +762,11 @@ module BELParser
 
         # Sets the term's function semantics.
         def function_semantics=(function_semantics)
-          if !function_semantics.nil? && !function_semantics.is_a?(BELParser::Language::Signature)
-            raise ArgumentError, 'function_semantics: expected nil or BELParser::Language::Signature'
+          if !function_semantics.nil? &&
+             !function_semantics.is_a?(BELParser::Language::Signature)
+            raise(
+              ArgumentError,
+              'function_semantics: expected nil or Signature')
           end
           assign_properties(function_semantics: function_semantics)
         end

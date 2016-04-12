@@ -38,7 +38,8 @@ module Main
     def on_term(term_node)
       # Return original term node unless the function is kin/kinaseActivity.
       function = term_node.function
-      return term_node unless %w(kin kinaseActivity).include?(function.identifier.string_literal)
+      return term_node unless
+        %w(kin kinaseActivity).include?(function.identifier.string_literal)
 
       # If kinaseActivity update the children of the term (produces new AST).
       term_node.updated([

@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
-$LOAD_PATH.unshift(File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
+$LOAD_PATH.unshift(
+  File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
 
 unless ARGV.first
   program = File.basename($PROGRAM_NAME)
@@ -12,6 +13,8 @@ namespaces = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
 
 require 'bel_parser'
 require 'bel_parser/expression/validator'
-BELParser::Expression::Validator.new(ARGV.first, namespaces).each($stdin) do |res|
-  puts res.map { |r| "#{r}\n" }.join.each_line.map { |l| "  #{l}" }.join
-end
+BELParser::Expression::Validator
+  .new(ARGV.first, namespaces)
+  .each($stdin) do |res|
+    puts res.map { |r| "#{r}\n" }.join.each_line.map { |l| "  #{l}" }.join
+  end

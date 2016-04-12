@@ -20,19 +20,23 @@ module BELParser
         def self.map(term_node, spec, _namespaces)
           return nil unless term_node.is_a?(BELParser::Parsers::AST::Term)
 
-          function_name = term_node.function.identifier.string_literal
-          function      = spec.function(function_name.to_sym)
-          match         = BELParser::Language::Semantics.method(:match)
-
-          successes, failures = function.signatures
-                                        .map       { |sig| [sig, match.call(term_node, sig.semantic_ast, spec)] }
-                                        .partition { |(_sig, results)| results.all?(&:success?) }
+          successes, failures = map_signatures(term_node, spec)
 
           if successes.empty?
             SignatureMappingWarning.new(term_node, spec, failures)
           else
             SignatureMappingSuccess.new(term_node, spec, successes, failures)
           end
+        end
+
+        def self.map_signatures(term_node, spec)
+          function_name = term_node.function.identifier.string_literal
+          function      = spec.function(function_name.to_sym)
+          match = BELParser::Language::Semantics.method(:match)
+          function
+            .signatures
+            .map { |sig| [sig, match.call(term_node, sig.semantic_ast, spec)] }
+            .partition { |(_sig, results)| results.all?(&:success?) }
         end
       end
 

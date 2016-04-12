@@ -7,24 +7,31 @@ module BELParser
     # Semantics capture BEL version-independent semantics for terms
     # and statements.
     module Semantics
-      # rubocop:disable Metrics/MethodLength rubocop:disable
-      # Metrics/AbcSize
+      # rubocop:disable Metrics/MethodLength
+      # rubocop:disable Metrics/AbcSize
       def self.match(input_ast, semantic_ast, spec, match_results = [])
         res = semantic_ast.match(input_ast, spec)
         match_results.concat(res)
         if res.flatten.all?(&:success?) && !semantic_ast.terminal?
           return match_results if semantic_ast.children.empty?
 
-          var_test = semantic_ast.children.any? { |x| x.is_a?(SemanticVariadicArguments) }
+          var_test = semantic_ast.children.any? do |x|
+            x.is_a?(SemanticVariadicArguments)
+          end
           if var_test
-            test_pairs = input_ast.children.zip(semantic_ast.children).select do |pair|
-              !pair.include?(nil)
-            end
+            test_pairs =
+              input_ast
+              .children
+              .zip(semantic_ast.children)
+              .select do |pair|
+                !pair.include?(nil)
+              end
 
             test_pairs.each do |(input_child, semantic_child)|
               if semantic_child.is_a?(SemanticVariadicArguments)
                 input_children   = input_ast.children
-                input_arguments  = input_children[input_children.index(input_child)..-1]
+                input_arguments  =
+                  input_children[input_children.index(input_child)..-1]
                 argument_pattern = semantic_child.children.first
                 input_arguments.each do |argument_child|
                   res = semantic_child.match(argument_child, spec)
@@ -323,10 +330,7 @@ module BELParser
           return failure(nil) if identifier.nil?
           return failure(identifier) if type != identifier.type
 
-          value_results = value_patterns.map do |pattern|
-            pattern.match(identifier, spec)
-          end
-
+          value_results  = match_value_patterns(identifier, spec)
           failure_result = value_results.flatten.find(&:failure?)
 
           if failure_result
@@ -334,6 +338,12 @@ module BELParser
           else
             value_results.unshift(success(identifier))
           end
+        end
+
+        private
+
+        def match_value_patterns(identifier, spec)
+          value_patterns.map { |pattern| pattern.match(identifier, spec) }
         end
       end
 
