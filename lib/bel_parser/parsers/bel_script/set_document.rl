@@ -14,7 +14,7 @@
   }
 
   set_document :=
-	  SET_KW %set_keyword
+    SET_KW %set_keyword
     SP+
     DOCUMENT_KW
     SP+

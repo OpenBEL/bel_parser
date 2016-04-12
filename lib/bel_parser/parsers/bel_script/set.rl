@@ -35,7 +35,7 @@
   }
 
   set :=
-	  SET_KW %set_keyword
+    SET_KW %set_keyword
     SP+
     IDENT %name
     SP+

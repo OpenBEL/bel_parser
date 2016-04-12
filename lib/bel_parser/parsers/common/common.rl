@@ -5,7 +5,7 @@ machine bel;
   NL          = '\n';
   SP          = ' ' | '\t';
   EQL         = '=';
-	NUMBER_SIGN = '#';
+  NUMBER_SIGN = '#';
 
 }%%
 =end
