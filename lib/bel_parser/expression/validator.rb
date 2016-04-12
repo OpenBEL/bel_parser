@@ -46,10 +46,8 @@ if __FILE__ == $PROGRAM_NAME
     USAGE
     exit 1
   end
-  namespaces = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
-  BELParser::Expression::Validator.new(ARGV.first, namespaces).each($stdin) do |res|
-    res.each do |res|
-      puts res.each_line.map { |l| "  #{l}" }.join
-    end
+  ns = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
+  BELParser::Expression::Validator.new(ARGV.first, ns).each($stdin) do |res|
+    puts res.map { |r| "#{r}\n" }.join.each_line.map { |l| "  #{l}" }.join
   end
 end

@@ -44,10 +44,9 @@ module BELParser
 end
 
 if __FILE__ == $PROGRAM_NAME
-  BELParser::Parser.new.each($stdin) do |line_result|
-    line_number, line, ast_results = line_result
+  BELParser::Parser.new.each($stdin) do |(line_number, line, results)|
     puts "#{line_number}: #{line}"
-    ast_results.each do |ast|
+    results.each do |ast|
       puts ast.to_s(1)
     end
   end
