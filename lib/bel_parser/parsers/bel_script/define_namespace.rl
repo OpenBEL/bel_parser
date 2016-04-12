@@ -13,26 +13,26 @@
   URL_KW        = [uU][rR][lL];
 
   action namespace_keyword {
-    @buffers[:define_namespace] = define_namespace()
+    @buffers[:namespace_definition] = namespace_definition()
   }
 
   action keyword {
-    @buffers[:define_namespace] = @buffers[:define_namespace] << keyword(@buffers[:ident])
+    @buffers[:namespace_definition] = @buffers[:namespace_definition] << keyword(@buffers[:ident])
   }
 
   action url_keyword {
-    @buffers[:define_namespace] = @buffers[:define_namespace] << domain(url())
+    @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
   }
 
   action string {
-    keyword, domain             = @buffers[:define_namespace].children
-    domain                      = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = define_namespace(keyword, domain)
+    keyword, domain                 = @buffers[:namespace_definition].children
+    domain                          = domain(
+                                        domain.children[0] << @buffers[:string])
+    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
   }
 
-  action yield_define_namespace {
-    yield @buffers[:define_namespace]
+  action yield_namespace_definition {
+    yield @buffers[:namespace_definition]
   }
 
   # Define FSM
@@ -49,7 +49,7 @@
     SP+
     STRING %string
     SP*
-    NL @yield_define_namespace;
+    NL @yield_namespace_definition;
 }%%
 =end
 # end: ragel

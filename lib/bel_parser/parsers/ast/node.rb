@@ -250,7 +250,77 @@ module BELParser
 
         # Get the namespace definition's keyword.
         def keyword
-          # TODO: access children for content
+          children[0]
+        end
+
+        # Get the namespace definition's domain.
+        def domain
+          children[1]
+        end
+      end
+
+      # AST node representing a keyword (e.g. definitions).
+      class Keyword < Node
+        # AST node type
+        @ast_type = :keyword
+        # Keywords have semantic meaning
+        @has_semantics = true
+
+        # New Keyword AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Keyword.ast_type, children, properties)
+        end
+
+        # Get the keyword's identifier.
+        def identifier
+          children[0]
+        end
+      end
+
+      # AST node representing a domain (e.g. Url, Uri, List, Pattern).
+      class Domain < Node
+        # AST node type
+        @ast_type = :domain
+        # Domains have semantic meaning
+        @has_semantics = true
+
+        # New Domain AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Domain.ast_type, children, properties)
+        end
+
+        # Determine if this is a URL domain.
+        def has_url?
+          children[0] && children[0].is_a?(Url)
+        end
+
+        # Get the domain's Url.
+        def url
+          has_url? ? children[0] : nil
+        end
+      end
+
+      # AST node representing a URL.
+      class Url < Node
+        # AST node type
+        @ast_type = :keyword
+        # Urls have semantic meaning
+        @has_semantics = true
+
+        # New Url AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Url.ast_type, children, properties)
+        end
+
+        # Get the url's string.
+        def string
+          children[0]
         end
       end
 
@@ -768,6 +838,18 @@ module BELParser
 
         def namespace_definition(*children)
           NamespaceDefinition.new(children)
+        end
+
+        def keyword(*children)
+          Keyword.new(children)
+        end
+
+        def domain(*children)
+          Domain.new(children)
+        end
+
+        def url(*children)
+          Url.new(children)
         end
       end
     end

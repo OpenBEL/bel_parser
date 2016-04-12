@@ -397,17 +397,17 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:define_namespace] = define_namespace()
+    @buffers[:namespace_definition] = namespace_definition()
   		end
 	when 6 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << domain(url())
+    @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
   		end
 	when 12 then
 		begin
 
-    yield @buffers[:define_namespace]
+    yield @buffers[:namespace_definition]
   		end
 	when 3 then
 		begin
@@ -434,7 +434,7 @@ begin
   		end
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << keyword(@buffers[:ident])
+    @buffers[:namespace_definition] = @buffers[:namespace_definition] << keyword(@buffers[:ident])
   		end
 	when 13 then
 		begin
@@ -474,10 +474,10 @@ begin
   		end
 		begin
 
-    keyword, domain             = @buffers[:define_namespace].children
-    domain                      = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = define_namespace(keyword, domain)
+    keyword, domain                 = @buffers[:namespace_definition].children
+    domain                          = domain(
+                                        domain.children[0] << @buffers[:string])
+    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
   		end
 	when 15 then
 		begin
@@ -497,14 +497,14 @@ begin
   		end
 		begin
 
-    keyword, domain             = @buffers[:define_namespace].children
-    domain                      = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = define_namespace(keyword, domain)
+    keyword, domain                 = @buffers[:namespace_definition].children
+    domain                          = domain(
+                                        domain.children[0] << @buffers[:string])
+    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_namespace]
+    yield @buffers[:namespace_definition]
   		end
 	end
 	end
@@ -966,17 +966,17 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:define_namespace] = define_namespace()
+    @buffers[:namespace_definition] = namespace_definition()
   		end
 	when 6 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << domain(url())
+    @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
   		end
 	when 12 then
 		begin
 
-    yield @buffers[:define_namespace]
+    yield @buffers[:namespace_definition]
   		end
 	when 3 then
 		begin
@@ -1003,7 +1003,7 @@ begin
   		end
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << keyword(@buffers[:ident])
+    @buffers[:namespace_definition] = @buffers[:namespace_definition] << keyword(@buffers[:ident])
   		end
 	when 13 then
 		begin
@@ -1043,10 +1043,10 @@ begin
   		end
 		begin
 
-    keyword, domain             = @buffers[:define_namespace].children
-    domain                      = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = define_namespace(keyword, domain)
+    keyword, domain                 = @buffers[:namespace_definition].children
+    domain                          = domain(
+                                        domain.children[0] << @buffers[:string])
+    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
   		end
 	when 15 then
 		begin
@@ -1066,14 +1066,14 @@ begin
   		end
 		begin
 
-    keyword, domain             = @buffers[:define_namespace].children
-    domain                      = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = define_namespace(keyword, domain)
+    keyword, domain                 = @buffers[:namespace_definition].children
+    domain                          = domain(
+                                        domain.children[0] << @buffers[:string])
+    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_namespace]
+    yield @buffers[:namespace_definition]
   		end
 	end
 	end
@@ -1586,17 +1586,17 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:define_namespace] = define_namespace()
+    @buffers[:namespace_definition] = namespace_definition()
   		end
 	when 6 then
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << domain(url())
+    @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
   		end
 	when 12 then
 		begin
 
-    yield @buffers[:define_namespace]
+    yield @buffers[:namespace_definition]
   		end
 	when 3 then
 		begin
@@ -1623,7 +1623,7 @@ begin
   		end
 		begin
 
-    @buffers[:define_namespace] = @buffers[:define_namespace] << keyword(@buffers[:ident])
+    @buffers[:namespace_definition] = @buffers[:namespace_definition] << keyword(@buffers[:ident])
   		end
 	when 13 then
 		begin
@@ -1663,10 +1663,10 @@ begin
   		end
 		begin
 
-    keyword, domain             = @buffers[:define_namespace].children
-    domain                      = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = define_namespace(keyword, domain)
+    keyword, domain                 = @buffers[:namespace_definition].children
+    domain                          = domain(
+                                        domain.children[0] << @buffers[:string])
+    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
   		end
 	when 15 then
 		begin
@@ -1686,14 +1686,14 @@ begin
   		end
 		begin
 
-    keyword, domain             = @buffers[:define_namespace].children
-    domain                      = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_namespace] = define_namespace(keyword, domain)
+    keyword, domain                 = @buffers[:namespace_definition].children
+    domain                          = domain(
+                                        domain.children[0] << @buffers[:string])
+    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_namespace]
+    yield @buffers[:namespace_definition]
   		end
 	end
 	end
