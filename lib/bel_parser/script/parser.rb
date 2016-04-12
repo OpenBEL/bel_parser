@@ -19,6 +19,7 @@ module BELParser
         :annotation_definition,
         :namespace_definition,
         :set,
+        :document_property,
         :unset,
         :blank_line,
         :comment_line

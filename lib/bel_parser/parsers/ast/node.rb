@@ -505,12 +505,37 @@ module BELParser
 
         # Get what is being set.
         def name
-          # TODO: access children for content
+          children[0]
         end
 
         # Get the value of what is being set.
         def value
-          # TODO: access children for content
+          children[1]
+        end
+      end
+
+      # AST node representing a document property (e.g. +SET DOCUMENT ...+).
+      class DocumentProperty < Node
+        # AST node type
+        @ast_type = :document_property
+        # DocumentProperty has semantics (what was set?)
+        @has_semantics = true
+
+        # New DocumentProperty AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(DocumentProperty.ast_type, children, properties)
+        end
+
+        # Get what is being set.
+        def name
+          children[0]
+        end
+
+        # Get the value of what is being set.
+        def value
+          children[1]
         end
       end
 
@@ -768,6 +793,25 @@ module BELParser
         end
       end
 
+      # AST node representing a name.
+      class Name < Node
+        # AST node type
+        @ast_type = :name
+        # Name has semantics (name of property or annotation).
+        @has_semantics = true
+
+        # New Name AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Name.ast_type, children, properties)
+        end
+
+        def identifier
+          children[0]
+        end
+      end
+
       # AST node representing a value.
       #
       # === Special node properties
@@ -839,6 +883,10 @@ module BELParser
           Prefix.new(children)
         end
 
+        def name(*children)
+          Name.new(children)
+        end
+
         def value(*children)
           Value.new(children)
         end
@@ -869,6 +917,14 @@ module BELParser
 
         def blank_line
           BlankLine.new
+        end
+
+        def set(*children)
+          Set.new(children)
+        end
+
+        def document_property(*children)
+          DocumentProperty.new(children)
         end
 
         def annotation_definition(*children)
