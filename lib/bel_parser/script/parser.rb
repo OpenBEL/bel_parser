@@ -16,7 +16,7 @@ module BELParser
         :simple_statement,
         :observed_term,
         :nested_statement,
-        :define_annotation,
+        :annotation_definition,
         :namespace_definition,
         :set,
         :unset,

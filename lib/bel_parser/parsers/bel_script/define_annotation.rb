@@ -579,9 +579,9 @@ class << self
 end
 self.bel_en_list = 62;
 class << self
-	attr_accessor :bel_en_define_annotation
+	attr_accessor :bel_en_annotation_definition
 end
-self.bel_en_define_annotation = 1;
+self.bel_en_annotation_definition = 1;
 
 
 begin
@@ -680,35 +680,35 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:define_annotation] = define_annotation()
+    @buffers[:annotation_definition] = annotation_definition()
   		end
 	when 6 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain()
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain()
   		end
 	when 24 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(pattern())
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(pattern())
   		end
 	when 28 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(url())
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(url())
   		end
 	when 17 then
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     @buffers[:list])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         @buffers[:list])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 19 then
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 3 then
 		begin
@@ -735,8 +735,8 @@ begin
   		end
 		begin
 
-    @buffers[:define_annotation] = define_annotation(
-                                     keyword(@buffers[:ident]))
+    @buffers[:annotation_definition] = annotation_definition(
+                                         keyword(@buffers[:ident]))
   		end
 	when 31 then
 		begin
@@ -776,10 +776,10 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 29 then
 		begin
@@ -788,10 +788,10 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 33 then
 		begin
@@ -807,14 +807,14 @@ begin
 	when 18 then
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     @buffers[:list])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         @buffers[:list])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 21 then
 		begin
@@ -878,14 +878,14 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 30 then
 		begin
@@ -894,14 +894,14 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 10 then
 		begin
@@ -1930,9 +1930,9 @@ class << self
 end
 self.bel_en_list = 62;
 class << self
-	attr_accessor :bel_en_define_annotation
+	attr_accessor :bel_en_annotation_definition
 end
-self.bel_en_define_annotation = 1;
+self.bel_en_annotation_definition = 1;
 
 
 begin
@@ -2031,35 +2031,35 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:define_annotation] = define_annotation()
+    @buffers[:annotation_definition] = annotation_definition()
   		end
 	when 6 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain()
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain()
   		end
 	when 24 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(pattern())
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(pattern())
   		end
 	when 28 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(url())
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(url())
   		end
 	when 17 then
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     @buffers[:list])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         @buffers[:list])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 19 then
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 3 then
 		begin
@@ -2086,8 +2086,8 @@ begin
   		end
 		begin
 
-    @buffers[:define_annotation] = define_annotation(
-                                     keyword(@buffers[:ident]))
+    @buffers[:annotation_definition] = annotation_definition(
+                                         keyword(@buffers[:ident]))
   		end
 	when 31 then
 		begin
@@ -2127,10 +2127,10 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 29 then
 		begin
@@ -2139,10 +2139,10 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 33 then
 		begin
@@ -2158,14 +2158,14 @@ begin
 	when 18 then
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     @buffers[:list])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         @buffers[:list])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 21 then
 		begin
@@ -2229,14 +2229,14 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 30 then
 		begin
@@ -2245,14 +2245,14 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 10 then
 		begin
@@ -3281,9 +3281,9 @@ class << self
 end
 self.bel_en_list = 62;
 class << self
-	attr_accessor :bel_en_define_annotation
+	attr_accessor :bel_en_annotation_definition
 end
-self.bel_en_define_annotation = 1;
+self.bel_en_annotation_definition = 1;
 
 
 begin
@@ -3382,35 +3382,35 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:define_annotation] = define_annotation()
+    @buffers[:annotation_definition] = annotation_definition()
   		end
 	when 6 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain()
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain()
   		end
 	when 24 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(pattern())
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(pattern())
   		end
 	when 28 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(url())
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(url())
   		end
 	when 17 then
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     @buffers[:list])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         @buffers[:list])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 19 then
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 3 then
 		begin
@@ -3437,8 +3437,8 @@ begin
   		end
 		begin
 
-    @buffers[:define_annotation] = define_annotation(
-                                     keyword(@buffers[:ident]))
+    @buffers[:annotation_definition] = annotation_definition(
+                                         keyword(@buffers[:ident]))
   		end
 	when 31 then
 		begin
@@ -3478,10 +3478,10 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 29 then
 		begin
@@ -3490,10 +3490,10 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 33 then
 		begin
@@ -3509,14 +3509,14 @@ begin
 	when 18 then
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     @buffers[:list])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         @buffers[:list])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 21 then
 		begin
@@ -3580,14 +3580,14 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 30 then
 		begin
@@ -3596,14 +3596,14 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 10 then
 		begin
@@ -4669,9 +4669,9 @@ class << self
 end
 self.bel_en_list = 62;
 class << self
-	attr_accessor :bel_en_define_annotation
+	attr_accessor :bel_en_annotation_definition
 end
-self.bel_en_define_annotation = 1;
+self.bel_en_annotation_definition = 1;
 
 
       # end: ragel        
@@ -4783,35 +4783,35 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:define_annotation] = define_annotation()
+    @buffers[:annotation_definition] = annotation_definition()
   		end
 	when 6 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain()
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain()
   		end
 	when 24 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(pattern())
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(pattern())
   		end
 	when 28 then
 		begin
 
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(url())
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(url())
   		end
 	when 17 then
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     @buffers[:list])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         @buffers[:list])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 19 then
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 3 then
 		begin
@@ -4838,8 +4838,8 @@ begin
   		end
 		begin
 
-    @buffers[:define_annotation] = define_annotation(
-                                     keyword(@buffers[:ident]))
+    @buffers[:annotation_definition] = annotation_definition(
+                                         keyword(@buffers[:ident]))
   		end
 	when 31 then
 		begin
@@ -4879,10 +4879,10 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 29 then
 		begin
@@ -4891,10 +4891,10 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 33 then
 		begin
@@ -4910,14 +4910,14 @@ begin
 	when 18 then
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     @buffers[:list])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         @buffers[:list])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 21 then
 		begin
@@ -4981,14 +4981,14 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 30 then
 		begin
@@ -4997,14 +4997,14 @@ begin
   		end
 		begin
 
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 		begin
 
-    yield @buffers[:define_annotation]
+    yield @buffers[:annotation_definition]
   		end
 	when 10 then
 		begin

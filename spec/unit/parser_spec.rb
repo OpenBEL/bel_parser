@@ -56,7 +56,7 @@ describe BELParser::Parsers::Common::List, '#parse' do
   include AST::Sexp
   let(:parser) { BELParser::Parsers::Common::List }
 
-  xit 'yields correct AST' do
+  it 'yields correct AST' do
     assert_ast(
       parser,
       '{"Adipose Tissue","white adipose"}',
@@ -68,7 +68,7 @@ describe BELParser::Parsers::Common::List, '#parse' do
     )
   end
 
-  xit 'yields correct AST' do
+  it 'yields correct AST' do
     assert_ast(
       parser,
       '{"PubMed","Forensic Sci 1999 Jan 25 99(3) 197-208","10098258","","",""}',
@@ -574,11 +574,11 @@ end
 describe BELParser::Parsers::BELScript::DefineAnnotation do
   include AST::Sexp
 
-  xit 'yields correct AST' do
+  it 'yields correct AST' do
     assert_ast(
       BELParser::Parsers::BELScript::DefineAnnotation,
       'Define Annotation Species As Url "http://resources/species.belanno"',
-      s(:define_annotation,
+      s(:annotation_definition,
         s(:keyword,
           s(:identifier, 'Species')),
         s(:domain,
@@ -588,7 +588,7 @@ describe BELParser::Parsers::BELScript::DefineAnnotation do
     assert_ast(
       BELParser::Parsers::BELScript::DefineAnnotation,
       'DEFine ANNOtation Status as LiST { "Approved", "Rejected"}',
-      s(:define_annotation,
+      s(:annotation_definition,
         s(:keyword,
           s(:identifier, 'Status')),
         s(:domain,
@@ -601,7 +601,7 @@ describe BELParser::Parsers::BELScript::DefineAnnotation do
     assert_ast(
       BELParser::Parsers::BELScript::DefineAnnotation,
       'define annotation Identifier as pattern "[-+]?[0-9]+"',
-      s(:define_annotation,
+      s(:annotation_definition,
         s(:keyword,
           s(:identifier, 'Identifier')),
         s(:domain,
@@ -614,11 +614,11 @@ end
 describe BELParser::Parsers::BELScript::DefineNamespace do
   include AST::Sexp
 
-  xit 'yields correct AST' do
+  it 'yields correct AST' do
     assert_ast(
       BELParser::Parsers::BELScript::DefineNamespace,
       'DEFINE NAMESPACE HGNC AS URL "http://resources/hgnc.belns"',
-      s(:define_namespace,
+      s(:namespace_definition,
         s(:keyword,
           s(:identifier, 'HGNC')),
         s(:domain,
@@ -628,7 +628,7 @@ describe BELParser::Parsers::BELScript::DefineNamespace do
     assert_ast(
       BELParser::Parsers::BELScript::DefineNamespace,
       'Define Namespace HGNC As Url "http://resources/hgnc.belns"',
-      s(:define_namespace,
+      s(:namespace_definition,
         s(:keyword,
           s(:identifier, 'HGNC')),
         s(:domain,
@@ -638,7 +638,7 @@ describe BELParser::Parsers::BELScript::DefineNamespace do
     assert_ast(
       BELParser::Parsers::BELScript::DefineNamespace,
       'define namespace HGNC as url "http://resources/hgnc.belns"',
-      s(:define_namespace,
+      s(:namespace_definition,
         s(:keyword,
           s(:identifier, 'HGNC')),
         s(:domain,

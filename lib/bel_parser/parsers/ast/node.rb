@@ -307,7 +307,7 @@ module BELParser
       # AST node representing a URL.
       class Url < Node
         # AST node type
-        @ast_type = :keyword
+        @ast_type = :url
         # Urls have semantic meaning
         @has_semantics = true
 
@@ -319,6 +319,26 @@ module BELParser
         end
 
         # Get the url's string.
+        def string
+          children[0]
+        end
+      end
+
+      # AST node representing a Pattern.
+      class Pattern < Node
+        # AST node type
+        @ast_type = :pattern
+        # Patterns have semantic meaning
+        @has_semantics = true
+
+        # New Pattern AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Pattern.ast_type, children, properties)
+        end
+
+        # Get the pattern's string.
         def string
           children[0]
         end
@@ -356,6 +376,21 @@ module BELParser
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
           super(List.ast_type, children, properties)
+        end
+      end
+
+      # AST node representing a list item.
+      class ListItem < Node
+        # AST node type
+        @ast_type = :list_item
+        # List items have semantics (content is meaningful)
+        @has_semantics = true
+
+        # New ListItem AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(ListItem.ast_type, children, properties)
         end
       end
 
@@ -820,6 +855,10 @@ module BELParser
           List.new(children)
         end
 
+        def list_item(*children)
+          ListItem.new(children)
+        end
+
         def comment(*children)
           Comment.new(children)
         end
@@ -850,6 +889,10 @@ module BELParser
 
         def url(*children)
           Url.new(children)
+        end
+
+        def pattern(*children)
+          Pattern.new(children)
         end
       end
     end

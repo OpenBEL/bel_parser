@@ -16,60 +16,60 @@
   URL_KW        = [uU][rR][lL];
 
   action annotation_keyword {
-    @buffers[:define_annotation] = define_annotation()
+    @buffers[:annotation_definition] = annotation_definition()
   }
 
   action keyword {
-    @buffers[:define_annotation] = define_annotation(
-                                     keyword(@buffers[:ident]))
+    @buffers[:annotation_definition] = annotation_definition(
+                                         keyword(@buffers[:ident]))
   }
 
   action list_keyword {
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain()
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain()
   }
 
   action pattern_keyword {
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(pattern())
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(pattern())
   }
 
   action url_keyword {
-    @buffers[:define_annotation] = @buffers[:define_annotation] << domain(url())
+    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(url())
   }
 
   action pattern {
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   }
 
   action url {
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     domain.children[0] << @buffers[:string])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   }
 
   action list {
-    keyword, domain              = @buffers[:define_annotation].children
-    domain                       = domain(
-                                     @buffers[:list])
-    @buffers[:define_annotation] = define_annotation(keyword, domain)
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         @buffers[:list])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   }
 
-  action yield_define_annotation {
-    yield @buffers[:define_annotation]
+  action yield_annotation_definition {
+    yield @buffers[:annotation_definition]
   }
 
   # Define FSM
-  define_annotation :=
+  annotation_definition :=
     DEFINE_KW SP+ ANNOTATION_KW @annotation_keyword SP+
       IDENT %keyword SP+
     AS_KW SP+
       (
-        (LIST_KW    %list_keyword    SP+ LIST   %list    SP* NL @yield_define_annotation) |
-        (PATTERN_KW %pattern_keyword SP+ STRING %pattern SP* NL @yield_define_annotation) |
-        (URL_KW     %url_keyword     SP+ STRING %url     SP* NL @yield_define_annotation)
+        (LIST_KW    %list_keyword    SP+ LIST   %list    SP* NL @yield_annotation_definition) |
+        (PATTERN_KW %pattern_keyword SP+ STRING %pattern SP* NL @yield_annotation_definition) |
+        (URL_KW     %url_keyword     SP+ STRING %url     SP* NL @yield_annotation_definition)
       );
 }%%
 =end
