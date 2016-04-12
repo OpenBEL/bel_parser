@@ -5,8 +5,9 @@ AllCops:
     - 'lib/**/*'
     - 'spec/**/*'
   Exclude:
+    - 'attic/**/*'
     - 'Rakefile'
-    - 'lib/bel_parser/vendor/*'
+    - 'lib/bel_parser/vendor/**/*'
     - 'lib/bel_parser/parsers/expression/parameter.rb'
     - 'lib/bel_parser/parsers/expression/parameter.rl'
     - 'lib/bel_parser/parsers/expression/comment.rb'
@@ -43,3 +44,9 @@ AllCops:
     - 'lib/bel_parser/parsers/common/list.rl'
     - 'lib/bel_parser/parsers/common/comment_line.rb'
     - 'lib/bel_parser/parsers/common/comment_line.rl'
+# CamelCase style is disabled for Version1_0 and Version2_0 instances.
+# The style is implicitly followed the rest of the time.
+# To disable via Ruby comments would have been a lot of extra noise in the
+# code.
+Style/ClassAndModuleCamelCase:
+  Enabled: false
