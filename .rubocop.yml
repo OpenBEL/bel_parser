@@ -27,6 +27,8 @@ AllCops:
     - 'lib/bel_parser/parsers/bel_script/define_namespace.rl'
     - 'lib/bel_parser/parsers/bel_script/set.rb'
     - 'lib/bel_parser/parsers/bel_script/set.rl'
+    - 'lib/bel_parser/parsers/bel_script/set_document.rb'
+    - 'lib/bel_parser/parsers/bel_script/set_document.rl'
     - 'lib/bel_parser/parsers/bel_script/unset.rb'
     - 'lib/bel_parser/parsers/bel_script/unset.rl'
     - 'lib/bel_parser/parsers/common/blank_line.rb'
