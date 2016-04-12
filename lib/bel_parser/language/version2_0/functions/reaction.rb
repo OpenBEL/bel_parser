@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :rxn
           LONG        = :reaction
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::Abundance
-          DESCRIPTION = 'Denotes the frequency or abundance of events in a reaction'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n a reaction'.freeze
 
           def self.short
             SHORT

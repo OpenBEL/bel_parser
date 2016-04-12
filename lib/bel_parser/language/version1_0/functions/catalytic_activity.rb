@@ -16,7 +16,9 @@ module BELParser
           SHORT       = :cat
           LONG        = :catalyticActivity
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::CatalyticActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events where a member acts as an enzymatic catalyst of biochecmial reactions'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          here a member acts as an enzymatic catalyst of
+          iochecmial reactions'.freeze
 
           def self.short
             SHORT

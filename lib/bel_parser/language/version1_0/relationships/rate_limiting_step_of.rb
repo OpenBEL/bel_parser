@@ -17,7 +17,15 @@ module BELParser
 
           SHORT       = :rateLimitingStepOf
           LONG        = :rateLimitingStepOf
-          DESCRIPTION = ' +A rateLimitingStepOf B+ -  For process, activity, or transformation term A and process term B, +A rateLimitingStepOf B+ indicates +A subProcessOf B+ and +A -> B+. For example, the catalytic activity of HMG CoA reductase is a rate-limiting step for cholesterol biosynthesis: <pre> <code> cat(p(HGNC:HMGCR)) rateLimitingStepOf\ bp(GO:"cholesterol biosynthetic process") </code> </pre>'.freeze
+          DESCRIPTION = ' +A rateLimitingStepOf B+ -  For process,
+          ctivity, or transformation term A and process
+          erm B, +A rateLimitingStepOf B+ indicates
+          A subProcessOf B+ and +A -> B+. For example,
+          he catalytic activity of HMG CoA reductase is a
+          ate-limiting step for cholesterol biosynthesis:
+          pre> <code> cat(p(HGNC:HMGCR)) rateLimitingStepOf\
+          p(GO:"cholesterol biosynthetic process") </code>
+          /pre>'.freeze
 
           def self.short
             SHORT

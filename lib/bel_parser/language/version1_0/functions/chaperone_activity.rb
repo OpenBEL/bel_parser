@@ -16,7 +16,9 @@ module BELParser
           SHORT       = :chap
           LONG        = :chaperoneActivity
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::ChaperoneActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member binds to some substrate and acts as a chaperone for the substrate'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n which a member binds to some substrate and acts
+          s a chaperone for the substrate'.freeze
 
           def self.short
             SHORT

@@ -16,7 +16,9 @@ module BELParser
           SHORT       = :tscript
           LONG        = :transcriptionalActivity
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::TranscriptionalActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member directly acts to control transcription of genes'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n which a member directly acts to control
+          ranscription of genes'.freeze
 
           def self.short
             SHORT

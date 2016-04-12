@@ -16,7 +16,10 @@ module BELParser
           SHORT       = :tport
           LONG        = :transportActivity
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::TransportActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member directs acts to enable the directed movement of substances into, out of, within, or between cells'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n which a member directs acts to enable the
+          irected movement of substances into, out of,
+          ithin, or between cells'.freeze
 
           def self.short
             SHORT

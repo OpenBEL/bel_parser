@@ -16,7 +16,9 @@ module BELParser
           SHORT       = :sec
           LONG        = :cellSecretion
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::Abundance
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which members of an abundance move from cells to regions outside of the cells'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n which members of an abundance move from cells
+          o regions outside of the cells'.freeze
 
           def self.short
             SHORT

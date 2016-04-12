@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :m
           LONG        = :microRNAAbundance
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::MicroRNAAbundance
-          DESCRIPTION = 'Denotes the abundance of a processed, functional microRNA'.freeze
+          DESCRIPTION = 'Denotes the abundance of a processed, functional
+          icroRNA'.freeze
 
           def self.short
             SHORT

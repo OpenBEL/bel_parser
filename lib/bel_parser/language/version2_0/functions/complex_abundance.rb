@@ -14,7 +14,8 @@ module BELParser
           SHORT       = :complex
           LONG        = :complexAbundance
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::ComplexAbundance
-          DESCRIPTION = 'Denotes the abundance of a molecular complex.'.freeze
+          DESCRIPTION = 'Denotes the abundance of a molecular
+          omplex.'.freeze
 
           def self.short
             SHORT

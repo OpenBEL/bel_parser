@@ -16,7 +16,9 @@ module BELParser
           SHORT       = :ribo
           LONG        = :ribosylationActivity
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::RibosylationActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member acts to perform post-translational modification of proteins'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events in
+          hich a member acts to perform post-translational
+          odification of proteins'.freeze
 
           def self.short
             SHORT

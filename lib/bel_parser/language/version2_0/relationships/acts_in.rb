@@ -17,7 +17,15 @@ module BELParser
 
           SHORT       = :actsIn
           LONG        = :actsIn
-          DESCRIPTION = ' +A actsIn f(A)+ -  This relationship links an abundance term to the activity term for the same abundance. This relationship is direct because it is a _self_ relationship, the abundance acts in its own activity. For protein abundance p(A) and its molecular activity kin(p(A), +p(A) actsIn kin(p(A))+. This relationship is introduced by the BEL Compiler and may not be used by statements in BEL documents.'.freeze
+          DESCRIPTION = ' +A actsIn f(A)+ -  This relationship links an
+          bundance term to the activity term for the same
+          bundance. This relationship is direct because
+          t is a _self_ relationship, the abundance acts
+          n its own activity. For protein abundance p(A)
+          nd its molecular activity kin(p(A), +p(A) actsIn
+          in(p(A))+. This relationship is introduced by the
+          EL Compiler and may not be used by statements in
+          EL documents.'.freeze
 
           def self.short
             SHORT

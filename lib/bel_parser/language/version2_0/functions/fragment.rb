@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :frag
           LONG        = :fragment
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::Fragment
-          DESCRIPTION = 'Denotes a protein fragment, e.g., a product of proteolytic cleavage.'.freeze
+          DESCRIPTION = 'Denotes a protein fragment, e.g., a product of
+          roteolytic cleavage.'.freeze
 
           def self.short
             SHORT

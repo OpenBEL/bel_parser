@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :pmod
           LONG        = :proteinModification
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::ProteinModification
-          DESCRIPTION = 'Denotes a covalently modified protein abundance'.freeze
+          DESCRIPTION = 'Denotes a covalently modified protein
+          bundance'.freeze
 
           def self.short
             SHORT

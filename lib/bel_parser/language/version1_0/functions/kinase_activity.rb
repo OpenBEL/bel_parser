@@ -16,7 +16,9 @@ module BELParser
           SHORT       = :kin
           LONG        = :kinaseActivity
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::KinaseActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member acts as a kinase, performing enzymatic phosphorylation of a substrate'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n which a member acts as a kinase, performing
+          nzymatic phosphorylation of a substrate'.freeze
 
           def self.short
             SHORT

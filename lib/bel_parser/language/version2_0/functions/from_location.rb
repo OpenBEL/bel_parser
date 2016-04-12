@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :fromLoc
           LONG        = :fromLocation
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::FromLocation
-          DESCRIPTION = 'Denotes the from cellular location of the abundance.'.freeze
+          DESCRIPTION = 'Denotes the from cellular location of the
+          bundance.'.freeze
 
           def self.short
             SHORT

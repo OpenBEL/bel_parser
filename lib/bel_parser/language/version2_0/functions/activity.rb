@@ -15,7 +15,9 @@ module BELParser
           SHORT       = :act
           LONG        = :activity
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::Activity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member acts as a causal agent at the molecular scale.'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n which a member acts as a causal agent at the
+          olecular scale.'.freeze
 
           def self.short
             SHORT

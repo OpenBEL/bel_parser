@@ -15,7 +15,9 @@ module BELParser
           SHORT       = :gtp
           LONG        = :gtpBoundActivity
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::GTPBoundActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member of a G-protein abundance is GTP-bound'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n which a member of a G-protein abundance is
+          TP-bound'.freeze
 
           def self.short
             SHORT

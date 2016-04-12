@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :sub
           LONG        = :substitution
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::Substitution
-          DESCRIPTION = 'Indicates the abundance of proteins with amino acid substitution sequence'.freeze
+          DESCRIPTION = 'Indicates the abundance of proteins with amino
+          cid substitution sequence'.freeze
 
           def self.short
             SHORT

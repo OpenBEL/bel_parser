@@ -16,7 +16,9 @@ module BELParser
           SHORT       = :surf
           LONG        = :cellSurfaceExpression
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::Abundance
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which members of an abundance move to the surface of cells'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events in
+          hich members of an abundance move to the surface
+          f cells'.freeze
 
           def self.short
             SHORT

@@ -16,7 +16,13 @@ module BELParser
 
           SHORT       = :hasVariant
           LONG        = :hasVariant
-          DESCRIPTION = ' +p(A) hasVariant p(A, sub(G, 12, V))+ -  This relationship links abundance terms modified by the +substitution()+, +fusion()+, or +truncation()+ functions to the unmodified abundance term. This relationship is introduced by the BEL Compiler and does not need to be used by statements in BEL documents.'.freeze
+          DESCRIPTION = ' +p(A) hasVariant p(A, sub(G, 12, V))+ -  This
+          elationship links abundance terms modified by the
+          substitution()+, +fusion()+, or +truncation()+
+          unctions to the unmodified abundance term. This
+          elationship is introduced by the BEL Compiler
+          nd does not need to be used by statements in
+          EL documents.'.freeze
 
           def self.short
             SHORT

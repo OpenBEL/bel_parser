@@ -16,7 +16,13 @@ module BELParser
 
           SHORT       = :'--'
           LONG        = :association
-          DESCRIPTION = ' +A -- B+ -  For terms A and B, +A association B+ or +A -- B+ indicates that A and B are associated in an unspecified manner. This relationship is used when not enough information about the association is available to describe it using more specific relationships, like increases or positiveCorrelation.'.freeze
+          DESCRIPTION = ' +A -- B+ -  For terms A and B, +A association B+
+          r +A -- B+ indicates that A and B are associated
+          n an unspecified manner. This relationship
+          s used when not enough information about the
+          ssociation is available to describe it using
+          ore specific relationships, like increases or
+          ositiveCorrelation.'.freeze
 
           def self.short
             SHORT

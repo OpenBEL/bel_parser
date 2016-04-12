@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :composite
           LONG        = :compositeAbundance
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::Abundance
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which members are present.'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n which members are present.'.freeze
 
           def self.short
             SHORT

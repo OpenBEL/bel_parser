@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :pep
           LONG        = :peptidaseActivity
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::PeptidaseActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member acts to cleave a protein'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n which a member acts to cleave a protein'.freeze
 
           def self.short
             SHORT

@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :trunc
           LONG        = :truncation
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::Truncation
-          DESCRIPTION = 'Indicates an abundance of proteins with truncation sequence variants'.freeze
+          DESCRIPTION = 'Indicates an abundance of proteins with
+          runcation sequence variants'.freeze
 
           def self.short
             SHORT

@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :fus
           LONG        = :fusion
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::Fusion
-          DESCRIPTION = 'Specifies the abundance of a protein translated from the fusion of a gene'.freeze
+          DESCRIPTION = 'Specifies the abundance of a protein translated
+          rom the fusion of a gene'.freeze
 
           def self.short
             SHORT

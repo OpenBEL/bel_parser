@@ -15,7 +15,8 @@ module BELParser
           SHORT       = :phos
           LONG        = :phosphataseActivity
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::PhosphataseActivity
-          DESCRIPTION = 'Denotes the frequency or abundance of events in which a member acts as a phosphatase'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events
+          n which a member acts as a phosphatase'.freeze
 
           def self.short
             SHORT
