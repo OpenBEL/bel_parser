@@ -29,6 +29,7 @@ module BELParser
           end
           @relationships         = rel_classes.compact
           @indexed_relationships = index_long_short(@relationships)
+          assign_relationship_categories(@relationships)
 
           # Establish return types
           ret_classes = Version2_0::ReturnTypes.constants.collect do |symbol|

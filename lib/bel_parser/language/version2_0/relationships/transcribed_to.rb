@@ -34,6 +34,18 @@ module BELParser
           def self.description
             DESCRIPTION
           end
+
+          def self.direct?
+            true
+          end
+
+          def self.directed?
+            true
+          end
+
+          def self.genomic?
+            true
+          end
         end
       end
     end

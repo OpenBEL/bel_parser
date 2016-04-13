@@ -34,6 +34,10 @@ module BELParser
           def self.deprecated?
             true
           end
+
+          def self.genomic?
+            true
+          end
         end
       end
     end
