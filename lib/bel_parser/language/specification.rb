@@ -3,17 +3,7 @@ module BELParser
     # Specification defines the common behavior of any language specification.
     # It includes the syntactic and semantic rules of the language.
     module Specification
-      attr_reader :causal_relationships
-      attr_reader :correlative_relationships
-      attr_reader :decreasing_relationships
-      attr_reader :deprecated_relationships
-      attr_reader :direct_relationships
-      attr_reader :directed_relationships
-      attr_reader :genomic_relationships
-      attr_reader :increasing_relationships
-      attr_reader :indirect_relationships
-      attr_reader :listable_relationships
-      attr_reader :self_relationships
+      EMPTY_ARRAY = [].freeze
 
       def function(short_or_long_form)
         @indexed_functions[short_or_long_form]
@@ -53,6 +43,50 @@ module BELParser
 
       def syntax
         @syntax
+      end
+
+      def causal_relationships
+        @causal_relationships || EMPTY_ARRAY
+      end
+
+      def correlative_relationships
+        @correlative_relationships || EMPTY_ARRAY
+      end
+
+      def decreasing_relationships
+        @decreasing_relationships || EMPTY_ARRAY
+      end
+
+      def deprecated_relationships
+        @deprecated_relationships || EMPTY_ARRAY
+      end
+
+      def direct_relationships
+        @direct_relationships || EMPTY_ARRAY
+      end
+
+      def directed_relationships
+        @directed_relationships || EMPTY_ARRAY
+      end
+
+      def genomic_relationships
+        @genomic_relationships || EMPTY_ARRAY
+      end
+
+      def increasing_relationships
+        @increasing_relationships || EMPTY_ARRAY
+      end
+
+      def indirect_relationships
+        @indirect_relationships || EMPTY_ARRAY
+      end
+
+      def listable_relationships
+        @listable_relationships || EMPTY_ARRAY
+      end
+
+      def self_relationships
+        @self_relationships || EMPTY_ARRAY
       end
 
       # @param [Array<#long,#short>] language_objects to be indexed by
