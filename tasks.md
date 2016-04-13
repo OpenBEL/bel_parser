@@ -1,3 +1,27 @@
+* Semantics
+
+- [x] (Generic) Semantic warning if function or relationship is marked as deprecated.
+- (Generic) Semantic warning if a nested statement does not use a *Causal* relationship.
+- (Generic) Semantic warning if nested statement depth is greater than 1.
+- (Generic) Semantic warning if amino acid does not match controlled vocabulary.
+- (Generic) Semantic warning if a modification position is not a positive integer.
+- (Generic) Semantic warning if a *list* is used as a subject.
+- (Generic) Semantic warning if a *list* is not an object of the listable relationship category (*hasComponents*, *hasMembers*).
+
+- (1.0) Semantic warning if covalent modification does not match controlled vocabulary.
+
+* Design interface for resolving resource URIs / URLs.
+* Design interface for retrieving encoding for namespace and value.
+* Assign *namespace* property to *prefix*.
+* Assign *encoding* property to *value*.
+* Update semantic AST to match *namespace* and *encoding*.
+
+- (2.0) Semantic warning if parameter does not encode a covalent modification (Uses Namespace encoding).
+
+- (Generic) Syntax warning if *value* does not exist in *namespace*.
+
+=====
+
 OpenBEL API
 - Validation
   - BEL 2 only
@@ -23,7 +47,7 @@ BEL Nanopub JSON (BNJ, pronounced "binge") / JGF
 Punchlist
 - [x] Amino acid range semantics
 - [x] Associate signatures to functions.
-- [~] Implement semantic API for terms.
+- [x] Implement semantic API for terms.
 - Report semantic success/failure for BEL Expression parser.
 - Error messages for version1 and version2 semantics.
 
@@ -111,10 +135,10 @@ Process
   - [x] normalize new lines
   - [x] line continuator
   - [x] apply BEL structural parsers
-- [prototype] Implement BEL Script line parser.
-  - normalize new lines
-  - line continuator
-- [prototype] Implement BEL Script record parsers, producing AST.
+- [x] [prototype] Implement BEL Script line parser.
+  - [x] normalize new lines
+  - [x] line continuator
+- [x] [prototype] Implement BEL Script record parsers, producing AST.
 - [prototype] Define BEL version 1.0.
   - function types
   - relationship types
