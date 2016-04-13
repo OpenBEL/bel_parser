@@ -18,11 +18,13 @@
   }
 
   action term_init {
-    @buffers[:term_stack] = [ term() ]
+    t = term([], complete: false)
+    @buffers[:term_stack] = [t]
   }
 
   action inner_term_init {
-    @buffers[:term_stack] << term()
+    t = term([], complete: false)
+    @buffers[:term_stack] << t
   }
 
   action term_fx {
@@ -31,7 +33,12 @@
   }
 
   action term_argument {
+    puts 'before', @buffers
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << argument(@buffers[:parameter])
+    #t = @buffers[:term_stack][-1]
+    #t << argument(@buffers[:parameter])
+    puts 'after', @buffers
+    #@buffers[:term_stack][-1] = @buffers[:term_stack][-1] << argument(@buffers[:parameter])
     @buffers[:parameter]      = nil
   }
 
@@ -50,6 +57,12 @@
     yield @buffers[:term_stack][-1]
   }
 
+  action error_term {
+    # $ all states; error_term
+    puts 'error_term'
+    yield @buffers[:term_stack][-1]
+  }
+
   inner_term :=
     IDENT >inner_term_init >start_function $append_function %finish_function
     SP*
@@ -65,7 +78,7 @@
           IDENT >start_function $append_function '(' @fxbt
         )
       )*
-    ')' @fxret;
+    ')' @fxret $err(error_term);
 
   outer_term =
     IDENT >term_init >start_function $append_function %finish_function
@@ -82,10 +95,10 @@
           IDENT >start_function $append_function '(' @fxbt
         )
       )*
-    ')';
+    ')' $err(error_term);
 
   term :=
-    outer_term %yield_term_ast NL;
+    outer_term %yield_term_ast NL $err(error_term);
 }%%
 =end
 # end: ragel
@@ -148,7 +161,7 @@ end
 if __FILE__ == $0
   $stdin.each_line do |line|
     BELParser::Parsers::Expression::Term.parse(line) { |obj|
-      puts obj.inspect
+      print obj.class.to_s + ': ', obj.inspect
     }
   end
 end
