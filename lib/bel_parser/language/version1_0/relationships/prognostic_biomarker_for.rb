@@ -33,6 +33,10 @@ module BELParser
           def self.description
             DESCRIPTION
           end
+
+          def self.directed?
+            true
+          end
         end
       end
     end

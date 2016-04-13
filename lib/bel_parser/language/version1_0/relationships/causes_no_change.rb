@@ -35,6 +35,14 @@ module BELParser
           def self.description
             DESCRIPTION
           end
+
+          def self.causal?
+            true
+          end
+
+          def self.directed?
+            true
+          end
         end
       end
     end

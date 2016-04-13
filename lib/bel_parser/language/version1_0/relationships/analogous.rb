@@ -30,6 +30,10 @@ module BELParser
           def self.description
             DESCRIPTION
           end
+
+          def self.genomic?
+            true
+          end
         end
       end
     end

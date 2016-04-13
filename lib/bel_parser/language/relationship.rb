@@ -25,7 +25,52 @@ module BELParser
         false
       end
 
-      def ===(other)
+      def causal?
+        false
+      end
+
+      def correlative?
+        false
+      end
+
+      def decreasing?
+        false
+      end
+
+      def direct?
+        false
+      end
+
+      def directed?
+        false
+      end
+
+      def genomic?
+        false
+      end
+
+      def increasing?
+        false
+      end
+
+      def indirect?
+        false
+      end
+
+      def injected?
+        false
+      end
+
+      def listable?
+        false
+      end
+
+      def self?
+        false
+      end
+
+      def ==(other)
+        return true if self.equal?(other)
         return false if other.nil?
         short == other || long == other
       end

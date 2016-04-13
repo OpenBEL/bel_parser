@@ -31,6 +31,14 @@ module BELParser
           def self.description
             DESCRIPTION
           end
+
+          def self.increasing?
+            true
+          end
+
+          def self.correlative?
+            true
+          end
         end
       end
     end

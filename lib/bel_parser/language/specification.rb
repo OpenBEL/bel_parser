@@ -3,6 +3,18 @@ module BELParser
     # Specification defines the common behavior of any language specification.
     # It includes the syntactic and semantic rules of the language.
     module Specification
+      attr_reader :causal_relationships
+      attr_reader :correlative_relationships
+      attr_reader :decreasing_relationships
+      attr_reader :deprecated_relationships
+      attr_reader :direct_relationships
+      attr_reader :directed_relationships
+      attr_reader :genomic_relationships
+      attr_reader :increasing_relationships
+      attr_reader :indirect_relationships
+      attr_reader :listable_relationships
+      attr_reader :self_relationships
+
       def function(short_or_long_form)
         @indexed_functions[short_or_long_form]
       end
@@ -64,6 +76,22 @@ module BELParser
         ]
       end
       protected :index_sym
+
+      def assign_relationship_categories(relationships)
+        relationships.each do |rel|
+          rel.methods(false).grep(/(.*?)\?/) do |method_name|
+            if rel.method(method_name).call
+              category = method_name.to_s.delete('?')
+              category_ivar = "@#{category}_relationships".to_sym
+              unless instance_variable_defined? category_ivar
+                instance_variable_set(category_ivar, [])
+              end
+              instance_variable_get(category_ivar) << rel
+            end
+          end
+        end
+      end
+      protected :assign_relationship_categories
 
       def version
         @version

@@ -48,6 +48,7 @@ module BELParser
           end
           @relationships         = rel_classes.compact
           @indexed_relationships = index_long_short(@relationships)
+          assign_relationship_categories(@relationships)
         end
 
         def load_syntax

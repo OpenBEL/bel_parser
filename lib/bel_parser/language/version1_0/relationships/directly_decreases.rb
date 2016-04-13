@@ -33,6 +33,22 @@ module BELParser
           def self.description
             DESCRIPTION
           end
+
+          def self.causal?
+            true
+          end
+
+          def self.decreasing?
+            true
+          end
+
+          def self.direct?
+            true
+          end
+
+          def self.directed?
+            true
+          end
         end
       end
     end
