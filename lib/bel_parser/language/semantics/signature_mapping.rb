@@ -63,7 +63,7 @@ module BELParser
         end
       end
 
-      # SignatureMappingWarning defines a {SemanticsResult} that indicates
+      # SignatureMappingWarning defines a {SemanticsWarning} that indicates
       # an unsuccessful signature match.
       class SignatureMappingWarning < SemanticsWarning
         attr_reader :failure_signatures

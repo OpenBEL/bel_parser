@@ -597,19 +597,9 @@ module BELParser
           super(NestedStatement.ast_type, children, properties)
         end
 
-        # Get the subject of the statement.
-        def subject
+        # Get the statement.
+        def statement
           children[0]
-        end
-
-        # Get the relationship of the nested statement.
-        def relationship
-          children[1]
-        end
-
-        # Get the object of the nested statement.
-        def object
-          children[2]
         end
       end
 
@@ -627,8 +617,8 @@ module BELParser
           super(ObservedTerm.ast_type, children, properties)
         end
 
-        # Get the subject of the statement.
-        def subject
+        # Get the statement.
+        def statement
           children[0]
         end
       end
@@ -647,19 +637,9 @@ module BELParser
           super(SimpleStatement.ast_type, children, properties)
         end
 
-        # Get the subject of the statement.
-        def subject
+        # Get the statement.
+        def statement
           children[0]
-        end
-
-        # Get the relationship of the nested statement.
-        def relationship
-          children[1]
-        end
-
-        # Get the object of the nested statement.
-        def object
-          children[2]
         end
       end
 
