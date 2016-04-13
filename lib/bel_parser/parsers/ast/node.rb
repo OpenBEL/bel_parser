@@ -19,7 +19,8 @@ module BELParser
       # _ast_type_. This is equivalent to its _type_ instance variable
       # but the former is not used by the AST library itself.
       #
-      # @see Node.ast_type @see Node.initialize
+      # @see Node.ast_type
+      # @see Node.initialize
       #
       class Node < ::AST::Node
         # AST node type
@@ -61,6 +62,9 @@ module BELParser
         # as the close interval containing all the characters of this
         # AST node.
         attr_reader :character_range
+
+        # Get/Set the complete property.
+        attr_accessor :complete
 
         # Get the syntax errors for this AST node.
         def syntax_errors
@@ -120,7 +124,9 @@ module BELParser
 
           if @children == new_children && properties.nil?
             self
-          else
+          elsif instance_of? Node
+            original_dup.send :initialize, @type, new_children, new_properties
+          else # self.is_a? Node
             original_dup.send :initialize, new_children, new_properties
           end
         end
