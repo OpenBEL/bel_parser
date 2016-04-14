@@ -3,10 +3,11 @@
 - [x] (Generic) Semantic warning if function or relationship is marked as deprecated.
 - [x] (Generic) Semantic warning if nested statement depth is greater than 1.
 - [x] (Generic) Semantic warning if a *list* is used as a subject.
-- (Generic) Semantic warning if a nested statement does not use a *Causal* relationship.
+- [x] (Generic) Semantic warning if a nested statement does not use a *Causal* relationship.
+- [x] (Generic) Semantic warning if a *list* is not an object of the listable relationship category (*hasComponents*, *hasMembers*).
+- [x] (Generic) Semantic warning if a listable/multiple relationship uses the subject term as an object list() term argument.
 - (Generic) Semantic warning if amino acid does not match controlled vocabulary.
 - (Generic) Semantic warning if a modification position is not a positive integer.
-- (Generic) Semantic warning if a *list* is not an object of the listable relationship category (*hasComponents*, *hasMembers*).
 
 - (1.0) Semantic warning if covalent modification does not match controlled vocabulary.
 

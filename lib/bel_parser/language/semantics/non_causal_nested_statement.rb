@@ -44,11 +44,6 @@ module BELParser
              Causal Relationships: #{causal_relationships}
           MSG
         end
-
-        private
-
-        def causal_relationships
-        end
       end
     end
   end

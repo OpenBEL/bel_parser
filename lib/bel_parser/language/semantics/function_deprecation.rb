@@ -3,6 +3,10 @@ require 'bel_parser/parsers/ast/node'
 module BELParser
   module Language
     module Semantics
+      # FunctionDeprecation implements a {SemanticsFunction} that maps a
+      # {BELParser::Parsers::AST::Function} to a {SemanticsWarning} if the
+      # referenced function is deprecated for the
+      # {BELParser::Language::Specification}.
       class FunctionDeprecation
         include SemanticsFunction
 
@@ -19,6 +23,9 @@ module BELParser
         end
       end
 
+      # Represents a {SemanticsWarning} when a
+      # {BELParser::Parsers::AST::Function} references a deprecated function
+      # for the {BELParser::Language::Specification}.
       class FunctionDeprecationWarning < SemanticsWarning
         attr_reader :deprecated_function
 
@@ -28,7 +35,7 @@ module BELParser
         end
 
         def to_s
-          %Q{Function "#{deprecated_function}" is deprecated.}
+          %(Function "#{deprecated_function}" is deprecated.)
         end
       end
     end

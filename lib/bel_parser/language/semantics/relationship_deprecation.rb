@@ -3,6 +3,10 @@ require 'bel_parser/parsers/ast/node'
 module BELParser
   module Language
     module Semantics
+      # RelationshipDeprecation implements a {SemanticsFunction} that maps a
+      # {BELParser::Parsers::AST::Relationship} to a {SemanticsWarning} if the
+      # referenced relationship is deprecated for the
+      # {BELParser::Language::Specification}.
       class RelationshipDeprecation
         include SemanticsFunction
 
@@ -19,6 +23,9 @@ module BELParser
         end
       end
 
+      # Represents a {SemanticsWarning} when a
+      # {BELParser::Parsers::AST::Relationship} references a deprecated
+      # relationship for the {BELParser::Language::Specification}.
       class RelationshipDeprecationWarning < SemanticsWarning
         attr_reader :deprecated_relationship
 
@@ -28,7 +35,7 @@ module BELParser
         end
 
         def to_s
-          %Q{Relationship "#{deprecated_relationship}" is deprecated.}
+          %(Relationship "#{deprecated_relationship}" is deprecated.)
         end
       end
     end
