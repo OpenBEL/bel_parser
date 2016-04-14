@@ -13,7 +13,7 @@ module BELParser
 
         def self.map(stmt_node, spec, _namespaces)
           return nil unless stmt_node.is_a?(BELParser::Parsers::AST::Statement)
-          return nil unless stmt_node.relationship?
+          return nil if stmt_node.relationship.string_literal.nil?
           rel = spec.relationship(stmt_node.relationship.string_literal.to_sym)
           return nil unless rel.listable?
 

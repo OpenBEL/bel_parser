@@ -14,6 +14,7 @@ module BELParser
 
         def self.map(node, spec, _namespaces)
           return nil unless node.is_a?(BELParser::Parsers::AST::Relationship)
+          return nil if node.string_literal.nil?
 
           relationship_name = node.string_literal
           rel               = spec.relationship(relationship_name.to_sym)
