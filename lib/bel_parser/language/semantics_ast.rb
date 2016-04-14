@@ -233,13 +233,11 @@ module BELParser
           # Return success if semantic AST does not supply argument patterns.
           if arguments.empty? || variadic_arguments?
             success(parse_node)
+          # Or, check argument length.
+          elsif arguments.length == parse_node.arguments.length
+            success(parse_node)
           else
-            # Otherwise, check argument length.
-            if arguments.length == parse_node.arguments.length
-              success(parse_node)
-            else
-              failure(parse_node)
-            end
+            failure(parse_node)
           end
         end
       end
@@ -627,7 +625,12 @@ module BELParser
 
         def match(value_type, _)
           string_literal = unquote(value_type.string_literal)
-          integer_position = Integer(string_literal) rescue nil
+          integer_position =
+            begin
+              Integer(string_literal)
+            rescue
+              nil
+            end
           if integer_position && integer_position > 0
             success(value_type)
           else

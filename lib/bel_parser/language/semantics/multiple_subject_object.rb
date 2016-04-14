@@ -44,7 +44,7 @@ module BELParser
         end
 
         def to_s
-          <<-MSG.gsub(/ {12}/, '').gsub(/\n/, '')
+          <<-MSG.gsub(/ {12}/, '').delete("\n")
             A "#{@rel.long}" statement cannot use the subject term as an
              object list() argument.
           MSG

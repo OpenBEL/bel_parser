@@ -54,11 +54,11 @@ module BELParser
           )
         end
         @hash.freeze
-			end
+      end
 
       unless defined? @names
         @names = constants.map(&method(:const_get)).map(&:first).sort.freeze
-			end
+      end
 
       unless defined? @values
         @values = constants.map(&method(:const_get)).map(&:to_a).flatten.freeze
