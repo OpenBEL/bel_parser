@@ -6,36 +6,45 @@
   include 'common.rl';
 
   action start_ident {
-    @buffers[:ident] = []
+    @incomplete[:ident] = []
   }
 
   action append_ident {
-    (@buffers[:ident] ||= []) << fc
+    @incomplete[:ident] << fc
   }
 
-  action finish_ident {
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
+  action end_ident {
+    ident = @incomplete.delete(:ident)
+    completed = !ident.empty?
+    @buffers[:ident] = identifier(utf8_string(ident), complete: completed)
   }
 
-  action yield_complete_ident {
+  action yield_ident {
     yield @buffers[:ident]
   }
 
-  action error_ident {
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
+  action eof_ident {
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_ident = identifier(utf8_string(ident), complete: completed)
+    yield ast_ident
   }
 
-  action yield_error_ident {
-    @buffers[:ident] ||= []
-    yield @buffers[:ident]
+  action err_ident {
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_ident = identifier(utf8_string(ident), complete: completed)
+    yield ast_ident
   }
 
-  IDENT = [a-zA-Z0-9_]+ >start_ident $append_ident %finish_ident $err(error_ident);
+  IDENT = (
+            [a-zA-Z0-9_]+ >start_ident $append_ident %end_ident %yield_ident |
+            '' >start_ident %end_ident %yield_ident
+          )
+          $eof(eof_ident) $err(err_ident);
 
-  ident := IDENT $err(yield_error_ident) %yield_complete_ident NL;
+  ident := IDENT $err(err_ident) %yield_ident NL;
+
 }%%
 =end
 # end: ragel
@@ -71,22 +80,23 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data = @content.unpack('C*')
-            p   = 0
-            pe  = data.length
-            eof = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

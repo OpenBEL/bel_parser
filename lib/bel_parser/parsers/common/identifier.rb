@@ -37,14 +37,14 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             
 class << self
 	attr_accessor :_bel_trans_keys
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 48, 122, 10, 122, 
+	0, 0, 10, 122, 10, 122, 
 	0, 0, 0
 ]
 
@@ -53,7 +53,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 75, 113, 0
+	0, 113, 113, 0
 ]
 
 class << self
@@ -61,7 +61,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 76, 190
+	0, 0, 114, 228
 ]
 
 class << self
@@ -69,30 +69,35 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 0, 0, 0, 0, 0, 0, 
-	0, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 0, 0, 0, 0, 1, 
-	0, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 0, 2, 0, 0, 0, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	0, 0, 0, 0, 0, 0, 0, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 0, 0, 0, 0, 2, 0, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 0, 3, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 0, 0, 0, 0, 
-	0, 0, 0, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 0, 0, 0, 
-	0, 3, 0, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 0, 4, 0
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 0, 0, 0, 0, 0, 0, 
+	0, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 0, 0, 0, 0, 4, 
+	0, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 0, 5, 0
 ]
 
 class << self
@@ -100,7 +105,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 2, 3, 2, 0
+	0, 3, 2, 3, 2, 0
 ]
 
 class << self
@@ -108,7 +113,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 2, 3, 4, 0
+	2, 3, 4, 5, 6, 0
 ]
 
 class << self
@@ -138,17 +143,18 @@ end
 self.bel_en_ident = 1;
 
 
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data = @content.unpack('C*')
-            p   = 0
-            pe  = data.length
-            eof = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             
 begin
 	p ||= 0
@@ -193,40 +199,52 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 4 then
+	when 6 then
 		begin
 
-    (@buffers[:ident] ||= []) << data[p].ord
+    @incomplete[:ident] << data[p].ord
   		end
 	when 2 then
 		begin
 
-    @buffers[:ident] = []
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_ident = identifier(utf8_string(ident), complete: completed)
+    yield ast_ident
+  		end
+	when 4 then
+		begin
+
+    @incomplete[:ident] = []
   		end
 		begin
 
-    (@buffers[:ident] ||= []) << data[p].ord
+    @incomplete[:ident] << data[p].ord
   		end
-	when 3 then
+	when 5 then
 		begin
 
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
+    ident = @incomplete.delete(:ident)
+    completed = !ident.empty?
+    @buffers[:ident] = identifier(utf8_string(ident), complete: completed)
   		end
 		begin
 
     yield @buffers[:ident]
   		end
-	when 1 then
+	when 3 then
 		begin
 
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
+    @incomplete[:ident] = []
   		end
 		begin
 
-    @buffers[:ident] ||= []
+    ident = @incomplete.delete(:ident)
+    completed = !ident.empty?
+    @buffers[:ident] = identifier(utf8_string(ident), complete: completed)
+  		end
+		begin
+
     yield @buffers[:ident]
   		end
 	end
@@ -249,15 +267,17 @@ begin
 	when 1 then
 		begin
 
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_ident = identifier(utf8_string(ident), complete: completed)
+    yield ast_ident
   		end
 		begin
 
-    @buffers[:ident] ||= []
-    yield @buffers[:ident]
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_ident = identifier(utf8_string(ident), complete: completed)
+    yield ast_ident
   		end
 	  end
 	end
@@ -269,7 +289,7 @@ begin
 end
 	end
 
-      # end: ragel        
+      # end: ragel
           end
         end
       end
