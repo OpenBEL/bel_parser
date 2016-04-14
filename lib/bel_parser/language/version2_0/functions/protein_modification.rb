@@ -1,6 +1,7 @@
 require_relative '../../version2_0'
 require_relative '../../function'
 require_relative '../../signature'
+require_relative '../../amino_acid'
 require_relative '../../semantics'
 
 module BELParser
@@ -14,7 +15,8 @@ module BELParser
 
           SHORT       = :pmod
           LONG        = :proteinModification
-          RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::ProteinModification
+          RETURN_TYPE =
+            BELParser::Language::Version2_0::ReturnTypes::ProteinModification
           DESCRIPTION = 'Denotes a covalently modified protein
           bundance'.freeze
 
@@ -61,7 +63,9 @@ module BELParser
               end
               private_constant :AST
 
-              STRING_FORM = 'proteinModification(E:modificationType)proteinModification'.freeze
+              STRING_FORM =
+                'proteinModification(E:modificationType)proteinModification'
+                .freeze
               private_constant :STRING_FORM
 
               def self.semantic_ast
@@ -97,11 +101,13 @@ module BELParser
                       prefix(any),
                       value(
                         value_type(
-                          encoding_of(:*))))))
+                          amino_acid_of(*AminoAcid.values))))))
               end
               private_constant :AST
 
-              STRING_FORM = 'proteinModification(E:modificationType,E:*)proteinModification'.freeze
+              STRING_FORM =
+                'proteinModification(E:modificationType,T:AminoAcid)proteinModification'
+                .freeze
               private_constant :STRING_FORM
 
               def self.semantic_ast
@@ -137,7 +143,7 @@ module BELParser
                       prefix(any),
                       value(
                         value_type(
-                          encoding_of(:*))))),
+                          amino_acid_of(*AminoAcid.values))))),
                   argument(
                     parameter(
                       prefix(any),
@@ -147,7 +153,9 @@ module BELParser
               end
               private_constant :AST
 
-              STRING_FORM = 'proteinModification(E:modificationType,E:*,E:*)proteinModification'.freeze
+              STRING_FORM =
+                'proteinModification(E:modificationType,T:AminoAcid,E:*)proteinModification'
+                .freeze
               private_constant :STRING_FORM
 
               def self.semantic_ast

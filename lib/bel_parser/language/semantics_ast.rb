@@ -210,8 +210,33 @@ module BELParser
           super(:term, children, properties)
         end
 
+        def function
+          children[0]
+        end
+
+        def variadic_arguments?
+          children[1].type == :variadic_arguments
+        end
+
+        def arguments
+          children[1..-1]
+        end
+
         def match(parse_node, _)
-          type == parse_node.type ? success(parse_node) : failure(parse_node)
+          return failure(nil) if parse_node.nil?
+          return failure(parse_node) unless parse_node.type == type
+
+          # Return success if semantic AST does not supply argument patterns.
+          if arguments.empty? || variadic_arguments?
+            success(parse_node)
+          else
+            # Otherwise, check argument length.
+            if arguments.length == parse_node.arguments.length
+              success(parse_node)
+            else
+              failure(parse_node)
+            end
+          end
         end
       end
 

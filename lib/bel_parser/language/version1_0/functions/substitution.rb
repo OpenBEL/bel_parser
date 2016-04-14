@@ -56,7 +56,7 @@ module BELParser
                         any),
                       value(
                         value_type(
-                          encoding_of(:*))))),
+                          amino_acid_of(*AminoAcid.values))))),
                   argument(
                     parameter(
                       prefix(
@@ -70,11 +70,12 @@ module BELParser
                         any),
                       value(
                         value_type(
-                          encoding_of(:*))))))
+                          amino_acid_of(*AminoAcid.values))))))
               end
               private_constant :AST
 
-              STRING_FORM = 'substitution(E:*,E:*,E:*)substitution'.freeze
+              STRING_FORM =
+                'substitution(T:AminoAcid,E:*,T:AminoAcid)substitution'.freeze
               private_constant :STRING_FORM
 
               def self.semantic_ast

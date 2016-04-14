@@ -1,6 +1,7 @@
 require_relative '../../version1_0'
 require_relative '../../function'
 require_relative '../../signature'
+require_relative '../../amino_acid'
 require_relative '../../semantics'
 
 module BELParser
@@ -63,7 +64,7 @@ module BELParser
                         any),
                       value(
                         value_type(
-                          encoding_of(:*))))),
+                          amino_acid_of(*AminoAcid.values))))),
                   argument(
                     parameter(
                       prefix(
@@ -74,7 +75,9 @@ module BELParser
               end
               private_constant :AST
 
-              STRING_FORM = 'proteinModification(E:*,E:*,E:*)proteinModification'.freeze
+              STRING_FORM =
+                'proteinModification(E:*,T:AminoAcid,E:*)proteinModification'
+                .freeze
               private_constant :STRING_FORM
 
               def self.semantic_ast
@@ -110,11 +113,13 @@ module BELParser
                         any),
                       value(
                         value_type(
-                          encoding_of(:*))))))
+                          amino_acid_of(*AminoAcid.values))))))
               end
               private_constant :AST
 
-              STRING_FORM = 'proteinModification(E:*,E:*)proteinModification'.freeze
+              STRING_FORM =
+                'proteinModification(E:*,T:AminoAcid)proteinModification'
+                .freeze
               private_constant :STRING_FORM
 
               def self.semantic_ast
