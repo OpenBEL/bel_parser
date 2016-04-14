@@ -55,7 +55,7 @@ module BELParser
             PARSERS.map do |parser|
               parser.parse(line) { |ast| ast_results << ast }
             end
-            yield([line_number, line, ast_results])
+            yield [line_number, line, ast_results]
             line_number += 1
           rescue StopIteration
             return

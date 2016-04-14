@@ -20,15 +20,17 @@ module BELParser
 
       def initialize(specification_version, namespaces)
         @spec      = BELParser::Language.specification(specification_version)
-        @validator = BELParser::Language::ExpressionValidator.new(@spec, namespaces)
+        @validator = BELParser::Language::ExpressionValidator.new(
+          @spec, namespaces)
       end
 
       def each(io)
         if block_given?
           filtered_ast = FILTER.each(BELParser::ASTGenerator.new.each(io))
-          filtered_ast.each do |results|
-            term = results.last.first
-            yield @validator.validate(term)
+          filtered_ast.each do |(line_number, line, ast_results)|
+            ast_results.each do |ast|
+              yield [line_number, line, ast, @validator.validate(ast)]
+            end
           end
         else
           enum_for(:each, io)
@@ -46,8 +48,17 @@ if __FILE__ == $PROGRAM_NAME
     USAGE
     exit 1
   end
-  ns = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
-  BELParser::Expression::Validator.new(ARGV.first, ns).each($stdin) do |res|
-    puts res.map { |r| "#{r}\n" }.join.each_line.map { |l| "  #{l}" }.join
-  end
+  namespaces = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
+  BELParser::Expression::Validator
+    .new(ARGV.first, namespaces)
+    .each($stdin) do |(line_number, line, ast, messages)|
+      puts "#{line_number}: #{line}"
+      puts "  AST Type: #{ast.type}"
+      puts messages
+        .map { |r| "#{r}\n" }
+        .join
+        .each_line
+        .map { |l| "  #{l}" }
+        .join
+    end
 end

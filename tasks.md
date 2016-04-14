@@ -7,7 +7,7 @@
 - [x] (Generic) Semantic warning if a *list* is not an object of the listable relationship category (*hasComponents*, *hasMembers*).
 - [x] (Generic) Semantic warning if a listable/multiple relationship uses the subject term as an object list() term argument.
 - [x] (Generic) Semantic warning if amino acid does not match controlled vocabulary.
-- (Generic) Semantic warning if a modification position is not a positive integer.
+- [x] (Generic) Semantic warning if a modification position is not a positive integer.
 
 - (1.0) Semantic warning if covalent modification does not match controlled vocabulary.
 

@@ -15,6 +15,13 @@ require 'bel_parser'
 require 'bel_parser/expression/validator'
 BELParser::Expression::Validator
   .new(ARGV.first, namespaces)
-  .each($stdin) do |res|
-    puts res.map { |r| "#{r}\n" }.join.each_line.map { |l| "  #{l}" }.join
+  .each($stdin) do |(line_number, line, ast, messages)|
+    puts "#{line_number}: #{line}"
+    puts "  AST Type: #{ast.type}"
+    puts messages
+      .map { |r| "#{r}\n" }
+      .join
+      .each_line
+      .map { |l| "  #{l}" }
+      .join
   end
