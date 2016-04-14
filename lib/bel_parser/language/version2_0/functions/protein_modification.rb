@@ -149,7 +149,7 @@ module BELParser
                       prefix(any),
                       value(
                         value_type(
-                          encoding_of(:*))))))
+                          is_sequence_position)))))
               end
               private_constant :AST
 

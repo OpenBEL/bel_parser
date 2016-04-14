@@ -166,6 +166,10 @@ module BELParser
           SemanticIsAminoAcidRange.new(**properties)
         end
 
+        def is_sequence_position(**properties)
+          SemanticIsSequencePosition.new(**properties)
+        end
+
         def variadic_arguments(*params_or_terms, **properties)
           SemanticVariadicArguments.new(params_or_terms, **properties)
         end
@@ -606,6 +610,25 @@ module BELParser
           string_literal = unquote(value_type.children[0])
           case string_literal
           when START_STOP, UNDETERMINED, UNKNOWN_START_STOP
+            success(value_type)
+          else
+            failure(value_type)
+          end
+        end
+      end
+
+      # AST node for IsSequencePosition is a semantic AST.
+      class SemanticIsSequencePosition < SemanticASTNode
+        include BELParser::Quoting
+
+        def initialize(**properties)
+          super(:is_sequence_position, [], properties)
+        end
+
+        def match(value_type, _)
+          string_literal = unquote(value_type.string_literal)
+          integer_position = Integer(string_literal) rescue nil
+          if integer_position && integer_position > 0
             success(value_type)
           else
             failure(value_type)
