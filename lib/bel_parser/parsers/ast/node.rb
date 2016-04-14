@@ -911,6 +911,10 @@ module BELParser
           Set.new(children)
         end
 
+        def unset(*children)
+          Unset.new(children)
+        end
+
         def document_property(*children)
           DocumentProperty.new(children)
         end
