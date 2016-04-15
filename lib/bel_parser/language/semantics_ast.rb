@@ -154,8 +154,8 @@ module BELParser
           SemanticEncodingOf.new(encoding_types, **properties)
         end
 
-        def covalent_modification_of(*covalent_mod_types, **properties)
-          SemanticCovalentModificationOf.new(covalent_mod_types, **properties)
+        def covalent_protein_modification_of(*mod_types, **properties)
+          SemanticCovalentProteinModificationOf.new(mod_types, **properties)
         end
 
         def amino_acid_of(*amino_acids, **properties)
@@ -546,14 +546,14 @@ module BELParser
         end
       end
 
-      # AST node for CovalentModificationOf is a semantic AST.
-      class SemanticCovalentModificationOf < SemanticASTNode
-        def initialize(covalent_mod_types, **properties)
-          properties[:hashed] = Hash[covalent_mod_types.map { |t| [t, true] }]
-          super(:covalent_modification_of, covalent_mod_types, properties)
+      # AST node for CovalentProteinModificationOf is a semantic AST.
+      class SemanticCovalentProteinModificationOf < SemanticASTNode
+        def initialize(mod_types, **properties)
+          properties[:hashed] = Hash[mod_types.map { |t| [t, true] }]
+          super(:covalent_protein_modification_of, mod_types, properties)
         end
 
-        def covalent_mod_types
+        def covalent_protein_modification_types
           children
         end
 

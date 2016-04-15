@@ -2,6 +2,7 @@ require_relative '../../version1_0'
 require_relative '../../function'
 require_relative '../../signature'
 require_relative '../../amino_acid'
+require_relative '../../covalent_protein_modification'
 require_relative '../../semantics'
 
 module BELParser
@@ -15,7 +16,8 @@ module BELParser
 
           SHORT       = :pmod
           LONG        = :proteinModification
-          RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::ProteinModification
+          RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::
+            ProteinModification
           DESCRIPTION = 'Denotes a covalently modified protein
           bundance'.freeze
 
@@ -57,7 +59,8 @@ module BELParser
                         any),
                       value(
                         value_type(
-                          encoding_of(:*))))),
+                          covalent_protein_modification_of(
+                            *CovalentProteinModification.values))))),
                   argument(
                     parameter(
                       prefix(
@@ -76,8 +79,12 @@ module BELParser
               private_constant :AST
 
               STRING_FORM =
-                'proteinModification(E:*,T:AminoAcid,E:*)proteinModification'
-                .freeze
+                <<-SIG.delete("\s\n").freeze
+                proteinModification(
+                  T:CovalentProteinModification,
+                  T:AminoAcid,
+                  T:SequencePosition)proteinModification
+                SIG
               private_constant :STRING_FORM
 
               def self.semantic_ast
@@ -106,7 +113,8 @@ module BELParser
                         any),
                       value(
                         value_type(
-                          encoding_of(:*))))),
+                          covalent_protein_modification_of(
+                            *CovalentProteinModification.values))))),
                   argument(
                     parameter(
                       prefix(
@@ -118,8 +126,11 @@ module BELParser
               private_constant :AST
 
               STRING_FORM =
-                'proteinModification(E:*,T:AminoAcid)proteinModification'
-                .freeze
+                <<-SIG.delete("\s\n").freeze
+                proteinModification(
+                  T:CovalentProteinModification,
+                  T:AminoAcid)proteinModification
+                SIG
               private_constant :STRING_FORM
 
               def self.semantic_ast
@@ -148,11 +159,16 @@ module BELParser
                         any),
                       value(
                         value_type(
-                          encoding_of(:*))))))
+                          covalent_protein_modification_of(
+                            *CovalentProteinModification.values))))))
               end
               private_constant :AST
 
-              STRING_FORM = 'proteinModification(E:*)proteinModification'.freeze
+              STRING_FORM =
+                <<-SIG.delete("\s\n").freeze
+                proteinModification(
+                  T:CovalentProteinModification)proteinModification
+                SIG
               private_constant :STRING_FORM
 
               def self.semantic_ast
