@@ -862,124 +862,124 @@ module BELParser
       #
       # @see https://en.wikipedia.org/wiki/S-expression S-expression
       module Sexp
-        def nested_statement(*children)
-          NestedStatement.new(children)
+        def nested_statement(*children, **props)
+          NestedStatement.new(children, props)
         end
 
-        def simple_statement(*children)
-          SimpleStatement.new(children)
+        def simple_statement(*children, **props)
+          SimpleStatement.new(children, props)
         end
 
-        def observed_term(*children)
-          ObservedTerm.new(children)
+        def observed_term(*children, **props)
+          ObservedTerm.new(children, props)
         end
 
-        def statement(*children)
-          Statement.new(children)
+        def statement(*children, **props)
+          Statement.new(children, props)
         end
 
-        def subject(*children)
-          Subject.new(children)
+        def subject(*children, **props)
+          Subject.new(children, props)
         end
 
-        def object(*children)
-          Object.new(children)
+        def object(*children, **props)
+          Object.new(children, props)
         end
 
-        def relationship(*children)
-          Relationship.new(children)
+        def relationship(*children, **props)
+          Relationship.new(children, props)
         end
 
-        def term(*children)
-          Term.new(children)
+        def term(*children, **props)
+          Term.new(children, props)
         end
 
-        def function(*children)
-          Function.new(children)
+        def function(*children, **props)
+          Function.new(children, props)
         end
 
-        def argument(*children)
-          Argument.new(children)
+        def argument(*children, **props)
+          Argument.new(children, props)
         end
 
-        def parameter(*children)
-          Parameter.new(children)
+        def parameter(*children, **props)
+          Parameter.new(children, props)
         end
 
-        def prefix(*children)
-          Prefix.new(children)
+        def prefix(*children, **props)
+          Prefix.new(children, props)
         end
 
-        def name(*children)
-          Name.new(children)
+        def name(*children, **props)
+          Name.new(children, props)
         end
 
-        def value(*children)
-          Value.new(children)
+        def value(*children, **props)
+          Value.new(children, props)
         end
 
-        def identifier(*children)
-          Identifier.new(children)
+        def identifier(*children, **props)
+          Identifier.new(children, props)
         end
 
-        def string(*children)
-          String.new(children)
+        def string(*children, **props)
+          String.new(children, props)
         end
 
-        def list(*children)
-          List.new(children)
+        def list(*children, **props)
+          List.new(children, props)
         end
 
-        def list_item(*children)
-          ListItem.new(children)
+        def list_item(*children, **props)
+          ListItem.new(children, props)
         end
 
-        def comment(*children)
-          Comment.new(children)
+        def comment(*children, **props)
+          Comment.new(children, props)
         end
 
-        def comment_line(*children)
-          CommentLine.new(children)
+        def comment_line(*children, **props)
+          CommentLine.new(children, props)
         end
 
         def blank_line
-          BlankLine.new
+          BlankLine.new([], complete: true)
         end
 
-        def set(*children)
-          Set.new(children)
+        def set(*children, **props)
+          Set.new(children, props)
         end
 
         def unset(*children)
           Unset.new(children)
         end
 
-        def document_property(*children)
-          DocumentProperty.new(children)
+        def document_property(*children, **props)
+          DocumentProperty.new(children, props)
         end
 
-        def annotation_definition(*children)
-          AnnotationDefinition.new(children)
+        def annotation_definition(*children, **props)
+          AnnotationDefinition.new(children, props)
         end
 
-        def namespace_definition(*children)
-          NamespaceDefinition.new(children)
+        def namespace_definition(*children, **props)
+          NamespaceDefinition.new(children, props)
         end
 
-        def keyword(*children)
-          Keyword.new(children)
+        def keyword(*children, **props)
+          Keyword.new(children, props)
         end
 
-        def domain(*children)
-          Domain.new(children)
+        def domain(*children, **props)
+          Domain.new(children, props)
         end
 
-        def url(*children)
-          Url.new(children)
+        def url(*children, **props)
+          Url.new(children, props)
         end
 
-        def pattern(*children)
-          Pattern.new(children)
+        def pattern(*children, **props)
+          Pattern.new(children, props)
         end
       end
     end
