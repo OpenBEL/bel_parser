@@ -137,11 +137,12 @@ self.bel_en_relationship = 1;
           end
 
           def each
-            @buffers = {}
-            stack    = []
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
+            @buffers    = {}
+            @incomplete = {}
+            stack       = []
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
 
       # begin: ragel        
             

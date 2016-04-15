@@ -113,6 +113,7 @@ module BELParser
 
           def each
             @buffers = {}
+            @incomplete = {}
             data     = @content.unpack('C*')
             p        = 0
             pe       = data.length

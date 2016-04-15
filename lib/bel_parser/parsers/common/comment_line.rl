@@ -69,10 +69,11 @@ module BELParser
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
 
       # begin: ragel        
             %% write init;

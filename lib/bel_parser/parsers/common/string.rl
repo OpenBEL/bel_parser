@@ -6,37 +6,47 @@
   include 'common.rl';
 
   action start_string {
-    @buffers[:string] = []
+    @incomplete[:string] = []
   }
 
   action append_string {
-    (@buffers[:string] ||= []) << fc
+    @incomplete[:string] << fc
   }
 
-  action finish_string {
-    @buffers[:string] = string(utf8_string(@buffers[:string]))
+  action end_string {
+    string = @incomplete.delete(:string)
+    completed = !string.empty?
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+    @ended = true
   }
 
-  action error_string {
-    @buffers[:string] ||= []
-    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-  }
-
-  action yield_complete_string {
+  action yield_string {
     yield @buffers[:string]
   }
 
-  action yield_error_string {
-    @buffers[:string] ||= []
-    yield @buffers[:string]
+  action eof_string {
+    string = @incomplete.delete(:string)
+    completed = !string.empty? && @ended
+    ast_node = string(utf8_string(string), complete: completed)
+    yield ast_node
   }
 
-  STRING  =
-    ('"' ('\\\"' | [^"])** '"') >start_string $append_string %finish_string $err(error_string);
+  action err_string {
+    string = @incomplete.delete(:string) || []
+    completed = !string.empty?
+    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    yield ast_node
+  }
+
+  STRING =  (
+              ('"' ('\\\"' | [^"])** '"') >start_string $append_string %end_string %yield_string |
+              '' >start_string %end_string %yield_string
+            )
+            $eof(eof_string) $err(err_string);
 
   string :=
-    STRING $err(yield_error_string) %yield_complete_string
-    NL;
+    STRING NL;
 }%%
 =end
 # end: ragel
@@ -78,11 +88,13 @@ module BELParser
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers    = {}
+            @incomplete = {}
+            @ended      = false
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
       # begin: ragel        
             %% write init;

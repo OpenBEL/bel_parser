@@ -16,7 +16,8 @@
   action end_ident {
     ident = @incomplete.delete(:ident)
     completed = !ident.empty?
-    @buffers[:ident] = identifier(utf8_string(ident), complete: completed)
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
   }
 
   action yield_ident {
@@ -26,15 +27,15 @@
   action eof_ident {
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
-    ast_ident = identifier(utf8_string(ident), complete: completed)
-    yield ast_ident
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    yield ast_node
   }
 
   action err_ident {
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
-    ast_ident = identifier(utf8_string(ident), complete: completed)
-    yield ast_ident
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    yield ast_node
   }
 
   IDENT = (
@@ -43,7 +44,7 @@
           )
           $eof(eof_ident) $err(err_ident);
 
-  ident := IDENT $err(err_ident) %yield_ident NL;
+  ident := IDENT NL;
 
 }%%
 =end

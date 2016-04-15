@@ -6,24 +6,25 @@
   include 'parameter.rl';
 
   action start_function {
-    @buffers[:function] = []
+    @incomplete[:function] = []
   }
 
   action append_function {
-    @buffers[:function] << fc
+    @incomplete[:function] << fc
   }
 
   action finish_function {
-    @buffers[:function] = identifier(utf8_string(@buffers[:function]))
+    fx = @incomplete.delete(:function)
+    @buffers[:function] = identifier(utf8_string(fx))
   }
 
   action term_init {
-    t = term([], complete: false)
+    t = term(complete: false)
     @buffers[:term_stack] = [t]
   }
 
   action inner_term_init {
-    t = term([], complete: false)
+    t = term(complete: false)
     @buffers[:term_stack] << t
   }
 
@@ -33,17 +34,15 @@
   }
 
   action term_argument {
-    puts 'before', @buffers
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << argument(@buffers[:parameter])
-    #t = @buffers[:term_stack][-1]
-    #t << argument(@buffers[:parameter])
-    puts 'after', @buffers
-    #@buffers[:term_stack][-1] = @buffers[:term_stack][-1] << argument(@buffers[:parameter])
+    # add a child parameter argument to the last term (creates a new term)
+    t = @buffers[:term_stack][-1] << argument(@buffers[:parameter])
+    t.complete = true
+    @buffers[:term_stack][-1] = t
     @buffers[:parameter]      = nil
   }
 
   action fxbt {
-    fpc -= @buffers[:function].length + 1
+    fpc -= @incomplete[:function].length + 1
     fcall inner_term;
   }
 
@@ -59,8 +58,19 @@
 
   action error_term {
     # $ all states; error_term
-    puts 'error_term'
+
+    unless @incomplete.empty?
+      fx = @incomplete.delete(:function)
+      fx = identifier(utf8_string(fx))
+      # add a child function to the last term (creates a new term)
+      t = @buffers[:term_stack][-1] << function(fx)
+      @buffers[:term_stack][-1] = t
+    end
+
     yield @buffers[:term_stack][-1]
+  }
+
+  action eof_term {
   }
 
   inner_term :=
@@ -78,7 +88,7 @@
           IDENT >start_function $append_function '(' @fxbt
         )
       )*
-    ')' @fxret $err(error_term);
+    ')' @fxret $err(error_term) $eof(eof_term);
 
   outer_term =
     IDENT >term_init >start_function $append_function %finish_function
@@ -95,10 +105,10 @@
           IDENT >start_function $append_function '(' @fxbt
         )
       )*
-    ')' $err(error_term);
+    ')' $err(error_term) $eof(eof_term);
 
   term :=
-    outer_term %yield_term_ast NL $err(error_term);
+    outer_term %yield_term_ast NL $err(error_term) $eof(eof_term);
 }%%
 =end
 # end: ragel
@@ -134,23 +144,24 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            stack    = []
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers    = {}
+            @incomplete = {}
+            stack       = []
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end
@@ -161,7 +172,7 @@ end
 if __FILE__ == $0
   $stdin.each_line do |line|
     BELParser::Parsers::Expression::Term.parse(line) { |obj|
-      print obj.class.to_s + ': ', obj.inspect
+      puts obj.inspect
     }
   end
 end

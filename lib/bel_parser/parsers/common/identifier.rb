@@ -209,8 +209,8 @@ begin
 
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
-    ast_ident = identifier(utf8_string(ident), complete: completed)
-    yield ast_ident
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    yield ast_node
   		end
 	when 4 then
 		begin
@@ -226,7 +226,8 @@ begin
 
     ident = @incomplete.delete(:ident)
     completed = !ident.empty?
-    @buffers[:ident] = identifier(utf8_string(ident), complete: completed)
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
   		end
 		begin
 
@@ -241,7 +242,8 @@ begin
 
     ident = @incomplete.delete(:ident)
     completed = !ident.empty?
-    @buffers[:ident] = identifier(utf8_string(ident), complete: completed)
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
   		end
 		begin
 
@@ -269,15 +271,15 @@ begin
 
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
-    ast_ident = identifier(utf8_string(ident), complete: completed)
-    yield ast_ident
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    yield ast_node
   		end
 		begin
 
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
-    ast_ident = identifier(utf8_string(ident), complete: completed)
-    yield ast_ident
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    yield ast_node
   		end
 	  end
 	end

@@ -115,10 +115,11 @@ self.bel_en_comment_line = 1;
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
 
       # begin: ragel        
             

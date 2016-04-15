@@ -9,7 +9,15 @@
     yield blank_line
   }
 
-  BLANK  = SP*;
+  action eof_blank_line {
+    yield blank_line
+  }
+
+  action err_blank_line {
+    yield blank_line
+  }
+
+  BLANK  = SP* $eof(eof_blank_line) $err(err_blank_line);
 
   blank := BLANK %yield_blank_line NL;
 }%%
@@ -53,10 +61,11 @@ module BELParser
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
 
       # begin: ragel        
             %% write init;

@@ -44,7 +44,7 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 34, 34, 34, 92, 
+	0, 0, 10, 34, 34, 92, 
 	10, 10, 92, 92, 0, 
 	0, 0
 ]
@@ -54,7 +54,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 1, 59, 1, 1, 0
+	0, 25, 59, 1, 1, 0
 ]
 
 class << self
@@ -62,7 +62,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 2, 62, 64, 66
+	0, 0, 26, 86, 88, 90
 ]
 
 class << self
@@ -70,15 +70,18 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	1, 0, 3, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 4, 2, 5, 0, 
-	4, 2, 6, 0
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	2, 0, 4, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 5, 3, 6, 0, 
+	5, 3, 7, 0
 ]
 
 class << self
@@ -86,7 +89,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 2, 2, 3, 4, 5, 0
+	0, 5, 2, 2, 3, 4, 5, 0
 ]
 
 class << self
@@ -94,7 +97,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 2, 3, 3, 3, 4, 0
+	2, 3, 4, 5, 5, 5, 6, 0
 ]
 
 class << self
@@ -128,11 +131,13 @@ self.bel_en_string = 1;
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers    = {}
+            @incomplete = {}
+            @ended      = false
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
       # begin: ragel        
             
@@ -179,38 +184,56 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 3 then
+	when 5 then
 		begin
 
-    (@buffers[:string] ||= []) << data[p].ord
+    @incomplete[:string] << data[p].ord
   		end
 	when 2 then
 		begin
 
-    @buffers[:string] = []
-  		end
-		begin
-
-    (@buffers[:string] ||= []) << data[p].ord
+    string = @incomplete.delete(:string) || []
+    completed = !string.empty?
+    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    yield ast_node
   		end
 	when 4 then
 		begin
 
-    @buffers[:string] = string(utf8_string(@buffers[:string]))
+    @incomplete[:string] = []
+  		end
+		begin
+
+    @incomplete[:string] << data[p].ord
+  		end
+	when 6 then
+		begin
+
+    string = @incomplete.delete(:string)
+    completed = !string.empty?
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+    @ended = true
   		end
 		begin
 
     yield @buffers[:string]
   		end
-	when 1 then
+	when 3 then
 		begin
 
-    @buffers[:string] ||= []
-    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    @incomplete[:string] = []
   		end
 		begin
 
-    @buffers[:string] ||= []
+    string = @incomplete.delete(:string)
+    completed = !string.empty?
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+    @ended = true
+  		end
+		begin
+
     yield @buffers[:string]
   		end
 	end
@@ -233,13 +256,17 @@ begin
 	when 1 then
 		begin
 
-    @buffers[:string] ||= []
-    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    string = @incomplete.delete(:string)
+    completed = !string.empty? && @ended
+    ast_node = string(utf8_string(string), complete: completed)
+    yield ast_node
   		end
 		begin
 
-    @buffers[:string] ||= []
-    yield @buffers[:string]
+    string = @incomplete.delete(:string) || []
+    completed = !string.empty?
+    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
+    yield ast_node
   		end
 	  end
 	end

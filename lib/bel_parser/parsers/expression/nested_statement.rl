@@ -112,13 +112,14 @@ module BELParser
           end
 
           def each
-            @buffers = {}
-            eof      = :ignored
-            stack    = []
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers    = {}
+            @incomplete = {}
+            eof         = :ignored
+            stack       = []
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
       # begin: ragel        
             %% write init;

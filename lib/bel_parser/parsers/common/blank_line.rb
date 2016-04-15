@@ -69,10 +69,10 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 2, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 0, 
-	1, 1, 0
+	1, 2, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 1, 
+	0, 3, 0
 ]
 
 class << self
@@ -80,7 +80,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	1, 0, 2
+	0, 1, 2, 0
 ]
 
 class << self
@@ -88,7 +88,15 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 1
+	2, 0, 3, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 1, 0
 ]
 
 class << self
@@ -114,10 +122,11 @@ self.bel_en_blank = 1;
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
 
       # begin: ragel        
             
@@ -164,7 +173,12 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 1 then
+	when 3 then
+		begin
+
+    yield blank_line
+  		end
+	when 2 then
 		begin
 
     yield blank_line
@@ -184,6 +198,20 @@ begin
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	  case _bel_eof_actions[cs]
+	when 1 then
+		begin
+
+    yield blank_line
+  		end
+		begin
+
+    yield blank_line
+  		end
+	  end
+	end
+
 	end
 	if _goto_level <= _out
 		break
