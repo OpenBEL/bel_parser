@@ -5,46 +5,37 @@
 
   include 'common.rl';
 
-  action start_ident {
+  action start {
     @incomplete[:ident] = []
   }
 
-  action append_ident {
+  action append {
     @incomplete[:ident] << fc
   }
 
-  action end_ident {
+  action end {
     ident = @incomplete.delete(:ident)
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   }
 
-  action yield_ident {
+  action yield {
     yield @buffers[:ident]
   }
 
-  action eof_ident {
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
+  action ast_end {
+    unless @buffers.key?(:ident)
+      ident = @incomplete.delete(:ident) || []
+      completed = !ident.empty?
+      ast_node = identifier(utf8_string(ident), complete: completed)
+      @buffers[:ident] = ast_node
+    end
   }
 
-  action err_ident {
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  }
-
-  IDENT = (
-            [a-zA-Z0-9_]+ >start_ident $append_ident %end_ident %yield_ident |
-            '' >start_ident %end_ident %yield_ident
-          )
-          $eof(eof_ident) $err(err_ident);
-
-  ident := IDENT NL;
+  ID_CHARS = [a-zA-Z0-9_]+;
+  IDENT = ID_CHARS >start $append %end;
+  AST_NODE := IDENT? NL? %/ast_end %yield;
 
 }%%
 =end
