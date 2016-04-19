@@ -5,48 +5,44 @@
 
   include 'common.rl';
 
-  action start_string {
+  action start {
+    $stderr.puts '<< start'
     @incomplete[:string] = []
   }
 
-  action append_string {
+  action append {
+    $stderr.puts '<< append'
     @incomplete[:string] << fc
   }
 
-  action end_string {
+  action end {
+    $stderr.puts '<< end'
     string = @incomplete.delete(:string)
     completed = !string.empty?
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-    @ended = true
   }
 
-  action yield_string {
+  action yield {
+    $stderr.puts '<< yield'
     yield @buffers[:string]
   }
 
-  action eof_string {
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
+  action ast_end {
+    $stderr.puts '<< end1'
+    unless @buffers.key?(:string)
+      $stderr.puts 'ast_end'
+      string = @incomplete.delete(:string) || []
+      completed = !string.empty?
+      ast_node = string(utf8_string(string), complete: completed)
+      @buffers[:string] = ast_node
+    end
   }
 
-  action err_string {
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  }
-
-  STRING =  (
-              ('"' ('\\\"' | [^"])** '"') >start_string $append_string %end_string %yield_string |
-              '' >start_string %end_string %yield_string
-            )
-            $eof(eof_string) $err(err_string);
-
-  string :=
-    STRING NL;
+  STR_CHARS = ('"' ('\\\"' | [^"])** '"');
+  STRING = STR_CHARS >start $append %end;
+  PARTIAL = STR_CHARS >start $append;
+  AST_NODE := (STRING | PARTIAL) NL? %/ast_end %yield;
 }%%
 =end
 # end: ragel
@@ -82,9 +78,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -96,10 +92,10 @@ module BELParser
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end
