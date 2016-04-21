@@ -60,16 +60,16 @@
     '{' @start_list
     SP*
     (
-      STRING %string $err(error_list_string) |
-      IDENT  %ident  $err(error_list_ident)
-    )? $err(append_list) %append_list
+      str_string %string $err(error_list_string) |
+      id_ident  %ident  $err(error_list_ident)
+    ) $err(append_list) %append_list
     SP*
     (
       ',' @clear
       SP*
       (
-        STRING %string $err(error_list_string) |
-        IDENT  %ident  $err(error_list_ident)
+        str_string %string $err(error_list_string) |
+        id_ident  %ident  $err(error_list_ident)
       ) $err(append_list) %append_list
       SP*
     )*
@@ -111,9 +111,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -124,10 +124,10 @@ module BELParser
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

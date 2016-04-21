@@ -74,35 +74,35 @@
   }
 
   inner_term :=
-    IDENT >inner_term_init >start_function $append_function %finish_function
+    id_ident >inner_term_init >start_function $append_function %finish_function
     SP*
     '(' @term_fx
       (
         BEL_PARAMETER %term_argument |
-        IDENT >start_function $append_function '(' @fxbt
+        id_ident >start_function $append_function '(' @fxbt
       )
       (
         SP* ',' SP*
         (
           BEL_PARAMETER %term_argument |
-          IDENT >start_function $append_function '(' @fxbt
+          id_ident >start_function $append_function '(' @fxbt
         )
       )*
     ')' @fxret $err(error_term) $eof(eof_term);
 
   outer_term =
-    IDENT >term_init >start_function $append_function %finish_function
+    id_ident >term_init >start_function $append_function %finish_function
     SP*
     '(' @term_fx
       (
         BEL_PARAMETER %term_argument |
-        IDENT >start_function $append_function '(' @fxbt
+        id_ident >start_function $append_function '(' @fxbt
       )
       (
         SP* ',' SP*
         (
           BEL_PARAMETER %term_argument |
-          IDENT >start_function $append_function '(' @fxbt
+          id_ident >start_function $append_function '(' @fxbt
         )
       )*
     ')' $err(error_term) $eof(eof_term);

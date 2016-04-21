@@ -37,7 +37,7 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             
 class << self
 	attr_accessor :_bel_trans_keys
@@ -69,10 +69,10 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	1, 2, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 1, 
-	0, 3, 0
+	0, 2, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 0, 
+	1, 1, 0
 ]
 
 class << self
@@ -80,7 +80,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 1, 2, 0
+	1, 0, 2
 ]
 
 class << self
@@ -88,15 +88,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	2, 0, 3, 0
-]
-
-class << self
-	attr_accessor :_bel_eof_actions
-	private :_bel_eof_actions, :_bel_eof_actions=
-end
-self._bel_eof_actions = [
-	0, 1, 0
+	0, 0, 1
 ]
 
 class << self
@@ -106,19 +98,19 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 2;
+self.bel_first_final = 1;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_blank
+	attr_accessor :bel_en_bl_ast
 end
-self.bel_en_blank = 1;
+self.bel_en_bl_ast = 1;
 
 
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -128,7 +120,7 @@ self.bel_en_blank = 1;
             p           = 0
             pe          = data.length
 
-      # begin: ragel        
+      # begin: ragel
             
 begin
 	p ||= 0
@@ -173,12 +165,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 3 then
-		begin
-
-    yield blank_line
-  		end
-	when 2 then
+	when 1 then
 		begin
 
     yield blank_line
@@ -198,20 +185,6 @@ begin
 	end
 	end
 	if _goto_level <= _test_eof
-	if p == eof
-	  case _bel_eof_actions[cs]
-	when 1 then
-		begin
-
-    yield blank_line
-  		end
-		begin
-
-    yield blank_line
-  		end
-	  end
-	end
-
 	end
 	if _goto_level <= _out
 		break
@@ -219,7 +192,7 @@ begin
 end
 	end
 
-      # end: ragel        
+      # end: ragel
           end
         end
       end

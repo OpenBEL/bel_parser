@@ -23,7 +23,7 @@
   unset :=
     UNSET %unset_keyword
     SP+
-    IDENT %name
+    id_ident %name
     NL @yield_set;
 }%%
 =end
@@ -60,9 +60,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -73,10 +73,10 @@ module BELParser
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

@@ -83,21 +83,21 @@ self._bel_indicies = [
 	2, 2, 2, 2, 2, 2, 2, 2, 
 	2, 2, 2, 2, 2, 2, 2, 2, 
 	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 1, 1, 3, 1, 1, 1, 1, 
+	2, 1, 1, 0, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 1, 1, 1, 1, 1, 
-	1, 1, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 1, 1, 1, 1, 
-	4, 1, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 1, 0
+	1, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 1, 1, 1, 1, 1, 
+	1, 1, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 1, 1, 1, 1, 
+	3, 1, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 1, 0
 ]
 
 class << self
@@ -105,7 +105,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 2, 3
+	2, 0, 3, 3
 ]
 
 class << self
@@ -113,7 +113,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 2, 4, 5
+	1, 0, 2, 4
 ]
 
 class << self
@@ -121,7 +121,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 1, 3
+	0, 0, 0, 3
 ]
 
 class << self
@@ -138,9 +138,9 @@ end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_AST_NODE
+	attr_accessor :bel_en_id_ast
 end
-self.bel_en_AST_NODE = 1;
+self.bel_en_id_ast = 1;
 
 
       # end: ragel
@@ -199,18 +199,10 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 5 then
-		begin
-
-    @incomplete[:ident] << data[p].ord
-  		end
 	when 4 then
 		begin
 
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
+    @incomplete[:ident] << data[p].ord
   		end
 	when 2 then
 		begin
@@ -220,6 +212,18 @@ begin
 		begin
 
     @incomplete[:ident] << data[p].ord
+  		end
+	when 1 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    yield @buffers[:ident]
   		end
 	end
 	end
@@ -238,40 +242,13 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 1 then
-		begin
-
-    unless @buffers.key?(:ident)
-      ident = @incomplete.delete(:ident) || []
-      completed = !ident.empty?
-      ast_node = identifier(utf8_string(ident), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
 	when 3 then
 		begin
 
-    ident = @incomplete.delete(:ident)
+    ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
-  		end
-		begin
-
-    unless @buffers.key?(:ident)
-      ident = @incomplete.delete(:ident) || []
-      completed = !ident.empty?
-      ast_node = identifier(utf8_string(ident), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    yield @buffers[:ident]
   		end
 	  end
 	end

@@ -6,6 +6,8 @@ machine bel;
   SP          = ' ' | '\t';
   EQL         = '=';
   NUMBER_SIGN = '#';
+  DQ          = '"';
+  ESCAPED     = /\\./;
 
 }%%
 =end

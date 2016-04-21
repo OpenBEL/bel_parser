@@ -37,16 +37,16 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             
 class << self
 	attr_accessor :_bel_trans_keys
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 10, 34, 34, 92, 
-	10, 10, 92, 92, 0, 
-	0, 0
+	0, 0, 0, 0, 10, 34, 
+	0, 0, 10, 92, 10, 
+	92, 10, 10, 0
 ]
 
 class << self
@@ -54,7 +54,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 25, 59, 1, 1, 0
+	0, 0, 25, 0, 83, 83, 1
 ]
 
 class << self
@@ -62,7 +62,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 26, 86, 88, 90
+	0, 0, 1, 27, 28, 112, 196
 ]
 
 class << self
@@ -70,18 +70,31 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 1, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 3, 2, 2, 5, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 6, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 7, 4, 
+	8, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	2, 0, 4, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 5, 3, 6, 0, 
-	5, 3, 7, 0
+	9, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 10, 0, 11, 2, 0
 ]
 
 class << self
@@ -89,7 +102,8 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 5, 2, 2, 3, 4, 5, 0
+	5, 3, 0, 4, 5, 5, 6, 1, 
+	5, 6, 1, 3
 ]
 
 class << self
@@ -97,7 +111,8 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	2, 3, 4, 5, 5, 5, 6, 0
+	1, 2, 0, 0, 4, 5, 3, 4, 
+	6, 0, 1, 8
 ]
 
 class << self
@@ -105,41 +120,42 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 1, 1, 1, 0
+	0, 0, 0, 0, 3, 0, 7
 ]
 
 class << self
 	attr_accessor :bel_start
 end
-self.bel_start = 1;
+self.bel_start = 2;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 5;
+self.bel_first_final = 2;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_string
+	attr_accessor :bel_en_str_ast
 end
-self.bel_en_string = 1;
+self.bel_en_str_ast = 2;
 
 
-      # end: ragel        
+      # end: ragel
           end
 
           def each
             @buffers    = {}
             @incomplete = {}
-            @ended      = false
+            @opened     = false
+            @closed     = false
             data        = @content.unpack('C*')
             p           = 0
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             
 begin
 	p ||= 0
@@ -184,7 +200,23 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 5 then
+	when 3 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+	when 1 then
+		begin
+
+    @incomplete[:string] << data[p].ord
+  		end
+	when 4 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -193,44 +225,62 @@ begin
 		begin
 
     string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-	when 4 then
-		begin
-
-    @incomplete[:string] = []
-  		end
-		begin
-
-    @incomplete[:string] << data[p].ord
-  		end
-	when 6 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
+    completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-    @ended = true
   		end
 		begin
 
     yield @buffers[:string]
   		end
-	when 3 then
+	when 6 then
 		begin
 
-    @incomplete[:string] = []
+    @incomplete[:string] << data[p].ord
   		end
 		begin
 
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-    @ended = true
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 8 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 5 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    @incomplete[:string] << data[p].ord
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
   		end
 		begin
 
@@ -253,20 +303,16 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 1 then
+	when 3 then
 		begin
 
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
+    @incomplete[:string] = []
+    @opened = true
   		end
+	when 7 then
 		begin
 
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
+    @closed = true
   		end
 	  end
 	end
@@ -278,7 +324,7 @@ begin
 end
 	end
 
-      # end: ragel        
+      # end: ragel
           end
         end
       end

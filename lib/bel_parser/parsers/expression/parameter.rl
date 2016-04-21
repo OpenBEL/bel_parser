@@ -25,7 +25,7 @@
     yield @buffers[:parameter]
   }
 
-  BEL_PARAMETER  = (IDENT ':')? @prefix SP* (STRING %string | IDENT %ident);
+  BEL_PARAMETER  = (id_ident ':')? @prefix SP* (str_string %string | id_ident %ident);
   bel_parameter := BEL_PARAMETER %yield_parameter_ast NL;
 }%%
 =end
@@ -62,9 +62,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -75,10 +75,10 @@ module BELParser
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

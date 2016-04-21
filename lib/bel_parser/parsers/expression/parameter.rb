@@ -8,12 +8,13 @@ class << self
 end
 self._bel_trans_keys = [
 	0, 0, 9, 122, 9, 122, 
-	34, 92, 10, 10, 92, 
-	92, 10, 122, 10, 122, 
-	10, 122, 10, 122, 10, 34, 
-	34, 92, 10, 10, 92, 
-	92, 0, 0, 0, 0, 
-	0, 0, 0
+	34, 92, 34, 92, 10, 
+	10, 0, 0, 10, 122, 
+	10, 122, 0, 0, 0, 0, 
+	10, 122, 0, 0, 10, 
+	122, 10, 34, 0, 0, 
+	10, 92, 10, 92, 10, 10, 
+	0
 ]
 
 class << self
@@ -21,9 +22,9 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 114, 114, 59, 1, 1, 113, 113, 
-	113, 113, 25, 59, 1, 1, 0, 0, 
-	0
+	0, 114, 114, 59, 59, 1, 0, 113, 
+	113, 0, 0, 113, 0, 113, 25, 0, 
+	83, 83, 1
 ]
 
 class << self
@@ -31,9 +32,9 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 115, 230, 290, 292, 294, 408, 
-	522, 636, 750, 776, 836, 838, 840, 841, 
-	842
+	0, 0, 115, 230, 290, 350, 352, 353, 
+	467, 581, 582, 583, 697, 698, 812, 838, 
+	839, 923, 1007
 ]
 
 class << self
@@ -41,112 +42,133 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	1, 2, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 1, 
-	0, 3, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 4, 
+	0, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 0, 
+	1, 2, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 1, 1, 1, 1, 1, 1, 1, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 1, 1, 1, 1, 3, 1, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 1, 0, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 0, 1, 2, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 1, 1, 1, 1, 
+	1, 1, 1, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 5, 0, 0, 0, 0, 0, 0, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 1, 1, 1, 
+	1, 4, 1, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 0, 0, 0, 0, 4, 0, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 0, 1, 2, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 1, 6, 3, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 6, 6, 6, 6, 
-	6, 6, 6, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 6, 6, 6, 
-	6, 7, 6, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 6, 9, 8, 
+	4, 4, 4, 4, 4, 1, 6, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	7, 5, 9, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	10, 8, 12, 11, 10, 8, 14, 13, 
+	8, 8, 8, 8, 10, 8, 11, 1, 
+	8, 12, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 1, 1, 1, 1, 1, 1, 1, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 13, 13, 
-	13, 13, 13, 13, 13, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 13, 
-	13, 13, 13, 15, 13, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 13, 
-	14, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 1, 1, 1, 1, 13, 1, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	17, 13, 13, 13, 13, 13, 13, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 13, 13, 13, 13, 16, 13, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 13, 18, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 1, 12, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 15, 1, 1, 1, 1, 
+	1, 1, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 1, 1, 1, 1, 
+	14, 1, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 1, 16, 1, 17, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 1, 
+	1, 1, 1, 1, 1, 1, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	1, 1, 1, 1, 18, 1, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	1, 1, 17, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 13, 13, 13, 13, 13, 13, 
-	13, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 1, 1, 1, 1, 1, 1, 
+	1, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 13, 13, 13, 13, 19, 
-	13, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 1, 1, 1, 1, 19, 
+	1, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 13, 20, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 13, 13, 13, 13, 
-	13, 13, 13, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 13, 13, 13, 
-	13, 21, 13, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 13, 22, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 23, 11, 
-	25, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 26, 24, 27, 11, 26, 24, 
-	28, 28, 28, 0
+	19, 19, 19, 1, 20, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 21, 1, 1, 23, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 24, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 25, 22, 26, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 27, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 28, 16, 29, 
+	1, 0
 ]
 
 class << self
@@ -154,10 +176,10 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 2, 14, 3, 7, 2, 0, 6, 
-	3, 4, 5, 0, 14, 0, 14, 6, 
-	7, 2, 15, 9, 15, 9, 16, 11, 
-	11, 12, 13, 16, 0
+	2, 0, 3, 8, 7, 4, 5, 6, 
+	4, 5, 6, 10, 10, 7, 8, 2, 
+	17, 12, 13, 13, 15, 16, 17, 17, 
+	18, 9, 17, 18, 9, 15
 ]
 
 class << self
@@ -165,10 +187,10 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	2, 0, 3, 4, 5, 6, 8, 5, 
-	10, 10, 10, 11, 12, 14, 15, 16, 
-	16, 17, 18, 5, 19, 16, 20, 4, 
-	10, 10, 10, 21, 0
+	0, 0, 0, 1, 1, 2, 3, 2, 
+	4, 5, 4, 6, 7, 8, 8, 9, 
+	4, 10, 1, 8, 12, 0, 2, 14, 
+	13, 2, 15, 0, 4, 17
 ]
 
 class << self
@@ -176,9 +198,9 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 7, 9, 9, 9, 13, 13, 
-	13, 13, 9, 9, 9, 9, 0, 0, 
-	0
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 11, 0, 0, 
+	13, 0, 16
 ]
 
 class << self
@@ -188,20 +210,20 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 14;
+self.bel_first_final = 10;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_ident
+	attr_accessor :bel_en_id_ast
 end
-self.bel_en_ident = 8;
+self.bel_en_id_ast = 11;
 class << self
-	attr_accessor :bel_en_string
+	attr_accessor :bel_en_str_ast
 end
-self.bel_en_string = 10;
+self.bel_en_str_ast = 14;
 class << self
 	attr_accessor :bel_en_bel_parameter
 end
@@ -250,113 +272,43 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 16 then
+	when 8 then
 		begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 14 then
+	when 13 then
 		begin
 
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-	when 10 then
-		begin
-
-    @incomplete[:string] << data[p].ord
-  		end
-	when 11 then
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-	when 5 then
-		begin
-
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 19 then
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-	when 2 then
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
+    @incomplete[:string] = []
+    @opened = true
   		end
 	when 4 then
 		begin
 
-    @incomplete[:string] = []
-  		end
-		begin
-
     @incomplete[:string] << data[p].ord
   		end
-	when 21 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-    @ended = true
-  		end
-		begin
-
-    yield @buffers[:string]
-  		end
-	when 8 then
+	when 5 then
 		begin
 
     string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
   		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-	when 18 then
+	when 1 then
 		begin
 
     @incomplete[:ident] = []
   		end
 		begin
 
-    ident = @incomplete.delete(:ident)
+    @incomplete[:ident] << data[p].ord
+  		end
+	when 10 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
@@ -365,34 +317,97 @@ begin
 
     yield @buffers[:ident]
   		end
-	when 17 then
+	when 9 then
 		begin
 
-    ident = @incomplete.delete(:ident)
+    ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
   		end
 		begin
 
     @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
   		end
-	when 20 then
+	when 2 then
 		begin
 
     @incomplete[:string] = []
+    @opened = true
   		end
 		begin
 
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
+    @incomplete[:string] << data[p].ord
+  		end
+	when 3 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-    @ended = true
+  		end
+	when 12 then
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 7 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
+  		end
+		begin
+
+    yield @buffers[:parameter]
+  		end
+	when 15 then
+		begin
+
+    @incomplete[:string] << data[p].ord
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 17 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
   		end
 		begin
 
@@ -401,56 +416,7 @@ begin
 	when 6 then
 		begin
 
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-		begin
-
-    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
-  		end
-	when 15 then
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:parameter]
-  		end
-	when 12 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-    @ended = true
-  		end
-		begin
-
-    yield @buffers[:string]
+    @closed = true
   		end
 		begin
 
@@ -461,51 +427,26 @@ begin
 
     yield @buffers[:parameter]
   		end
-	when 3 then
+	when 14 then
 		begin
 
     @incomplete[:string] = []
+    @opened = true
   		end
 		begin
 
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
+    @incomplete[:string] << data[p].ord
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-    @ended = true
   		end
 		begin
 
     yield @buffers[:string]
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
-  		end
-		begin
-
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:parameter]
   		end
 	end
 	end
@@ -524,93 +465,24 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
+	when 11 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
 	when 13 then
 		begin
 
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
+    @incomplete[:string] = []
+    @opened = true
   		end
+	when 16 then
 		begin
 
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-	when 9 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-	when 1 then
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-	when 7 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
+    @closed = true
   		end
 	  end
 	end
@@ -628,12 +500,13 @@ class << self
 end
 self._bel_trans_keys = [
 	0, 0, 9, 122, 9, 122, 
-	34, 92, 10, 10, 92, 
-	92, 10, 122, 10, 122, 
-	10, 122, 10, 122, 10, 34, 
-	34, 92, 10, 10, 92, 
-	92, 0, 0, 0, 0, 
-	0, 0, 0
+	34, 92, 34, 92, 10, 
+	10, 0, 0, 10, 122, 
+	10, 122, 0, 0, 0, 0, 
+	10, 122, 0, 0, 10, 
+	122, 10, 34, 0, 0, 
+	10, 92, 10, 92, 10, 10, 
+	0
 ]
 
 class << self
@@ -641,9 +514,9 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 114, 114, 59, 1, 1, 113, 113, 
-	113, 113, 25, 59, 1, 1, 0, 0, 
-	0
+	0, 114, 114, 59, 59, 1, 0, 113, 
+	113, 0, 0, 113, 0, 113, 25, 0, 
+	83, 83, 1
 ]
 
 class << self
@@ -651,9 +524,9 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 115, 230, 290, 292, 294, 408, 
-	522, 636, 750, 776, 836, 838, 840, 841, 
-	842
+	0, 0, 115, 230, 290, 350, 352, 353, 
+	467, 581, 582, 583, 697, 698, 812, 838, 
+	839, 923, 1007
 ]
 
 class << self
@@ -661,112 +534,133 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	1, 2, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 1, 
-	0, 3, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 4, 
+	0, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 0, 
+	1, 2, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 1, 1, 1, 1, 1, 1, 1, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 1, 1, 1, 1, 3, 1, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 1, 0, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 0, 1, 2, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 1, 1, 1, 1, 
+	1, 1, 1, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 5, 0, 0, 0, 0, 0, 0, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 1, 1, 1, 
+	1, 4, 1, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 0, 0, 0, 0, 4, 0, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 0, 1, 2, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 1, 6, 3, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 6, 6, 6, 6, 
-	6, 6, 6, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 6, 6, 6, 
-	6, 7, 6, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 6, 9, 8, 
+	4, 4, 4, 4, 4, 1, 6, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	7, 5, 9, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	10, 8, 12, 11, 10, 8, 14, 13, 
+	8, 8, 8, 8, 10, 8, 11, 1, 
+	8, 12, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 1, 1, 1, 1, 1, 1, 1, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 13, 13, 
-	13, 13, 13, 13, 13, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 13, 
-	13, 13, 13, 15, 13, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 13, 
-	14, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 1, 1, 1, 1, 13, 1, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	17, 13, 13, 13, 13, 13, 13, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 13, 13, 13, 13, 16, 13, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 13, 18, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 1, 12, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 15, 1, 1, 1, 1, 
+	1, 1, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 1, 1, 1, 1, 
+	14, 1, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 1, 16, 1, 17, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 1, 
+	1, 1, 1, 1, 1, 1, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	1, 1, 1, 1, 18, 1, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	1, 1, 17, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 13, 13, 13, 13, 13, 13, 
-	13, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 1, 1, 1, 1, 1, 1, 
+	1, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 13, 13, 13, 13, 19, 
-	13, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 1, 1, 1, 1, 19, 
+	1, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 13, 20, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 13, 13, 13, 13, 
-	13, 13, 13, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 13, 13, 13, 
-	13, 21, 13, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 13, 22, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 23, 11, 
-	25, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 26, 24, 27, 11, 26, 24, 
-	28, 28, 28, 0
+	19, 19, 19, 1, 20, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 21, 1, 1, 23, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 24, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 25, 22, 26, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 27, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 28, 16, 29, 
+	1, 0
 ]
 
 class << self
@@ -774,10 +668,10 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 2, 14, 3, 7, 2, 0, 6, 
-	3, 4, 5, 0, 14, 0, 14, 6, 
-	7, 2, 15, 9, 15, 9, 16, 11, 
-	11, 12, 13, 16, 0
+	2, 0, 3, 8, 7, 4, 5, 6, 
+	4, 5, 6, 10, 10, 7, 8, 2, 
+	17, 12, 13, 13, 15, 16, 17, 17, 
+	18, 9, 17, 18, 9, 15
 ]
 
 class << self
@@ -785,10 +679,10 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	2, 0, 3, 4, 5, 6, 8, 5, 
-	10, 10, 10, 11, 12, 14, 15, 16, 
-	16, 17, 18, 5, 19, 16, 20, 4, 
-	10, 10, 10, 21, 0
+	0, 0, 0, 1, 1, 2, 3, 2, 
+	4, 5, 4, 6, 7, 8, 8, 9, 
+	4, 10, 1, 8, 12, 0, 2, 14, 
+	13, 2, 15, 0, 4, 17
 ]
 
 class << self
@@ -796,9 +690,9 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 7, 9, 9, 9, 13, 13, 
-	13, 13, 9, 9, 9, 9, 0, 0, 
-	0
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 11, 0, 0, 
+	13, 0, 16
 ]
 
 class << self
@@ -808,20 +702,20 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 14;
+self.bel_first_final = 10;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_ident
+	attr_accessor :bel_en_id_ast
 end
-self.bel_en_ident = 8;
+self.bel_en_id_ast = 11;
 class << self
-	attr_accessor :bel_en_string
+	attr_accessor :bel_en_str_ast
 end
-self.bel_en_string = 10;
+self.bel_en_str_ast = 14;
 class << self
 	attr_accessor :bel_en_bel_parameter
 end
@@ -870,113 +764,43 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 16 then
+	when 8 then
 		begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 14 then
+	when 13 then
 		begin
 
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-	when 10 then
-		begin
-
-    @incomplete[:string] << data[p].ord
-  		end
-	when 11 then
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-	when 5 then
-		begin
-
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 19 then
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-	when 2 then
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
+    @incomplete[:string] = []
+    @opened = true
   		end
 	when 4 then
 		begin
 
-    @incomplete[:string] = []
-  		end
-		begin
-
     @incomplete[:string] << data[p].ord
   		end
-	when 21 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-    @ended = true
-  		end
-		begin
-
-    yield @buffers[:string]
-  		end
-	when 8 then
+	when 5 then
 		begin
 
     string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
   		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-	when 18 then
+	when 1 then
 		begin
 
     @incomplete[:ident] = []
   		end
 		begin
 
-    ident = @incomplete.delete(:ident)
+    @incomplete[:ident] << data[p].ord
+  		end
+	when 10 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
@@ -985,34 +809,97 @@ begin
 
     yield @buffers[:ident]
   		end
-	when 17 then
+	when 9 then
 		begin
 
-    ident = @incomplete.delete(:ident)
+    ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
   		end
 		begin
 
     @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
   		end
-	when 20 then
+	when 2 then
 		begin
 
     @incomplete[:string] = []
+    @opened = true
   		end
 		begin
 
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
+    @incomplete[:string] << data[p].ord
+  		end
+	when 3 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-    @ended = true
+  		end
+	when 12 then
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 7 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
+  		end
+		begin
+
+    yield @buffers[:parameter]
+  		end
+	when 15 then
+		begin
+
+    @incomplete[:string] << data[p].ord
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 17 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
   		end
 		begin
 
@@ -1021,56 +908,7 @@ begin
 	when 6 then
 		begin
 
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-		begin
-
-    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
-  		end
-	when 15 then
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:parameter]
-  		end
-	when 12 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-    @ended = true
-  		end
-		begin
-
-    yield @buffers[:string]
+    @closed = true
   		end
 		begin
 
@@ -1081,51 +919,26 @@ begin
 
     yield @buffers[:parameter]
   		end
-	when 3 then
+	when 14 then
 		begin
 
     @incomplete[:string] = []
+    @opened = true
   		end
 		begin
 
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
+    @incomplete[:string] << data[p].ord
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-    @ended = true
   		end
 		begin
 
     yield @buffers[:string]
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
-  		end
-		begin
-
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:parameter]
   		end
 	end
 	end
@@ -1144,93 +957,24 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
+	when 11 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
 	when 13 then
 		begin
 
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
+    @incomplete[:string] = []
+    @opened = true
   		end
+	when 16 then
 		begin
 
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-	when 9 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-	when 1 then
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-	when 7 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
+    @closed = true
   		end
 	  end
 	end
@@ -1277,7 +1021,7 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             
 class << self
 	attr_accessor :_bel_trans_keys
@@ -1285,12 +1029,13 @@ class << self
 end
 self._bel_trans_keys = [
 	0, 0, 9, 122, 9, 122, 
-	34, 92, 10, 10, 92, 
-	92, 10, 122, 10, 122, 
-	10, 122, 10, 122, 10, 34, 
-	34, 92, 10, 10, 92, 
-	92, 0, 0, 0, 0, 
-	0, 0, 0
+	34, 92, 34, 92, 10, 
+	10, 0, 0, 10, 122, 
+	10, 122, 0, 0, 0, 0, 
+	10, 122, 0, 0, 10, 
+	122, 10, 34, 0, 0, 
+	10, 92, 10, 92, 10, 10, 
+	0
 ]
 
 class << self
@@ -1298,9 +1043,9 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 114, 114, 59, 1, 1, 113, 113, 
-	113, 113, 25, 59, 1, 1, 0, 0, 
-	0
+	0, 114, 114, 59, 59, 1, 0, 113, 
+	113, 0, 0, 113, 0, 113, 25, 0, 
+	83, 83, 1
 ]
 
 class << self
@@ -1308,9 +1053,9 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 115, 230, 290, 292, 294, 408, 
-	522, 636, 750, 776, 836, 838, 840, 841, 
-	842
+	0, 0, 115, 230, 290, 350, 352, 353, 
+	467, 581, 582, 583, 697, 698, 812, 838, 
+	839, 923, 1007
 ]
 
 class << self
@@ -1318,112 +1063,133 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	1, 2, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 1, 
-	0, 3, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 4, 
+	0, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 0, 
+	1, 2, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 1, 1, 1, 1, 1, 1, 1, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 1, 1, 1, 1, 3, 1, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 1, 0, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 0, 1, 2, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 1, 1, 1, 1, 
+	1, 1, 1, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 5, 0, 0, 0, 0, 0, 0, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 1, 1, 1, 
+	1, 4, 1, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 0, 0, 0, 0, 4, 0, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 0, 1, 2, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 1, 6, 3, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 6, 6, 6, 6, 
-	6, 6, 6, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 6, 6, 6, 
-	6, 7, 6, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 6, 9, 8, 
+	4, 4, 4, 4, 4, 1, 6, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	7, 5, 9, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	10, 8, 12, 11, 10, 8, 14, 13, 
+	8, 8, 8, 8, 10, 8, 11, 1, 
+	8, 12, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 1, 1, 1, 1, 1, 1, 1, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 13, 13, 
-	13, 13, 13, 13, 13, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 13, 
-	13, 13, 13, 15, 13, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 13, 
-	14, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 1, 1, 1, 1, 13, 1, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
 	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	17, 13, 13, 13, 13, 13, 13, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 13, 13, 13, 13, 16, 13, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 13, 18, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 1, 12, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 15, 1, 1, 1, 1, 
+	1, 1, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 1, 1, 1, 1, 
+	14, 1, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 1, 16, 1, 17, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 1, 
+	1, 1, 1, 1, 1, 1, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	1, 1, 1, 1, 18, 1, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	18, 18, 18, 18, 18, 18, 18, 18, 
+	1, 1, 17, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 13, 13, 13, 13, 13, 13, 
-	13, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 1, 1, 1, 1, 1, 1, 
+	1, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 13, 13, 13, 13, 19, 
-	13, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 1, 1, 1, 1, 19, 
+	1, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
 	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 13, 20, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 13, 13, 13, 13, 
-	13, 13, 13, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 13, 13, 13, 
-	13, 21, 13, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 21, 21, 21, 
-	21, 21, 21, 21, 21, 13, 22, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 23, 11, 
-	25, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 24, 24, 24, 24, 24, 24, 
-	24, 24, 26, 24, 27, 11, 26, 24, 
-	28, 28, 28, 0
+	19, 19, 19, 1, 20, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 21, 1, 1, 23, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 24, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 25, 22, 26, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 27, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 16, 16, 16, 
+	16, 16, 16, 16, 16, 28, 16, 29, 
+	1, 0
 ]
 
 class << self
@@ -1431,10 +1197,10 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 2, 14, 3, 7, 2, 0, 6, 
-	3, 4, 5, 0, 14, 0, 14, 6, 
-	7, 2, 15, 9, 15, 9, 16, 11, 
-	11, 12, 13, 16, 0
+	2, 0, 3, 8, 7, 4, 5, 6, 
+	4, 5, 6, 10, 10, 7, 8, 2, 
+	17, 12, 13, 13, 15, 16, 17, 17, 
+	18, 9, 17, 18, 9, 15
 ]
 
 class << self
@@ -1442,10 +1208,10 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	2, 0, 3, 4, 5, 6, 8, 5, 
-	10, 10, 10, 11, 12, 14, 15, 16, 
-	16, 17, 18, 5, 19, 16, 20, 4, 
-	10, 10, 10, 21, 0
+	0, 0, 0, 1, 1, 2, 3, 2, 
+	4, 5, 4, 6, 7, 8, 8, 9, 
+	4, 10, 1, 8, 12, 0, 2, 14, 
+	13, 2, 15, 0, 4, 17
 ]
 
 class << self
@@ -1453,9 +1219,9 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 7, 9, 9, 9, 13, 13, 
-	13, 13, 9, 9, 9, 9, 0, 0, 
-	0
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 11, 0, 0, 
+	13, 0, 16
 ]
 
 class << self
@@ -1465,27 +1231,27 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 14;
+self.bel_first_final = 10;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_ident
+	attr_accessor :bel_en_id_ast
 end
-self.bel_en_ident = 8;
+self.bel_en_id_ast = 11;
 class << self
-	attr_accessor :bel_en_string
+	attr_accessor :bel_en_str_ast
 end
-self.bel_en_string = 10;
+self.bel_en_str_ast = 14;
 class << self
 	attr_accessor :bel_en_bel_parameter
 end
 self.bel_en_bel_parameter = 1;
 
 
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -1496,7 +1262,7 @@ self.bel_en_bel_parameter = 1;
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             
 begin
 	p ||= 0
@@ -1541,113 +1307,43 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 16 then
+	when 8 then
 		begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 14 then
+	when 13 then
 		begin
 
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-	when 10 then
-		begin
-
-    @incomplete[:string] << data[p].ord
-  		end
-	when 11 then
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-	when 5 then
-		begin
-
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 19 then
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-	when 2 then
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
+    @incomplete[:string] = []
+    @opened = true
   		end
 	when 4 then
 		begin
 
-    @incomplete[:string] = []
-  		end
-		begin
-
     @incomplete[:string] << data[p].ord
   		end
-	when 21 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-    @ended = true
-  		end
-		begin
-
-    yield @buffers[:string]
-  		end
-	when 8 then
+	when 5 then
 		begin
 
     string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
   		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-	when 18 then
+	when 1 then
 		begin
 
     @incomplete[:ident] = []
   		end
 		begin
 
-    ident = @incomplete.delete(:ident)
+    @incomplete[:ident] << data[p].ord
+  		end
+	when 10 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
@@ -1656,34 +1352,97 @@ begin
 
     yield @buffers[:ident]
   		end
-	when 17 then
+	when 9 then
 		begin
 
-    ident = @incomplete.delete(:ident)
+    ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
   		end
 		begin
 
     @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
   		end
-	when 20 then
+	when 2 then
 		begin
 
     @incomplete[:string] = []
+    @opened = true
   		end
 		begin
 
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
+    @incomplete[:string] << data[p].ord
+  		end
+	when 3 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-    @ended = true
+  		end
+	when 12 then
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 7 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    @buffers[:parameter] ||= parameter(prefix(nil))
+    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
+  		end
+		begin
+
+    yield @buffers[:parameter]
+  		end
+	when 15 then
+		begin
+
+    @incomplete[:string] << data[p].ord
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 17 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
   		end
 		begin
 
@@ -1692,56 +1451,7 @@ begin
 	when 6 then
 		begin
 
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-		begin
-
-    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
-  		end
-	when 15 then
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:parameter]
-  		end
-	when 12 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-    @ended = true
-  		end
-		begin
-
-    yield @buffers[:string]
+    @closed = true
   		end
 		begin
 
@@ -1752,51 +1462,26 @@ begin
 
     yield @buffers[:parameter]
   		end
-	when 3 then
+	when 14 then
 		begin
 
     @incomplete[:string] = []
+    @opened = true
   		end
 		begin
 
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
+    @incomplete[:string] << data[p].ord
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-    @ended = true
   		end
 		begin
 
     yield @buffers[:string]
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
-  		end
-		begin
-
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident)
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:parameter]
   		end
 	end
 	end
@@ -1815,93 +1500,24 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
+	when 11 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
 	when 13 then
 		begin
 
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
+    @incomplete[:string] = []
+    @opened = true
   		end
+	when 16 then
 		begin
 
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-	when 9 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-	when 1 then
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-	when 7 then
-		begin
-
-    string = @incomplete.delete(:string)
-    completed = !string.empty? && @ended
-    ast_node = string(utf8_string(string), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = !string.empty?
-    ast_node = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-    yield ast_node
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
-  		end
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    yield ast_node
+    @closed = true
   		end
 	  end
 	end
@@ -1913,7 +1529,7 @@ begin
 end
 	end
 
-      # end: ragel        
+      # end: ragel
           end
         end
       end

@@ -64,12 +64,12 @@
   # Define FSM
   annotation_definition :=
     DEFINE_KW SP+ ANNOTATION_KW @annotation_keyword SP+
-      IDENT %keyword SP+
+      id_ident %keyword SP+
     AS_KW SP+
       (
         (LIST_KW    %list_keyword    SP+ LIST   %list    SP* NL @yield_annotation_definition) |
-        (PATTERN_KW %pattern_keyword SP+ STRING %pattern SP* NL @yield_annotation_definition) |
-        (URL_KW     %url_keyword     SP+ STRING %url     SP* NL @yield_annotation_definition)
+        (PATTERN_KW %pattern_keyword SP+ str_string %pattern SP* NL @yield_annotation_definition) |
+        (URL_KW     %url_keyword     SP+ str_string %url     SP* NL @yield_annotation_definition)
       );
 }%%
 =end
@@ -106,9 +106,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -119,10 +119,10 @@ module BELParser
             pe       = data.length
             eof      = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

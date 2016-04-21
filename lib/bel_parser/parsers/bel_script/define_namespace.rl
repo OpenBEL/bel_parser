@@ -41,13 +41,13 @@
     SP+
     NAMESPACE_KW @namespace_keyword
     SP+
-    IDENT %keyword
+    id_ident %keyword
     SP+
     AS_KW
     SP+
     URL_KW @url_keyword
     SP+
-    STRING %string
+    str_string %string
     SP*
     NL @yield_namespace_definition;
 }%%
@@ -85,9 +85,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -99,10 +99,10 @@ module BELParser
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

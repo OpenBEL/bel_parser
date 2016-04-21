@@ -5,44 +5,38 @@
 
   include 'common.rl';
 
-  action start {
-    $stderr.puts '<< start'
+  action string_start {
     @incomplete[:string] = []
+    @opened = true
   }
 
-  action append {
-    $stderr.puts '<< append'
+  action string_more {
     @incomplete[:string] << fc
   }
 
-  action end {
-    $stderr.puts '<< end'
-    string = @incomplete.delete(:string)
-    completed = !string.empty?
+  action string_finish {
+    @closed = true
+  }
+
+  action string_end {
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   }
 
-  action yield {
-    $stderr.puts '<< yield'
+  action string_yield {
     yield @buffers[:string]
   }
 
-  action ast_end {
-    $stderr.puts '<< end1'
-    unless @buffers.key?(:string)
-      $stderr.puts 'ast_end'
-      string = @incomplete.delete(:string) || []
-      completed = !string.empty?
-      ast_node = string(utf8_string(string), complete: completed)
-      @buffers[:string] = ast_node
-    end
-  }
-
-  STR_CHARS = ('"' ('\\\"' | [^"])** '"');
-  STRING = STR_CHARS >start $append %end;
-  PARTIAL = STR_CHARS >start $append;
-  AST_NODE := (STRING | PARTIAL) NL? %/ast_end %yield;
+  NOT_DQ_ESC = [^"\\];
+  start_string = DQ %string_start;
+  more_string = ( NOT_DQ_ESC | ESCAPED )* $string_more;
+  end_string = DQ %string_finish;
+  str_string = start_string more_string end_string @string_end;
+  str_ast := (start_string? |
+              start_string more_string |
+              start_string more_string end_string) NL? @string_end @string_yield;
 }%%
 =end
 # end: ragel
@@ -86,7 +80,8 @@ module BELParser
           def each
             @buffers    = {}
             @incomplete = {}
-            @ended      = false
+            @opened     = false
+            @closed     = false
             data        = @content.unpack('C*')
             p           = 0
             pe          = data.length

@@ -18,14 +18,14 @@
     SP+
     DOCUMENT_KW
     SP+
-    IDENT %name
+    id_ident %name
     SP+
     EQL
     SP+
     (
-      STRING %string_value |
+      str_string %string_value |
       LIST %list_value     |
-      IDENT %ident_value
+      id_ident %ident_value
     ) NL @yield_document_property;
 }%%
 =end
@@ -62,9 +62,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -75,10 +75,10 @@ module BELParser
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

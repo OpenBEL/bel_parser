@@ -5,21 +5,12 @@
 
   include 'common.rl';
 
-  action yield_blank_line {
+  action blank_line_yield {
     yield blank_line
   }
 
-  action eof_blank_line {
-    yield blank_line
-  }
-
-  action err_blank_line {
-    yield blank_line
-  }
-
-  BLANK  = SP* $eof(eof_blank_line) $err(err_blank_line);
-
-  blank := BLANK %yield_blank_line NL;
+  blank = SP*;
+  bl_ast := blank NL? @blank_line_yield;
 }%%
 =end
 # end: ragel
@@ -55,9 +46,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -67,10 +58,10 @@ module BELParser
             p           = 0
             pe          = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end
