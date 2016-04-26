@@ -5,6 +5,10 @@ module BELParser
     module Specification
       EMPTY_ARRAY = [].freeze
 
+      def version
+        @version
+      end
+
       def function(short_or_long_form)
         @indexed_functions[short_or_long_form]
       end
@@ -15,6 +19,10 @@ module BELParser
 
       def return_type(return_type)
         @indexed_return_types[return_type]
+      end
+
+      def value_encoding(value_encoding)
+        @indexed_value_encodings[value_encoding]
       end
 
       def functions(*short_or_long_form)
@@ -39,10 +47,6 @@ module BELParser
         else
           @indexed_return_types.values_at(*return_types)
         end
-      end
-
-      def syntax
-        @syntax
       end
 
       def causal_relationships
@@ -126,10 +130,6 @@ module BELParser
         end
       end
       protected :assign_relationship_categories
-
-      def version
-        @version
-      end
     end
   end
 end

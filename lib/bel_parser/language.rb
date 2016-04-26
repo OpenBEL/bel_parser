@@ -68,13 +68,13 @@ module BELParser
     #         supported
     # @see    {.defines?}
     def self.specification(version)
-      version_string = version.to_s
-      unless version_string =~ /^[0-9]+\.[0-9]+/
+      version_string         =  version.to_s
+      unless version_string  =~ /^[0-9]+\.[0-9]+/
         raise ArgumentError, 'Version format incorrect; expecting MAJOR.MINOR'
       end
 
       LOCK.synchronize do
-        version_sym = version_string.to_sym
+        version_sym           = version_string.to_sym
         @specs              ||= {}
         @specs[version_sym] ||= create_specification(version_string)
         @specs[version_sym]
