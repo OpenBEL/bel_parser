@@ -8,6 +8,7 @@ machine bel;
   NUMBER_SIGN = '#';
   DQ          = '"';
   ESCAPED     = /\\./;
+  COMMA_DELIM = SP* ',' SP*;
 
 }%%
 =end
