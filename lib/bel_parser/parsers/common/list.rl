@@ -135,15 +135,7 @@
             ;
 
   list = start_list end_list @list_end;
-  list_ast := ( start_list SP* list_member? |
-                start_list SP* list_member* SP* end_list |
-                start_list list_member |
-                start_list !list_member |
-                start_list? |
-                start_list end_list? |
-                start_list list_member* end_list? |
-                start_list end_list) NL? $list_end $list_yield
-                ;
+
   list_ast_new := (start_list members end_list |
                   start_list end_list |
                   start_list |
