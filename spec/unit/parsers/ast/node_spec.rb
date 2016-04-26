@@ -51,6 +51,7 @@ describe BELParser::Parsers::AST::Node do
       parent = cls.new('parent', [child])
       expect(parent.children.length).to eq(1)
       expect(parent.children[0]).to eq(child)
+      expect(parent.first_child).to eq(child)
     end
 
     it 'can have children' do

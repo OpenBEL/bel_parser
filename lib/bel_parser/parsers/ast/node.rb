@@ -148,6 +148,22 @@ module BELParser
           updated(@children + [element])
         end
 
+        def first_child
+          @children[0]
+        end
+
+        def second_child
+          @children[1]
+        end
+
+        def third_child
+          @children[2]
+        end
+
+        def fourth_child
+          @children[3]
+        end
+
         alias << append
       end
 
