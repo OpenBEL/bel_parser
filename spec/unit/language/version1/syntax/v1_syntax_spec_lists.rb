@@ -38,6 +38,17 @@ describe 'when parsing lists' do
     expect(output.complete).to be(true)
   end
 
+  it 'is incomplete for { "foo, bar }' do
+    output = parse_ast(parser, '{ "foo, bar }')
+    expect(output).to be_a(ast::List)
+    expect(output).to respond_to(:complete)
+    expect(output.complete).to be(false)
+    expect(output.first_child).to be_a(ast::ListItem)
+    expect(output.first_child.first_child).to be_a(ast::String)
+    expect(output.first_child.complete).to be(false)
+    expect(output.first_child.first_child.complete).to be(false)
+  end
+
   it 'is incomplete for { "foo }' do
     output = parse_ast(parser, '{ "foo }')
     expect(output).to be_a(ast::List)
