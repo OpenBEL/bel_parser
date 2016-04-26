@@ -8,10 +8,13 @@ module BELParser
 
       def self.load_version_path(version_path)
         base_path = File.expand_path(File.dirname(__FILE__)) + File::SEPARATOR
-        Dir[File.join(base_path, version_path, '**', '*.rb')]
-          .each do |ruby_file|
-            ruby_file.sub!(/^#{Regexp.escape(base_path)}/, '')
-            require_relative ruby_file
+        ['return_types', 'value_encodings', 'functions', 'relationships']
+          .each do |set|
+            Dir[File.join(base_path, version_path, set, '*.rb')]
+              .each do |ruby_file|
+                ruby_file.sub!(/^#{Regexp.escape(base_path)}/, '')
+                require_relative ruby_file
+              end
           end
       end
 
