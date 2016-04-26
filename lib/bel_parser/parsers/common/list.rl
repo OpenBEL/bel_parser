@@ -6,6 +6,32 @@
   include 'identifier.rl';
   include 'string.rl';
 
+  action list_start {
+    $stderr.puts('list start')
+    @opened = true
+  }
+
+  action list_finish {
+    $stderr.puts('list finish')
+    @closed = true
+  }
+
+  action list_end {
+    $stderr.puts('list end')
+    completed = @opened && @closed
+    ast_node = list(complete: completed)
+    @buffers[:list] = ast_node
+  }
+
+  action list_eof {
+    $stderr.puts "list_eof"
+  }
+
+  action list_yield {
+    $stderr.puts('list yield')
+    yield @buffers[:list]
+  }
+
   action clear {
     @buffers.delete(:string)
     @buffers.delete(:ident)
@@ -56,6 +82,23 @@
     yield @buffers[:list]
   }
 
+  start_list = '{' %list_start;
+  end_list = '}' %list_finish;
+
+  ident_list_member = id_ident;
+  string_list_member = str_string;
+  list_member = string_list_member | ident_list_member;
+
+  list = start_list end_list @list_end;
+  list_ast := ( start_list SP* list_member? |
+                start_list SP* list_member* SP* end_list |
+                start_list list_member |
+                start_list !list_member |
+                start_list? |
+                start_list end_list? |
+                start_list list_member* end_list? |
+                start_list end_list) NL? $list_end $list_yield;
+
   LIST  =
     '{' @start_list
     SP*
@@ -74,8 +117,6 @@
       SP*
     )*
     '}' @finish_list;
-
-  list := LIST $err(yield_error_list) %yield_complete_list NL;
 }%%
 =end
 # end: ragel
@@ -119,6 +160,8 @@ module BELParser
           def each
             @buffers    = {}
             @incomplete = {}
+            @opened     = false
+            @closed     = false
             data        = @content.unpack('C*')
             p           = 0
             pe          = data.length
