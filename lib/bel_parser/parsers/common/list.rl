@@ -7,28 +7,24 @@
   include 'string.rl';
 
   action list_start {
-    $stderr.puts('list start')
     @opened = true
+    @buffers[:list] = list()
   }
 
   action list_finish {
-    $stderr.puts('list finish')
     @closed = true
   }
 
   action list_end {
-    $stderr.puts('list end')
     completed = @opened && @closed
     ast_node = list(complete: completed)
     @buffers[:list] = ast_node
   }
 
   action list_eof {
-    $stderr.puts "list_eof"
   }
 
   action list_yield {
-    $stderr.puts('list yield')
     yield @buffers[:list]
   }
 
@@ -82,12 +78,61 @@
     yield @buffers[:list]
   }
 
-  start_list = '{' %list_start;
-  end_list = '}' %list_finish;
+  action start_list_arg {
+    @incomplete[:list_arg] = []
+  }
 
-  ident_list_member = id_ident;
-  string_list_member = str_string;
-  list_member = string_list_member | ident_list_member;
+  action accum_list_arg {
+    @incomplete[:list_arg] << fc
+  }
+
+  action end_list_arg {
+    @incomplete.delete(:list_arg)
+    #$stderr.puts 'ident? ' + @buffers.key?(:ident).to_s
+    #$stderr.puts 'string? ' + @buffers.key?(:string).to_s
+  }
+
+  action eof_list_arg {
+    # unfinished list arg
+    arg = @incomplete.delete(:list_arg)
+    if @incomplete.key?(:string)
+      ast_node = string(utf8_string(arg), complete: false)
+    else
+      ast_node = identifier(utf8_string(arg), complete: false)
+    end
+    @buffers[:list] <<= list_item(ast_node, complete: false)
+    @buffers[:list].complete = false
+    yield @buffers[:list]
+  }
+
+  action eof_members {
+    # unfinished members
+    $stderr.puts "incomplete members"
+    $stderr.puts @buffers[:string]
+  }
+
+  action eof_list {
+    # unfinished list
+    $stderr.puts "incomplete list"
+  }
+
+  start_list = '{' SP* %list_start;
+  end_list = SP* '}' %list_finish;
+
+  ident_list_member = id_ident
+                      <to(accum_list_arg)
+                      ;
+  string_list_member = str_string
+                      <to(accum_list_arg)
+                      ;
+  list_member = (string_list_member | ident_list_member)
+                >start_list_arg
+                %end_list_arg
+                $eof(eof_list_arg)
+                ;
+  members = (list_member (COMMA_DELIM list_member)*)
+            $eof(eof_members)
+            ;
 
   list = start_list end_list @list_end;
   list_ast := ( start_list SP* list_member? |
@@ -97,7 +142,17 @@
                 start_list? |
                 start_list end_list? |
                 start_list list_member* end_list? |
-                start_list end_list) NL? $list_end $list_yield;
+                start_list end_list) NL? $list_end $list_yield
+                ;
+  list_ast_new := (start_list members end_list |
+                  start_list end_list |
+                  start_list |
+                  start_list?)
+                  NL?
+                  $list_end
+                  $list_yield
+                  $eof(eof_list)
+                  ;
 
   LIST  =
     '{' @start_list
