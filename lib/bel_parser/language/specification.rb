@@ -41,56 +41,24 @@ module BELParser
         end
       end
 
+      attr_reader :causal_relationships
+      attr_reader :correlative_relationships
+      attr_reader :decreasing_relationships
+      attr_reader :deprecated_relationships
+      attr_reader :direct_relationships
+      attr_reader :directed_relationships
+      attr_reader :genomic_relationships
+      attr_reader :increasing_relationships
+      attr_reader :indirect_relationships
+      attr_reader :listable_relationships
+      attr_reader :self_relationships
+
       def return_types(*return_types)
         if return_types.empty?
           @return_types.freeze
         else
           @indexed_return_types.values_at(*return_types)
         end
-      end
-
-      def causal_relationships
-        @causal_relationships || EMPTY_ARRAY
-      end
-
-      def correlative_relationships
-        @correlative_relationships || EMPTY_ARRAY
-      end
-
-      def decreasing_relationships
-        @decreasing_relationships || EMPTY_ARRAY
-      end
-
-      def deprecated_relationships
-        @deprecated_relationships || EMPTY_ARRAY
-      end
-
-      def direct_relationships
-        @direct_relationships || EMPTY_ARRAY
-      end
-
-      def directed_relationships
-        @directed_relationships || EMPTY_ARRAY
-      end
-
-      def genomic_relationships
-        @genomic_relationships || EMPTY_ARRAY
-      end
-
-      def increasing_relationships
-        @increasing_relationships || EMPTY_ARRAY
-      end
-
-      def indirect_relationships
-        @indirect_relationships || EMPTY_ARRAY
-      end
-
-      def listable_relationships
-        @listable_relationships || EMPTY_ARRAY
-      end
-
-      def self_relationships
-        @self_relationships || EMPTY_ARRAY
       end
 
       # @param [Array<#long,#short>] language_objects to be indexed by
@@ -120,16 +88,31 @@ module BELParser
           rel.methods(false).grep(/(.*?)\?/) do |method_name|
             if rel.method(method_name).call
               category = method_name.to_s.delete('?')
-              category_ivar = "@#{category}_relationships".to_sym
-              unless instance_variable_defined? category_ivar
-                instance_variable_set(category_ivar, [])
-              end
-              instance_variable_get(category_ivar) << rel
+              add_relationship_to_category(rel, category)
             end
           end
         end
+
+        freeze_categories
+        nil
       end
       protected :assign_relationship_categories
+
+      def add_relationship_to_category(relationship, category)
+        category_ivar = "@#{category}_relationships".to_sym
+        unless instance_variable_defined? category_ivar
+          instance_variable_set(category_ivar, [])
+        end
+        instance_variable_get(category_ivar) << relationship
+      end
+      private :add_relationship_to_category
+
+      def freeze_categories
+        instance_variables.each do |ivar|
+          next unless ivar.to_s =~ /@[a-zA-Z0-9]+_relationships/
+          instance_variable_set(ivar, instance_variable_get(ivar).freeze)
+        end
+      end
     end
   end
 end

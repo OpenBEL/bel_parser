@@ -70,7 +70,7 @@ module BELParser
       end
 
       def ==(other)
-        return true if self.equal?(other)
+        return true if equal?(other)
         return false if other.nil?
         short == other || long == other
       end

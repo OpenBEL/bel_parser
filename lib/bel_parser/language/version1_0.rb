@@ -7,7 +7,6 @@ module BELParser
     module Version1_0
       # Version1_0 specification defines the BEL 1.0 specification.
       class Specification < BaseSpecification
-
         BaseSpecification.load_version_path('version1_0')
 
         def initialize
