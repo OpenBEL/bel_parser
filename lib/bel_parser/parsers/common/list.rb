@@ -7,13 +7,14 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 123, 123, 9, 122, 
+	0, 0, 123, 123, 9, 125, 
 	34, 92, 9, 125, 9, 
-	125, 10, 10, 92, 92, 
-	9, 125, 48, 122, 10, 122, 
-	34, 34, 34, 92, 10, 
-	10, 92, 92, 0, 0, 
-	0, 0, 0, 0, 0
+	125, 9, 122, 9, 125, 
+	10, 10, 92, 92, 48, 122, 
+	10, 122, 34, 34, 34, 
+	92, 10, 10, 92, 92, 
+	0, 0, 0, 0, 0, 0, 
+	0
 ]
 
 class << self
@@ -21,9 +22,9 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 1, 114, 59, 117, 117, 1, 1, 
-	117, 75, 113, 1, 59, 1, 1, 0, 
-	0, 0
+	0, 1, 117, 59, 117, 117, 114, 117, 
+	1, 1, 75, 113, 1, 59, 1, 1, 
+	0, 0, 0
 ]
 
 class << self
@@ -31,9 +32,9 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 2, 117, 177, 295, 413, 415, 
-	417, 535, 611, 725, 727, 787, 789, 791, 
-	792, 793
+	0, 0, 2, 120, 180, 298, 416, 531, 
+	649, 651, 653, 729, 843, 845, 905, 907, 
+	909, 910, 911
 ]
 
 class << self
@@ -45,102 +46,117 @@ self._bel_indicies = [
 	2, 2, 2, 2, 2, 2, 2, 2, 
 	2, 2, 2, 2, 2, 2, 2, 2, 
 	2, 3, 2, 4, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 5, 2, 2, 
+	2, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 2, 2, 2, 2, 2, 
+	2, 2, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 2, 2, 2, 2, 
+	6, 2, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 2, 2, 7, 2, 
+	9, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 10, 8, 12, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 12, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 13, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	14, 11, 15, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 15, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 16, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 17, 0, 
+	18, 2, 2, 2, 2, 2, 2, 2, 
 	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 2, 2, 2, 2, 2, 
-	2, 2, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 2, 2, 2, 2, 
-	5, 2, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 2, 7, 6, 6, 
+	2, 2, 2, 2, 2, 2, 2, 18, 
+	2, 4, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 2, 2, 2, 2, 2, 2, 2, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 2, 2, 2, 2, 6, 2, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 8, 
-	6, 10, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	10, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 11, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 12, 9, 13, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 13, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 14, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 15, 0, 16, 0, 8, 
-	6, 18, 17, 17, 17, 17, 17, 17, 
-	17, 17, 17, 17, 17, 17, 17, 17, 
-	17, 17, 17, 17, 17, 17, 17, 17, 
-	18, 17, 17, 17, 17, 17, 17, 17, 
-	17, 17, 17, 17, 19, 17, 17, 17, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 17, 17, 17, 17, 17, 17, 
-	17, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 17, 17, 17, 17, 20, 
-	17, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 17, 17, 21, 17, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 22, 22, 22, 22, 22, 22, 22, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 22, 22, 22, 22, 23, 22, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 22, 24, 22, 22, 22, 22, 
+	6, 6, 2, 20, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 20, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 21, 19, 
+	19, 19, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 19, 19, 19, 19, 
+	19, 19, 19, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 19, 19, 19, 
+	19, 22, 19, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 22, 22, 22, 22, 22, 
-	22, 22, 25, 25, 25, 25, 25, 25, 
+	22, 22, 22, 22, 22, 19, 19, 23, 
+	19, 24, 0, 10, 8, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 25, 
+	25, 25, 25, 25, 25, 25, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	25, 25, 25, 25, 26, 25, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	25, 27, 25, 25, 25, 25, 25, 25, 
 	25, 25, 25, 25, 25, 25, 25, 25, 
 	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 22, 22, 22, 22, 
-	25, 22, 25, 25, 25, 25, 25, 25, 
 	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 22, 27, 26, 29, 
+	25, 25, 25, 25, 25, 25, 25, 28, 
+	28, 28, 28, 28, 28, 28, 28, 28, 
+	28, 25, 25, 25, 25, 25, 25, 25, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
+	28, 28, 25, 25, 25, 25, 28, 25, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 30, 28, 31, 26, 30, 28, 32, 
-	32, 32, 0
+	28, 28, 25, 30, 29, 32, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 33, 
+	31, 34, 29, 33, 31, 35, 35, 35, 
+	0
 ]
 
 class << self
@@ -148,11 +164,11 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 2, 0, 2, 3, 8, 3, 4, 
-	7, 0, 5, 2, 6, 5, 2, 6, 
-	15, 0, 5, 2, 8, 6, 0, 10, 
-	16, 10, 0, 12, 12, 13, 14, 17, 
-	0
+	0, 2, 0, 2, 3, 6, 7, 8, 
+	3, 4, 9, 0, 5, 6, 8, 5, 
+	6, 8, 6, 0, 5, 6, 7, 8, 
+	16, 0, 11, 17, 11, 0, 13, 13, 
+	14, 15, 18, 0
 ]
 
 class << self
@@ -160,11 +176,11 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 2, 3, 0, 4, 5, 7, 7, 
-	7, 6, 8, 9, 10, 0, 11, 12, 
-	13, 14, 15, 16, 17, 18, 19, 5, 
-	20, 17, 21, 4, 7, 7, 7, 22, 
-	0
+	1, 2, 3, 4, 5, 6, 7, 8, 
+	10, 10, 10, 9, 11, 12, 13, 0, 
+	14, 15, 0, 16, 17, 18, 19, 20, 
+	21, 22, 7, 23, 19, 24, 5, 10, 
+	10, 10, 25, 0
 ]
 
 class << self
@@ -172,9 +188,9 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 3, 6, 6, 1, 1, 6, 
-	14, 19, 19, 21, 21, 21, 21, 0, 
-	0, 0
+	0, 1, 3, 9, 9, 1, 3, 16, 
+	1, 9, 22, 22, 24, 24, 24, 24, 
+	0, 0, 0
 ]
 
 class << self
@@ -184,7 +200,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 15;
+self.bel_first_final = 16;
 class << self
 	attr_accessor :bel_error
 end
@@ -193,11 +209,11 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident
 end
-self.bel_en_ident = 9;
+self.bel_en_ident = 10;
 class << self
 	attr_accessor :bel_en_string
 end
-self.bel_en_string = 11;
+self.bel_en_string = 12;
 class << self
 	attr_accessor :bel_en_list
 end
@@ -246,17 +262,17 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 17 then
+	when 19 then
 		begin
 
     (@buffers[:ident] ||= []) << data[p].ord
   		end
-	when 7 then
+	when 10 then
 		begin
 
     (@buffers[:string] ||= []) << data[p].ord
   		end
-	when 11 then
+	when 14 then
 		begin
 
     @buffers.delete(:string)
@@ -267,12 +283,23 @@ begin
 
     @buffers[:list] = list()
   		end
-	when 12 then
+	when 4 then
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+	when 15 then
 		begin
 
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 13 then
+	when 21 then
 		begin
 
     yield @buffers[:list]
@@ -283,7 +310,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 5 then
+	when 7 then
 		begin
 
     @buffers[:ident] = []
@@ -292,7 +319,7 @@ begin
 
     (@buffers[:ident] ||= []) << data[p].ord
   		end
-	when 20 then
+	when 23 then
 		begin
 
     @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
@@ -301,7 +328,7 @@ begin
 
     yield @buffers[:ident]
   		end
-	when 19 then
+	when 22 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -314,7 +341,7 @@ begin
     @buffers[:ident] ||= []
     yield @buffers[:ident]
   		end
-	when 4 then
+	when 5 then
 		begin
 
     @buffers[:string] = []
@@ -323,7 +350,7 @@ begin
 
     (@buffers[:string] ||= []) << data[p].ord
   		end
-	when 22 then
+	when 25 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -332,7 +359,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 21 then
+	when 24 then
 		begin
 
     @buffers[:string] ||= []
@@ -343,7 +370,38 @@ begin
     @buffers[:string] ||= []
     yield @buffers[:string]
   		end
-	when 15 then
+	when 6 then
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+		begin
+
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
+  		end
+	when 8 then
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+		begin
+
+    #TODO: Mark @buffers[:list] as complete.
+  		end
+	when 17 then
 		begin
 
     @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
@@ -355,12 +413,14 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
-	when 8 then
+	when 11 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -372,32 +432,12 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
-  		end
-	when 16 then
-		begin
-
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
-  		end
-		begin
-
-    @buffers[:list_arg] = list_item(@buffers[:ident])
-  		end
-		begin
-
-    # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
-    end
-  		end
-		begin
-
-    @buffers.delete(:string)
-    @buffers.delete(:ident)
   		end
 	when 18 then
 		begin
@@ -411,16 +451,42 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+		begin
+
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
+  		end
+	when 20 then
+		begin
+
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
+  		end
+		begin
+
+    @buffers[:list_arg] = list_item(@buffers[:ident])
+  		end
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 14 then
+	when 16 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -436,9 +502,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -446,7 +514,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 9 then
+	when 12 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -458,9 +526,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -468,7 +538,7 @@ begin
     @buffers.delete(:string)
     @buffers.delete(:ident)
   		end
-	when 10 then
+	when 13 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -480,16 +550,18 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 6 then
+	when 9 then
 		begin
 
     @buffers[:string] ||= []
@@ -503,9 +575,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -539,9 +613,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -572,7 +648,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 19 then
+	when 22 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -585,7 +661,7 @@ begin
     @buffers[:ident] ||= []
     yield @buffers[:ident]
   		end
-	when 21 then
+	when 24 then
 		begin
 
     @buffers[:string] ||= []
@@ -596,7 +672,7 @@ begin
     @buffers[:string] ||= []
     yield @buffers[:string]
   		end
-	when 14 then
+	when 16 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -612,9 +688,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -622,7 +700,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 6 then
+	when 9 then
 		begin
 
     @buffers[:string] ||= []
@@ -636,9 +714,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -672,9 +752,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -697,13 +779,14 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 123, 123, 9, 122, 
+	0, 0, 123, 123, 9, 125, 
 	34, 92, 9, 125, 9, 
-	125, 10, 10, 92, 92, 
-	9, 125, 48, 122, 10, 122, 
-	34, 34, 34, 92, 10, 
-	10, 92, 92, 0, 0, 
-	0, 0, 0, 0, 0
+	125, 9, 122, 9, 125, 
+	10, 10, 92, 92, 48, 122, 
+	10, 122, 34, 34, 34, 
+	92, 10, 10, 92, 92, 
+	0, 0, 0, 0, 0, 0, 
+	0
 ]
 
 class << self
@@ -711,9 +794,9 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 1, 114, 59, 117, 117, 1, 1, 
-	117, 75, 113, 1, 59, 1, 1, 0, 
-	0, 0
+	0, 1, 117, 59, 117, 117, 114, 117, 
+	1, 1, 75, 113, 1, 59, 1, 1, 
+	0, 0, 0
 ]
 
 class << self
@@ -721,9 +804,9 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 2, 117, 177, 295, 413, 415, 
-	417, 535, 611, 725, 727, 787, 789, 791, 
-	792, 793
+	0, 0, 2, 120, 180, 298, 416, 531, 
+	649, 651, 653, 729, 843, 845, 905, 907, 
+	909, 910, 911
 ]
 
 class << self
@@ -735,102 +818,117 @@ self._bel_indicies = [
 	2, 2, 2, 2, 2, 2, 2, 2, 
 	2, 2, 2, 2, 2, 2, 2, 2, 
 	2, 3, 2, 4, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 5, 2, 2, 
+	2, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 2, 2, 2, 2, 2, 
+	2, 2, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 2, 2, 2, 2, 
+	6, 2, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 2, 2, 7, 2, 
+	9, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 10, 8, 12, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 12, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 13, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	14, 11, 15, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 15, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 16, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 17, 0, 
+	18, 2, 2, 2, 2, 2, 2, 2, 
 	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 2, 2, 2, 2, 2, 
-	2, 2, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 2, 2, 2, 2, 
-	5, 2, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 2, 7, 6, 6, 
+	2, 2, 2, 2, 2, 2, 2, 18, 
+	2, 4, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 2, 2, 2, 2, 2, 2, 2, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 2, 2, 2, 2, 6, 2, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 8, 
-	6, 10, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	10, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 11, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 12, 9, 13, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 13, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 14, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 15, 0, 16, 0, 8, 
-	6, 18, 17, 17, 17, 17, 17, 17, 
-	17, 17, 17, 17, 17, 17, 17, 17, 
-	17, 17, 17, 17, 17, 17, 17, 17, 
-	18, 17, 17, 17, 17, 17, 17, 17, 
-	17, 17, 17, 17, 19, 17, 17, 17, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 17, 17, 17, 17, 17, 17, 
-	17, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 17, 17, 17, 17, 20, 
-	17, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 17, 17, 21, 17, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 22, 22, 22, 22, 22, 22, 22, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 22, 22, 22, 22, 23, 22, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 22, 24, 22, 22, 22, 22, 
+	6, 6, 2, 20, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 20, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 21, 19, 
+	19, 19, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 19, 19, 19, 19, 
+	19, 19, 19, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 19, 19, 19, 
+	19, 22, 19, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 22, 22, 22, 22, 22, 
-	22, 22, 25, 25, 25, 25, 25, 25, 
+	22, 22, 22, 22, 22, 19, 19, 23, 
+	19, 24, 0, 10, 8, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 25, 
+	25, 25, 25, 25, 25, 25, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	25, 25, 25, 25, 26, 25, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	25, 27, 25, 25, 25, 25, 25, 25, 
 	25, 25, 25, 25, 25, 25, 25, 25, 
 	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 22, 22, 22, 22, 
-	25, 22, 25, 25, 25, 25, 25, 25, 
 	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 22, 27, 26, 29, 
+	25, 25, 25, 25, 25, 25, 25, 28, 
+	28, 28, 28, 28, 28, 28, 28, 28, 
+	28, 25, 25, 25, 25, 25, 25, 25, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
+	28, 28, 25, 25, 25, 25, 28, 25, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 30, 28, 31, 26, 30, 28, 32, 
-	32, 32, 0
+	28, 28, 25, 30, 29, 32, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 33, 
+	31, 34, 29, 33, 31, 35, 35, 35, 
+	0
 ]
 
 class << self
@@ -838,11 +936,11 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 2, 0, 2, 3, 8, 3, 4, 
-	7, 0, 5, 2, 6, 5, 2, 6, 
-	15, 0, 5, 2, 8, 6, 0, 10, 
-	16, 10, 0, 12, 12, 13, 14, 17, 
-	0
+	0, 2, 0, 2, 3, 6, 7, 8, 
+	3, 4, 9, 0, 5, 6, 8, 5, 
+	6, 8, 6, 0, 5, 6, 7, 8, 
+	16, 0, 11, 17, 11, 0, 13, 13, 
+	14, 15, 18, 0
 ]
 
 class << self
@@ -850,11 +948,11 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 2, 3, 0, 4, 5, 7, 7, 
-	7, 6, 8, 9, 10, 0, 11, 12, 
-	13, 14, 15, 16, 17, 18, 19, 5, 
-	20, 17, 21, 4, 7, 7, 7, 22, 
-	0
+	1, 2, 3, 4, 5, 6, 7, 8, 
+	10, 10, 10, 9, 11, 12, 13, 0, 
+	14, 15, 0, 16, 17, 18, 19, 20, 
+	21, 22, 7, 23, 19, 24, 5, 10, 
+	10, 10, 25, 0
 ]
 
 class << self
@@ -862,9 +960,9 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 3, 6, 6, 1, 1, 6, 
-	14, 19, 19, 21, 21, 21, 21, 0, 
-	0, 0
+	0, 1, 3, 9, 9, 1, 3, 16, 
+	1, 9, 22, 22, 24, 24, 24, 24, 
+	0, 0, 0
 ]
 
 class << self
@@ -874,7 +972,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 15;
+self.bel_first_final = 16;
 class << self
 	attr_accessor :bel_error
 end
@@ -883,11 +981,11 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident
 end
-self.bel_en_ident = 9;
+self.bel_en_ident = 10;
 class << self
 	attr_accessor :bel_en_string
 end
-self.bel_en_string = 11;
+self.bel_en_string = 12;
 class << self
 	attr_accessor :bel_en_list
 end
@@ -936,17 +1034,17 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 17 then
+	when 19 then
 		begin
 
     (@buffers[:ident] ||= []) << data[p].ord
   		end
-	when 7 then
+	when 10 then
 		begin
 
     (@buffers[:string] ||= []) << data[p].ord
   		end
-	when 11 then
+	when 14 then
 		begin
 
     @buffers.delete(:string)
@@ -957,12 +1055,23 @@ begin
 
     @buffers[:list] = list()
   		end
-	when 12 then
+	when 4 then
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+	when 15 then
 		begin
 
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 13 then
+	when 21 then
 		begin
 
     yield @buffers[:list]
@@ -973,7 +1082,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 5 then
+	when 7 then
 		begin
 
     @buffers[:ident] = []
@@ -982,7 +1091,7 @@ begin
 
     (@buffers[:ident] ||= []) << data[p].ord
   		end
-	when 20 then
+	when 23 then
 		begin
 
     @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
@@ -991,7 +1100,7 @@ begin
 
     yield @buffers[:ident]
   		end
-	when 19 then
+	when 22 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -1004,7 +1113,7 @@ begin
     @buffers[:ident] ||= []
     yield @buffers[:ident]
   		end
-	when 4 then
+	when 5 then
 		begin
 
     @buffers[:string] = []
@@ -1013,7 +1122,7 @@ begin
 
     (@buffers[:string] ||= []) << data[p].ord
   		end
-	when 22 then
+	when 25 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -1022,7 +1131,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 21 then
+	when 24 then
 		begin
 
     @buffers[:string] ||= []
@@ -1033,7 +1142,38 @@ begin
     @buffers[:string] ||= []
     yield @buffers[:string]
   		end
-	when 15 then
+	when 6 then
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+		begin
+
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
+  		end
+	when 8 then
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+		begin
+
+    #TODO: Mark @buffers[:list] as complete.
+  		end
+	when 17 then
 		begin
 
     @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
@@ -1045,12 +1185,14 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
-	when 8 then
+	when 11 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -1062,32 +1204,12 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
-  		end
-	when 16 then
-		begin
-
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
-  		end
-		begin
-
-    @buffers[:list_arg] = list_item(@buffers[:ident])
-  		end
-		begin
-
-    # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
-    end
-  		end
-		begin
-
-    @buffers.delete(:string)
-    @buffers.delete(:ident)
   		end
 	when 18 then
 		begin
@@ -1101,16 +1223,42 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+		begin
+
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
+  		end
+	when 20 then
+		begin
+
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
+  		end
+		begin
+
+    @buffers[:list_arg] = list_item(@buffers[:ident])
+  		end
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 14 then
+	when 16 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -1126,9 +1274,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -1136,7 +1286,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 9 then
+	when 12 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -1148,9 +1298,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -1158,7 +1310,7 @@ begin
     @buffers.delete(:string)
     @buffers.delete(:ident)
   		end
-	when 10 then
+	when 13 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -1170,16 +1322,18 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 6 then
+	when 9 then
 		begin
 
     @buffers[:string] ||= []
@@ -1193,9 +1347,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -1229,9 +1385,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -1262,7 +1420,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 19 then
+	when 22 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -1275,7 +1433,7 @@ begin
     @buffers[:ident] ||= []
     yield @buffers[:ident]
   		end
-	when 21 then
+	when 24 then
 		begin
 
     @buffers[:string] ||= []
@@ -1286,7 +1444,7 @@ begin
     @buffers[:string] ||= []
     yield @buffers[:string]
   		end
-	when 14 then
+	when 16 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -1302,9 +1460,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -1312,7 +1472,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 6 then
+	when 9 then
 		begin
 
     @buffers[:string] ||= []
@@ -1326,9 +1486,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -1362,9 +1524,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -1424,13 +1588,14 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 123, 123, 9, 122, 
+	0, 0, 123, 123, 9, 125, 
 	34, 92, 9, 125, 9, 
-	125, 10, 10, 92, 92, 
-	9, 125, 48, 122, 10, 122, 
-	34, 34, 34, 92, 10, 
-	10, 92, 92, 0, 0, 
-	0, 0, 0, 0, 0
+	125, 9, 122, 9, 125, 
+	10, 10, 92, 92, 48, 122, 
+	10, 122, 34, 34, 34, 
+	92, 10, 10, 92, 92, 
+	0, 0, 0, 0, 0, 0, 
+	0
 ]
 
 class << self
@@ -1438,9 +1603,9 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 1, 114, 59, 117, 117, 1, 1, 
-	117, 75, 113, 1, 59, 1, 1, 0, 
-	0, 0
+	0, 1, 117, 59, 117, 117, 114, 117, 
+	1, 1, 75, 113, 1, 59, 1, 1, 
+	0, 0, 0
 ]
 
 class << self
@@ -1448,9 +1613,9 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 2, 117, 177, 295, 413, 415, 
-	417, 535, 611, 725, 727, 787, 789, 791, 
-	792, 793
+	0, 0, 2, 120, 180, 298, 416, 531, 
+	649, 651, 653, 729, 843, 845, 905, 907, 
+	909, 910, 911
 ]
 
 class << self
@@ -1462,102 +1627,117 @@ self._bel_indicies = [
 	2, 2, 2, 2, 2, 2, 2, 2, 
 	2, 2, 2, 2, 2, 2, 2, 2, 
 	2, 3, 2, 4, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 5, 2, 2, 
+	2, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 2, 2, 2, 2, 2, 
+	2, 2, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 2, 2, 2, 2, 
+	6, 2, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 2, 2, 7, 2, 
+	9, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 10, 8, 12, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 12, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 13, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	11, 11, 11, 11, 11, 11, 11, 11, 
+	14, 11, 15, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 15, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 16, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 17, 0, 
+	18, 2, 2, 2, 2, 2, 2, 2, 
 	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 2, 2, 2, 2, 2, 
-	2, 2, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 2, 2, 2, 2, 
-	5, 2, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 2, 7, 6, 6, 
+	2, 2, 2, 2, 2, 2, 2, 18, 
+	2, 4, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 2, 2, 2, 2, 2, 2, 2, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 2, 2, 2, 2, 6, 2, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 8, 
-	6, 10, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	10, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 11, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 12, 9, 13, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 13, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 14, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 15, 0, 16, 0, 8, 
-	6, 18, 17, 17, 17, 17, 17, 17, 
-	17, 17, 17, 17, 17, 17, 17, 17, 
-	17, 17, 17, 17, 17, 17, 17, 17, 
-	18, 17, 17, 17, 17, 17, 17, 17, 
-	17, 17, 17, 17, 19, 17, 17, 17, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 17, 17, 17, 17, 17, 17, 
-	17, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 17, 17, 17, 17, 20, 
-	17, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 17, 17, 21, 17, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 22, 22, 22, 22, 22, 22, 22, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 22, 22, 22, 22, 23, 22, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 23, 23, 23, 23, 23, 23, 
-	23, 23, 22, 24, 22, 22, 22, 22, 
+	6, 6, 2, 20, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 20, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 21, 19, 
+	19, 19, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 19, 19, 19, 19, 
+	19, 19, 19, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
+	22, 22, 22, 22, 22, 19, 19, 19, 
+	19, 22, 19, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
 	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 22, 22, 22, 22, 22, 
-	22, 22, 25, 25, 25, 25, 25, 25, 
+	22, 22, 22, 22, 22, 19, 19, 23, 
+	19, 24, 0, 10, 8, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 25, 
+	25, 25, 25, 25, 25, 25, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	25, 25, 25, 25, 26, 25, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	26, 26, 26, 26, 26, 26, 26, 26, 
+	25, 27, 25, 25, 25, 25, 25, 25, 
 	25, 25, 25, 25, 25, 25, 25, 25, 
 	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 22, 22, 22, 22, 
-	25, 22, 25, 25, 25, 25, 25, 25, 
 	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 22, 27, 26, 29, 
+	25, 25, 25, 25, 25, 25, 25, 28, 
+	28, 28, 28, 28, 28, 28, 28, 28, 
+	28, 25, 25, 25, 25, 25, 25, 25, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
+	28, 28, 25, 25, 25, 25, 28, 25, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
 	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 30, 28, 31, 26, 30, 28, 32, 
-	32, 32, 0
+	28, 28, 25, 30, 29, 32, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 31, 
+	31, 31, 31, 31, 31, 31, 31, 33, 
+	31, 34, 29, 33, 31, 35, 35, 35, 
+	0
 ]
 
 class << self
@@ -1565,11 +1745,11 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 2, 0, 2, 3, 8, 3, 4, 
-	7, 0, 5, 2, 6, 5, 2, 6, 
-	15, 0, 5, 2, 8, 6, 0, 10, 
-	16, 10, 0, 12, 12, 13, 14, 17, 
-	0
+	0, 2, 0, 2, 3, 6, 7, 8, 
+	3, 4, 9, 0, 5, 6, 8, 5, 
+	6, 8, 6, 0, 5, 6, 7, 8, 
+	16, 0, 11, 17, 11, 0, 13, 13, 
+	14, 15, 18, 0
 ]
 
 class << self
@@ -1577,11 +1757,11 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 2, 3, 0, 4, 5, 7, 7, 
-	7, 6, 8, 9, 10, 0, 11, 12, 
-	13, 14, 15, 16, 17, 18, 19, 5, 
-	20, 17, 21, 4, 7, 7, 7, 22, 
-	0
+	1, 2, 3, 4, 5, 6, 7, 8, 
+	10, 10, 10, 9, 11, 12, 13, 0, 
+	14, 15, 0, 16, 17, 18, 19, 20, 
+	21, 22, 7, 23, 19, 24, 5, 10, 
+	10, 10, 25, 0
 ]
 
 class << self
@@ -1589,9 +1769,9 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 3, 6, 6, 1, 1, 6, 
-	14, 19, 19, 21, 21, 21, 21, 0, 
-	0, 0
+	0, 1, 3, 9, 9, 1, 3, 16, 
+	1, 9, 22, 22, 24, 24, 24, 24, 
+	0, 0, 0
 ]
 
 class << self
@@ -1601,7 +1781,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 15;
+self.bel_first_final = 16;
 class << self
 	attr_accessor :bel_error
 end
@@ -1610,11 +1790,11 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident
 end
-self.bel_en_ident = 9;
+self.bel_en_ident = 10;
 class << self
 	attr_accessor :bel_en_string
 end
-self.bel_en_string = 11;
+self.bel_en_string = 12;
 class << self
 	attr_accessor :bel_en_list
 end
@@ -1676,17 +1856,17 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 17 then
+	when 19 then
 		begin
 
     (@buffers[:ident] ||= []) << data[p].ord
   		end
-	when 7 then
+	when 10 then
 		begin
 
     (@buffers[:string] ||= []) << data[p].ord
   		end
-	when 11 then
+	when 14 then
 		begin
 
     @buffers.delete(:string)
@@ -1697,12 +1877,23 @@ begin
 
     @buffers[:list] = list()
   		end
-	when 12 then
+	when 4 then
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+	when 15 then
 		begin
 
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 13 then
+	when 21 then
 		begin
 
     yield @buffers[:list]
@@ -1713,7 +1904,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 5 then
+	when 7 then
 		begin
 
     @buffers[:ident] = []
@@ -1722,7 +1913,7 @@ begin
 
     (@buffers[:ident] ||= []) << data[p].ord
   		end
-	when 20 then
+	when 23 then
 		begin
 
     @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
@@ -1731,7 +1922,7 @@ begin
 
     yield @buffers[:ident]
   		end
-	when 19 then
+	when 22 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -1744,7 +1935,7 @@ begin
     @buffers[:ident] ||= []
     yield @buffers[:ident]
   		end
-	when 4 then
+	when 5 then
 		begin
 
     @buffers[:string] = []
@@ -1753,7 +1944,7 @@ begin
 
     (@buffers[:string] ||= []) << data[p].ord
   		end
-	when 22 then
+	when 25 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -1762,7 +1953,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 21 then
+	when 24 then
 		begin
 
     @buffers[:string] ||= []
@@ -1773,7 +1964,38 @@ begin
     @buffers[:string] ||= []
     yield @buffers[:string]
   		end
-	when 15 then
+	when 6 then
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+		begin
+
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
+  		end
+	when 8 then
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+		begin
+
+    #TODO: Mark @buffers[:list] as complete.
+  		end
+	when 17 then
 		begin
 
     @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
@@ -1785,12 +2007,14 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
-	when 8 then
+	when 11 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -1802,32 +2026,12 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
-  		end
-	when 16 then
-		begin
-
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
-  		end
-		begin
-
-    @buffers[:list_arg] = list_item(@buffers[:ident])
-  		end
-		begin
-
-    # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
-    end
-  		end
-		begin
-
-    @buffers.delete(:string)
-    @buffers.delete(:ident)
   		end
 	when 18 then
 		begin
@@ -1841,16 +2045,42 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
+    end
+  		end
+		begin
+
+    @buffers.delete(:string)
+    @buffers.delete(:ident)
+  		end
+	when 20 then
+		begin
+
+    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
+  		end
+		begin
+
+    @buffers[:list_arg] = list_item(@buffers[:ident])
+  		end
+		begin
+
+    # Append list argument if its value is not empty.
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 14 then
+	when 16 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -1866,9 +2096,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -1876,7 +2108,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 9 then
+	when 12 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -1888,9 +2120,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -1898,7 +2132,7 @@ begin
     @buffers.delete(:string)
     @buffers.delete(:ident)
   		end
-	when 10 then
+	when 13 then
 		begin
 
     @buffers[:string] = string(utf8_string(@buffers[:string]))
@@ -1910,16 +2144,18 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
 
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 6 then
+	when 9 then
 		begin
 
     @buffers[:string] ||= []
@@ -1933,9 +2169,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -1969,9 +2207,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -2002,7 +2242,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 19 then
+	when 22 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -2015,7 +2255,7 @@ begin
     @buffers[:ident] ||= []
     yield @buffers[:ident]
   		end
-	when 21 then
+	when 24 then
 		begin
 
     @buffers[:string] ||= []
@@ -2026,7 +2266,7 @@ begin
     @buffers[:string] ||= []
     yield @buffers[:string]
   		end
-	when 14 then
+	when 16 then
 		begin
 
     unless @buffers[:ident].is_a?(::AST::Node)
@@ -2042,9 +2282,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -2052,7 +2294,7 @@ begin
     @buffers[:list] ||= list()
     yield @buffers[:list]
   		end
-	when 6 then
+	when 9 then
 		begin
 
     @buffers[:string] ||= []
@@ -2066,9 +2308,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin
@@ -2102,9 +2346,11 @@ begin
 		begin
 
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   		end
 		begin

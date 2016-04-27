@@ -25,9 +25,11 @@
 
   action append_list {
     # Append list argument if its value is not empty.
-    list_arg_value = @buffers[:list_arg].children[0].children[0]
-    if list_arg_value != ''
-      @buffers[:list] <<= @buffers[:list_arg]
+    if @buffers[:list_arg]
+      list_arg_value = @buffers[:list_arg].children[0].children[0]
+      if list_arg_value != ''
+        @buffers[:list] <<= @buffers[:list_arg]
+      end
     end
   }
 
@@ -60,7 +62,7 @@
     (
       STRING %string $err(error_list_string) |
       IDENT  %ident  $err(error_list_ident)
-    ) $err(append_list) %append_list
+    )? $err(append_list) %append_list
     SP*
     (
       ',' @clear
