@@ -15,6 +15,10 @@ describe 'when parsing comment lines' do
     expect(output).to be_a(ast::CommentLine)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(false)
+    expect(output.children?).to be(true)
+    expect(output).to eq(
+      s(:comment_line, '')
+    )
   end
 
   it 'is complete for single character input #' do
@@ -22,6 +26,10 @@ describe 'when parsing comment lines' do
     expect(output).to be_a(ast::CommentLine)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
+    expect(output.children?).to be(true)
+    expect(output).to eq(
+      s(:comment_line, '')
+    )
   end
 
   it 'is complete with leading spaces' do
@@ -29,6 +37,10 @@ describe 'when parsing comment lines' do
     expect(output).to be_a(ast::CommentLine)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
+    expect(output.children?).to be(true)
+    expect(output).to eq(
+      s(:comment_line, '')
+    )
   end
 
   it 'is complete with typical input' do
@@ -36,5 +48,9 @@ describe 'when parsing comment lines' do
     expect(output).to be_a(ast::CommentLine)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
+    expect(output.children?).to be(true)
+    expect(output).to eq(
+      s(:comment_line, 'Blah blah.')
+    )
   end
 end

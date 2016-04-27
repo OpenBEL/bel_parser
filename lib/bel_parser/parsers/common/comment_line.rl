@@ -20,7 +20,10 @@
     yield comment_line(utf8_string(cl), complete: completed)
   }
 
-  comment = SP* NUMBER_SIGN (any - NL)* >comment_line_start $comment_line_more;
+  comment_start = SP* NUMBER_SIGN SP*;
+  comment = comment_start (any - NL)*
+            >comment_line_start
+            $comment_line_more;
   main := comment? NL? @comment_line_yield;
 }%%
 =end

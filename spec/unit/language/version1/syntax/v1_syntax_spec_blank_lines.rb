@@ -15,6 +15,7 @@ describe 'when parsing blank lines' do
     expect(output).to be_a(ast::BlankLine)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
+    expect(output.children?).to be(false)
   end
 
   it 'is complete for \'\n\'' do
@@ -22,5 +23,6 @@ describe 'when parsing blank lines' do
     expect(output).to be_a(ast::BlankLine)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
+    expect(output.children?).to be(false)
   end
 end

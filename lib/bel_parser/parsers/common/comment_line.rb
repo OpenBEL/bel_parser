@@ -45,7 +45,7 @@ class << self
 end
 self._bel_trans_keys = [
 	0, 0, 9, 35, 9, 35, 
-	10, 10, 10, 10, 0, 
+	9, 32, 10, 10, 0, 
 	0, 0
 ]
 
@@ -54,7 +54,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 27, 27, 1, 1, 0
+	0, 27, 27, 24, 1, 0
 ]
 
 class << self
@@ -62,7 +62,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 28, 56, 58, 60
+	0, 0, 28, 56, 81, 83
 ]
 
 class << self
@@ -77,7 +77,10 @@ self._bel_indicies = [
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 0, 1, 1, 2, 1, 
-	5, 4, 3, 6, 1, 0
+	5, 6, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 5, 
+	4, 3, 7, 1, 0
 ]
 
 class << self
@@ -85,7 +88,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	1, 0, 3, 5, 4, 5, 4
+	1, 0, 3, 5, 4, 3, 5, 4
 ]
 
 class << self
@@ -93,7 +96,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 1, 3, 4, 5
+	0, 0, 0, 1, 3, 3, 4, 5
 ]
 
 class << self
