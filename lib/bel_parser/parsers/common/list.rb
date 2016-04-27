@@ -222,9 +222,9 @@ self._bel_trans_actions = [
 	3, 4, 3, 5, 6, 5, 7, 0, 
 	7, 7, 0, 0, 0, 9, 10, 11, 
 	11, 12, 11, 5, 14, 0, 16, 17, 
-	18, 19, 16, 21, 22, 23, 12, 25, 
-	0, 3, 27, 26, 3, 28, 0, 5, 
-	30
+	18, 19, 16, 21, 22, 23, 12, 26, 
+	0, 3, 28, 29, 3, 30, 0, 5, 
+	32
 ]
 
 class << self
@@ -244,7 +244,7 @@ end
 self._bel_eof_actions = [
 	0, 2, 2, 2, 8, 2, 2, 2, 
 	0, 13, 13, 15, 20, 0, 0, 24, 
-	0, 0, 26, 0, 29
+	25, 25, 27, 25, 31
 ]
 
 class << self
@@ -321,7 +321,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 26 then
+	when 29 then
 		begin
 
     @incomplete[:string] = []
@@ -434,7 +434,7 @@ begin
     end
     @buffers[:list] <<= list_item(ast_node, complete: true)
   		end
-	when 25 then
+	when 26 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -474,7 +474,7 @@ begin
     #$stderr.puts "list_yield"
     yield @buffers[:list]
   		end
-	when 28 then
+	when 30 then
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -490,7 +490,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 30 then
+	when 32 then
 		begin
 
     @closed = true
@@ -563,7 +563,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 27 then
+	when 28 then
 		begin
 
     @incomplete[:string] = []
@@ -638,16 +638,15 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 26 then
+	when 25 then
 		begin
 
-    @incomplete[:string] = []
-    @opened = true
-  		end
-	when 29 then
-		begin
-
-    @closed = true
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	when 8 then
 		begin
@@ -665,6 +664,35 @@ begin
       $stderr.puts "incomplete list - why?"
     else
       #$stderr.puts "complete list"
+    end
+  		end
+	when 27 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 31 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
     end
   		end
 	when 20 then
@@ -971,9 +999,9 @@ self._bel_trans_actions = [
 	3, 4, 3, 5, 6, 5, 7, 0, 
 	7, 7, 0, 0, 0, 9, 10, 11, 
 	11, 12, 11, 5, 14, 0, 16, 17, 
-	18, 19, 16, 21, 22, 23, 12, 25, 
-	0, 3, 27, 26, 3, 28, 0, 5, 
-	30
+	18, 19, 16, 21, 22, 23, 12, 26, 
+	0, 3, 28, 29, 3, 30, 0, 5, 
+	32
 ]
 
 class << self
@@ -993,7 +1021,7 @@ end
 self._bel_eof_actions = [
 	0, 2, 2, 2, 8, 2, 2, 2, 
 	0, 13, 13, 15, 20, 0, 0, 24, 
-	0, 0, 26, 0, 29
+	25, 25, 27, 25, 31
 ]
 
 class << self
@@ -1070,7 +1098,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 26 then
+	when 29 then
 		begin
 
     @incomplete[:string] = []
@@ -1183,7 +1211,7 @@ begin
     end
     @buffers[:list] <<= list_item(ast_node, complete: true)
   		end
-	when 25 then
+	when 26 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -1223,7 +1251,7 @@ begin
     #$stderr.puts "list_yield"
     yield @buffers[:list]
   		end
-	when 28 then
+	when 30 then
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -1239,7 +1267,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 30 then
+	when 32 then
 		begin
 
     @closed = true
@@ -1312,7 +1340,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 27 then
+	when 28 then
 		begin
 
     @incomplete[:string] = []
@@ -1387,16 +1415,15 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 26 then
+	when 25 then
 		begin
 
-    @incomplete[:string] = []
-    @opened = true
-  		end
-	when 29 then
-		begin
-
-    @closed = true
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	when 8 then
 		begin
@@ -1414,6 +1441,35 @@ begin
       $stderr.puts "incomplete list - why?"
     else
       #$stderr.puts "complete list"
+    end
+  		end
+	when 27 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 31 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
     end
   		end
 	when 20 then
@@ -1757,9 +1813,9 @@ self._bel_trans_actions = [
 	3, 4, 3, 5, 6, 5, 7, 0, 
 	7, 7, 0, 0, 0, 9, 10, 11, 
 	11, 12, 11, 5, 14, 0, 16, 17, 
-	18, 19, 16, 21, 22, 23, 12, 25, 
-	0, 3, 27, 26, 3, 28, 0, 5, 
-	30
+	18, 19, 16, 21, 22, 23, 12, 26, 
+	0, 3, 28, 29, 3, 30, 0, 5, 
+	32
 ]
 
 class << self
@@ -1779,7 +1835,7 @@ end
 self._bel_eof_actions = [
 	0, 2, 2, 2, 8, 2, 2, 2, 
 	0, 13, 13, 15, 20, 0, 0, 24, 
-	0, 0, 26, 0, 29
+	25, 25, 27, 25, 31
 ]
 
 class << self
@@ -1872,7 +1928,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 26 then
+	when 29 then
 		begin
 
     @incomplete[:string] = []
@@ -1985,7 +2041,7 @@ begin
     end
     @buffers[:list] <<= list_item(ast_node, complete: true)
   		end
-	when 25 then
+	when 26 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -2025,7 +2081,7 @@ begin
     #$stderr.puts "list_yield"
     yield @buffers[:list]
   		end
-	when 28 then
+	when 30 then
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -2041,7 +2097,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 30 then
+	when 32 then
 		begin
 
     @closed = true
@@ -2114,7 +2170,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 27 then
+	when 28 then
 		begin
 
     @incomplete[:string] = []
@@ -2189,16 +2245,15 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 26 then
+	when 25 then
 		begin
 
-    @incomplete[:string] = []
-    @opened = true
-  		end
-	when 29 then
-		begin
-
-    @closed = true
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	when 8 then
 		begin
@@ -2216,6 +2271,35 @@ begin
       $stderr.puts "incomplete list - why?"
     else
       #$stderr.puts "complete list"
+    end
+  		end
+	when 27 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 31 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
     end
   		end
 	when 20 then

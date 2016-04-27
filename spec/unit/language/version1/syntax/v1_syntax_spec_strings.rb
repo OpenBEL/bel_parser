@@ -3,6 +3,9 @@ require 'bel_parser/parsers/ast/node'
 require 'bel_parser/parsers/common'
 require 'bel_parser/parsers/expression'
 require 'bel_parser/parsers/bel_script'
+require 'bel_parser/parsers/bel_script'
+require 'bel_parser/language/quoting'
+include BELParser::Quoting
 
 ast = BELParser::Parsers::AST
 parsers = BELParser::Parsers
@@ -15,36 +18,60 @@ describe 'when parsing strings' do
     expect(output).to be_a(ast::String)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(false)
+    expect(output.children?).to be(true)
+    expect(output.first_child).to be_a(String)
+    expect(output).to eq(
+      s(:string, '')
+    )
   end
 
-  it 'is incomplete for \'"\'' do
-    output = parse_ast(parser, '"')
+  it 'is incomplete for \'"f\'' do
+    output = parse_ast(parser, '"f')
     expect(output).to be_a(ast::String)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(false)
+    expect(output.children?).to be(true)
+    expect(output).to eq(
+      s(:string, "f\n")
+    )
   end
-
-  teststr = random_string
-  nestedstr = '"abc\"def\"ghe"'
 
   it 'is complete for quoted empty strings ""' do
     output = parse_ast(parser, '""')
     expect(output).to be_a(ast::String)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
+    expect(output.children?).to be(true)
+    expect(output).to eq(
+      s(:string, '')
+    )
   end
 
-  it "is complete for quoted strings #{teststr}" do
-    output = parse_ast(parser, teststr)
-    expect(output).to be_a(ast::String)
-    expect(output).to respond_to(:complete)
-    expect(output.complete).to be(true)
+  context 'when given random strings' do
+    teststr = random_string
+    it "is complete for quoted strings #{teststr}" do
+      output = parse_ast(parser, teststr)
+      expect(output).to be_a(ast::String)
+      expect(output).to respond_to(:complete)
+      expect(output.complete).to be(true)
+      expect(output.children?).to be(true)
+      expect(output).to eq(
+        s(:string, unquote(teststr))
+      )
+    end
   end
 
-  it "is complete for quoted strings #{nestedstr}" do
-    output = parse_ast(parser, nestedstr)
-    expect(output).to be_a(ast::String)
-    expect(output).to respond_to(:complete)
-    expect(output.complete).to be(true)
+  context 'when given random nested strings' do
+    nestedstr = '"abc\"#{random_string}\"ghe"'
+    it "is complete for quoted strings #{nestedstr}" do
+      output = parse_ast(parser, nestedstr)
+      expect(output).to be_a(ast::String)
+      expect(output).to respond_to(:complete)
+      expect(output.complete).to be(true)
+      expect(output.children?).to be(true)
+      expect(output).to eq(
+        s(:string, unquote(nestedstr))
+      )
+    end
   end
 end

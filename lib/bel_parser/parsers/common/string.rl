@@ -29,6 +29,15 @@
     yield @buffers[:string]
   }
 
+  action eof_string {
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  }
+
   NOT_DQ_ESC = [^"\\];
   start_string = DQ %string_start;
   more_string = ( NOT_DQ_ESC | ESCAPED )* $string_more;
@@ -36,7 +45,11 @@
   str_string = start_string more_string end_string @string_end;
   str_ast := (start_string? |
               start_string more_string |
-              start_string more_string end_string) NL? @string_end @string_yield;
+              start_string more_string end_string)
+              NL?
+              @string_end
+              @string_yield
+              $eof(eof_string);
 }%%
 =end
 # end: ragel

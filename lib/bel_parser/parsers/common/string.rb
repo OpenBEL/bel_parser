@@ -111,8 +111,8 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 2, 0, 0, 4, 5, 3, 4, 
-	6, 0, 1, 8
+	1, 3, 0, 0, 5, 6, 7, 5, 
+	8, 0, 1, 10
 ]
 
 class << self
@@ -120,7 +120,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 0, 0, 0, 3, 0, 7
+	0, 0, 2, 2, 4, 2, 9
 ]
 
 class << self
@@ -200,7 +200,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 3 then
+	when 7 then
 		begin
 
     @incomplete[:string] = []
@@ -211,7 +211,7 @@ begin
 
     @incomplete[:string] << data[p].ord
   		end
-	when 4 then
+	when 5 then
 		begin
 
     @incomplete[:string] = []
@@ -221,23 +221,7 @@ begin
 
     @incomplete[:string] << data[p].ord
   		end
-	when 2 then
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    yield @buffers[:string]
-  		end
-	when 6 then
-		begin
-
-    @incomplete[:string] << data[p].ord
-  		end
+	when 3 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -250,6 +234,22 @@ begin
     yield @buffers[:string]
   		end
 	when 8 then
+		begin
+
+    @incomplete[:string] << data[p].ord
+  		end
+		begin
+
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 10 then
 		begin
 
     @closed = true
@@ -265,7 +265,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 5 then
+	when 6 then
 		begin
 
     @incomplete[:string] = []
@@ -303,16 +303,44 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 3 then
+	when 2 then
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 4 then
 		begin
 
     @incomplete[:string] = []
     @opened = true
   		end
-	when 7 then
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 9 then
 		begin
 
     @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	  end
 	end
