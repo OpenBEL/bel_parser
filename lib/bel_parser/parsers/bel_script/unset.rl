@@ -6,25 +6,92 @@
   include 'common.rl';
   include 'identifier.rl';
 
-  UNSET  = [uU][nN][sS][eE][tT];
+  action start_unset_keyword {
+    #$stderr.puts 'start_unset_keyword'
+    @incomplete[:unset_keyword] = []
+  }
+
+  action accum_unset_keyword {
+    #$stderr.puts 'accum_unset_keyword "' + fc.chr + '"'
+    @incomplete[:unset_keyword] << fc
+  }
+
+  action end_unset_keyword {
+    #$stderr.puts 'end_unset_keyword'
+  }
+
+  action eof_unset_keyword {
+    #$stderr.puts 'eof_unset_keyword'
+  }
+
+  action unset_keyword_finish {
+    #$stderr.puts 'unset_keyword_finish'
+  }
+
+  action unset_keyword_end {
+    #$stderr.puts 'unset_keyword_end'
+  }
+
+  action eof_unset {
+    #$stderr.puts 'eof_unset'
+  }
 
   action unset_keyword {
     @buffers[:unset] = unset()
   }
 
-  action name  {
-    @buffers[:unset] = @buffers[:unset] << name(@buffers[:ident])
+  action accum_unset_ident {
+    #$stderr.puts "accum_unset_ident"
+  }
+
+  action unset_end {
+    #$stderr.puts "unset_end"
+    unless @buffers.key?(:ident)
+      @buffers[:ident] = identifier(nil, complete: false)
+    end
+    name = @buffers.delete(:ident)
+
+    keyword = ord_to_str(@incomplete.delete(:unset_keyword))
+    unless keyword == 'UNSET'
+      keyword_complete = false
+    else
+      keyword_complete = true
+    end
+
+    completed = keyword_complete && name.complete
+    ast_node = unset(name, complete: completed)
+    @buffers[:unset] = ast_node
+    yield @buffers[:unset]
   }
 
   action yield_set {
     yield @buffers[:unset]
   }
 
-  unset :=
-    UNSET %unset_keyword
-    SP+
-    id_ident %name
-    NL @yield_set;
+  UNSET  =
+    [uU]
+    [nN]?
+    [sS]?
+    [eE]?
+    [tT]?
+    ;
+
+  unset =
+    UNSET
+    >start_unset_keyword
+    $accum_unset_keyword
+    %end_unset_keyword
+    $eof(eof_unset_keyword)
+    <>eof{ $stderr.puts "foo" }
+    ;
+
+  unset_ast :=
+    (unset SP+ id_ident |
+     unset SP*)
+    NL?
+    $unset_end
+    $eof(eof_unset)
+    ;
 }%%
 =end
 # end: ragel
