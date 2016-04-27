@@ -823,6 +823,9 @@ module BELParser
         # Get/Set the value's encoding.
         attr_accessor :encoding
 
+        # Get/Set the value's namespace.
+        attr_accessor :namespace
+
         # Get/Set the value from the purported namespace.
         attr_accessor :namespace_value
       end

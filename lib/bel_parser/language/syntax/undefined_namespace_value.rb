@@ -12,6 +12,7 @@ module BELParser
 
         def self.map(value_node, spec, namespaces)
           return nil unless value_node.is_a?(BELParser::Parsers::AST::Value)
+          return nil unless value_node.namespace
 
           unless value_node.namespace_value
             value = value_node.children[0].string_literal

@@ -51,6 +51,7 @@ module BELParser
       end
 
       def on_parameter(parameter_node)
+        @resolved_dataset = nil
         process(parameter_node.prefix)
         process(parameter_node.value)
       end
@@ -71,8 +72,9 @@ module BELParser
 
       def on_value(value_node)
         return value_node unless @resolved_dataset
-        identifier    = @resolved_dataset.identifier
-        value_literal = unquote(value_node.children[0].string_literal)
+        value_node.namespace = @resolved_dataset
+        identifier           = @resolved_dataset.identifier
+        value_literal        = unquote(value_node.children[0].string_literal)
 
         value =
           @resource_reader
