@@ -7,45 +7,54 @@
   include 'string.rl';
 
   action list_start {
+    #$stderr.puts 'list_start'
     @opened = true
     @buffers[:list] = list()
   }
 
   action list_finish {
+    #$stderr.puts 'list_finish'
     @closed = true
   }
 
   action list_end {
+    #$stderr.puts "list_end"
     completed = @opened && @closed
-    ast_node = list(complete: completed)
-    @buffers[:list] = ast_node
-  }
-
-  action list_eof {
+    unless completed
+      @buffers[:list] = list(complete: false)
+    else
+      @buffers[:list].complete = completed
+    end
   }
 
   action list_yield {
+    #$stderr.puts "list_yield"
     yield @buffers[:list]
   }
 
   action clear {
+    #$stderr.puts "clear"
     @buffers.delete(:string)
     @buffers.delete(:ident)
   }
 
   action string {
+    #$stderr.puts "string"
     @buffers[:list_arg] = list_item(@buffers[:string])
   }
 
   action ident {
+    #$stderr.puts "ident"
     @buffers[:list_arg] = list_item(@buffers[:ident])
   }
 
   action start_list {
+    #$stderr.puts "start_list"
     @buffers[:list] = list()
   }
 
   action append_list {
+    #$stderr.puts "append_list"
     # Append list argument if its value is not empty.
     if @buffers[:list_arg]
       list_arg_value = @buffers[:list_arg].children[0].children[0]
@@ -56,44 +65,59 @@
   }
 
   action finish_list {
+    #$stderr.puts "finish_list"
     #TODO: Mark @buffers[:list] as complete.
   }
 
   action error_list_string {
+    #$stderr.puts "error_list_string"
     #TODO: Mark @buffers[:list_arg] string as error.
     @buffers[:list_arg] = list_item(@buffers[:string])
   }
 
   action error_list_ident {
+    #$stderr.puts "error_list_ident"
     #TODO: Mark @buffers[:list_arg] identifier as error.
     @buffers[:list_arg] = list_item(@buffers[:ident])
   }
 
   action yield_complete_list {
+    #$stderr.puts "yield_complete_list"
+    #TODO: Mark @buffers[:list_arg] identifier as error.
     yield @buffers[:list]
   }
 
   action yield_error_list {
+    #$stderr.puts "yield_error_list"
     @buffers[:list] ||= list()
     yield @buffers[:list]
   }
 
   action start_list_arg {
+    #$stderr.puts "start_list_arg"
     @incomplete[:list_arg] = []
   }
 
   action accum_list_arg {
+    #$stderr.puts "accum_list_arg"
     @incomplete[:list_arg] << fc
   }
 
   action end_list_arg {
+    #$stderr.puts "end_list_arg"
+    # finished list arg
     @incomplete.delete(:list_arg)
-    #$stderr.puts 'ident? ' + @buffers.key?(:ident).to_s
-    #$stderr.puts 'string? ' + @buffers.key?(:string).to_s
+    if @buffers.key?(:string)
+      ast_node = @buffers.delete(:string)
+    else
+      ast_node = @buffers.delete(:ident)
+    end
+    @buffers[:list] <<= list_item(ast_node, complete: true)
   }
 
   action eof_list_arg {
     # unfinished list arg
+    $stderr.puts 'eof_list_arg'
     arg = @incomplete.delete(:list_arg)
     if @incomplete.key?(:string)
       ast_node = string(utf8_string(arg), complete: false)
@@ -106,14 +130,19 @@
   }
 
   action eof_members {
+    #$stderr.puts 'eof_members'
     # unfinished members
-    $stderr.puts "incomplete members"
-    $stderr.puts @buffers[:string]
+    #$stderr.puts "incomplete members"
+    #$stderr.puts @buffers[:string]
   }
 
   action eof_list {
-    # unfinished list
-    $stderr.puts "incomplete list"
+    #$stderr.puts 'eof_list'
+    unless @closed
+      $stderr.puts "incomplete list - why?"
+    else
+      #$stderr.puts "complete list"
+    end
   }
 
   start_list = '{' SP* %list_start;
