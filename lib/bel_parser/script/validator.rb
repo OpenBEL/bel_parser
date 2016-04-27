@@ -47,7 +47,7 @@ module BELParser
 
             syntax_results =
               ast_node.traverse.flat_map do |node|
-                @syntax_functions.map do |func|
+                @syntax_functions.flat_map do |func|
                   func.map(node, @script_context)
                 end
               end.compact

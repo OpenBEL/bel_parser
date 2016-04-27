@@ -804,7 +804,7 @@ module BELParser
 
         # Get what is being unset.
         def name
-          # TODO: access children for content
+          children[0]
         end
       end
 

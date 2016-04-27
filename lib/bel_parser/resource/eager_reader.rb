@@ -34,7 +34,7 @@ module BELParser
           return cached_concept if cached_concept
         end
         
-        EMPTY_ARRAY
+        nil
       end
 
       def retrieve_values_from_resource(resource_identifier)
@@ -52,17 +52,17 @@ module BELParser
         if lock.try_lock
           Thread.new do
             value_hash = {
-              :name       => Hash.new { |hash, key| hash[key] = [] },
-              :identifier => Hash.new { |hash, key| hash[key] = [] },
-              :title      => Hash.new { |hash, key| hash[key] = [] },
-              :synonyms   => Hash.new { |hash, key| hash[key] = [] }
+              :name       => {},
+              :identifier => {},
+              :title      => {},
+              :synonyms   => {}
             }
             retrieve_values_from_resource(identifier).each do |concept|
-              value_hash[:name][concept.name] << concept
-              value_hash[:identifier][concept.identifier] << concept
-              value_hash[:title][concept.title] << concept
+              value_hash[:name][concept.name]             = concept
+              value_hash[:identifier][concept.identifier] = concept
+              value_hash[:title][concept.title]           = concept
               concept.synonyms.each do |synonym|
-                value_hash[:synonyms][synonym] << concept
+                value_hash[:synonyms][synonym] = concept
               end
             end
             resources[identifier] = value_hash

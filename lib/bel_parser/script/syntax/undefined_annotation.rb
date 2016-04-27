@@ -11,22 +11,21 @@ module BELParser
       class UndefinedAnnotation
         extend BELParser::Language::Syntax::SyntaxFunction
 
-        TARGET_NODE = BELParser::Parsers::AST::Set
+        TARGET_NODE       = BELParser::Parsers::AST::Set
+        IMPLICIT_KEYWORDS = ['Citation', 'Evidence', 'STATEMENT_GROUP']
 
         def self.map(ast_node, script_context)
           return nil unless ast_node.is_a?(TARGET_NODE)
-          prefix = ast_node.name.identifier.string_literal
+          name_string = ast_node.name.identifier.string_literal
           annotation_definitions =
             script_context[:annotation_definitions] ||= Concurrent::Hash.new
 
-          if annotation_definitions.key?(prefix)
-            nil
-          else
-            UndefinedAnnotationError.new(
-              ast_node,
-              prefix,
-              script_context[:annotation_definitions])
-          end
+          return nil if IMPLICIT_KEYWORDS.include?(name_string)
+          return nil if annotation_definitions.key?(name_string)
+          UndefinedAnnotationError.new(
+            ast_node,
+            name_string,
+            script_context[:annotation_definitions])
         end
       end
 
