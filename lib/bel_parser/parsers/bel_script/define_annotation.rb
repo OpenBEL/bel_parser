@@ -618,9 +618,9 @@ self._bel_trans_actions = [
 	11, 29, 30, 11, 9, 10, 9, 11, 
 	12, 11, 33, 33, 33, 0, 0, 0, 
 	35, 36, 37, 37, 4, 37, 38, 2, 
-	4, 40, 0, 9, 42, 41, 9, 43, 
-	0, 11, 45, 47, 0, 49, 50, 51, 
-	52, 49, 54
+	4, 41, 0, 9, 43, 44, 9, 45, 
+	0, 11, 47, 49, 0, 51, 52, 53, 
+	54, 51, 56
 ]
 
 class << self
@@ -653,8 +653,8 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 32, 32, 32, 34, 
-	32, 32, 32, 0, 0, 0, 39, 0, 
-	0, 41, 0, 44, 46, 46, 48, 53
+	32, 32, 32, 0, 0, 0, 39, 40, 
+	40, 42, 40, 46, 48, 48, 50, 55
 ]
 
 class << self
@@ -735,7 +735,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 41 then
+	when 44 then
 		begin
 
     @incomplete[:string] = []
@@ -754,7 +754,7 @@ begin
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   		end
-	when 49 then
+	when 51 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -937,7 +937,7 @@ begin
                                          domain.children[0] << @buffers[:string])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 40 then
+	when 41 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -949,7 +949,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 51 then
+	when 53 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -961,7 +961,7 @@ begin
     #$stderr.puts "start_list_arg"
     @incomplete[:list_arg] = []
   		end
-	when 47 then
+	when 49 then
 		begin
 
     #$stderr.puts "list_end"
@@ -1049,7 +1049,7 @@ begin
       end
     end
   		end
-	when 43 then
+	when 45 then
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -1065,7 +1065,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 45 then
+	when 47 then
 		begin
 
     @closed = true
@@ -1134,7 +1134,7 @@ begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 50 then
+	when 52 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -1156,7 +1156,7 @@ begin
     #$stderr.puts "list_yield"
     yield @buffers[:list]
   		end
-	when 54 then
+	when 56 then
 		begin
 
     #$stderr.puts 'list_finish'
@@ -1274,7 +1274,7 @@ begin
     #$stderr.puts "finish_list"
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 42 then
+	when 43 then
 		begin
 
     @incomplete[:string] = []
@@ -1348,7 +1348,7 @@ begin
     #$stderr.puts "finish_list"
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 52 then
+	when 54 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -1402,16 +1402,15 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 41 then
+	when 40 then
 		begin
 
-    @incomplete[:string] = []
-    @opened = true
-  		end
-	when 44 then
-		begin
-
-    @closed = true
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	when 34 then
 		begin
@@ -1421,7 +1420,7 @@ begin
     #$stderr.puts "incomplete members"
     #$stderr.puts @buffers[:string]
   		end
-	when 46 then
+	when 48 then
 		begin
 
     #$stderr.puts 'eof_list'
@@ -1431,7 +1430,36 @@ begin
       #$stderr.puts "complete list"
     end
   		end
-	when 53 then
+	when 42 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 46 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 55 then
 		begin
 
     #$stderr.puts 'list_finish'
@@ -1528,7 +1556,7 @@ begin
       end
     end
   		end
-	when 48 then
+	when 50 then
 		begin
 
     # unfinished list arg
@@ -2191,9 +2219,9 @@ self._bel_trans_actions = [
 	11, 29, 30, 11, 9, 10, 9, 11, 
 	12, 11, 33, 33, 33, 0, 0, 0, 
 	35, 36, 37, 37, 4, 37, 38, 2, 
-	4, 40, 0, 9, 42, 41, 9, 43, 
-	0, 11, 45, 47, 0, 49, 50, 51, 
-	52, 49, 54
+	4, 41, 0, 9, 43, 44, 9, 45, 
+	0, 11, 47, 49, 0, 51, 52, 53, 
+	54, 51, 56
 ]
 
 class << self
@@ -2226,8 +2254,8 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 32, 32, 32, 34, 
-	32, 32, 32, 0, 0, 0, 39, 0, 
-	0, 41, 0, 44, 46, 46, 48, 53
+	32, 32, 32, 0, 0, 0, 39, 40, 
+	40, 42, 40, 46, 48, 48, 50, 55
 ]
 
 class << self
@@ -2308,7 +2336,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 41 then
+	when 44 then
 		begin
 
     @incomplete[:string] = []
@@ -2327,7 +2355,7 @@ begin
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   		end
-	when 49 then
+	when 51 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -2510,7 +2538,7 @@ begin
                                          domain.children[0] << @buffers[:string])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 40 then
+	when 41 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -2522,7 +2550,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 51 then
+	when 53 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -2534,7 +2562,7 @@ begin
     #$stderr.puts "start_list_arg"
     @incomplete[:list_arg] = []
   		end
-	when 47 then
+	when 49 then
 		begin
 
     #$stderr.puts "list_end"
@@ -2622,7 +2650,7 @@ begin
       end
     end
   		end
-	when 43 then
+	when 45 then
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -2638,7 +2666,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 45 then
+	when 47 then
 		begin
 
     @closed = true
@@ -2707,7 +2735,7 @@ begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 50 then
+	when 52 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -2729,7 +2757,7 @@ begin
     #$stderr.puts "list_yield"
     yield @buffers[:list]
   		end
-	when 54 then
+	when 56 then
 		begin
 
     #$stderr.puts 'list_finish'
@@ -2847,7 +2875,7 @@ begin
     #$stderr.puts "finish_list"
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 42 then
+	when 43 then
 		begin
 
     @incomplete[:string] = []
@@ -2921,7 +2949,7 @@ begin
     #$stderr.puts "finish_list"
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 52 then
+	when 54 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -2975,16 +3003,15 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 41 then
+	when 40 then
 		begin
 
-    @incomplete[:string] = []
-    @opened = true
-  		end
-	when 44 then
-		begin
-
-    @closed = true
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	when 34 then
 		begin
@@ -2994,7 +3021,7 @@ begin
     #$stderr.puts "incomplete members"
     #$stderr.puts @buffers[:string]
   		end
-	when 46 then
+	when 48 then
 		begin
 
     #$stderr.puts 'eof_list'
@@ -3004,7 +3031,36 @@ begin
       #$stderr.puts "complete list"
     end
   		end
-	when 53 then
+	when 42 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 46 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 55 then
 		begin
 
     #$stderr.puts 'list_finish'
@@ -3101,7 +3157,7 @@ begin
       end
     end
   		end
-	when 48 then
+	when 50 then
 		begin
 
     # unfinished list arg
@@ -3764,9 +3820,9 @@ self._bel_trans_actions = [
 	11, 29, 30, 11, 9, 10, 9, 11, 
 	12, 11, 33, 33, 33, 0, 0, 0, 
 	35, 36, 37, 37, 4, 37, 38, 2, 
-	4, 40, 0, 9, 42, 41, 9, 43, 
-	0, 11, 45, 47, 0, 49, 50, 51, 
-	52, 49, 54
+	4, 41, 0, 9, 43, 44, 9, 45, 
+	0, 11, 47, 49, 0, 51, 52, 53, 
+	54, 51, 56
 ]
 
 class << self
@@ -3799,8 +3855,8 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 32, 32, 32, 34, 
-	32, 32, 32, 0, 0, 0, 39, 0, 
-	0, 41, 0, 44, 46, 46, 48, 53
+	32, 32, 32, 0, 0, 0, 39, 40, 
+	40, 42, 40, 46, 48, 48, 50, 55
 ]
 
 class << self
@@ -3881,7 +3937,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 41 then
+	when 44 then
 		begin
 
     @incomplete[:string] = []
@@ -3900,7 +3956,7 @@ begin
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   		end
-	when 49 then
+	when 51 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -4083,7 +4139,7 @@ begin
                                          domain.children[0] << @buffers[:string])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 40 then
+	when 41 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -4095,7 +4151,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 51 then
+	when 53 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -4107,7 +4163,7 @@ begin
     #$stderr.puts "start_list_arg"
     @incomplete[:list_arg] = []
   		end
-	when 47 then
+	when 49 then
 		begin
 
     #$stderr.puts "list_end"
@@ -4195,7 +4251,7 @@ begin
       end
     end
   		end
-	when 43 then
+	when 45 then
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -4211,7 +4267,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 45 then
+	when 47 then
 		begin
 
     @closed = true
@@ -4280,7 +4336,7 @@ begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 50 then
+	when 52 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -4302,7 +4358,7 @@ begin
     #$stderr.puts "list_yield"
     yield @buffers[:list]
   		end
-	when 54 then
+	when 56 then
 		begin
 
     #$stderr.puts 'list_finish'
@@ -4420,7 +4476,7 @@ begin
     #$stderr.puts "finish_list"
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 42 then
+	when 43 then
 		begin
 
     @incomplete[:string] = []
@@ -4494,7 +4550,7 @@ begin
     #$stderr.puts "finish_list"
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 52 then
+	when 54 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -4548,16 +4604,15 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 41 then
+	when 40 then
 		begin
 
-    @incomplete[:string] = []
-    @opened = true
-  		end
-	when 44 then
-		begin
-
-    @closed = true
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	when 34 then
 		begin
@@ -4567,7 +4622,7 @@ begin
     #$stderr.puts "incomplete members"
     #$stderr.puts @buffers[:string]
   		end
-	when 46 then
+	when 48 then
 		begin
 
     #$stderr.puts 'eof_list'
@@ -4577,7 +4632,36 @@ begin
       #$stderr.puts "complete list"
     end
   		end
-	when 53 then
+	when 42 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 46 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 55 then
 		begin
 
     #$stderr.puts 'list_finish'
@@ -4674,7 +4758,7 @@ begin
       end
     end
   		end
-	when 48 then
+	when 50 then
 		begin
 
     # unfinished list arg
@@ -5374,9 +5458,9 @@ self._bel_trans_actions = [
 	11, 29, 30, 11, 9, 10, 9, 11, 
 	12, 11, 33, 33, 33, 0, 0, 0, 
 	35, 36, 37, 37, 4, 37, 38, 2, 
-	4, 40, 0, 9, 42, 41, 9, 43, 
-	0, 11, 45, 47, 0, 49, 50, 51, 
-	52, 49, 54
+	4, 41, 0, 9, 43, 44, 9, 45, 
+	0, 11, 47, 49, 0, 51, 52, 53, 
+	54, 51, 56
 ]
 
 class << self
@@ -5409,8 +5493,8 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 32, 32, 32, 34, 
-	32, 32, 32, 0, 0, 0, 39, 0, 
-	0, 41, 0, 44, 46, 46, 48, 53
+	32, 32, 32, 0, 0, 0, 39, 40, 
+	40, 42, 40, 46, 48, 48, 50, 55
 ]
 
 class << self
@@ -5505,7 +5589,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 41 then
+	when 44 then
 		begin
 
     @incomplete[:string] = []
@@ -5524,7 +5608,7 @@ begin
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   		end
-	when 49 then
+	when 51 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -5707,7 +5791,7 @@ begin
                                          domain.children[0] << @buffers[:string])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 40 then
+	when 41 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -5719,7 +5803,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 51 then
+	when 53 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -5731,7 +5815,7 @@ begin
     #$stderr.puts "start_list_arg"
     @incomplete[:list_arg] = []
   		end
-	when 47 then
+	when 49 then
 		begin
 
     #$stderr.puts "list_end"
@@ -5819,7 +5903,7 @@ begin
       end
     end
   		end
-	when 43 then
+	when 45 then
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -5835,7 +5919,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 45 then
+	when 47 then
 		begin
 
     @closed = true
@@ -5904,7 +5988,7 @@ begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 50 then
+	when 52 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -5926,7 +6010,7 @@ begin
     #$stderr.puts "list_yield"
     yield @buffers[:list]
   		end
-	when 54 then
+	when 56 then
 		begin
 
     #$stderr.puts 'list_finish'
@@ -6044,7 +6128,7 @@ begin
     #$stderr.puts "finish_list"
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 42 then
+	when 43 then
 		begin
 
     @incomplete[:string] = []
@@ -6118,7 +6202,7 @@ begin
     #$stderr.puts "finish_list"
     #TODO: Mark @buffers[:list] as complete.
   		end
-	when 52 then
+	when 54 then
 		begin
 
     #$stderr.puts 'list_start'
@@ -6172,16 +6256,15 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 41 then
+	when 40 then
 		begin
 
-    @incomplete[:string] = []
-    @opened = true
-  		end
-	when 44 then
-		begin
-
-    @closed = true
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	when 34 then
 		begin
@@ -6191,7 +6274,7 @@ begin
     #$stderr.puts "incomplete members"
     #$stderr.puts @buffers[:string]
   		end
-	when 46 then
+	when 48 then
 		begin
 
     #$stderr.puts 'eof_list'
@@ -6201,7 +6284,36 @@ begin
       #$stderr.puts "complete list"
     end
   		end
-	when 53 then
+	when 42 then
+		begin
+
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 46 then
+		begin
+
+    @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 55 then
 		begin
 
     #$stderr.puts 'list_finish'
@@ -6298,7 +6410,7 @@ begin
       end
     end
   		end
-	when 48 then
+	when 50 then
 		begin
 
     # unfinished list arg

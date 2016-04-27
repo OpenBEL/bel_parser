@@ -189,8 +189,8 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 1, 1, 2, 3, 2, 
 	4, 5, 4, 6, 7, 8, 8, 9, 
-	4, 10, 1, 8, 12, 0, 2, 14, 
-	13, 2, 15, 0, 4, 17
+	4, 10, 1, 8, 13, 0, 2, 15, 
+	16, 2, 17, 0, 4, 19
 ]
 
 class << self
@@ -199,8 +199,8 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 11, 0, 0, 
-	13, 0, 16
+	0, 0, 0, 0, 0, 11, 12, 12, 
+	14, 12, 18
 ]
 
 class << self
@@ -277,7 +277,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 13 then
+	when 16 then
 		begin
 
     @incomplete[:string] = []
@@ -352,7 +352,7 @@ begin
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   		end
-	when 12 then
+	when 13 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -381,7 +381,7 @@ begin
 
     yield @buffers[:parameter]
   		end
-	when 15 then
+	when 17 then
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -397,7 +397,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 17 then
+	when 19 then
 		begin
 
     @closed = true
@@ -427,7 +427,7 @@ begin
 
     yield @buffers[:parameter]
   		end
-	when 14 then
+	when 15 then
 		begin
 
     @incomplete[:string] = []
@@ -473,16 +473,44 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 13 then
+	when 12 then
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 14 then
 		begin
 
     @incomplete[:string] = []
     @opened = true
   		end
-	when 16 then
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 18 then
 		begin
 
     @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	  end
 	end
@@ -681,8 +709,8 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 1, 1, 2, 3, 2, 
 	4, 5, 4, 6, 7, 8, 8, 9, 
-	4, 10, 1, 8, 12, 0, 2, 14, 
-	13, 2, 15, 0, 4, 17
+	4, 10, 1, 8, 13, 0, 2, 15, 
+	16, 2, 17, 0, 4, 19
 ]
 
 class << self
@@ -691,8 +719,8 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 11, 0, 0, 
-	13, 0, 16
+	0, 0, 0, 0, 0, 11, 12, 12, 
+	14, 12, 18
 ]
 
 class << self
@@ -769,7 +797,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 13 then
+	when 16 then
 		begin
 
     @incomplete[:string] = []
@@ -844,7 +872,7 @@ begin
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   		end
-	when 12 then
+	when 13 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -873,7 +901,7 @@ begin
 
     yield @buffers[:parameter]
   		end
-	when 15 then
+	when 17 then
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -889,7 +917,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 17 then
+	when 19 then
 		begin
 
     @closed = true
@@ -919,7 +947,7 @@ begin
 
     yield @buffers[:parameter]
   		end
-	when 14 then
+	when 15 then
 		begin
 
     @incomplete[:string] = []
@@ -965,16 +993,44 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 13 then
+	when 12 then
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 14 then
 		begin
 
     @incomplete[:string] = []
     @opened = true
   		end
-	when 16 then
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 18 then
 		begin
 
     @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	  end
 	end
@@ -1210,8 +1266,8 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 1, 1, 2, 3, 2, 
 	4, 5, 4, 6, 7, 8, 8, 9, 
-	4, 10, 1, 8, 12, 0, 2, 14, 
-	13, 2, 15, 0, 4, 17
+	4, 10, 1, 8, 13, 0, 2, 15, 
+	16, 2, 17, 0, 4, 19
 ]
 
 class << self
@@ -1220,8 +1276,8 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 11, 0, 0, 
-	13, 0, 16
+	0, 0, 0, 0, 0, 11, 12, 12, 
+	14, 12, 18
 ]
 
 class << self
@@ -1312,7 +1368,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 13 then
+	when 16 then
 		begin
 
     @incomplete[:string] = []
@@ -1387,7 +1443,7 @@ begin
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   		end
-	when 12 then
+	when 13 then
 		begin
 
     string = @incomplete.delete(:string) || []
@@ -1416,7 +1472,7 @@ begin
 
     yield @buffers[:parameter]
   		end
-	when 15 then
+	when 17 then
 		begin
 
     @incomplete[:string] << data[p].ord
@@ -1432,7 +1488,7 @@ begin
 
     yield @buffers[:string]
   		end
-	when 17 then
+	when 19 then
 		begin
 
     @closed = true
@@ -1462,7 +1518,7 @@ begin
 
     yield @buffers[:parameter]
   		end
-	when 14 then
+	when 15 then
 		begin
 
     @incomplete[:string] = []
@@ -1508,16 +1564,44 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 13 then
+	when 12 then
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 14 then
 		begin
 
     @incomplete[:string] = []
     @opened = true
   		end
-	when 16 then
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
+  		end
+	when 18 then
 		begin
 
     @closed = true
+  		end
+		begin
+
+    $stderr.puts 'eof_string'
+    unless @closed
+      $stderr.puts "incomplete string - why?"
+    else
+      $stderr.puts "complete string"
+    end
   		end
 	  end
 	end
