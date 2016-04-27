@@ -148,20 +148,51 @@ module BELParser
           updated(@children + [element])
         end
 
+        # Get the child at the specified _index_.
+        #
+        # @param [Fixnum] index the index to get
+        # @return [Node, nil] the child of this node at the indicated index
+        #         or nil if not present
+        def child(index)
+          @children[index]
+        end
+
+        # Get the child at index 0.
+        # @see #child
         def first_child
-          @children[0]
+          child 0
         end
 
+        # Get the child at index 1.
+        # @see #child
         def second_child
-          @children[1]
+          child 1
         end
 
+        # Get the child at index 2.
+        # @see #child
         def third_child
-          @children[2]
+          child 2
         end
 
+        # Get the child at index 3.
+        # @see #child
         def fourth_child
-          @children[3]
+          child 3
+        end
+
+        # Get the number of children.
+        #
+        # @return [Fixnum] the number of children
+        def num_children
+          @children.size
+        end
+
+        # Get whether this node has children.
+        #
+        # @return [true, false]
+        def children?
+          !@children.empty?
         end
 
         alias << append

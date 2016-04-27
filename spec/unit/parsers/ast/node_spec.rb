@@ -33,6 +33,10 @@ describe BELParser::Parsers::AST::Node do
     it 'have children' do
       node = cls.new('test_type')
       expect(node).to respond_to(:children)
+      expect(node).to respond_to(:children?)
+      expect(node.children?).to be(false)
+      expect(node.child(0)).to be_nil
+      expect(node.first_child).to be_nil
     end
 
     it 'have children that are arrays' do
@@ -42,14 +46,15 @@ describe BELParser::Parsers::AST::Node do
 
     it 'have no children by default' do
       node = cls.new('test_type')
-      expect(node.children.size).to eq(0)
+      expect(node.children?).to be(false)
       expect(node.children).to eq([])
     end
 
     it 'can have a child' do
       child = cls.new('child')
       parent = cls.new('parent', [child])
-      expect(parent.children.length).to eq(1)
+      expect(parent.children?).to be(true)
+      expect(parent.num_children).to eq(1)
       expect(parent.children[0]).to eq(child)
       expect(parent.first_child).to eq(child)
     end
@@ -58,7 +63,8 @@ describe BELParser::Parsers::AST::Node do
       child1 = cls.new('child1')
       child2 = cls.new('child2')
       parent = cls.new('parent', [child1, child2])
-      expect(parent.children.length).to eq(2)
+      expect(parent.children?).to be(true)
+      expect(parent.num_children).to eq(2)
       expect(parent.children).to eq([child1, child2])
     end
 
