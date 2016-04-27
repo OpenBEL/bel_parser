@@ -30,8 +30,8 @@ module BELParser
         :comment_line
       )
 
-      def initialize
-        @script_context = Concurrent::Hash.new
+      def initialize(options = {})
+        @script_context = Concurrent::Hash.new.merge(options)
 
         Validator.require_script_path
         @state_functions  = Validator.state_constants(State)
@@ -92,7 +92,16 @@ module BELParser
 end
 
 if __FILE__ == $PROGRAM_NAME
-  BELParser::Script::Validator.new.each($stdin) do |(line_number, line, ast, syntax_results, state)|
+  $LOAD_PATH.unshift(
+    File.join(File.expand_path(File.dirname(__FILE__)), '..', '..'))
+  require 'bel_parser/resource/resource_file_reader'
+  initial_state = {
+    resource_reader: BELParser::Resource::ResourceFileReader.new
+  }
+
+  BELParser::Script::Validator
+  .new(initial_state)
+  .each($stdin) do |(line_number, line, ast, syntax_results, state)|
     puts "#{line_number}: #{line}"
     puts ast.to_s(1)
     unless syntax_results.empty?

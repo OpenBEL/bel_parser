@@ -36,15 +36,24 @@ module BELParser
             begin
               Net::HTTP.start(uri.host, uri.port) do |http|
                 http.request(Net::HTTP::Get.new(uri)) do |response|
+
                   if block_given?
-                    response.read_body do |chunk|
-                      cached_file.write(chunk)
-                      yield StringIO.new(chunk)
+                    if response.is_a?(Net::HTTPOK)
+                      response.read_body do |chunk|
+                        cached_file.write(chunk)
+                        yield StringIO.new(chunk)
+                      end
+                    else
+                      yield nil
                     end
                   else
-                    content = response.read_body
-                    cached_file.write(content)
-                    return StringIO.new(content)
+                    if response.is_a?(Net::HTTPOK)
+                      content = response.read_body
+                      cached_file.write(content)
+                      return StringIO.new(content)
+                    else
+                      return nil
+                    end
                   end
                 end
               end

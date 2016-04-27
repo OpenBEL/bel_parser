@@ -74,6 +74,7 @@ module BELParser
 
       def read_resource(url)
         io = @http_cache.get(url)
+        return nil unless io
 
         type, name, keyword, domain = nil
         io.each_line do |line|

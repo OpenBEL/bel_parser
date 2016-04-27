@@ -60,6 +60,7 @@ module BELParser
       end
 
       def hash_to_concept_scheme(resource_identifier, hash)
+        return nil if hash[:types].value.empty?
         ConceptScheme.new(resource_identifier, 
           *hash.values_at(:domain, :prefix, :prefLabel, :types))
       end
