@@ -117,7 +117,7 @@
 
   action eof_list_arg {
     # unfinished list arg
-    $stderr.puts 'eof_list_arg'
+    #$stderr.puts 'eof_list_arg'
     arg = @incomplete.delete(:list_arg)
     if @incomplete.key?(:string)
       ast_node = string(utf8_string(arg), complete: false)
