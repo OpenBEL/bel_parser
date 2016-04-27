@@ -46,13 +46,17 @@ module BELParser
             ast_node                       = ast_results.first
 
             syntax_results =
-              @syntax_functions.map do |func|
-                func.map(ast_node, @script_context)
+              ast_node.traverse.flat_map do |node|
+                @syntax_functions.map do |func|
+                  func.map(node, @script_context)
+                end
               end.compact
 
             if syntax_results.empty?
-              @state_functions.each do |func|
-                func.consume(ast_node, @script_context)
+              ast_node.traverse.each do |node|
+                @state_functions.each do |func|
+                  func.consume(node, @script_context)
+                end
               end
             end
 

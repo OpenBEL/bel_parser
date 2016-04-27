@@ -20,7 +20,7 @@ module BELParser
           keyword, domain = ast_node.children
           if domain.url?
             prefix  = keyword.identifier.string_literal
-            url     = unquote(domain.url.string.string_literal)
+            url     = unquote(domain.child.string.string_literal)
             dataset = resource_reader.retrieve_resource(url)
             script_context[:namespace_definitions] ||= Concurrent::Hash.new
             script_context[:namespace_definitions][prefix] = dataset

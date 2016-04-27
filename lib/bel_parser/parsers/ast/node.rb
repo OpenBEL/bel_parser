@@ -209,6 +209,16 @@ module BELParser
         def initialize(children = [], properties = {})
           super(AnnotationDefinition.ast_type, children, properties)
         end
+
+        # Get the annotation definition's keyword.
+        def keyword
+          children[0]
+        end
+
+        # Get the annotation definition's domain.
+        def domain
+          children[1]
+        end
       end
 
       # AST node representing the function of a BEL term.
@@ -296,14 +306,24 @@ module BELParser
           super(Domain.ast_type, children, properties)
         end
 
+        # Determine if this is a LIST domain.
+        def list?
+          children[0] && children[0].is_a?(List)
+        end
+
+        # Determine if this is a PATTERN domain.
+        def pattern?
+          children[0] && children[0].is_a?(Pattern)
+        end
+
         # Determine if this is a URL domain.
         def url?
           children[0] && children[0].is_a?(Url)
         end
 
         # Get the domain's Url.
-        def url
-          url? ? children[0] : nil
+        def child
+          children[0]
         end
       end
 
@@ -379,6 +399,10 @@ module BELParser
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
           super(List.ast_type, children, properties)
+        end
+
+        def list_items
+          children
         end
       end
 
