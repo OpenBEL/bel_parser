@@ -1,29 +1,3 @@
-* Semantics
-
-- [x] (Generic) Semantic warning if function or relationship is marked as deprecated.
-- [x] (Generic) Semantic warning if nested statement depth is greater than 1.
-- [x] (Generic) Semantic warning if a *list* is used as a subject.
-- [x] (Generic) Semantic warning if a nested statement does not use a *Causal* relationship.
-- [x] (Generic) Semantic warning if a *list* is not an object of the listable relationship category (*hasComponents*, *hasMembers*).
-- [x] (Generic) Semantic warning if a listable/multiple relationship uses the subject term as an object list() term argument.
-- [x] (Generic) Semantic warning if amino acid does not match controlled vocabulary.
-- [x] (Generic) Semantic warning if a modification position is not a positive integer.
-
-- [x] (1.0) Semantic warning if covalent modification does not match controlled vocabulary.
-
-* [x] Design interface for resolving resource URIs / URLs.
-* [x] Design interface for retrieving encoding for namespace and value.
-* [x] Assign *namespace* property to *prefix*.
-* [x] Assign *encoding* property to *value*.
-* [x] Update semantic AST to match *namespace* and *encoding*.
-
-- [x] Change Semantic Signature Mapping to result in Warning/Success *for each* function signature.
-- [x] (2.0) Semantic warning if parameter does not encode a covalent modification (Uses Namespace encoding).
-  => Need to create a Modification resource file.
-- [x] (Generic) Syntax warning if *value* does not exist in *namespace*.
-
-=====
-
 OpenBEL API
 - Validation
   - BEL 2 only
@@ -47,21 +21,8 @@ BEL Nanopub JSON (BNJ, pronounced "binge") / JGF
 (/William)
 
 Punchlist
-- [x] Amino acid range semantics
-- [x] Associate signatures to functions.
-- [x] Implement semantic API for terms.
 - Report semantic success/failure for BEL Expression parser.
 - Error messages for version1 and version2 semantics.
-
-- Enumerate all synax and semantic checks.
-  - How can all of these be implemented quickly with AST reuse?
-  - Syntax check outlined previously (phone capture).
-
-- Add namespace and encoding properties to expression ASTs.
-  - Add bel.rb as dependency.
-  - Provide AST processor that decorates prefix.identifier nodes with "namespace".
-  - Provide AST processor that decorates value.identifier|string nodes with "encoding".
-  - use RDF Repository plugin and Resource API
 
 =====
 
