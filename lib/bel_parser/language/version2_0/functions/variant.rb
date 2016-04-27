@@ -53,10 +53,7 @@ module BELParser
                   argument(
                     parameter(
                       prefix(any),
-                      value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:HgvsVariantDescription))))))
+                      value(any))))
               end
               private_constant :AST
 

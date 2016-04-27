@@ -14,6 +14,7 @@ module BELParser
           SHORT       = :bp
           LONG        = :biologicalProcess
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::BiologicalProcess
+          B_ENC       = Version1_0::ValueEncodings::BiologicalProcess
           DESCRIPTION = 'Denotes a process or population of events'.freeze
 
           def self.short
@@ -51,13 +52,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:BiologicalProcess))))))
+                        has_encoding,
+                        encoding_of(B_ENC)))))
               end
               private_constant :AST
 

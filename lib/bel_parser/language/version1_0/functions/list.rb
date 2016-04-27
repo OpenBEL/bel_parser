@@ -14,6 +14,7 @@ module BELParser
           SHORT       = :list
           LONG        = :list
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::List
+          A_ENC       = Version1_0::ValueEncodings::Abundance
           DESCRIPTION = 'Groups a list of terms together'.freeze
 
           def self.short
@@ -51,13 +52,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:Abundance))))))
+                        has_encoding,
+                        encoding_of(A_ENC)))))
               end
               private_constant :AST
 

@@ -15,6 +15,9 @@ module BELParser
           SHORT       = :fus
           LONG        = :fusion
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::Fusion
+          G_ENC       = Version1_0::ValueEncodings::GeneAbundance
+          P_ENC       = Version1_0::ValueEncodings::ProteinAbundance
+          R_ENC       = Version1_0::ValueEncodings::RNAAbundance
           DESCRIPTION = 'Specifies the abundance of a protein translated
           rom the fusion of a gene'.freeze
 
@@ -53,27 +56,21 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:GeneAbundance))))),
+                        has_encoding,
+                        encoding_of(G_ENC)))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          is_sequence_position)))),
+                        is_sequence_position))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          is_sequence_position)))))
+                        is_sequence_position))))
               end
               private_constant :AST
 
@@ -103,13 +100,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:GeneAbundance))))))
+                        has_encoding,
+                        encoding_of(G_ENC)))))
               end
               private_constant :AST
 
@@ -139,27 +134,21 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:ProteinAbundance))))),
+                        has_encoding,
+                        encoding_of(P_ENC)))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          is_sequence_position)))),
+                        is_sequence_position))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          is_sequence_position)))))
+                        is_sequence_position))))
               end
               private_constant :AST
 
@@ -189,13 +178,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:ProteinAbundance))))))
+                        has_encoding,
+                        encoding_of(P_ENC)))))
               end
               private_constant :AST
 
@@ -225,27 +212,21 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:RnaAbundance))))),
+                        has_encoding,
+                        encoding_of(R_ENC)))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          is_sequence_position)))),
+                        is_sequence_position))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          is_sequence_position)))))
+                        is_sequence_position))))
               end
               private_constant :AST
 
@@ -275,13 +256,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:RnaAbundance))))))
+                        has_encoding,
+                        encoding_of(R_ENC)))))
               end
               private_constant :AST
 

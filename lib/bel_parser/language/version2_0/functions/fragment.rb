@@ -54,8 +54,7 @@ module BELParser
                     parameter(
                       prefix(any),
                       value(
-                        value_type(
-                          is_amino_acid_range_pattern)))))
+                        is_amino_acid_range_pattern))))
               end
               private_constant :AST
 
@@ -86,15 +85,11 @@ module BELParser
                     parameter(
                       prefix(any),
                       value(
-                        value_type(
-                          is_amino_acid_range_pattern)))),
+                        is_amino_acid_range_pattern))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
-                      value(
-                        value_type(
-                          encoding_of(:*))))))
+                      prefix(any),
+                      value(any))))
               end
               private_constant :AST
 

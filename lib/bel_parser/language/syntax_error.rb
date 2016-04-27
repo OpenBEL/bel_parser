@@ -15,6 +15,14 @@ module BELParser
           raise NotImplementedError, "#{__method__} is not implemented."
         end
 
+        def success?
+          false
+        end
+
+        def failure?
+          true
+        end
+
         def to_s
           "Error: #{msg}"
         end

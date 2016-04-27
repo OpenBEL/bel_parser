@@ -11,17 +11,44 @@ unless ARGV.first
 end
 namespaces = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
 
+def syntax_results(results)
+  results.select do |res|
+    res.is_a? BELParser::Language::Syntax::SyntaxResult
+  end
+end
+
+def semantics_results(results)
+  results.select do |res|
+    res.is_a? BELParser::Language::Semantics::SemanticsResult
+  end
+end
+
 require 'bel_parser'
 require 'bel_parser/expression/validator'
+require 'bel_parser/resource/resource_file_reader'
+
+resource_reader = BELParser::Resource::ResourceFileReader.new
 BELParser::Expression::Validator
-  .new(ARGV.first, namespaces)
-  .each($stdin) do |(line_number, line, ast, messages)|
+  .new(ARGV.first, namespaces, resource_reader)
+  .each($stdin) do |(line_number, line, ast, results)|
     puts "#{line_number}: #{line}"
     puts "  AST Type: #{ast.type}"
-    puts messages
-      .map { |r| "#{r}\n" }
-      .join
-      .each_line
-      .map { |l| "  #{l}" }
-      .join
+
+    puts "  Syntax results:"
+    syntax_results(results).each do |res|
+      puts "    #{res}"
+    end
+
+    puts "  Semantics results:"
+    semantics_results(results).each do |res|
+      if res.is_a?(BELParser::Language::Semantics::SignatureMappingSuccess)
+        puts "    Matched signature: #{res.signature.string_form}"
+      end
+      if res.is_a?(BELParser::Language::Semantics::SignatureMappingWarning)
+        puts "    Failed signature: #{res.signature.string_form}"
+        res.results.select(&:failure?).each do |warning|
+          puts "      #{warning}"
+        end
+      end
+    end
   end

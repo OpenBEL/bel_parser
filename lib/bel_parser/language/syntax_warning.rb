@@ -6,11 +6,16 @@ module BELParser
       # SyntaxWarning defines a {SyntaxResult} that should be regarded as an
       # warning with the expression.
       class SyntaxWarning < SyntaxResult
-        attr_reader :target_node
-
-        def initialize(expression_node, specification, target_node)
+        def initialize(expression_node, specification)
           super(expression_node, specification)
-          @target_node = target_node
+        end
+
+        def success?
+          false
+        end
+
+        def failure?
+          true
         end
 
         def to_s

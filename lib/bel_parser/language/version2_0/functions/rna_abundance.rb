@@ -14,6 +14,7 @@ module BELParser
           SHORT       = :r
           LONG        = :rnaAbundance
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::GeneAbundance
+          R_ENC       = Version2_0::ValueEncodings::RNAAbundance
           DESCRIPTION = 'Denotes the abundance of a gene'.freeze
 
           def self.short
@@ -51,13 +52,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:RnaAbundance))))))
+                        has_encoding,
+                        encoding_of(R_ENC)))))
               end
               private_constant :AST
 
@@ -118,13 +117,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:RnaAbundance))))),
+                        has_encoding,
+                        encoding_of(R_ENC)))),
                   argument(
                     term(
                       function(
@@ -159,13 +156,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:RnaAbundance))))),
+                        has_encoding,
+                        encoding_of(R_ENC)))),
                   argument(
                     term(
                       function(

@@ -1,7 +1,8 @@
 module BELParser
   module Language
     module Semantics
-      # SemanticsResult represents the result of running a {SemanticsFunction}.
+      # SemanticsResult represents the successful outcome of applying a
+      # {SemanticsFunction}.
       class SemanticsResult
         attr_reader :expression_node, :specification
 
@@ -10,9 +11,17 @@ module BELParser
           @specification   = specification
         end
 
+        def success?
+          true
+        end
+
+        def failure?
+          false
+        end
+
         # @abstract Subclass and override {#msg} to provide the message.
         def msg
-          raise NotImplementedError, "#{__method__} is not implemented."
+          "Successful semantic validation of #{@expression_node.type}."
         end
 
         def to_s

@@ -14,6 +14,7 @@ module BELParser
           SHORT       = :p
           LONG        = :proteinAbundance
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::ProteinAbundance
+          P_ENC       = Version2_0::ValueEncodings::ProteinAbundance
           DESCRIPTION = 'Denotes the abundance of a protein'.freeze
 
           def self.short
@@ -51,13 +52,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:ProteinAbundance))))))
+                        has_encoding,
+                        encoding_of(P_ENC)))))
               end
               private_constant :AST
 
@@ -87,13 +86,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:ProteinAbundance))))),
+                        has_encoding,
+                        encoding_of(P_ENC)))),
                   argument(
                     term(
                       function(
@@ -159,13 +156,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:ProteinAbundance))))),
+                        has_encoding,
+                        encoding_of(P_ENC)))),
                   argument(
                     term(
                       function(
@@ -200,13 +195,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:ProteinAbundance))))),
+                        has_encoding,
+                        encoding_of(P_ENC)))),
                   variadic_arguments(
                     term(
                       function(
@@ -241,13 +234,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:ProteinAbundance))))),
+                        has_encoding,
+                        encoding_of(P_ENC)))),
                   argument(
                     term(
                       function(

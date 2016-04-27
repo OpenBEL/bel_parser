@@ -15,6 +15,7 @@ module BELParser
           SHORT       = :ma
           LONG        = :molecularActivity
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::MolecularActivity
+          T_ENC       = Version2_0::ValueEncodings::Activity
           DESCRIPTION = 'Denotes the frequency or abundance of events
           n which a member acts as a causal agent at the
           olecular scale'.freeze
@@ -46,7 +47,6 @@ module BELParser
 
               private_class_method :new
 
-              # TODO: More constraints on prefix for activity namespace?
               AST = BELParser::Language::Semantics::Builder.build do
                 term(
                   function(
@@ -54,11 +54,12 @@ module BELParser
                       function_of(MolecularActivity))),
                   argument(
                     parameter(
-                      prefix(any),
+                      prefix(
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:Activity))))))
+                        has_encoding,
+                        encoding_of(T_ENC)))))
               end
               private_constant :AST
 

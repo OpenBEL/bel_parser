@@ -15,6 +15,7 @@ module BELParser
           SHORT       = :m
           LONG        = :microRNAAbundance
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::MicroRNAAbundance
+          M_ENC       = Version1_0::ValueEncodings::MicroRNAAbundance
           DESCRIPTION = 'Denotes the abundance of a processed, functional
           icroRNA'.freeze
 
@@ -53,13 +54,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:MicroRNAAbundance))))))
+                        has_encoding,
+                        encoding_of(M_ENC)))))
               end
               private_constant :AST
 

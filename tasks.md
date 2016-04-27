@@ -9,17 +9,18 @@
 - [x] (Generic) Semantic warning if amino acid does not match controlled vocabulary.
 - [x] (Generic) Semantic warning if a modification position is not a positive integer.
 
-- (1.0) Semantic warning if covalent modification does not match controlled vocabulary.
+- [x] (1.0) Semantic warning if covalent modification does not match controlled vocabulary.
 
-* Design interface for resolving resource URIs / URLs.
-* Design interface for retrieving encoding for namespace and value.
-* Assign *namespace* property to *prefix*.
-* Assign *encoding* property to *value*.
-* Update semantic AST to match *namespace* and *encoding*.
+* [x] Design interface for resolving resource URIs / URLs.
+* [x] Design interface for retrieving encoding for namespace and value.
+* [x] Assign *namespace* property to *prefix*.
+* [x] Assign *encoding* property to *value*.
+* [x] Update semantic AST to match *namespace* and *encoding*.
 
-- (2.0) Semantic warning if parameter does not encode a covalent modification (Uses Namespace encoding).
-
-- (Generic) Syntax warning if *value* does not exist in *namespace*.
+- [x] Change Semantic Signature Mapping to result in Warning/Success *for each* function signature.
+- [x] (2.0) Semantic warning if parameter does not encode a covalent modification (Uses Namespace encoding).
+  => Need to create a Modification resource file.
+- [x] (Generic) Syntax warning if *value* does not exist in *namespace*.
 
 =====
 

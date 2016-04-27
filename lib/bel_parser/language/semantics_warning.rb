@@ -10,6 +10,14 @@ module BELParser
           super(expression_node, specification)
         end
 
+        def success?
+          false
+        end
+
+        def failure?
+          true
+        end
+
         def to_s
           "Warning: #{msg}"
         end

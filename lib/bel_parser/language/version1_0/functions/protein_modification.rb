@@ -55,26 +55,20 @@ module BELParser
                       function_of(ProteinModification))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          covalent_protein_modification_of(
-                            *CovalentProteinModification.values))))),
+                        covalent_protein_modification_of(
+                          *CovalentProteinModification.values)))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          amino_acid_of(*AminoAcid.values))))),
+                        amino_acid_of(*AminoAcid.values)))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          is_sequence_position)))))
+                        is_sequence_position))))
               end
               private_constant :AST
 
@@ -109,19 +103,15 @@ module BELParser
                       function_of(ProteinModification))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          covalent_protein_modification_of(
-                            *CovalentProteinModification.values))))),
+                        covalent_protein_modification_of(
+                          *CovalentProteinModification.values)))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          amino_acid_of(*AminoAcid.values))))))
+                        amino_acid_of(*AminoAcid.values)))))
               end
               private_constant :AST
 
@@ -155,12 +145,10 @@ module BELParser
                       function_of(ProteinModification))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          covalent_protein_modification_of(
-                            *CovalentProteinModification.values))))))
+                        covalent_protein_modification_of(
+                          *CovalentProteinModification.values)))))
               end
               private_constant :AST
 

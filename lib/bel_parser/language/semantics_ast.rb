@@ -1,5 +1,7 @@
+require 'bel_parser/quoting'
 require_relative 'semantics_match'
-require_relative 'quoting'
+require_relative 'semantics_result'
+require_relative 'semantics_ast_warnings'
 require_relative '../parsers/ast/node'
 
 module BELParser
@@ -109,16 +111,12 @@ module BELParser
           SemanticIdentifier.new(value_patterns, **properties)
         end
 
-        def prefix(has_namespace, **properties)
-          SemanticPrefix.new([has_namespace], **properties)
+        def prefix(*prefix_patterns, **properties)
+          SemanticPrefix.new(prefix_patterns, **properties)
         end
 
-        def value(value_type, **properties)
-          SemanticValue.new([value_type], **properties)
-        end
-
-        def value_type(*value_patterns, **properties)
-          SemanticValueType.new(value_patterns, **properties)
+        def value(*value_patterns, **properties)
+          SemanticValue.new(value_patterns, **properties)
         end
 
         def any(**properties)
@@ -199,12 +197,64 @@ module BELParser
           end
         end
 
-        def success(node)
-          [SemanticMatch.new(true, node, self)]
+        def success(node, spec)
+          [SemanticsResult.new(node, spec)]
         end
 
-        def failure(node)
-          [SemanticMatch.new(false, node, self)]
+        def nil_node_warning(node, spec, expected)
+          [SemanticsNilNodeWarning.new(node, spec, expected)]
+        end
+
+        def not_nil_node_warning(node, spec)
+          [SemanticsNotNilNodeWarning.new(node, spec)]
+        end
+
+        def type_warning(node, spec, expected, actual)
+          [SemanticsTypeWarning.new(node, spec, expected, actual)]
+        end
+
+        def argument_length_warning(node, spec, expected, actual)
+          [SemanticsArgumentLengthWarning.new(node, spec, expected, actual)]
+        end
+
+        def missing_namespace_warning(node, spec)
+          [SemanticsMissingNamespaceWarning.new(node, spec)]
+        end
+
+        def invalid_namespace(node, spec, expected)
+          [SemanticsInvalidNamespaceWarning.new(node, spec, expected)]
+        end
+
+        def missing_encoding_warning(node, spec)
+          [SemanticsMissingEncodingWarning.new(node, spec)]
+        end
+
+        def invalid_encoding_warning(node, spec, expected)
+          [SemanticsInvalidEncodingWarning.new(node, spec, expected)]
+        end
+
+        def invalid_function_warning(node, spec, expected)
+          [SemanticsInvalidFunctionWarning.new(node, spec, expected)]
+        end
+
+        def invalid_return_type_warning(node, spec, expected)
+          [SemanticsInvalidReturnTypeWarning.new(node, spec, expected)]
+        end
+
+        def invalid_protein_modification_warning(node, spec, expected)
+          [SemanticsInvalidProteinModificationWarning.new(node, spec, expected)]
+        end
+
+        def invalid_amino_acid_warning(node, spec, expected)
+          [SemanticsInvalidAminoAcidWarning.new(node, spec, expected)]
+        end
+
+        def invalid_amino_acid_range_warning(node, spec)
+          [SemanticsInvalidAminoAcidRangeWarning.new(node, spec)]
+        end
+
+        def invalid_sequence_position_warning(node, spec)
+          [SemanticsInvalidSequencePositionWarning.new(node, spec)]
         end
       end
 
@@ -226,18 +276,29 @@ module BELParser
           children[1..-1]
         end
 
-        def match(parse_node, _)
-          return failure(nil) if parse_node.nil?
-          return failure(parse_node) unless parse_node.type == type
+        def match(parse_node, spec)
+          return nil_node_warning(
+            parse_node,
+            spec,
+            BELParser::Parsers::AST::Term) if parse_node.nil?
+          return type_warning(
+            parse_node,
+            spec,
+            BELParser::Parsers::AST::Term,
+            parse_node) if parse_node.type != type
 
           # Return success if semantic AST does not supply argument patterns.
           if arguments.empty? || variadic_arguments?
-            success(parse_node)
+            success(parse_node, spec)
           # Or, check argument length.
           elsif arguments.length == parse_node.arguments.length
-            success(parse_node)
+            success(parse_node, spec)
           else
-            failure(parse_node)
+            argument_length_warning(
+              parse_node,
+              spec,
+              self,
+              parse_node)
           end
         end
       end
@@ -248,8 +309,21 @@ module BELParser
           super(:statement, children, properties)
         end
 
-        def match(parse_node, _)
-          type == parse_node.type ? success(parse_node) : failure(parse_node)
+        def match(parse_node, spec)
+          return nil_node_warning(
+            parse_node,
+            spec,
+            BELParser::Parsers::AST::Statement) if parse_node.nil?
+
+          if parse_node.type == type
+            success(parse_node, spec)
+          else
+            type_warning(
+              parse_node,
+              spec,
+              BELParser::Parsers::AST::Statement,
+              parse_node)
+          end
         end
       end
 
@@ -259,8 +333,21 @@ module BELParser
           super(:parameter, children, properties)
         end
 
-        def match(parse_node, _)
-          type == parse_node.type ? success(parse_node) : failure(parse_node)
+        def match(parse_node, spec)
+          return nil_node_warning(
+            parse_node,
+            spec,
+            BELParser::Parsers::AST::Parameter) if parse_node.nil?
+
+          if parse_node.type == type
+            success(parse_node, spec)
+          else
+            type_warning(
+              parse_node,
+              spec,
+              BELParser::Parsers::AST::Parameter,
+              parse_node)
+          end
         end
       end
 
@@ -270,8 +357,21 @@ module BELParser
           super(:function, children, properties)
         end
 
-        def match(parse_node, _)
-          type == parse_node.type ? success(parse_node) : failure(parse_node)
+        def match(parse_node, spec)
+          return nil_node_warning(
+            parse_node,
+            spec,
+            BELParser::Parsers::AST::Function) if parse_node.nil?
+
+          if parse_node.type == type
+            success(parse_node, spec)
+          else
+            type_warning(
+              parse_node,
+              spec,
+              BELParser::Parsers::AST::Function,
+              parse_node)
+          end
         end
       end
 
@@ -281,9 +381,21 @@ module BELParser
           super(:argument, children, properties)
         end
 
-        def match(parse_node, _)
-          return failure(nil) if parse_node.nil?
-          type == parse_node.type ? success(parse_node) : failure(parse_node)
+        def match(parse_node, spec)
+          return nil_node_warning(
+            parse_node,
+            spec,
+            BELParser::Parsers::AST::Argument) if parse_node.nil?
+
+          if parse_node.type == type
+            success(parse_node, spec)
+          else
+            type_warning(
+              parse_node,
+              spec,
+              BELParser::Parsers::AST::Argument,
+              parse_node)
+          end
         end
       end
 
@@ -293,11 +405,20 @@ module BELParser
           super(:variadic_arguments, children, properties)
         end
 
-        def match(parse_node, _)
+        def match(parse_node, spec)
+          return nil_node_warning(
+            parse_node,
+            spec,
+            BELParser::Parsers::AST::Argument) if parse_node.nil?
+
           if parse_node.type == BELParser::Parsers::AST::Argument.ast_type
-            success(parse_node)
+            success(parse_node, spec)
           else
-            failure(parse_node)
+            type_warning(
+              parse_node,
+              spec,
+              BELParser::Parsers::AST::Argument,
+              parse_node)
           end
         end
       end
@@ -308,8 +429,31 @@ module BELParser
           super(:prefix, children, properties)
         end
 
-        def match(parse_node, _)
-          type == parse_node.type ? success(parse_node) : failure(parse_node)
+        def terminal?
+          true
+        end
+
+        def prefix_patterns
+          children
+        end
+
+        def match(parse_node, spec)
+          return nil_node_warning(
+            parse_node,
+            spec,
+            BELParser::Parsers::AST::Prefix) if parse_node.nil?
+
+          if parse_node.type != BELParser::Parsers::AST::Prefix.ast_type
+            return type_warning(
+              parse_node,
+              spec,
+              BELParser::Parsers::AST::Prefix,
+              parse_node)
+          end
+
+          prefix_patterns.map do |pattern|
+            pattern.match(parse_node, spec)
+          end
         end
       end
 
@@ -319,8 +463,31 @@ module BELParser
           super(:value, children, properties)
         end
 
-        def match(parse_node, _)
-          type == parse_node.type ? success(parse_node) : failure(parse_node)
+        def terminal?
+          true
+        end
+
+        def value_patterns
+          children
+        end
+
+        def match(parse_node, spec)
+          return nil_node_warning(
+            parse_node,
+            spec,
+            BELParser::Parsers::AST::Value) if parse_node.nil?
+
+          if parse_node.type != BELParser::Parsers::AST::Value.ast_type
+            return type_warning(
+              parse_node,
+              spec,
+              BELParser::Parsers::AST::Value,
+              parse_node)
+          end
+
+          value_patterns.map do |pattern|
+            pattern.match(parse_node, spec)
+          end
         end
       end
 
@@ -334,8 +501,12 @@ module BELParser
           true
         end
 
-        def match(parse_node, _)
-          parse_node.nil? ? success(parse_node) : failure(nil)
+        def match(parse_node, spec)
+          if parse_node.nil?
+            success(parse_node, spec)
+          else
+            not_nil_node_warning(parse_node, spec)
+          end
         end
       end
 
@@ -354,22 +525,19 @@ module BELParser
         end
 
         def match(identifier, spec)
-          return failure(nil) if identifier.nil?
-          return failure(identifier) if type != identifier.type
+          return nil_node_warning(
+            identifier,
+            spec,
+            BELParser::Parsers::AST::Identifier) if identifier.nil?
 
-          value_results  = match_value_patterns(identifier, spec)
-          failure_result = value_results.flatten.find(&:failure?)
-
-          if failure_result
-            [failure(identifier), failure_result]
-          else
-            value_results.unshift(success(identifier))
+          if identifier.type != BELParser::Parsers::AST::Identifier.ast_type
+            return type_warning(
+              identifier,
+              spec,
+              BELParser::Parsers::AST::Identifier,
+              identifier)
           end
-        end
 
-        private
-
-        def match_value_patterns(identifier, spec)
           value_patterns.map { |pattern| pattern.match(identifier, spec) }
         end
       end
@@ -380,8 +548,8 @@ module BELParser
           super(:any, [], properties)
         end
 
-        def match(parse_node, _)
-          success(parse_node)
+        def match(parse_node, spec)
+          success(parse_node, spec)
         end
       end
 
@@ -391,13 +559,11 @@ module BELParser
           super(:has_namespace, [], properties)
         end
 
-        def match(identifier, _)
-          # FIXME: Implement :namespace property assignment to AST.
-          return success(identifier)
-          if identifier.respond_to?(:namespace)
-            success(identifier)
+        def match(prefix, spec)
+          if prefix.respond_to?(:namespace) && prefix.namespace
+            success(prefix, spec)
           else
-            failure(identifier)
+            missing_namespace_warning(prefix, spec)
           end
         end
       end
@@ -408,18 +574,19 @@ module BELParser
           super(:namespace_of, namespaces, properties)
         end
 
-        def match(identifier, _)
-          # FIXME: Implement :namespace property assignment to AST.
-          return success(identifier)
-          return failure(identifier) unless identifier.respond_to?(:namespace)
-          input_namespace = identifier.namespace
-          return failure(identifier) if input_namespace.nil?
+        def namespaces
+          children
+        end
 
-          namespace_set = children
-          if namespace_set.any? { |i| i == :* || i == input_namespace }
-            success(identifier)
+        def match(prefix_node, spec)
+          unless prefix_node.respond_to?(:namespace) && prefix_node.namespace
+            return invalid_namespace(prefix_node, spec, namespaces)
+          end
+          
+          if namespaces.any? { |i| i == :* || i == input_namespace }
+            success(prefix_node, spec)
           else
-            failure(identifier)
+            invalid_namespace(prefix_node, spec, namespaces)
           end
         end
       end
@@ -430,13 +597,11 @@ module BELParser
           super(:has_encoding, [], properties)
         end
 
-        def match(value_type, _)
-          # FIXME: Implement :encoding property assignment to AST.
-          return success(value_type)
-          if value_type.respond_to?(:encoding)
-            success(value_type)
+        def match(value_node, spec)
+          if value_node.respond_to?(:encoding) && value_node.encoding
+            success(value_node, spec)
           else
-            failure(value_type)
+            missing_encoding_warning(value_node, spec)
           end
         end
       end
@@ -447,21 +612,25 @@ module BELParser
           super(:encoding_of, encodings, properties)
         end
 
-        def match(value_type, _)
-          # FIXME: Implement :encoding property assignment to AST.
-          return success(value_type)
-          encoding_set = children
-          return success(value_type) if encoding_set.include?(:*)
+        def match_encoding
+          children
+        end
 
-          return failure(value_type) unless value_type.respond_to?(:encoding)
+        def match(value_node, spec)
+          unless value_node.respond_to?(:encoding) && value_node.encoding
+            return invalid_encoding_warning(value_node, spec, match_encoding)
+          end
 
-          input_encoding = value_type.encoding
-          return failure(value_type) if input_encoding.nil?
+          input     = value_node.encoding
+          match     = match_encoding
+          enc_match = input.product(match).any? do |(value_enc, match_enc)|
+            value_enc.subtype_of?(match_enc)
+          end
 
-          if encoding_set.include?(input_encoding)
-            success(value_type)
+          if enc_match
+            success(value_node, spec)
           else
-            failure(value_type)
+            invalid_encoding_warning(value_node, spec, match_encoding)
           end
         end
       end
@@ -477,13 +646,13 @@ module BELParser
         end
 
         def match(identifier, spec)
-          return success(identifier) if functions.include?(:*)
+          return success(identifier, spec) if functions.include?(:*)
 
-          function = spec.function(identifier.children[0].to_sym)
+          function = spec.function(identifier.string_literal.to_sym)
           if functions.include?(function)
-            success(identifier)
+            success(identifier, spec)
           else
-            failure(identifier)
+            invalid_function_warning(identifier, spec, functions)
           end
         end
       end
@@ -499,49 +668,13 @@ module BELParser
         end
 
         def match(identifier, spec)
-          return success(identifier) if return_types.include?(:*)
+          return success(identifier, spec) if return_types.include?(:*)
 
-          fx_return = spec.function(identifier.children[0].to_sym).return_type
-          if return_types.any? { |rt| fx_return <= rt }
-            success(identifier)
+          fxret = spec.function(identifier.string_literal.to_sym).return_type
+          if return_types.any? { |rt| fxret <= rt }
+            success(identifier, spec)
           else
-            failure(identifier)
-          end
-        end
-      end
-
-      # AST node for ValueType is a semantic AST.
-      class SemanticValueType < SemanticASTNode
-        TYPES = [
-          BELParser::Parsers::AST::Identifier.ast_type,
-          BELParser::Parsers::AST::String.ast_type
-        ].freeze
-
-        def initialize(children = [], **properties)
-          super(:value_type, children, properties)
-        end
-
-        def terminal?
-          true
-        end
-
-        def value_patterns
-          children
-        end
-
-        def match(value_type, spec)
-          return failure(value_type) unless TYPES.include?(value_type.type)
-
-          value_results = value_patterns.map do |pattern|
-            pattern.match(value_type, spec)
-          end
-
-          failure_result = value_results.flatten.find(&:failure?)
-
-          if failure_result
-            [failure(value_type), failure_result]
-          else
-            value_results.unshift(success(value_type))
+            invalid_return_type_warning(identifier, spec, return_types)
           end
         end
       end
@@ -557,14 +690,17 @@ module BELParser
           children
         end
 
-        def match(value_type, _)
-          string_literal_sym = value_type.children[0].to_sym
-          return success(value_type) if @hashed[:*]
+        def match(value_node, spec)
+          string_literal_sym = value_node.children[0].string_literal.to_sym
+          return success(value_node, spec) if @hashed[:*]
 
           if @hashed.key?(string_literal_sym)
-            success(value_type)
+            success(value_node, spec)
           else
-            failure(value_type)
+            invalid_protein_modification_warning(
+              value_node,
+              spec,
+              @hashed.keys)
           end
         end
       end
@@ -580,14 +716,14 @@ module BELParser
           children
         end
 
-        def match(value_type, _)
-          string_literal_sym = value_type.children[0].to_sym
-          return success(value_type) if @hashed[:*]
+        def match(value_node, spec)
+          string_literal_sym = value_node.children[0].to_sym
+          return success(value_node, spec) if @hashed[:*]
 
           if @hashed.key?(string_literal_sym)
-            success(value_type)
+            success(value_node, spec)
           else
-            failure(value_type)
+            invalid_amino_acid_warning(value_node, spec, @hashed.keys)
           end
         end
       end
@@ -604,13 +740,13 @@ module BELParser
           super(:is_amino_acid_range, [], properties)
         end
 
-        def match(value_type, _)
-          string_literal = unquote(value_type.children[0])
+        def match(value_node, spec)
+          string_literal = unquote(value_node.children[0])
           case string_literal
           when START_STOP, UNDETERMINED, UNKNOWN_START_STOP
-            success(value_type)
+            success(value_node, spec)
           else
-            failure(value_type)
+            invalid_amino_acid_range_warning(value_node, spec)
           end
         end
       end
@@ -623,8 +759,8 @@ module BELParser
           super(:is_sequence_position, [], properties)
         end
 
-        def match(value_type, _)
-          string_literal = unquote(value_type.string_literal)
+        def match(value_node, spec)
+          string_literal = unquote(value_node.string_literal)
           integer_position =
             begin
               Integer(string_literal)
@@ -632,9 +768,9 @@ module BELParser
               nil
             end
           if integer_position && integer_position > 0
-            success(value_type)
+            success(value_node, spec)
           else
-            failure(value_type)
+            invalid_sequence_position_warning(value_node, spec)
           end
         end
       end

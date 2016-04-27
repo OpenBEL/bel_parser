@@ -18,10 +18,10 @@ module BELParser
         :simple_statement,
         :nested_statement)
 
-      def initialize(specification_version, namespaces)
+      def initialize(specification_version, namespaces, resource_reader)
         @spec      = BELParser::Language.specification(specification_version)
         @validator = BELParser::Language::ExpressionValidator.new(
-          @spec, namespaces)
+          @spec, namespaces, resource_reader)
       end
 
       def each(io)
@@ -52,6 +52,7 @@ if __FILE__ == $PROGRAM_NAME
   BELParser::Expression::Validator
     .new(ARGV.first, namespaces)
     .each($stdin) do |(line_number, line, ast, messages)|
+      results.select { |res| res.is_a? BELParser::Language::Syntax::SyntaxError }
       puts "#{line_number}: #{line}"
       puts "  AST Type: #{ast.type}"
       puts messages

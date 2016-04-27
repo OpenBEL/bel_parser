@@ -14,6 +14,7 @@ module BELParser
           SHORT       = :toLoc
           LONG        = :toLocation
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::ToLocation
+          L_ENC       = Version2_0::ValueEncodings::Location
           DESCRIPTION = 'Denotes the to cellular location of the
           bundance.'.freeze
 
@@ -52,13 +53,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:Location))))))
+                        has_encoding,
+                        encoding_of(L_ENC)))))
               end
               private_constant :AST
 

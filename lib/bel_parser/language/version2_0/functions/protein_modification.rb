@@ -15,8 +15,8 @@ module BELParser
 
           SHORT       = :pmod
           LONG        = :proteinModification
-          RETURN_TYPE =
-            BELParser::Language::Version2_0::ReturnTypes::ProteinModification
+          RETURN_TYPE = Version2_0::ReturnTypes::ProteinModification
+          E_ENC       = Version2_0::ValueEncodings::ProteinModification
           DESCRIPTION = 'Denotes a covalently modified protein
           bundance'.freeze
 
@@ -57,9 +57,8 @@ module BELParser
                     parameter(
                       prefix(any),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:ModificationType))))))
+                        has_encoding,
+                        encoding_of(E_ENC)))))
               end
               private_constant :AST
 
@@ -93,15 +92,13 @@ module BELParser
                     parameter(
                       prefix(any),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:ModificationType))))),
+                        has_encoding,
+                        encoding_of(E_ENC)))),
                   argument(
                     parameter(
                       prefix(any),
                       value(
-                        value_type(
-                          amino_acid_of(*AminoAcid.values))))))
+                        amino_acid_of(*AminoAcid.values)))))
               end
               private_constant :AST
 
@@ -135,21 +132,18 @@ module BELParser
                     parameter(
                       prefix(any),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:ModificationType))))),
+                        has_encoding,
+                        encoding_of(E_ENC)))),
                   argument(
                     parameter(
                       prefix(any),
                       value(
-                        value_type(
-                          amino_acid_of(*AminoAcid.values))))),
+                        amino_acid_of(*AminoAcid.values)))),
                   argument(
                     parameter(
                       prefix(any),
                       value(
-                        value_type(
-                          is_sequence_position)))))
+                        is_sequence_position))))
               end
               private_constant :AST
 

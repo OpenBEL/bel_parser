@@ -15,6 +15,7 @@ module BELParser
           SHORT       = :tloc
           LONG        = :translocation
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::Abundance
+          A_ENC       = Version1_0::ValueEncodings::Abundance
           DESCRIPTION = 'Denotes the frequency or abundance of events
           n which members move between locations'.freeze
 
@@ -58,23 +59,19 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:Abundance))))),
+                        has_encoding,
+                        encoding_of(A_ENC)))),
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:Abundance))))))
+                        has_encoding,
+                        encoding_of(A_ENC)))))
               end
               private_constant :AST
 

@@ -10,6 +10,14 @@ module BELParser
           @specification   = specification
         end
 
+        def success?
+          true
+        end
+
+        def failure?
+          false
+        end
+
         # @abstract Subclass and override {#msg} to provide the message.
         def msg
           raise NotImplementedError, "#{__method__} is not implemented."

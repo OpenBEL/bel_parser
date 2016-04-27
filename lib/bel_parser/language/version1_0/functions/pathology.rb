@@ -14,6 +14,7 @@ module BELParser
           SHORT       = :path
           LONG        = :pathology
           RETURN_TYPE = BELParser::Language::Version1_0::ReturnTypes::Pathology
+          O_ENC       = Version1_0::ValueEncodings::Pathology
           DESCRIPTION = 'Denotes a disease or pathology process'.freeze
 
           def self.short
@@ -51,13 +52,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:Pathology))))))
+                        has_encoding,
+                        encoding_of(O_ENC)))))
               end
               private_constant :AST
 

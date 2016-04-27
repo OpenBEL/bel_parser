@@ -52,25 +52,19 @@ module BELParser
                       function_of(Substitution))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          amino_acid_of(*AminoAcid.values))))),
+                        amino_acid_of(*AminoAcid.values)))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          is_sequence_position)))),
+                        is_sequence_position))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          amino_acid_of(*AminoAcid.values))))))
+                        amino_acid_of(*AminoAcid.values)))))
               end
               private_constant :AST
 

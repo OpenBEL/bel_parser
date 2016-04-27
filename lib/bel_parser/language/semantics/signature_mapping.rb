@@ -20,45 +20,41 @@ module BELParser
         def self.map(term_node, spec, _namespaces)
           return nil unless term_node.is_a?(BELParser::Parsers::AST::Term)
 
-          successes, failures = map_signatures(term_node, spec)
-
-          if successes.empty?
-            SignatureMappingWarning.new(term_node, spec, failures)
-          else
-            SignatureMappingSuccess.new(term_node, spec, successes, failures)
-          end
-        end
-
-        def self.map_signatures(term_node, spec)
           function_name = term_node.function.identifier.string_literal
           function      = spec.function(function_name.to_sym)
-          match = BELParser::Language::Semantics.method(:match)
-          function
-            .signatures
-            .map { |sig| [sig, match.call(term_node, sig.semantic_ast, spec)] }
-            .partition { |(_sig, results)| results.all?(&:success?) }
+          mapsig        = method(:map_signature).to_proc.curry[term_node][spec]
+
+          function.signatures.map(&mapsig)
+        end
+
+        def self.map_signature(term_node, spec, signature)
+          results = BELParser::Language::Semantics.match(
+            term_node,
+            signature.semantic_ast,
+            spec)
+          if results.all?(&:success?)
+            SignatureMappingSuccess.new(term_node, spec, signature, results)
+          else
+            SignatureMappingWarning.new(term_node, spec, signature, results)
+          end
         end
       end
 
       # SignatureMappingSuccess defines a {SemanticsResult} that indicates
       # a successful signature match.
       class SignatureMappingSuccess < SemanticsResult
-        attr_reader :success_signatures
-        attr_reader :failure_signatures
+        attr_reader :signature
+        attr_reader :results
 
-        def initialize(term_node, spec, successes, failures)
+        def initialize(term_node, spec, signature, results)
           super(term_node, spec)
-          @success_signatures = successes
-          @failure_signatures = failures
+          @signature = signature
+          @results   = results
         end
 
         def to_s
-          sig_list = success_signatures
-                     .map { |(sig, _results)| sig.string_form }
-                     .join("\n  ")
           <<-MSG.gsub(/ {12}/, '').gsub(/\n$/, '')
-            Term matches function signatures:
-              #{sig_list}
+            Term matched function signature: #{@signature.string_form}
           MSG
         end
       end
@@ -66,20 +62,18 @@ module BELParser
       # SignatureMappingWarning defines a {SemanticsWarning} that indicates
       # an unsuccessful signature match.
       class SignatureMappingWarning < SemanticsWarning
-        attr_reader :failure_signatures
+        attr_reader :signature
+        attr_reader :results
 
-        def initialize(term_node, spec, failure_signatures)
+        def initialize(term_node, spec, signature, results)
           super(term_node, spec)
-          @failure_signatures = failure_signatures
+          @signature = signature
+          @results   = results
         end
 
         def to_s
-          sig_list = failure_signatures
-                     .map { |(sig, _results)| sig.string_form }
-                     .join("\n  ")
           <<-MSG.gsub(/ {12}/, '').gsub(/\n$/, '')
-            Term did not conform to function signatures:
-              #{sig_list}
+            Term did not match function signature: #{@signature.string_form}
           MSG
         end
       end

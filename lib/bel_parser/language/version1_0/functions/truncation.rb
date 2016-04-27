@@ -52,11 +52,9 @@ module BELParser
                       function_of(Truncation))),
                   argument(
                     parameter(
-                      prefix(
-                        any),
+                      prefix(any),
                       value(
-                        value_type(
-                          is_sequence_position)))))
+                        is_sequence_position))))
               end
               private_constant :AST
 

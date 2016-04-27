@@ -428,6 +428,9 @@ module BELParser
       end
 
       # AST node representing a parameter.
+      #
+      # === Special node properties - _namespace_: {#namespace}
+      #
       class Prefix < Node
         # AST node type
         @ast_type = :prefix
@@ -445,6 +448,9 @@ module BELParser
         def identifier
           children[0]
         end
+
+        # Get/Set the namespace property.
+        attr_accessor :namespace
       end
 
       # AST node representing a parameter.
@@ -814,8 +820,11 @@ module BELParser
           super(Value.ast_type, children, properties)
         end
 
-        # Get the value's encoding.
-        attr_reader :encoding
+        # Get/Set the value's encoding.
+        attr_accessor :encoding
+
+        # Get/Set the value from the purported namespace.
+        attr_accessor :namespace_value
       end
 
       # Sexp defines a module that creates {BELParser::Parsers::AST::Node

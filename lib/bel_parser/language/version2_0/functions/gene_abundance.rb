@@ -14,6 +14,7 @@ module BELParser
           SHORT       = :g
           LONG        = :geneAbundance
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::GeneAbundance
+          G_ENC       = Version2_0::ValueEncodings::GeneAbundance
           DESCRIPTION = 'Denotes the abundance of a gene.'.freeze
 
           def self.short
@@ -51,13 +52,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:GeneAbundance))))))
+                        has_encoding,
+                        encoding_of(G_ENC)))))
               end
               private_constant :AST
 
@@ -118,13 +117,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:Abundance))))),
+                        has_encoding,
+                        encoding_of(G_ENC)))),
                   argument(
                     term(
                       function(
@@ -159,13 +156,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:GeneAbundance))))),
+                        has_encoding,
+                        encoding_of(G_ENC)))),
                   argument(
                     term(
                       function(

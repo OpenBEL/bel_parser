@@ -14,6 +14,7 @@ module BELParser
           SHORT       = :complex
           LONG        = :complexAbundance
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::ComplexAbundance
+          C_ENC       = Version2_0::ValueEncodings::ComplexAbundance
           DESCRIPTION = 'Denotes the abundance of a molecular
           omplex.'.freeze
 
@@ -52,13 +53,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:Abundance))))))
+                        has_encoding,
+                        encoding_of(C_ENC)))))
               end
               private_constant :AST
 
@@ -88,13 +87,11 @@ module BELParser
                   argument(
                     parameter(
                       prefix(
-                        identifier(
-                          has_namespace,
-                          namespace_of(:*))),
+                        has_namespace,
+                        namespace_of(:*)),
                       value(
-                        value_type(
-                          has_encoding,
-                          encoding_of(:Abundance))))),
+                        has_encoding,
+                        encoding_of(C_ENC)))),
                   argument(
                     term(
                       function(
