@@ -5,7 +5,7 @@ Parser for BEL expressions and the BEL Script document format.
 ### Installation
 
   gem install bel_parser --pre
-  
+
 ### Getting Started
 
 Two tools are available to try out:
