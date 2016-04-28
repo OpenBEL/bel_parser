@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(
 
 unless ARGV.first
   program = File.basename($PROGRAM_NAME)
-  $stderr.puts <<-USAGE.gsub(/ {6}/, '')
+  $stderr.puts <<-USAGE.gsub(/ {4}/, '')
     usage: #{program} [BEL specification version] [PREFIX=URI]...
   USAGE
   exit 1

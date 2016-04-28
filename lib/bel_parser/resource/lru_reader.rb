@@ -24,10 +24,7 @@ module BELParser
         end
 
         concepts = resources[resource_identifier]
-        concepts.getset(value) {
-          puts "retrieving from RDF..."
-          super
-        }
+        concepts.getset(value) { super }
       end
 
       def retrieve_values_from_resource(resource_identifier)

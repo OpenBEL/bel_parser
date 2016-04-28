@@ -717,7 +717,7 @@ module BELParser
         end
 
         def match(value_node, spec)
-          string_literal_sym = value_node.children[0].to_sym
+          string_literal_sym = value_node.children[0].string_literal.to_sym
           return success(value_node, spec) if @hashed[:*]
 
           if @hashed.key?(string_literal_sym)
@@ -760,7 +760,7 @@ module BELParser
         end
 
         def match(value_node, spec)
-          string_literal = unquote(value_node.string_literal)
+          string_literal = unquote(value_node.children[0].string_literal)
           integer_position =
             begin
               Integer(string_literal)

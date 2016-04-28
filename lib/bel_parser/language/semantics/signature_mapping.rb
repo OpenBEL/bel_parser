@@ -22,8 +22,9 @@ module BELParser
 
           function_name = term_node.function.identifier.string_literal
           function      = spec.function(function_name.to_sym)
-          mapsig        = method(:map_signature).to_proc.curry[term_node][spec]
+          return nil unless function
 
+          mapsig = method(:map_signature).to_proc.curry[term_node][spec]
           function.signatures.map(&mapsig)
         end
 
