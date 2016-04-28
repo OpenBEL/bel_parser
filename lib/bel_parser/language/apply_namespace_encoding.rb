@@ -8,9 +8,9 @@ module BELParser
       include AST::Processor::Mixin
       include BELParser::Quoting
 
-      def initialize(language_spec, identifier_hash, resource_reader)
+      def initialize(language_spec, namespace_hash, resource_reader)
         @language_spec   = language_spec
-        @identifier_hash = identifier_hash
+        @namespace_hash  = namespace_hash
         @resource_reader = resource_reader
       end
 
@@ -61,10 +61,9 @@ module BELParser
         return prefix_node unless prefix_node.identifier
 
         @prefix    = prefix_node.identifier.string_literal
-        identifier = @identifier_hash[@prefix].identifier
-        return prefix_node unless identifier
+        dataset    = @namespace_hash[@prefix]
+        return prefix_node unless dataset
 
-        dataset               = @resource_reader.retrieve_resource(identifier)
         @resolved_dataset     = dataset
         prefix_node.namespace = dataset
 

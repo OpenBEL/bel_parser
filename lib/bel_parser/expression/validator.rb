@@ -48,14 +48,25 @@ if __FILE__ == $PROGRAM_NAME
     USAGE
     exit 1
   end
-  namespaces = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
+
+  require 'bel_parser/resource/resource_file_reader'
+
+  resource_reader = BELParser::Resource::ResourceFileReader.new
+  namespaces      =
+    Hash[
+      ARGV[1..-1]
+      .map do |ns|
+        prefix, identifier = ns.split('=')
+        [prefix, resource_reader.retrieve_resource(identifier)]
+      end
+    ]
   BELParser::Expression::Validator
-    .new(ARGV.first, namespaces)
-    .each($stdin) do |(line_number, line, ast, messages)|
+    .new(ARGV.first, namespaces, resource_reader)
+    .each($stdin) do |(line_number, line, ast, results)|
       results.select { |res| res.is_a? BELParser::Language::Syntax::SyntaxError }
       puts "#{line_number}: #{line}"
       puts "  AST Type: #{ast.type}"
-      puts messages
+      puts results
         .map { |r| "#{r}\n" }
         .join
         .each_line

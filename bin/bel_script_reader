@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift(
+  File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
+
+bel_specification_version, file = ARGV
+
+unless bel_specification_version
+  program = File.basename($PROGRAM_NAME)
+  $stderr.puts <<-USAGE.gsub(/ {4}/, '')
+    usage: #{program} [BEL specification version]
+  USAGE
+  exit 1
+end
+
+io =
+  if file
+    File.open(ARGV.first, external_encoding: 'UTF-8')
+  else
+    $stdin
+  end
+
+require 'bel_parser/language'
+require 'bel_parser/script/validator'
+require 'bel_parser/resource/resource_file_reader'
+
+def select(list, cls)
+  list.select { |item| item.is_a?(cls) }
+end
+
+def report(line_number, ast, errors, warnings)
+  log = !errors.empty? || !warnings.empty?
+  if log
+    puts "On line #{line_number} for #{ast.type}"
+    puts "  Errors:"
+    errors.each do |err|
+      puts "    #{err}"
+    end
+    puts "  Warnings:"
+    warnings.each do |warn|
+      puts "    #{warn}"
+    end
+  end
+end
+
+SYN_ERR  = BELParser::Language::Syntax::SyntaxError
+SYN_WARN = BELParser::Language::Syntax::SyntaxWarning
+SEM_WARN = BELParser::Language::Semantics::SemanticsWarning
+
+initial_state = {
+  resource_reader: BELParser::Resource::ResourceFileReader.new,
+  specification:   BELParser::Language.specification(
+    bel_specification_version
+  )
+}
+
+BELParser::Script::Validator
+.new(initial_state)
+.each(io) do |(line_number, line, ast, syntax_results, state)|
+  errors   = select(syntax_results, SYN_ERR)
+  warnings =
+    select(syntax_results, SYN_WARN) +
+    select(syntax_results, SEM_WARN)
+
+  report(line_number, ast, errors, warnings)
+
+  unless errors.empty?
+    puts "Exiting due to error on line #{line_number}: #{line}"
+    exit 1
+  end
+end
