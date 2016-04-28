@@ -98,9 +98,13 @@ end
 if __FILE__ == $PROGRAM_NAME
   $LOAD_PATH.unshift(
     File.join(File.expand_path(File.dirname(__FILE__)), '..', '..'))
+  require 'bel_parser/language'
   require 'bel_parser/resource/resource_file_reader'
   initial_state = {
-    resource_reader: BELParser::Resource::ResourceFileReader.new
+    resource_reader: BELParser::Resource::ResourceFileReader.new,
+    specification:   BELParser::Language.specification(
+      BELParser::Language.latest_supported_version
+    )
   }
 
   BELParser::Script::Validator
