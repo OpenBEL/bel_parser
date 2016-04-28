@@ -61,7 +61,7 @@ module BELParser
         return prefix_node unless prefix_node.identifier
 
         @prefix    = prefix_node.identifier.string_literal
-        identifier = @identifier_hash[@prefix]
+        identifier = @identifier_hash[@prefix].identifier
         return prefix_node unless identifier
 
         dataset               = @resource_reader.retrieve_resource(identifier)
