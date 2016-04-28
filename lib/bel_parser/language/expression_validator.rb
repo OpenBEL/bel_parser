@@ -25,10 +25,8 @@ module BELParser
       def validate(expression_node)
         @transform.process(expression_node)
         results = syntax(expression_node)
-        if results.empty?
-          results << Syntax::Valid.new(expression_node, @spec)
-          results.concat(semantics(expression_node))
-        end
+        results << Syntax::Valid.new(expression_node, @spec) if results.empty?
+        results.concat(semantics(expression_node))
         results
       end
 
@@ -41,9 +39,29 @@ module BELParser
       end
 
       def semantics(expression_node)
-        expression_node.traverse.flat_map do |node|
-          @semantics_functions.flat_map { |func| func.map(node, @spec, @namespaces) }
-        end.compact
+        semantic_results =
+          expression_node.traverse.flat_map do |node|
+            @semantics_functions.flat_map { |func| func.map(node, @spec, @namespaces) }
+          end.compact
+        sigmap_results, other_results =
+          semantic_results.partition do |result|
+            result.is_a?(Semantics::SignatureMappingSuccess) ||
+              result.is_a?(Semantics::SignatureMappingWarning)
+          end
+        expression_node
+          .traverse
+          .select do |node|
+            node.is_a?(BELParser::Parsers::AST::Term)
+          end
+          .map do |term_node|
+            sigmap_term =
+              sigmap_results
+              .select { |res| res.expression_node == term_node }
+            unless sigmap_term.any?(&:success?)
+              other_results.concat(sigmap_term)
+            end
+          end
+        other_results
       end
     end
   end
