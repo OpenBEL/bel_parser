@@ -2,6 +2,7 @@ require 'bel_parser/language'
 require 'bel_parser/parsers/ast/node'
 require 'bel_parser/quoting'
 require 'concurrent/hash'
+require_relative '../keywords'
 require_relative '../state_function'
 
 module BELParser
@@ -10,16 +11,16 @@ module BELParser
       class BELVersion
         extend StateFunction
         extend BELParser::Quoting
+        extend Keyword
 
         TARGET_NODE         = BELParser::Parsers::AST::DocumentProperty
-        BEL_VERSION_REGEX   = /#{Regexp.escape('bel_version')}/i
         DEFAULT_BEL_VERSION = '2.0'
 
         def self.consume(ast_node, script_context)
           return unless ast_node.is_a?(TARGET_NODE)
           name, value = ast_node.children
           name_string  = name.identifier.string_literal
-          return unless name_string =~ BEL_VERSION_REGEX
+          return unless is_bel_version?(name_string)
 
           value_string = unquote(value.children[0].string_literal)
           begin

@@ -2,26 +2,50 @@
 $LOAD_PATH.unshift(
   File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
 
-bel_specification_version, file = ARGV
+require 'optparse'
+require 'bel_parser'
+require 'bel_parser/resource/resource_file_reader'
 
-unless bel_specification_version
-  program = File.basename($PROGRAM_NAME)
-  $stderr.puts <<-USAGE.gsub(/ {4}/, '')
-    usage: #{program} [BEL specification version]
+options = {
+  spec: BELParser::Language.specification(
+    BELParser::Language.latest_supported_version)
+}
+OptionParser.new do |opts|
+  opts.banner = <<-USAGE.gsub(/^ {4}/, '')
+    Validates BEL Script with support for multiple BEL specifications.
+
+    Read from a BEL file.
+    usage: #$PROGRAM_NAME --file [FILE]
+
+    Read from standard input.
+    usage: #$PROGRAM_NAME
   USAGE
-  exit 1
-end
 
+  opts.on('-f', '--file FILE', 'BEL script file to read.') do |bel|
+    options[:file] = bel
+  end
+
+  opts.on(
+    '-s',
+    '--specification VERSION',
+    'BEL specification version (e.g. 1.0, 2.0)') do |spec|
+
+    unless BELParser::Language.defines_version?(spec)
+      $stderr.puts %(Invalid BEL specification "#{spec}")
+      exit 1
+    end
+
+    options[:spec] = BELParser::Language.specification(spec)
+  end
+end.parse!
+
+file, spec = options.values_at(:file, :spec)
 io =
   if file
     File.open(file, external_encoding: 'UTF-8')
   else
     $stdin
   end
-
-require 'bel_parser/language'
-require 'bel_parser/script/validator'
-require 'bel_parser/resource/resource_file_reader'
 
 def select(list, cls)
   list.select { |item| item.is_a?(cls) }
@@ -46,11 +70,19 @@ SYN_ERR  = BELParser::Language::Syntax::SyntaxError
 SYN_WARN = BELParser::Language::Syntax::SyntaxWarning
 SEM_WARN = BELParser::Language::Semantics::SemanticsWarning
 
+rr         = BELParser::Resource::ResourceFileReader.new
+namespaces = Hash[
+  ARGV.map do |ns|
+    prefix, identifier = ns.split('=')
+    dataset            = rr.retrieve_resource(identifier)
+    dataset ? [prefix, dataset] : nil
+  end.compact
+]
+
 initial_state = {
-  resource_reader: BELParser::Resource::ResourceFileReader.new,
-  specification:   BELParser::Language.specification(
-    bel_specification_version
-  )
+  resource_reader:       BELParser::Resource::ResourceFileReader.new,
+  specification:         spec,
+  namespace_definitions: namespaces
 }
 
 BELParser::Script::Validator

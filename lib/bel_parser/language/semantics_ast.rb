@@ -670,8 +670,13 @@ module BELParser
         def match(identifier, spec)
           return success(identifier, spec) if return_types.include?(:*)
 
-          fxret = spec.function(identifier.string_literal.to_sym).return_type
-          if return_types.any? { |rt| fxret <= rt }
+          function = spec.function(identifier.string_literal.to_sym)
+          return invalid_return_type_warning(
+            identifier,
+            spec,
+            return_types) unless function
+
+          if return_types.any? { |rt| function.return_type <= rt }
             success(identifier, spec)
           else
             invalid_return_type_warning(identifier, spec, return_types)

@@ -1,6 +1,7 @@
 ##################################################################################
 # Document Properties Section
 
+SET DOCUMENT BELVersion = "1.0"
 SET DOCUMENT Name = "BEL 1.0 Exemplar Script from Large Corpus Document"
 SET DOCUMENT Description = "Approximately 50 statements."
 SET DOCUMENT Version = 20150611

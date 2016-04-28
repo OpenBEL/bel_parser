@@ -1,3 +1,21 @@
+DEFINE NAMESPACE CHEBI AS URL "http://resource.belframework.org/belframework/20150611/namespace/chebi.belns"
+DEFINE NAMESPACE HGNC AS URL "http://resource.belframework.org/belframework/20150611/namespace/hgnc-human-genes.belns"
+DEFINE NAMESPACE EGID AS URL "http://resource.belframework.org/belframework/20150611/namespace/entrez-gene-ids.belns"
+DEFINE NAMESPACE SP AS URL "http://resource.belframework.org/belframework/20150611/namespace/swissprot.belns"
+DEFINE NAMESPACE SFAM AS URL "http://resource.belframework.org/belframework/20150611/namespace/selventa-protein-families.belns"
+DEFINE NAMESPACE MGI AS URL "http://resource.belframework.org/belframework/20150611/namespace/mgi-mouse-genes.belns"
+DEFINE NAMESPACE GOCC AS URL "http://resource.belframework.org/belframework/20150611/namespace/go-cellular-component.belns"
+DEFINE NAMESPACE RGD AS URL "http://resource.belframework.org/belframework/20150611/namespace/rgd-rat-genes.belns"
+DEFINE NAMESPACE SCOMP AS URL "http://resource.belframework.org/belframework/20150611/namespace/selventa-named-complexes.belns"
+DEFINE NAMESPACE GOBP AS URL "http://resource.belframework.org/belframework/20150611/namespace/go-biological-process-ids.belns"
+DEFINE NAMESPACE MESHD AS URL "http://resource.belframework.org/belframework/20150611/namespace/mesh-diseases.belns"
+DEFINE NAMESPACE MESHCS AS URL "http://resource.belframework.org/belframework/20150611/namespace/mesh-cellular-structures.belns"
+
+# Placeholder namespaces; Will yield SyntaxWarnings
+DEFINE NAMESPACE GOMF AS URL "http://resource.belframework.org/belframework/20150611/namespace/go-cellular-component.belns"
+DEFINE NAMESPACE MOD AS URL "http://resource.belframework.org/belframework/20150611/namespace/mesh-diseases.belns"
+DEFINE NAMESPACE MESHCL AS URL "http://resource.belframework.org/belframework/20150611/namespace/mesh-cellular-structures.belns"
+
 # Chemical / Small molecules
 abundance(CHEBI:"nitrogen atom")
 abundance(CHEBI:"prostaglandin J2")
@@ -59,8 +77,8 @@ act(p(SFAM:"RAS Family"), ma(GOMF:"GTP binding"))
 
 activity(complexAbundance(SCOMP:"ENaC Complex"), molecularActivity(tport))
 activity(complexAbundance(SCOMP:"ENaC Complex"), molecularActivity(GOMF:"transporter activity"))
-act(complex(NCH:"ENaC Complex"), ma(tport))
-act(complex(NCH:"ENaC Complex"), ma(GOMF:"transporter activity"))
+act(complex(SCOMP:"ENaC Complex"), ma(tport))
+act(complex(SCOMP:"ENaC Complex"), ma(GOMF:"transporter activity"))
 
 activity(proteinAbundance(HGNC:CANX), molecularActivity(chap))
 act(p(HGNC:CANX), ma(chap))
@@ -93,7 +111,7 @@ translocation(proteinAbundance(HGNC:NFE2L2), fromLoc(MESHCS:Cytoplasm), toLoc(ME
 tloc(p(HGNC:NFE2L2), fromLoc(MESHCL:Cytoplasm), toLoc(MESHCL:"Cell Nucleus"))
 cellSecretion(proteinAbundance(MGI:Il6))
 sec(p(MGI:Il6))
-cellSurfaceExpression(proteinAbudance(RGD:Fas))
+cellSurfaceExpression(proteinAbundance(RGD:Fas))
 surf(p(RGD:Fas))
 degradation(rnaAbundance(HGNC:MYC))
 deg(r(HGNC:MYC))
@@ -108,4 +126,4 @@ p(fus(HGNC:BCR, "p.1_426", HGNC:JAK2, "p.812_1132"))
 p(fus(HGNC:BCR, ?, HGNC:JAK2, ?))
 
 # Lists
-list(p(HGNC:MAPK8), p(HGNC:MAPK9))
+p(SFAM:"MAPK p38 Family") hasMembers list(p(HGNC:MAPK8), p(HGNC:MAPK9))

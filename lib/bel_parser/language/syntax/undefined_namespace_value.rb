@@ -1,4 +1,5 @@
 require 'bel_parser/parsers/ast/node'
+require 'bel_parser/quoting'
 
 module BELParser
   module Language
@@ -6,6 +7,7 @@ module BELParser
       # Undefined namespace value finds values that are missing from their
       # purported namespaces.
       class UndefinedNamespaceValue
+        extend BELParser::Quoting
         include SyntaxFunction
 
         private_class_method :new
@@ -15,7 +17,7 @@ module BELParser
           return nil unless value_node.namespace
 
           unless value_node.namespace_value
-            value = value_node.children[0].string_literal
+            value = unquote(value_node.children[0].string_literal)
             UndefinedNamespaceValueWarning.new(value_node, spec, value)
           end
         end
