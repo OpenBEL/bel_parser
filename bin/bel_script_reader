@@ -14,7 +14,7 @@ end
 
 io =
   if file
-    File.open(ARGV.first, external_encoding: 'UTF-8')
+    File.open(file, external_encoding: 'UTF-8')
   else
     $stdin
   end
