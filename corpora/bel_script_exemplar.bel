@@ -1,13 +1,13 @@
 ##################################################################################
 # Document Properties Section
 
-SET DOCUMENT Name = "BEL Framework Large Corpus Document"
-SET DOCUMENT Description = "Approximately 61,000 statements."
+SET DOCUMENT Name = "BEL 1.0 Exemplar Script from Large Corpus Document"
+SET DOCUMENT Description = "Approximately 50 statements."
 SET DOCUMENT Version = 20150611
 SET DOCUMENT Copyright = "Copyright (c) 2011-2015, Selventa. All rights reserved."
 SET DOCUMENT Authors = Selventa
 SET DOCUMENT Licenses = "Creative Commons Attribution-Non-Commercial-ShareAlike 3.0 Unported License"
-SET DOCUMENT ContactInfo = "support@belframework.org"
+SET DOCUMENT ContactInfo = "info@openbel.org"
 
 ##################################################################################
 # Definitions Section
@@ -46,7 +46,9 @@ SET Species = 9606
 SET Citation = {"Other",\
 "Mol Sys Biol 2005 May msb4100014",\
 "Mol Sys Biol 2005 May msb4100014","","",""}
-#SET Citation = {"Other",\"Mol Sys Biol 2005 May msb4100014",\"Mol Sys Biol 2005 May msb4100014","","",""}
+#SET Citation = {"Other",\
+"Mol Sys Biol 2005 May msb4100014",\
+"Mol Sys Biol 2005 May msb4100014","","",""}
 
 cat(p(HGNC:PTGER4)) increases gtp(p(HGNC:GNAS))
 complex(p(HGNC:PTGER3),p(HGNC:PTGER2)) directlyIncreases cat(p(HGNC:PTGER2))
