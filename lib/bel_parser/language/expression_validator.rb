@@ -10,7 +10,7 @@ module BELParser
     class ExpressionValidator
       def initialize(spec, namespaces, resource_reader)
         @spec                = spec
-        @namespaces          = namespaces
+        @namespaces          = namespaces || {}
         @syntax_functions    = Syntax.syntax_functions
         @semantics_functions = Semantics.semantics_functions
         @transform           =
