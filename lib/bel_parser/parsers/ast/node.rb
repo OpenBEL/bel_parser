@@ -844,6 +844,9 @@ module BELParser
           super(Value.ast_type, children, properties)
         end
 
+        # Get/Set the namespace prefix.
+        attr_accessor :prefix
+
         # Get/Set the value's encoding.
         attr_accessor :encoding
 

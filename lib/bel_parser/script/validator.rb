@@ -108,15 +108,33 @@ if __FILE__ == $PROGRAM_NAME
   .each($stdin) do |(line_number, line, ast, syntax_results, state)|
     puts "#{line_number}: #{line}"
     puts ast.to_s(1)
-    unless syntax_results.empty?
-      puts "Syntax errors:"
-      syntax_results.each do |res|
+
+    puts "Syntax warnings:"
+    syntax_results
+      .select do |res|
+        res.is_a?(BELParser::Language::Syntax::SyntaxWarning)
+      end
+      .each do |res|
         puts "  #{res}"
       end
-    end
+
+    puts "Syntax errors:"
+    syntax_results
+      .select do |res|
+        res.is_a?(BELParser::Language::Syntax::SyntaxError)
+      end
+      .each do |res|
+        puts "  #{res}"
+      end
+
     puts "State:"
     state.each do |key, value|
-      puts "  #{key}: #{value}"
+      case value
+      when Hash
+        puts "  #{key}: #{value.keys}"
+      else
+        puts "  #{key}: #{value}"
+      end
     end
   end
 end

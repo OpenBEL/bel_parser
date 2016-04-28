@@ -32,13 +32,13 @@ module BELParser
             end
           else
             uri = URI.parse(url)
-            cached_file = File.open(cached_url_path, 'w')
             begin
               Net::HTTP.start(uri.host, uri.port) do |http|
                 http.request(Net::HTTP::Get.new(uri)) do |response|
 
                   if block_given?
                     if response.is_a?(Net::HTTPOK)
+                      cached_file = File.open(cached_url_path, 'w')
                       response.read_body do |chunk|
                         cached_file.write(chunk)
                         yield StringIO.new(chunk)
@@ -48,6 +48,7 @@ module BELParser
                     end
                   else
                     if response.is_a?(Net::HTTPOK)
+                      cached_file = File.open(cached_url_path, 'w')
                       content = response.read_body
                       cached_file.write(content)
                       return StringIO.new(content)
@@ -57,8 +58,16 @@ module BELParser
                   end
                 end
               end
+            rescue SocketError
+              if block_given?
+                yield nil
+              else
+                return nil
+              end
             ensure
-              cached_file.close
+              if defined? cached_file
+                cached_file.close
+              end
             end
           end
         end

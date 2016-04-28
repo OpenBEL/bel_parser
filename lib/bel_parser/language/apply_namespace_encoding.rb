@@ -52,15 +52,16 @@ module BELParser
 
       def on_parameter(parameter_node)
         @resolved_dataset = nil
+        @prefix           = nil
         process(parameter_node.prefix)
         process(parameter_node.value)
       end
 
       def on_prefix(prefix_node)
         return prefix_node unless prefix_node.identifier
-        prefix                = prefix_node.identifier.string_literal
 
-        identifier            = @identifier_hash[prefix]
+        @prefix    = prefix_node.identifier.string_literal
+        identifier = @identifier_hash[@prefix]
         return prefix_node unless identifier
 
         dataset               = @resource_reader.retrieve_resource(identifier)
@@ -80,6 +81,7 @@ module BELParser
           @resource_reader
           .retrieve_value_from_resource(identifier, value_literal)
 
+        value_node.prefix = @prefix
         if value
           value_node.encoding =
             value
@@ -90,6 +92,7 @@ module BELParser
           value_node.encoding        = nil
           value_node.namespace_value = nil
         end
+        value_node
       end
     end
   end

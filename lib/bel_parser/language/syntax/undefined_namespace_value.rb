@@ -27,15 +27,14 @@ module BELParser
         # Gets the undefined value.
         attr_reader :undefined_value
 
-        def initialize(prefix_node, spec, undefined_value)
-          super(prefix_node, spec)
-          @undefined_value = undefined_value
+        def initialize(value_node, spec, value)
+          super(value_node, spec)
+          @value = value
         end
 
         def msg
-          <<-MSG.gsub(/ {10}/, '')
-            Undefined namespace value "#{undefined_value}".
-          MSG
+          prefix = @expression_node.prefix
+          %(Undefined namespace value "#@value" for namespace "#{prefix}".)
         end
       end
     end

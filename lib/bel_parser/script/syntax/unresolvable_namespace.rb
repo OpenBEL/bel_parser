@@ -21,6 +21,7 @@ module BELParser
           keyword, domain = ast_node.children
           if domain.url?
             url = unquote(domain.child.string.string_literal)
+            puts resource_reader.retrieve_resource(url)
             unless resource_reader.retrieve_resource(url)
               prefix = keyword.identifier.string_literal
               return UnresolvableNamespaceError.new(ast_node, prefix, url)

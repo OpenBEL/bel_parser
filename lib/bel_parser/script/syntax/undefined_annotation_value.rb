@@ -1,6 +1,6 @@
 require 'bel_parser/language'
 require 'bel_parser/language/syntax_function'
-require 'bel_parser/language/syntax_error'
+require 'bel_parser/language/syntax_warning'
 require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
@@ -53,16 +53,16 @@ module BELParser
         def self.map_value(ast_node, name_string, value_string, identifier, rr)
           value_string = unquote(value_string)
           value = rr.retrieve_value_from_resource(identifier, value_string)
-          UndefinedAnnotationValueError.new(
+          UndefinedAnnotationValueWarning.new(
             ast_node,
             name_string,
             value_string) unless value
         end
       end
 
-      # UndefinedAnnotationValueError represents an undefined annotation value
+      # UndefinedAnnotationValueWarning represents an undefined annotation value
       # while checking a SET annotation.
-      class UndefinedAnnotationValueError < BELParser::Language::Syntax::SyntaxError
+      class UndefinedAnnotationValueWarning < BELParser::Language::Syntax::SyntaxWarning
         # Gets the prefix.
         attr_reader :prefix
         # Gets the undefined annotation value.
@@ -75,7 +75,7 @@ module BELParser
         end
 
         def msg
-          %(Undefined namespace value "#@value" for annotation "#@prefix".)
+          %(Undefined annotation value "#@value" for annotation "#@prefix".)
         end
       end
     end
