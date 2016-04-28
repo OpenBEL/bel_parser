@@ -113,6 +113,15 @@ if __FILE__ == $PROGRAM_NAME
     puts "#{line_number}: #{line}"
     puts ast.to_s(1)
 
+    puts "Syntax errors:"
+    syntax_results
+      .select do |res|
+        res.is_a?(BELParser::Language::Syntax::SyntaxError)
+      end
+      .each do |res|
+        puts "  #{res}"
+      end
+
     puts "Syntax warnings:"
     syntax_results
       .select do |res|
@@ -122,10 +131,10 @@ if __FILE__ == $PROGRAM_NAME
         puts "  #{res}"
       end
 
-    puts "Syntax errors:"
+    puts "Semantics warnings:"
     syntax_results
       .select do |res|
-        res.is_a?(BELParser::Language::Syntax::SyntaxError)
+        res.is_a?(BELParser::Language::Semantics::SemanticsWarning)
       end
       .each do |res|
         puts "  #{res}"
