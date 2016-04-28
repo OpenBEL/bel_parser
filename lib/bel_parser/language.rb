@@ -52,6 +52,14 @@ module BELParser
       end.sort
     end
 
+    # Returns the latest supported version string according to the
+    # _MAJOR.MINOR_ pattern.
+    #
+    # @return [String] latest supported version
+    def self.latest_supported_version
+      versions.max_by { |version| version.to_f }
+    end
+
     # Returns all language {Specification specifications}.
     #
     # @return [Array<Specification>] BEL specifications
