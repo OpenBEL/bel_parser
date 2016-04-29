@@ -12,58 +12,34 @@ require_relative '../language/syntax_function'
 
 module BELParser
   module Script
+    # Validator defines a BEL Script syntax validator. This validator
+    # expects to receive the BEL Script state for each node. This is
+    # accomplished by initializing with a {StateAggregator} that this
+    # will enumerate.
     class Validator
-      include BELParser::Parsers::Common
-      include BELParser::Parsers::Expression
-      include BELParser::Parsers::BELScript
 
-      FILTER = BELParser::ASTFilter.new(
-        :simple_statement,
-        :observed_term,
-        :nested_statement,
-        :annotation_definition,
-        :namespace_definition,
-        :set,
-        :document_property,
-        :unset,
-        :blank_line,
-        :comment_line
-      )
-
-      def initialize(options = {})
-        @script_context = Concurrent::Hash.new.merge(options)
+      def initialize(state_aggregator)
+        @state_aggregator = state_aggregator
 
         Validator.require_script_path
-        @state_functions  = Validator.state_constants(State)
         @syntax_functions = Validator.syntax_constants(Syntax)
       end
 
-      def each(io)
+      def each
         if block_given?
-          filtered_ast = FILTER.each(BELParser::ASTGenerator.new.each(io))
-          filtered_ast.each do |results|
-            line_number, line, ast_results = results
-            ast_node                       = ast_results.first
-
-            syntax_results =
-              ast_node.traverse.flat_map do |node|
-                @syntax_functions.flat_map do |func|
-                  func.map(node, @script_context)
-                end
-              end.compact
-
-            if syntax_results.empty?
-              ast_node.traverse.each do |node|
-                @state_functions.each do |func|
-                  func.consume(node, @script_context)
-                end
+          @state_aggregator.each do |(line_number, line, ast_node, state)|
+            ast_node.traverse.flat_map do |node|
+              @syntax_functions.flat_map do |func|
+                func.map(node, state)
               end
+            end.compact.each do |syntax_result|
+              ast_node.add_syntax_error(syntax_result)
             end
 
-            yield [line_number, line, ast_node, syntax_results, @script_context]
+            yield [line_number, line, ast_node, state]
           end
         else
-          enum_for(:each, io)
+          enum_for(:each)
         end
       end
 
@@ -78,77 +54,11 @@ module BELParser
         end
       end
 
-      def self.state_constants(mod)
-        mod.constants.collect do |symbol|
-          const = mod.const_get(symbol)
-          const if const.respond_to?(:consume)
-        end.compact
-      end
-
       def self.syntax_constants(mod)
         mod.constants.collect do |symbol|
           const = mod.const_get(symbol)
           const if const.respond_to?(:map)
         end.compact
-      end
-    end
-  end
-end
-
-if __FILE__ == $PROGRAM_NAME
-  $LOAD_PATH.unshift(
-    File.join(File.expand_path(File.dirname(__FILE__)), '..', '..'))
-
-  require 'bel_parser/language'
-  require 'bel_parser/resource/resource_url_reader'
-
-  initial_state = {
-    resource_reader: BELParser::Resource::ResourceURLReader.new,
-    specification:   BELParser::Language.specification(
-      BELParser::Language.latest_supported_version
-    )
-  }
-
-  BELParser::Script::Validator
-  .new(initial_state)
-  .each($stdin) do |(line_number, line, ast, syntax_results, state)|
-    puts "#{line_number}: #{line}"
-    puts ast.to_s(1)
-
-    puts "Syntax errors:"
-    syntax_results
-      .select do |res|
-        res.is_a?(BELParser::Language::Syntax::SyntaxError)
-      end
-      .each do |res|
-        puts "  #{res}"
-      end
-
-    puts "Syntax warnings:"
-    syntax_results
-      .select do |res|
-        res.is_a?(BELParser::Language::Syntax::SyntaxWarning)
-      end
-      .each do |res|
-        puts "  #{res}"
-      end
-
-    puts "Semantics warnings:"
-    syntax_results
-      .select do |res|
-        res.is_a?(BELParser::Language::Semantics::SemanticsWarning)
-      end
-      .each do |res|
-        puts "  #{res}"
-      end
-
-    puts "State:"
-    state.each do |key, value|
-      case value
-      when Hash
-        puts "  #{key}: #{value.keys}"
-      else
-        puts "  #{key}: #{value}"
       end
     end
   end

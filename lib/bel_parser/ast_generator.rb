@@ -18,6 +18,10 @@ module BELParser
       map_const.call(BELParser::Parsers::BELScript)
     ].flatten!
 
+    def initialize(io)
+      @io = io
+    end
+
     # Yields AST results for each line of the IO.
     #
     # @example Receive AST results in given block.
@@ -42,9 +46,9 @@ module BELParser
     #         object is returned if a block is given, otherwise an
     #         {Enumerator} object is returned that can be iterated with
     #         {Enumerator#each}
-    def each(io) # rubocop:disable MethodLength
+    def each # rubocop:disable MethodLength
       if block_given?
-        line_enumerator = map_lines(io.each_line.lazy)
+        line_enumerator = map_lines(@io.each_line.lazy)
 
         line_number = 1
         loop do
@@ -62,7 +66,7 @@ module BELParser
           end
         end
       else
-        enum_for(:each, io)
+        enum_for(:each)
       end
     end
   end

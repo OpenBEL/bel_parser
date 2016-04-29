@@ -3,18 +3,19 @@ require_relative 'parsers/ast/node'
 module BELParser
   # ASTFilter filters types of {BELParser::Parsers::AST::Node}.
   class ASTFilter
-    def initialize(*types)
-      @types = types
+    def initialize(ast_enum, *types)
+      @ast_enum = ast_enum
+      @types    = types
     end
 
-    def each(ast_source)
+    def each
       if block_given?
-        ast_source.each do |(line_number, line, ast_results)|
+        @ast_enum.each do |(line_number, line, ast_results)|
           selected = filter(ast_results)
           yield([line_number, line, selected]) unless selected.empty?
         end
       else
-        enum_for(:each, ast_source)
+        enum_for(:each)
       end
     end
 

@@ -55,28 +55,6 @@ io =
     $stdin
   end
 
-def select(list, cls)
-  list.select { |item| item.is_a?(cls) }
-end
-
-def report(line_number, ast, errors, warnings)
-  log = !errors.empty? || !warnings.empty?
-  if log
-    puts "On line #{line_number} for #{ast.type}"
-    puts "  Errors:"
-    errors.each do |err|
-      puts "    #{err}"
-    end
-    puts "  Warnings:"
-    warnings.each do |warn|
-      puts "    #{warn}"
-    end
-  end
-end
-
-SYN_ERR  = BELParser::Language::Syntax::SyntaxError
-SYN_WARN = BELParser::Language::Syntax::SyntaxWarning
-SEM_WARN = BELParser::Language::Semantics::SemanticsWarning
 
 rr = BELParser::Resource::ResourceURLReader.new(options[:reuse])
 namespaces = Hash[
@@ -93,18 +71,63 @@ initial_state = {
   namespace_definitions: namespaces
 }
 
-BELParser::Script::Validator
-.new(initial_state)
-.each(io) do |(line_number, line, ast, syntax_results, state)|
-  errors   = select(syntax_results, SYN_ERR)
-  warnings =
-    select(syntax_results, SYN_WARN) +
-    select(syntax_results, SEM_WARN)
+module BELParser
+  module Script
+    # Reader assembles a BEL Script reader using the following pipeline:
+    #
+    #   Generate -> Filter -> Pick One -> Aggregate State -> Validate Syntax
+    class Reader
+      SYN_ERR  = BELParser::Language::Syntax::SyntaxError
+      SYN_WARN = BELParser::Language::Syntax::SyntaxWarning
+      SEM_WARN = BELParser::Language::Semantics::SemanticsWarning
 
-  report(line_number, ast, errors, warnings)
+      def initialize(initial_state, io)
+        @validator =
+          Validator.new(
+            StateAggregator.new(
+              FirstNode.new(Filter.new(ASTGenerator.new(io))),
+              initial_state))
+      end
 
-  unless errors.empty?
-    puts "Exiting due to error on line #{line_number}: #{line}"
-    exit 1
+      def read
+        @validator.each do |(line_number, line, ast_node, _)|
+          syntax_errors = ast_node.syntax_errors
+          errors        = select(syntax_errors, SYN_ERR)
+          warnings      =
+            select(syntax_errors, SYN_WARN) +
+            select(syntax_errors, SEM_WARN)
+
+          report(line_number, ast_node, errors, warnings)
+
+          unless errors.empty?
+            puts "Exiting due to error on line #{line_number}: #{line}"
+            exit 1
+          end
+        end
+      end
+
+      private
+
+      def select(list, cls)
+        list.select { |item| item.is_a?(cls) }
+      end
+
+      def report(line_number, ast, errors, warnings)
+        log = !errors.empty? || !warnings.empty?
+        if log
+          puts "On line #{line_number} for #{ast.type}"
+          puts "  Errors:"
+          errors.each do |err|
+            puts "    #{err}"
+          end
+          puts "  Warnings:"
+          warnings.each do |warn|
+            puts "    #{warn}"
+          end
+        end
+      end
+    end
   end
 end
+
+BELParser::Script::Reader.new(initial_state, io).read
