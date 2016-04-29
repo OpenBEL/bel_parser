@@ -1,3 +1,4 @@
+require_relative 'language/amino_acid'
 require_relative 'language/function'
 require_relative 'language/syntax'
 require_relative 'language/semantics'

@@ -1,4 +1,5 @@
 require_relative '../../version1_0'
+require_relative '../../amino_acid'
 require_relative '../../function'
 require_relative '../../signature'
 require_relative '../../semantics'
