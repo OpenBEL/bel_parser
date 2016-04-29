@@ -1,5 +1,4 @@
 require 'concurrent/hash'
-require 'pry'
 
 module BELParser
   module Resource

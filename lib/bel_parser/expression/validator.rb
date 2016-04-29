@@ -49,9 +49,9 @@ if __FILE__ == $PROGRAM_NAME
     exit 1
   end
 
-  require 'bel_parser/resource/resource_file_reader'
+  require 'bel_parser/resource/resource_url_reader'
 
-  resource_reader = BELParser::Resource::ResourceFileReader.new
+  resource_reader = BELParser::Resource::ResourceURLReader.new
   namespaces      =
     Hash[
       ARGV[1..-1]

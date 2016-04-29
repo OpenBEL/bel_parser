@@ -9,7 +9,6 @@ unless ARGV.first
   USAGE
   exit 1
 end
-namespaces = Hash[ARGV[1..-1].map { |ns| ns.split('=') }]
 
 def syntax_results(results)
   results.select do |res|
@@ -25,9 +24,18 @@ end
 
 require 'bel_parser'
 require 'bel_parser/expression/validator'
-require 'bel_parser/resource/resource_file_reader'
+require 'bel_parser/resource/resource_url_reader'
 
-resource_reader = BELParser::Resource::ResourceFileReader.new
+resource_reader = BELParser::Resource::ResourceURLReader.new(true)
+namespaces      =
+  Hash[
+    ARGV.map do |ns|
+      prefix, identifier = ns.split('=')
+      dataset            = resource_reader.retrieve_resource(identifier)
+      dataset ? [prefix, dataset] : nil
+    end.compact
+  ]
+
 BELParser::Expression::Validator
   .new(ARGV.first, namespaces, resource_reader)
   .each($stdin) do |(line_number, line, ast, results)|

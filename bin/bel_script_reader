@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(
 
 require 'optparse'
 require 'bel_parser'
-require 'bel_parser/resource/resource_file_reader'
+require 'bel_parser/resource/resource_url_reader'
 
 options = {
   spec: BELParser::Language.specification(
@@ -36,6 +36,14 @@ OptionParser.new do |opts|
     end
 
     options[:spec] = BELParser::Language.specification(spec)
+  end
+
+  opts.on(
+    '-r',
+    '--[no-]reuse-resource-databases',
+    'Enable to reuse resource databases if they exist.') do |reuse|
+
+    options[:reuse] = reuse
   end
 end.parse!
 
@@ -70,7 +78,7 @@ SYN_ERR  = BELParser::Language::Syntax::SyntaxError
 SYN_WARN = BELParser::Language::Syntax::SyntaxWarning
 SEM_WARN = BELParser::Language::Semantics::SemanticsWarning
 
-rr         = BELParser::Resource::ResourceFileReader.new
+rr = BELParser::Resource::ResourceURLReader.new(options[:reuse])
 namespaces = Hash[
   ARGV.map do |ns|
     prefix, identifier = ns.split('=')
@@ -80,7 +88,7 @@ namespaces = Hash[
 ]
 
 initial_state = {
-  resource_reader:       BELParser::Resource::ResourceFileReader.new,
+  resource_reader:       rr,
   specification:         spec,
   namespace_definitions: namespaces
 }
