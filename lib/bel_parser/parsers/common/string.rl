@@ -5,20 +5,24 @@
 
   include 'common.rl';
 
-  action string_start {
+  action start_string {
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   }
 
-  action string_more {
+  action accum_string {
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << fc
   }
 
-  action string_finish {
+  action end_string {
+    #$stderr.puts 'end_string'
     @closed = true
   }
 
   action string_end {
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -30,7 +34,7 @@
   }
 
   action eof_string {
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
@@ -39,13 +43,13 @@
   }
 
   NOT_DQ_ESC = [^"\\];
-  start_string = DQ %string_start;
-  more_string = ( NOT_DQ_ESC | ESCAPED )* $string_more;
-  end_string = DQ %string_finish;
-  str_string = start_string more_string end_string @string_end;
-  str_ast := (start_string? |
-              start_string more_string |
-              start_string more_string end_string)
+  string_prefix = DQ %start_string;
+  string_content = ( NOT_DQ_ESC | ESCAPED )* $accum_string;
+  string_suffix = DQ %end_string;
+  str_string = string_prefix string_content string_suffix %string_end;
+  str_ast := (string_prefix? |
+              string_prefix string_content |
+              string_prefix string_content string_suffix)
               NL?
               @string_end
               @string_yield
