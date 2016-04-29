@@ -1,4 +1,5 @@
 require 'concurrent/hash'
+require 'pry'
 
 module BELParser
   module Resource
@@ -15,42 +16,17 @@ module BELParser
         @locks ||= Concurrent::Hash.new
       end
 
-      def retrieve_resource(resource_identifier)
-        if !resources.key?(resource_identifier)
-          load_all_values(resource_identifier)
-        end
-        super
+      def load_threads
+        @load_threads ||= Concurrent::Hash.new
       end
 
-      def retrieve_value_from_resource(resource_identifier, value)
-        if !resources.key?(resource_identifier)
-          load_all_values(resource_identifier)
-        end
-
-        concepts = resources[resource_identifier]
-        return super unless concepts
-        CACHE_KEYS.each do |key|
-          cached_concept = concepts[key].fetch(value, nil)
-          return cached_concept if cached_concept
-        end
-        
-        nil
-      end
-
-      def retrieve_values_from_resource(resource_identifier)
-        if !resources.key?(resource_identifier)
-          load_all_values(resource_identifier)
-        end
-
-        concepts = resources[resource_identifier]
-        return super unless concepts
-        concepts[:name].values
-      end
-
-      def load_all_values(identifier)
+      def load_values(identifier)
         lock = locks[identifier] ||= Mutex.new
+        if identifier.include?('taxonomy')
+          puts "load_all_values, try lock..."
+            end
         if lock.try_lock
-          Thread.new do
+          load_threads[identifier] = Thread.new do
             value_hash = {
               :name       => {},
               :identifier => {},
@@ -70,6 +46,45 @@ module BELParser
           end
         end
       end
+
+      def retrieve_resource(resource_identifier)
+        if !resources.key?(resource_identifier)
+          load_all_values(resource_identifier)
+        end
+      end
+
+      def retrieve_value_from_resource(resource_identifier, value)
+        if !resources.key?(resource_identifier)
+          load_all_values(resource_identifier)
+          if load_threads.key?(resource_identifier)
+            load_thread = load_threads[resource_identifier]
+            load_thread.join unless load_thread == Thread.current
+          end
+        end
+
+        concepts = resources[resource_identifier]
+        return nil unless concepts
+        CACHE_KEYS.each do |key|
+          cached_concept = concepts[key].fetch(value, nil)
+          return cached_concept if cached_concept
+        end
+        nil
+      end
+
+      def retrieve_values_from_resource(resource_identifier)
+        if !resources.key?(resource_identifier)
+          load_all_values(resource_identifier)
+          if load_threads.key?(resource_identifier)
+            load_thread = load_threads[resource_identifier]
+            load_thread.join unless load_thread == Thread.current
+          end
+        end
+
+        concepts = resources[resource_identifier]
+        return nil unless concepts
+        concepts[:name].values
+      end
+
     end
   end
 end

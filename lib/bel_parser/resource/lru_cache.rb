@@ -3,7 +3,7 @@ require 'concurrent/hash'
 module BELParser
   module Resource
     # LRUCache implements a least recently used cache. This implementation was
-    # initially copied from https://github.com/SamSaffron/lru_redux.
+    # adapted from https://github.com/SamSaffron/lru_redux.
 		class LRUCache
 			def initialize(max_size)
 				raise ArgumentError.new(:max_size) if max_size < 1

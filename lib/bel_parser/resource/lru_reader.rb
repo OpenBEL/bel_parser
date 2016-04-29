@@ -4,30 +4,29 @@ module BELParser
   module Resource
     module LRUReader
 
-      LRU_MAX_SIZE = 500
+      LRU_MAX_SIZE = 2000
       private_constant :LRU_MAX_SIZE
 
-      def resources
-        @resources ||= Concurrent::Hash.new
-      end
-
       def retrieve_resource(resource_identifier)
-        if !resources.key?(resource_identifier)
-          resources[resource_identifier] = LRUCache.new(LRU_MAX_SIZE)
-        end
-        super
+        @resources ||= Hash.new { |hash, key| hash[key] = {} }
+        cached_dataset = @resources[resource_identifier][:dataset]
+        return cached_dataset if cached_dataset
+
+        resolved_dataset = super
+        @resources[resource_identifier][:dataset] = resolved_dataset
+        @resources[resource_identifier][:values]  = LRUCache.new(LRU_MAX_SIZE)
+        resolved_dataset
       end
 
       def retrieve_value_from_resource(resource_identifier, value)
-        if !resources.key?(resource_identifier)
-          resources[resource_identifier] = LRUCache.new(LRU_MAX_SIZE)
-        end
-
-        concepts = resources[resource_identifier]
-        concepts.getset(value) { super }
+        retrieve_resource(resource_identifier)
+        @resources[resource_identifier][:values].getset(value) {
+          super
+        }
       end
 
       def retrieve_values_from_resource(resource_identifier)
+        retrieve_resource(resource_identifier)
         super
       end
     end
