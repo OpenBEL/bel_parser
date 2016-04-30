@@ -24,24 +24,8 @@
     #$stderr.puts 'eof_unset_keyword'
   }
 
-  action unset_keyword_finish {
-    #$stderr.puts 'unset_keyword_finish'
-  }
-
-  action unset_keyword_end {
-    #$stderr.puts 'unset_keyword_end'
-  }
-
   action eof_unset {
     #$stderr.puts 'eof_unset'
-  }
-
-  action unset_keyword {
-    @buffers[:unset] = unset()
-  }
-
-  action accum_unset_ident {
-    #$stderr.puts "accum_unset_ident"
   }
 
   action unset_end {
@@ -68,7 +52,7 @@
     yield @buffers[:unset]
   }
 
-  UNSET  =
+  UNSET =
     [uU]
     [nN]?
     [sS]?
@@ -77,12 +61,11 @@
     ;
 
   unset =
-    UNSET
+    (UNSET | alnum+)
     >start_unset_keyword
     $accum_unset_keyword
     %end_unset_keyword
     $eof(eof_unset_keyword)
-    <>eof{ $stderr.puts "foo" }
     ;
 
   unset_ast :=

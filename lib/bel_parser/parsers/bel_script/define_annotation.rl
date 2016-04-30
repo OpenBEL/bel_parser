@@ -67,7 +67,7 @@
       id_ident %keyword SP+
     AS_KW SP+
       (
-        (LIST_KW    %list_keyword    SP+ LIST   %list    SP* NL @yield_annotation_definition) |
+        (LIST_KW    %list_keyword    SP+ lst_list   %list    SP* NL @yield_annotation_definition) |
         (PATTERN_KW %pattern_keyword SP+ str_string %pattern SP* NL @yield_annotation_definition) |
         (URL_KW     %url_keyword     SP+ str_string %url     SP* NL @yield_annotation_definition)
       );
