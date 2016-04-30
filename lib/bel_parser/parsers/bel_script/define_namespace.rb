@@ -312,9 +312,9 @@ self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	1, 0, 2, 3, 4, 0, 0, 0, 
 	0, 0, 0, 5, 0, 0, 6, 7, 
-	6, 8, 9, 8, 10, 11, 0, 12, 
-	8, 13, 2, 4, 16, 0, 6, 18, 
-	19, 6, 20, 0, 8, 22
+	6, 8, 0, 8, 9, 10, 0, 11, 
+	8, 12, 2, 4, 15, 0, 6, 17, 
+	7, 6, 18, 0, 8, 20
 ]
 
 class << self
@@ -326,8 +326,8 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 14, 15, 15, 
-	17, 15, 21
+	0, 0, 0, 0, 0, 13, 14, 14, 
+	16, 14, 19
 ]
 
 class << self
@@ -404,24 +404,18 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 19 then
+	when 7 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 	when 8 then
 		begin
 
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
-  		end
-	when 9 then
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
   		end
 	when 1 then
 		begin
@@ -433,7 +427,7 @@ begin
 
     @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
   		end
-	when 12 then
+	when 11 then
 		begin
 
     yield @buffers[:namespace_definition]
@@ -447,7 +441,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 13 then
+	when 12 then
 		begin
 
     ident = @incomplete.delete(:ident) || []
@@ -474,41 +468,37 @@ begin
 	when 6 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 		begin
 
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
   		end
-	when 7 then
+	when 15 then
 		begin
 
-    @incomplete[:string] = []
-    @opened = true
-  		end
-		begin
-
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   		end
-	when 10 then
 		begin
 
-    @closed = true
+    yield @buffers[:string]
+  		end
+	when 18 then
+		begin
+
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
+    @incomplete[:string] << data[p].ord
   		end
 		begin
 
-    keyword, domain                 = @buffers[:namespace_definition].children
-    domain                          = domain(
-                                        domain.children[0] << @buffers[:string])
-    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
-  		end
-	when 16 then
-		begin
-
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -521,10 +511,57 @@ begin
 	when 20 then
 		begin
 
+    #$stderr.puts 'end_string'
+    @closed = true
+  		end
+		begin
+
+    #$stderr.puts 'string_end'
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 9 then
+		begin
+
+    #$stderr.puts 'end_string'
+    @closed = true
+  		end
+		begin
+
+    #$stderr.puts 'string_end'
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    keyword, domain                 = @buffers[:namespace_definition].children
+    domain                          = domain(
+                                        domain.children[0] << @buffers[:string])
+    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
+  		end
+	when 17 then
+		begin
+
+    #$stderr.puts 'start_string'
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
   		end
 		begin
 
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -534,26 +571,19 @@ begin
 
     yield @buffers[:string]
   		end
-	when 22 then
+	when 10 then
 		begin
 
+    #$stderr.puts 'end_string'
     @closed = true
   		end
 		begin
 
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-  		end
-		begin
-
-    yield @buffers[:string]
-  		end
-	when 11 then
-		begin
-
-    @closed = true
   		end
 		begin
 
@@ -565,27 +595,6 @@ begin
 		begin
 
     yield @buffers[:namespace_definition]
-  		end
-	when 18 then
-		begin
-
-    @incomplete[:string] = []
-    @opened = true
-  		end
-		begin
-
-    @incomplete[:string] << data[p].ord
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    yield @buffers[:string]
   		end
 	end
 	end
@@ -604,7 +613,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 14 then
+	when 13 then
 		begin
 
     ident = @incomplete.delete(:ident) || []
@@ -612,39 +621,41 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 15 then
+	when 14 then
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
       $stderr.puts "complete string"
     end
   		end
-	when 17 then
+	when 16 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
       $stderr.puts "complete string"
     end
   		end
-	when 21 then
+	when 19 then
 		begin
 
+    #$stderr.puts 'end_string'
     @closed = true
   		end
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
@@ -971,9 +982,9 @@ self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	1, 0, 2, 3, 4, 0, 0, 0, 
 	0, 0, 0, 5, 0, 0, 6, 7, 
-	6, 8, 9, 8, 10, 11, 0, 12, 
-	8, 13, 2, 4, 16, 0, 6, 18, 
-	19, 6, 20, 0, 8, 22
+	6, 8, 0, 8, 9, 10, 0, 11, 
+	8, 12, 2, 4, 15, 0, 6, 17, 
+	7, 6, 18, 0, 8, 20
 ]
 
 class << self
@@ -985,8 +996,8 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 14, 15, 15, 
-	17, 15, 21
+	0, 0, 0, 0, 0, 13, 14, 14, 
+	16, 14, 19
 ]
 
 class << self
@@ -1063,24 +1074,18 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 19 then
+	when 7 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 	when 8 then
 		begin
 
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
-  		end
-	when 9 then
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
   		end
 	when 1 then
 		begin
@@ -1092,7 +1097,7 @@ begin
 
     @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
   		end
-	when 12 then
+	when 11 then
 		begin
 
     yield @buffers[:namespace_definition]
@@ -1106,7 +1111,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 13 then
+	when 12 then
 		begin
 
     ident = @incomplete.delete(:ident) || []
@@ -1133,41 +1138,37 @@ begin
 	when 6 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 		begin
 
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
   		end
-	when 7 then
+	when 15 then
 		begin
 
-    @incomplete[:string] = []
-    @opened = true
-  		end
-		begin
-
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   		end
-	when 10 then
 		begin
 
-    @closed = true
+    yield @buffers[:string]
+  		end
+	when 18 then
+		begin
+
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
+    @incomplete[:string] << data[p].ord
   		end
 		begin
 
-    keyword, domain                 = @buffers[:namespace_definition].children
-    domain                          = domain(
-                                        domain.children[0] << @buffers[:string])
-    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
-  		end
-	when 16 then
-		begin
-
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -1180,10 +1181,57 @@ begin
 	when 20 then
 		begin
 
+    #$stderr.puts 'end_string'
+    @closed = true
+  		end
+		begin
+
+    #$stderr.puts 'string_end'
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 9 then
+		begin
+
+    #$stderr.puts 'end_string'
+    @closed = true
+  		end
+		begin
+
+    #$stderr.puts 'string_end'
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    keyword, domain                 = @buffers[:namespace_definition].children
+    domain                          = domain(
+                                        domain.children[0] << @buffers[:string])
+    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
+  		end
+	when 17 then
+		begin
+
+    #$stderr.puts 'start_string'
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
   		end
 		begin
 
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -1193,26 +1241,19 @@ begin
 
     yield @buffers[:string]
   		end
-	when 22 then
+	when 10 then
 		begin
 
+    #$stderr.puts 'end_string'
     @closed = true
   		end
 		begin
 
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-  		end
-		begin
-
-    yield @buffers[:string]
-  		end
-	when 11 then
-		begin
-
-    @closed = true
   		end
 		begin
 
@@ -1224,27 +1265,6 @@ begin
 		begin
 
     yield @buffers[:namespace_definition]
-  		end
-	when 18 then
-		begin
-
-    @incomplete[:string] = []
-    @opened = true
-  		end
-		begin
-
-    @incomplete[:string] << data[p].ord
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    yield @buffers[:string]
   		end
 	end
 	end
@@ -1263,7 +1283,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 14 then
+	when 13 then
 		begin
 
     ident = @incomplete.delete(:ident) || []
@@ -1271,39 +1291,41 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 15 then
+	when 14 then
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
       $stderr.puts "complete string"
     end
   		end
-	when 17 then
+	when 16 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
       $stderr.puts "complete string"
     end
   		end
-	when 21 then
+	when 19 then
 		begin
 
+    #$stderr.puts 'end_string'
     @closed = true
   		end
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
@@ -1667,9 +1689,9 @@ self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	1, 0, 2, 3, 4, 0, 0, 0, 
 	0, 0, 0, 5, 0, 0, 6, 7, 
-	6, 8, 9, 8, 10, 11, 0, 12, 
-	8, 13, 2, 4, 16, 0, 6, 18, 
-	19, 6, 20, 0, 8, 22
+	6, 8, 0, 8, 9, 10, 0, 11, 
+	8, 12, 2, 4, 15, 0, 6, 17, 
+	7, 6, 18, 0, 8, 20
 ]
 
 class << self
@@ -1681,8 +1703,8 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 14, 15, 15, 
-	17, 15, 21
+	0, 0, 0, 0, 0, 13, 14, 14, 
+	16, 14, 19
 ]
 
 class << self
@@ -1774,24 +1796,18 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 19 then
+	when 7 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 	when 8 then
 		begin
 
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
-  		end
-	when 9 then
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
   		end
 	when 1 then
 		begin
@@ -1803,7 +1819,7 @@ begin
 
     @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
   		end
-	when 12 then
+	when 11 then
 		begin
 
     yield @buffers[:namespace_definition]
@@ -1817,7 +1833,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 13 then
+	when 12 then
 		begin
 
     ident = @incomplete.delete(:ident) || []
@@ -1844,41 +1860,37 @@ begin
 	when 6 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 		begin
 
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
   		end
-	when 7 then
+	when 15 then
 		begin
 
-    @incomplete[:string] = []
-    @opened = true
-  		end
-		begin
-
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
   		end
-	when 10 then
 		begin
 
-    @closed = true
+    yield @buffers[:string]
+  		end
+	when 18 then
+		begin
+
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
+    @incomplete[:string] << data[p].ord
   		end
 		begin
 
-    keyword, domain                 = @buffers[:namespace_definition].children
-    domain                          = domain(
-                                        domain.children[0] << @buffers[:string])
-    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
-  		end
-	when 16 then
-		begin
-
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -1891,10 +1903,57 @@ begin
 	when 20 then
 		begin
 
+    #$stderr.puts 'end_string'
+    @closed = true
+  		end
+		begin
+
+    #$stderr.puts 'string_end'
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    yield @buffers[:string]
+  		end
+	when 9 then
+		begin
+
+    #$stderr.puts 'end_string'
+    @closed = true
+  		end
+		begin
+
+    #$stderr.puts 'string_end'
+    string = @incomplete.delete(:string) || []
+    completed = @opened && @closed
+    ast_node = string(utf8_string(string), complete: completed)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    keyword, domain                 = @buffers[:namespace_definition].children
+    domain                          = domain(
+                                        domain.children[0] << @buffers[:string])
+    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
+  		end
+	when 17 then
+		begin
+
+    #$stderr.puts 'start_string'
+    @incomplete[:string] = []
+    @opened = true
+  		end
+		begin
+
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
   		end
 		begin
 
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -1904,26 +1963,19 @@ begin
 
     yield @buffers[:string]
   		end
-	when 22 then
+	when 10 then
 		begin
 
+    #$stderr.puts 'end_string'
     @closed = true
   		end
 		begin
 
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
     @buffers[:string] = ast_node
-  		end
-		begin
-
-    yield @buffers[:string]
-  		end
-	when 11 then
-		begin
-
-    @closed = true
   		end
 		begin
 
@@ -1935,27 +1987,6 @@ begin
 		begin
 
     yield @buffers[:namespace_definition]
-  		end
-	when 18 then
-		begin
-
-    @incomplete[:string] = []
-    @opened = true
-  		end
-		begin
-
-    @incomplete[:string] << data[p].ord
-  		end
-		begin
-
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    yield @buffers[:string]
   		end
 	end
 	end
@@ -1974,7 +2005,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 14 then
+	when 13 then
 		begin
 
     ident = @incomplete.delete(:ident) || []
@@ -1982,39 +2013,41 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 15 then
+	when 14 then
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
       $stderr.puts "complete string"
     end
   		end
-	when 17 then
+	when 16 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
       $stderr.puts "complete string"
     end
   		end
-	when 21 then
+	when 19 then
 		begin
 
+    #$stderr.puts 'end_string'
     @closed = true
   		end
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else

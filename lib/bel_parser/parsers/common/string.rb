@@ -203,27 +203,32 @@ begin
 	when 7 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 	when 1 then
 		begin
 
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
   		end
 	when 5 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 		begin
 
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
   		end
 	when 3 then
 		begin
 
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -236,10 +241,12 @@ begin
 	when 8 then
 		begin
 
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
   		end
 		begin
 
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -252,10 +259,12 @@ begin
 	when 10 then
 		begin
 
+    #$stderr.puts 'end_string'
     @closed = true
   		end
 		begin
 
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -268,15 +277,18 @@ begin
 	when 6 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 		begin
 
+    #$stderr.puts 'accum_string "' + fc.chr + '"'
     @incomplete[:string] << data[p].ord
   		end
 		begin
 
+    #$stderr.puts 'string_end'
     string = @incomplete.delete(:string) || []
     completed = @opened && @closed
     ast_node = string(utf8_string(string), complete: completed)
@@ -306,7 +318,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
@@ -316,12 +328,13 @@ begin
 	when 4 then
 		begin
 
+    #$stderr.puts 'start_string'
     @incomplete[:string] = []
     @opened = true
   		end
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
@@ -331,11 +344,12 @@ begin
 	when 9 then
 		begin
 
+    #$stderr.puts 'end_string'
     @closed = true
   		end
 		begin
 
-    $stderr.puts 'eof_string'
+    #$stderr.puts 'eof_string'
     unless @closed
       $stderr.puts "incomplete string - why?"
     else
