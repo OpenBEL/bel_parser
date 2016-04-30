@@ -18,7 +18,7 @@
   }
 
   action list_end {
-    #$stderr.puts "list_end"
+    $stderr.puts "list_end"
     completed = @opened && @closed
     unless completed
       @buffers[:list] = list(complete: false)
@@ -104,7 +104,6 @@
   }
 
   action end_list_arg {
-    #$stderr.puts "end_list_arg"
     # finished list arg
     @incomplete.delete(:list_arg)
     if @buffers.key?(:string)
@@ -117,7 +116,7 @@
 
   action eof_list_arg {
     # unfinished list arg
-    #$stderr.puts 'eof_list_arg'
+    $stderr.puts 'eof_list_arg'
     arg = @incomplete.delete(:list_arg)
     if @incomplete.key?(:string)
       ast_node = string(utf8_string(arg), complete: false)
@@ -129,15 +128,47 @@
     yield @buffers[:list]
   }
 
+  action err_list_arg {
+    # unfinished list arg
+    #$stderr.puts 'err_list_arg'
+    arg = @incomplete.delete(:list_arg)
+    if @incomplete.key?(:string)
+      ast_node = string(utf8_string(arg), complete: false)
+    else
+      ast_node = identifier(utf8_string(arg), complete: false)
+    end
+    @buffers[:list] <<= list_item(ast_node, complete: false)
+    @buffers[:list].complete = false
+    yield @buffers[:list]
+  }
+
+  action err_members {
+    # unfinished list arg
+    $stderr.puts 'err_members'
+    arg = @incomplete.delete(:list_arg) || []
+    if @incomplete.key?(:string)
+      ast_node = string(utf8_string(arg), complete: false)
+    else
+      ast_node = identifier(utf8_string(arg), complete: false)
+    end
+    @buffers[:list] <<= list_item(ast_node, complete: false)
+    @buffers[:list].complete = false
+    yield @buffers[:list]
+  }
+
   action eof_members {
-    #$stderr.puts 'eof_members'
+    $stderr.puts 'eof_members'
     # unfinished members
     #$stderr.puts "incomplete members"
     #$stderr.puts @buffers[:string]
   }
 
+  action err_list {
+    $stderr.puts "err_list"
+  }
+
   action eof_list {
-    #$stderr.puts 'eof_list'
+    $stderr.puts 'eof_list'
     unless @closed
       $stderr.puts "incomplete list - why?"
     else
@@ -150,20 +181,31 @@
 
   ident_list_member = id_ident
                       <to(accum_list_arg)
+                      $err(err_list_arg)
                       ;
   string_list_member = str_string
                       <to(accum_list_arg)
+                      $err(err_list_arg)
                       ;
   list_member = (string_list_member | ident_list_member)
                 >start_list_arg
                 %end_list_arg
+                $err(err_list_arg)
                 $eof(eof_list_arg)
                 ;
   members = (list_member (COMMA_DELIM list_member)*)
             $eof(eof_members)
+            $err(err_members)
             ;
 
-  list = start_list end_list @list_end;
+  lst_list =
+    start_list
+    members
+    end_list
+    %list_end
+    $eof(eof_list)
+    $err(err_list)
+    ;
 
   list_ast_new := (start_list members end_list |
                   start_list end_list |
@@ -174,25 +216,6 @@
                   $list_yield
                   $eof(eof_list)
                   ;
-
-  LIST  =
-    '{' @start_list
-    SP*
-    (
-      str_string %string $err(error_list_string) |
-      id_ident  %ident  $err(error_list_ident)
-    ) $err(append_list) %append_list
-    SP*
-    (
-      ',' @clear
-      SP*
-      (
-        str_string %string $err(error_list_string) |
-        id_ident  %ident  $err(error_list_ident)
-      ) $err(append_list) %append_list
-      SP*
-    )*
-    '}' @finish_list;
 }%%
 =end
 # end: ragel
