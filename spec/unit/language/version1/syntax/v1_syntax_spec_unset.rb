@@ -64,4 +64,22 @@ describe 'when parsing unset statements' do
       )
     end
   end
+
+  context 'with misspelling the keyword' do
+    input = 'UNSER'
+    it "is incomplete for #{input}" do
+      output = parse_ast(parser, input)
+      expect(output).to be_a(ast::Unset)
+      expect(output).to respond_to(:complete)
+      expect(output.complete).to be(false)
+      expect(output.children?).to be(true)
+      expect(output.first_child).to be_a(ast::Identifier)
+      expect(output.name).to be(nil)
+
+      expect(output).to eq(
+        s(:unset,
+          s(:identifier, nil))
+      )
+    end
+  end
 end

@@ -131,6 +131,42 @@ describe 'when parsing lists' do
     )
   end
 
+  it 'is incomplete for \'{ foo\'' do
+    output = parse_ast(parser, '{ foo')
+    expect(output).to be_a(ast::List)
+    expect(output).to respond_to(:complete)
+    expect(output.complete).to be(false)
+    expect(output.children?).to be(true)
+    expect(output.num_children).to be(1)
+    expect(output.first_child).to be_a(ast::ListItem)
+    expect(output.first_child.complete).to be(false)
+    expect(output).to eq(
+      s(:list,
+        s(:list_item,
+          s(:identifier, 'foo')))
+    )
+  end
+
+  it 'is incomplete for \'{ foo \'' do
+    output = parse_ast(parser, '{ foo ')
+    expect(output).to be_a(ast::List)
+    expect(output).to respond_to(:complete)
+    expect(output.complete).to be(false)
+    expect(output.children?).to be(true)
+    expect(output.num_children).to be(2)
+    expect(output.first_child).to be_a(ast::ListItem)
+    expect(output.first_child.complete).to be(true)
+    expect(output.second_child).to be_a(ast::ListItem)
+    expect(output.second_child.complete).to be(false)
+    expect(output).to eq(
+      s(:list,
+        s(:list_item,
+          s(:identifier, 'foo')),
+        s(:list_item,
+          s(:identifier, '')))
+    )
+  end
+
   it 'is incomplete for { "foo }' do
     output = parse_ast(parser, '{ "foo }')
     expect(output).to be_a(ast::List)
