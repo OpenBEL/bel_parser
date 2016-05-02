@@ -1,10 +1,13 @@
+require 'bel_parser/quoting'
 require_relative '../parsers/serializer'
 
 module BELParser
   module Script
-    # NanopubMapper maps BEL Script AST nodes to an aggregated nanopub.
+    # NanopubMapper maps BEL Script AST nodes and state to aggregated
+    # nanopub hash objects.
     class NanopubMapper
       include BELParser::Parsers
+      include BELParser::Quoting
 
       STATEMENT_TYPES = [
         :simple_statement,
@@ -12,36 +15,76 @@ module BELParser
         :observed_term
       ]
 
-      BEL_STATEMENT      = 'bel_statement'.freeze
-      CITATION           = 'citation'.freeze
-      EXPERIMENT_CONTEXT = 'experiment_context'.freeze
-      REFERENCES         = 'references'.freeze
-      METADATA           = 'metadata'.freeze
+      DEFINITIONS = [:annotation_definitions, :namespace_definitions]
 
       def initialize(ast_enum)
         @ast_enum = ast_enum
       end
 
-      def each
+      def each(&block)
         if block_given?
           @ast_enum.each do |(line_nunber, line, ast_node, state)|
             next unless STATEMENT_TYPES.include?(ast_node.type)
-
-            nanopub =
-              {
-                BEL_STATEMENT      => serialize(ast_node),
-                CITATION           => state[:citation],
-                EXPERIMENT_CONTEXT => nil,
-                REFERENCES         => nil,
-                METADATA           => nil
-              }
-            yield nanopub
-            # TODO One time: Map annotation and namespace definitions.
-            # TODO Collect annotations.
-            # TODO Combine into hash. Yield.
+            yield nanopub(ast_node, state, &block)
           end
         else
           enum_for(:each)
+        end
+      end
+
+      def nanopub(ast_node, state, &block)
+        {
+          nanopub: {
+            bel_statement:      serialize(ast_node),
+            citation:           citation(state[:citation]),
+            experiment_context: experiment_context(state[:annotations]),
+            references:         references(*state.values_at(*DEFINITIONS)),
+            metadata:           nil
+          }
+        }
+      end
+
+      def citation(citation)
+        citation.each do |field, value|
+          citation[field] = unquote(value)
+        end
+      end
+
+      def experiment_context(annotations)
+        (annotations || []).map do |name, value|
+          {
+            name:  name,
+            value: value
+          }
+        end
+      end
+
+      def references(anno_defs, ns_defs)
+        {
+          annotations: (anno_defs || []).map do |keyword, (type, domain)|
+            {
+              keyword: keyword,
+              type:    type,
+              domain:  domain_value(type, domain)
+            }
+          end,
+          namespaces: (ns_defs || []).map do |keyword, uri|
+            {
+              keyword: keyword,
+              uri:     domain_value(:uri, uri)
+            }
+          end
+        }
+      end
+
+      def domain_value(type, domain)
+        case type
+        when :uri
+          domain.identifier
+        when :list
+          domain
+        else
+          domain.to_s
         end
       end
     end
@@ -75,11 +118,18 @@ if __FILE__ == $PROGRAM_NAME
     namespace_definitions: namespaces
   }
 
-  NanopubMapper.new(
-    Validator.new(
-      StateAggregator.new(
-        FirstNode.new(Filter.new(BELParser::ASTGenerator.new(File.open(ARGV.first)))),
-        initial_state))).each do |nanopub|
-          puts JSON.dump(nanopub)
-        end
+  io =
+    if ARGV.first
+      File.open(ARGV.first)
+    else
+      $stdin
+    end
+
+  nanopubs =
+    NanopubMapper.new(
+      Validator.new(
+        StateAggregator.new(
+          FirstNode.new(Filter.new(BELParser::ASTGenerator.new(io))),
+          initial_state))).each.to_a
+  puts JSON.dump(nanopubs)
 end
