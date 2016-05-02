@@ -19,12 +19,16 @@ module BELParser
     class ResourceURLReader
       include Reader
 
+      # Class ivars for tracking open {GDBM} databases.
+      @dataset_file   = nil
+      @resource_files = {}
+
       DEFAULT_RESOURCE_VALUE_DELIMITER = '|'
       private_constant :DEFAULT_RESOURCE_VALUE_DELIMITER
 
       def initialize(reuse_database_files = false)
         @resources = {}
-        @datasets  = ::GDBM.new(_temporary_datasets_file)
+        @datasets  = ResourceURLReader.open_datasets_file
         @reuse     = reuse_database_files
       end
 
@@ -67,15 +71,14 @@ module BELParser
       def create_resource(url, line_enum)
         delimiter           = DEFAULT_RESOURCE_VALUE_DELIMITER
         dataset             = @datasets[url]
-        value_database_file = _temporary_database_file(url)
-        values              = ::GDBM.new(value_database_file)
+        values              = ResourceURLReader.open_resource_file(url)
 
         if @reuse && dataset && values.size > 0
           warn(
             <<-MSG.gsub(/^ {14}/, '')
               Warning - Reusing value database.
                 URL:  #{url}
-                File: #{value_database_file}
+                File: #{ResourceURLReader._temporary_resource_file(url)}
             MSG
           )
           return {
@@ -130,6 +133,31 @@ module BELParser
         end
       end
 
+      def self.open_datasets_file
+        @dataset_file ||= ::GDBM.new(_temporary_datasets_file)
+      end
+
+      def self.open_resource_file(url)
+        @resource_files[url] ||= ::GDBM.new(_temporary_resource_file(url))
+      end
+
+      def self._temporary_datasets_file
+        resource_directory = File.join(Dir.tmpdir, 'belresources')
+        FileUtils.mkdir_p(resource_directory)
+        File.join(resource_directory, 'datasets.gdbm')
+      end
+
+      def self._temporary_resource_file(url)
+        resource_directory = File.join(Dir.tmpdir, 'belresources')
+        FileUtils.mkdir_p(resource_directory)
+        File.join(resource_directory, "#{_hash_url(url)}.gdbm")
+      end
+
+      def self._hash_url(url)
+        Base64.encode64(Digest::SHA1.digest(url)).delete("/=\n")
+      end
+      private_class_method :_hash_url
+
       private
 
       def _get(url, &block)
@@ -140,21 +168,6 @@ module BELParser
         end
       end
 
-      def _hash_url(url)
-        Base64.encode64(Digest::SHA1.digest(url)).delete("/=\n")
-      end
-
-      def _temporary_datasets_file
-        resource_directory = File.join(Dir.tmpdir, 'belresources')
-        FileUtils.mkdir_p(resource_directory)
-        File.join(resource_directory, 'datasets.gdbm')
-      end
-
-      def _temporary_database_file(url)
-        resource_directory = File.join(Dir.tmpdir, 'belresources')
-        FileUtils.mkdir_p(resource_directory)
-        File.join(resource_directory, "#{_hash_url(url)}.gdbm")
-      end
     end
   end
 end
