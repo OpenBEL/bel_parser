@@ -6,8 +6,10 @@ module BEL::Translator::Plugins
   module BelScript
     class Reader
       include ::BELParser::Script
+      
+      SyntaxError = ::BELParser::Language::Syntax::SyntaxError
 
-      def initialize(io)
+      def initialize(io, options = {})
         @io    = io
         @state = {
           resource_reader: BELParser::Resource::ResourceURLReader.new(true),
@@ -22,8 +24,11 @@ module BEL::Translator::Plugins
             Validator.new(
               StateAggregator.new(
                 FirstNode.new(Filter.new(BELParser::ASTGenerator.new(@io))),
-                @state))).each do |hash|
-                  yield ::BEL::Model::Evidence.create(hash)
+                @state)),
+            true,
+            false
+          ).each do |(num, line, ast_node, nanopub_hash)|
+                  yield ::BEL::Model::Evidence.create(nanopub_hash)
                 end
         else
           enum_for(:each)
