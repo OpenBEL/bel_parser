@@ -2,6 +2,7 @@ require 'bel_parser/language'
 require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
+require_relative '../keywords'
 require_relative '../state_function'
 
 module BELParser
@@ -9,6 +10,7 @@ module BELParser
     module State
       class Unset
         extend StateFunction
+        extend BELParser::Script::Keyword
         extend BELParser::Quoting
 
         TARGET_NODE = BELParser::Parsers::AST::Unset
@@ -27,14 +29,15 @@ module BELParser
         def self.handle_annotation(name, script_context)
           script_context[:annotations] ||= Concurrent::Hash.new
           script_context[:annotations].delete(name)
+          script_context[:citation] = nil if is_citation?(name)
         end
         private_class_method :handle_annotation
 
         def self.handle_statement_group(script_context)
           script_context.delete(:statement_group)
-
           script_context[:annotations] ||= Concurrent::Hash.new
           script_context[:annotations].clear
+          script_context[:citation] = nil
         end
         private_class_method :handle_statement_group
       end

@@ -2,6 +2,7 @@ require 'bel_parser/language'
 require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
+require_relative '../keywords'
 require_relative '../state_function'
 
 module BELParser
@@ -9,17 +10,22 @@ module BELParser
     module State
       class Set
         extend StateFunction
+        extend BELParser::Script::Keyword
         extend BELParser::Quoting
 
         TARGET_NODE = BELParser::Parsers::AST::Set
         LIST_NODE   = BELParser::Parsers::AST::List
+        FIELDS      = %w(type name id date authors comment)
 
         def self.consume(ast_node, script_context)
           return nil unless ast_node.is_a?(TARGET_NODE)
           name, value = ast_node.children
           name_string = name.identifier.string_literal
           value_node  = ast_node.value.children[0]
-          if value_node.is_a?(LIST_NODE)
+          case
+          when is_citation?(name_string)
+            handle_citation(value_node, script_context)
+          when value_node.is_a?(LIST_NODE)
             value_node
               .list_items.map { |li| li.children[0].string_literal }
               .each do |string|
@@ -36,6 +42,18 @@ module BELParser
           end
         end
 
+        def self.handle_citation(value_node, script_context)
+          if value_node.is_a?(LIST_NODE)
+            script_context[:citation] =
+              Hash[
+                FIELDS.zip(
+                  value_node
+                    .list_items
+                    .map { |li| li.children[0].string_literal })
+              ]
+          end
+        end
+
         def self.handle_annotation(name, value, script_context)
           # add to annotation state
           script_context[:annotations]       ||= Concurrent::Hash.new
@@ -49,6 +67,7 @@ module BELParser
           # clear annotation state
           script_context[:annotations]     ||= Concurrent::Hash.new
           script_context[:annotations].clear
+          script_context[:citation] = nil
         end
         private_class_method :handle_statement_group
       end
