@@ -11,12 +11,13 @@ module BELParser
       include BELParser::Parsers::Common
       include BELParser::Parsers::Expression
 
-      FILTER = BELParser::ASTFilter.new(
+      TYPES = [
         :parameter,
         :term,
-        :observed_term,
         :simple_statement,
-        :nested_statement)
+        :observed_term,
+        :nested_statement
+      ]
 
       def initialize(specification_version, namespaces, resource_reader)
         @spec      = BELParser::Language.specification(specification_version)
@@ -26,10 +27,12 @@ module BELParser
 
       def each(io)
         if block_given?
-          filtered_ast = FILTER.each(BELParser::ASTGenerator.new.each(io))
-          filtered_ast.each do |(line_number, line, ast_results)|
-            ast_results.each do |ast|
-              yield [line_number, line, ast, @validator.validate(ast)]
+          filter = BELParser::ASTFilter.new(
+            BELParser::ASTGenerator.new(io),
+            *TYPES)
+          filter.each do |(num, line, results)|
+            results.each do |ast|
+              yield [num, line, ast, @validator.validate(ast)]
             end
           end
         else

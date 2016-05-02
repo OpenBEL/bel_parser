@@ -30,9 +30,12 @@ end
 if __FILE__ == $PROGRAM_NAME
   require_relative 'ast_generator'
 
-  types = ARGV.map(&:to_sym)
-  ast   = BELParser::ASTGenerator.new.each($stdin)
-  BELParser::ASTFilter.new(*types).each(ast) do |(line_number, line, results)|
+  types     = ARGV.map(&:to_sym)
+  generator = BELParser::ASTGenerator.new($stdin)
+  BELParser::ASTFilter.new(
+    generator,
+    *types
+  ).each do |(line_number, line, results)|
     puts "#{line_number}: #{line}"
     results.each do |result_ast|
       puts result_ast.to_s(1)

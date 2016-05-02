@@ -73,7 +73,7 @@ module BELParser
 end
 
 if __FILE__ == $PROGRAM_NAME
-  BELParser::ASTGenerator.new.each($stdin) do |line_results|
+  BELParser::ASTGenerator.new($stdin).each do |line_results|
     line_number, line, ast_results = line_results
     puts "#{line_number}: #{line}"
     ast_results.each do |ast|

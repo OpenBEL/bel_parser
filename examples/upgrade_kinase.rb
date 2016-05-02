@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+$LOAD_PATH.unshift(
+  File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
 
 require 'bel_parser'
 
@@ -9,16 +11,18 @@ module Main
   class TermASTGenerator
     # Filter out AST results of node type
     # +:term+ (i.e. {BELParser::Parsers::AST::Term}).
-    FILTER = BELParser::ASTFilter.new(
+    TYPES = [
       :term
-    )
+    ]
 
     # Yields Term AST to the block argument or provides an enumerator of
     # Term AST.
     def each(io)
       if block_given?
-        filtered_ast = FILTER.each(BELParser::ASTGenerator.new.each(io))
-        filtered_ast.each do |results|
+        filter = BELParser::ASTFilter.new(
+          BELParser::ASTGenerator.new(io),
+          *TYPES)
+        filter.each do |results|
           yield results
         end
       else

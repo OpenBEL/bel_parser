@@ -12,7 +12,7 @@ module BELParser
       include BELParser::Parsers::Expression
       include BELParser::Parsers::BELScript
 
-      FILTER = BELParser::ASTFilter.new(
+      TYPES = [
         :simple_statement,
         :observed_term,
         :nested_statement,
@@ -23,12 +23,14 @@ module BELParser
         :unset,
         :blank_line,
         :comment_line
-      )
+      ]
 
       def each(io)
         if block_given?
-          filtered_ast = FILTER.each(BELParser::ASTGenerator.new.each(io))
-          filtered_ast.each do |results|
+          filter = BELParser::ASTFilter.new(
+            BELParser::ASTGenerator.new(io),
+            *TYPES)
+          filter.each do |results|
             yield results
           end
         else
