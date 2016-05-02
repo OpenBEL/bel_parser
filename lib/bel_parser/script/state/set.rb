@@ -25,6 +25,8 @@ module BELParser
           case
           when is_citation?(name_string)
             handle_citation(value_node, script_context)
+          when is_support?(name_string)
+            handle_support(value_node, script_context)
           when value_node.is_a?(LIST_NODE)
             value_node
               .list_items.map { |li| li.children[0].string_literal }
@@ -52,6 +54,10 @@ module BELParser
                     .map { |li| li.children[0].string_literal })
               ]
           end
+        end
+
+        def self.handle_support(value_node, script_context)
+          script_context[:support] = value_node.string_literal
         end
 
         def self.handle_annotation(name, value, script_context)

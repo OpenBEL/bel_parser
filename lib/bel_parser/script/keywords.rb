@@ -7,12 +7,19 @@ module BELParser
       CITATION       = 'Citation'.freeze
       CITATION_REGEX = /\A#{CITATION}\Z/i
 
+      SUPPORT       = 'Support'.freeze
+      SUPPORT_REGEX = /\A#{SUPPORT}\Z/i
+
       def is_bel_version?(string)
-        string.to_s.strip =~ BEL_VERSION_REGEX
+        string =~ BEL_VERSION_REGEX
       end
 
       def is_citation?(string)
-        string.to_s.strip =~ CITATION_REGEX
+        string =~ CITATION_REGEX
+      end
+
+      def is_support?(string)
+        string =~ SUPPORT_REGEX
       end
     end
   end

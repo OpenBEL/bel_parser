@@ -34,13 +34,12 @@ module BELParser
 
       def nanopub(ast_node, state, &block)
         {
-          nanopub: {
-            bel_statement:      serialize(ast_node),
-            citation:           citation(state[:citation]),
-            experiment_context: experiment_context(state[:annotations]),
-            references:         references(*state.values_at(*DEFINITIONS)),
-            metadata:           nil
-          }
+          bel_statement:      serialize(ast_node),
+          citation:           citation(state[:citation]),
+          support:            support(state[:support]),
+          experiment_context: experiment_context(state[:annotations]),
+          references:         references(*state.values_at(*DEFINITIONS)),
+          metadata:           nil
         }
       end
 
@@ -48,6 +47,10 @@ module BELParser
         citation.each do |field, value|
           citation[field] = unquote(value)
         end
+      end
+
+      def support(support)
+        unquote(support)
       end
 
       def experiment_context(annotations)
