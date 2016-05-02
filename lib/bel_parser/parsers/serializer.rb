@@ -4,33 +4,136 @@ module BELParser
   module Parsers
 
     def serialize(ast_node)
-      serializer = ExpressionSerializer.new
+      serializer = Serializer.new
       serializer.process(ast_node)
       serializer.string
     end
 
     # Defines an {AST::Processor::Mixin AST processor} that serializes
-    # an {AST::Node AST node} to a string.
-    class ExpressionSerializer
+    # all {AST::Node AST node} to a string.
+    class Serializer
       include ::AST::Processor::Mixin
 
       attr_reader :string
 
       def initialize
-        @separate_by_comma = false
-        @string            = ''
+        @string = ''
       end
 
-      def on_simple_statement(simple_statement_node)
-        process(simple_statement_node.statement)
+      def on_annotation_definition(annotation_definition_node)
+        @string << 'DEFINE ANNOTATION '
+        process(annotation_definition_node.keyword)
+        @string << ' AS '
+        process(annotation_definition_node.domain)
+      end
+
+      def on_argument(argument_node)
+        @string << ', ' if @separate_by_comma
+
+        process(argument_node.child)
+        @separate_by_comma = true
+      end
+
+      def on_blank_line(blank_line_node)
+        @string << ''
+      end
+
+      def on_comment_line(comment_line_node)
+        @string << %(##{comment_line_node.children[0]})
+      end
+
+      def on_document_property(document_property_node)
+       name  = document_property_node.name.identifier.string_literal
+       value = document_property_node.value.children[0].string_literal
+       @string << %(SET DOCUMENT #{name} = #{value})
+      end
+
+      def on_domain(domain_node)
+        process(domain_node.child)
+      end
+
+      def on_function(function_node)
+        @string << function_node.identifier.string_literal
+      end
+
+      def on_identifier(identifier_node)
+        @string << identifier_node.string_literal
+      end
+
+      def on_keyword(keyword_node)
+        process(keyword_node.identifier)
+      end
+
+      def on_list(list_node)
+        items = list_node.list_items
+        if !items || items.empty?
+          @string << '{}'
+        else
+          @string << '{ '
+          process(items[0])
+          items[1..-1].each do |rest_item|
+            @string << ', '
+            process(rest_item)
+          end
+          @string << ' }'
+        end
+      end
+
+      def on_list_item(list_item_node)
+        process(list_item_node.children[0])
+      end
+
+      def on_name(name_node)
+        process(name_node.identifier)
+      end
+
+      def on_namespace_definition(namespace_definition_node)
+        @string << 'DEFINE NAMESPACE '
+        process(namespace_definition_node.keyword)
+        @string << ' AS '
+        process(namespace_definition_node.domain)
       end
 
       def on_nested_statement(nested_statement_node)
         process(nested_statement_node.statement)
       end
 
+      def on_object(object_node)
+        process(object_node.child)
+      end
+
       def on_observed_term(observed_term_node)
         process(observed_term_node.statement)
+      end
+
+      def on_parameter(param_node)
+        process(param_node.prefix)
+        process(param_node.value)
+      end
+
+      def on_pattern(pattern_node)
+        @string << 'PATTERN '
+        process(pattern_node.string)
+      end
+
+      def on_prefix(prefix_node)
+        prefix = prefix_node.identifier
+        @string << "#{prefix.string_literal}:" unless prefix.nil?
+      end
+
+      def on_relationship(relationship_node)
+        @string << " #{relationship_node.string_literal} "
+      end
+
+      def on_set(set_node)
+        @string << 'SET '
+        process(set_node.name)
+        @string << ' = '
+        process(set_node.value)
+      end
+
+      def on_simple_statement(simple_statement_node)
+        process(simple_statement_node.statement)
       end
 
       def on_statement(statement_node)
@@ -48,16 +151,12 @@ module BELParser
         end
       end
 
+      def on_string(string_node)
+        @string << string_node.string_literal
+      end
+
       def on_subject(subject_node)
         process(subject_node.term)
-      end
-
-      def on_object(object_node)
-        process(object_node.child)
-      end
-
-      def on_relationship(relationship_node)
-        @string << " #{relationship_node.string_literal} "
       end
 
       # Called when visiting nodes of type +term+.
@@ -69,36 +168,38 @@ module BELParser
         @string << ')'
       end
 
-      # Called when visiting nodes of type +argument+.
-      def on_argument(argument_node)
-        @string << ', ' if @separate_by_comma
-
-        process(argument_node.child)
-        @separate_by_comma = true
+      def on_unset(unset_node)
+        @string << 'UNSET '
+        process(unset_node.name)
       end
 
-      # Called when visiting nodes of type +function+.
-      def on_function(function_node)
-        @string << function_node.identifier.string_literal
+      def on_url(url_node)
+        @string << 'URL '
+        process(url_node.string)
       end
 
-      # Called when visiting nodes of type +parameter+.
-      def on_parameter(param_node)
-        process(param_node.prefix)
-        process(param_node.value)
-      end
-
-      # Called when visiting nodes of type +prefix+.
-      def on_prefix(prefix_node)
-        prefix = prefix_node.identifier
-        @string << "#{prefix.string_literal}:" unless prefix.nil?
-      end
-
-      # Called when visiting nodes of type +value+.
       def on_value(value_node)
-        literal = value_node.children[0].string_literal
-        @string << literal
+        process(value_node.children[0])
       end
     end
+  end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  $LOAD_PATH.unshift(
+    File.join(
+      File.expand_path(File.dirname(__FILE__)),
+      '..',
+      '..',
+      '..',
+      'lib'))
+  require 'bel_parser'
+
+  types      = ARGV.map(&:to_sym)
+  generator  = BELParser::ASTGenerator.new($stdin)
+  BELParser::ASTFilter.new(generator, *types).each do |(num, line, results)|
+    serializer = BELParser::Parsers::Serializer.new
+    serializer.process(results.first)
+    puts serializer.string
   end
 end

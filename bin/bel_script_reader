@@ -55,7 +55,6 @@ io =
     $stdin
   end
 
-
 rr = BELParser::Resource::ResourceURLReader.new(options[:reuse])
 namespaces = Hash[
   ARGV.map do |ns|
