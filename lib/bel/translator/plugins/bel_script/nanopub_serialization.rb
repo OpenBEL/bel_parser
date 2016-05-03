@@ -1,19 +1,19 @@
 require 'bel/quoting'
 
-# Serializing of common {BEL::Model::Evidence evidence} components to BEL
+# Serializing of common {BEL::Nanopub::Nanopub nanopub} components to BEL
 # Script syntax.
 #
 # @abstract
-module BEL::Translator::Plugins::BelScript::EvidenceSerialization
+module BEL::Translator::Plugins::BelScript::NanopubSerialization
   include BEL::Quoting
 
-  # Serialize the {BEL::Model::Evidence evidence} to a BEL Script string.
+  # Serialize the {BEL::Nanopub::Nanopub nanopub} to a BEL Script string.
   #
-  # @param  [BEL::Model::Evidence] evidence the evidence to serialize
+  # @param  [BEL::Nanopub::Nanopub] nanopub the nanopub to serialize
   # @return [String]               the BEL Script string
   # @abstract Include and override {#to_bel} to implement serialization
-  #           {BEL::Model::Evidence evidence} to BEL Script
-  def to_bel(evidence)
+  #           {BEL::Nanopub::Nanopub nanopub} to BEL Script
+  def to_bel(nanopub)
   end
 
   # Return BEL Script syntax that completes the BEL Script document.
@@ -25,8 +25,8 @@ module BEL::Translator::Plugins::BelScript::EvidenceSerialization
 
   protected
 
-  def citation_value(evidence)
-    citation = evidence.citation
+  def citation_value(nanopub)
+    citation = nanopub.citation
 
     return nil unless citation && citation.valid?
 
@@ -42,8 +42,8 @@ module BEL::Translator::Plugins::BelScript::EvidenceSerialization
     values.join(', ')
   end
 
-  def summary_text_value(evidence)
-    summary_text = evidence.summary_text
+  def summary_text_value(nanopub)
+    summary_text = nanopub.summary_text
 
     return nil unless summary_text && summary_text.value
 
@@ -53,8 +53,8 @@ module BEL::Translator::Plugins::BelScript::EvidenceSerialization
     value
   end
 
-  def annotation_values(evidence)
-    experiment_context = evidence.experiment_context
+  def annotation_values(nanopub)
+    experiment_context = nanopub.experiment_context
 
     return {} unless experiment_context
 

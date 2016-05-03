@@ -4,15 +4,16 @@ require 'bel_parser/language/syntax_error'
 require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
+require_relative '../keywords'
 
 module BELParser
   module Script
     module Syntax
       class UndefinedAnnotation
         extend BELParser::Language::Syntax::SyntaxFunction
+        extend BELParser::Script::Keyword
 
         TARGET_NODE       = BELParser::Parsers::AST::Set
-        IMPLICIT_KEYWORDS = ['Citation', 'Evidence', 'STATEMENT_GROUP']
 
         def self.map(ast_node, script_context)
           return nil unless ast_node.is_a?(TARGET_NODE)
@@ -20,7 +21,7 @@ module BELParser
           annotation_definitions =
             script_context[:annotation_definitions] ||= Concurrent::Hash.new
 
-          return nil if IMPLICIT_KEYWORDS.include?(name_string)
+          return nil if is_implicit_annotation?(name_string)
           return nil if annotation_definitions.key?(name_string)
           UndefinedAnnotationError.new(
             ast_node,

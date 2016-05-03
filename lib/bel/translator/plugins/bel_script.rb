@@ -5,7 +5,7 @@ module BEL::Translator::Plugins
   module BelScript
     ID          = :bel_script
     NAME        = 'BEL Script Translator'
-    DESCRIPTION = 'A translator that can read/write evidence to BEL Script.'
+    DESCRIPTION = 'A translator that reads/writes BEL nanopubs to BEL Script.'
     MEDIA_TYPES = %i(application/bel)
     EXTENSIONS  = %i(bel)
 

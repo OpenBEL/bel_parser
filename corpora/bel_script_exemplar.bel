@@ -42,7 +42,7 @@ DEFINE ANNOTATION Species AS URL "http://resource.belframework.org/belframework/
 
 SET STATEMENT_GROUP = "Group 114"
 
-SET Evidence = "EP2=PTGER2 EP4=PTGER4"
+SET Support = "EP2=PTGER2 EP4=PTGER4"
 SET Species = 9606
 SET Citation = {"Other",\
 "Mol Sys Biol 2005 May msb4100014",\
@@ -54,7 +54,7 @@ SET Citation = {"Other",\
 cat(p(HGNC:PTGER4)) increases gtp(p(HGNC:GNAS))
 complex(p(HGNC:PTGER3),p(HGNC:PTGER2)) directlyIncreases cat(p(HGNC:PTGER2))
 
-SET Evidence = "In this paper, we present a comprehensive pathway map of EGFR signaling and other related pathways."
+SET Support = "In this paper, we present a comprehensive pathway map of EGFR signaling and other related pathways."
 
 p(HGNC:AKT1,pmod(P,S,473)) directlyIncreases kin(p(HGNC:AKT1))
 p(HGNC:AKT1,pmod(P,S,473)) directlyIncreases kin(p(HGNC:AKT1))
@@ -100,29 +100,29 @@ tscript(p(SFAM:"E2F Family")) decreases r(HGNC:CCND1)
 tscript(p(SFAM:"E2F Family")) increases r(HGNC:CCNE1)
 tloc(p(HGNC:STAT3),GOCCID:0005737,GOCCID:0005634) increases tscript(p(HGNC:STAT3))
 
-SET Evidence = "LARG=ARHGEF12 cleaved proteins will be added to basics file"
+SET Support = "LARG=ARHGEF12 cleaved proteins will be added to basics file"
 
 kin(p(SFAM:"PRKA Family")) increases p(HGNC:PLCB3,pmod(P))
 kin(p(SFAM:"PRKA Family")) increases p(HGNC:PLCB4,pmod(P))
 kin(p(SFAM:"PRKA Family")) increases p(HGNC:RHOA,pmod(P))
 
-SET Evidence = "LPA2=EDG4"
+SET Support = "LPA2=EDG4"
 
 cat(p(HGNC:LPAR2)) increases gtp(p(HGNC:GNAQ))
 
-SET Evidence = "S1P1=EDG1"
+SET Support = "S1P1=EDG1"
 
 cat(p(HGNC:S1PR1)) increases gtp(p(HGNC:GNAI2))
 cat(p(HGNC:S1PR1)) increases gtp(p(HGNC:GNAI3))
 cat(p(HGNC:S1PR1)) increases gtp(p(HGNC:GNAI1))
 
-SET Evidence = "S1P3=EDG3 S1P2=EDG5"
+SET Support = "S1P3=EDG3 S1P2=EDG5"
 
 cat(p(HGNC:S1PR2)) increases gtp(p(HGNC:GNAQ))
 cat(p(HGNC:S1PR3)) increases gtp(p(HGNC:GNAQ))
 complex(p(HGNC:S1PR1),p(HGNC:S1PR3)) directlyIncreases cat(p(HGNC:S1PR1))
 
-SET Evidence = "The epidermal growth factor receptor (EGFR) signaling pathway is one of the most important pathways that regulate growth, survival, proliferation, and differentiation in mammalian cells. Reflecting this importance, it is one of the best-investigated signaling systems, both experimentally and computationally, and several computational models have been developed for dynamic analysis. A map of molecular interactions of the EGFR signaling system is a valuable resource for research in this area. In this paper, we present a comprehensive pathway map of EGFR signaling and other related pathways. The map reveals that the overall architecture of the pathway is a bow-tie (or hourglass) structure with several feedback loops. The map is created using CellDesigner software that enables us to graphically represent interactions using a welldefined and consistent graphical notation, and to store it in Systems Biology Markup Language (SBML)."
+SET Support = "The epidermal growth factor receptor (EGFR) signaling pathway is one of the most important pathways that regulate growth, survival, proliferation, and differentiation in mammalian cells. Reflecting this importance, it is one of the best-investigated signaling systems, both experimentally and computationally, and several computational models have been developed for dynamic analysis. A map of molecular interactions of the EGFR signaling system is a valuable resource for research in this area. In this paper, we present a comprehensive pathway map of EGFR signaling and other related pathways. The map reveals that the overall architecture of the pathway is a bow-tie (or hourglass) structure with several feedback loops. The map is created using CellDesigner software that enables us to graphically represent interactions using a welldefined and consistent graphical notation, and to store it in Systems Biology Markup Language (SBML)."
 
 kin(p(SFAM:"PRKA Family")) increases p(HGNC:PLD1,pmod(P))
 kin(p(SFAM:"PRKC Family")) increases cat(p(HGNC:PLD1))

@@ -4,6 +4,7 @@ require 'bel_parser/language/syntax_warning'
 require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
+require_relative '../keywords'
 
 module BELParser
   module Script
@@ -11,17 +12,17 @@ module BELParser
       class UndefinedAnnotationValue
         extend BELParser::Language::Syntax::SyntaxFunction
         extend BELParser::Quoting
+        extend BELParser::Script::Keyword
 
         TARGET_NODE       = BELParser::Parsers::AST::Set
         LIST_NODE         = BELParser::Parsers::AST::List
-        IMPLICIT_KEYWORDS = ['Citation', 'Evidence', 'STATEMENT_GROUP']
 
         def self.map(ast_node, script_context)
           return nil unless ast_node.is_a?(TARGET_NODE)
           name, value  = ast_node.children
           name_string  = ast_node.name.identifier.string_literal
 
-          return nil if IMPLICIT_KEYWORDS.include?(name_string)
+          return nil if is_implicit_annotation?(name_string)
           dataset = annotation(name_string, script_context)
           return nil unless dataset
 

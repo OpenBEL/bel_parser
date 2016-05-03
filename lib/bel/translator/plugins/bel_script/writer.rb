@@ -9,16 +9,16 @@ module BEL::Translator::Plugins
 
     class Writer
 
-      # Create a {Writer} object that serializes {BEL::Model::Evidence} to
+      # Create a {Writer} object that serializes {BEL::Nanopub::Nanopub} to
       # BEL Script.
       #
-      # @param [Enumerator<BEL::Model::Evidence>] data evidence data iterated
+      # @param [Enumerator<BEL::Nanopub::Nanopub>] data nanopubs iterated
       #        using +each+
       # @option options [Boolean] :write_header +true+ to write the BEL Script
       #         document header; +false+ to not write the BEL Script document
       #         header
       # @option options [Symbol,Module] :serialization the serialization
-      #         technique to use for evidence; a +Module+ type will be used as
+      #         technique to use for nanopub; a +Module+ type will be used as
       #         is; a +Symbol+ type will be mapped as
       #         +:discrete+ => {BelDiscreteSerialization},
       #         +:topdown+ => {BelTopDownSerialization},
@@ -61,27 +61,27 @@ module BEL::Translator::Plugins
         if block_given?
           combiner =
             if @streaming
-              BEL::Model::StreamingEvidenceCombiner.new(@data)
+              BEL::Nanopub::StreamingNanopubCombiner.new(@data)
             elsif @annotation_reference_map && @namespace_reference_map
-              BEL::Model::MapReferencesCombiner.new(
+              BEL::Nanopub::MapReferencesCombiner.new(
                 @data,
-                BEL::Model::HashMapReferences.new(
+                BEL::Nanopub::HashMapReferences.new(
                   @annotation_reference_map,
                   @namespace_reference_map
                 )
               )
             else
-              BEL::Model::BufferingEvidenceCombiner.new(@data)
+              BEL::Nanopub::BufferingNanopubCombiner.new(@data)
             end
 
           header_flag = true
-          combiner.each { |evidence|
+          combiner.each { |nanopub|
 
-            # serialize evidence
-            bel = to_bel(evidence)
+            # serialize nanopub
+            bel = to_bel(nanopub)
 
             if @write_header && header_flag
-              yield document_header(evidence.metadata.document_header)
+              yield document_header(nanopub.metadata.document_header)
               yield namespaces(combiner.namespace_references)
               yield annotations(combiner.annotation_references)
 

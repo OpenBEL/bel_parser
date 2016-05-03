@@ -1,6 +1,6 @@
 require 'bel_parser'
 require 'bel_parser/resource/resource_url_reader'
-require 'bel/evidence_model'
+require 'bel/nanopub'
 
 module BEL::Translator::Plugins
   module BelScript
@@ -28,7 +28,7 @@ module BEL::Translator::Plugins
             true,
             false
           ).each do |(num, line, ast_node, nanopub_hash)|
-                  yield ::BEL::Model::Evidence.create(nanopub_hash)
+                  yield ::BEL::Nanopub::Nanopub.create(nanopub_hash)
                 end
         else
           enum_for(:each)
