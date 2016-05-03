@@ -28,8 +28,8 @@ module BEL::Translator::Plugins
             true,
             false
           ).each do |(num, line, ast_node, nanopub_hash)|
-                  yield ::BEL::Nanopub::Nanopub.create(nanopub_hash)
-                end
+            yield ::BEL::Nanopub::Nanopub.create(nanopub_hash)
+          end
         else
           enum_for(:each)
         end

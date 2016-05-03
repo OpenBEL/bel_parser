@@ -85,6 +85,7 @@ module BELParser
       end
 
       def citation(citation)
+        return nil unless citation
         citation.each do |field, value|
           citation[field] = unquote(value)
         end
