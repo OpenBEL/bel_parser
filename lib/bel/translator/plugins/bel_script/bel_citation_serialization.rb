@@ -35,12 +35,12 @@ module BEL::Translator::Plugins::BelScript::BelCitationSerialization
     bel = ''
 
     citation     = citation_value(nanopub)
-    summary_text = summary_text_value(nanopub)
+    support = support_value(nanopub)
     annotations  = annotation_values(nanopub)
 
     current_annotations            = {}.merge(annotations)
     current_annotations[:Citation] = citation if citation
-    current_annotations[:Support]  = summary_text if summary_text
+    current_annotations[:Support]  = support if support
 
     if !nanopub.citation.id || nanopub.citation.id.empty?
       citation_id = quote('')
@@ -85,9 +85,9 @@ module BEL::Translator::Plugins::BelScript::BelCitationSerialization
     end
 
     # SET Support
-    summary_text = current_annotations.delete(:Support)
-    if summary_text
-      bel << %Q{SET Support = "#{summary_text}"\n}
+    support = current_annotations.delete(:Support)
+    if support
+      bel << %Q{SET Support = "#{support}"\n}
     end
 
     # SET new or modified annotations

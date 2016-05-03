@@ -42,12 +42,12 @@ module BEL::Translator::Plugins::BelScript::NanopubSerialization
     values.join(', ')
   end
 
-  def summary_text_value(nanopub)
-    summary_text = nanopub.summary_text
+  def support_value(nanopub)
+    support = nanopub.support
 
-    return nil unless summary_text && summary_text.value
+    return nil unless support && support.value
 
-    value = summary_text.value
+    value = support.value
     value.gsub!("\n", "")
     value.gsub!('"', %Q{\\"})
     value
