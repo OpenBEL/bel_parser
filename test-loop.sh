@@ -4,21 +4,29 @@ while true; do
     if [[ $rslt = *rl ]]; then
         echo "Building @ $(date)"
         echo $rslt
-        ./build_all.sh || break
+        ./build_all.sh || continue
     fi
 
-    rspec -f d \
-          --color \
-          spec/unit/parsers/ast/node_spec.rb \
-          spec/unit/language/version1/syntax/*.rb \
-          $@ \
-          2>stderr
+    if [ -n "$spec" ]; then
+      rspec -f d \
+            --color \
+            "$spec" \
+            $@ \
+            2>>stderr
+    else
+      rspec -f d \
+            --color \
+            spec/unit/parsers/ast/node_spec.rb \
+            spec/unit/language/version1/syntax/*.rb \
+            $@ \
+            2>>stderr
+    fi
     rspec_ec=$?
     if [ $rspec_ec -ne 0 ]; then
-        say -v Audrey "Tu as perdu. Essayez à nouveau." --rate 225
+        say -v Audrey "Tu as perdu. Essayez à nouveau." --rate 225 &
         osascript -e 'display notification "RSpec failure" with title "RSpec"'
     else
-        say -v Audrey "Tu as gagné, bien joué!" --rate 225
+        say -v Audrey "Tu as gagné, bien joué!" --rate 225 &
         osascript -e 'display notification "Success!" with title "RSpec"'
     fi
 done
