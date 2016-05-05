@@ -44,8 +44,8 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 10, 122, 0, 0, 
-	10, 122, 0
+	0, 0, 48, 122, 10, 122, 
+	0, 0, 0
 ]
 
 class << self
@@ -53,7 +53,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 113, 0, 113
+	0, 75, 113, 0
 ]
 
 class << self
@@ -61,7 +61,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 114, 115
+	0, 0, 76, 190
 ]
 
 class << self
@@ -69,35 +69,30 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	1, 1, 1, 1, 1, 1, 1, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 1, 1, 1, 1, 2, 1, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 1, 1, 0, 1, 1, 1, 1, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 1, 1, 1, 1, 1, 1, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 1, 1, 1, 1, 0, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 1, 2, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 1, 1, 1, 1, 1, 
 	1, 1, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 1, 1, 1, 1, 
-	3, 1, 3, 3, 3, 3, 3, 3, 
+	1, 1, 1, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 1, 0
+	3, 3, 3, 3, 3, 1, 1, 1, 
+	1, 3, 1, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 1, 1, 0
 ]
 
 class << self
@@ -105,7 +100,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 3
+	2, 0, 3, 2
 ]
 
 class << self
@@ -113,7 +108,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 0, 2, 4
+	1, 0, 3, 4
 ]
 
 class << self
@@ -121,7 +116,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 0, 0, 3
+	0, 0, 2, 5
 ]
 
 class << self
@@ -131,16 +126,16 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 1;
+self.bel_first_final = 2;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_id_ast
+	attr_accessor :bel_en_ident_node
 end
-self.bel_en_id_ast = 1;
+self.bel_en_ident_node = 1;
 
 
       # end: ragel
@@ -204,16 +199,7 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 2 then
-		begin
-
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 1 then
+	when 3 then
 		begin
 
     ident = @incomplete.delete(:ident) || []
@@ -221,9 +207,14 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
+	when 1 then
 		begin
 
-    yield @buffers[:ident]
+    @incomplete[:ident] = []
+  		end
+		begin
+
+    @incomplete[:ident] << data[p].ord
   		end
 	end
 	end
@@ -242,13 +233,22 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 3 then
+	when 5 then
+		begin
+
+    yield @buffers[:ident]
+  		end
+	when 2 then
 		begin
 
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
+  		end
+		begin
+
+    yield @buffers[:ident]
   		end
 	  end
 	end

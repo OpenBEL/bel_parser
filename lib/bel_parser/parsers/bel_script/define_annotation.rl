@@ -64,12 +64,12 @@
   # Define FSM
   annotation_definition :=
     DEFINE_KW SP+ ANNOTATION_KW @annotation_keyword SP+
-      id_ident %keyword SP+
+      an_ident %keyword SP+
     AS_KW SP+
       (
-        (LIST_KW    %list_keyword    SP+ lst_list   %list    SP* NL @yield_annotation_definition) |
-        (PATTERN_KW %pattern_keyword SP+ str_string %pattern SP* NL @yield_annotation_definition) |
-        (URL_KW     %url_keyword     SP+ str_string %url     SP* NL @yield_annotation_definition)
+        (LIST_KW    %list_keyword    SP+ a_list   %list    SP* NL @yield_annotation_definition) |
+        (PATTERN_KW %pattern_keyword SP+ a_string %pattern SP* NL @yield_annotation_definition) |
+        (URL_KW     %url_keyword     SP+ a_string %url     SP* NL @yield_annotation_definition)
       );
 }%%
 =end

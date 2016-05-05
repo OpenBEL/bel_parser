@@ -5,29 +5,46 @@
 
   include 'common.rl';
 
-  action identifier_start {
+  action start_identifier {
     @incomplete[:ident] = []
   }
 
-  action identifier_more {
+  action accum_identifier {
     @incomplete[:ident] << fc
   }
 
-  action identifier_end {
+  action end_identifier {
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   }
 
-  action identifier_yield {
+  action yield_identifier {
     yield @buffers[:ident]
   }
 
-  id_chars = [a-zA-Z0-9_]+;
-  id_accum = id_chars >identifier_start $identifier_more;
-  id_ident = id_accum %identifier_end;
-  id_ast := id_ident? NL? @identifier_end @identifier_yield;
+  ID_CHARS = [a-zA-Z0-9_]+;
+  ident =
+    ID_CHARS
+    >start_identifier
+    $accum_identifier
+    %end_identifier
+    ;
+
+  maybe_ident =
+    ident?
+    ;
+
+  an_ident =
+    ident
+    ;
+
+  ident_node :=
+    ident
+    NL?
+    %yield_identifier
+    ;
 }%%
 =end
 # end: ragel

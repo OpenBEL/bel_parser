@@ -5,6 +5,7 @@
 
 =end
 # end: ragel
+# ('\"' | ^(0 .. 31 | 34))* ^'\\"'
 
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
@@ -36,6 +37,7 @@ module BELParser
           include BELParser::Parsers::AST::Sexp
 
           def initialize(content)
+            $stderr.puts "content: " + content
             @content = content
       # begin: ragel
             
@@ -44,9 +46,10 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 0, 0, 10, 34, 
-	0, 0, 10, 92, 10, 
-	92, 10, 10, 0
+	0, 0, 9, 39, 34, 92, 
+	34, 92, 0, 0, 39, 
+	92, 39, 92, 0, 0, 
+	0, 0, 0
 ]
 
 class << self
@@ -54,7 +57,8 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 0, 25, 0, 83, 83, 1
+	0, 31, 59, 59, 0, 54, 54, 0, 
+	0
 ]
 
 class << self
@@ -62,7 +66,8 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 1, 27, 28, 112, 196
+	0, 0, 32, 92, 152, 153, 208, 263, 
+	264
 ]
 
 class << self
@@ -70,31 +75,40 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 1, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 3, 2, 2, 5, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 6, 4, 4, 4, 
+	0, 0, 0, 0, 0, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 0, 
+	1, 2, 1, 1, 1, 1, 3, 1, 
+	5, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 7, 4, 
-	8, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	9, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 10, 0, 11, 2, 0
+	4, 4, 6, 4, 8, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 9, 7, 
+	7, 5, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 11, 10, 
+	8, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 13, 12, 12, 
+	1, 0
 ]
 
 class << self
@@ -102,8 +116,8 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	5, 3, 0, 4, 5, 5, 6, 1, 
-	5, 6, 1, 3
+	1, 0, 2, 5, 3, 8, 4, 3, 
+	8, 4, 6, 7, 6, 7
 ]
 
 class << self
@@ -111,49 +125,43 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 3, 0, 0, 5, 6, 7, 5, 
-	8, 0, 1, 10
-]
-
-class << self
-	attr_accessor :_bel_eof_actions
-	private :_bel_eof_actions, :_bel_eof_actions=
-end
-self._bel_eof_actions = [
-	0, 0, 2, 2, 4, 2, 9
+	0, 0, 0, 0, 1, 2, 1, 0, 
+	3, 0, 1, 1, 0, 0
 ]
 
 class << self
 	attr_accessor :bel_start
 end
-self.bel_start = 2;
+self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 2;
+self.bel_first_final = 8;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_str_ast
+	attr_accessor :bel_en_string_node
 end
-self.bel_en_str_ast = 2;
+self.bel_en_string_node = 1;
 
 
       # end: ragel
           end
 
           def each
-            @buffers    = {}
-            @incomplete = {}
-            @opened     = false
-            @closed     = false
-            data        = @content.unpack('C*')
-            p           = 0
-            pe          = data.length
-            eof         = data.length
+            @buffers        = {}
+            @incomplete     = {}
+            @string_opened  = false
+            @string_closed  = false
+            data            = @content.unpack('C*')
+            p_start         = 0
+            p_end           = 0
+            p               = 0
+            pe              = data.length
+            eof             = data.length
 
       # begin: ragel
             
@@ -200,99 +208,48 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 7 then
-		begin
-
-    #$stderr.puts 'start_string'
-    @incomplete[:string] = []
-    @opened = true
-  		end
 	when 1 then
 		begin
 
-    #$stderr.puts 'accum_string "' + fc.chr + '"'
-    @incomplete[:string] << data[p].ord
-  		end
-	when 5 then
-		begin
-
-    #$stderr.puts 'start_string'
-    @incomplete[:string] = []
     @opened = true
-  		end
-		begin
-
-    #$stderr.puts 'accum_string "' + fc.chr + '"'
-    @incomplete[:string] << data[p].ord
+    p_start = p
   		end
 	when 3 then
 		begin
 
-    #$stderr.puts 'string_end'
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    yield @buffers[:string]
-  		end
-	when 8 then
-		begin
-
-    #$stderr.puts 'accum_string "' + fc.chr + '"'
-    @incomplete[:string] << data[p].ord
-  		end
-		begin
-
-    #$stderr.puts 'string_end'
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    yield @buffers[:string]
-  		end
-	when 10 then
-		begin
-
-    #$stderr.puts 'end_string'
     @closed = true
+    p_end = p
   		end
 		begin
 
-    #$stderr.puts 'string_end'
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
+    completed = @string_opened && @string_closed
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
+    $stderr.puts @buffers.inspect
   		end
 		begin
 
     yield @buffers[:string]
   		end
-	when 6 then
+	when 2 then
 		begin
 
-    #$stderr.puts 'start_string'
-    @incomplete[:string] = []
     @opened = true
+    p_start = p
   		end
 		begin
 
-    #$stderr.puts 'accum_string "' + fc.chr + '"'
-    @incomplete[:string] << data[p].ord
+    @closed = true
+    p_end = p
   		end
 		begin
 
-    #$stderr.puts 'string_end'
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
+    completed = @string_opened && @string_closed
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
+    $stderr.puts @buffers.inspect
   		end
 		begin
 
@@ -313,52 +270,6 @@ begin
 	end
 	end
 	if _goto_level <= _test_eof
-	if p == eof
-	  case _bel_eof_actions[cs]
-	when 2 then
-		begin
-
-    #$stderr.puts 'eof_string'
-    unless @closed
-      $stderr.puts "incomplete string - why?"
-    else
-      $stderr.puts "complete string"
-    end
-  		end
-	when 4 then
-		begin
-
-    #$stderr.puts 'start_string'
-    @incomplete[:string] = []
-    @opened = true
-  		end
-		begin
-
-    #$stderr.puts 'eof_string'
-    unless @closed
-      $stderr.puts "incomplete string - why?"
-    else
-      $stderr.puts "complete string"
-    end
-  		end
-	when 9 then
-		begin
-
-    #$stderr.puts 'end_string'
-    @closed = true
-  		end
-		begin
-
-    #$stderr.puts 'eof_string'
-    unless @closed
-      $stderr.puts "incomplete string - why?"
-    else
-      $stderr.puts "complete string"
-    end
-  		end
-	  end
-	end
-
 	end
 	if _goto_level <= _out
 		break

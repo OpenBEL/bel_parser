@@ -7,28 +7,56 @@
   include 'string.rl';
 
   action list_start {
-    #$stderr.puts 'list_start'
+    $stderr.puts 'list_start'
     @opened = true
     @buffers[:list] = list()
   }
 
+  action add_string {
+    $stderr.puts 'add_string'
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    @buffers[:list] <<= item
+  }
+
+  action add_ident {
+    $stderr.puts 'add_ident'
+    ident = @buffers.delete(:ident)
+    item = list_item(ident, complete: ident.complete)
+    @buffers[:list] <<= item
+  }
+
   action list_finish {
-    #$stderr.puts 'list_finish'
-    @closed = true
+    $stderr.puts 'list_finish'
+    @list_closed = true
   }
 
   action list_end {
     $stderr.puts "list_end"
-    completed = @opened && @closed
-    unless completed
-      @buffers[:list] = list(complete: false)
-    else
-      @buffers[:list].complete = completed
+    $stderr.puts "incomplete: " + @incomplete.inspect.to_s
+    $stderr.puts "buffers: " + @buffers.inspect.to_s
+    arg = @incomplete.delete(:list_arg)
+    $stderr.puts "'#{arg}'"
+    if @incomplete.key?(:string)
+      # strings need to be closed; so set complete false
+      ast_node = string(utf8_string(arg), complete: false)
+      # the list item is complete if its child is complete
+      item = list_item(ast_node, complete: ast_node.complete)
+      @buffers[:list] <<= item
+    elsif @incomplete.key?(:ident)
+      # identifiers need not be closed; so set complete true
+      ast_node = identifier(utf8_string(arg), complete: true)
+      # the list item is complete if its child is complete
+      item = list_item(ast_node, complete: ast_node.complete)
+      @buffers[:list] <<= item
     end
+
+    $stderr.puts 'closed? ' + @list_closed.to_s
+    @buffers[:list].complete = @list_closed
   }
 
-  action list_yield {
-    #$stderr.puts "list_yield"
+  action yield_list {
+    $stderr.puts "yield_list"
     yield @buffers[:list]
   }
 
@@ -38,184 +66,66 @@
     @buffers.delete(:ident)
   }
 
-  action string {
-    #$stderr.puts "string"
-    @buffers[:list_arg] = list_item(@buffers[:string])
-  }
-
-  action ident {
-    #$stderr.puts "ident"
-    @buffers[:list_arg] = list_item(@buffers[:ident])
-  }
-
   action start_list {
-    #$stderr.puts "start_list"
+    $stderr.puts "start_list"
     @buffers[:list] = list()
   }
 
-  action append_list {
-    #$stderr.puts "append_list"
-    # Append list argument if its value is not empty.
-    if @buffers[:list_arg]
-      list_arg_value = @buffers[:list_arg].children[0].children[0]
-      if list_arg_value != ''
-        @buffers[:list] <<= @buffers[:list_arg]
-      end
-    end
-  }
-
-  action finish_list {
-    #$stderr.puts "finish_list"
-    #TODO: Mark @buffers[:list] as complete.
-  }
-
-  action error_list_string {
-    #$stderr.puts "error_list_string"
-    #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = list_item(@buffers[:string])
-  }
-
-  action error_list_ident {
-    #$stderr.puts "error_list_ident"
-    #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = list_item(@buffers[:ident])
-  }
-
-  action yield_complete_list {
-    #$stderr.puts "yield_complete_list"
-    #TODO: Mark @buffers[:list_arg] identifier as error.
-    yield @buffers[:list]
-  }
-
-  action yield_error_list {
-    #$stderr.puts "yield_error_list"
-    @buffers[:list] ||= list()
-    yield @buffers[:list]
-  }
-
-  action start_list_arg {
-    #$stderr.puts "start_list_arg"
-    @incomplete[:list_arg] = []
-  }
-
-  action accum_list_arg {
-    #$stderr.puts "accum_list_arg"
-    @incomplete[:list_arg] << fc
-  }
-
-  action end_list_arg {
-    # finished list arg
-    @incomplete.delete(:list_arg)
-    if @buffers.key?(:string)
-      ast_node = @buffers.delete(:string)
-    else
-      ast_node = @buffers.delete(:ident)
-    end
-    @buffers[:list] <<= list_item(ast_node, complete: true)
-  }
-
-  action eof_list_arg {
-    # unfinished list arg
-    $stderr.puts 'eof_list_arg'
-    arg = @incomplete.delete(:list_arg)
-    if @incomplete.key?(:string)
-      ast_node = string(utf8_string(arg), complete: false)
-    else
-      ast_node = identifier(utf8_string(arg), complete: false)
-    end
-    @buffers[:list] <<= list_item(ast_node, complete: false)
-    @buffers[:list].complete = false
-    yield @buffers[:list]
-  }
-
-  action err_list_arg {
-    # unfinished list arg
-    #$stderr.puts 'err_list_arg'
-    arg = @incomplete.delete(:list_arg)
-    if @incomplete.key?(:string)
-      ast_node = string(utf8_string(arg), complete: false)
-    else
-      ast_node = identifier(utf8_string(arg), complete: false)
-    end
-    @buffers[:list] <<= list_item(ast_node, complete: false)
-    @buffers[:list].complete = false
-    yield @buffers[:list]
-  }
-
-  action err_members {
-    # unfinished list arg
-    $stderr.puts 'err_members'
-    arg = @incomplete.delete(:list_arg) || []
-    if @incomplete.key?(:string)
-      ast_node = string(utf8_string(arg), complete: false)
-    else
-      ast_node = identifier(utf8_string(arg), complete: false)
-    end
-    @buffers[:list] <<= list_item(ast_node, complete: false)
-    @buffers[:list].complete = false
-    yield @buffers[:list]
-  }
-
-  action eof_members {
-    $stderr.puts 'eof_members'
-    # unfinished members
-    #$stderr.puts "incomplete members"
-    #$stderr.puts @buffers[:string]
-  }
-
-  action err_list {
-    $stderr.puts "err_list"
-  }
-
-  action eof_list {
-    $stderr.puts 'eof_list'
-    unless @closed
-      $stderr.puts "incomplete list - why?"
-    else
-      #$stderr.puts "complete list"
-    end
-  }
-
-  start_list = '{' SP* %list_start;
+  start_list = '{' SP* >list_start;
   end_list = SP* '}' %list_finish;
 
-  ident_list_member = id_ident
-                      <to(accum_list_arg)
-                      $err(err_list_arg)
-                      ;
-  string_list_member = str_string
-                      <to(accum_list_arg)
-                      $err(err_list_arg)
-                      ;
-  list_member = (string_list_member | ident_list_member)
-                >start_list_arg
-                %end_list_arg
-                $err(err_list_arg)
-                $eof(eof_list_arg)
-                ;
-  members = (list_member (COMMA_DELIM list_member)*)
-            $eof(eof_members)
-            $err(err_members)
-            ;
-
-  lst_list =
-    start_list
-    members
-    end_list
-    %list_end
-    $eof(eof_list)
-    $err(err_list)
+  string_item =
+    a_string
+    %add_string
     ;
 
-  list_ast_new := (start_list members end_list |
-                  start_list end_list |
-                  start_list |
-                  start_list?)
-                  NL?
-                  $list_end
-                  $list_yield
-                  $eof(eof_list)
-                  ;
+  ident_item =
+    an_ident
+    %add_ident
+    ;
+
+  item =
+    (string_item | ident_item)
+    ;
+
+  list_item_0 =
+    item
+    ;
+
+  list_item_n =
+    COMMA_DELIM
+    item
+    ;
+
+  items =
+    (
+      list_item_0 list_item_n* |
+      any* - NL
+    )
+    ;
+
+  maybe_list =
+    start_list?
+    items?
+    end_list?
+    %list_end
+    ;
+
+  a_list =
+    start_list
+    items
+    end_list
+    %list_end
+    ;
+
+  list_node :=
+    start_list
+    items?
+    end_list?
+    NL?
+    %list_end
+    %yield_list
+    ;
 }%%
 =end
 # end: ragel
@@ -250,6 +160,7 @@ module BELParser
           include BELParser::Parsers::AST::Sexp
 
           def initialize(content)
+            $stderr.puts "\ncontent: " + content
             @content = content
       # begin: ragel
             %% write data;
@@ -257,14 +168,14 @@ module BELParser
           end
 
           def each
-            @buffers    = {}
-            @incomplete = {}
-            @opened     = false
-            @closed     = false
-            data        = @content.unpack('C*')
-            p           = 0
-            pe          = data.length
-            eof         = data.length
+            @buffers      = {}
+            @incomplete   = {}
+            @opened       = false
+            @list_closed  = false
+            data          = @content.unpack('C*')
+            p             = 0
+            pe            = data.length
+            eof           = data.length
 
       # begin: ragel
             %% write init;

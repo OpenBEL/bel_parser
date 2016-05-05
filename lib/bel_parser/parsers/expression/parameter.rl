@@ -25,7 +25,7 @@
     yield @buffers[:parameter]
   }
 
-  BEL_PARAMETER  = (id_ident ':')? @prefix SP* (str_string %string | id_ident %ident);
+  BEL_PARAMETER  = (an_ident ':')? @prefix SP* (a_string %string | an_ident %ident);
   bel_parameter := BEL_PARAMETER %yield_parameter_ast NL;
 }%%
 =end

@@ -69,7 +69,7 @@
     ;
 
   unset_ast :=
-    (unset SP+ id_ident |
+    (unset SP+ an_ident |
      unset SP*)
     NL?
     $unset_end

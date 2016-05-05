@@ -5,58 +5,65 @@
 
   include 'common.rl';
 
-  action start_string {
-    #$stderr.puts 'start_string'
-    @incomplete[:string] = []
-    @opened = true
-  }
-
   action accum_string {
-    #$stderr.puts 'accum_string "' + fc.chr + '"'
-    @incomplete[:string] << fc
+    $stderr.puts '  STRING accum_string "' + fc.chr + '"'
+    @incomplete[:string] << fc  # why hallo
   }
 
   action end_string {
-    #$stderr.puts 'end_string'
-    @closed = true
+    $stderr.puts 'STRING end_string'
+    @string_closed = true
   }
 
   action string_end {
-    #$stderr.puts 'string_end'
-    string = @incomplete.delete(:string) || []
-    completed = @opened && @closed
-    ast_node = string(utf8_string(string), complete: completed)
+    completed = @string_opened && @string_closed
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
+    $stderr.puts @buffers.inspect
   }
 
-  action string_yield {
+  action yield_string {
     yield @buffers[:string]
   }
 
-  action eof_string {
-    #$stderr.puts 'eof_string'
-    unless @closed
-      $stderr.puts "incomplete string - why?"
-    else
-      $stderr.puts "complete string"
-    end
+  action start_string {
+    @opened = true
+    p_start = p
   }
 
-  NOT_DQ_ESC = [^"\\];
-  string_prefix = DQ %start_string;
-  string_content = ( NOT_DQ_ESC | ESCAPED )* $accum_string;
-  string_suffix = DQ %end_string;
-  str_string = string_prefix string_content string_suffix %string_end;
-  str_ast := (string_prefix? |
-              string_prefix string_content |
-              string_prefix string_content string_suffix)
-              NL?
-              @string_end
-              @string_yield
-              $eof(eof_string);
+  action stop_string {
+    @closed = true
+    p_end = p
+  }
+
+  a_string =
+    any
+    ;
+
+  single =
+    WS* SQ (NOT_SQESC | ESCAPED)*
+    >start_string
+    %stop_string
+    SQ
+    ;
+
+  double =
+    WS* DQ (NOT_DQESC | ESCAPED)*
+    >start_string
+    %stop_string
+    DQ
+    ;
+
+  string_node :=
+    (single | double)
+    @string_end
+    @yield_string
+    ;
 }%%
 =end
 # end: ragel
+# ('\"' | ^(0 .. 31 | 34))* ^'\\"'
 
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
@@ -88,6 +95,7 @@ module BELParser
           include BELParser::Parsers::AST::Sexp
 
           def initialize(content)
+            $stderr.puts "content: " + content
             @content = content
       # begin: ragel
             %% write data;
@@ -95,14 +103,16 @@ module BELParser
           end
 
           def each
-            @buffers    = {}
-            @incomplete = {}
-            @opened     = false
-            @closed     = false
-            data        = @content.unpack('C*')
-            p           = 0
-            pe          = data.length
-            eof         = data.length
+            @buffers        = {}
+            @incomplete     = {}
+            @string_opened  = false
+            @string_closed  = false
+            data            = @content.unpack('C*')
+            p_start         = 0
+            p_end           = 0
+            p               = 0
+            pe              = data.length
+            eof             = data.length
 
       # begin: ragel
             %% write init;

@@ -41,13 +41,13 @@
     SP+
     NAMESPACE_KW @namespace_keyword
     SP+
-    id_ident %keyword
+    an_ident %keyword
     SP+
     AS_KW
     SP+
     URL_KW @url_keyword
     SP+
-    str_string %string
+    a_string %string
     SP*
     NL @yield_namespace_definition;
 }%%

@@ -7,10 +7,10 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 48, 122, 9, 122, 
-	9, 122, 0, 0, 10, 
-	122, 10, 122, 0, 0, 
-	10, 122, 0
+	0, 0, 48, 122, 48, 122, 
+	9, 122, 9, 122, 0, 
+	0, 10, 122, 10, 122, 
+	0, 0, 0
 ]
 
 class << self
@@ -18,8 +18,8 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 75, 114, 114, 0, 113, 113, 0, 
-	113
+	0, 75, 75, 114, 114, 0, 113, 113, 
+	0
 ]
 
 class << self
@@ -27,8 +27,8 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 76, 191, 306, 307, 421, 535, 
-	536
+	0, 0, 76, 152, 267, 382, 383, 497, 
+	611
 ]
 
 class << self
@@ -45,79 +45,74 @@ self._bel_indicies = [
 	1, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 1, 2, 3, 1, 1, 
+	0, 0, 0, 1, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 1, 1, 
+	1, 1, 1, 1, 1, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 1, 
+	1, 1, 1, 2, 1, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 1, 
+	3, 4, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 3, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 1, 1, 1, 1, 1, 1, 1, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 1, 1, 1, 1, 1, 1, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 1, 6, 7, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 2, 1, 1, 1, 1, 
+	1, 1, 6, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 1, 1, 1, 
-	1, 1, 1, 1, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 1, 1, 
-	1, 1, 1, 1, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 1, 5, 
-	6, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 5, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	1, 1, 1, 1, 1, 1, 1, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 1, 1, 1, 1, 7, 1, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 1, 1, 8, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 1, 1, 1, 1, 1, 
-	1, 1, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 1, 1, 1, 1, 
-	9, 1, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 1, 10, 1, 1, 
+	1, 1, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 1, 1, 1, 1, 
+	1, 1, 1, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 1, 1, 1, 
+	1, 8, 1, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 1, 1, 9, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 1, 1, 1, 
-	1, 1, 1, 1, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 1, 1, 
-	1, 1, 11, 1, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 1, 1, 
-	10, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 1, 
+	1, 1, 1, 1, 1, 1, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	1, 1, 1, 1, 10, 1, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	1, 11, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
 	1, 1, 1, 1, 1, 1, 1, 12, 
 	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 1, 1, 1, 1, 12, 1, 12, 
+	12, 1, 1, 1, 1, 1, 1, 1, 
 	12, 12, 12, 12, 12, 12, 12, 12, 
 	12, 12, 12, 12, 12, 12, 12, 12, 
 	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 1, 0
+	12, 12, 1, 1, 1, 1, 12, 1, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 1, 1, 0
 ]
 
 class << self
@@ -125,8 +120,8 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 4, 2, 3, 4, 5, 
-	4, 5, 7, 8, 8
+	3, 0, 7, 4, 5, 3, 4, 5, 
+	6, 5, 6, 8, 7
 ]
 
 class << self
@@ -134,8 +129,8 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	2, 0, 4, 5, 6, 0, 8, 9, 
-	11, 12, 13, 9, 12
+	2, 0, 3, 5, 6, 7, 0, 9, 
+	3, 11, 12, 14, 12
 ]
 
 class << self
@@ -143,8 +138,8 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 3, 7, 7, 10, 0, 0, 
-	14
+	0, 1, 0, 4, 8, 8, 10, 13, 
+	15
 ]
 
 class << self
@@ -154,16 +149,16 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 2;
+self.bel_first_final = 3;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_id_ast
+	attr_accessor :bel_en_ident_node
 end
-self.bel_en_id_ast = 6;
+self.bel_en_ident_node = 2;
 class << self
 	attr_accessor :bel_en_unset_ast
 end
@@ -217,18 +212,26 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 6 then
+	when 14 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+	when 7 then
 		begin
 
     #$stderr.puts 'accum_unset_keyword "' + fc.chr + '"'
     @incomplete[:unset_keyword] << data[p].ord
   		end
-	when 4 then
+	when 5 then
 		begin
 
     #$stderr.puts 'end_unset_keyword'
   		end
-	when 8 then
+	when 9 then
 		begin
 
     #$stderr.puts "unset_end"
@@ -249,7 +252,7 @@ begin
     @buffers[:unset] = ast_node
     yield @buffers[:unset]
   		end
-	when 9 then
+	when 3 then
 		begin
 
     @incomplete[:ident] = []
@@ -257,18 +260,6 @@ begin
 		begin
 
     @incomplete[:ident] << data[p].ord
-  		end
-	when 13 then
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
   		end
 	when 11 then
 		begin
@@ -309,7 +300,7 @@ begin
     #$stderr.puts 'accum_unset_keyword "' + fc.chr + '"'
     @incomplete[:unset_keyword] << data[p].ord
   		end
-	when 5 then
+	when 6 then
 		begin
 
     #$stderr.puts 'end_unset_keyword'
@@ -351,7 +342,22 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 14 then
+	when 15 then
+		begin
+
+    yield @buffers[:ident]
+  		end
+	when 1 then
+		begin
+
+    #$stderr.puts 'eof_unset_keyword'
+  		end
+	when 8 then
+		begin
+
+    #$stderr.puts 'eof_unset'
+  		end
+	when 13 then
 		begin
 
     ident = @incomplete.delete(:ident) || []
@@ -359,15 +365,9 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 1 then
 		begin
 
-    #$stderr.puts 'eof_unset_keyword'
-  		end
-	when 7 then
-		begin
-
-    #$stderr.puts 'eof_unset'
+    yield @buffers[:ident]
   		end
 	when 10 then
 		begin
@@ -381,7 +381,7 @@ begin
 
     #$stderr.puts 'eof_unset'
   		end
-	when 3 then
+	when 4 then
 		begin
 
     #$stderr.puts 'eof_unset_keyword'
@@ -446,10 +446,10 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 48, 122, 9, 122, 
-	9, 122, 0, 0, 10, 
-	122, 10, 122, 0, 0, 
-	10, 122, 0
+	0, 0, 48, 122, 48, 122, 
+	9, 122, 9, 122, 0, 
+	0, 10, 122, 10, 122, 
+	0, 0, 0
 ]
 
 class << self
@@ -457,8 +457,8 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 75, 114, 114, 0, 113, 113, 0, 
-	113
+	0, 75, 75, 114, 114, 0, 113, 113, 
+	0
 ]
 
 class << self
@@ -466,8 +466,8 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 76, 191, 306, 307, 421, 535, 
-	536
+	0, 0, 76, 152, 267, 382, 383, 497, 
+	611
 ]
 
 class << self
@@ -484,79 +484,74 @@ self._bel_indicies = [
 	1, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 1, 2, 3, 1, 1, 
+	0, 0, 0, 1, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 1, 1, 
+	1, 1, 1, 1, 1, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 1, 
+	1, 1, 1, 2, 1, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 1, 
+	3, 4, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 3, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 1, 1, 1, 1, 1, 1, 1, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 1, 1, 1, 1, 1, 1, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 5, 5, 5, 5, 5, 5, 
+	5, 5, 1, 6, 7, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 2, 1, 1, 1, 1, 
+	1, 1, 6, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 1, 1, 1, 
-	1, 1, 1, 1, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 1, 1, 
-	1, 1, 1, 1, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 4, 4, 
-	4, 4, 4, 4, 4, 4, 1, 5, 
-	6, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 5, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	1, 1, 1, 1, 1, 1, 1, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 1, 1, 1, 1, 7, 1, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 1, 1, 8, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 1, 1, 1, 1, 1, 
-	1, 1, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 1, 1, 1, 1, 
-	9, 1, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 1, 10, 1, 1, 
+	1, 1, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 1, 1, 1, 1, 
+	1, 1, 1, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 1, 1, 1, 
+	1, 8, 1, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 1, 1, 9, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 1, 1, 1, 
-	1, 1, 1, 1, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 1, 1, 
-	1, 1, 11, 1, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 1, 1, 
-	10, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 1, 
+	1, 1, 1, 1, 1, 1, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	1, 1, 1, 1, 10, 1, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	1, 11, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
 	1, 1, 1, 1, 1, 1, 1, 12, 
 	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 1, 1, 1, 1, 12, 1, 12, 
+	12, 1, 1, 1, 1, 1, 1, 1, 
 	12, 12, 12, 12, 12, 12, 12, 12, 
 	12, 12, 12, 12, 12, 12, 12, 12, 
 	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 1, 0
+	12, 12, 1, 1, 1, 1, 12, 1, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 1, 1, 0
 ]
 
 class << self
@@ -564,8 +559,8 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 4, 2, 3, 4, 5, 
-	4, 5, 7, 8, 8
+	3, 0, 7, 4, 5, 3, 4, 5, 
+	6, 5, 6, 8, 7
 ]
 
 class << self
@@ -573,8 +568,8 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	2, 0, 4, 5, 6, 0, 8, 9, 
-	11, 12, 13, 9, 12
+	2, 0, 3, 5, 6, 7, 0, 9, 
+	3, 11, 12, 14, 12
 ]
 
 class << self
@@ -582,8 +577,8 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 3, 7, 7, 10, 0, 0, 
-	14
+	0, 1, 0, 4, 8, 8, 10, 13, 
+	15
 ]
 
 class << self
@@ -593,16 +588,16 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 2;
+self.bel_first_final = 3;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_id_ast
+	attr_accessor :bel_en_ident_node
 end
-self.bel_en_id_ast = 6;
+self.bel_en_ident_node = 2;
 class << self
 	attr_accessor :bel_en_unset_ast
 end
@@ -670,18 +665,26 @@ begin
 
     @incomplete[:ident] << data[p].ord
   		end
-	when 6 then
+	when 14 then
+		begin
+
+    ident = @incomplete.delete(:ident) || []
+    completed = !ident.empty?
+    ast_node = identifier(utf8_string(ident), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+	when 7 then
 		begin
 
     #$stderr.puts 'accum_unset_keyword "' + fc.chr + '"'
     @incomplete[:unset_keyword] << data[p].ord
   		end
-	when 4 then
+	when 5 then
 		begin
 
     #$stderr.puts 'end_unset_keyword'
   		end
-	when 8 then
+	when 9 then
 		begin
 
     #$stderr.puts "unset_end"
@@ -702,7 +705,7 @@ begin
     @buffers[:unset] = ast_node
     yield @buffers[:unset]
   		end
-	when 9 then
+	when 3 then
 		begin
 
     @incomplete[:ident] = []
@@ -710,18 +713,6 @@ begin
 		begin
 
     @incomplete[:ident] << data[p].ord
-  		end
-	when 13 then
-		begin
-
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    yield @buffers[:ident]
   		end
 	when 11 then
 		begin
@@ -762,7 +753,7 @@ begin
     #$stderr.puts 'accum_unset_keyword "' + fc.chr + '"'
     @incomplete[:unset_keyword] << data[p].ord
   		end
-	when 5 then
+	when 6 then
 		begin
 
     #$stderr.puts 'end_unset_keyword'
@@ -804,7 +795,22 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 14 then
+	when 15 then
+		begin
+
+    yield @buffers[:ident]
+  		end
+	when 1 then
+		begin
+
+    #$stderr.puts 'eof_unset_keyword'
+  		end
+	when 8 then
+		begin
+
+    #$stderr.puts 'eof_unset'
+  		end
+	when 13 then
 		begin
 
     ident = @incomplete.delete(:ident) || []
@@ -812,15 +818,9 @@ begin
     ast_node = identifier(utf8_string(ident), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 1 then
 		begin
 
-    #$stderr.puts 'eof_unset_keyword'
-  		end
-	when 7 then
-		begin
-
-    #$stderr.puts 'eof_unset'
+    yield @buffers[:ident]
   		end
 	when 10 then
 		begin
@@ -834,7 +834,7 @@ begin
 
     #$stderr.puts 'eof_unset'
   		end
-	when 3 then
+	when 4 then
 		begin
 
     #$stderr.puts 'eof_unset_keyword'

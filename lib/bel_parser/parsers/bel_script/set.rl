@@ -134,15 +134,15 @@
     ;
 
   name =
-    id_ident
+    an_ident
     %set_name_end
     ;
 
   value =
     (
-      str_string |
-      lst_list |
-      id_ident
+      a_string |
+      a_list |
+      an_ident
     )
     >start_value
     $accum_value

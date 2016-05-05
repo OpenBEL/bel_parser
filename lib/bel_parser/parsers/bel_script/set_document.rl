@@ -18,14 +18,14 @@
     SP+
     DOCUMENT_KW
     SP+
-    id_ident %name
+    an_ident %name
     SP+
     EQL
     SP+
     (
-      str_string %string_value |
-      lst_list %list_value     |
-      id_ident %ident_value
+      a_string %string_value |
+      a_list %list_value |
+      an_ident %ident_value
     ) NL @yield_document_property;
 }%%
 =end
