@@ -5,6 +5,7 @@ require 'bel_parser/parsers/expression'
 require 'bel_parser/parsers/bel_script'
 require 'bel_parser/parsers/bel_script'
 require 'bel_parser/language/quoting'
+include AST::Sexp
 include BELParser::Quoting
 
 ast = BELParser::Parsers::AST
@@ -13,16 +14,9 @@ parsers = BELParser::Parsers
 describe 'when parsing strings' do
   subject(:parser) { parsers::Common::String }
 
-  it 'is incomplete for \'\'' do
+  it 'is a nil-parse for \'\'' do
     output = parse_ast(parser, '')
-    expect(output).to be_a(ast::String)
-    expect(output).to respond_to(:complete)
-    expect(output.complete).to be(false)
-    expect(output.children?).to be(true)
-    expect(output.first_child).to be_a(String)
-    expect(output).to eq(
-      s(:string, '')
-    )
+    expect(output).to be_nil
   end
 
   it 'is incomplete for \'"f\'' do
@@ -33,6 +27,17 @@ describe 'when parsing strings' do
     expect(output.children?).to be(true)
     expect(output).to eq(
       s(:string, "f\n")
+    )
+  end
+
+  it 'is incomplete for \'"f \'' do
+    output = parse_ast(parser, '"f ')
+    expect(output).to be_a(ast::String)
+    expect(output).to respond_to(:complete)
+    expect(output.complete).to be(false)
+    expect(output.children?).to be(true)
+    expect(output).to eq(
+      s(:string, "f \n")
     )
   end
 
@@ -72,6 +77,14 @@ describe 'when parsing strings' do
       expect(output).to eq(
         s(:string, unquote(nestedstr))
       )
+    end
+  end
+
+  context 'when given random strings with spaces' do
+    teststr = "#{random_string} #{random_string}"
+    it "is complete for #{teststr}" do
+      output = parse_ast(parser, teststr)
+      expect(output).to be_a(ast::String)
     end
   end
 end
