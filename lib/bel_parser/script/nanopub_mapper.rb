@@ -99,7 +99,7 @@ module BELParser
         (annotations || []).map do |name, value|
           {
             name:  name,
-            value: value
+            value: unquote(value)
           }
         end
       end
