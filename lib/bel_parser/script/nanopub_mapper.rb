@@ -52,7 +52,9 @@ module BELParser
           support:            support(state[:support]),
           experiment_context: experiment_context(state[:annotations]),
           references:         references(*state.values_at(*DEFINITIONS)),
-          metadata:           nil
+          metadata:           {
+            document_header: state[:document_properties] || nil
+          }
         }
       end
 
