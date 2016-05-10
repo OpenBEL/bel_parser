@@ -37,7 +37,6 @@ module BELParser
           include BELParser::Parsers::AST::Sexp
 
           def initialize(content)
-            $stderr.puts "content: " + content
             @content = content
       # begin: ragel
             
@@ -125,8 +124,17 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 1, 2, 1, 0, 
-	3, 0, 1, 1, 0, 0
+	0, 0, 0, 0, 3, 4, 3, 0, 
+	5, 0, 3, 3, 0, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 1, 2, 2, 2, 2, 2, 2, 
+	0
 ]
 
 class << self
@@ -208,51 +216,57 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 1 then
-		begin
-
-    @opened = true
-    p_start = p
-  		end
 	when 3 then
 		begin
 
-    @closed = true
+    $stderr.puts 'STRING start_string'
+    @string_opened = true
+    p_start = p
+  		end
+	when 5 then
+		begin
+
+    $stderr.puts 'STRING stop_string'
+    @string_closed = true
     p_end = p
   		end
 		begin
 
+    $stderr.puts 'STRING string_end'
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
-    $stderr.puts @buffers.inspect
   		end
 		begin
 
+    $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 2 then
+	when 4 then
 		begin
 
-    @opened = true
+    $stderr.puts 'STRING start_string'
+    @string_opened = true
     p_start = p
   		end
 		begin
 
-    @closed = true
+    $stderr.puts 'STRING stop_string'
+    @string_closed = true
     p_end = p
   		end
 		begin
 
+    $stderr.puts 'STRING string_end'
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
-    $stderr.puts @buffers.inspect
   		end
 		begin
 
+    $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
 	end
@@ -270,6 +284,31 @@ begin
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	  case _bel_eof_actions[cs]
+	when 1 then
+		begin
+
+    $stderr.puts 'STRING eof_main; yielding'
+    yield @buffers[:string]
+  		end
+	when 2 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING eof_main; yielding'
+    yield @buffers[:string]
+  		end
+	  end
+	end
+
 	end
 	if _goto_level <= _out
 		break

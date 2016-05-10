@@ -210,11 +210,13 @@ begin
 	when 12 then
 		begin
 
+    $stderr.puts 'IDENTIFIER accum_identifier'
     @incomplete[:ident] << data[p].ord
   		end
 	when 14 then
 		begin
 
+    $stderr.puts 'IDENTIFIER end_identifier'
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
@@ -255,15 +257,18 @@ begin
 	when 3 then
 		begin
 
+    $stderr.puts 'IDENTIFIER start_identifier'
     @incomplete[:ident] = []
   		end
 		begin
 
+    $stderr.puts 'IDENTIFIER accum_identifier'
     @incomplete[:ident] << data[p].ord
   		end
 	when 11 then
 		begin
 
+    $stderr.puts 'IDENTIFIER end_identifier'
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
@@ -345,6 +350,7 @@ begin
 	when 15 then
 		begin
 
+    $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
 	when 1 then
@@ -360,6 +366,7 @@ begin
 	when 13 then
 		begin
 
+    $stderr.puts 'IDENTIFIER end_identifier'
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
@@ -367,11 +374,13 @@ begin
   		end
 		begin
 
+    $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
 	when 10 then
 		begin
 
+    $stderr.puts 'IDENTIFIER end_identifier'
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
@@ -663,11 +672,13 @@ begin
 	when 12 then
 		begin
 
+    $stderr.puts 'IDENTIFIER accum_identifier'
     @incomplete[:ident] << data[p].ord
   		end
 	when 14 then
 		begin
 
+    $stderr.puts 'IDENTIFIER end_identifier'
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
@@ -708,15 +719,18 @@ begin
 	when 3 then
 		begin
 
+    $stderr.puts 'IDENTIFIER start_identifier'
     @incomplete[:ident] = []
   		end
 		begin
 
+    $stderr.puts 'IDENTIFIER accum_identifier'
     @incomplete[:ident] << data[p].ord
   		end
 	when 11 then
 		begin
 
+    $stderr.puts 'IDENTIFIER end_identifier'
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
@@ -798,6 +812,7 @@ begin
 	when 15 then
 		begin
 
+    $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
 	when 1 then
@@ -813,6 +828,7 @@ begin
 	when 13 then
 		begin
 
+    $stderr.puts 'IDENTIFIER end_identifier'
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
@@ -820,11 +836,13 @@ begin
   		end
 		begin
 
+    $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
 	when 10 then
 		begin
 
+    $stderr.puts 'IDENTIFIER end_identifier'
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
