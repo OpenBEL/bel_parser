@@ -6,14 +6,17 @@
   include 'common.rl';
 
   action start_identifier {
+    $stderr.puts 'IDENTIFIER start_identifier'
     @incomplete[:ident] = []
   }
 
   action accum_identifier {
+    $stderr.puts 'IDENTIFIER accum_identifier'
     @incomplete[:ident] << fc
   }
 
   action end_identifier {
+    $stderr.puts 'IDENTIFIER end_identifier'
     ident = @incomplete.delete(:ident) || []
     completed = !ident.empty?
     ast_node = identifier(utf8_string(ident), complete: completed)
@@ -21,6 +24,7 @@
   }
 
   action yield_identifier {
+    $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   }
 

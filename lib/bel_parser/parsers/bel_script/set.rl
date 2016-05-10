@@ -3,6 +3,8 @@
 %%{
   machine bel;
 
+  include 'identifier.rl';
+  include 'string.rl';
   include 'list.rl';
 
   action start_set_keyword {

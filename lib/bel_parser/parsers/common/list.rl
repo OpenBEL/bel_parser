@@ -3,76 +3,64 @@
 %%{
   machine bel;
 
+  include 'common.rl';
   include 'identifier.rl';
   include 'string.rl';
 
-  action list_start {
-    $stderr.puts 'list_start'
-    @opened = true
-    @buffers[:list] = list()
+  action start_list {
+    $stderr.puts "LIST start_list"
+    @list_opened = true
+    @incomplete[:list] = list()
   }
 
-  action add_string {
-    $stderr.puts 'add_string'
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    @buffers[:list] <<= item
-  }
-
-  action add_ident {
-    $stderr.puts 'add_ident'
-    ident = @buffers.delete(:ident)
-    item = list_item(ident, complete: ident.complete)
-    @buffers[:list] <<= item
-  }
-
-  action list_finish {
-    $stderr.puts 'list_finish'
+  action stop_list {
+    $stderr.puts "LIST stop_list"
     @list_closed = true
   }
 
-  action list_end {
-    $stderr.puts "list_end"
-    $stderr.puts "incomplete: " + @incomplete.inspect.to_s
-    $stderr.puts "buffers: " + @buffers.inspect.to_s
-    arg = @incomplete.delete(:list_arg)
-    $stderr.puts "'#{arg}'"
-    if @incomplete.key?(:string)
-      # strings need to be closed; so set complete false
-      ast_node = string(utf8_string(arg), complete: false)
-      # the list item is complete if its child is complete
-      item = list_item(ast_node, complete: ast_node.complete)
-      @buffers[:list] <<= item
-    elsif @incomplete.key?(:ident)
-      # identifiers need not be closed; so set complete true
-      ast_node = identifier(utf8_string(arg), complete: true)
-      # the list item is complete if its child is complete
-      item = list_item(ast_node, complete: ast_node.complete)
-      @buffers[:list] <<= item
-    end
+  action add_string {
+    $stderr.puts "LIST add_string"
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    @incomplete[:list] <<= item
+  }
 
-    $stderr.puts 'closed? ' + @list_closed.to_s
-    @buffers[:list].complete = @list_closed
+  action add_ident {
+    $stderr.puts "LIST add_ident"
+    ident = @buffers.delete(:ident)
+    item = list_item(ident, complete: ident.complete)
+    @incomplete[:list] <<= item
+  }
+
+  action list_end {
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  }
+
+  action list_node_eof {
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
   }
 
   action yield_list {
-    $stderr.puts "yield_list"
+    $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   }
 
-  action clear {
-    #$stderr.puts "clear"
-    @buffers.delete(:string)
-    @buffers.delete(:ident)
-  }
-
-  action start_list {
-    $stderr.puts "start_list"
-    @buffers[:list] = list()
-  }
-
-  start_list = '{' SP* >list_start;
-  end_list = SP* '}' %list_finish;
+  START_LIST = '{' SP* >start_list;
+  END_LIST = '}' %stop_list;
 
   string_item =
     a_string
@@ -85,7 +73,8 @@
     ;
 
   item =
-    (string_item | ident_item)
+    string_item |
+    ident_item
     ;
 
   list_item_0 =
@@ -98,30 +87,19 @@
     ;
 
   items =
-    (
-      list_item_0 list_item_n* |
-      any* - NL
-    )
+    list_item_0
+    list_item_n*
+    SP*
     ;
 
-  maybe_list =
-    start_list?
-    items?
-    end_list?
-    %list_end
-    ;
-
-  a_list =
-    start_list
-    items
-    end_list
-    %list_end
-    ;
+  a_list = START_LIST;
 
   list_node :=
-    start_list
+    START_LIST
     items?
-    end_list?
+    @eof(list_node_eof)
+    END_LIST?
+    @eof(list_node_eof)
     NL?
     %list_end
     %yield_list
@@ -160,8 +138,8 @@ module BELParser
           include BELParser::Parsers::AST::Sexp
 
           def initialize(content)
-            $stderr.puts "\ncontent: " + content
             @content = content
+            $stderr.puts "\n---\ncontent: '" + @content + "'"
       # begin: ragel
             %% write data;
       # end: ragel
@@ -170,7 +148,7 @@ module BELParser
           def each
             @buffers      = {}
             @incomplete   = {}
-            @opened       = false
+            @list_opened  = false
             @list_closed  = false
             data          = @content.unpack('C*')
             p             = 0
