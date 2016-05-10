@@ -12,7 +12,7 @@ describe 'when parsing lists' do
   subject(:parser) { parsers::Common::List }
 
   it 'is incomplete for {' do
-    output = parse_ast(parser, '{')
+    output = parse_ast_no_nl(parser, '{')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(false)
@@ -20,7 +20,7 @@ describe 'when parsing lists' do
   end
 
   it 'is complete for {}' do
-    output = parse_ast(parser, '{}')
+    output = parse_ast_no_nl(parser, '{}')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
@@ -28,7 +28,7 @@ describe 'when parsing lists' do
   end
 
   it 'is complete for { foo }' do
-    output = parse_ast(parser, '{ foo }')
+    output = parse_ast_no_nl(parser, '{ foo }')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
@@ -42,7 +42,7 @@ describe 'when parsing lists' do
   end
 
   it 'is complete for { "foo" }' do
-    output = parse_ast(parser, '{ "foo" }')
+    output = parse_ast_no_nl(parser, '{ "foo" }')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
@@ -56,7 +56,7 @@ describe 'when parsing lists' do
   end
 
   it 'is complete for { "foo", bar }' do
-    output = parse_ast(parser, '{ "foo", bar }')
+    output = parse_ast_no_nl(parser, '{ "foo", bar }')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
@@ -73,7 +73,7 @@ describe 'when parsing lists' do
   end
 
   it 'is complete for { foo, "bar" }' do
-    output = parse_ast(parser, '{ foo, "bar" }')
+    output = parse_ast_no_nl(parser, '{ foo, "bar" }')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
@@ -90,7 +90,7 @@ describe 'when parsing lists' do
   end
 
   it 'is complete for { "foo", "bar" }' do
-    output = parse_ast(parser, '{ "foo", "bar" }')
+    output = parse_ast_no_nl(parser, '{ "foo", "bar" }')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
@@ -107,7 +107,7 @@ describe 'when parsing lists' do
   end
 
   it 'is complete for { foo, bar }' do
-    output = parse_ast(parser, '{ foo, bar }')
+    output = parse_ast_no_nl(parser, '{ foo, bar }')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(true)
@@ -124,7 +124,7 @@ describe 'when parsing lists' do
   end
 
   it 'is incomplete for \'{ foo\'' do
-    output = parse_ast(parser, '{ foo')
+    output = parse_ast_no_nl(parser, '{ foo')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(false)
@@ -140,7 +140,7 @@ describe 'when parsing lists' do
   end
 
   it 'is incomplete for \'{ foo \'' do
-    output = parse_ast(parser, "{ foo ")
+    output = parse_ast_no_nl(parser, "{ foo ")
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(false)
@@ -156,7 +156,7 @@ describe 'when parsing lists' do
   end
 
   it 'is incomplete for { "foo }' do
-    output = parse_ast(parser, '{ "foo }')
+    output = parse_ast_no_nl(parser, '{ "foo }')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(false)
@@ -170,12 +170,12 @@ describe 'when parsing lists' do
     expect(output).to eq(
       s(:list,
         s(:list_item,
-          s(:string, "\"foo }\n")))
+          s(:string, "foo }")))
     )
   end
 
   it 'is incomplete for { "foo, bar }' do
-    output = parse_ast(parser, '{ "foo, bar }')
+    output = parse_ast_no_nl(parser, '{ "foo, bar }')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(false)
@@ -189,12 +189,12 @@ describe 'when parsing lists' do
     expect(output).to eq(
       s(:list,
         s(:list_item,
-          s(:string, "\"foo, bar }\n")))
+          s(:string, "foo, bar }")))
     )
   end
 
   it 'is incomplete for { "foo", "bar }' do
-    output = parse_ast(parser, '{ "foo", "bar }')
+    output = parse_ast_no_nl(parser, '{ "foo", "bar }')
     expect(output).to be_a(ast::List)
     expect(output).to respond_to(:complete)
     expect(output.complete).to be(false)
@@ -214,9 +214,9 @@ describe 'when parsing lists' do
     expect(output).to eq(
       s(:list,
         s(:list_item,
-          s(:string, "foo")),
+          s(:string, 'foo')),
         s(:list_item,
-          s(:string, "\"bar }\n")))
+          s(:string, "bar }")))
     )
   end
 end
