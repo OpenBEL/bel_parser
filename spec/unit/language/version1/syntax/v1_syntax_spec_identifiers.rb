@@ -3,6 +3,7 @@ require 'bel_parser/parsers/ast/node'
 require 'bel_parser/parsers/common'
 require 'bel_parser/parsers/expression'
 require 'bel_parser/parsers/bel_script'
+include AST::Sexp
 
 ast = BELParser::Parsers::AST
 parsers = BELParser::Parsers
