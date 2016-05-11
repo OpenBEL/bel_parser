@@ -1,6 +1,6 @@
 require          'base64'
 require          'digest'
-require          'gdbm'
+require          'dbm'
 require          'net/http'
 require          'tempfile'
 require          'uri'
@@ -12,26 +12,34 @@ module BELParser
   module Resource
     # ResourceURLReader retrieves {Dataset datasets} and {Value values} from
     # Annotation (i.e. belanno extension) and Namespace (i.e. belns extension)
-    # files. Value and encoding are stored in GDBM database files to reduce the
+    # files. Value and encoding are stored in DBM database files to reduce the
     # runtime memory usage (22 resources loaded, totaling 100MB memory usage).
     #
     # Only supports resource identifiers with an HTTP or HTTPS scheme.
     class ResourceURLReader
       include Reader
 
-      # Class ivars for tracking open {GDBM} databases.
+      # Class ivars for tracking open {DBM} databases.
       @dataset_file   = nil
       @resource_files = {}
 
       DEFAULT_RESOURCE_VALUE_DELIMITER = '|'
       private_constant :DEFAULT_RESOURCE_VALUE_DELIMITER
 
+      # Initializes a {ResourceURLReader}.
+      #
+      # @param [Boolean] reuse_database_files specify +true+ to reuse database
+      #        files; +false+ to create new database files (default)
       def initialize(reuse_database_files = false)
         @resources = {}
         @datasets  = ResourceURLReader.open_datasets_file
         @reuse     = reuse_database_files
       end
 
+      # Retrieve the resource identified by +resource_identifier+.
+      #
+      # @param  [String] resource_identifier the resource identifier
+      # @return [FileResource] the file resource
       def retrieve_resource(resource_identifier)
         read_resource(resource_identifier)[:dataset]
       end
@@ -134,11 +142,11 @@ module BELParser
       end
 
       def self.open_datasets_file
-        @dataset_file ||= ::GDBM.new(_temporary_datasets_file)
+        @dataset_file ||= ::DBM.open(_temporary_datasets_file)
       end
 
       def self.open_resource_file(url)
-        @resource_files[url] ||= ::GDBM.new(_temporary_resource_file(url))
+        @resource_files[url] ||= ::DBM.open(_temporary_resource_file(url))
       end
 
       def self._temporary_datasets_file

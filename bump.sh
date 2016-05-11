@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 CURRENT=$(cat VERSION)
 NEXT=$(echo "puts \"${CURRENT}\".next" | ruby)
 
@@ -27,8 +26,20 @@ REF=$(git symbolic-ref HEAD); git push upstream $REF
 # push tag upstream
 REF=$(git symbolic-ref HEAD); git push upstream "$NEXT"
 
-# build gem
+# build mri gem
 gem build .gemspec
 
-# push gem
+# push mri gem
 gem push "bel_parser-$NEXT.gem"
+
+source /usr/share/chruby/chruby.sh
+RUBIES+=(
+  /home/tony/tools/rubies/jruby-9.1.0.0
+)
+chruby jruby-9.1.0.0
+
+# build java gem
+gem build .gemspec-java
+
+# push java gem
+gem push "bel_parser-${NEXT}-java.gem"
