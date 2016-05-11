@@ -7,19 +7,15 @@
 
   action start_identifier {
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  }
-
-  action accum_identifier {
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << fc
+    p_start = p;
   }
 
   action end_identifier {
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   }
 
@@ -32,7 +28,6 @@
   ident =
     ID_CHARS
     >start_identifier
-    $accum_identifier
     %end_identifier
     ;
 
@@ -94,6 +89,8 @@ module BELParser
             @incomplete = {}
             data        = @content.unpack('C*')
             p           = 0
+            p_start     = 0
+            p_end       = 0
             pe          = data.length
             eof         = data.length
 
