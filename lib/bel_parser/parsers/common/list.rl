@@ -92,7 +92,12 @@
     SP*
     ;
 
-  a_list = START_LIST;
+  a_list =
+    START_LIST
+    items
+    END_LIST
+    %list_end
+    ;
 
   list_node :=
     START_LIST
