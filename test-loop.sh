@@ -2,6 +2,7 @@
 while true; do
     rslt=$(gate $(find lib spec -type d) | head -n 1 | awk '{ print $1 }')
     if [[ $rslt = *rl ]]; then
+        clear
         echo "Building @ $(date)"
         echo $rslt
         ./build_all.sh || continue
