@@ -108,7 +108,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 0, 3, 4
+	1, 0, 3, 0
 ]
 
 class << self
@@ -116,7 +116,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 0, 2, 5
+	0, 0, 2, 4
 ]
 
 class << self
@@ -146,6 +146,8 @@ self.bel_en_ident_node = 1;
             @incomplete = {}
             data        = @content.unpack('C*')
             p           = 0
+            p_start     = 0
+            p_end       = 0
             pe          = data.length
             eof         = data.length
 
@@ -194,31 +196,21 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 4 then
+	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
 	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
-  		end
-	when 1 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
   		end
 	end
 	end
@@ -237,7 +229,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 5 then
+	when 4 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -247,9 +239,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin

@@ -331,12 +331,12 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	1, 0, 2, 3, 4, 0, 0, 0, 
-	0, 0, 0, 5, 0, 0, 0, 7, 
-	8, 7, 0, 9, 0, 10, 11, 0, 
-	12, 7, 7, 0, 0, 2, 0, 0, 
-	0, 7, 15, 7, 0, 16, 0, 7, 
-	7, 0, 0, 18, 4
+	1, 0, 2, 3, 0, 0, 0, 0, 
+	0, 0, 0, 4, 0, 0, 0, 6, 
+	7, 6, 0, 8, 0, 9, 10, 0, 
+	11, 6, 6, 0, 0, 2, 0, 0, 
+	0, 6, 14, 6, 0, 15, 0, 6, 
+	6, 0, 0, 17, 0
 ]
 
 class << self
@@ -347,9 +347,9 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 6, 6, 0, 0, 
-	6, 6, 6, 6, 0, 13, 14, 14, 
-	14, 14, 14, 14, 0, 17, 19, 0
+	0, 0, 0, 0, 5, 5, 0, 0, 
+	5, 5, 5, 5, 0, 12, 13, 13, 
+	13, 13, 13, 13, 0, 16, 18, 0
 ]
 
 class << self
@@ -421,22 +421,23 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 4 then
+	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
-	when 18 then
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 7 then
+	when 6 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -448,12 +449,12 @@ begin
 
     @buffers[:namespace_definition] = namespace_definition()
   		end
-	when 5 then
+	when 4 then
 		begin
 
     @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
   		end
-	when 10 then
+	when 9 then
 		begin
 
     keyword, domain                 = @buffers[:namespace_definition].children
@@ -461,36 +462,26 @@ begin
                                         domain.children[0] << @buffers[:string])
     @buffers[:namespace_definition] = namespace_definition(keyword, domain)
   		end
-	when 12 then
+	when 11 then
 		begin
 
     yield @buffers[:namespace_definition]
-  		end
-	when 2 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
   		end
 	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
 
     @buffers[:namespace_definition] = @buffers[:namespace_definition] << keyword(@buffers[:ident])
   		end
-	when 9 then
+	when 8 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -505,7 +496,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 11 then
+	when 10 then
 		begin
 
     keyword, domain                 = @buffers[:namespace_definition].children
@@ -517,7 +508,7 @@ begin
 
     yield @buffers[:namespace_definition]
   		end
-	when 8 then
+	when 7 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -538,7 +529,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 16 then
+	when 15 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -558,7 +549,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 14 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -601,13 +592,13 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 19 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 6 then
+	when 5 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -616,19 +607,20 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 13 then
+	when 12 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 17 then
+	when 16 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -636,7 +628,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 14 then
+	when 13 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -989,12 +981,12 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	1, 0, 2, 3, 4, 0, 0, 0, 
-	0, 0, 0, 5, 0, 0, 0, 7, 
-	8, 7, 0, 9, 0, 10, 11, 0, 
-	12, 7, 7, 0, 0, 2, 0, 0, 
-	0, 7, 15, 7, 0, 16, 0, 7, 
-	7, 0, 0, 18, 4
+	1, 0, 2, 3, 0, 0, 0, 0, 
+	0, 0, 0, 4, 0, 0, 0, 6, 
+	7, 6, 0, 8, 0, 9, 10, 0, 
+	11, 6, 6, 0, 0, 2, 0, 0, 
+	0, 6, 14, 6, 0, 15, 0, 6, 
+	6, 0, 0, 17, 0
 ]
 
 class << self
@@ -1005,9 +997,9 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 6, 6, 0, 0, 
-	6, 6, 6, 6, 0, 13, 14, 14, 
-	14, 14, 14, 14, 0, 17, 19, 0
+	0, 0, 0, 0, 5, 5, 0, 0, 
+	5, 5, 5, 5, 0, 12, 13, 13, 
+	13, 13, 13, 13, 0, 16, 18, 0
 ]
 
 class << self
@@ -1079,22 +1071,23 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 4 then
+	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
-	when 18 then
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 7 then
+	when 6 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1106,12 +1099,12 @@ begin
 
     @buffers[:namespace_definition] = namespace_definition()
   		end
-	when 5 then
+	when 4 then
 		begin
 
     @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
   		end
-	when 10 then
+	when 9 then
 		begin
 
     keyword, domain                 = @buffers[:namespace_definition].children
@@ -1119,36 +1112,26 @@ begin
                                         domain.children[0] << @buffers[:string])
     @buffers[:namespace_definition] = namespace_definition(keyword, domain)
   		end
-	when 12 then
+	when 11 then
 		begin
 
     yield @buffers[:namespace_definition]
-  		end
-	when 2 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
   		end
 	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
 
     @buffers[:namespace_definition] = @buffers[:namespace_definition] << keyword(@buffers[:ident])
   		end
-	when 9 then
+	when 8 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1163,7 +1146,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 11 then
+	when 10 then
 		begin
 
     keyword, domain                 = @buffers[:namespace_definition].children
@@ -1175,7 +1158,7 @@ begin
 
     yield @buffers[:namespace_definition]
   		end
-	when 8 then
+	when 7 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1196,7 +1179,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 16 then
+	when 15 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1216,7 +1199,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 14 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1259,13 +1242,13 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 19 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 6 then
+	when 5 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1274,19 +1257,20 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 13 then
+	when 12 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 17 then
+	when 16 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1294,7 +1278,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 14 then
+	when 13 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1684,12 +1668,12 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	1, 0, 2, 3, 4, 0, 0, 0, 
-	0, 0, 0, 5, 0, 0, 0, 7, 
-	8, 7, 0, 9, 0, 10, 11, 0, 
-	12, 7, 7, 0, 0, 2, 0, 0, 
-	0, 7, 15, 7, 0, 16, 0, 7, 
-	7, 0, 0, 18, 4
+	1, 0, 2, 3, 0, 0, 0, 0, 
+	0, 0, 0, 4, 0, 0, 0, 6, 
+	7, 6, 0, 8, 0, 9, 10, 0, 
+	11, 6, 6, 0, 0, 2, 0, 0, 
+	0, 6, 14, 6, 0, 15, 0, 6, 
+	6, 0, 0, 17, 0
 ]
 
 class << self
@@ -1700,9 +1684,9 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 6, 6, 0, 0, 
-	6, 6, 6, 6, 0, 13, 14, 14, 
-	14, 14, 14, 14, 0, 17, 19, 0
+	0, 0, 0, 0, 5, 5, 0, 0, 
+	5, 5, 5, 5, 0, 12, 13, 13, 
+	13, 13, 13, 13, 0, 16, 18, 0
 ]
 
 class << self
@@ -1789,22 +1773,23 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 4 then
+	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
-	when 18 then
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 7 then
+	when 6 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1816,12 +1801,12 @@ begin
 
     @buffers[:namespace_definition] = namespace_definition()
   		end
-	when 5 then
+	when 4 then
 		begin
 
     @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
   		end
-	when 10 then
+	when 9 then
 		begin
 
     keyword, domain                 = @buffers[:namespace_definition].children
@@ -1829,36 +1814,26 @@ begin
                                         domain.children[0] << @buffers[:string])
     @buffers[:namespace_definition] = namespace_definition(keyword, domain)
   		end
-	when 12 then
+	when 11 then
 		begin
 
     yield @buffers[:namespace_definition]
-  		end
-	when 2 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
   		end
 	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
 
     @buffers[:namespace_definition] = @buffers[:namespace_definition] << keyword(@buffers[:ident])
   		end
-	when 9 then
+	when 8 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1873,7 +1848,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 11 then
+	when 10 then
 		begin
 
     keyword, domain                 = @buffers[:namespace_definition].children
@@ -1885,7 +1860,7 @@ begin
 
     yield @buffers[:namespace_definition]
   		end
-	when 8 then
+	when 7 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1906,7 +1881,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 16 then
+	when 15 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1926,7 +1901,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 14 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1969,13 +1944,13 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 19 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 6 then
+	when 5 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1984,19 +1959,20 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 13 then
+	when 12 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 17 then
+	when 16 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -2004,7 +1980,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 14 then
+	when 13 then
 		begin
 
     $stderr.puts 'STRING eof_string'

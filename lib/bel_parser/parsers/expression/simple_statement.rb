@@ -969,22 +969,22 @@ self._bel_trans_actions = [
 	9, 0, 11, 0, 14, 14, 14, 0, 
 	0, 9, 9, 0, 0, 15, 16, 15, 
 	15, 4, 17, 0, 22, 23, 22, 0, 
-	24, 0, 0, 25, 26, 27, 28, 28, 
-	7, 0, 0, 0, 9, 31, 9, 0, 
-	32, 0, 9, 9, 0, 0, 0, 0, 
+	24, 0, 0, 25, 26, 27, 0, 0, 
+	7, 0, 0, 0, 9, 30, 9, 0, 
+	31, 0, 9, 9, 0, 0, 0, 0, 
 	0, 0, 7, 7, 9, 10, 9, 0, 
-	11, 0, 33, 9, 9, 0, 0, 34, 
-	28, 28, 17, 35, 2, 3, 4, 0, 
+	11, 0, 32, 9, 9, 0, 0, 33, 
+	0, 0, 17, 34, 2, 3, 4, 0, 
 	5, 0, 0, 0, 0, 6, 7, 9, 
-	10, 9, 0, 11, 0, 14, 36, 14, 
+	10, 9, 0, 11, 0, 14, 35, 14, 
 	0, 0, 9, 9, 0, 0, 15, 16, 
-	37, 15, 4, 17, 38, 28, 1, 2, 
+	36, 15, 4, 17, 37, 0, 1, 2, 
 	3, 4, 0, 5, 0, 0, 0, 0, 
 	6, 7, 9, 10, 9, 0, 11, 0, 
 	14, 14, 14, 0, 0, 9, 9, 0, 
 	0, 15, 16, 15, 15, 4, 17, 0, 
-	39, 28, 19, 40, 21, 41, 0, 0, 
-	25, 26, 42, 44, 28
+	38, 0, 19, 39, 21, 40, 0, 0, 
+	25, 26, 41, 43, 0
 ]
 
 class << self
@@ -997,16 +997,16 @@ self._bel_eof_actions = [
 	12, 12, 0, 0, 0, 0, 0, 0, 
 	0, 0, 8, 8, 12, 0, 0, 8, 
 	8, 8, 12, 12, 12, 0, 0, 0, 
-	0, 8, 12, 8, 12, 0, 29, 30, 
-	30, 30, 30, 30, 30, 0, 0, 0, 
+	0, 8, 12, 8, 12, 0, 28, 29, 
+	29, 29, 29, 29, 29, 0, 0, 0, 
 	8, 8, 0, 8, 8, 8, 8, 0, 
 	0, 0, 0, 0, 0, 0, 0, 8, 
 	8, 12, 0, 0, 8, 8, 8, 12, 
 	12, 8, 12, 0, 0, 0, 0, 0, 
 	0, 8, 8, 12, 0, 0, 8, 8, 
 	8, 12, 12, 12, 8, 12, 0, 0, 
-	0, 0, 0, 0, 0, 43, 45, 0, 
-	0, 46, 46, 0, 0
+	0, 0, 0, 0, 0, 42, 44, 0, 
+	0, 45, 45, 0, 0
 ]
 
 class << self
@@ -1099,19 +1099,20 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 7 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
-	when 44 then
+	when 43 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 	when 9 then
@@ -1121,13 +1122,18 @@ begin
     @string_opened = true
     p_start = p
   		end
+	when 4 then
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
 	when 5 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 38 then
+	when 37 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -1140,7 +1146,7 @@ begin
 	end
 
   		end
-	when 39 then
+	when 38 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -1176,7 +1182,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 41 then
+	when 40 then
 		begin
 
     yield @buffers[:comment] || comment(nil)
@@ -1206,34 +1212,14 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 7 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 4 then
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
 	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1244,9 +1230,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1258,9 +1245,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1290,7 +1278,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 33 then
+	when 32 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -1323,7 +1311,7 @@ begin
 
     @buffers[:relationship] << data[p].ord
   		end
-	when 40 then
+	when 39 then
 		begin
 
     @buffers[:relationship] = relationship(
@@ -1342,7 +1330,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 42 then
+	when 41 then
 		begin
 
     @buffers[:comment] = comment(
@@ -1385,13 +1373,28 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 34 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
+  		end
+		begin
+
+    @incomplete[:function] = []
+  		end
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1407,9 +1410,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1429,9 +1433,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1465,7 +1470,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1485,7 +1490,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 36 then
+	when 35 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -1511,32 +1516,14 @@ begin
 	end
 
   		end
-	when 6 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] = []
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
-	when 37 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1564,7 +1551,7 @@ begin
 	end
 
   		end
-	when 31 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1603,18 +1590,13 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 35 then
+	when 34 then
 		begin
 
     t = term(complete: false)
@@ -1627,12 +1609,7 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
@@ -1655,7 +1632,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 45 then
+	when 44 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -1670,23 +1647,24 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 46 then
+	when 45 then
 		begin
 
   		end
-	when 43 then
+	when 42 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1694,7 +1672,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 30 then
+	when 29 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -2703,22 +2681,22 @@ self._bel_trans_actions = [
 	9, 0, 11, 0, 14, 14, 14, 0, 
 	0, 9, 9, 0, 0, 15, 16, 15, 
 	15, 4, 17, 0, 22, 23, 22, 0, 
-	24, 0, 0, 25, 26, 27, 28, 28, 
-	7, 0, 0, 0, 9, 31, 9, 0, 
-	32, 0, 9, 9, 0, 0, 0, 0, 
+	24, 0, 0, 25, 26, 27, 0, 0, 
+	7, 0, 0, 0, 9, 30, 9, 0, 
+	31, 0, 9, 9, 0, 0, 0, 0, 
 	0, 0, 7, 7, 9, 10, 9, 0, 
-	11, 0, 33, 9, 9, 0, 0, 34, 
-	28, 28, 17, 35, 2, 3, 4, 0, 
+	11, 0, 32, 9, 9, 0, 0, 33, 
+	0, 0, 17, 34, 2, 3, 4, 0, 
 	5, 0, 0, 0, 0, 6, 7, 9, 
-	10, 9, 0, 11, 0, 14, 36, 14, 
+	10, 9, 0, 11, 0, 14, 35, 14, 
 	0, 0, 9, 9, 0, 0, 15, 16, 
-	37, 15, 4, 17, 38, 28, 1, 2, 
+	36, 15, 4, 17, 37, 0, 1, 2, 
 	3, 4, 0, 5, 0, 0, 0, 0, 
 	6, 7, 9, 10, 9, 0, 11, 0, 
 	14, 14, 14, 0, 0, 9, 9, 0, 
 	0, 15, 16, 15, 15, 4, 17, 0, 
-	39, 28, 19, 40, 21, 41, 0, 0, 
-	25, 26, 42, 44, 28
+	38, 0, 19, 39, 21, 40, 0, 0, 
+	25, 26, 41, 43, 0
 ]
 
 class << self
@@ -2731,16 +2709,16 @@ self._bel_eof_actions = [
 	12, 12, 0, 0, 0, 0, 0, 0, 
 	0, 0, 8, 8, 12, 0, 0, 8, 
 	8, 8, 12, 12, 12, 0, 0, 0, 
-	0, 8, 12, 8, 12, 0, 29, 30, 
-	30, 30, 30, 30, 30, 0, 0, 0, 
+	0, 8, 12, 8, 12, 0, 28, 29, 
+	29, 29, 29, 29, 29, 0, 0, 0, 
 	8, 8, 0, 8, 8, 8, 8, 0, 
 	0, 0, 0, 0, 0, 0, 0, 8, 
 	8, 12, 0, 0, 8, 8, 8, 12, 
 	12, 8, 12, 0, 0, 0, 0, 0, 
 	0, 8, 8, 12, 0, 0, 8, 8, 
 	8, 12, 12, 12, 8, 12, 0, 0, 
-	0, 0, 0, 0, 0, 43, 45, 0, 
-	0, 46, 46, 0, 0
+	0, 0, 0, 0, 0, 42, 44, 0, 
+	0, 45, 45, 0, 0
 ]
 
 class << self
@@ -2833,19 +2811,20 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 7 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
-	when 44 then
+	when 43 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 	when 9 then
@@ -2855,13 +2834,18 @@ begin
     @string_opened = true
     p_start = p
   		end
+	when 4 then
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
 	when 5 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 38 then
+	when 37 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -2874,7 +2858,7 @@ begin
 	end
 
   		end
-	when 39 then
+	when 38 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -2910,7 +2894,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 41 then
+	when 40 then
 		begin
 
     yield @buffers[:comment] || comment(nil)
@@ -2940,34 +2924,14 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 7 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 4 then
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
 	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -2978,9 +2942,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -2992,9 +2957,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3024,7 +2990,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 33 then
+	when 32 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -3057,7 +3023,7 @@ begin
 
     @buffers[:relationship] << data[p].ord
   		end
-	when 40 then
+	when 39 then
 		begin
 
     @buffers[:relationship] = relationship(
@@ -3076,7 +3042,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 42 then
+	when 41 then
 		begin
 
     @buffers[:comment] = comment(
@@ -3119,13 +3085,28 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 34 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
+  		end
+		begin
+
+    @incomplete[:function] = []
+  		end
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3141,9 +3122,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3163,9 +3145,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3199,7 +3182,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -3219,7 +3202,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 36 then
+	when 35 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -3245,32 +3228,14 @@ begin
 	end
 
   		end
-	when 6 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] = []
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
-	when 37 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3298,7 +3263,7 @@ begin
 	end
 
   		end
-	when 31 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -3337,18 +3302,13 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 35 then
+	when 34 then
 		begin
 
     t = term(complete: false)
@@ -3361,12 +3321,7 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
@@ -3389,7 +3344,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 45 then
+	when 44 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -3404,23 +3359,24 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 46 then
+	when 45 then
 		begin
 
   		end
-	when 43 then
+	when 42 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3428,7 +3384,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 30 then
+	when 29 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -4437,22 +4393,22 @@ self._bel_trans_actions = [
 	9, 0, 11, 0, 14, 14, 14, 0, 
 	0, 9, 9, 0, 0, 15, 16, 15, 
 	15, 4, 17, 0, 22, 23, 22, 0, 
-	24, 0, 0, 25, 26, 27, 28, 28, 
-	7, 0, 0, 0, 9, 31, 9, 0, 
-	32, 0, 9, 9, 0, 0, 0, 0, 
+	24, 0, 0, 25, 26, 27, 0, 0, 
+	7, 0, 0, 0, 9, 30, 9, 0, 
+	31, 0, 9, 9, 0, 0, 0, 0, 
 	0, 0, 7, 7, 9, 10, 9, 0, 
-	11, 0, 33, 9, 9, 0, 0, 34, 
-	28, 28, 17, 35, 2, 3, 4, 0, 
+	11, 0, 32, 9, 9, 0, 0, 33, 
+	0, 0, 17, 34, 2, 3, 4, 0, 
 	5, 0, 0, 0, 0, 6, 7, 9, 
-	10, 9, 0, 11, 0, 14, 36, 14, 
+	10, 9, 0, 11, 0, 14, 35, 14, 
 	0, 0, 9, 9, 0, 0, 15, 16, 
-	37, 15, 4, 17, 38, 28, 1, 2, 
+	36, 15, 4, 17, 37, 0, 1, 2, 
 	3, 4, 0, 5, 0, 0, 0, 0, 
 	6, 7, 9, 10, 9, 0, 11, 0, 
 	14, 14, 14, 0, 0, 9, 9, 0, 
 	0, 15, 16, 15, 15, 4, 17, 0, 
-	39, 28, 19, 40, 21, 41, 0, 0, 
-	25, 26, 42, 44, 28
+	38, 0, 19, 39, 21, 40, 0, 0, 
+	25, 26, 41, 43, 0
 ]
 
 class << self
@@ -4465,16 +4421,16 @@ self._bel_eof_actions = [
 	12, 12, 0, 0, 0, 0, 0, 0, 
 	0, 0, 8, 8, 12, 0, 0, 8, 
 	8, 8, 12, 12, 12, 0, 0, 0, 
-	0, 8, 12, 8, 12, 0, 29, 30, 
-	30, 30, 30, 30, 30, 0, 0, 0, 
+	0, 8, 12, 8, 12, 0, 28, 29, 
+	29, 29, 29, 29, 29, 0, 0, 0, 
 	8, 8, 0, 8, 8, 8, 8, 0, 
 	0, 0, 0, 0, 0, 0, 0, 8, 
 	8, 12, 0, 0, 8, 8, 8, 12, 
 	12, 8, 12, 0, 0, 0, 0, 0, 
 	0, 8, 8, 12, 0, 0, 8, 8, 
 	8, 12, 12, 12, 8, 12, 0, 0, 
-	0, 0, 0, 0, 0, 43, 45, 0, 
-	0, 46, 46, 0, 0
+	0, 0, 0, 0, 0, 42, 44, 0, 
+	0, 45, 45, 0, 0
 ]
 
 class << self
@@ -4567,19 +4523,20 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 7 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
-	when 44 then
+	when 43 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 	when 9 then
@@ -4589,13 +4546,18 @@ begin
     @string_opened = true
     p_start = p
   		end
+	when 4 then
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
 	when 5 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 38 then
+	when 37 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -4608,7 +4570,7 @@ begin
 	end
 
   		end
-	when 39 then
+	when 38 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -4644,7 +4606,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 41 then
+	when 40 then
 		begin
 
     yield @buffers[:comment] || comment(nil)
@@ -4674,34 +4636,14 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 7 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 4 then
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
 	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -4712,9 +4654,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -4726,9 +4669,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -4758,7 +4702,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 33 then
+	when 32 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -4791,7 +4735,7 @@ begin
 
     @buffers[:relationship] << data[p].ord
   		end
-	when 40 then
+	when 39 then
 		begin
 
     @buffers[:relationship] = relationship(
@@ -4810,7 +4754,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 42 then
+	when 41 then
 		begin
 
     @buffers[:comment] = comment(
@@ -4853,13 +4797,28 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 34 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
+  		end
+		begin
+
+    @incomplete[:function] = []
+  		end
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -4875,9 +4834,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -4897,9 +4857,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -4933,7 +4894,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -4953,7 +4914,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 36 then
+	when 35 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -4979,32 +4940,14 @@ begin
 	end
 
   		end
-	when 6 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] = []
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
-	when 37 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -5032,7 +4975,7 @@ begin
 	end
 
   		end
-	when 31 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -5071,18 +5014,13 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 35 then
+	when 34 then
 		begin
 
     t = term(complete: false)
@@ -5095,12 +5033,7 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
@@ -5123,7 +5056,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 45 then
+	when 44 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -5138,23 +5071,24 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 46 then
+	when 45 then
 		begin
 
   		end
-	when 43 then
+	when 42 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -5162,7 +5096,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 30 then
+	when 29 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -6171,22 +6105,22 @@ self._bel_trans_actions = [
 	9, 0, 11, 0, 14, 14, 14, 0, 
 	0, 9, 9, 0, 0, 15, 16, 15, 
 	15, 4, 17, 0, 22, 23, 22, 0, 
-	24, 0, 0, 25, 26, 27, 28, 28, 
-	7, 0, 0, 0, 9, 31, 9, 0, 
-	32, 0, 9, 9, 0, 0, 0, 0, 
+	24, 0, 0, 25, 26, 27, 0, 0, 
+	7, 0, 0, 0, 9, 30, 9, 0, 
+	31, 0, 9, 9, 0, 0, 0, 0, 
 	0, 0, 7, 7, 9, 10, 9, 0, 
-	11, 0, 33, 9, 9, 0, 0, 34, 
-	28, 28, 17, 35, 2, 3, 4, 0, 
+	11, 0, 32, 9, 9, 0, 0, 33, 
+	0, 0, 17, 34, 2, 3, 4, 0, 
 	5, 0, 0, 0, 0, 6, 7, 9, 
-	10, 9, 0, 11, 0, 14, 36, 14, 
+	10, 9, 0, 11, 0, 14, 35, 14, 
 	0, 0, 9, 9, 0, 0, 15, 16, 
-	37, 15, 4, 17, 38, 28, 1, 2, 
+	36, 15, 4, 17, 37, 0, 1, 2, 
 	3, 4, 0, 5, 0, 0, 0, 0, 
 	6, 7, 9, 10, 9, 0, 11, 0, 
 	14, 14, 14, 0, 0, 9, 9, 0, 
 	0, 15, 16, 15, 15, 4, 17, 0, 
-	39, 28, 19, 40, 21, 41, 0, 0, 
-	25, 26, 42, 44, 28
+	38, 0, 19, 39, 21, 40, 0, 0, 
+	25, 26, 41, 43, 0
 ]
 
 class << self
@@ -6199,16 +6133,16 @@ self._bel_eof_actions = [
 	12, 12, 0, 0, 0, 0, 0, 0, 
 	0, 0, 8, 8, 12, 0, 0, 8, 
 	8, 8, 12, 12, 12, 0, 0, 0, 
-	0, 8, 12, 8, 12, 0, 29, 30, 
-	30, 30, 30, 30, 30, 0, 0, 0, 
+	0, 8, 12, 8, 12, 0, 28, 29, 
+	29, 29, 29, 29, 29, 0, 0, 0, 
 	8, 8, 0, 8, 8, 8, 8, 0, 
 	0, 0, 0, 0, 0, 0, 0, 8, 
 	8, 12, 0, 0, 8, 8, 8, 12, 
 	12, 8, 12, 0, 0, 0, 0, 0, 
 	0, 8, 8, 12, 0, 0, 8, 8, 
 	8, 12, 12, 12, 8, 12, 0, 0, 
-	0, 0, 0, 0, 0, 43, 45, 0, 
-	0, 46, 46, 0, 0
+	0, 0, 0, 0, 0, 42, 44, 0, 
+	0, 45, 45, 0, 0
 ]
 
 class << self
@@ -6301,19 +6235,20 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 7 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
-	when 44 then
+	when 43 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 	when 9 then
@@ -6323,13 +6258,18 @@ begin
     @string_opened = true
     p_start = p
   		end
+	when 4 then
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
 	when 5 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 38 then
+	when 37 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -6342,7 +6282,7 @@ begin
 	end
 
   		end
-	when 39 then
+	when 38 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -6378,7 +6318,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 41 then
+	when 40 then
 		begin
 
     yield @buffers[:comment] || comment(nil)
@@ -6408,34 +6348,14 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 7 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 4 then
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
 	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6446,9 +6366,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6460,9 +6381,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6492,7 +6414,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 33 then
+	when 32 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -6525,7 +6447,7 @@ begin
 
     @buffers[:relationship] << data[p].ord
   		end
-	when 40 then
+	when 39 then
 		begin
 
     @buffers[:relationship] = relationship(
@@ -6544,7 +6466,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 42 then
+	when 41 then
 		begin
 
     @buffers[:comment] = comment(
@@ -6587,13 +6509,28 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 34 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
+  		end
+		begin
+
+    @incomplete[:function] = []
+  		end
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6609,9 +6546,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6631,9 +6569,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6667,7 +6606,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -6687,7 +6626,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 36 then
+	when 35 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -6713,32 +6652,14 @@ begin
 	end
 
   		end
-	when 6 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] = []
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
-	when 37 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6766,7 +6687,7 @@ begin
 	end
 
   		end
-	when 31 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -6805,18 +6726,13 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 35 then
+	when 34 then
 		begin
 
     t = term(complete: false)
@@ -6829,12 +6745,7 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
@@ -6857,7 +6768,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 45 then
+	when 44 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -6872,23 +6783,24 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 46 then
+	when 45 then
 		begin
 
   		end
-	when 43 then
+	when 42 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6896,7 +6808,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 30 then
+	when 29 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -7905,22 +7817,22 @@ self._bel_trans_actions = [
 	9, 0, 11, 0, 14, 14, 14, 0, 
 	0, 9, 9, 0, 0, 15, 16, 15, 
 	15, 4, 17, 0, 22, 23, 22, 0, 
-	24, 0, 0, 25, 26, 27, 28, 28, 
-	7, 0, 0, 0, 9, 31, 9, 0, 
-	32, 0, 9, 9, 0, 0, 0, 0, 
+	24, 0, 0, 25, 26, 27, 0, 0, 
+	7, 0, 0, 0, 9, 30, 9, 0, 
+	31, 0, 9, 9, 0, 0, 0, 0, 
 	0, 0, 7, 7, 9, 10, 9, 0, 
-	11, 0, 33, 9, 9, 0, 0, 34, 
-	28, 28, 17, 35, 2, 3, 4, 0, 
+	11, 0, 32, 9, 9, 0, 0, 33, 
+	0, 0, 17, 34, 2, 3, 4, 0, 
 	5, 0, 0, 0, 0, 6, 7, 9, 
-	10, 9, 0, 11, 0, 14, 36, 14, 
+	10, 9, 0, 11, 0, 14, 35, 14, 
 	0, 0, 9, 9, 0, 0, 15, 16, 
-	37, 15, 4, 17, 38, 28, 1, 2, 
+	36, 15, 4, 17, 37, 0, 1, 2, 
 	3, 4, 0, 5, 0, 0, 0, 0, 
 	6, 7, 9, 10, 9, 0, 11, 0, 
 	14, 14, 14, 0, 0, 9, 9, 0, 
 	0, 15, 16, 15, 15, 4, 17, 0, 
-	39, 28, 19, 40, 21, 41, 0, 0, 
-	25, 26, 42, 44, 28
+	38, 0, 19, 39, 21, 40, 0, 0, 
+	25, 26, 41, 43, 0
 ]
 
 class << self
@@ -7933,16 +7845,16 @@ self._bel_eof_actions = [
 	12, 12, 0, 0, 0, 0, 0, 0, 
 	0, 0, 8, 8, 12, 0, 0, 8, 
 	8, 8, 12, 12, 12, 0, 0, 0, 
-	0, 8, 12, 8, 12, 0, 29, 30, 
-	30, 30, 30, 30, 30, 0, 0, 0, 
+	0, 8, 12, 8, 12, 0, 28, 29, 
+	29, 29, 29, 29, 29, 0, 0, 0, 
 	8, 8, 0, 8, 8, 8, 8, 0, 
 	0, 0, 0, 0, 0, 0, 0, 8, 
 	8, 12, 0, 0, 8, 8, 8, 12, 
 	12, 8, 12, 0, 0, 0, 0, 0, 
 	0, 8, 8, 12, 0, 0, 8, 8, 
 	8, 12, 12, 12, 8, 12, 0, 0, 
-	0, 0, 0, 0, 0, 43, 45, 0, 
-	0, 46, 46, 0, 0
+	0, 0, 0, 0, 0, 42, 44, 0, 
+	0, 45, 45, 0, 0
 ]
 
 class << self
@@ -8035,19 +7947,20 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 7 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
-	when 44 then
+	when 43 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 	when 9 then
@@ -8057,13 +7970,18 @@ begin
     @string_opened = true
     p_start = p
   		end
+	when 4 then
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
 	when 5 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 38 then
+	when 37 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -8076,7 +7994,7 @@ begin
 	end
 
   		end
-	when 39 then
+	when 38 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -8112,7 +8030,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 41 then
+	when 40 then
 		begin
 
     yield @buffers[:comment] || comment(nil)
@@ -8142,34 +8060,14 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 7 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 4 then
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
 	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -8180,9 +8078,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -8194,9 +8093,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -8226,7 +8126,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 33 then
+	when 32 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -8259,7 +8159,7 @@ begin
 
     @buffers[:relationship] << data[p].ord
   		end
-	when 40 then
+	when 39 then
 		begin
 
     @buffers[:relationship] = relationship(
@@ -8278,7 +8178,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 42 then
+	when 41 then
 		begin
 
     @buffers[:comment] = comment(
@@ -8321,13 +8221,28 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 34 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
+  		end
+		begin
+
+    @incomplete[:function] = []
+  		end
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -8343,9 +8258,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -8365,9 +8281,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -8401,7 +8318,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -8421,7 +8338,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 36 then
+	when 35 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -8447,32 +8364,14 @@ begin
 	end
 
   		end
-	when 6 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] = []
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
-	when 37 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -8500,7 +8399,7 @@ begin
 	end
 
   		end
-	when 31 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -8539,18 +8438,13 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 35 then
+	when 34 then
 		begin
 
     t = term(complete: false)
@@ -8563,12 +8457,7 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
@@ -8591,7 +8480,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 45 then
+	when 44 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -8606,23 +8495,24 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 46 then
+	when 45 then
 		begin
 
   		end
-	when 43 then
+	when 42 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -8630,7 +8520,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 30 then
+	when 29 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -9639,22 +9529,22 @@ self._bel_trans_actions = [
 	9, 0, 11, 0, 14, 14, 14, 0, 
 	0, 9, 9, 0, 0, 15, 16, 15, 
 	15, 4, 17, 0, 22, 23, 22, 0, 
-	24, 0, 0, 25, 26, 27, 28, 28, 
-	7, 0, 0, 0, 9, 31, 9, 0, 
-	32, 0, 9, 9, 0, 0, 0, 0, 
+	24, 0, 0, 25, 26, 27, 0, 0, 
+	7, 0, 0, 0, 9, 30, 9, 0, 
+	31, 0, 9, 9, 0, 0, 0, 0, 
 	0, 0, 7, 7, 9, 10, 9, 0, 
-	11, 0, 33, 9, 9, 0, 0, 34, 
-	28, 28, 17, 35, 2, 3, 4, 0, 
+	11, 0, 32, 9, 9, 0, 0, 33, 
+	0, 0, 17, 34, 2, 3, 4, 0, 
 	5, 0, 0, 0, 0, 6, 7, 9, 
-	10, 9, 0, 11, 0, 14, 36, 14, 
+	10, 9, 0, 11, 0, 14, 35, 14, 
 	0, 0, 9, 9, 0, 0, 15, 16, 
-	37, 15, 4, 17, 38, 28, 1, 2, 
+	36, 15, 4, 17, 37, 0, 1, 2, 
 	3, 4, 0, 5, 0, 0, 0, 0, 
 	6, 7, 9, 10, 9, 0, 11, 0, 
 	14, 14, 14, 0, 0, 9, 9, 0, 
 	0, 15, 16, 15, 15, 4, 17, 0, 
-	39, 28, 19, 40, 21, 41, 0, 0, 
-	25, 26, 42, 44, 28
+	38, 0, 19, 39, 21, 40, 0, 0, 
+	25, 26, 41, 43, 0
 ]
 
 class << self
@@ -9667,16 +9557,16 @@ self._bel_eof_actions = [
 	12, 12, 0, 0, 0, 0, 0, 0, 
 	0, 0, 8, 8, 12, 0, 0, 8, 
 	8, 8, 12, 12, 12, 0, 0, 0, 
-	0, 8, 12, 8, 12, 0, 29, 30, 
-	30, 30, 30, 30, 30, 0, 0, 0, 
+	0, 8, 12, 8, 12, 0, 28, 29, 
+	29, 29, 29, 29, 29, 0, 0, 0, 
 	8, 8, 0, 8, 8, 8, 8, 0, 
 	0, 0, 0, 0, 0, 0, 0, 8, 
 	8, 12, 0, 0, 8, 8, 8, 12, 
 	12, 8, 12, 0, 0, 0, 0, 0, 
 	0, 8, 8, 12, 0, 0, 8, 8, 
 	8, 12, 12, 12, 8, 12, 0, 0, 
-	0, 0, 0, 0, 0, 43, 45, 0, 
-	0, 46, 46, 0, 0
+	0, 0, 0, 0, 0, 42, 44, 0, 
+	0, 45, 45, 0, 0
 ]
 
 class << self
@@ -9769,19 +9659,20 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 7 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
-	when 44 then
+	when 43 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 	when 9 then
@@ -9791,13 +9682,18 @@ begin
     @string_opened = true
     p_start = p
   		end
+	when 4 then
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
 	when 5 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 38 then
+	when 37 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -9810,7 +9706,7 @@ begin
 	end
 
   		end
-	when 39 then
+	when 38 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -9846,7 +9742,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 41 then
+	when 40 then
 		begin
 
     yield @buffers[:comment] || comment(nil)
@@ -9876,34 +9772,14 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 7 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 4 then
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
 	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -9914,9 +9790,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -9928,9 +9805,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -9960,7 +9838,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 33 then
+	when 32 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -9993,7 +9871,7 @@ begin
 
     @buffers[:relationship] << data[p].ord
   		end
-	when 40 then
+	when 39 then
 		begin
 
     @buffers[:relationship] = relationship(
@@ -10012,7 +9890,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 42 then
+	when 41 then
 		begin
 
     @buffers[:comment] = comment(
@@ -10055,13 +9933,28 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 34 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
+  		end
+		begin
+
+    @incomplete[:function] = []
+  		end
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -10077,9 +9970,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -10099,9 +9993,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -10135,7 +10030,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -10155,7 +10050,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 36 then
+	when 35 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -10181,32 +10076,14 @@ begin
 	end
 
   		end
-	when 6 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] = []
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
-	when 37 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -10234,7 +10111,7 @@ begin
 	end
 
   		end
-	when 31 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -10273,18 +10150,13 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 35 then
+	when 34 then
 		begin
 
     t = term(complete: false)
@@ -10297,12 +10169,7 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
@@ -10325,7 +10192,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 45 then
+	when 44 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -10340,23 +10207,24 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 46 then
+	when 45 then
 		begin
 
   		end
-	when 43 then
+	when 42 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -10364,7 +10232,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 30 then
+	when 29 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -11410,22 +11278,22 @@ self._bel_trans_actions = [
 	9, 0, 11, 0, 14, 14, 14, 0, 
 	0, 9, 9, 0, 0, 15, 16, 15, 
 	15, 4, 17, 0, 22, 23, 22, 0, 
-	24, 0, 0, 25, 26, 27, 28, 28, 
-	7, 0, 0, 0, 9, 31, 9, 0, 
-	32, 0, 9, 9, 0, 0, 0, 0, 
+	24, 0, 0, 25, 26, 27, 0, 0, 
+	7, 0, 0, 0, 9, 30, 9, 0, 
+	31, 0, 9, 9, 0, 0, 0, 0, 
 	0, 0, 7, 7, 9, 10, 9, 0, 
-	11, 0, 33, 9, 9, 0, 0, 34, 
-	28, 28, 17, 35, 2, 3, 4, 0, 
+	11, 0, 32, 9, 9, 0, 0, 33, 
+	0, 0, 17, 34, 2, 3, 4, 0, 
 	5, 0, 0, 0, 0, 6, 7, 9, 
-	10, 9, 0, 11, 0, 14, 36, 14, 
+	10, 9, 0, 11, 0, 14, 35, 14, 
 	0, 0, 9, 9, 0, 0, 15, 16, 
-	37, 15, 4, 17, 38, 28, 1, 2, 
+	36, 15, 4, 17, 37, 0, 1, 2, 
 	3, 4, 0, 5, 0, 0, 0, 0, 
 	6, 7, 9, 10, 9, 0, 11, 0, 
 	14, 14, 14, 0, 0, 9, 9, 0, 
 	0, 15, 16, 15, 15, 4, 17, 0, 
-	39, 28, 19, 40, 21, 41, 0, 0, 
-	25, 26, 42, 44, 28
+	38, 0, 19, 39, 21, 40, 0, 0, 
+	25, 26, 41, 43, 0
 ]
 
 class << self
@@ -11438,16 +11306,16 @@ self._bel_eof_actions = [
 	12, 12, 0, 0, 0, 0, 0, 0, 
 	0, 0, 8, 8, 12, 0, 0, 8, 
 	8, 8, 12, 12, 12, 0, 0, 0, 
-	0, 8, 12, 8, 12, 0, 29, 30, 
-	30, 30, 30, 30, 30, 0, 0, 0, 
+	0, 8, 12, 8, 12, 0, 28, 29, 
+	29, 29, 29, 29, 29, 0, 0, 0, 
 	8, 8, 0, 8, 8, 8, 8, 0, 
 	0, 0, 0, 0, 0, 0, 0, 8, 
 	8, 12, 0, 0, 8, 8, 8, 12, 
 	12, 8, 12, 0, 0, 0, 0, 0, 
 	0, 8, 8, 12, 0, 0, 8, 8, 
 	8, 12, 12, 12, 8, 12, 0, 0, 
-	0, 0, 0, 0, 0, 43, 45, 0, 
-	0, 46, 46, 0, 0
+	0, 0, 0, 0, 0, 42, 44, 0, 
+	0, 45, 45, 0, 0
 ]
 
 class << self
@@ -11555,19 +11423,20 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 7 then
 		begin
 
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
   		end
-	when 44 then
+	when 43 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 	when 9 then
@@ -11577,13 +11446,18 @@ begin
     @string_opened = true
     p_start = p
   		end
+	when 4 then
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
 	when 5 then
 		begin
 
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 38 then
+	when 37 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -11596,7 +11470,7 @@ begin
 	end
 
   		end
-	when 39 then
+	when 38 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -11632,7 +11506,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 41 then
+	when 40 then
 		begin
 
     yield @buffers[:comment] || comment(nil)
@@ -11662,34 +11536,14 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 7 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-	when 4 then
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
 	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -11700,9 +11554,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -11714,9 +11569,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -11746,7 +11602,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 33 then
+	when 32 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -11779,7 +11635,7 @@ begin
 
     @buffers[:relationship] << data[p].ord
   		end
-	when 40 then
+	when 39 then
 		begin
 
     @buffers[:relationship] = relationship(
@@ -11798,7 +11654,7 @@ begin
 
     @buffers[:comment] << data[p].ord
   		end
-	when 42 then
+	when 41 then
 		begin
 
     @buffers[:comment] = comment(
@@ -11841,13 +11697,28 @@ begin
               @buffers[:object],
               @buffers[:comment]))
   		end
-	when 34 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER start_identifier'
+    p_start = p;
+  		end
+		begin
+
+    @incomplete[:function] = []
+  		end
+		begin
+
+    @incomplete[:function] << data[p].ord
+  		end
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -11863,9 +11734,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -11885,9 +11757,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -11921,7 +11794,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -11941,7 +11814,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 36 then
+	when 35 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -11967,32 +11840,14 @@ begin
 	end
 
   		end
-	when 6 then
-		begin
-
-    $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
-  		end
-		begin
-
-    @incomplete[:function] = []
-  		end
-		begin
-
-    @incomplete[:function] << data[p].ord
-  		end
-	when 37 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -12020,7 +11875,7 @@ begin
 	end
 
   		end
-	when 31 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -12059,18 +11914,13 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 35 then
+	when 34 then
 		begin
 
     t = term(complete: false)
@@ -12083,12 +11933,7 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
-    @incomplete[:ident] = []
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER accum_identifier'
-    @incomplete[:ident] << data[p].ord
+    p_start = p;
   		end
 		begin
 
@@ -12111,7 +11956,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 45 then
+	when 44 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -12126,23 +11971,24 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 46 then
+	when 45 then
 		begin
 
   		end
-	when 43 then
+	when 42 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    ident = @incomplete.delete(:ident) || []
-    completed = !ident.empty?
-    ast_node = identifier(utf8_string(ident), complete: completed)
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -12150,7 +11996,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 30 then
+	when 29 then
 		begin
 
     $stderr.puts 'STRING eof_string'
