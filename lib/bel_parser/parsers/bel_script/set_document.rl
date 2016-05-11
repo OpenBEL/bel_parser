@@ -14,18 +14,18 @@
   }
 
   set_document :=
-    SET_KW %set_keyword
+    SET_KW
     SP+
     DOCUMENT_KW
     SP+
-    an_ident %name
+    an_ident
     SP+
     EQL
     SP+
     (
-      a_string %string_value |
-      a_list %list_value |
-      an_ident %ident_value
+      a_string |
+      a_list |
+      an_ident
     ) NL @yield_document_property;
 }%%
 =end
