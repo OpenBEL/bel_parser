@@ -18,7 +18,7 @@ describe 'when parsing set document statements' do
     value = random_string
     input = "SET #{identifier} = #{value}"
     it "is complete for #{input}" do
-      output = parse_ast(parser, input)
+      output = parse_ast_no_nl(parser, input)
       expect(output).to be_a(ast::Set)
       expect(output).to respond_to(:complete)
       expect(output.complete).to be(true)
@@ -43,7 +43,7 @@ describe 'when parsing set document statements' do
     value = random_identifier
     input = "SET #{identifier} = #{value}"
     it "is complete for #{input}" do
-      output = parse_ast(parser, input)
+      output = parse_ast_no_nl(parser, input)
       expect(output).to be_a(ast::Set)
       expect(output).to respond_to(:complete)
       expect(output.complete).to be(true)
@@ -70,7 +70,7 @@ describe 'when parsing set document statements' do
     value = "{ #{rnd_id1}, #{rnd_id2} }"
     input = "SET #{identifier} = #{value}"
     it "is complete for #{input}" do
-      output = parse_ast(parser, input)
+      output = parse_ast_no_nl(parser, input)
       expect(output).to be_a(ast::Set)
       expect(output).to respond_to(:complete)
       expect(output.complete).to be(true)
@@ -101,7 +101,7 @@ describe 'when parsing set document statements' do
     value = random_string
     input = "SER #{identifier} = #{value}"
     it "is incomplete for #{input}" do
-      output = parse_ast(parser, input)
+      output = parse_ast_no_nl(parser, input)
       expect(output).to be_a(ast::Set)
       expect(output).to respond_to(:complete)
       expect(output.complete).to be(false)
@@ -127,7 +127,7 @@ describe 'when parsing set document statements' do
     # omit trailing '"'
     input = "SET #{identifier} = \"#{value}"
     it "is complete for #{input}" do
-      output = parse_ast(parser, input)
+      output = parse_ast_no_nl(parser, input)
       expect(output).to be_a(ast::Set)
       expect(output).to respond_to(:complete)
       expect(output.complete).to be(true)
@@ -155,7 +155,7 @@ describe 'when parsing set document statements' do
     value = "{ #{rnd_id1}, #{rnd_id2}"
     input = "SET #{identifier} = #{value}"
     it "is complete for #{input}" do
-      output = parse_ast(parser, input)
+      output = parse_ast_no_nl(parser, input)
       expect(output).to be_a(ast::Set)
       expect(output).to respond_to(:complete)
       expect(output.complete).to be(true)
