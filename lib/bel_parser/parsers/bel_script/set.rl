@@ -3,162 +3,94 @@
 %%{
   machine bel;
 
+  include 'common.rl';
   include 'identifier.rl';
   include 'string.rl';
   include 'list.rl';
 
-  action start_set_keyword {
-    #$stderr.puts 'start_set_keyword'
-    @incomplete[:set_keyword] = []
+  action add_key {
+    $stderr.puts "SET add_key"
+    key = @buffers.delete(:ident)
+    @buffers[:set_name] = key
   }
 
-  action accum_set_keyword {
-    #$stderr.puts 'accum_set_keyword "' + fc.chr + '"'
-    @incomplete[:set_keyword] << fc
-    @accum_set = true
+  action add_ident_value {
+    $stderr.puts "SET add_ident_value"
+    ident = @buffers.delete(:ident)
+    @buffers[:set_value] = ident
   }
 
-  action start_value {
-    @incomplete[:set_value] = []
+  action add_string_value {
+    $stderr.puts "SET add_string_value"
+    string = @buffers.delete(:string)
+    @buffers[:set_value] = string
   }
 
-  action accum_value {
-    @incomplete[:set_value] << fc
-  }
-
-  action eof_value {
-    $stderr.puts 'handle eof - what is incomplete?'
-    $stderr.puts @incomplete.inspect
-  }
-
-  action end_set_keyword {
-    #$stderr.puts 'end_set_keyword'
-    # have we accumulated part of the set keyword?
-    unless @accum_set
-      fbreak;
-    end
-    buf = @incomplete.delete(:set_keyword)
-    keyword = ord_to_str(buf)
-    if keyword == 'SET'
-      @have_set = true
-    end
-  }
-
-  action eof_set_keyword {
-    #$stderr.puts 'eof_set_keyword'
-  }
-
-  action eof_set {
-    #$stderr.puts 'eof_set'
-  }
-
-  action set_name_end {
-    #$stderr.puts "set_name_end"
-    name = @buffers.delete(:ident)
-    unless ident.nil?
-      @have_name = true
-      @buffers[:set_name] = name
-    end
-  }
-
-  action set_value_end {
-    $stderr.puts 'set_value_end'
-    $stderr.puts @buffers.inspect
-    if @buffers.key?(:ident)
-      @have_value = true
-      ident = @buffers.delete(:ident)
-      @buffers[:set_value] = ident
-    elsif @buffers.key?(:list)
-      $stderr.puts "I got a list!"
-      @have_value = true
-      list = @buffers.delete(:list)
-      @buffers[:set_value] = list
-    elsif @buffers.key?(:string)
-      @have_value = true
-      string = @buffers.delete(:string)
-      @buffers[:set_value] = string
-    end
+  action add_list_value {
+    $stderr.puts "SET add_list_value"
+    list = @buffers.delete(:list)
+    @buffers[:set_value] = list
   }
 
   action set_end {
-    #$stderr.puts "set_end"
-    children = []
-    if @have_name
-      children << @buffers.delete(:set_name)
-    end
-    if @have_value
-      children << @buffers.delete(:set_value)
-    end
-    completed = @have_set && @have_name && @have_value
-    ast_node = set(*children, complete: completed)
-    @buffers[:set] = ast_node
-    yield @buffers[:set]
-  }
-
-  SET_KW = [sS][eE][tT];
-
-  action set_keyword {
-    @buffers[:set] = set()
-  }
-
-  action name {
-    @buffers[:set] = @buffers[:set] << name(@buffers[:ident])
-  }
-
-  action string_value {
-    @buffers[:set] = @buffers[:set] << value(@buffers[:string])
-  }
-
-  action ident_value {
-    @buffers[:set] = @buffers[:set] << value(@buffers[:ident])
-  }
-
-  action list_value {
-    @buffers[:set] = @buffers[:set] << value(@buffers[:list])
+    $stderr.puts "SET set_end"
+    $stderr.puts @buffers.inspect
+    name = @buffers.delete(:set_name)
+    value = @buffers.delete(:set_value)
+    set = set(name, value, complete: name.complete && value.complete)
+    @buffers[:set] = set
   }
 
   action yield_set {
+    $stderr.puts "SET yield_set"
     yield @buffers[:set]
   }
 
-  SET =
+  SET_KW =
     [sS]
-    [eE]?
-    [tT]?
+    [eE]
+    [tT]
     ;
 
-  set =
-    (SET | alnum+)
-    >start_set_keyword
-    $accum_set_keyword
-    %end_set_keyword
-    $eof(eof_set_keyword)
-    ;
-
-  name =
+  key =
     an_ident
-    %set_name_end
+    %add_key
+    ;
+
+  ident_value =
+    an_ident
+    %add_ident_value
+    ;
+
+  string_value =
+    a_string
+    %add_string_value
+    ;
+
+  list_value =
+    a_list
+    %add_list_value
     ;
 
   value =
-    (
-      a_string |
-      a_list |
-      an_ident
-    )
-    >start_value
-    $accum_value
-    $eof(eof_value)
-    %set_value_end
+    ident_value |
+    string_value |
+    list_value
     ;
 
-  set_ast :=
-    (
-      set? SP+ name? SP+ EQL? SP+ value?
-    )
-    NL?
-    $set_end
-    $eof(eof_set)
+  set_node :=
+    SET_KW
+    %{ $stderr.puts '% SET_KW' }
+    SP+
+    an_ident
+    %add_key
+    SP+
+    EQL
+    %{ $stderr.puts '% EQL' }
+    SP+
+    value
+    %set_end
+    %yield_set
     ;
 }%%
 =end
@@ -195,6 +127,7 @@ module BELParser
 
           def initialize(content)
             @content = content
+            $stderr.puts "\n---\ncontent: '" + @content + "'"
       # begin: ragel
             %% write data;
       # end: ragel
