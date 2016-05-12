@@ -34,16 +34,37 @@
 
   action set_end {
     $stderr.puts "SET set_end"
-    $stderr.puts @buffers.inspect
     name = @buffers.delete(:set_name)
     value = @buffers.delete(:set_value)
-    set = set(name, value, complete: name.complete && value.complete)
-    @buffers[:set] = set
+    set_node = set(name, value, complete: name.complete && value.complete)
+    @buffers[:set] = set_node
   }
 
   action yield_set {
     $stderr.puts "SET yield_set"
     yield @buffers[:set]
+  }
+
+  action set_node_eof {
+    $stderr.puts "SET set_node_eof"
+    name = @buffers.delete(:set_name)
+    set_node = set(name)
+    completed = name.complete
+    if @buffers.key?(:string)
+      value = @buffers.delete(:string)
+      set_node <<= value
+      completed = completed && value.complete
+    elsif @buffers.key?(:ident)
+      value = @buffers.delete(:ident)
+      set_node <<= value
+      completed = completed && value.complete
+    elsif @buffers.key?(:list)
+      value = @buffers.delete(:list)
+      set_node <<= value
+      completed = completed && value.complete
+    end
+    set_node.complete = completed
+    yield set_node
   }
 
   SET_KW =
@@ -80,15 +101,15 @@
 
   set_node :=
     SET_KW
-    %{ $stderr.puts '% SET_KW' }
     SP+
     an_ident
     %add_key
+    @eof(set_node_eof)
     SP+
     EQL
-    %{ $stderr.puts '% EQL' }
     SP+
     value
+    @eof(set_node_eof)
     %set_end
     %yield_set
     ;
