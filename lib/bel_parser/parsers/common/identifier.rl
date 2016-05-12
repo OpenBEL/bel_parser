@@ -7,6 +7,7 @@
 
   action start_identifier {
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
   }
 
@@ -24,6 +25,17 @@
     yield @buffers[:ident]
   }
 
+  action an_ident_eof {
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  }
+
   ID_CHARS = [a-zA-Z0-9_]+;
   ident =
     ID_CHARS
@@ -37,6 +49,7 @@
 
   an_ident =
     ident
+    $eof(an_ident_eof)
     ;
 
   ident_node :=
@@ -93,6 +106,7 @@ module BELParser
             p_end       = 0
             pe          = data.length
             eof         = data.length
+            @identifier_started = false
 
       # begin: ragel
             %% write init;
