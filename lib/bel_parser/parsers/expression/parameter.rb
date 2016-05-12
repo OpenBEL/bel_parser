@@ -7,15 +7,15 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 9, 122, 9, 122, 
+	0, 0, 48, 122, 48, 122, 
 	9, 39, 34, 92, 34, 
-	92, 10, 10, 0, 0, 
-	39, 92, 39, 92, 0, 0, 
-	10, 122, 10, 122, 48, 
-	122, 9, 39, 34, 92, 
-	34, 92, 0, 0, 39, 92, 
-	39, 92, 0, 0, 0, 
-	0, 10, 122, 0, 0, 
+	92, 0, 0, 39, 92, 
+	39, 92, 0, 0, 48, 122, 
+	9, 39, 34, 92, 34, 
+	92, 0, 0, 39, 92, 
+	39, 92, 0, 0, 9, 122, 
+	9, 122, 0, 0, 48, 
+	122, 10, 122, 0, 0, 
 	0, 0, 0
 ]
 
@@ -24,9 +24,9 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 114, 114, 31, 59, 59, 1, 0, 
-	54, 54, 0, 113, 113, 75, 31, 59, 
-	59, 0, 54, 54, 0, 0, 113, 0, 
+	0, 75, 75, 31, 59, 59, 0, 54, 
+	54, 0, 75, 31, 59, 59, 0, 54, 
+	54, 0, 114, 114, 0, 75, 113, 0, 
 	0
 ]
 
@@ -35,10 +35,10 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 115, 230, 262, 322, 382, 384, 
-	385, 440, 495, 496, 610, 724, 800, 832, 
-	892, 952, 953, 1008, 1063, 1064, 1065, 1179, 
-	1180
+	0, 0, 76, 152, 184, 244, 304, 305, 
+	360, 415, 416, 492, 524, 584, 644, 645, 
+	700, 755, 756, 871, 986, 987, 1063, 1177, 
+	1178
 ]
 
 class << self
@@ -46,154 +46,154 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 2, 2, 2, 2, 1, 1, 1, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 1, 1, 1, 1, 1, 1, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 1, 1, 1, 1, 0, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 1, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 3, 1, 
+	1, 1, 1, 1, 1, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 1, 
+	1, 1, 1, 2, 1, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 1, 
+	4, 4, 4, 4, 4, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 0, 
-	1, 3, 1, 1, 1, 1, 4, 1, 
-	1, 1, 1, 1, 1, 1, 1, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 1, 1, 1, 1, 1, 1, 1, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 1, 1, 1, 1, 5, 1, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 1, 0, 2, 2, 2, 2, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 0, 1, 3, 1, 1, 1, 
-	1, 4, 1, 1, 1, 1, 1, 1, 
-	1, 1, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 1, 1, 1, 1, 
-	1, 1, 1, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 1, 1, 1, 
-	1, 6, 1, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 1, 2, 2, 
-	2, 2, 2, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 2, 1, 3, 
-	1, 1, 1, 1, 4, 1, 8, 7, 
+	1, 1, 1, 1, 1, 1, 1, 4, 
+	1, 5, 1, 1, 1, 1, 6, 1, 
+	8, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	9, 7, 11, 10, 10, 10, 10, 10, 
+	7, 7, 9, 7, 11, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
-	10, 10, 10, 10, 12, 10, 13, 1, 
-	10, 8, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 15, 14, 
-	11, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 17, 16, 16, 
+	10, 10, 10, 10, 10, 10, 12, 10, 
+	10, 8, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 14, 13, 
+	11, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 16, 15, 15, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 1, 1, 1, 1, 1, 1, 
+	1, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 1, 1, 1, 1, 17, 
+	1, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 1, 18, 18, 18, 18, 
 	18, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	1, 1, 1, 1, 1, 1, 1, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 1, 1, 1, 1, 19, 1, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 1, 18, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 21, 1, 1, 1, 1, 1, 
-	1, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 1, 1, 1, 1, 20, 
-	1, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 1, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 1, 1, 
-	1, 1, 1, 1, 1, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 1, 
-	1, 1, 1, 22, 1, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 1, 
-	23, 23, 23, 23, 23, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 23, 
-	1, 24, 1, 1, 1, 1, 25, 1, 
-	27, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 28, 26, 30, 29, 29, 29, 
+	1, 1, 1, 18, 1, 19, 1, 1, 
+	1, 1, 20, 1, 22, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 23, 21, 
+	25, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 26, 24, 24, 22, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 28, 27, 25, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
-	29, 29, 29, 29, 29, 29, 31, 29, 
-	29, 27, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 33, 32, 
-	30, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 35, 34, 34, 
-	1, 36, 1, 1, 1, 1, 1, 1, 
+	29, 30, 29, 29, 31, 32, 32, 32, 
+	32, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 31, 1, 33, 1, 1, 
+	1, 1, 34, 1, 1, 1, 1, 1, 
+	1, 1, 1, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 1, 1, 1, 
+	1, 1, 1, 1, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 1, 1, 
+	1, 1, 35, 1, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 1, 36, 
+	4, 4, 4, 4, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 36, 1, 
+	5, 1, 1, 1, 1, 6, 1, 1, 
+	1, 1, 1, 1, 1, 1, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
 	1, 1, 1, 1, 1, 1, 1, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 1, 1, 1, 1, 1, 1, 1, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 1, 1, 1, 1, 37, 1, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 1, 1, 1, 1, 37, 1, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 1, 1, 1, 0
+	37, 1, 1, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 1, 1, 1, 
+	1, 1, 1, 1, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 1, 1, 
+	1, 1, 38, 1, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 1, 39, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 1, 
+	1, 1, 1, 1, 1, 1, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	1, 1, 1, 1, 40, 1, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	1, 1, 1, 0
 ]
 
 class << self
@@ -201,11 +201,12 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 4, 8, 12, 11, 5, 
-	6, 7, 5, 6, 7, 21, 9, 10, 
-	9, 10, 21, 11, 12, 2, 22, 14, 
-	15, 18, 16, 24, 17, 16, 24, 17, 
-	19, 20, 19, 20, 23, 22
+	2, 0, 2, 18, 3, 4, 7, 5, 
+	20, 6, 5, 20, 6, 8, 9, 8, 
+	9, 22, 11, 12, 15, 13, 24, 14, 
+	13, 24, 14, 16, 17, 16, 17, 19, 
+	3, 4, 7, 21, 19, 21, 21, 23, 
+	22
 ]
 
 class << self
@@ -213,11 +214,12 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 0, 2, 2, 4, 
-	5, 4, 0, 6, 0, 7, 4, 4, 
-	0, 0, 8, 0, 0, 9, 2, 0, 
-	0, 0, 4, 12, 4, 0, 13, 0, 
-	4, 4, 0, 0, 15, 0
+	2, 0, 0, 3, 0, 0, 0, 5, 
+	6, 5, 0, 7, 0, 5, 5, 0, 
+	0, 2, 0, 0, 0, 5, 10, 5, 
+	0, 11, 0, 5, 5, 0, 0, 13, 
+	13, 13, 13, 14, 0, 2, 0, 3, 
+	0
 ]
 
 class << self
@@ -225,9 +227,9 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 1, 0, 3, 3, 0, 3, 
-	3, 3, 3, 1, 1, 0, 10, 11, 
-	11, 11, 11, 11, 11, 0, 14, 16, 
+	0, 1, 1, 0, 4, 4, 4, 4, 
+	4, 4, 0, 8, 9, 9, 9, 9, 
+	9, 9, 12, 15, 16, 17, 18, 19, 
 	0
 ]
 
@@ -238,7 +240,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 21;
+self.bel_first_final = 18;
 class << self
 	attr_accessor :bel_error
 end
@@ -247,15 +249,15 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident_node = 13;
+self.bel_en_ident_node = 10;
 class << self
 	attr_accessor :bel_en_string_node
 end
-self.bel_en_string_node = 14;
+self.bel_en_string_node = 11;
 class << self
-	attr_accessor :bel_en_bel_parameter
+	attr_accessor :bel_en_parameter_node
 end
-self.bel_en_bel_parameter = 1;
+self.bel_en_parameter_node = 1;
 
 
 begin
@@ -307,7 +309,7 @@ begin
     @identifier_started = true
     p_start = p;
   		end
-	when 15 then
+	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -316,71 +318,6 @@ begin
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
-  		end
-	when 4 then
-		begin
-
-    $stderr.puts 'STRING start_string'
-    @string_opened = true
-    p_start = p
-  		end
-	when 9 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
-  		end
-	when 6 then
-		begin
-
-    $stderr.puts 'STRING stop_string'
-    @string_closed = true
-    p_end = p
-  		end
-		begin
-
-    $stderr.puts 'STRING string_end'
-    completed = @string_opened && @string_closed
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
-    @buffers[:string] = ast_node
-  		end
-	when 7 then
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
-  		end
-		begin
-
-    yield @buffers[:parameter]
-  		end
-	when 8 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:parameter]
   		end
 	when 5 then
 		begin
@@ -389,6 +326,15 @@ begin
     @string_opened = true
     p_start = p
   		end
+	when 13 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+	when 7 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -403,7 +349,42 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 13 then
+	when 14 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
+    p_start = p;
+  		end
+	when 6 then
+		begin
+
+    $stderr.puts 'STRING start_string'
+    @string_opened = true
+    p_start = p
+  		end
+		begin
+
+    $stderr.puts 'STRING stop_string'
+    @string_closed = true
+    p_end = p
+  		end
+		begin
+
+    $stderr.puts 'STRING string_end'
+    completed = @string_opened && @string_closed
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: true)
+    @buffers[:string] = ast_node
+  		end
+	when 11 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -423,7 +404,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 12 then
+	when 10 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -466,7 +447,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 16 then
+	when 19 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -484,7 +465,7 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -493,13 +474,13 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 10 then
+	when 8 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 14 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -514,7 +495,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 11 then
+	when 9 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -527,6 +508,205 @@ begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
+  		end
+	when 15 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 12 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 17 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
   		end
 	  end
 	end
@@ -543,15 +723,15 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 9, 122, 9, 122, 
+	0, 0, 48, 122, 48, 122, 
 	9, 39, 34, 92, 34, 
-	92, 10, 10, 0, 0, 
-	39, 92, 39, 92, 0, 0, 
-	10, 122, 10, 122, 48, 
-	122, 9, 39, 34, 92, 
-	34, 92, 0, 0, 39, 92, 
-	39, 92, 0, 0, 0, 
-	0, 10, 122, 0, 0, 
+	92, 0, 0, 39, 92, 
+	39, 92, 0, 0, 48, 122, 
+	9, 39, 34, 92, 34, 
+	92, 0, 0, 39, 92, 
+	39, 92, 0, 0, 9, 122, 
+	9, 122, 0, 0, 48, 
+	122, 10, 122, 0, 0, 
 	0, 0, 0
 ]
 
@@ -560,9 +740,9 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 114, 114, 31, 59, 59, 1, 0, 
-	54, 54, 0, 113, 113, 75, 31, 59, 
-	59, 0, 54, 54, 0, 0, 113, 0, 
+	0, 75, 75, 31, 59, 59, 0, 54, 
+	54, 0, 75, 31, 59, 59, 0, 54, 
+	54, 0, 114, 114, 0, 75, 113, 0, 
 	0
 ]
 
@@ -571,10 +751,10 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 115, 230, 262, 322, 382, 384, 
-	385, 440, 495, 496, 610, 724, 800, 832, 
-	892, 952, 953, 1008, 1063, 1064, 1065, 1179, 
-	1180
+	0, 0, 76, 152, 184, 244, 304, 305, 
+	360, 415, 416, 492, 524, 584, 644, 645, 
+	700, 755, 756, 871, 986, 987, 1063, 1177, 
+	1178
 ]
 
 class << self
@@ -582,154 +762,154 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 2, 2, 2, 2, 1, 1, 1, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 1, 1, 1, 1, 1, 1, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 1, 1, 1, 1, 0, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 1, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 3, 1, 
+	1, 1, 1, 1, 1, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 1, 
+	1, 1, 1, 2, 1, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 1, 
+	4, 4, 4, 4, 4, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 0, 
-	1, 3, 1, 1, 1, 1, 4, 1, 
-	1, 1, 1, 1, 1, 1, 1, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 1, 1, 1, 1, 1, 1, 1, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 1, 1, 1, 1, 5, 1, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 1, 0, 2, 2, 2, 2, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 0, 1, 3, 1, 1, 1, 
-	1, 4, 1, 1, 1, 1, 1, 1, 
-	1, 1, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 1, 1, 1, 1, 
-	1, 1, 1, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 1, 1, 1, 
-	1, 6, 1, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 1, 2, 2, 
-	2, 2, 2, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 2, 1, 3, 
-	1, 1, 1, 1, 4, 1, 8, 7, 
+	1, 1, 1, 1, 1, 1, 1, 4, 
+	1, 5, 1, 1, 1, 1, 6, 1, 
+	8, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	9, 7, 11, 10, 10, 10, 10, 10, 
+	7, 7, 9, 7, 11, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
-	10, 10, 10, 10, 12, 10, 13, 1, 
-	10, 8, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 15, 14, 
-	11, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 17, 16, 16, 
+	10, 10, 10, 10, 10, 10, 12, 10, 
+	10, 8, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 14, 13, 
+	11, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 16, 15, 15, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 1, 1, 1, 1, 1, 1, 
+	1, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 1, 1, 1, 1, 17, 
+	1, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 1, 18, 18, 18, 18, 
 	18, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	1, 1, 1, 1, 1, 1, 1, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 1, 1, 1, 1, 19, 1, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 1, 18, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 21, 1, 1, 1, 1, 1, 
-	1, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 1, 1, 1, 1, 20, 
-	1, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 1, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 1, 1, 
-	1, 1, 1, 1, 1, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 1, 
-	1, 1, 1, 22, 1, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 1, 
-	23, 23, 23, 23, 23, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 23, 
-	1, 24, 1, 1, 1, 1, 25, 1, 
-	27, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 28, 26, 30, 29, 29, 29, 
+	1, 1, 1, 18, 1, 19, 1, 1, 
+	1, 1, 20, 1, 22, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 23, 21, 
+	25, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 26, 24, 24, 22, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 28, 27, 25, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
-	29, 29, 29, 29, 29, 29, 31, 29, 
-	29, 27, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 33, 32, 
-	30, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 35, 34, 34, 
-	1, 36, 1, 1, 1, 1, 1, 1, 
+	29, 30, 29, 29, 31, 32, 32, 32, 
+	32, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 31, 1, 33, 1, 1, 
+	1, 1, 34, 1, 1, 1, 1, 1, 
+	1, 1, 1, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 1, 1, 1, 
+	1, 1, 1, 1, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 1, 1, 
+	1, 1, 35, 1, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 1, 36, 
+	4, 4, 4, 4, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 36, 1, 
+	5, 1, 1, 1, 1, 6, 1, 1, 
+	1, 1, 1, 1, 1, 1, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
 	1, 1, 1, 1, 1, 1, 1, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 1, 1, 1, 1, 1, 1, 1, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 1, 1, 1, 1, 37, 1, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 1, 1, 1, 1, 37, 1, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 1, 1, 1, 0
+	37, 1, 1, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 1, 1, 1, 
+	1, 1, 1, 1, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 1, 1, 
+	1, 1, 38, 1, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 1, 39, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 1, 
+	1, 1, 1, 1, 1, 1, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	1, 1, 1, 1, 40, 1, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	1, 1, 1, 0
 ]
 
 class << self
@@ -737,11 +917,12 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 4, 8, 12, 11, 5, 
-	6, 7, 5, 6, 7, 21, 9, 10, 
-	9, 10, 21, 11, 12, 2, 22, 14, 
-	15, 18, 16, 24, 17, 16, 24, 17, 
-	19, 20, 19, 20, 23, 22
+	2, 0, 2, 18, 3, 4, 7, 5, 
+	20, 6, 5, 20, 6, 8, 9, 8, 
+	9, 22, 11, 12, 15, 13, 24, 14, 
+	13, 24, 14, 16, 17, 16, 17, 19, 
+	3, 4, 7, 21, 19, 21, 21, 23, 
+	22
 ]
 
 class << self
@@ -749,11 +930,12 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 0, 2, 2, 4, 
-	5, 4, 0, 6, 0, 7, 4, 4, 
-	0, 0, 8, 0, 0, 9, 2, 0, 
-	0, 0, 4, 12, 4, 0, 13, 0, 
-	4, 4, 0, 0, 15, 0
+	2, 0, 0, 3, 0, 0, 0, 5, 
+	6, 5, 0, 7, 0, 5, 5, 0, 
+	0, 2, 0, 0, 0, 5, 10, 5, 
+	0, 11, 0, 5, 5, 0, 0, 13, 
+	13, 13, 13, 14, 0, 2, 0, 3, 
+	0
 ]
 
 class << self
@@ -761,9 +943,9 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 1, 0, 3, 3, 0, 3, 
-	3, 3, 3, 1, 1, 0, 10, 11, 
-	11, 11, 11, 11, 11, 0, 14, 16, 
+	0, 1, 1, 0, 4, 4, 4, 4, 
+	4, 4, 0, 8, 9, 9, 9, 9, 
+	9, 9, 12, 15, 16, 17, 18, 19, 
 	0
 ]
 
@@ -774,7 +956,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 21;
+self.bel_first_final = 18;
 class << self
 	attr_accessor :bel_error
 end
@@ -783,15 +965,15 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident_node = 13;
+self.bel_en_ident_node = 10;
 class << self
 	attr_accessor :bel_en_string_node
 end
-self.bel_en_string_node = 14;
+self.bel_en_string_node = 11;
 class << self
-	attr_accessor :bel_en_bel_parameter
+	attr_accessor :bel_en_parameter_node
 end
-self.bel_en_bel_parameter = 1;
+self.bel_en_parameter_node = 1;
 
 
 begin
@@ -843,7 +1025,7 @@ begin
     @identifier_started = true
     p_start = p;
   		end
-	when 15 then
+	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -852,71 +1034,6 @@ begin
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
-  		end
-	when 4 then
-		begin
-
-    $stderr.puts 'STRING start_string'
-    @string_opened = true
-    p_start = p
-  		end
-	when 9 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
-  		end
-	when 6 then
-		begin
-
-    $stderr.puts 'STRING stop_string'
-    @string_closed = true
-    p_end = p
-  		end
-		begin
-
-    $stderr.puts 'STRING string_end'
-    completed = @string_opened && @string_closed
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
-    @buffers[:string] = ast_node
-  		end
-	when 7 then
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
-  		end
-		begin
-
-    yield @buffers[:parameter]
-  		end
-	when 8 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:parameter]
   		end
 	when 5 then
 		begin
@@ -925,6 +1042,15 @@ begin
     @string_opened = true
     p_start = p
   		end
+	when 13 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+	when 7 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -939,7 +1065,42 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 13 then
+	when 14 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
+    p_start = p;
+  		end
+	when 6 then
+		begin
+
+    $stderr.puts 'STRING start_string'
+    @string_opened = true
+    p_start = p
+  		end
+		begin
+
+    $stderr.puts 'STRING stop_string'
+    @string_closed = true
+    p_end = p
+  		end
+		begin
+
+    $stderr.puts 'STRING string_end'
+    completed = @string_opened && @string_closed
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: true)
+    @buffers[:string] = ast_node
+  		end
+	when 11 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -959,7 +1120,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 12 then
+	when 10 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1002,7 +1163,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 16 then
+	when 19 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -1020,7 +1181,7 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1029,13 +1190,13 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 10 then
+	when 8 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 14 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1050,7 +1211,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 11 then
+	when 9 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1063,6 +1224,205 @@ begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
+  		end
+	when 15 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 12 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 17 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
   		end
 	  end
 	end
@@ -1116,15 +1476,15 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 9, 122, 9, 122, 
+	0, 0, 48, 122, 48, 122, 
 	9, 39, 34, 92, 34, 
-	92, 10, 10, 0, 0, 
-	39, 92, 39, 92, 0, 0, 
-	10, 122, 10, 122, 48, 
-	122, 9, 39, 34, 92, 
-	34, 92, 0, 0, 39, 92, 
-	39, 92, 0, 0, 0, 
-	0, 10, 122, 0, 0, 
+	92, 0, 0, 39, 92, 
+	39, 92, 0, 0, 48, 122, 
+	9, 39, 34, 92, 34, 
+	92, 0, 0, 39, 92, 
+	39, 92, 0, 0, 9, 122, 
+	9, 122, 0, 0, 48, 
+	122, 10, 122, 0, 0, 
 	0, 0, 0
 ]
 
@@ -1133,9 +1493,9 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 114, 114, 31, 59, 59, 1, 0, 
-	54, 54, 0, 113, 113, 75, 31, 59, 
-	59, 0, 54, 54, 0, 0, 113, 0, 
+	0, 75, 75, 31, 59, 59, 0, 54, 
+	54, 0, 75, 31, 59, 59, 0, 54, 
+	54, 0, 114, 114, 0, 75, 113, 0, 
 	0
 ]
 
@@ -1144,10 +1504,10 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 115, 230, 262, 322, 382, 384, 
-	385, 440, 495, 496, 610, 724, 800, 832, 
-	892, 952, 953, 1008, 1063, 1064, 1065, 1179, 
-	1180
+	0, 0, 76, 152, 184, 244, 304, 305, 
+	360, 415, 416, 492, 524, 584, 644, 645, 
+	700, 755, 756, 871, 986, 987, 1063, 1177, 
+	1178
 ]
 
 class << self
@@ -1155,154 +1515,154 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 2, 2, 2, 2, 1, 1, 1, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 1, 1, 1, 1, 1, 1, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 1, 1, 1, 1, 0, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 1, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 3, 1, 
+	1, 1, 1, 1, 1, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 1, 
+	1, 1, 1, 2, 1, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 1, 
+	4, 4, 4, 4, 4, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 0, 
-	1, 3, 1, 1, 1, 1, 4, 1, 
-	1, 1, 1, 1, 1, 1, 1, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 1, 1, 1, 1, 1, 1, 1, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 1, 1, 1, 1, 5, 1, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 1, 0, 2, 2, 2, 2, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 0, 1, 3, 1, 1, 1, 
-	1, 4, 1, 1, 1, 1, 1, 1, 
-	1, 1, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 1, 1, 1, 1, 
-	1, 1, 1, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 1, 1, 1, 
-	1, 6, 1, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 1, 2, 2, 
-	2, 2, 2, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 2, 1, 3, 
-	1, 1, 1, 1, 4, 1, 8, 7, 
+	1, 1, 1, 1, 1, 1, 1, 4, 
+	1, 5, 1, 1, 1, 1, 6, 1, 
+	8, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	9, 7, 11, 10, 10, 10, 10, 10, 
+	7, 7, 9, 7, 11, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
-	10, 10, 10, 10, 12, 10, 13, 1, 
-	10, 8, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 15, 14, 
-	11, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 17, 16, 16, 
+	10, 10, 10, 10, 10, 10, 12, 10, 
+	10, 8, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 14, 13, 
+	11, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 16, 15, 15, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 1, 1, 1, 1, 1, 1, 
+	1, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 1, 1, 1, 1, 17, 
+	1, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 1, 18, 18, 18, 18, 
 	18, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	1, 1, 1, 1, 1, 1, 1, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 1, 1, 1, 1, 19, 1, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 19, 19, 19, 19, 19, 19, 19, 
-	19, 1, 18, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 21, 1, 1, 1, 1, 1, 
-	1, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 1, 1, 1, 1, 20, 
-	1, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 20, 20, 20, 20, 20, 
-	20, 20, 20, 1, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 1, 1, 
-	1, 1, 1, 1, 1, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 1, 
-	1, 1, 1, 22, 1, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 1, 
-	23, 23, 23, 23, 23, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 23, 
-	1, 24, 1, 1, 1, 1, 25, 1, 
-	27, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 26, 26, 26, 26, 26, 26, 
-	26, 26, 28, 26, 30, 29, 29, 29, 
+	1, 1, 1, 18, 1, 19, 1, 1, 
+	1, 1, 20, 1, 22, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 21, 21, 
+	21, 21, 21, 21, 21, 21, 23, 21, 
+	25, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 26, 24, 24, 22, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 28, 27, 25, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
 	29, 29, 29, 29, 29, 29, 29, 29, 
-	29, 29, 29, 29, 29, 29, 31, 29, 
-	29, 27, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 32, 32, 
-	32, 32, 32, 32, 32, 32, 33, 32, 
-	30, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 34, 34, 34, 
-	34, 34, 34, 34, 34, 35, 34, 34, 
-	1, 36, 1, 1, 1, 1, 1, 1, 
+	29, 30, 29, 29, 31, 32, 32, 32, 
+	32, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 31, 1, 33, 1, 1, 
+	1, 1, 34, 1, 1, 1, 1, 1, 
+	1, 1, 1, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 1, 1, 1, 
+	1, 1, 1, 1, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 1, 1, 
+	1, 1, 35, 1, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 35, 35, 
+	35, 35, 35, 35, 35, 35, 1, 36, 
+	4, 4, 4, 4, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 36, 1, 
+	5, 1, 1, 1, 1, 6, 1, 1, 
+	1, 1, 1, 1, 1, 1, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
 	1, 1, 1, 1, 1, 1, 1, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 1, 1, 1, 1, 1, 1, 1, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 1, 1, 1, 1, 37, 1, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
 	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 1, 1, 1, 1, 37, 1, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 1, 1, 1, 0
+	37, 1, 1, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 1, 1, 1, 
+	1, 1, 1, 1, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 1, 1, 
+	1, 1, 38, 1, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 38, 38, 
+	38, 38, 38, 38, 38, 38, 1, 39, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 1, 
+	1, 1, 1, 1, 1, 1, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	1, 1, 1, 1, 40, 1, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	1, 1, 1, 0
 ]
 
 class << self
@@ -1310,11 +1670,12 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 4, 8, 12, 11, 5, 
-	6, 7, 5, 6, 7, 21, 9, 10, 
-	9, 10, 21, 11, 12, 2, 22, 14, 
-	15, 18, 16, 24, 17, 16, 24, 17, 
-	19, 20, 19, 20, 23, 22
+	2, 0, 2, 18, 3, 4, 7, 5, 
+	20, 6, 5, 20, 6, 8, 9, 8, 
+	9, 22, 11, 12, 15, 13, 24, 14, 
+	13, 24, 14, 16, 17, 16, 17, 19, 
+	3, 4, 7, 21, 19, 21, 21, 23, 
+	22
 ]
 
 class << self
@@ -1322,11 +1683,12 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 0, 2, 2, 4, 
-	5, 4, 0, 6, 0, 7, 4, 4, 
-	0, 0, 8, 0, 0, 9, 2, 0, 
-	0, 0, 4, 12, 4, 0, 13, 0, 
-	4, 4, 0, 0, 15, 0
+	2, 0, 0, 3, 0, 0, 0, 5, 
+	6, 5, 0, 7, 0, 5, 5, 0, 
+	0, 2, 0, 0, 0, 5, 10, 5, 
+	0, 11, 0, 5, 5, 0, 0, 13, 
+	13, 13, 13, 14, 0, 2, 0, 3, 
+	0
 ]
 
 class << self
@@ -1334,9 +1696,9 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 1, 0, 3, 3, 0, 3, 
-	3, 3, 3, 1, 1, 0, 10, 11, 
-	11, 11, 11, 11, 11, 0, 14, 16, 
+	0, 1, 1, 0, 4, 4, 4, 4, 
+	4, 4, 0, 8, 9, 9, 9, 9, 
+	9, 9, 12, 15, 16, 17, 18, 19, 
 	0
 ]
 
@@ -1347,7 +1709,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 21;
+self.bel_first_final = 18;
 class << self
 	attr_accessor :bel_error
 end
@@ -1356,15 +1718,15 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident_node = 13;
+self.bel_en_ident_node = 10;
 class << self
 	attr_accessor :bel_en_string_node
 end
-self.bel_en_string_node = 14;
+self.bel_en_string_node = 11;
 class << self
-	attr_accessor :bel_en_bel_parameter
+	attr_accessor :bel_en_parameter_node
 end
-self.bel_en_bel_parameter = 1;
+self.bel_en_parameter_node = 1;
 
 
       # end: ragel
@@ -1376,6 +1738,8 @@ self.bel_en_bel_parameter = 1;
             data        = @content.unpack('C*')
             p           = 0
             pe          = data.length
+            p_start     = 0
+            p_end       = 0
             eof         = data.length
 
       # begin: ragel
@@ -1430,7 +1794,7 @@ begin
     @identifier_started = true
     p_start = p;
   		end
-	when 15 then
+	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1439,71 +1803,6 @@ begin
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
-  		end
-	when 4 then
-		begin
-
-    $stderr.puts 'STRING start_string'
-    @string_opened = true
-    p_start = p
-  		end
-	when 9 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
-  		end
-	when 6 then
-		begin
-
-    $stderr.puts 'STRING stop_string'
-    @string_closed = true
-    p_end = p
-  		end
-		begin
-
-    $stderr.puts 'STRING string_end'
-    completed = @string_opened && @string_closed
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
-    @buffers[:string] = ast_node
-  		end
-	when 7 then
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
-  		end
-		begin
-
-    yield @buffers[:parameter]
-  		end
-	when 8 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:parameter]
   		end
 	when 5 then
 		begin
@@ -1512,6 +1811,15 @@ begin
     @string_opened = true
     p_start = p
   		end
+	when 13 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+	when 7 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1526,7 +1834,42 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 13 then
+	when 14 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
+    p_start = p;
+  		end
+	when 6 then
+		begin
+
+    $stderr.puts 'STRING start_string'
+    @string_opened = true
+    p_start = p
+  		end
+		begin
+
+    $stderr.puts 'STRING stop_string'
+    @string_closed = true
+    p_end = p
+  		end
+		begin
+
+    $stderr.puts 'STRING string_end'
+    completed = @string_opened && @string_closed
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: true)
+    @buffers[:string] = ast_node
+  		end
+	when 11 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1546,7 +1889,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 12 then
+	when 10 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1589,7 +1932,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 16 then
+	when 19 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -1607,7 +1950,7 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1616,13 +1959,13 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 10 then
+	when 8 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 14 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1637,7 +1980,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 11 then
+	when 9 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1650,6 +1993,205 @@ begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
+  		end
+	when 15 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 12 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 17 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
   		end
 	  end
 	end
