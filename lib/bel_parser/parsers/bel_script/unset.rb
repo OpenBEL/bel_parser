@@ -7,10 +7,11 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 48, 122, 48, 122, 
-	9, 122, 9, 122, 0, 
-	0, 10, 122, 10, 122, 
-	0, 0, 0
+	0, 0, 85, 117, 78, 110, 
+	83, 115, 69, 101, 84, 
+	116, 48, 122, 9, 122, 
+	48, 122, 10, 122, 0, 0, 
+	0
 ]
 
 class << self
@@ -18,8 +19,8 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 75, 75, 114, 114, 0, 113, 113, 
-	0
+	0, 33, 33, 33, 33, 33, 75, 114, 
+	75, 113, 0
 ]
 
 class << self
@@ -27,8 +28,8 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 76, 152, 267, 382, 383, 497, 
-	611
+	0, 0, 34, 68, 102, 136, 170, 246, 
+	361, 437, 551
 ]
 
 class << self
@@ -36,83 +37,76 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 1, 1, 1, 1, 1, 1, 
-	1, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 1, 1, 1, 1, 1, 
-	1, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 1, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 1, 1, 
-	1, 1, 1, 1, 1, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 1, 
-	1, 1, 1, 2, 1, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 1, 
-	3, 4, 1, 1, 1, 1, 1, 1, 
+	0, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 3, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	0, 1, 2, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 2, 1, 3, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 3, 1, 4, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 4, 1, 
 	5, 1, 1, 1, 1, 1, 1, 1, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 1, 1, 1, 1, 1, 1, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 1, 6, 7, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 6, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
+	5, 1, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 1, 1, 1, 1, 
+	1, 1, 1, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 1, 1, 1, 
+	1, 6, 1, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 1, 5, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 5, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 1, 
+	1, 1, 1, 1, 1, 1, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	1, 1, 1, 1, 7, 1, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	1, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 1, 1, 1, 1, 1, 
 	1, 1, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 1, 1, 1, 1, 
-	1, 1, 1, 8, 8, 8, 8, 8, 
+	8, 1, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 1, 1, 1, 
-	1, 8, 1, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 1, 1, 9, 
+	8, 8, 8, 8, 1, 9, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 10, 10, 10, 
-	10, 10, 10, 10, 10, 10, 10, 1, 
-	1, 1, 1, 1, 1, 1, 10, 10, 
+	1, 1, 1, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 1, 1, 1, 
+	1, 1, 1, 1, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 1, 1, 
+	1, 1, 10, 1, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
-	1, 1, 1, 1, 10, 1, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
-	10, 10, 10, 10, 10, 10, 10, 10, 
-	10, 10, 10, 10, 10, 10, 10, 10, 
-	1, 11, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 1, 1, 1, 1, 1, 1, 1, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 1, 1, 1, 1, 12, 1, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 1, 1, 0
+	10, 10, 10, 10, 10, 10, 1, 1, 
+	0
 ]
 
 class << self
@@ -120,8 +114,8 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	3, 0, 7, 4, 5, 3, 4, 5, 
-	6, 5, 6, 8, 7
+	2, 0, 3, 4, 5, 7, 9, 8, 
+	8, 10, 9
 ]
 
 class << self
@@ -129,8 +123,8 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	2, 0, 3, 5, 6, 7, 0, 9, 
-	3, 12, 0, 14, 0
+	0, 0, 0, 0, 0, 0, 1, 1, 
+	0, 5, 0
 ]
 
 class << self
@@ -138,8 +132,8 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 0, 4, 8, 10, 11, 13, 
-	15
+	0, 0, 0, 0, 0, 0, 0, 2, 
+	3, 4, 6
 ]
 
 class << self
@@ -149,7 +143,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 3;
+self.bel_first_final = 7;
 class << self
 	attr_accessor :bel_error
 end
@@ -158,11 +152,11 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident_node = 2;
+self.bel_en_ident_node = 6;
 class << self
-	attr_accessor :bel_en_unset_ast
+	attr_accessor :bel_en_unset_ast_node
 end
-self.bel_en_unset_ast = 1;
+self.bel_en_unset_ast_node = 1;
 
 
 begin
@@ -207,120 +201,22 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 3 then
+	when 1 then
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
     p_start = p;
   		end
-	when 14 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-	when 7 then
-		begin
-
-    #$stderr.puts 'accum_unset_keyword "' + fc.chr + '"'
-    @incomplete[:unset_keyword] << data[p].ord
-  		end
 	when 5 then
 		begin
 
-    #$stderr.puts 'end_unset_keyword'
-  		end
-	when 9 then
-		begin
-
-    #$stderr.puts "unset_end"
-    unless @buffers.key?(:ident)
-      @buffers[:ident] = identifier(nil, complete: false)
-    end
-    name = @buffers.delete(:ident)
-
-    keyword = ord_to_str(@incomplete.delete(:unset_keyword))
-    unless keyword == 'UNSET'
-      keyword_complete = false
-    else
-      keyword_complete = true
-    end
-
-    completed = keyword_complete && name.complete
-    ast_node = unset(name, complete: completed)
-    @buffers[:unset] = ast_node
-    yield @buffers[:unset]
-  		end
-	when 12 then
-		begin
-
     $stderr.puts 'IDENTIFIER end_identifier'
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
-  		end
-		begin
-
-    #$stderr.puts "unset_end"
-    unless @buffers.key?(:ident)
-      @buffers[:ident] = identifier(nil, complete: false)
-    end
-    name = @buffers.delete(:ident)
-
-    keyword = ord_to_str(@incomplete.delete(:unset_keyword))
-    unless keyword == 'UNSET'
-      keyword_complete = false
-    else
-      keyword_complete = true
-    end
-
-    completed = keyword_complete && name.complete
-    ast_node = unset(name, complete: completed)
-    @buffers[:unset] = ast_node
-    yield @buffers[:unset]
-  		end
-	when 2 then
-		begin
-
-    #$stderr.puts 'start_unset_keyword'
-    @incomplete[:unset_keyword] = []
-  		end
-		begin
-
-    #$stderr.puts 'accum_unset_keyword "' + fc.chr + '"'
-    @incomplete[:unset_keyword] << data[p].ord
-  		end
-	when 6 then
-		begin
-
-    #$stderr.puts 'end_unset_keyword'
-  		end
-		begin
-
-    #$stderr.puts "unset_end"
-    unless @buffers.key?(:ident)
-      @buffers[:ident] = identifier(nil, complete: false)
-    end
-    name = @buffers.delete(:ident)
-
-    keyword = ord_to_str(@incomplete.delete(:unset_keyword))
-    unless keyword == 'UNSET'
-      keyword_complete = false
-    else
-      keyword_complete = true
-    end
-
-    completed = keyword_complete && name.complete
-    ast_node = unset(name, complete: completed)
-    @buffers[:unset] = ast_node
-    yield @buffers[:unset]
   		end
 	end
 	end
@@ -339,90 +235,103 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 15 then
+	when 6 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
-  		end
-	when 1 then
-		begin
-
-    #$stderr.puts 'eof_unset_keyword'
-  		end
-	when 10 then
-		begin
-
-    #$stderr.puts 'eof_unset'
-  		end
-	when 13 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER yield_identifier'
-    yield @buffers[:ident]
-  		end
-	when 8 then
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    #$stderr.puts 'eof_unset'
-  		end
-	when 11 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    #$stderr.puts 'eof_unset'
   		end
 	when 4 then
 		begin
 
-    #$stderr.puts 'eof_unset_keyword'
+    $stderr.puts 'IDENTIFIER end_identifier'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
   		end
 		begin
 
-    #$stderr.puts 'end_unset_keyword'
+    $stderr.puts 'IDENTIFIER yield_identifier'
+    yield @buffers[:ident]
+  		end
+	when 2 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
   		end
 		begin
 
-    #$stderr.puts 'eof_unset'
+    $stderr.puts "UNSET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:unset_name] = key
+  		end
+		begin
+
+    $stderr.puts "UNSET unset_end"
+    name = @buffers.delete(:unset_name)
+    unless name.nil?
+      unset_node = unset(name, complete: name.complete)
+    else
+      unset_node = unset(complete: false)
+    end
+    @buffers[:unset] = unset_node
+  		end
+		begin
+
+    $stderr.puts "UNSET yield_unset"
+    yield @buffers[:unset]
+  		end
+	when 3 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "UNSET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:unset_name] = key
+  		end
+		begin
+
+    $stderr.puts "UNSET unset_end"
+    name = @buffers.delete(:unset_name)
+    unless name.nil?
+      unset_node = unset(name, complete: name.complete)
+    else
+      unset_node = unset(complete: false)
+    end
+    @buffers[:unset] = unset_node
+  		end
+		begin
+
+    $stderr.puts "UNSET yield_unset"
+    yield @buffers[:unset]
   		end
 	  end
 	end
@@ -476,10 +385,11 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 48, 122, 48, 122, 
-	9, 122, 9, 122, 0, 
-	0, 10, 122, 10, 122, 
-	0, 0, 0
+	0, 0, 85, 117, 78, 110, 
+	83, 115, 69, 101, 84, 
+	116, 48, 122, 9, 122, 
+	48, 122, 10, 122, 0, 0, 
+	0
 ]
 
 class << self
@@ -487,8 +397,8 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 75, 75, 114, 114, 0, 113, 113, 
-	0
+	0, 33, 33, 33, 33, 33, 75, 114, 
+	75, 113, 0
 ]
 
 class << self
@@ -496,8 +406,8 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 76, 152, 267, 382, 383, 497, 
-	611
+	0, 0, 34, 68, 102, 136, 170, 246, 
+	361, 437, 551
 ]
 
 class << self
@@ -505,83 +415,76 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 1, 1, 1, 1, 1, 1, 
-	1, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 1, 1, 1, 1, 1, 
-	1, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 1, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 1, 1, 
-	1, 1, 1, 1, 1, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 1, 
-	1, 1, 1, 2, 1, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 1, 
-	3, 4, 1, 1, 1, 1, 1, 1, 
+	0, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 3, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	0, 1, 2, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 2, 1, 3, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 3, 1, 4, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 4, 1, 
 	5, 1, 1, 1, 1, 1, 1, 1, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 1, 1, 1, 1, 1, 1, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 1, 6, 7, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 6, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
+	5, 1, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 1, 1, 1, 1, 
+	1, 1, 1, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 1, 1, 1, 
+	1, 6, 1, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 1, 5, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 5, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 1, 
+	1, 1, 1, 1, 1, 1, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	1, 1, 1, 1, 7, 1, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	1, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 1, 1, 1, 1, 1, 
 	1, 1, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 1, 1, 1, 1, 
-	1, 1, 1, 8, 8, 8, 8, 8, 
+	8, 1, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
 	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 1, 1, 1, 
-	1, 8, 1, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 1, 1, 9, 
+	8, 8, 8, 8, 1, 9, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 10, 10, 10, 
-	10, 10, 10, 10, 10, 10, 10, 1, 
-	1, 1, 1, 1, 1, 1, 10, 10, 
+	1, 1, 1, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 1, 1, 1, 
+	1, 1, 1, 1, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 1, 1, 
+	1, 1, 10, 1, 10, 10, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
-	1, 1, 1, 1, 10, 1, 10, 10, 
 	10, 10, 10, 10, 10, 10, 10, 10, 
-	10, 10, 10, 10, 10, 10, 10, 10, 
-	10, 10, 10, 10, 10, 10, 10, 10, 
-	1, 11, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 1, 1, 1, 1, 1, 1, 1, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 1, 1, 1, 1, 12, 1, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 1, 1, 0
+	10, 10, 10, 10, 10, 10, 1, 1, 
+	0
 ]
 
 class << self
@@ -589,8 +492,8 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	3, 0, 7, 4, 5, 3, 4, 5, 
-	6, 5, 6, 8, 7
+	2, 0, 3, 4, 5, 7, 9, 8, 
+	8, 10, 9
 ]
 
 class << self
@@ -598,8 +501,8 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	2, 0, 3, 5, 6, 7, 0, 9, 
-	3, 12, 0, 14, 0
+	0, 0, 0, 0, 0, 0, 1, 1, 
+	0, 5, 0
 ]
 
 class << self
@@ -607,8 +510,8 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 0, 4, 8, 10, 11, 13, 
-	15
+	0, 0, 0, 0, 0, 0, 0, 2, 
+	3, 4, 6
 ]
 
 class << self
@@ -618,7 +521,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 3;
+self.bel_first_final = 7;
 class << self
 	attr_accessor :bel_error
 end
@@ -627,11 +530,11 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident_node = 2;
+self.bel_en_ident_node = 6;
 class << self
-	attr_accessor :bel_en_unset_ast
+	attr_accessor :bel_en_unset_ast_node
 end
-self.bel_en_unset_ast = 1;
+self.bel_en_unset_ast_node = 1;
 
 
       # end: ragel
@@ -690,120 +593,22 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 3 then
+	when 1 then
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
     p_start = p;
   		end
-	when 14 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-	when 7 then
-		begin
-
-    #$stderr.puts 'accum_unset_keyword "' + fc.chr + '"'
-    @incomplete[:unset_keyword] << data[p].ord
-  		end
 	when 5 then
 		begin
 
-    #$stderr.puts 'end_unset_keyword'
-  		end
-	when 9 then
-		begin
-
-    #$stderr.puts "unset_end"
-    unless @buffers.key?(:ident)
-      @buffers[:ident] = identifier(nil, complete: false)
-    end
-    name = @buffers.delete(:ident)
-
-    keyword = ord_to_str(@incomplete.delete(:unset_keyword))
-    unless keyword == 'UNSET'
-      keyword_complete = false
-    else
-      keyword_complete = true
-    end
-
-    completed = keyword_complete && name.complete
-    ast_node = unset(name, complete: completed)
-    @buffers[:unset] = ast_node
-    yield @buffers[:unset]
-  		end
-	when 12 then
-		begin
-
     $stderr.puts 'IDENTIFIER end_identifier'
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
-  		end
-		begin
-
-    #$stderr.puts "unset_end"
-    unless @buffers.key?(:ident)
-      @buffers[:ident] = identifier(nil, complete: false)
-    end
-    name = @buffers.delete(:ident)
-
-    keyword = ord_to_str(@incomplete.delete(:unset_keyword))
-    unless keyword == 'UNSET'
-      keyword_complete = false
-    else
-      keyword_complete = true
-    end
-
-    completed = keyword_complete && name.complete
-    ast_node = unset(name, complete: completed)
-    @buffers[:unset] = ast_node
-    yield @buffers[:unset]
-  		end
-	when 2 then
-		begin
-
-    #$stderr.puts 'start_unset_keyword'
-    @incomplete[:unset_keyword] = []
-  		end
-		begin
-
-    #$stderr.puts 'accum_unset_keyword "' + fc.chr + '"'
-    @incomplete[:unset_keyword] << data[p].ord
-  		end
-	when 6 then
-		begin
-
-    #$stderr.puts 'end_unset_keyword'
-  		end
-		begin
-
-    #$stderr.puts "unset_end"
-    unless @buffers.key?(:ident)
-      @buffers[:ident] = identifier(nil, complete: false)
-    end
-    name = @buffers.delete(:ident)
-
-    keyword = ord_to_str(@incomplete.delete(:unset_keyword))
-    unless keyword == 'UNSET'
-      keyword_complete = false
-    else
-      keyword_complete = true
-    end
-
-    completed = keyword_complete && name.complete
-    ast_node = unset(name, complete: completed)
-    @buffers[:unset] = ast_node
-    yield @buffers[:unset]
   		end
 	end
 	end
@@ -822,90 +627,103 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 15 then
+	when 6 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
-  		end
-	when 1 then
-		begin
-
-    #$stderr.puts 'eof_unset_keyword'
-  		end
-	when 10 then
-		begin
-
-    #$stderr.puts 'eof_unset'
-  		end
-	when 13 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER yield_identifier'
-    yield @buffers[:ident]
-  		end
-	when 8 then
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    #$stderr.puts 'eof_unset'
-  		end
-	when 11 then
-		begin
-
-    $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
-    completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    #$stderr.puts 'eof_unset'
   		end
 	when 4 then
 		begin
 
-    #$stderr.puts 'eof_unset_keyword'
+    $stderr.puts 'IDENTIFIER end_identifier'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
   		end
 		begin
 
-    #$stderr.puts 'end_unset_keyword'
+    $stderr.puts 'IDENTIFIER yield_identifier'
+    yield @buffers[:ident]
+  		end
+	when 2 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
   		end
 		begin
 
-    #$stderr.puts 'eof_unset'
+    $stderr.puts "UNSET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:unset_name] = key
+  		end
+		begin
+
+    $stderr.puts "UNSET unset_end"
+    name = @buffers.delete(:unset_name)
+    unless name.nil?
+      unset_node = unset(name, complete: name.complete)
+    else
+      unset_node = unset(complete: false)
+    end
+    @buffers[:unset] = unset_node
+  		end
+		begin
+
+    $stderr.puts "UNSET yield_unset"
+    yield @buffers[:unset]
+  		end
+	when 3 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "UNSET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:unset_name] = key
+  		end
+		begin
+
+    $stderr.puts "UNSET unset_end"
+    name = @buffers.delete(:unset_name)
+    unless name.nil?
+      unset_node = unset(name, complete: name.complete)
+    else
+      unset_node = unset(complete: false)
+    end
+    @buffers[:unset] = unset_node
+  		end
+		begin
+
+    $stderr.puts "UNSET yield_unset"
+    yield @buffers[:unset]
   		end
 	  end
 	end
