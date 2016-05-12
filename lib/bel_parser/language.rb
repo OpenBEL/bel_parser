@@ -61,6 +61,15 @@ module BELParser
       versions.max_by { |version| version.to_f }
     end
 
+    # Returns the latest supported specification according to the
+    # _MAJOR.MINOR_ pattern.
+    #
+    # @return [Specification] latest supported specification
+    def self.latest_supported_specification
+      latest_version = versions.max_by { |version| version.to_f }
+      specification(latest_version)
+    end
+
     # Returns all language {Specification specifications}.
     #
     # @return [Array<Specification>] BEL specifications
