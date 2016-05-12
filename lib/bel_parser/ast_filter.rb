@@ -8,14 +8,14 @@ module BELParser
       @types    = types
     end
 
-    def each
+    def each(enum = @ast_enum)
       if block_given?
-        @ast_enum.each do |(line_number, line, ast_results)|
+        enum.each do |(line_number, line, ast_results)|
           selected = filter(ast_results)
           yield([line_number, line, selected]) unless selected.empty?
         end
       else
-        enum_for(:each)
+        enum_for(:each, enum)
       end
     end
 

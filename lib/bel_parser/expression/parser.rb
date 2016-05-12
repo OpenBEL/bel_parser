@@ -1,31 +1,131 @@
 require_relative '../ast_generator'
+require_relative '../language'
 require_relative '../parsers/common'
 require_relative '../parsers/expression'
+require_relative '../resource'
+require_relative 'filter'
+require_relative 'model'
 
 module BELParser
   module Expression
-    # Parser for BEL Expression.
+
+    def self.parse(
+      input,
+      spec = BELParser::Language.latest_supported_specification,
+      namespaces = {})
+
+      parser = Parser.new(input, Expression.filter, spec, namespaces)
+      parser.parse
+    end
+
+    def self.parse_parameters(
+      input,
+      spec = BELParser::Language.latest_supported_specification,
+      namespaces = {})
+
+      parser = Parser.new(input, Expression.parameter_filter, spec, namespaces)
+      parser.parse
+    end
+
+    def self.parse_terms(
+      input,
+      spec = BELParser::Language.latest_supported_specification,
+      namespaces = {})
+
+      parser = Parser.new(input, Expression.term_filter, spec, namespaces)
+      parser.parse
+    end
+
+    def self.parse_statements(
+      input,
+      spec = BELParser::Language.latest_supported_specification,
+      namespaces = {})
+
+      parser = Parser.new(input, Expression.statement_filter, spec, namespaces)
+      parser.parse
+    end
+
+    # Parser for BEL expressions that return common objects.
     class Parser
-      def parse(input, &block)
-        case input
+      include BELParser::Expression::Model::Converters
+      include BELParser::Parsers::AST
+
+      def initialize(
+        input,
+        filter     = Expression.filter,
+        spec       = BELParser::Language.latest_supported_specification,
+        namespaces = {})
+
+        @input      = input
+        @filter     = filter
+        @spec       = spec
+        @namespaces = namespaces
+      end
+
+      def parse
+        case @input
         when String
-          parse_string(input, &block)
+          convert_ast(
+            @spec,
+            @namespaces,
+            parse_string(@input, @filter).first)
         when Array
-          parse_array(input, &block)
+          convert_multiple(
+            parse_array(@input, @filter),
+            @spec,
+            @namespaces)
         when IO, StringIO
-          parse_io(input, &block)
+          convert_stream(
+            parse_io(@input, @filter),
+            @spec,
+            @namespaces)
         else
           raise ArgumentError,
             %(expected "input" to be one of String, Array, IO: #{input.class})
         end
       end
 
-      protected
+      private
 
-      def parse_string(string)
-        filter = Filter.new(
+      def convert_ast(spec, namespaces, ast)
+        case ast
+        when Parameter
+          ast_to_parameter(ast, namespaces)
+        when Term
+          ast_to_term(ast, spec, namespaces)
+        when Statement, ObservedTerm, SimpleStatement, NestedStatement
+          ast_to_statement(ast, spec, namespaces)
+        else
+          nil
+        end
+      end
+
+      def convert_multiple(asts, spec, namespaces)
+        mult = method(:convert_ast).to_proc.curry[spec][namespaces]
+        asts.lazy.map do |ast|
+          if ast.respond_to?(:each)
+            ast.map(&mult)
+          else
+            convert_ast(spec, namespaces, ast)
+          end
+        end
+      end
+
+      def convert_stream(asts, spec, namespaces)
+        mult = method(:convert_ast).to_proc.curry[spec][namespaces]
+        asts.lazy.flat_map do |ast|
+          if ast.respond_to?(:each)
+            ast.map(&mult)
+          else
+            convert_ast(spec, namespaces, ast)
+          end
+        end
+      end
+
+      def parse_string(string, filter)
+        enum = filter.each(
           BELParser::ASTGenerator.new(StringIO.new(string)))
-        num, line, results = filter.each.first
+        num, line, results = enum.first
         if block_given?
           yield results
           nil
@@ -34,28 +134,28 @@ module BELParser
         end
       end
 
-      def parse_array(array)
+      def parse_array(array, filter)
         if block_given?
           array.each do |expression|
-            yield parse_string(expression.to_s)
+            yield parse_string(expression.to_s, filter)
           end
           nil
         else
           array.map do |expression|
-            parse_string(expression.to_s)
+            parse_string(expression.to_s, filter)
           end
         end
       end
 
-      def parse_io(io)
+      def parse_io(io, filter)
         if block_given?
-          filter = Filter.new(BELParser::ASTGenerator.new(io))
-          filter.each do |(num, line, results)|
+          enum = filter.each(BELParser::ASTGenerator.new(io))
+          enum.each do |(num, line, results)|
             yield results
           end
           nil
         else
-          enum_for(:parse_io, io)
+          enum_for(:parse_io, io, filter)
         end
       end
     end
@@ -63,10 +163,7 @@ module BELParser
 end
 
 if __FILE__ == $PROGRAM_NAME
-  BELParser::Expression::Parser.new.each($stdin) do |(line_number, line, res)|
-    puts "#{line_number}: #{line}"
-    res.each do |ast|
-      puts ast.to_s(1)
-    end
+  BELParser::Expression.parse($stdin).each do |obj|
+    puts "  #{obj.class.name.split('::')[-1]}: #{obj}"
   end
 end

@@ -27,5 +27,29 @@ module BELParser
         end
       end
     end
+
+    def self.filter
+      BELParser::ASTFilter.new(nil, *Filter::TYPES)
+    end
+
+    def self.parameter_filter
+      BELParser::ASTFilter.new(
+        nil,
+        BELParser::Parsers::AST::Parameter.ast_type)
+    end
+
+    def self.term_filter
+      BELParser::ASTFilter.new(
+        nil,
+        BELParser::Parsers::AST::Term.ast_type)
+    end
+
+    def self.statement_filter
+      BELParser::ASTFilter.new(
+        nil,
+        BELParser::Parsers::AST::SimpleStatement.ast_type,
+        BELParser::Parsers::AST::ObservedTerm.ast_type,
+        BELParser::Parsers::AST::NestedStatement.ast_type)
+    end
   end
 end
