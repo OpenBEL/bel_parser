@@ -150,6 +150,7 @@ self.bel_en_ident_node = 1;
             p_end       = 0
             pe          = data.length
             eof         = data.length
+            @identifier_started = false
 
       # begin: ragel
             
@@ -200,6 +201,7 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
   		end
 	when 3 then

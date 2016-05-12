@@ -710,25 +710,25 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 1, 0, 2, 3, 0, 0, 0, 
+	0, 1, 0, 3, 4, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	4, 0, 0, 5, 5, 5, 5, 6, 
-	0, 0, 0, 0, 2, 8, 9, 8, 
-	0, 10, 0, 11, 11, 11, 0, 0, 
-	12, 13, 0, 14, 8, 8, 0, 0, 
-	15, 15, 0, 15, 0, 0, 0, 0, 
-	0, 0, 16, 0, 0, 0, 8, 9, 
-	8, 0, 10, 0, 17, 18, 8, 8, 
-	0, 0, 0, 0, 19, 0, 0, 0, 
-	8, 9, 8, 0, 10, 0, 20, 21, 
-	8, 8, 0, 0, 2, 0, 0, 0, 
-	8, 24, 8, 0, 25, 0, 8, 8, 
-	0, 0, 0, 0, 0, 0, 8, 9, 
-	8, 0, 10, 0, 0, 2, 8, 8, 
-	0, 0, 29, 0, 5, 5, 5, 5, 
-	5, 6, 5, 0, 0, 0, 11, 11, 
-	11, 11, 0, 0, 15, 15, 15, 0, 
-	15, 37
+	5, 0, 0, 6, 6, 6, 6, 7, 
+	0, 0, 0, 0, 3, 9, 10, 9, 
+	0, 11, 0, 13, 13, 13, 0, 0, 
+	14, 15, 0, 16, 9, 9, 0, 0, 
+	18, 18, 0, 18, 0, 0, 0, 0, 
+	0, 0, 19, 0, 0, 0, 9, 10, 
+	9, 0, 11, 0, 20, 21, 9, 9, 
+	0, 0, 0, 0, 22, 0, 0, 0, 
+	9, 10, 9, 0, 11, 0, 23, 24, 
+	9, 9, 0, 0, 3, 0, 0, 0, 
+	9, 27, 9, 0, 28, 0, 9, 9, 
+	0, 0, 0, 0, 0, 0, 9, 10, 
+	9, 0, 11, 0, 0, 3, 9, 9, 
+	0, 0, 33, 0, 6, 6, 6, 6, 
+	6, 7, 6, 0, 0, 0, 13, 13, 
+	13, 13, 0, 0, 18, 18, 18, 0, 
+	18, 42
 ]
 
 class << self
@@ -738,17 +738,17 @@ end
 self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 7, 7, 0, 0, 0, 0, 7, 
-	7, 7, 7, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 7, 7, 0, 7, 
-	7, 7, 7, 0, 0, 0, 0, 7, 
-	7, 0, 7, 7, 7, 7, 0, 22, 
-	23, 23, 23, 23, 23, 23, 0, 26, 
-	27, 27, 26, 27, 27, 27, 27, 0, 
-	28, 30, 0, 31, 32, 32, 33, 34, 
-	34, 35, 36
+	0, 0, 0, 2, 2, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 2, 2, 
+	0, 8, 8, 12, 12, 0, 0, 8, 
+	8, 8, 8, 17, 0, 0, 0, 0, 
+	0, 0, 0, 0, 8, 8, 0, 8, 
+	8, 8, 8, 0, 0, 0, 0, 8, 
+	8, 0, 8, 8, 8, 8, 0, 25, 
+	26, 26, 26, 26, 26, 26, 0, 29, 
+	30, 30, 31, 30, 30, 30, 30, 0, 
+	32, 34, 0, 35, 36, 37, 38, 39, 
+	39, 40, 41
 ]
 
 class << self
@@ -824,13 +824,14 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 2 then
+	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
   		end
-	when 29 then
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -840,27 +841,27 @@ begin
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 8 then
+	when 9 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
   		end
-	when 5 then
+	when 6 then
 		begin
 
     $stderr.puts "LIST start_list"
     @list_opened = true
     @incomplete[:list] = list()
   		end
-	when 37 then
+	when 42 then
 		begin
 
     $stderr.puts "LIST stop_list"
     @list_closed = true
   		end
-	when 11 then
+	when 13 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -873,28 +874,20 @@ begin
 
     @buffers[:annotation_definition] = annotation_definition()
   		end
-	when 4 then
+	when 5 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain()
   		end
-	when 16 then
+	when 19 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(pattern())
   		end
-	when 19 then
+	when 22 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(url())
-  		end
-	when 17 then
-		begin
-
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         domain.children[0] << @buffers[:string])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 20 then
 		begin
@@ -904,12 +897,20 @@ begin
                                          domain.children[0] << @buffers[:string])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 14 then
+	when 23 then
+		begin
+
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
+  		end
+	when 16 then
 		begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 15 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -926,7 +927,7 @@ begin
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -941,7 +942,7 @@ begin
     @buffers[:annotation_definition] = annotation_definition(
                                          keyword(@buffers[:ident]))
   		end
-	when 10 then
+	when 11 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -956,7 +957,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 6 then
+	when 7 then
 		begin
 
     $stderr.puts "LIST start_list"
@@ -966,19 +967,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
-  		end
-	when 18 then
-		begin
-
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         domain.children[0] << @buffers[:string])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
-  		end
-		begin
-
-    yield @buffers[:annotation_definition]
   		end
 	when 21 then
 		begin
@@ -992,7 +982,19 @@ begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 9 then
+	when 24 then
+		begin
+
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
+  		end
+		begin
+
+    yield @buffers[:annotation_definition]
+  		end
+	when 10 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1013,7 +1015,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1033,7 +1035,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 12 then
+	when 14 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -1058,7 +1060,7 @@ begin
                                          @buffers[:list])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1084,7 +1086,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 13 then
+	when 15 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -1130,13 +1132,25 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 30 then
+	when 34 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 7 then
+	when 2 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+	when 8 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1145,13 +1159,35 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 22 then
+	when 25 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 26 then
+	when 12 then
+		begin
+
+    $stderr.puts "LIST a_list_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    unless string.nil?
+      item = list_item(string, complete: string.complete)
+      list <<= item
+    end
+    ident = @buffers.delete(:ident)
+    unless ident.nil?
+      item = list_item(ident, complete: ident.complete)
+      list <<= item
+    end
+    if @list_opened && @list_closed
+      list.complete = true
+    else
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "LIST list_node_eof"
@@ -1162,7 +1198,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 28 then
+	when 32 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1177,7 +1213,62 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 23 then
+	when 17 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST a_list_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    unless string.nil?
+      item = list_item(string, complete: string.complete)
+      list <<= item
+    end
+    ident = @buffers.delete(:ident)
+    unless ident.nil?
+      item = list_item(ident, complete: ident.complete)
+      list <<= item
+    end
+    if @list_opened && @list_closed
+      list.complete = true
+    else
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+	when 31 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+	when 26 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1191,7 +1282,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1210,7 +1301,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 34 then
+	when 39 then
 		begin
 
     $stderr.puts "LIST list_end"
@@ -1228,31 +1319,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 31 then
-		begin
-
-    $stderr.puts "LIST start_list"
-    @list_opened = true
-    @incomplete[:list] = list()
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 36 then
+	when 41 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -1275,7 +1342,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 33 then
+	when 38 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -1300,7 +1367,46 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 32 then
+	when 37 then
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
 		begin
 
     $stderr.puts "LIST list_node_eof"
@@ -1331,12 +1437,58 @@ begin
 	when 35 then
 		begin
 
+    $stderr.puts "LIST start_list"
+    @list_opened = true
+    @incomplete[:list] = list()
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 40 then
+		begin
+
     $stderr.puts 'IDENTIFIER end_identifier'
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
   		end
 		begin
 
@@ -2080,25 +2232,25 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 1, 0, 2, 3, 0, 0, 0, 
+	0, 1, 0, 3, 4, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	4, 0, 0, 5, 5, 5, 5, 6, 
-	0, 0, 0, 0, 2, 8, 9, 8, 
-	0, 10, 0, 11, 11, 11, 0, 0, 
-	12, 13, 0, 14, 8, 8, 0, 0, 
-	15, 15, 0, 15, 0, 0, 0, 0, 
-	0, 0, 16, 0, 0, 0, 8, 9, 
-	8, 0, 10, 0, 17, 18, 8, 8, 
-	0, 0, 0, 0, 19, 0, 0, 0, 
-	8, 9, 8, 0, 10, 0, 20, 21, 
-	8, 8, 0, 0, 2, 0, 0, 0, 
-	8, 24, 8, 0, 25, 0, 8, 8, 
-	0, 0, 0, 0, 0, 0, 8, 9, 
-	8, 0, 10, 0, 0, 2, 8, 8, 
-	0, 0, 29, 0, 5, 5, 5, 5, 
-	5, 6, 5, 0, 0, 0, 11, 11, 
-	11, 11, 0, 0, 15, 15, 15, 0, 
-	15, 37
+	5, 0, 0, 6, 6, 6, 6, 7, 
+	0, 0, 0, 0, 3, 9, 10, 9, 
+	0, 11, 0, 13, 13, 13, 0, 0, 
+	14, 15, 0, 16, 9, 9, 0, 0, 
+	18, 18, 0, 18, 0, 0, 0, 0, 
+	0, 0, 19, 0, 0, 0, 9, 10, 
+	9, 0, 11, 0, 20, 21, 9, 9, 
+	0, 0, 0, 0, 22, 0, 0, 0, 
+	9, 10, 9, 0, 11, 0, 23, 24, 
+	9, 9, 0, 0, 3, 0, 0, 0, 
+	9, 27, 9, 0, 28, 0, 9, 9, 
+	0, 0, 0, 0, 0, 0, 9, 10, 
+	9, 0, 11, 0, 0, 3, 9, 9, 
+	0, 0, 33, 0, 6, 6, 6, 6, 
+	6, 7, 6, 0, 0, 0, 13, 13, 
+	13, 13, 0, 0, 18, 18, 18, 0, 
+	18, 42
 ]
 
 class << self
@@ -2108,17 +2260,17 @@ end
 self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 7, 7, 0, 0, 0, 0, 7, 
-	7, 7, 7, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 7, 7, 0, 7, 
-	7, 7, 7, 0, 0, 0, 0, 7, 
-	7, 0, 7, 7, 7, 7, 0, 22, 
-	23, 23, 23, 23, 23, 23, 0, 26, 
-	27, 27, 26, 27, 27, 27, 27, 0, 
-	28, 30, 0, 31, 32, 32, 33, 34, 
-	34, 35, 36
+	0, 0, 0, 2, 2, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 2, 2, 
+	0, 8, 8, 12, 12, 0, 0, 8, 
+	8, 8, 8, 17, 0, 0, 0, 0, 
+	0, 0, 0, 0, 8, 8, 0, 8, 
+	8, 8, 8, 0, 0, 0, 0, 8, 
+	8, 0, 8, 8, 8, 8, 0, 25, 
+	26, 26, 26, 26, 26, 26, 0, 29, 
+	30, 30, 31, 30, 30, 30, 30, 0, 
+	32, 34, 0, 35, 36, 37, 38, 39, 
+	39, 40, 41
 ]
 
 class << self
@@ -2194,13 +2346,14 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 2 then
+	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
   		end
-	when 29 then
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2210,27 +2363,27 @@ begin
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 8 then
+	when 9 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
   		end
-	when 5 then
+	when 6 then
 		begin
 
     $stderr.puts "LIST start_list"
     @list_opened = true
     @incomplete[:list] = list()
   		end
-	when 37 then
+	when 42 then
 		begin
 
     $stderr.puts "LIST stop_list"
     @list_closed = true
   		end
-	when 11 then
+	when 13 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -2243,28 +2396,20 @@ begin
 
     @buffers[:annotation_definition] = annotation_definition()
   		end
-	when 4 then
+	when 5 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain()
   		end
-	when 16 then
+	when 19 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(pattern())
   		end
-	when 19 then
+	when 22 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(url())
-  		end
-	when 17 then
-		begin
-
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         domain.children[0] << @buffers[:string])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 20 then
 		begin
@@ -2274,12 +2419,20 @@ begin
                                          domain.children[0] << @buffers[:string])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 14 then
+	when 23 then
+		begin
+
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
+  		end
+	when 16 then
 		begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 15 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2296,7 +2449,7 @@ begin
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2311,7 +2464,7 @@ begin
     @buffers[:annotation_definition] = annotation_definition(
                                          keyword(@buffers[:ident]))
   		end
-	when 10 then
+	when 11 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -2326,7 +2479,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 6 then
+	when 7 then
 		begin
 
     $stderr.puts "LIST start_list"
@@ -2336,19 +2489,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
-  		end
-	when 18 then
-		begin
-
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         domain.children[0] << @buffers[:string])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
-  		end
-		begin
-
-    yield @buffers[:annotation_definition]
   		end
 	when 21 then
 		begin
@@ -2362,7 +2504,19 @@ begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 9 then
+	when 24 then
+		begin
+
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
+  		end
+		begin
+
+    yield @buffers[:annotation_definition]
+  		end
+	when 10 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -2383,7 +2537,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -2403,7 +2557,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 12 then
+	when 14 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -2428,7 +2582,7 @@ begin
                                          @buffers[:list])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -2454,7 +2608,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 13 then
+	when 15 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -2500,13 +2654,25 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 30 then
+	when 34 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 7 then
+	when 2 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+	when 8 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -2515,13 +2681,35 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 22 then
+	when 25 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 26 then
+	when 12 then
+		begin
+
+    $stderr.puts "LIST a_list_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    unless string.nil?
+      item = list_item(string, complete: string.complete)
+      list <<= item
+    end
+    ident = @buffers.delete(:ident)
+    unless ident.nil?
+      item = list_item(ident, complete: ident.complete)
+      list <<= item
+    end
+    if @list_opened && @list_closed
+      list.complete = true
+    else
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "LIST list_node_eof"
@@ -2532,7 +2720,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 28 then
+	when 32 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2547,7 +2735,62 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 23 then
+	when 17 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST a_list_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    unless string.nil?
+      item = list_item(string, complete: string.complete)
+      list <<= item
+    end
+    ident = @buffers.delete(:ident)
+    unless ident.nil?
+      item = list_item(ident, complete: ident.complete)
+      list <<= item
+    end
+    if @list_opened && @list_closed
+      list.complete = true
+    else
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+	when 31 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+	when 26 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -2561,7 +2804,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -2580,7 +2823,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 34 then
+	when 39 then
 		begin
 
     $stderr.puts "LIST list_end"
@@ -2598,31 +2841,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 31 then
-		begin
-
-    $stderr.puts "LIST start_list"
-    @list_opened = true
-    @incomplete[:list] = list()
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 36 then
+	when 41 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -2645,7 +2864,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 33 then
+	when 38 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -2670,7 +2889,46 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 32 then
+	when 37 then
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
 		begin
 
     $stderr.puts "LIST list_node_eof"
@@ -2701,12 +2959,58 @@ begin
 	when 35 then
 		begin
 
+    $stderr.puts "LIST start_list"
+    @list_opened = true
+    @incomplete[:list] = list()
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 40 then
+		begin
+
     $stderr.puts 'IDENTIFIER end_identifier'
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
   		end
 		begin
 
@@ -3450,25 +3754,25 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 1, 0, 2, 3, 0, 0, 0, 
+	0, 1, 0, 3, 4, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	4, 0, 0, 5, 5, 5, 5, 6, 
-	0, 0, 0, 0, 2, 8, 9, 8, 
-	0, 10, 0, 11, 11, 11, 0, 0, 
-	12, 13, 0, 14, 8, 8, 0, 0, 
-	15, 15, 0, 15, 0, 0, 0, 0, 
-	0, 0, 16, 0, 0, 0, 8, 9, 
-	8, 0, 10, 0, 17, 18, 8, 8, 
-	0, 0, 0, 0, 19, 0, 0, 0, 
-	8, 9, 8, 0, 10, 0, 20, 21, 
-	8, 8, 0, 0, 2, 0, 0, 0, 
-	8, 24, 8, 0, 25, 0, 8, 8, 
-	0, 0, 0, 0, 0, 0, 8, 9, 
-	8, 0, 10, 0, 0, 2, 8, 8, 
-	0, 0, 29, 0, 5, 5, 5, 5, 
-	5, 6, 5, 0, 0, 0, 11, 11, 
-	11, 11, 0, 0, 15, 15, 15, 0, 
-	15, 37
+	5, 0, 0, 6, 6, 6, 6, 7, 
+	0, 0, 0, 0, 3, 9, 10, 9, 
+	0, 11, 0, 13, 13, 13, 0, 0, 
+	14, 15, 0, 16, 9, 9, 0, 0, 
+	18, 18, 0, 18, 0, 0, 0, 0, 
+	0, 0, 19, 0, 0, 0, 9, 10, 
+	9, 0, 11, 0, 20, 21, 9, 9, 
+	0, 0, 0, 0, 22, 0, 0, 0, 
+	9, 10, 9, 0, 11, 0, 23, 24, 
+	9, 9, 0, 0, 3, 0, 0, 0, 
+	9, 27, 9, 0, 28, 0, 9, 9, 
+	0, 0, 0, 0, 0, 0, 9, 10, 
+	9, 0, 11, 0, 0, 3, 9, 9, 
+	0, 0, 33, 0, 6, 6, 6, 6, 
+	6, 7, 6, 0, 0, 0, 13, 13, 
+	13, 13, 0, 0, 18, 18, 18, 0, 
+	18, 42
 ]
 
 class << self
@@ -3478,17 +3782,17 @@ end
 self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 7, 7, 0, 0, 0, 0, 7, 
-	7, 7, 7, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 7, 7, 0, 7, 
-	7, 7, 7, 0, 0, 0, 0, 7, 
-	7, 0, 7, 7, 7, 7, 0, 22, 
-	23, 23, 23, 23, 23, 23, 0, 26, 
-	27, 27, 26, 27, 27, 27, 27, 0, 
-	28, 30, 0, 31, 32, 32, 33, 34, 
-	34, 35, 36
+	0, 0, 0, 2, 2, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 2, 2, 
+	0, 8, 8, 12, 12, 0, 0, 8, 
+	8, 8, 8, 17, 0, 0, 0, 0, 
+	0, 0, 0, 0, 8, 8, 0, 8, 
+	8, 8, 8, 0, 0, 0, 0, 8, 
+	8, 0, 8, 8, 8, 8, 0, 25, 
+	26, 26, 26, 26, 26, 26, 0, 29, 
+	30, 30, 31, 30, 30, 30, 30, 0, 
+	32, 34, 0, 35, 36, 37, 38, 39, 
+	39, 40, 41
 ]
 
 class << self
@@ -3564,13 +3868,14 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 2 then
+	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
   		end
-	when 29 then
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -3580,27 +3885,27 @@ begin
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 8 then
+	when 9 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
   		end
-	when 5 then
+	when 6 then
 		begin
 
     $stderr.puts "LIST start_list"
     @list_opened = true
     @incomplete[:list] = list()
   		end
-	when 37 then
+	when 42 then
 		begin
 
     $stderr.puts "LIST stop_list"
     @list_closed = true
   		end
-	when 11 then
+	when 13 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -3613,28 +3918,20 @@ begin
 
     @buffers[:annotation_definition] = annotation_definition()
   		end
-	when 4 then
+	when 5 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain()
   		end
-	when 16 then
+	when 19 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(pattern())
   		end
-	when 19 then
+	when 22 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(url())
-  		end
-	when 17 then
-		begin
-
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         domain.children[0] << @buffers[:string])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 20 then
 		begin
@@ -3644,12 +3941,20 @@ begin
                                          domain.children[0] << @buffers[:string])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 14 then
+	when 23 then
+		begin
+
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
+  		end
+	when 16 then
 		begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 15 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -3666,7 +3971,7 @@ begin
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -3681,7 +3986,7 @@ begin
     @buffers[:annotation_definition] = annotation_definition(
                                          keyword(@buffers[:ident]))
   		end
-	when 10 then
+	when 11 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -3696,7 +4001,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 6 then
+	when 7 then
 		begin
 
     $stderr.puts "LIST start_list"
@@ -3706,19 +4011,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
-  		end
-	when 18 then
-		begin
-
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         domain.children[0] << @buffers[:string])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
-  		end
-		begin
-
-    yield @buffers[:annotation_definition]
   		end
 	when 21 then
 		begin
@@ -3732,7 +4026,19 @@ begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 9 then
+	when 24 then
+		begin
+
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
+  		end
+		begin
+
+    yield @buffers[:annotation_definition]
+  		end
+	when 10 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -3753,7 +4059,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -3773,7 +4079,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 12 then
+	when 14 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -3798,7 +4104,7 @@ begin
                                          @buffers[:list])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -3824,7 +4130,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 13 then
+	when 15 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -3870,13 +4176,25 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 30 then
+	when 34 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 7 then
+	when 2 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+	when 8 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -3885,13 +4203,35 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 22 then
+	when 25 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 26 then
+	when 12 then
+		begin
+
+    $stderr.puts "LIST a_list_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    unless string.nil?
+      item = list_item(string, complete: string.complete)
+      list <<= item
+    end
+    ident = @buffers.delete(:ident)
+    unless ident.nil?
+      item = list_item(ident, complete: ident.complete)
+      list <<= item
+    end
+    if @list_opened && @list_closed
+      list.complete = true
+    else
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "LIST list_node_eof"
@@ -3902,7 +4242,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 28 then
+	when 32 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -3917,7 +4257,62 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 23 then
+	when 17 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST a_list_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    unless string.nil?
+      item = list_item(string, complete: string.complete)
+      list <<= item
+    end
+    ident = @buffers.delete(:ident)
+    unless ident.nil?
+      item = list_item(ident, complete: ident.complete)
+      list <<= item
+    end
+    if @list_opened && @list_closed
+      list.complete = true
+    else
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+	when 31 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+	when 26 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -3931,7 +4326,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -3950,7 +4345,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 34 then
+	when 39 then
 		begin
 
     $stderr.puts "LIST list_end"
@@ -3968,31 +4363,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 31 then
-		begin
-
-    $stderr.puts "LIST start_list"
-    @list_opened = true
-    @incomplete[:list] = list()
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 36 then
+	when 41 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -4015,7 +4386,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 33 then
+	when 38 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -4040,7 +4411,46 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 32 then
+	when 37 then
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
 		begin
 
     $stderr.puts "LIST list_node_eof"
@@ -4071,12 +4481,58 @@ begin
 	when 35 then
 		begin
 
+    $stderr.puts "LIST start_list"
+    @list_opened = true
+    @incomplete[:list] = list()
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 40 then
+		begin
+
     $stderr.puts 'IDENTIFIER end_identifier'
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
   		end
 		begin
 
@@ -4857,25 +5313,25 @@ end
 self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 1, 0, 2, 3, 0, 0, 0, 
+	0, 1, 0, 3, 4, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	4, 0, 0, 5, 5, 5, 5, 6, 
-	0, 0, 0, 0, 2, 8, 9, 8, 
-	0, 10, 0, 11, 11, 11, 0, 0, 
-	12, 13, 0, 14, 8, 8, 0, 0, 
-	15, 15, 0, 15, 0, 0, 0, 0, 
-	0, 0, 16, 0, 0, 0, 8, 9, 
-	8, 0, 10, 0, 17, 18, 8, 8, 
-	0, 0, 0, 0, 19, 0, 0, 0, 
-	8, 9, 8, 0, 10, 0, 20, 21, 
-	8, 8, 0, 0, 2, 0, 0, 0, 
-	8, 24, 8, 0, 25, 0, 8, 8, 
-	0, 0, 0, 0, 0, 0, 8, 9, 
-	8, 0, 10, 0, 0, 2, 8, 8, 
-	0, 0, 29, 0, 5, 5, 5, 5, 
-	5, 6, 5, 0, 0, 0, 11, 11, 
-	11, 11, 0, 0, 15, 15, 15, 0, 
-	15, 37
+	5, 0, 0, 6, 6, 6, 6, 7, 
+	0, 0, 0, 0, 3, 9, 10, 9, 
+	0, 11, 0, 13, 13, 13, 0, 0, 
+	14, 15, 0, 16, 9, 9, 0, 0, 
+	18, 18, 0, 18, 0, 0, 0, 0, 
+	0, 0, 19, 0, 0, 0, 9, 10, 
+	9, 0, 11, 0, 20, 21, 9, 9, 
+	0, 0, 0, 0, 22, 0, 0, 0, 
+	9, 10, 9, 0, 11, 0, 23, 24, 
+	9, 9, 0, 0, 3, 0, 0, 0, 
+	9, 27, 9, 0, 28, 0, 9, 9, 
+	0, 0, 0, 0, 0, 0, 9, 10, 
+	9, 0, 11, 0, 0, 3, 9, 9, 
+	0, 0, 33, 0, 6, 6, 6, 6, 
+	6, 7, 6, 0, 0, 0, 13, 13, 
+	13, 13, 0, 0, 18, 18, 18, 0, 
+	18, 42
 ]
 
 class << self
@@ -4885,17 +5341,17 @@ end
 self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 7, 7, 0, 0, 0, 0, 7, 
-	7, 7, 7, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 7, 7, 0, 7, 
-	7, 7, 7, 0, 0, 0, 0, 7, 
-	7, 0, 7, 7, 7, 7, 0, 22, 
-	23, 23, 23, 23, 23, 23, 0, 26, 
-	27, 27, 26, 27, 27, 27, 27, 0, 
-	28, 30, 0, 31, 32, 32, 33, 34, 
-	34, 35, 36
+	0, 0, 0, 2, 2, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 2, 2, 
+	0, 8, 8, 12, 12, 0, 0, 8, 
+	8, 8, 8, 17, 0, 0, 0, 0, 
+	0, 0, 0, 0, 8, 8, 0, 8, 
+	8, 8, 8, 0, 0, 0, 0, 8, 
+	8, 0, 8, 8, 8, 8, 0, 25, 
+	26, 26, 26, 26, 26, 26, 0, 29, 
+	30, 30, 31, 30, 30, 30, 30, 0, 
+	32, 34, 0, 35, 36, 37, 38, 39, 
+	39, 40, 41
 ]
 
 class << self
@@ -4985,13 +5441,14 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 2 then
+	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
   		end
-	when 29 then
+	when 33 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -5001,27 +5458,27 @@ begin
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 8 then
+	when 9 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
   		end
-	when 5 then
+	when 6 then
 		begin
 
     $stderr.puts "LIST start_list"
     @list_opened = true
     @incomplete[:list] = list()
   		end
-	when 37 then
+	when 42 then
 		begin
 
     $stderr.puts "LIST stop_list"
     @list_closed = true
   		end
-	when 11 then
+	when 13 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -5034,28 +5491,20 @@ begin
 
     @buffers[:annotation_definition] = annotation_definition()
   		end
-	when 4 then
+	when 5 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain()
   		end
-	when 16 then
+	when 19 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(pattern())
   		end
-	when 19 then
+	when 22 then
 		begin
 
     @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(url())
-  		end
-	when 17 then
-		begin
-
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         domain.children[0] << @buffers[:string])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
 	when 20 then
 		begin
@@ -5065,12 +5514,20 @@ begin
                                          domain.children[0] << @buffers[:string])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 14 then
+	when 23 then
+		begin
+
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
+  		end
+	when 16 then
 		begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 15 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -5087,7 +5544,7 @@ begin
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -5102,7 +5559,7 @@ begin
     @buffers[:annotation_definition] = annotation_definition(
                                          keyword(@buffers[:ident]))
   		end
-	when 10 then
+	when 11 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -5117,7 +5574,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 6 then
+	when 7 then
 		begin
 
     $stderr.puts "LIST start_list"
@@ -5127,19 +5584,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
-  		end
-	when 18 then
-		begin
-
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         domain.children[0] << @buffers[:string])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
-  		end
-		begin
-
-    yield @buffers[:annotation_definition]
   		end
 	when 21 then
 		begin
@@ -5153,7 +5599,19 @@ begin
 
     yield @buffers[:annotation_definition]
   		end
-	when 9 then
+	when 24 then
+		begin
+
+    keyword, domain                  = @buffers[:annotation_definition].children
+    domain                           = domain(
+                                         domain.children[0] << @buffers[:string])
+    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
+  		end
+		begin
+
+    yield @buffers[:annotation_definition]
+  		end
+	when 10 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -5174,7 +5632,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -5194,7 +5652,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 12 then
+	when 14 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -5219,7 +5677,7 @@ begin
                                          @buffers[:list])
     @buffers[:annotation_definition] = annotation_definition(keyword, domain)
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -5245,7 +5703,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 13 then
+	when 15 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -5291,13 +5749,25 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 30 then
+	when 34 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 7 then
+	when 2 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+	when 8 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -5306,13 +5776,35 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 22 then
+	when 25 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 26 then
+	when 12 then
+		begin
+
+    $stderr.puts "LIST a_list_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    unless string.nil?
+      item = list_item(string, complete: string.complete)
+      list <<= item
+    end
+    ident = @buffers.delete(:ident)
+    unless ident.nil?
+      item = list_item(ident, complete: ident.complete)
+      list <<= item
+    end
+    if @list_opened && @list_closed
+      list.complete = true
+    else
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "LIST list_node_eof"
@@ -5323,7 +5815,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 28 then
+	when 32 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -5338,7 +5830,62 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 23 then
+	when 17 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST a_list_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    unless string.nil?
+      item = list_item(string, complete: string.complete)
+      list <<= item
+    end
+    ident = @buffers.delete(:ident)
+    unless ident.nil?
+      item = list_item(ident, complete: ident.complete)
+      list <<= item
+    end
+    if @list_opened && @list_closed
+      list.complete = true
+    else
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+	when 31 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+	when 26 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -5352,7 +5899,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -5371,7 +5918,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 34 then
+	when 39 then
 		begin
 
     $stderr.puts "LIST list_end"
@@ -5389,31 +5936,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 31 then
-		begin
-
-    $stderr.puts "LIST start_list"
-    @list_opened = true
-    @incomplete[:list] = list()
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 36 then
+	when 41 then
 		begin
 
     $stderr.puts "LIST stop_list"
@@ -5436,7 +5959,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 33 then
+	when 38 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -5461,7 +5984,46 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 32 then
+	when 37 then
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
 		begin
 
     $stderr.puts "LIST list_node_eof"
@@ -5492,12 +6054,58 @@ begin
 	when 35 then
 		begin
 
+    $stderr.puts "LIST start_list"
+    @list_opened = true
+    @incomplete[:list] = list()
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 40 then
+		begin
+
     $stderr.puts 'IDENTIFIER end_identifier'
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
   		end
 		begin
 

@@ -130,7 +130,7 @@ class << self
 end
 self._bel_trans_actions = [
 	2, 0, 3, 5, 6, 7, 0, 9, 
-	3, 11, 0, 13, 0
+	3, 12, 0, 14, 0
 ]
 
 class << self
@@ -138,8 +138,8 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 0, 4, 8, 8, 10, 12, 
-	14
+	0, 1, 0, 4, 8, 10, 11, 13, 
+	15
 ]
 
 class << self
@@ -211,9 +211,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
   		end
-	when 13 then
+	when 14 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -255,7 +256,7 @@ begin
     @buffers[:unset] = ast_node
     yield @buffers[:unset]
   		end
-	when 11 then
+	when 12 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -338,7 +339,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 14 then
+	when 15 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -349,12 +350,12 @@ begin
 
     #$stderr.puts 'eof_unset_keyword'
   		end
-	when 8 then
+	when 10 then
 		begin
 
     #$stderr.puts 'eof_unset'
   		end
-	when 12 then
+	when 13 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -369,7 +370,23 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 10 then
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    #$stderr.puts 'eof_unset'
+  		end
+	when 11 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -378,6 +395,17 @@ begin
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
   		end
 		begin
 
@@ -571,7 +599,7 @@ class << self
 end
 self._bel_trans_actions = [
 	2, 0, 3, 5, 6, 7, 0, 9, 
-	3, 11, 0, 13, 0
+	3, 12, 0, 14, 0
 ]
 
 class << self
@@ -579,8 +607,8 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 0, 4, 8, 8, 10, 12, 
-	14
+	0, 1, 0, 4, 8, 10, 11, 13, 
+	15
 ]
 
 class << self
@@ -666,9 +694,10 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
     p_start = p;
   		end
-	when 13 then
+	when 14 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -710,7 +739,7 @@ begin
     @buffers[:unset] = ast_node
     yield @buffers[:unset]
   		end
-	when 11 then
+	when 12 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -793,7 +822,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 14 then
+	when 15 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -804,12 +833,12 @@ begin
 
     #$stderr.puts 'eof_unset_keyword'
   		end
-	when 8 then
+	when 10 then
 		begin
 
     #$stderr.puts 'eof_unset'
   		end
-	when 12 then
+	when 13 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -824,7 +853,23 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 10 then
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    #$stderr.puts 'eof_unset'
+  		end
+	when 11 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -833,6 +878,17 @@ begin
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
   		end
 		begin
 
