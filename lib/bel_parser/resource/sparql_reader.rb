@@ -37,8 +37,10 @@ module BELParser
         sparql_query     = RESOLVE_CONCEPT.result(template_binding)
         concept_scheme   = retrieve_resource(resource_identifier)
         to_concept       = method(:hash_to_concept).to_proc.curry[concept_scheme]
+        concepts         = execute_select(sparql_query).map(&to_concept).compact
 
-        execute_select(sparql_query).map(&to_concept)
+        return nil if concepts.empty?
+        concepts
       end
 
       def retrieve_values_from_resource(resource_identifier)
@@ -47,8 +49,10 @@ module BELParser
         sparql_query     = RESOLVE_CONCEPTS.result(template_binding)
         concept_scheme   = retrieve_resource(resource_identifier)
         to_concept       = method(:hash_to_concept).to_proc.curry[concept_scheme]
+        concepts         = execute_select(sparql_query).map(&to_concept).compact
 
-        execute_select(sparql_query).map(&to_concept)
+        return nil if concepts.empty?
+        concepts
       end
 
       protected

@@ -41,7 +41,9 @@ module BELParser
       # @param  [String] resource_identifier the resource identifier
       # @return [FileResource] the file resource
       def retrieve_resource(resource_identifier)
-        read_resource(resource_identifier)[:dataset]
+        dataset = read_resource(resource_identifier)[:dataset]
+        return nil if dataset.types.all?(&:nil?)
+        dataset
       end
 
       def retrieve_value_from_resource(resource_identifier, value)
@@ -54,6 +56,7 @@ module BELParser
       def retrieve_values_from_resource(resource_identifier)
         resource = read_resource(resource_identifier)
         dataset  = resource[:dataset]
+        return nil if resource[:values].size.zero?
         resource[:values].lazy.map do |value, encoding|
           FileResourceValue.new(dataset, value, encoding)
         end

@@ -44,9 +44,7 @@ module BELParser
             pref_label = solution.object.to_s
           end
         end
-        return nil unless types.any? do |type_uri|
-          type_uri == BELV.AnnotationConceptScheme || type_uri == BELV.NamespaceConceptScheme
-        end
+        return nil unless types.any?(&method(:scheme_class?))
         ConceptScheme.new(uri, domain, prefix, pref_label, types)
       end
 
@@ -73,6 +71,10 @@ module BELParser
       end
 
       private
+
+      def scheme_class?(uri)
+        uri == BELV.AnnotationConceptScheme || uri == BELV.NamespaceConceptScheme
+      end
 
       def find_value_uris(resource_uri, value)
         VALUE_PREDICATE_ORDER.each do |predicate|
