@@ -78,13 +78,13 @@
     SP*
     '(' @term_fx
       (
-        BEL_PARAMETER %term_argument |
+        a_parameter %term_argument |
         an_ident >start_function $append_function '(' @fxbt
       )
       (
         SP* ',' SP*
         (
-          BEL_PARAMETER %term_argument |
+          a_parameter %term_argument |
           an_ident >start_function $append_function '(' @fxbt
         )
       )*
@@ -95,13 +95,13 @@
     SP*
     '(' @term_fx
       (
-        BEL_PARAMETER %term_argument |
+        a_parameter %term_argument |
         an_ident >start_function $append_function '(' @fxbt
       )
       (
         SP* ',' SP*
         (
-          BEL_PARAMETER %term_argument |
+          a_parameter %term_argument |
           an_ident >start_function $append_function '(' @fxbt
         )
       )*

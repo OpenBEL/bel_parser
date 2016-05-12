@@ -9,6 +9,7 @@ machine bel;
   NUMBER_SIGN = '#';
   SQ		      = "'";
   DQ          = '"';
+  COLON       = ':';
   ESCAPED     = /\\./;
   NOT_SQESC	  = [^'\\];
   NOT_DQESC	  = [^"\\];
@@ -53,6 +54,10 @@ machine bel;
     KW_DEFINE
     SP+
     KW_NAMESPACE
+    ;
+
+  RELATIONSHIP =
+    alpha+
     ;
 }%%
 =end

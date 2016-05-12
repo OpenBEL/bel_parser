@@ -6,28 +6,40 @@
   include 'common.rl';
 
   action start_relationship {
-    @buffers[:relationship] = []
+    $stderr.puts 'RELATIONSHIP start_relationship'
+    p_start = p;
   }
 
-  action append_relationship {
-    @buffers[:relationship] << fc
+  action stop_relationship {
+    $stderr.puts 'RELATIONSHIP stop_relationship'
+    # It's not you, it's me. You're a p and I'm a non-protein coding r. It
+    # would never work, I just can't reach you.
+    p_end = p;
   }
 
-  action finish_relationship {
-    @buffers[:relationship] = relationship(
-                                utf8_string(@buffers[:relationship]))
+  action relationship_end {
+    $stderr.puts 'RELATIONSHIP relationship_end'
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = relationship(utf8_string(chars), complete: completed)
+    @buffers[:relationship] = ast_node
   }
 
   action yield_relationship {
     yield @buffers[:relationship]
   }
 
-  RELATIONSHIP =
-    (0x21..0x7e)+ >start_relationship $append_relationship %finish_relationship;
+  relationship =
+    RELATIONSHIP
+    >start_relationship
+    %stop_relationship
+    ;
 
-  relationship :=
-    RELATIONSHIP %yield_relationship
-    NL;
+  relationship_node :=
+    relationship
+    %relationship_end
+    %yield_relationship
+    ;
 }%%
 =end
 # end: ragel
@@ -63,9 +75,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -74,12 +86,15 @@ module BELParser
             stack       = []
             data        = @content.unpack('C*')
             p           = 0
+            p_start     = 0
+            p_end       = 0
             pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end
