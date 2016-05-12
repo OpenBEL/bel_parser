@@ -1,0 +1,5 @@
+require_relative 'model/annotation'
+require_relative 'model/namespace'
+require_relative 'model/parameter'
+require_relative 'model/term'
+require_relative 'model/statement'
