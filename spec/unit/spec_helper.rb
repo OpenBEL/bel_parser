@@ -13,6 +13,10 @@ def parse_ast_no_nl(parser, input)
   parser.parse(input.to_s) { |obj| return obj }
 end
 
+def random_alpha
+  Rantly { sized(range(1, 50)) { string(/[A-Za-z]/) } }
+end
+
 def random_identifier
   Rantly { sized(range(1, 50)) { string(/[A-Za-z0-9_]/) } }
 end
