@@ -199,4 +199,25 @@ describe 'when parsing set document statements' do
       )
     end
   end
+
+  context 'that are incomplete' do
+    identifier = random_identifier
+    input = "SET #{identifier} "
+    it "is incomplete for #{input}" do
+      output = parse_ast_no_nl(parser, input)
+      expect(output).to be_a(ast::Set)
+      expect(output).to respond_to(:complete)
+      expect(output.complete).to be(false)
+      expect(output.children?).to be(true)
+      expect(output.num_children).to be(1)
+
+      expect(output.first_child).to be_a(ast::Identifier)
+      expect(output.first_child.complete).to be(true)
+
+      expect(output).to eq(
+        s(:set,
+          s(:identifier, identifier))
+      )
+    end
+  end
 end
