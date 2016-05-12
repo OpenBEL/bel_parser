@@ -7,49 +7,81 @@
   include 'identifier.rl';
   include 'string.rl';
 
-  DEFINE_KW     = [dD][eE][fF][iI][nN][eE];
-  NAMESPACE_KW  = [nN][aA][mM][eE][sS][pP][aA][cC][eE];
-  AS_KW         = [aA][sS];
-  URL_KW        = [uU][rR][lL];
-
-  action namespace_keyword {
-    @buffers[:namespace_definition] = namespace_definition()
+  action add_name {
+    $stderr.puts "DEFINE_NAMESPACE add_name"
+    name = @buffers.delete(:ident)
+    @buffers[:namespace_definition_name] = name
   }
 
-  action keyword {
-    @buffers[:namespace_definition] = @buffers[:namespace_definition] << keyword(@buffers[:ident])
+  action add_string_value {
+    $stderr.puts "DEFINE_NAMESPACE add_string_value"
+    string_node = @buffers.delete(:string)
+    leaf = domain(url(string_node))
+    leaf.complete = string_node.complete
+    @buffers[:namespace_definition_domain] = leaf
   }
 
-  action url_keyword {
-    @buffers[:namespace_definition] = @buffers[:namespace_definition] << domain(url())
+  action add_url_domain {
+    $stderr.puts "DEFINE_NAMESPACE add_url_domain"
+    @url_domain = true
   }
 
-  action string {
-    keyword, domain                 = @buffers[:namespace_definition].children
-    domain                          = domain(
-                                        domain.children[0] << @buffers[:string])
-    @buffers[:namespace_definition] = namespace_definition(keyword, domain)
+  action define_namespace_end {
+    $stderr.puts "DEFINE_NAMESPACE define_namespace_end"
+    namespace_definition_node = namespace_definition()
+    domain = @buffers.delete(:namespace_definition_domain)
+    unless domain.nil?
+      namespace_definition_node <<= domain
+      namespace_definition_node.complete = domain.complete
+    end
+    @buffers[:namespace_definition] = namespace_definition_node
   }
 
-  action yield_namespace_definition {
+  action yield_define_namespace {
+    $stderr.puts "DEFINE_NAMESPACE yield_define_namespace"
     yield @buffers[:namespace_definition]
   }
 
-  # Define FSM
-  define_namespace :=
-    DEFINE_KW
+  action define_namespace_node_eof {
+    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    leaf = url()
+    string_node = @buffers.delete(:string)
+    unless string_node.nil?
+      leaf <<= string_node
+      leaf.complete = string_node.complete
+    end
+    domain_node = domain(leaf)
+    domain_node.complete = leaf.complete
+    namespace_definition_node = namespace_definition(domain_node)
+    namespace_definition_node.complete = domain_node.complete
+    yield namespace_definition_node
+  }
+
+  string_value =
+    a_string
+    %add_string_value
+    ;
+
+  url_domain =
+    KW_URL
+    %add_url_domain
+    ;
+
+  define_namespace_node :=
+    DEFINE_NAMESPACE
     SP+
-    NAMESPACE_KW @namespace_keyword
+    an_ident
+    %add_name
     SP+
-    an_ident %keyword
+    KW_AS
     SP+
-    AS_KW
+    url_domain
     SP+
-    URL_KW @url_keyword
-    SP+
-    a_string %string
-    SP*
-    NL @yield_namespace_definition;
+    string_value
+    @eof(define_namespace_node_eof)
+    %define_namespace_end
+    %yield_define_namespace
+    ;
 }%%
 =end
 # end: ragel

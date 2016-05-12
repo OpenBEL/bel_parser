@@ -16,6 +16,13 @@ machine bel;
 
   KW_SET = /SET/i;
   KW_UNSET = /UNSET/i;
+  KW_DEFINE = /DEFINE/i;
+  KW_ANNOTATION = /ANNOTATION/i;
+  KW_NAMESPACE = /NAMESPACE/i;
+  KW_AS = /AS/i;
+  KW_LIST = /LIST/i;
+  KW_PATTERN = /PATTERN/i;
+  KW_URL = /URL/i;
   KW_DOCUMENT = /DOCUMENT/i;
   KW_AUTHORS = /Authors/i;
   KW_CONTACT_INFO = /ContactInfo/i;
@@ -33,6 +40,18 @@ machine bel;
     KW_LICENSES |
     KW_NAME |
     KW_VERSION
+    ;
+
+  DEFINE_ANNOTATION =
+    KW_DEFINE
+    SP+
+    KW_ANNOTATION
+    ;
+
+  DEFINE_NAMESPACE =
+    KW_DEFINE
+    SP+
+    KW_NAMESPACE
     ;
 }%%
 =end

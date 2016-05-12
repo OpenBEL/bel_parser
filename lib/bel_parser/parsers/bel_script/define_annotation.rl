@@ -8,69 +8,156 @@
   include 'string.rl';
   include 'list.rl';
 
-  DEFINE_KW     = [dD][eE][fF][iI][nN][eE];
-  ANNOTATION_KW = [aA][nN][nN][oO][tT][aA][tT][iI][oO][nN];
-  AS_KW         = [aA][sS];
-  LIST_KW       = [lL][iI][sS][tT];
-  PATTERN_KW    = [pP][aA][tT][tT][eE][rR][nN];
-  URL_KW        = [uU][rR][lL];
-
-  action annotation_keyword {
-    @buffers[:annotation_definition] = annotation_definition()
+  action add_name {
+    $stderr.puts "DEFINE_ANNOTATION add_name"
+    name = @buffers.delete(:ident)
+    @buffers[:annotation_definition_name] = name
   }
 
-  action keyword {
-    @buffers[:annotation_definition] = annotation_definition(
-                                         keyword(@buffers[:ident]))
+  action add_string_value {
+    $stderr.puts "DEFINE_ANNOTATION add_string_value"
+    string_node = @buffers.delete(:string)
+    if @url_domain
+      leaf = domain(url(string_node))
+      leaf.complete = string_node.complete
+    elsif @pattern_domain
+      leaf = domain(pattern(string_node))
+      leaf.complete = string_node.complete
+    else
+      leaf = domain(string_node)
+      # defined as list, given string
+      leaf.complete = false
+    end
+    @buffers[:annotation_definition_domain] = leaf
   }
 
-  action list_keyword {
-    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain()
+  action add_list_value {
+    $stderr.puts "DEFINE_ANNOTATION add_list_value"
+    list_node = @buffers.delete(:list)
+    if @url_domain
+      leaf = domain(url(list_node))
+      # defined as url, given list
+      leaf.completed = false
+    elsif @pattern_domain
+      leaf = domain(pattern(list_node))
+      # defined as url, given pattern
+      leaf.complete = false
+    else
+      leaf = domain(list_node)
+      leaf.complete = list_node.complete
+    end
+    @buffers[:annotation_definition_domain] = leaf
   }
 
-  action pattern_keyword {
-    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(pattern())
+  action add_list_domain {
+    $stderr.puts "DEFINE_ANNOTATION add_list_domain"
+    @list_domain = true
   }
 
-  action url_keyword {
-    @buffers[:annotation_definition] = @buffers[:annotation_definition] << domain(url())
+  action add_url_domain {
+    $stderr.puts "DEFINE_ANNOTATION add_url_domain"
+    @url_domain = true
   }
 
-  action pattern {
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         domain.children[0] << @buffers[:string])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
+  action add_pattern_domain {
+    $stderr.puts "DEFINE_ANNOTATION add_pattern_domain"
+    @pattern_domain = true
   }
 
-  action url {
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         domain.children[0] << @buffers[:string])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
+  action define_annotation_end {
+    $stderr.puts "DEFINE_ANNOTATION define_annotation_end"
+    annotation_definition_node = annotation_definition()
+    domain = @buffers.delete(:annotation_definition_domain)
+    unless domain.nil?
+      annotation_definition_node <<= domain
+      annotation_definition_node.complete = domain.complete
+    end
+    @buffers[:annotation_definition] = annotation_definition_node
   }
 
-  action list {
-    keyword, domain                  = @buffers[:annotation_definition].children
-    domain                           = domain(
-                                         @buffers[:list])
-    @buffers[:annotation_definition] = annotation_definition(keyword, domain)
-  }
-
-  action yield_annotation_definition {
+  action yield_define_annotation {
+    $stderr.puts "DEFINE_ANNOTATION yield_define_annotation"
     yield @buffers[:annotation_definition]
   }
 
-  # Define FSM
-  annotation_definition :=
-    DEFINE_KW SP+ ANNOTATION_KW @annotation_keyword SP+
-      an_ident %keyword SP+
-    AS_KW SP+
-      (
-        (LIST_KW    %list_keyword    SP+ a_list   %list    SP* NL @yield_annotation_definition) |
-        (PATTERN_KW %pattern_keyword SP+ a_string %pattern SP* NL @yield_annotation_definition) |
-        (URL_KW     %url_keyword     SP+ a_string %url     SP* NL @yield_annotation_definition)
-      );
+  action define_annotation_node_eof {
+    $stderr.puts "DEFINE_ANNOTATION define_annotation_node_eof"
+    annotation_definition_node = annotation_definition()
+    if @url_domain
+      domain_node = domain(url())
+    elsif @pattern_domain
+      domain_node = domain(pattern())
+    else
+      domain_node = domain()
+    end
+
+    domain_node.complete = false
+    list_node = @buffers.delete(:list)
+    unless list_node.nil?
+      domain_node <<= list_node
+      domain_node.complete = list_node.complete
+    end
+    string_node = @buffers.delete(:string)
+    unless string_node.nil?
+      domain_node <<= string_node
+      domain_node.complete = string_node.complete
+    end
+    annotation_definition_node <<= domain_node
+    annotation_definition_node.complete = domain_node.complete
+    yield annotation_definition_node
+  }
+
+  string_value =
+    a_string
+    %add_string_value
+    ;
+
+  list_value =
+    a_list
+    %add_list_value
+    ;
+
+  value =
+    string_value |
+    list_value
+    ;
+
+  list_domain =
+    KW_LIST
+    %add_list_domain
+    ;
+
+  url_domain =
+    KW_URL
+    %add_url_domain
+    ;
+
+  pattern_domain =
+    KW_PATTERN
+    %add_pattern_domain
+    ;
+
+  domain =
+    list_domain |
+    url_domain |
+    pattern_domain
+    ;
+
+  define_annotation_node :=
+    DEFINE_ANNOTATION
+    SP+
+    an_ident
+    %add_name
+    SP+
+    KW_AS
+    SP+
+    domain
+    SP+
+    value
+    @eof(define_annotation_node_eof)
+    %define_annotation_end
+    %yield_define_annotation
+    ;
 }%%
 =end
 # end: ragel
@@ -106,6 +193,7 @@ module BELParser
 
           def initialize(content)
             @content = content
+            $stderr.puts "content: #{@content}"
       # begin: ragel
             %% write data;
       # end: ragel
@@ -114,6 +202,9 @@ module BELParser
           def each
             @buffers = {}
             @incomplete = {}
+            @list_domain = false
+            @url_domain = false
+            @pattern_domain = false
             data     = @content.unpack('C*')
             p        = 0
             pe       = data.length
