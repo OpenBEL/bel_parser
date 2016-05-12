@@ -7,12 +7,13 @@ machine bel;
   WS          = space;
   EQL         = '=';
   NUMBER_SIGN = '#';
-  SQ		  = "'";
+  SQ		      = "'";
   DQ          = '"';
   ESCAPED     = /\\./;
   NOT_SQESC	  = [^'\\];
   NOT_DQESC	  = [^"\\];
   COMMA_DELIM = SP* ',' SP*;
+  SS          = '//';
 
   KW_SET = /SET/i;
   KW_UNSET = /UNSET/i;
