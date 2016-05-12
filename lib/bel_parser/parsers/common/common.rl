@@ -15,6 +15,7 @@ machine bel;
   COMMA_DELIM = SP* ',' SP*;
 
   KW_SET = /SET/i;
+  KW_UNSET = /UNSET/i;
   KW_DOCUMENT = /DOCUMENT/i;
   KW_AUTHORS = /Authors/i;
   KW_CONTACT_INFO = /ContactInfo/i;

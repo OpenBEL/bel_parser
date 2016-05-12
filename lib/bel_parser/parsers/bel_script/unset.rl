@@ -6,74 +6,49 @@
   include 'common.rl';
   include 'identifier.rl';
 
-  action start_unset_keyword {
-    #$stderr.puts 'start_unset_keyword'
-    @incomplete[:unset_keyword] = []
-  }
-
-  action accum_unset_keyword {
-    #$stderr.puts 'accum_unset_keyword "' + fc.chr + '"'
-    @incomplete[:unset_keyword] << fc
-  }
-
-  action end_unset_keyword {
-    #$stderr.puts 'end_unset_keyword'
-  }
-
-  action eof_unset_keyword {
-    #$stderr.puts 'eof_unset_keyword'
-  }
-
-  action eof_unset {
-    #$stderr.puts 'eof_unset'
+  action add_name {
+    $stderr.puts "UNSET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:unset_name] = key
   }
 
   action unset_end {
-    #$stderr.puts "unset_end"
-    unless @buffers.key?(:ident)
-      @buffers[:ident] = identifier(nil, complete: false)
-    end
-    name = @buffers.delete(:ident)
-
-    keyword = ord_to_str(@incomplete.delete(:unset_keyword))
-    unless keyword == 'UNSET'
-      keyword_complete = false
+    $stderr.puts "UNSET unset_end"
+    name = @buffers.delete(:unset_name)
+    unless name.nil?
+      unset_node = unset(name, complete: name.complete)
     else
-      keyword_complete = true
+      unset_node = unset(complete: false)
     end
+    @buffers[:unset] = unset_node
+  }
 
-    completed = keyword_complete && name.complete
-    ast_node = unset(name, complete: completed)
-    @buffers[:unset] = ast_node
+  action yield_unset {
+    $stderr.puts "UNSET yield_unset"
     yield @buffers[:unset]
   }
 
-  action yield_set {
-    yield @buffers[:unset]
+  action set_node_eof {
+    $stderr.puts "UNSET set_node_eof"
   }
 
-  UNSET =
-    [uU]
-    [nN]?
-    [sS]?
-    [eE]?
-    [tT]?
+  an_unset =
+    KW_UNSET
+    SP+
+    an_ident
+    %add_name
+    @eof(set_node_eof)
+    %unset_end
     ;
 
-  unset =
-    (UNSET | alnum+)
-    >start_unset_keyword
-    $accum_unset_keyword
-    %end_unset_keyword
-    $eof(eof_unset_keyword)
-    ;
-
-  unset_ast :=
-    (unset SP+ an_ident |
-     unset SP*)
-    NL?
-    $unset_end
-    $eof(eof_unset)
+  unset_ast_node :=
+    KW_UNSET
+    SP+?
+    an_ident?
+    %add_name
+    @eof(set_node_eof)
+    %unset_end
+    %yield_unset
     ;
 }%%
 =end
