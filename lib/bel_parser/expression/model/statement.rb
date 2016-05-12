@@ -1,3 +1,5 @@
+require 'bel_parser/quoting'
+
 module BELParser
   module Expression
     module Model
@@ -42,6 +44,7 @@ module BELParser
           @comment      = comment
 
           if @relationship && !@object
+            require 'pry'; binding.pry
             raise(
               ArgumentError,
               "object must be set when specifying a relationship")
@@ -107,6 +110,48 @@ module BELParser
             end
 
           comment ? lbl + ' //' + comment : lbl
+        end
+      end
+
+      module Converters
+        include BELParser::Quoting
+        include BELParser::Parsers::AST
+
+        def ast_to_statement(ast, spec, namespaces = {})
+          statement =
+            case ast
+            when BELParser::Parsers::AST::Statement
+              ast
+            when ObservedTerm, SimpleStatement, NestedStatement
+              ast.statement
+            else
+              nil
+            end
+          return nil if statement.nil?
+
+          spec ||= BELParser::Language.latest_supported_specification
+
+          Statement.new(
+            ast_to_term(statement.subject.term, spec, namespaces),
+            convert_relationship(statement.relationship, spec),
+            convert_object(statement.object, spec, namespaces),
+            statement.comment && statement.comment.children[0])
+        end
+
+        def convert_relationship(ast, spec)
+          relationship = ast.string_literal
+          relationship && spec.relationship(relationship.to_sym)
+        end
+
+        def convert_object(ast, spec, namespaces)
+          case
+          when ast.term?
+            ast_to_term(ast.child, spec, namespaces)
+          when ast.statement?
+            ast_to_statement(ast.child, spec, namespaces)
+          else
+            nil
+          end
         end
       end
     end

@@ -1,3 +1,4 @@
+require 'bel_parser/quoting'
 require 'bel_parser/resource'
 
 module BELParser
@@ -82,6 +83,19 @@ module BELParser
 
         def to_s
           @keyword.to_s
+        end
+      end
+
+      module Converters
+        include BELParser::Quoting
+
+        def ast_to_namespace(ast)
+          return nil if ast.nil? ||
+            !ast.is_a?(BELParser::Parsers::AST::NamespaceDefinition)
+          keyword, domain = ast.children
+          # TODO Support URI when it's an available domain.
+          url = domain.child.string.string_literal
+          Namespace.new(keyword, nil, unquote(url))
         end
       end
     end

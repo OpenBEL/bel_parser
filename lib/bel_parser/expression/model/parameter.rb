@@ -21,6 +21,12 @@ module BELParser
           @value     = value
         end
 
+        def encoding
+          nsv = @namespace[@value]
+          return nil unless nsv
+          nsv.first.encodings
+        end
+
         def valid?
           return false unless @value
           return true unless @namespace
@@ -46,13 +52,33 @@ module BELParser
         end
         alias_method :eql?, :'=='
 
-        def to_s(_)
+        def to_s(_ = :short)
           if @namespace
             prefix = "#{@namespace.keyword}:"
           else
             prefix = ''
           end
           %Q{#{prefix}#{quote_if_needed(@value)}}
+        end
+      end
+
+      module Converters
+        include BELParser::Quoting
+
+        def ast_to_parameter(ast, namespace_hash = {})
+          return nil if ast.nil? ||
+            !ast.is_a?(BELParser::Parsers::AST::Parameter)
+          prefix, value = ast.children
+          namespace =
+            if prefix.identifier
+              keyword = prefix.identifier.string_literal
+              namespace_hash[keyword]
+            else
+              nil
+            end
+          Parameter.new(
+            namespace,
+            unquote(value.children[0].string_literal))
         end
       end
     end
