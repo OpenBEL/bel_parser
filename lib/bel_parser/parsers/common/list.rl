@@ -44,6 +44,27 @@
     @buffers[:list] = list
   }
 
+  action a_list_eof {
+    $stderr.puts "LIST a_list_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    unless string.nil?
+      item = list_item(string, complete: string.complete)
+      list <<= item
+    end
+    ident = @buffers.delete(:ident)
+    unless ident.nil?
+      item = list_item(ident, complete: ident.complete)
+      list <<= item
+    end
+    if @list_opened && @list_closed
+      list.complete = true
+    else
+      list.complete = false
+    end
+    @buffers[:list] = list
+  }
+
   action list_node_eof {
     $stderr.puts "LIST list_node_eof"
     list = @incomplete.delete(:list)
@@ -97,6 +118,7 @@
     items
     END_LIST
     %list_end
+    @eof(a_list_eof)
     ;
 
   list_node :=
