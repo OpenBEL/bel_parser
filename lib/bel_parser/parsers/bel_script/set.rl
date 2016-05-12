@@ -8,8 +8,8 @@
   include 'string.rl';
   include 'list.rl';
 
-  action add_key {
-    $stderr.puts "SET add_key"
+  action add_name {
+    $stderr.puts "SET add_name"
     key = @buffers.delete(:ident)
     @buffers[:set_name] = key
   }
@@ -34,9 +34,23 @@
 
   action set_end {
     $stderr.puts "SET set_end"
+    set_node = set()
+    completed = true
+
     name = @buffers.delete(:set_name)
+    if name.nil?
+      completed = false
+    else
+      set_node <<= name
+    end
+
     value = @buffers.delete(:set_value)
-    set_node = set(name, value, complete: name.complete && value.complete)
+    if value.nil?
+      completed = false
+    else
+      set_node <<= value
+    end
+    set_node.complete = completed
     @buffers[:set] = set_node
   }
 
@@ -67,15 +81,9 @@
     yield set_node
   }
 
-  SET_KW =
-    [sS]
-    [eE]
-    [tT]
-    ;
-
   key =
     an_ident
-    %add_key
+    %add_name
     ;
 
   ident_value =
@@ -100,15 +108,15 @@
     ;
 
   set_node :=
-    SET_KW
+    KW_SET
     SP+
     an_ident
-    %add_key
+    %add_name
     @eof(set_node_eof)
     SP+
-    EQL
-    SP+
-    value
+    EQL?
+    SP+?
+    value?
     @eof(set_node_eof)
     %set_end
     %yield_set
