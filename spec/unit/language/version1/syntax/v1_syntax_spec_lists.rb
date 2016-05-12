@@ -219,4 +219,11 @@ describe 'when parsing lists' do
           s(:string, "bar }")))
     )
   end
+
+  it 'is incomplete for { foo' do
+    output = parse_ast_no_nl(parser, '{ foo')
+    expect(output).to be_a(ast::List)
+    expect(output).to respond_to(:complete)
+    expect(output.complete).to be(false)
+  end
 end
