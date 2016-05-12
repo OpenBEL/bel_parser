@@ -69,7 +69,7 @@
   nested_statement :=
     outer_statement
     SP*
-    COMMENT? %yield_nested_statement
+    a_comment? %yield_nested_statement
     NL;
 }%%
 =end
@@ -106,9 +106,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -121,10 +121,10 @@ module BELParser
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

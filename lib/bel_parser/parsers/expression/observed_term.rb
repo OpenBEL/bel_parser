@@ -37,11 +37,11 @@ self._bel_trans_keys = [
 	9, 122, 39, 92, 39, 92, 
 	0, 0, 9, 122, 9, 
 	44, 10, 10, 0, 0, 
-	9, 122, 10, 47, 47, 47, 
-	10, 10, 10, 10, 0, 
-	0, 10, 122, 0, 0, 
+	9, 122, 47, 47, 47, 47, 
+	9, 32, 0, 0, 10, 
+	122, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0
+	10, 10, 9, 32, 0
 ]
 
 class << self
@@ -59,8 +59,8 @@ self._bel_key_spans = [
 	54, 0, 114, 36, 0, 114, 75, 114, 
 	32, 114, 114, 31, 59, 59, 36, 36, 
 	114, 54, 54, 0, 114, 36, 1, 0, 
-	114, 38, 1, 1, 1, 0, 113, 0, 
-	0, 0, 0, 0, 0
+	114, 1, 1, 24, 0, 113, 0, 0, 
+	0, 0, 0, 1, 24
 ]
 
 class << self
@@ -78,8 +78,8 @@ self._bel_index_offsets = [
 	3174, 3229, 3230, 3345, 3382, 3383, 3498, 3574, 
 	3689, 3722, 3837, 3952, 3984, 4044, 4104, 4141, 
 	4178, 4293, 4348, 4403, 4404, 4519, 4556, 4558, 
-	4559, 4674, 4713, 4715, 4717, 4719, 4720, 4834, 
-	4835, 4836, 4837, 4838, 4839
+	4559, 4674, 4676, 4678, 4703, 4704, 4818, 4819, 
+	4820, 4821, 4822, 4823, 4825
 ]
 
 class << self
@@ -671,28 +671,29 @@ self._bel_indicies = [
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
-	149, 19, 150, 1, 1, 1, 1, 1, 
+	149, 19, 150, 1, 151, 1, 153, 1, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 153, 152, 1, 
+	154, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 151, 
-	1, 152, 1, 1, 153, 155, 154, 1, 
-	156, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	1, 1, 1, 1, 1, 1, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 157, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 19, 19, 1, 
-	0
+	1, 1, 1, 1, 1, 1, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	1, 1, 1, 1, 1, 1, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 155, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 19, 19, 1, 
+	156, 153, 1, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	153, 152, 0
 ]
 
 class << self
@@ -704,22 +705,22 @@ self._bel_trans_targs = [
 	6, 7, 12, 15, 23, 8, 9, 22, 
 	8, 9, 22, 0, 10, 17, 11, 10, 
 	11, 13, 14, 13, 14, 10, 16, 17, 
-	11, 15, 5, 17, 18, 85, 19, 20, 
-	21, 21, 85, 23, 86, 25, 26, 29, 
-	27, 88, 28, 27, 88, 28, 30, 31, 
+	11, 15, 5, 17, 18, 84, 19, 20, 
+	21, 21, 84, 23, 85, 25, 26, 29, 
+	27, 87, 28, 27, 87, 28, 30, 31, 
 	30, 31, 33, 34, 35, 39, 43, 42, 
-	36, 37, 38, 36, 37, 38, 89, 40, 
-	41, 40, 41, 89, 42, 43, 33, 45, 
+	36, 37, 38, 36, 37, 38, 88, 40, 
+	41, 40, 41, 88, 42, 43, 33, 45, 
 	46, 47, 45, 46, 47, 48, 49, 50, 
 	55, 58, 61, 51, 52, 60, 51, 52, 
-	60, 53, 90, 54, 53, 54, 56, 57, 
-	56, 57, 53, 59, 90, 54, 58, 48, 
-	90, 61, 63, 64, 65, 63, 64, 65, 
+	60, 53, 89, 54, 53, 54, 56, 57, 
+	56, 57, 53, 59, 89, 54, 58, 48, 
+	89, 61, 63, 64, 65, 63, 64, 65, 
 	66, 67, 68, 73, 76, 80, 69, 70, 
 	79, 69, 70, 79, 71, 78, 72, 71, 
 	72, 74, 75, 74, 75, 71, 77, 78, 
-	72, 76, 66, 78, 91, 80, 92, 82, 
-	83, 84, 84, 92, 87, 86
+	72, 76, 66, 78, 90, 80, 82, 83, 
+	91, 92, 86, 85, 91
 ]
 
 class << self
@@ -732,21 +733,21 @@ self._bel_trans_actions = [
 	0, 12, 0, 14, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
 	17, 5, 19, 0, 0, 20, 0, 0, 
-	21, 22, 23, 0, 8, 0, 0, 0, 
-	10, 26, 10, 0, 27, 0, 10, 10, 
+	21, 0, 22, 0, 8, 0, 0, 0, 
+	10, 25, 10, 0, 26, 0, 10, 10, 
 	0, 0, 0, 0, 0, 0, 8, 8, 
-	10, 11, 10, 0, 12, 0, 28, 10, 
-	10, 0, 0, 29, 0, 0, 19, 30, 
+	10, 11, 10, 0, 12, 0, 27, 10, 
+	10, 0, 0, 28, 0, 0, 19, 29, 
 	3, 4, 5, 0, 6, 0, 0, 0, 
 	0, 7, 8, 10, 11, 10, 0, 12, 
-	0, 15, 31, 15, 0, 0, 10, 10, 
-	0, 0, 17, 18, 32, 17, 5, 19, 
-	33, 0, 2, 3, 4, 5, 0, 6, 
+	0, 15, 30, 15, 0, 0, 10, 10, 
+	0, 0, 17, 18, 31, 17, 5, 19, 
+	32, 0, 2, 3, 4, 5, 0, 6, 
 	0, 0, 0, 0, 7, 8, 10, 11, 
 	10, 0, 12, 0, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
-	17, 5, 19, 0, 34, 0, 35, 0, 
-	0, 21, 22, 36, 38, 0
+	17, 5, 19, 0, 33, 0, 0, 0, 
+	21, 21, 35, 0, 0
 ]
 
 class << self
@@ -757,15 +758,15 @@ self._bel_eof_actions = [
 	0, 1, 1, 0, 1, 1, 0, 9, 
 	9, 13, 0, 1, 9, 9, 9, 16, 
 	13, 13, 0, 0, 0, 0, 9, 16, 
-	0, 24, 25, 25, 25, 25, 25, 25, 
+	0, 23, 24, 24, 24, 24, 24, 24, 
 	1, 1, 0, 9, 9, 0, 9, 9, 
 	9, 9, 1, 1, 1, 1, 0, 1, 
 	1, 0, 9, 9, 13, 0, 1, 9, 
 	9, 9, 16, 13, 9, 16, 1, 1, 
 	0, 1, 1, 0, 9, 9, 13, 0, 
 	1, 9, 9, 9, 16, 13, 13, 9, 
-	16, 0, 0, 0, 0, 0, 37, 39, 
-	0, 0, 40, 40, 0
+	16, 0, 0, 0, 0, 34, 36, 0, 
+	0, 37, 37, 38, 38
 ]
 
 class << self
@@ -775,7 +776,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 85;
+self.bel_first_final = 84;
 class << self
 	attr_accessor :bel_error
 end
@@ -802,9 +803,9 @@ class << self
 end
 self.bel_en_term = 62;
 class << self
-	attr_accessor :bel_en_comment
+	attr_accessor :bel_en_comment_node
 end
-self.bel_en_comment = 81;
+self.bel_en_comment_node = 81;
 class << self
 	attr_accessor :bel_en_observed_term
 end
@@ -861,7 +862,7 @@ begin
     @identifier_started = true
     p_start = p;
   		end
-	when 38 then
+	when 35 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -889,7 +890,7 @@ begin
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 33 then
+	when 32 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -902,7 +903,7 @@ begin
 	end
 
   		end
-	when 34 then
+	when 33 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -922,15 +923,11 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 22 then
+	when 21 then
 		begin
 
-    @buffers[:comment] << data[p].ord
-  		end
-	when 35 then
-		begin
-
-    yield @buffers[:comment] || comment(nil)
+    $stderr.puts 'COMMENT start_comment'
+    p_start = p;
   		end
 	when 20 then
 		begin
@@ -1009,7 +1006,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 28 then
+	when 27 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -1033,30 +1030,11 @@ begin
     @buffers[:term_stack][-1] = t
     @buffers[:parameter]      = nil
   		end
-	when 21 then
+	when 22 then
 		begin
 
-    @buffers[:comment] = []
-  		end
-		begin
-
-    @buffers[:comment] << data[p].ord
-  		end
-	when 36 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
-  		end
-		begin
-
-    yield @buffers[:comment] || comment(nil)
-  		end
-	when 23 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
   		end
 		begin
 
@@ -1083,7 +1061,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1166,7 +1144,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 27 then
+	when 26 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1186,7 +1164,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 31 then
+	when 30 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -1212,7 +1190,7 @@ begin
 	end
 
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1247,7 +1225,7 @@ begin
 	end
 
   		end
-	when 26 then
+	when 25 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1293,7 +1271,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 30 then
+	when 29 then
 		begin
 
     t = term(complete: false)
@@ -1330,7 +1308,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 39 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -1357,17 +1335,17 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 24 then
+	when 23 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 40 then
+	when 37 then
 		begin
 
   		end
-	when 37 then
+	when 34 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1382,7 +1360,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 25 then
+	when 24 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -1442,6 +1420,26 @@ begin
   		end
 		begin
 
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
+  		end
+		begin
+
+    $stderr.puts 'COMMENT comment_end'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = comment(utf8_string(chars), complete: completed)
+    @buffers[:comment] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'COMMENT yield_comment'
+    yield @buffers[:comment] || comment(nil)
   		end
 	  end
 	end
@@ -1488,11 +1486,11 @@ self._bel_trans_keys = [
 	9, 122, 39, 92, 39, 92, 
 	0, 0, 9, 122, 9, 
 	44, 10, 10, 0, 0, 
-	9, 122, 10, 47, 47, 47, 
-	10, 10, 10, 10, 0, 
-	0, 10, 122, 0, 0, 
+	9, 122, 47, 47, 47, 47, 
+	9, 32, 0, 0, 10, 
+	122, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0
+	10, 10, 9, 32, 0
 ]
 
 class << self
@@ -1510,8 +1508,8 @@ self._bel_key_spans = [
 	54, 0, 114, 36, 0, 114, 75, 114, 
 	32, 114, 114, 31, 59, 59, 36, 36, 
 	114, 54, 54, 0, 114, 36, 1, 0, 
-	114, 38, 1, 1, 1, 0, 113, 0, 
-	0, 0, 0, 0, 0
+	114, 1, 1, 24, 0, 113, 0, 0, 
+	0, 0, 0, 1, 24
 ]
 
 class << self
@@ -1529,8 +1527,8 @@ self._bel_index_offsets = [
 	3174, 3229, 3230, 3345, 3382, 3383, 3498, 3574, 
 	3689, 3722, 3837, 3952, 3984, 4044, 4104, 4141, 
 	4178, 4293, 4348, 4403, 4404, 4519, 4556, 4558, 
-	4559, 4674, 4713, 4715, 4717, 4719, 4720, 4834, 
-	4835, 4836, 4837, 4838, 4839
+	4559, 4674, 4676, 4678, 4703, 4704, 4818, 4819, 
+	4820, 4821, 4822, 4823, 4825
 ]
 
 class << self
@@ -2122,28 +2120,29 @@ self._bel_indicies = [
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
-	149, 19, 150, 1, 1, 1, 1, 1, 
+	149, 19, 150, 1, 151, 1, 153, 1, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 153, 152, 1, 
+	154, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 151, 
-	1, 152, 1, 1, 153, 155, 154, 1, 
-	156, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	1, 1, 1, 1, 1, 1, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 157, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 19, 19, 1, 
-	0
+	1, 1, 1, 1, 1, 1, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	1, 1, 1, 1, 1, 1, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 155, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 19, 19, 1, 
+	156, 153, 1, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	153, 152, 0
 ]
 
 class << self
@@ -2155,22 +2154,22 @@ self._bel_trans_targs = [
 	6, 7, 12, 15, 23, 8, 9, 22, 
 	8, 9, 22, 0, 10, 17, 11, 10, 
 	11, 13, 14, 13, 14, 10, 16, 17, 
-	11, 15, 5, 17, 18, 85, 19, 20, 
-	21, 21, 85, 23, 86, 25, 26, 29, 
-	27, 88, 28, 27, 88, 28, 30, 31, 
+	11, 15, 5, 17, 18, 84, 19, 20, 
+	21, 21, 84, 23, 85, 25, 26, 29, 
+	27, 87, 28, 27, 87, 28, 30, 31, 
 	30, 31, 33, 34, 35, 39, 43, 42, 
-	36, 37, 38, 36, 37, 38, 89, 40, 
-	41, 40, 41, 89, 42, 43, 33, 45, 
+	36, 37, 38, 36, 37, 38, 88, 40, 
+	41, 40, 41, 88, 42, 43, 33, 45, 
 	46, 47, 45, 46, 47, 48, 49, 50, 
 	55, 58, 61, 51, 52, 60, 51, 52, 
-	60, 53, 90, 54, 53, 54, 56, 57, 
-	56, 57, 53, 59, 90, 54, 58, 48, 
-	90, 61, 63, 64, 65, 63, 64, 65, 
+	60, 53, 89, 54, 53, 54, 56, 57, 
+	56, 57, 53, 59, 89, 54, 58, 48, 
+	89, 61, 63, 64, 65, 63, 64, 65, 
 	66, 67, 68, 73, 76, 80, 69, 70, 
 	79, 69, 70, 79, 71, 78, 72, 71, 
 	72, 74, 75, 74, 75, 71, 77, 78, 
-	72, 76, 66, 78, 91, 80, 92, 82, 
-	83, 84, 84, 92, 87, 86
+	72, 76, 66, 78, 90, 80, 82, 83, 
+	91, 92, 86, 85, 91
 ]
 
 class << self
@@ -2183,21 +2182,21 @@ self._bel_trans_actions = [
 	0, 12, 0, 14, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
 	17, 5, 19, 0, 0, 20, 0, 0, 
-	21, 22, 23, 0, 8, 0, 0, 0, 
-	10, 26, 10, 0, 27, 0, 10, 10, 
+	21, 0, 22, 0, 8, 0, 0, 0, 
+	10, 25, 10, 0, 26, 0, 10, 10, 
 	0, 0, 0, 0, 0, 0, 8, 8, 
-	10, 11, 10, 0, 12, 0, 28, 10, 
-	10, 0, 0, 29, 0, 0, 19, 30, 
+	10, 11, 10, 0, 12, 0, 27, 10, 
+	10, 0, 0, 28, 0, 0, 19, 29, 
 	3, 4, 5, 0, 6, 0, 0, 0, 
 	0, 7, 8, 10, 11, 10, 0, 12, 
-	0, 15, 31, 15, 0, 0, 10, 10, 
-	0, 0, 17, 18, 32, 17, 5, 19, 
-	33, 0, 2, 3, 4, 5, 0, 6, 
+	0, 15, 30, 15, 0, 0, 10, 10, 
+	0, 0, 17, 18, 31, 17, 5, 19, 
+	32, 0, 2, 3, 4, 5, 0, 6, 
 	0, 0, 0, 0, 7, 8, 10, 11, 
 	10, 0, 12, 0, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
-	17, 5, 19, 0, 34, 0, 35, 0, 
-	0, 21, 22, 36, 38, 0
+	17, 5, 19, 0, 33, 0, 0, 0, 
+	21, 21, 35, 0, 0
 ]
 
 class << self
@@ -2208,15 +2207,15 @@ self._bel_eof_actions = [
 	0, 1, 1, 0, 1, 1, 0, 9, 
 	9, 13, 0, 1, 9, 9, 9, 16, 
 	13, 13, 0, 0, 0, 0, 9, 16, 
-	0, 24, 25, 25, 25, 25, 25, 25, 
+	0, 23, 24, 24, 24, 24, 24, 24, 
 	1, 1, 0, 9, 9, 0, 9, 9, 
 	9, 9, 1, 1, 1, 1, 0, 1, 
 	1, 0, 9, 9, 13, 0, 1, 9, 
 	9, 9, 16, 13, 9, 16, 1, 1, 
 	0, 1, 1, 0, 9, 9, 13, 0, 
 	1, 9, 9, 9, 16, 13, 13, 9, 
-	16, 0, 0, 0, 0, 0, 37, 39, 
-	0, 0, 40, 40, 0
+	16, 0, 0, 0, 0, 34, 36, 0, 
+	0, 37, 37, 38, 38
 ]
 
 class << self
@@ -2226,7 +2225,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 85;
+self.bel_first_final = 84;
 class << self
 	attr_accessor :bel_error
 end
@@ -2253,9 +2252,9 @@ class << self
 end
 self.bel_en_term = 62;
 class << self
-	attr_accessor :bel_en_comment
+	attr_accessor :bel_en_comment_node
 end
-self.bel_en_comment = 81;
+self.bel_en_comment_node = 81;
 class << self
 	attr_accessor :bel_en_observed_term
 end
@@ -2312,7 +2311,7 @@ begin
     @identifier_started = true
     p_start = p;
   		end
-	when 38 then
+	when 35 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2340,7 +2339,7 @@ begin
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 33 then
+	when 32 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -2353,7 +2352,7 @@ begin
 	end
 
   		end
-	when 34 then
+	when 33 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -2373,15 +2372,11 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 22 then
+	when 21 then
 		begin
 
-    @buffers[:comment] << data[p].ord
-  		end
-	when 35 then
-		begin
-
-    yield @buffers[:comment] || comment(nil)
+    $stderr.puts 'COMMENT start_comment'
+    p_start = p;
   		end
 	when 20 then
 		begin
@@ -2460,7 +2455,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 28 then
+	when 27 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -2484,30 +2479,11 @@ begin
     @buffers[:term_stack][-1] = t
     @buffers[:parameter]      = nil
   		end
-	when 21 then
+	when 22 then
 		begin
 
-    @buffers[:comment] = []
-  		end
-		begin
-
-    @buffers[:comment] << data[p].ord
-  		end
-	when 36 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
-  		end
-		begin
-
-    yield @buffers[:comment] || comment(nil)
-  		end
-	when 23 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
   		end
 		begin
 
@@ -2534,7 +2510,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2617,7 +2593,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 27 then
+	when 26 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -2637,7 +2613,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 31 then
+	when 30 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -2663,7 +2639,7 @@ begin
 	end
 
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2698,7 +2674,7 @@ begin
 	end
 
   		end
-	when 26 then
+	when 25 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -2744,7 +2720,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 30 then
+	when 29 then
 		begin
 
     t = term(complete: false)
@@ -2781,7 +2757,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 39 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -2808,17 +2784,17 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 24 then
+	when 23 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 40 then
+	when 37 then
 		begin
 
   		end
-	when 37 then
+	when 34 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2833,7 +2809,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 25 then
+	when 24 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -2893,6 +2869,26 @@ begin
   		end
 		begin
 
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
+  		end
+		begin
+
+    $stderr.puts 'COMMENT comment_end'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = comment(utf8_string(chars), complete: completed)
+    @buffers[:comment] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'COMMENT yield_comment'
+    yield @buffers[:comment] || comment(nil)
   		end
 	  end
 	end
@@ -2939,11 +2935,11 @@ self._bel_trans_keys = [
 	9, 122, 39, 92, 39, 92, 
 	0, 0, 9, 122, 9, 
 	44, 10, 10, 0, 0, 
-	9, 122, 10, 47, 47, 47, 
-	10, 10, 10, 10, 0, 
-	0, 10, 122, 0, 0, 
+	9, 122, 47, 47, 47, 47, 
+	9, 32, 0, 0, 10, 
+	122, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0
+	10, 10, 9, 32, 0
 ]
 
 class << self
@@ -2961,8 +2957,8 @@ self._bel_key_spans = [
 	54, 0, 114, 36, 0, 114, 75, 114, 
 	32, 114, 114, 31, 59, 59, 36, 36, 
 	114, 54, 54, 0, 114, 36, 1, 0, 
-	114, 38, 1, 1, 1, 0, 113, 0, 
-	0, 0, 0, 0, 0
+	114, 1, 1, 24, 0, 113, 0, 0, 
+	0, 0, 0, 1, 24
 ]
 
 class << self
@@ -2980,8 +2976,8 @@ self._bel_index_offsets = [
 	3174, 3229, 3230, 3345, 3382, 3383, 3498, 3574, 
 	3689, 3722, 3837, 3952, 3984, 4044, 4104, 4141, 
 	4178, 4293, 4348, 4403, 4404, 4519, 4556, 4558, 
-	4559, 4674, 4713, 4715, 4717, 4719, 4720, 4834, 
-	4835, 4836, 4837, 4838, 4839
+	4559, 4674, 4676, 4678, 4703, 4704, 4818, 4819, 
+	4820, 4821, 4822, 4823, 4825
 ]
 
 class << self
@@ -3573,28 +3569,29 @@ self._bel_indicies = [
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
-	149, 19, 150, 1, 1, 1, 1, 1, 
+	149, 19, 150, 1, 151, 1, 153, 1, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 153, 152, 1, 
+	154, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 151, 
-	1, 152, 1, 1, 153, 155, 154, 1, 
-	156, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	1, 1, 1, 1, 1, 1, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 157, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 19, 19, 1, 
-	0
+	1, 1, 1, 1, 1, 1, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	1, 1, 1, 1, 1, 1, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 155, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 19, 19, 1, 
+	156, 153, 1, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	153, 152, 0
 ]
 
 class << self
@@ -3606,22 +3603,22 @@ self._bel_trans_targs = [
 	6, 7, 12, 15, 23, 8, 9, 22, 
 	8, 9, 22, 0, 10, 17, 11, 10, 
 	11, 13, 14, 13, 14, 10, 16, 17, 
-	11, 15, 5, 17, 18, 85, 19, 20, 
-	21, 21, 85, 23, 86, 25, 26, 29, 
-	27, 88, 28, 27, 88, 28, 30, 31, 
+	11, 15, 5, 17, 18, 84, 19, 20, 
+	21, 21, 84, 23, 85, 25, 26, 29, 
+	27, 87, 28, 27, 87, 28, 30, 31, 
 	30, 31, 33, 34, 35, 39, 43, 42, 
-	36, 37, 38, 36, 37, 38, 89, 40, 
-	41, 40, 41, 89, 42, 43, 33, 45, 
+	36, 37, 38, 36, 37, 38, 88, 40, 
+	41, 40, 41, 88, 42, 43, 33, 45, 
 	46, 47, 45, 46, 47, 48, 49, 50, 
 	55, 58, 61, 51, 52, 60, 51, 52, 
-	60, 53, 90, 54, 53, 54, 56, 57, 
-	56, 57, 53, 59, 90, 54, 58, 48, 
-	90, 61, 63, 64, 65, 63, 64, 65, 
+	60, 53, 89, 54, 53, 54, 56, 57, 
+	56, 57, 53, 59, 89, 54, 58, 48, 
+	89, 61, 63, 64, 65, 63, 64, 65, 
 	66, 67, 68, 73, 76, 80, 69, 70, 
 	79, 69, 70, 79, 71, 78, 72, 71, 
 	72, 74, 75, 74, 75, 71, 77, 78, 
-	72, 76, 66, 78, 91, 80, 92, 82, 
-	83, 84, 84, 92, 87, 86
+	72, 76, 66, 78, 90, 80, 82, 83, 
+	91, 92, 86, 85, 91
 ]
 
 class << self
@@ -3634,21 +3631,21 @@ self._bel_trans_actions = [
 	0, 12, 0, 14, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
 	17, 5, 19, 0, 0, 20, 0, 0, 
-	21, 22, 23, 0, 8, 0, 0, 0, 
-	10, 26, 10, 0, 27, 0, 10, 10, 
+	21, 0, 22, 0, 8, 0, 0, 0, 
+	10, 25, 10, 0, 26, 0, 10, 10, 
 	0, 0, 0, 0, 0, 0, 8, 8, 
-	10, 11, 10, 0, 12, 0, 28, 10, 
-	10, 0, 0, 29, 0, 0, 19, 30, 
+	10, 11, 10, 0, 12, 0, 27, 10, 
+	10, 0, 0, 28, 0, 0, 19, 29, 
 	3, 4, 5, 0, 6, 0, 0, 0, 
 	0, 7, 8, 10, 11, 10, 0, 12, 
-	0, 15, 31, 15, 0, 0, 10, 10, 
-	0, 0, 17, 18, 32, 17, 5, 19, 
-	33, 0, 2, 3, 4, 5, 0, 6, 
+	0, 15, 30, 15, 0, 0, 10, 10, 
+	0, 0, 17, 18, 31, 17, 5, 19, 
+	32, 0, 2, 3, 4, 5, 0, 6, 
 	0, 0, 0, 0, 7, 8, 10, 11, 
 	10, 0, 12, 0, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
-	17, 5, 19, 0, 34, 0, 35, 0, 
-	0, 21, 22, 36, 38, 0
+	17, 5, 19, 0, 33, 0, 0, 0, 
+	21, 21, 35, 0, 0
 ]
 
 class << self
@@ -3659,15 +3656,15 @@ self._bel_eof_actions = [
 	0, 1, 1, 0, 1, 1, 0, 9, 
 	9, 13, 0, 1, 9, 9, 9, 16, 
 	13, 13, 0, 0, 0, 0, 9, 16, 
-	0, 24, 25, 25, 25, 25, 25, 25, 
+	0, 23, 24, 24, 24, 24, 24, 24, 
 	1, 1, 0, 9, 9, 0, 9, 9, 
 	9, 9, 1, 1, 1, 1, 0, 1, 
 	1, 0, 9, 9, 13, 0, 1, 9, 
 	9, 9, 16, 13, 9, 16, 1, 1, 
 	0, 1, 1, 0, 9, 9, 13, 0, 
 	1, 9, 9, 9, 16, 13, 13, 9, 
-	16, 0, 0, 0, 0, 0, 37, 39, 
-	0, 0, 40, 40, 0
+	16, 0, 0, 0, 0, 34, 36, 0, 
+	0, 37, 37, 38, 38
 ]
 
 class << self
@@ -3677,7 +3674,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 85;
+self.bel_first_final = 84;
 class << self
 	attr_accessor :bel_error
 end
@@ -3704,9 +3701,9 @@ class << self
 end
 self.bel_en_term = 62;
 class << self
-	attr_accessor :bel_en_comment
+	attr_accessor :bel_en_comment_node
 end
-self.bel_en_comment = 81;
+self.bel_en_comment_node = 81;
 class << self
 	attr_accessor :bel_en_observed_term
 end
@@ -3763,7 +3760,7 @@ begin
     @identifier_started = true
     p_start = p;
   		end
-	when 38 then
+	when 35 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -3791,7 +3788,7 @@ begin
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 33 then
+	when 32 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -3804,7 +3801,7 @@ begin
 	end
 
   		end
-	when 34 then
+	when 33 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -3824,15 +3821,11 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 22 then
+	when 21 then
 		begin
 
-    @buffers[:comment] << data[p].ord
-  		end
-	when 35 then
-		begin
-
-    yield @buffers[:comment] || comment(nil)
+    $stderr.puts 'COMMENT start_comment'
+    p_start = p;
   		end
 	when 20 then
 		begin
@@ -3911,7 +3904,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 28 then
+	when 27 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -3935,30 +3928,11 @@ begin
     @buffers[:term_stack][-1] = t
     @buffers[:parameter]      = nil
   		end
-	when 21 then
+	when 22 then
 		begin
 
-    @buffers[:comment] = []
-  		end
-		begin
-
-    @buffers[:comment] << data[p].ord
-  		end
-	when 36 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
-  		end
-		begin
-
-    yield @buffers[:comment] || comment(nil)
-  		end
-	when 23 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
   		end
 		begin
 
@@ -3985,7 +3959,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -4068,7 +4042,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 27 then
+	when 26 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -4088,7 +4062,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 31 then
+	when 30 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -4114,7 +4088,7 @@ begin
 	end
 
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -4149,7 +4123,7 @@ begin
 	end
 
   		end
-	when 26 then
+	when 25 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -4195,7 +4169,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 30 then
+	when 29 then
 		begin
 
     t = term(complete: false)
@@ -4232,7 +4206,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 39 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -4259,17 +4233,17 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 24 then
+	when 23 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 40 then
+	when 37 then
 		begin
 
   		end
-	when 37 then
+	when 34 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -4284,7 +4258,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 25 then
+	when 24 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -4344,6 +4318,26 @@ begin
   		end
 		begin
 
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
+  		end
+		begin
+
+    $stderr.puts 'COMMENT comment_end'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = comment(utf8_string(chars), complete: completed)
+    @buffers[:comment] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'COMMENT yield_comment'
+    yield @buffers[:comment] || comment(nil)
   		end
 	  end
 	end
@@ -4390,11 +4384,11 @@ self._bel_trans_keys = [
 	9, 122, 39, 92, 39, 92, 
 	0, 0, 9, 122, 9, 
 	44, 10, 10, 0, 0, 
-	9, 122, 10, 47, 47, 47, 
-	10, 10, 10, 10, 0, 
-	0, 10, 122, 0, 0, 
+	9, 122, 47, 47, 47, 47, 
+	9, 32, 0, 0, 10, 
+	122, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0
+	10, 10, 9, 32, 0
 ]
 
 class << self
@@ -4412,8 +4406,8 @@ self._bel_key_spans = [
 	54, 0, 114, 36, 0, 114, 75, 114, 
 	32, 114, 114, 31, 59, 59, 36, 36, 
 	114, 54, 54, 0, 114, 36, 1, 0, 
-	114, 38, 1, 1, 1, 0, 113, 0, 
-	0, 0, 0, 0, 0
+	114, 1, 1, 24, 0, 113, 0, 0, 
+	0, 0, 0, 1, 24
 ]
 
 class << self
@@ -4431,8 +4425,8 @@ self._bel_index_offsets = [
 	3174, 3229, 3230, 3345, 3382, 3383, 3498, 3574, 
 	3689, 3722, 3837, 3952, 3984, 4044, 4104, 4141, 
 	4178, 4293, 4348, 4403, 4404, 4519, 4556, 4558, 
-	4559, 4674, 4713, 4715, 4717, 4719, 4720, 4834, 
-	4835, 4836, 4837, 4838, 4839
+	4559, 4674, 4676, 4678, 4703, 4704, 4818, 4819, 
+	4820, 4821, 4822, 4823, 4825
 ]
 
 class << self
@@ -5024,28 +5018,29 @@ self._bel_indicies = [
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
-	149, 19, 150, 1, 1, 1, 1, 1, 
+	149, 19, 150, 1, 151, 1, 153, 1, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 153, 152, 1, 
+	154, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 151, 
-	1, 152, 1, 1, 153, 155, 154, 1, 
-	156, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	1, 1, 1, 1, 1, 1, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 157, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 19, 19, 1, 
-	0
+	1, 1, 1, 1, 1, 1, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	1, 1, 1, 1, 1, 1, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 155, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 19, 19, 1, 
+	156, 153, 1, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	153, 152, 0
 ]
 
 class << self
@@ -5057,22 +5052,22 @@ self._bel_trans_targs = [
 	6, 7, 12, 15, 23, 8, 9, 22, 
 	8, 9, 22, 0, 10, 17, 11, 10, 
 	11, 13, 14, 13, 14, 10, 16, 17, 
-	11, 15, 5, 17, 18, 85, 19, 20, 
-	21, 21, 85, 23, 86, 25, 26, 29, 
-	27, 88, 28, 27, 88, 28, 30, 31, 
+	11, 15, 5, 17, 18, 84, 19, 20, 
+	21, 21, 84, 23, 85, 25, 26, 29, 
+	27, 87, 28, 27, 87, 28, 30, 31, 
 	30, 31, 33, 34, 35, 39, 43, 42, 
-	36, 37, 38, 36, 37, 38, 89, 40, 
-	41, 40, 41, 89, 42, 43, 33, 45, 
+	36, 37, 38, 36, 37, 38, 88, 40, 
+	41, 40, 41, 88, 42, 43, 33, 45, 
 	46, 47, 45, 46, 47, 48, 49, 50, 
 	55, 58, 61, 51, 52, 60, 51, 52, 
-	60, 53, 90, 54, 53, 54, 56, 57, 
-	56, 57, 53, 59, 90, 54, 58, 48, 
-	90, 61, 63, 64, 65, 63, 64, 65, 
+	60, 53, 89, 54, 53, 54, 56, 57, 
+	56, 57, 53, 59, 89, 54, 58, 48, 
+	89, 61, 63, 64, 65, 63, 64, 65, 
 	66, 67, 68, 73, 76, 80, 69, 70, 
 	79, 69, 70, 79, 71, 78, 72, 71, 
 	72, 74, 75, 74, 75, 71, 77, 78, 
-	72, 76, 66, 78, 91, 80, 92, 82, 
-	83, 84, 84, 92, 87, 86
+	72, 76, 66, 78, 90, 80, 82, 83, 
+	91, 92, 86, 85, 91
 ]
 
 class << self
@@ -5085,21 +5080,21 @@ self._bel_trans_actions = [
 	0, 12, 0, 14, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
 	17, 5, 19, 0, 0, 20, 0, 0, 
-	21, 22, 23, 0, 8, 0, 0, 0, 
-	10, 26, 10, 0, 27, 0, 10, 10, 
+	21, 0, 22, 0, 8, 0, 0, 0, 
+	10, 25, 10, 0, 26, 0, 10, 10, 
 	0, 0, 0, 0, 0, 0, 8, 8, 
-	10, 11, 10, 0, 12, 0, 28, 10, 
-	10, 0, 0, 29, 0, 0, 19, 30, 
+	10, 11, 10, 0, 12, 0, 27, 10, 
+	10, 0, 0, 28, 0, 0, 19, 29, 
 	3, 4, 5, 0, 6, 0, 0, 0, 
 	0, 7, 8, 10, 11, 10, 0, 12, 
-	0, 15, 31, 15, 0, 0, 10, 10, 
-	0, 0, 17, 18, 32, 17, 5, 19, 
-	33, 0, 2, 3, 4, 5, 0, 6, 
+	0, 15, 30, 15, 0, 0, 10, 10, 
+	0, 0, 17, 18, 31, 17, 5, 19, 
+	32, 0, 2, 3, 4, 5, 0, 6, 
 	0, 0, 0, 0, 7, 8, 10, 11, 
 	10, 0, 12, 0, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
-	17, 5, 19, 0, 34, 0, 35, 0, 
-	0, 21, 22, 36, 38, 0
+	17, 5, 19, 0, 33, 0, 0, 0, 
+	21, 21, 35, 0, 0
 ]
 
 class << self
@@ -5110,15 +5105,15 @@ self._bel_eof_actions = [
 	0, 1, 1, 0, 1, 1, 0, 9, 
 	9, 13, 0, 1, 9, 9, 9, 16, 
 	13, 13, 0, 0, 0, 0, 9, 16, 
-	0, 24, 25, 25, 25, 25, 25, 25, 
+	0, 23, 24, 24, 24, 24, 24, 24, 
 	1, 1, 0, 9, 9, 0, 9, 9, 
 	9, 9, 1, 1, 1, 1, 0, 1, 
 	1, 0, 9, 9, 13, 0, 1, 9, 
 	9, 9, 16, 13, 9, 16, 1, 1, 
 	0, 1, 1, 0, 9, 9, 13, 0, 
 	1, 9, 9, 9, 16, 13, 13, 9, 
-	16, 0, 0, 0, 0, 0, 37, 39, 
-	0, 0, 40, 40, 0
+	16, 0, 0, 0, 0, 34, 36, 0, 
+	0, 37, 37, 38, 38
 ]
 
 class << self
@@ -5128,7 +5123,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 85;
+self.bel_first_final = 84;
 class << self
 	attr_accessor :bel_error
 end
@@ -5155,9 +5150,9 @@ class << self
 end
 self.bel_en_term = 62;
 class << self
-	attr_accessor :bel_en_comment
+	attr_accessor :bel_en_comment_node
 end
-self.bel_en_comment = 81;
+self.bel_en_comment_node = 81;
 class << self
 	attr_accessor :bel_en_observed_term
 end
@@ -5214,7 +5209,7 @@ begin
     @identifier_started = true
     p_start = p;
   		end
-	when 38 then
+	when 35 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -5242,7 +5237,7 @@ begin
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 33 then
+	when 32 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -5255,7 +5250,7 @@ begin
 	end
 
   		end
-	when 34 then
+	when 33 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -5275,15 +5270,11 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 22 then
+	when 21 then
 		begin
 
-    @buffers[:comment] << data[p].ord
-  		end
-	when 35 then
-		begin
-
-    yield @buffers[:comment] || comment(nil)
+    $stderr.puts 'COMMENT start_comment'
+    p_start = p;
   		end
 	when 20 then
 		begin
@@ -5362,7 +5353,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 28 then
+	when 27 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -5386,30 +5377,11 @@ begin
     @buffers[:term_stack][-1] = t
     @buffers[:parameter]      = nil
   		end
-	when 21 then
+	when 22 then
 		begin
 
-    @buffers[:comment] = []
-  		end
-		begin
-
-    @buffers[:comment] << data[p].ord
-  		end
-	when 36 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
-  		end
-		begin
-
-    yield @buffers[:comment] || comment(nil)
-  		end
-	when 23 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
   		end
 		begin
 
@@ -5436,7 +5408,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -5519,7 +5491,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 27 then
+	when 26 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -5539,7 +5511,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 31 then
+	when 30 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -5565,7 +5537,7 @@ begin
 	end
 
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -5600,7 +5572,7 @@ begin
 	end
 
   		end
-	when 26 then
+	when 25 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -5646,7 +5618,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 30 then
+	when 29 then
 		begin
 
     t = term(complete: false)
@@ -5683,7 +5655,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 39 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -5710,17 +5682,17 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 24 then
+	when 23 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 40 then
+	when 37 then
 		begin
 
   		end
-	when 37 then
+	when 34 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -5735,7 +5707,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 25 then
+	when 24 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -5795,6 +5767,26 @@ begin
   		end
 		begin
 
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
+  		end
+		begin
+
+    $stderr.puts 'COMMENT comment_end'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = comment(utf8_string(chars), complete: completed)
+    @buffers[:comment] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'COMMENT yield_comment'
+    yield @buffers[:comment] || comment(nil)
   		end
 	  end
 	end
@@ -5841,11 +5833,11 @@ self._bel_trans_keys = [
 	9, 122, 39, 92, 39, 92, 
 	0, 0, 9, 122, 9, 
 	44, 10, 10, 0, 0, 
-	9, 122, 10, 47, 47, 47, 
-	10, 10, 10, 10, 0, 
-	0, 10, 122, 0, 0, 
+	9, 122, 47, 47, 47, 47, 
+	9, 32, 0, 0, 10, 
+	122, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0
+	10, 10, 9, 32, 0
 ]
 
 class << self
@@ -5863,8 +5855,8 @@ self._bel_key_spans = [
 	54, 0, 114, 36, 0, 114, 75, 114, 
 	32, 114, 114, 31, 59, 59, 36, 36, 
 	114, 54, 54, 0, 114, 36, 1, 0, 
-	114, 38, 1, 1, 1, 0, 113, 0, 
-	0, 0, 0, 0, 0
+	114, 1, 1, 24, 0, 113, 0, 0, 
+	0, 0, 0, 1, 24
 ]
 
 class << self
@@ -5882,8 +5874,8 @@ self._bel_index_offsets = [
 	3174, 3229, 3230, 3345, 3382, 3383, 3498, 3574, 
 	3689, 3722, 3837, 3952, 3984, 4044, 4104, 4141, 
 	4178, 4293, 4348, 4403, 4404, 4519, 4556, 4558, 
-	4559, 4674, 4713, 4715, 4717, 4719, 4720, 4834, 
-	4835, 4836, 4837, 4838, 4839
+	4559, 4674, 4676, 4678, 4703, 4704, 4818, 4819, 
+	4820, 4821, 4822, 4823, 4825
 ]
 
 class << self
@@ -6475,28 +6467,29 @@ self._bel_indicies = [
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
-	149, 19, 150, 1, 1, 1, 1, 1, 
+	149, 19, 150, 1, 151, 1, 153, 1, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 153, 152, 1, 
+	154, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 151, 
-	1, 152, 1, 1, 153, 155, 154, 1, 
-	156, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	1, 1, 1, 1, 1, 1, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 157, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 19, 19, 1, 
-	0
+	1, 1, 1, 1, 1, 1, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	1, 1, 1, 1, 1, 1, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 155, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 19, 19, 1, 
+	156, 153, 1, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	153, 152, 0
 ]
 
 class << self
@@ -6508,22 +6501,22 @@ self._bel_trans_targs = [
 	6, 7, 12, 15, 23, 8, 9, 22, 
 	8, 9, 22, 0, 10, 17, 11, 10, 
 	11, 13, 14, 13, 14, 10, 16, 17, 
-	11, 15, 5, 17, 18, 85, 19, 20, 
-	21, 21, 85, 23, 86, 25, 26, 29, 
-	27, 88, 28, 27, 88, 28, 30, 31, 
+	11, 15, 5, 17, 18, 84, 19, 20, 
+	21, 21, 84, 23, 85, 25, 26, 29, 
+	27, 87, 28, 27, 87, 28, 30, 31, 
 	30, 31, 33, 34, 35, 39, 43, 42, 
-	36, 37, 38, 36, 37, 38, 89, 40, 
-	41, 40, 41, 89, 42, 43, 33, 45, 
+	36, 37, 38, 36, 37, 38, 88, 40, 
+	41, 40, 41, 88, 42, 43, 33, 45, 
 	46, 47, 45, 46, 47, 48, 49, 50, 
 	55, 58, 61, 51, 52, 60, 51, 52, 
-	60, 53, 90, 54, 53, 54, 56, 57, 
-	56, 57, 53, 59, 90, 54, 58, 48, 
-	90, 61, 63, 64, 65, 63, 64, 65, 
+	60, 53, 89, 54, 53, 54, 56, 57, 
+	56, 57, 53, 59, 89, 54, 58, 48, 
+	89, 61, 63, 64, 65, 63, 64, 65, 
 	66, 67, 68, 73, 76, 80, 69, 70, 
 	79, 69, 70, 79, 71, 78, 72, 71, 
 	72, 74, 75, 74, 75, 71, 77, 78, 
-	72, 76, 66, 78, 91, 80, 92, 82, 
-	83, 84, 84, 92, 87, 86
+	72, 76, 66, 78, 90, 80, 82, 83, 
+	91, 92, 86, 85, 91
 ]
 
 class << self
@@ -6536,21 +6529,21 @@ self._bel_trans_actions = [
 	0, 12, 0, 14, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
 	17, 5, 19, 0, 0, 20, 0, 0, 
-	21, 22, 23, 0, 8, 0, 0, 0, 
-	10, 26, 10, 0, 27, 0, 10, 10, 
+	21, 0, 22, 0, 8, 0, 0, 0, 
+	10, 25, 10, 0, 26, 0, 10, 10, 
 	0, 0, 0, 0, 0, 0, 8, 8, 
-	10, 11, 10, 0, 12, 0, 28, 10, 
-	10, 0, 0, 29, 0, 0, 19, 30, 
+	10, 11, 10, 0, 12, 0, 27, 10, 
+	10, 0, 0, 28, 0, 0, 19, 29, 
 	3, 4, 5, 0, 6, 0, 0, 0, 
 	0, 7, 8, 10, 11, 10, 0, 12, 
-	0, 15, 31, 15, 0, 0, 10, 10, 
-	0, 0, 17, 18, 32, 17, 5, 19, 
-	33, 0, 2, 3, 4, 5, 0, 6, 
+	0, 15, 30, 15, 0, 0, 10, 10, 
+	0, 0, 17, 18, 31, 17, 5, 19, 
+	32, 0, 2, 3, 4, 5, 0, 6, 
 	0, 0, 0, 0, 7, 8, 10, 11, 
 	10, 0, 12, 0, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
-	17, 5, 19, 0, 34, 0, 35, 0, 
-	0, 21, 22, 36, 38, 0
+	17, 5, 19, 0, 33, 0, 0, 0, 
+	21, 21, 35, 0, 0
 ]
 
 class << self
@@ -6561,15 +6554,15 @@ self._bel_eof_actions = [
 	0, 1, 1, 0, 1, 1, 0, 9, 
 	9, 13, 0, 1, 9, 9, 9, 16, 
 	13, 13, 0, 0, 0, 0, 9, 16, 
-	0, 24, 25, 25, 25, 25, 25, 25, 
+	0, 23, 24, 24, 24, 24, 24, 24, 
 	1, 1, 0, 9, 9, 0, 9, 9, 
 	9, 9, 1, 1, 1, 1, 0, 1, 
 	1, 0, 9, 9, 13, 0, 1, 9, 
 	9, 9, 16, 13, 9, 16, 1, 1, 
 	0, 1, 1, 0, 9, 9, 13, 0, 
 	1, 9, 9, 9, 16, 13, 13, 9, 
-	16, 0, 0, 0, 0, 0, 37, 39, 
-	0, 0, 40, 40, 0
+	16, 0, 0, 0, 0, 34, 36, 0, 
+	0, 37, 37, 38, 38
 ]
 
 class << self
@@ -6579,7 +6572,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 85;
+self.bel_first_final = 84;
 class << self
 	attr_accessor :bel_error
 end
@@ -6606,9 +6599,9 @@ class << self
 end
 self.bel_en_term = 62;
 class << self
-	attr_accessor :bel_en_comment
+	attr_accessor :bel_en_comment_node
 end
-self.bel_en_comment = 81;
+self.bel_en_comment_node = 81;
 class << self
 	attr_accessor :bel_en_observed_term
 end
@@ -6665,7 +6658,7 @@ begin
     @identifier_started = true
     p_start = p;
   		end
-	when 38 then
+	when 35 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -6693,7 +6686,7 @@ begin
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 33 then
+	when 32 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -6706,7 +6699,7 @@ begin
 	end
 
   		end
-	when 34 then
+	when 33 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -6726,15 +6719,11 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 22 then
+	when 21 then
 		begin
 
-    @buffers[:comment] << data[p].ord
-  		end
-	when 35 then
-		begin
-
-    yield @buffers[:comment] || comment(nil)
+    $stderr.puts 'COMMENT start_comment'
+    p_start = p;
   		end
 	when 20 then
 		begin
@@ -6813,7 +6802,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 28 then
+	when 27 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -6837,30 +6826,11 @@ begin
     @buffers[:term_stack][-1] = t
     @buffers[:parameter]      = nil
   		end
-	when 21 then
+	when 22 then
 		begin
 
-    @buffers[:comment] = []
-  		end
-		begin
-
-    @buffers[:comment] << data[p].ord
-  		end
-	when 36 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
-  		end
-		begin
-
-    yield @buffers[:comment] || comment(nil)
-  		end
-	when 23 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
   		end
 		begin
 
@@ -6887,7 +6857,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -6970,7 +6940,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 27 then
+	when 26 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -6990,7 +6960,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 31 then
+	when 30 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -7016,7 +6986,7 @@ begin
 	end
 
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -7051,7 +7021,7 @@ begin
 	end
 
   		end
-	when 26 then
+	when 25 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -7097,7 +7067,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 30 then
+	when 29 then
 		begin
 
     t = term(complete: false)
@@ -7134,7 +7104,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 39 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -7161,17 +7131,17 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 24 then
+	when 23 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 40 then
+	when 37 then
 		begin
 
   		end
-	when 37 then
+	when 34 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -7186,7 +7156,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 25 then
+	when 24 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -7246,6 +7216,26 @@ begin
   		end
 		begin
 
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
+  		end
+		begin
+
+    $stderr.puts 'COMMENT comment_end'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = comment(utf8_string(chars), complete: completed)
+    @buffers[:comment] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'COMMENT yield_comment'
+    yield @buffers[:comment] || comment(nil)
   		end
 	  end
 	end
@@ -7292,7 +7282,7 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             
 class << self
 	attr_accessor :_bel_trans_keys
@@ -7329,11 +7319,11 @@ self._bel_trans_keys = [
 	9, 122, 39, 92, 39, 92, 
 	0, 0, 9, 122, 9, 
 	44, 10, 10, 0, 0, 
-	9, 122, 10, 47, 47, 47, 
-	10, 10, 10, 10, 0, 
-	0, 10, 122, 0, 0, 
+	9, 122, 47, 47, 47, 47, 
+	9, 32, 0, 0, 10, 
+	122, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0
+	10, 10, 9, 32, 0
 ]
 
 class << self
@@ -7351,8 +7341,8 @@ self._bel_key_spans = [
 	54, 0, 114, 36, 0, 114, 75, 114, 
 	32, 114, 114, 31, 59, 59, 36, 36, 
 	114, 54, 54, 0, 114, 36, 1, 0, 
-	114, 38, 1, 1, 1, 0, 113, 0, 
-	0, 0, 0, 0, 0
+	114, 1, 1, 24, 0, 113, 0, 0, 
+	0, 0, 0, 1, 24
 ]
 
 class << self
@@ -7370,8 +7360,8 @@ self._bel_index_offsets = [
 	3174, 3229, 3230, 3345, 3382, 3383, 3498, 3574, 
 	3689, 3722, 3837, 3952, 3984, 4044, 4104, 4141, 
 	4178, 4293, 4348, 4403, 4404, 4519, 4556, 4558, 
-	4559, 4674, 4713, 4715, 4717, 4719, 4720, 4834, 
-	4835, 4836, 4837, 4838, 4839
+	4559, 4674, 4676, 4678, 4703, 4704, 4818, 4819, 
+	4820, 4821, 4822, 4823, 4825
 ]
 
 class << self
@@ -7963,28 +7953,29 @@ self._bel_indicies = [
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
 	149, 149, 149, 149, 149, 149, 149, 149, 
-	149, 19, 150, 1, 1, 1, 1, 1, 
+	149, 19, 150, 1, 151, 1, 153, 1, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 153, 152, 1, 
+	154, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 151, 
-	1, 152, 1, 1, 153, 155, 154, 1, 
-	156, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	1, 1, 1, 1, 1, 1, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 157, 1, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 157, 157, 157, 157, 157, 157, 157, 
-	157, 1, 1, 1, 1, 19, 19, 1, 
-	0
+	1, 1, 1, 1, 1, 1, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	1, 1, 1, 1, 1, 1, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 155, 1, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 155, 155, 155, 155, 155, 155, 155, 
+	155, 1, 1, 1, 1, 19, 19, 1, 
+	156, 153, 1, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	152, 152, 152, 152, 152, 152, 152, 152, 
+	153, 152, 0
 ]
 
 class << self
@@ -7996,22 +7987,22 @@ self._bel_trans_targs = [
 	6, 7, 12, 15, 23, 8, 9, 22, 
 	8, 9, 22, 0, 10, 17, 11, 10, 
 	11, 13, 14, 13, 14, 10, 16, 17, 
-	11, 15, 5, 17, 18, 85, 19, 20, 
-	21, 21, 85, 23, 86, 25, 26, 29, 
-	27, 88, 28, 27, 88, 28, 30, 31, 
+	11, 15, 5, 17, 18, 84, 19, 20, 
+	21, 21, 84, 23, 85, 25, 26, 29, 
+	27, 87, 28, 27, 87, 28, 30, 31, 
 	30, 31, 33, 34, 35, 39, 43, 42, 
-	36, 37, 38, 36, 37, 38, 89, 40, 
-	41, 40, 41, 89, 42, 43, 33, 45, 
+	36, 37, 38, 36, 37, 38, 88, 40, 
+	41, 40, 41, 88, 42, 43, 33, 45, 
 	46, 47, 45, 46, 47, 48, 49, 50, 
 	55, 58, 61, 51, 52, 60, 51, 52, 
-	60, 53, 90, 54, 53, 54, 56, 57, 
-	56, 57, 53, 59, 90, 54, 58, 48, 
-	90, 61, 63, 64, 65, 63, 64, 65, 
+	60, 53, 89, 54, 53, 54, 56, 57, 
+	56, 57, 53, 59, 89, 54, 58, 48, 
+	89, 61, 63, 64, 65, 63, 64, 65, 
 	66, 67, 68, 73, 76, 80, 69, 70, 
 	79, 69, 70, 79, 71, 78, 72, 71, 
 	72, 74, 75, 74, 75, 71, 77, 78, 
-	72, 76, 66, 78, 91, 80, 92, 82, 
-	83, 84, 84, 92, 87, 86
+	72, 76, 66, 78, 90, 80, 82, 83, 
+	91, 92, 86, 85, 91
 ]
 
 class << self
@@ -8024,21 +8015,21 @@ self._bel_trans_actions = [
 	0, 12, 0, 14, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
 	17, 5, 19, 0, 0, 20, 0, 0, 
-	21, 22, 23, 0, 8, 0, 0, 0, 
-	10, 26, 10, 0, 27, 0, 10, 10, 
+	21, 0, 22, 0, 8, 0, 0, 0, 
+	10, 25, 10, 0, 26, 0, 10, 10, 
 	0, 0, 0, 0, 0, 0, 8, 8, 
-	10, 11, 10, 0, 12, 0, 28, 10, 
-	10, 0, 0, 29, 0, 0, 19, 30, 
+	10, 11, 10, 0, 12, 0, 27, 10, 
+	10, 0, 0, 28, 0, 0, 19, 29, 
 	3, 4, 5, 0, 6, 0, 0, 0, 
 	0, 7, 8, 10, 11, 10, 0, 12, 
-	0, 15, 31, 15, 0, 0, 10, 10, 
-	0, 0, 17, 18, 32, 17, 5, 19, 
-	33, 0, 2, 3, 4, 5, 0, 6, 
+	0, 15, 30, 15, 0, 0, 10, 10, 
+	0, 0, 17, 18, 31, 17, 5, 19, 
+	32, 0, 2, 3, 4, 5, 0, 6, 
 	0, 0, 0, 0, 7, 8, 10, 11, 
 	10, 0, 12, 0, 15, 15, 15, 0, 
 	0, 10, 10, 0, 0, 17, 18, 17, 
-	17, 5, 19, 0, 34, 0, 35, 0, 
-	0, 21, 22, 36, 38, 0
+	17, 5, 19, 0, 33, 0, 0, 0, 
+	21, 21, 35, 0, 0
 ]
 
 class << self
@@ -8049,15 +8040,15 @@ self._bel_eof_actions = [
 	0, 1, 1, 0, 1, 1, 0, 9, 
 	9, 13, 0, 1, 9, 9, 9, 16, 
 	13, 13, 0, 0, 0, 0, 9, 16, 
-	0, 24, 25, 25, 25, 25, 25, 25, 
+	0, 23, 24, 24, 24, 24, 24, 24, 
 	1, 1, 0, 9, 9, 0, 9, 9, 
 	9, 9, 1, 1, 1, 1, 0, 1, 
 	1, 0, 9, 9, 13, 0, 1, 9, 
 	9, 9, 16, 13, 9, 16, 1, 1, 
 	0, 1, 1, 0, 9, 9, 13, 0, 
 	1, 9, 9, 9, 16, 13, 13, 9, 
-	16, 0, 0, 0, 0, 0, 37, 39, 
-	0, 0, 40, 40, 0
+	16, 0, 0, 0, 0, 34, 36, 0, 
+	0, 37, 37, 38, 38
 ]
 
 class << self
@@ -8067,7 +8058,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 85;
+self.bel_first_final = 84;
 class << self
 	attr_accessor :bel_error
 end
@@ -8094,16 +8085,16 @@ class << self
 end
 self.bel_en_term = 62;
 class << self
-	attr_accessor :bel_en_comment
+	attr_accessor :bel_en_comment_node
 end
-self.bel_en_comment = 81;
+self.bel_en_comment_node = 81;
 class << self
 	attr_accessor :bel_en_observed_term
 end
 self.bel_en_observed_term = 1;
 
 
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -8115,7 +8106,7 @@ self.bel_en_observed_term = 1;
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             
 begin
 	p ||= 0
@@ -8168,7 +8159,7 @@ begin
     @identifier_started = true
     p_start = p;
   		end
-	when 38 then
+	when 35 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -8196,7 +8187,7 @@ begin
     fx                        = @buffers[:function]
     @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
   		end
-	when 33 then
+	when 32 then
 		begin
 
     inner_term = @buffers[:term_stack].pop
@@ -8209,7 +8200,7 @@ begin
 	end
 
   		end
-	when 34 then
+	when 33 then
 		begin
 
     yield @buffers[:term_stack][-1]
@@ -8229,15 +8220,11 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 22 then
+	when 21 then
 		begin
 
-    @buffers[:comment] << data[p].ord
-  		end
-	when 35 then
-		begin
-
-    yield @buffers[:comment] || comment(nil)
+    $stderr.puts 'COMMENT start_comment'
+    p_start = p;
   		end
 	when 20 then
 		begin
@@ -8316,7 +8303,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 28 then
+	when 27 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -8340,30 +8327,11 @@ begin
     @buffers[:term_stack][-1] = t
     @buffers[:parameter]      = nil
   		end
-	when 21 then
+	when 22 then
 		begin
 
-    @buffers[:comment] = []
-  		end
-		begin
-
-    @buffers[:comment] << data[p].ord
-  		end
-	when 36 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
-  		end
-		begin
-
-    yield @buffers[:comment] || comment(nil)
-  		end
-	when 23 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
   		end
 		begin
 
@@ -8390,7 +8358,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 29 then
+	when 28 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -8473,7 +8441,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 27 then
+	when 26 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -8493,7 +8461,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 31 then
+	when 30 then
 		begin
 
     @buffers[:parameter] ||= parameter(prefix(nil))
@@ -8519,7 +8487,7 @@ begin
 	end
 
   		end
-	when 32 then
+	when 31 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -8554,7 +8522,7 @@ begin
 	end
 
   		end
-	when 26 then
+	when 25 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -8600,7 +8568,7 @@ begin
 
     @incomplete[:function] << data[p].ord
   		end
-	when 30 then
+	when 29 then
 		begin
 
     t = term(complete: false)
@@ -8637,7 +8605,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 39 then
+	when 36 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
@@ -8664,17 +8632,17 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 24 then
+	when 23 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 40 then
+	when 37 then
 		begin
 
   		end
-	when 37 then
+	when 34 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -8689,7 +8657,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 25 then
+	when 24 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -8750,6 +8718,26 @@ begin
 		begin
 
   		end
+	when 38 then
+		begin
+
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
+  		end
+		begin
+
+    $stderr.puts 'COMMENT comment_end'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = comment(utf8_string(chars), complete: completed)
+    @buffers[:comment] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'COMMENT yield_comment'
+    yield @buffers[:comment] || comment(nil)
+  		end
 	  end
 	end
 
@@ -8760,7 +8748,7 @@ begin
 end
 	end
 
-      # end: ragel        
+      # end: ragel
           end
         end
       end

@@ -37,16 +37,16 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             
 class << self
 	attr_accessor :_bel_trans_keys
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 10, 47, 47, 47, 
-	10, 10, 10, 10, 0, 
-	0, 0
+	0, 0, 47, 47, 47, 47, 
+	9, 32, 10, 10, 9, 
+	32, 0
 ]
 
 class << self
@@ -54,7 +54,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 38, 1, 1, 1, 0
+	0, 1, 1, 24, 1, 24
 ]
 
 class << self
@@ -62,7 +62,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 39, 41, 43, 45
+	0, 0, 2, 4, 29, 31
 ]
 
 class << self
@@ -70,12 +70,14 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 2, 1, 3, 
-	1, 1, 4, 6, 5, 1, 0
+	0, 1, 2, 1, 4, 1, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 4, 3, 1, 5, 4, 
+	1, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 4, 3, 
+	0
 ]
 
 class << self
@@ -83,7 +85,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	5, 0, 2, 3, 4, 4, 5
+	2, 0, 3, 4, 5, 4
 ]
 
 class << self
@@ -91,7 +93,15 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 0, 0, 0, 2, 3, 4
+	0, 0, 0, 1, 1, 0
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 0, 2, 2
 ]
 
 class << self
@@ -101,19 +111,19 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 5;
+self.bel_first_final = 4;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_comment
+	attr_accessor :bel_en_comment_node
 end
-self.bel_en_comment = 1;
+self.bel_en_comment_node = 1;
 
 
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -122,9 +132,12 @@ self.bel_en_comment = 1;
             stack       = []
             data        = @content.unpack('C*')
             p           = 0
+            p_start     = 0
+            p_end       = 0
             pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             
 begin
 	p ||= 0
@@ -169,34 +182,11 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 3 then
-		begin
-
-    @buffers[:comment] << data[p].ord
-  		end
 	when 1 then
 		begin
 
-    yield @buffers[:comment] || comment(nil)
-  		end
-	when 2 then
-		begin
-
-    @buffers[:comment] = []
-  		end
-		begin
-
-    @buffers[:comment] << data[p].ord
-  		end
-	when 4 then
-		begin
-
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
-  		end
-		begin
-
-    yield @buffers[:comment] || comment(nil)
+    $stderr.puts 'COMMENT start_comment'
+    p_start = p;
   		end
 	end
 	end
@@ -213,6 +203,31 @@ begin
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	  case _bel_eof_actions[cs]
+	when 2 then
+		begin
+
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
+  		end
+		begin
+
+    $stderr.puts 'COMMENT comment_end'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = comment(utf8_string(chars), complete: completed)
+    @buffers[:comment] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'COMMENT yield_comment'
+    yield @buffers[:comment] || comment(nil)
+  		end
+	  end
+	end
+
 	end
 	if _goto_level <= _out
 		break
@@ -220,7 +235,7 @@ begin
 end
 	end
 
-      # end: ragel        
+      # end: ragel
           end
         end
       end

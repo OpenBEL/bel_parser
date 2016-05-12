@@ -17,9 +17,9 @@
   }
 
   observed_term :=
-    outer_term 
+    outer_term
     SP*
-    COMMENT? %yield_observed_term
+    a_comment? %yield_observed_term
     NL;
 }%%
 =end
@@ -56,9 +56,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -70,10 +70,10 @@ module BELParser
             pe          = data.length
             eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end
