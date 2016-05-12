@@ -25,4 +25,6 @@ Gem::Specification.new do |spec|
   spec.homepage              = 'https://github.com/OpenBEL/bel_parser'
   spec.require_paths         = ['lib']
   spec.required_ruby_version = '>= 2.0.0'
+
+  spec.add_runtime_dependency  'sparql-client', '~> 2.0.0'
 end
