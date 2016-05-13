@@ -65,10 +65,12 @@ module BELParser
       def parse
         case @input
         when ::String # conflicts with ...AST::String
+          results = parse_string(@input, @filter)
+          return nil if results.nil?
           convert_ast(
             @spec,
             @namespaces,
-            parse_string(@input, @filter).first)
+            results.first)
         when Array
           convert_multiple(
             parse_array(@input, @filter),

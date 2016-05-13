@@ -6,19 +6,36 @@ module BELParser
       class Term
         include Comparable
 
-        attr_accessor :function, :arguments
+        attr_reader :function, :arguments
 
         def initialize(function, *arguments)
+          self.function  = function
+          self.arguments = arguments
+        end
+
+        def function=(function)
           unless function && function.is_a?(BELParser::Language::Function)
             raise(
               ArgumentError,
               %(function: expected Function, actual #{function.class}))
           end
           @function  = function
-          @arguments = (arguments ||= []).flatten
         end
 
-        def <<(item)
+        def arguments=(*args)
+          args    = (args ||= []).flatten
+          invalid = args.any?(&method(:invalid_argument?))
+          raise(
+            ArgumentError,
+            'args must be Parameter or Term objects') if invalid
+
+          @arguments = args
+        end
+
+        def <<(arg)
+            raise(
+              ArgumentError,
+              'argument must be Parameter or Term') if invalid_argument?(arg)
           @arguments << item
         end
 
@@ -46,6 +63,13 @@ module BELParser
           else
             nil
           end
+        end
+
+        private
+
+        def invalid_argument?(arg)
+          !arg.is_a?(BELParser::Expression::Model::Parameter) &&
+            !arg.is_a?(BELParser::Expression::Model::Term)
         end
       end
 
@@ -90,4 +114,3 @@ module BELParser
     end
   end
 end
-

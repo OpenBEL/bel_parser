@@ -8,7 +8,7 @@ module BELParser
         include BELParser::Quoting
         include Comparable
 
-        attr_accessor :namespace, :value
+        attr_reader :namespace, :value
 
         def initialize(namespace, value)
           raise(ArgumentError, 'value is nil') unless value
@@ -19,6 +19,22 @@ module BELParser
           end
           @namespace = namespace
           @value     = value
+        end
+
+        def namespace=(namespace)
+          unless namespace.nil? || namespace.is_a?(Namespace)
+            raise(
+              ArgumentError,
+              "namespace: expected nil or Namespace, actual #{namespace.class}")
+          end
+
+          @namespace = namespace
+        end
+
+        def value=(value)
+          raise(ArgumentError, 'value is nil') unless value
+
+          @value = value
         end
 
         def encoding
@@ -72,7 +88,7 @@ module BELParser
           namespace =
             if prefix.identifier
               keyword = prefix.identifier.string_literal
-              namespace_hash[keyword]
+              Namespace.new(keyword, namespace_hash[keyword])
             else
               nil
             end
