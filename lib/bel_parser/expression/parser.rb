@@ -64,7 +64,7 @@ module BELParser
 
       def parse
         case @input
-        when String
+        when ::String # conflicts with ...AST::String
           convert_ast(
             @spec,
             @namespaces,
@@ -81,7 +81,7 @@ module BELParser
             @namespaces)
         else
           raise ArgumentError,
-            %(expected "input" to be one of String, Array, IO: #{input.class})
+            %(expected "input" to be one of String, Array, IO: #{@input.class})
         end
       end
 
