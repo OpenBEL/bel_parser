@@ -53,6 +53,7 @@ module BELParser
           experiment_context: experiment_context(state[:annotations]),
           references:         references(*state.values_at(*DEFINITIONS)),
           metadata:           {
+            bel_version:     state[:specification].version,
             document_header: state[:document_properties] || nil
           }
         }
