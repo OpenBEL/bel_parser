@@ -3,7 +3,7 @@ module BELParser
     # Reader represents the API for a reader of resource data.
     module Reader
       def self.assert_reader(reader, var_name)
-        raise ArgumentError, "#{var_name} is nil" unless reader
+        return unless reader
         not_impl_methods =
           Reader.instance_methods.reject do |method|
             reader.respond_to?(method)

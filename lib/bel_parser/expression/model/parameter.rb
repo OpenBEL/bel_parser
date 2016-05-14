@@ -87,8 +87,7 @@ module BELParser
           prefix, value = ast.children
           namespace =
             if prefix.identifier
-              keyword = prefix.identifier.string_literal
-              Namespace.new(keyword, namespace_hash[keyword])
+              namespace_hash[prefix.identifier.string_literal]
             else
               nil
             end

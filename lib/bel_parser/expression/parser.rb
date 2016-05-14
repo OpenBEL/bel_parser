@@ -11,7 +11,7 @@ module BELParser
 
     def self.parse(
       input,
-      spec = BELParser::Language.latest_supported_specification,
+      spec       = BELParser::Language.latest_supported_specification,
       namespaces = {})
 
       parser = Parser.new(input, Expression.filter, spec, namespaces)
@@ -20,7 +20,7 @@ module BELParser
 
     def self.parse_parameters(
       input,
-      spec = BELParser::Language.latest_supported_specification,
+      spec       = BELParser::Language.latest_supported_specification,
       namespaces = {})
 
       parser = Parser.new(input, Expression.parameter_filter, spec, namespaces)
@@ -29,7 +29,7 @@ module BELParser
 
     def self.parse_terms(
       input,
-      spec = BELParser::Language.latest_supported_specification,
+      spec       = BELParser::Language.latest_supported_specification,
       namespaces = {})
 
       parser = Parser.new(input, Expression.term_filter, spec, namespaces)
@@ -38,7 +38,7 @@ module BELParser
 
     def self.parse_statements(
       input,
-      spec = BELParser::Language.latest_supported_specification,
+      spec       = BELParser::Language.latest_supported_specification,
       namespaces = {})
 
       parser = Parser.new(input, Expression.statement_filter, spec, namespaces)

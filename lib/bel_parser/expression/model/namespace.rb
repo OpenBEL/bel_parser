@@ -21,17 +21,11 @@ module BELParser
           @url     = url
 
           # configure reader for URIs (RDF).
-          @uri_reader =
-            options.fetch(:uri_reader) {
-              BELParser::Resource.default_uri_reader
-            }
+          @uri_reader = options.fetch(:uri_reader, nil)
           BELParser::Resource::Reader.assert_reader(@uri_reader, 'uri_reader')
 
           # configure reader for URLs (Resource files).
-          @url_reader =
-            options.fetch(:url_reader) {
-              BELParser::Resource.default_url_reader
-            }
+          @url_reader = options.fetch(:url_reader, nil)
           BELParser::Resource::Reader.assert_reader(@url_reader, 'url_reader')
         end
 
@@ -44,9 +38,9 @@ module BELParser
         end
 
         def [](value)
-          if uri?
+          if uri? && @uri_reader
             @uri_reader.retrieve_value_from_resource(@uri, value)
-          elsif url?
+          elsif url? && @url_reader
             @url_reader.retrieve_value_from_resource(@url, value)
           else
             nil
