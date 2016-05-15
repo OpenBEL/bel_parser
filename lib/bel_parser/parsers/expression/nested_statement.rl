@@ -22,7 +22,7 @@
   }
 
   action ast_object {
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   }
 
   action statement_object_statement {

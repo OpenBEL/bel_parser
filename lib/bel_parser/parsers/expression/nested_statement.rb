@@ -1873,7 +1873,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -2024,7 +2024,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -2062,7 +2062,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -4089,7 +4089,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -4240,7 +4240,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -4278,7 +4278,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -6305,7 +6305,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -6456,7 +6456,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -6494,7 +6494,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -8521,7 +8521,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -8672,7 +8672,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -8710,7 +8710,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -10737,7 +10737,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -10888,7 +10888,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -10926,7 +10926,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -12953,7 +12953,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -13104,7 +13104,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -13142,7 +13142,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -15169,7 +15169,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -15320,7 +15320,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -15358,7 +15358,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -17437,7 +17437,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -17588,7 +17588,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
@@ -17626,7 +17626,7 @@ begin
   		end
 		begin
 
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(@buffers[:object])
+    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
   		end
 		begin
 
