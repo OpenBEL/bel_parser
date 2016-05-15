@@ -128,13 +128,14 @@ module BELParser
             end
           return nil if statement.nil?
 
-          spec ||= BELParser::Language.latest_supported_specification
+          spec  ||= BELParser::Language.latest_supported_specification
+          comment = statement.comment && statement.comment.children[0]
 
           Statement.new(
             ast_to_term(statement.subject.term, spec, namespaces),
             convert_relationship(statement.relationship, spec),
             convert_object(statement.object, spec, namespaces),
-            statement.comment && statement.comment.children[0])
+            comment)
         end
 
         def convert_relationship(ast, spec)

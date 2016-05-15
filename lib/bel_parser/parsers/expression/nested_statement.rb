@@ -1558,7 +1558,9 @@ begin
 	when 23 then
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 11 then
 		begin
@@ -1762,7 +1764,9 @@ begin
   		end
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 18 then
 		begin
@@ -3774,7 +3778,9 @@ begin
 	when 23 then
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 11 then
 		begin
@@ -3978,7 +3984,9 @@ begin
   		end
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 18 then
 		begin
@@ -5990,7 +5998,9 @@ begin
 	when 23 then
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 11 then
 		begin
@@ -6194,7 +6204,9 @@ begin
   		end
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 18 then
 		begin
@@ -8206,7 +8218,9 @@ begin
 	when 23 then
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 11 then
 		begin
@@ -8410,7 +8424,9 @@ begin
   		end
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 18 then
 		begin
@@ -10422,7 +10438,9 @@ begin
 	when 23 then
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 11 then
 		begin
@@ -10626,7 +10644,9 @@ begin
   		end
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 18 then
 		begin
@@ -12638,7 +12658,9 @@ begin
 	when 23 then
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 11 then
 		begin
@@ -12842,7 +12864,9 @@ begin
   		end
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 18 then
 		begin
@@ -14854,7 +14878,9 @@ begin
 	when 23 then
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 11 then
 		begin
@@ -15058,7 +15084,9 @@ begin
   		end
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 18 then
 		begin
@@ -17122,7 +17150,9 @@ begin
 	when 23 then
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 11 then
 		begin
@@ -17326,7 +17356,9 @@ begin
   		end
 		begin
 
-    yield nested_statement(@buffers[:statement_stack][-1])
+    comment   = @buffers[:comment] ||= comment(nil)
+    statement = @buffers[:statement_stack][-1] << comment
+    yield nested_statement(statement)
   		end
 	when 18 then
 		begin
