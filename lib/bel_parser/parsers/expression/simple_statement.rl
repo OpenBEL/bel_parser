@@ -8,14 +8,14 @@
   include 'comment.rl';
 
   action statement_subject {
-    $stderr.puts 'SIMPLE_STATEMENT statement_subject'
+    trace('SIMPLE_STATEMENT statement_subject')
     @buffers[:subject]    = subject(
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   }
 
   action statement_object {
-    $stderr.puts 'SIMPLE_STATEMENT statement_object'
+    trace('SIMPLE_STATEMENT statement_object')
     term = @buffers[:term_stack][-1]
     @buffers[:object] = object(term)
     @buffers[:term_stack] = nil
@@ -31,7 +31,7 @@
   }
 
   action yield_simple_statement {
-    $stderr.puts 'YIELD_SIMPLE_STATEMENT'
+    trace('YIELD_SIMPLE_STATEMENT')
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   }
@@ -58,6 +58,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -83,6 +84,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content

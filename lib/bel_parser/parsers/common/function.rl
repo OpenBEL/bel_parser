@@ -6,13 +6,13 @@
   include 'common.rl';
 
   action start_function {
-    $stderr.puts 'FUNCTION start_function'
+    trace('FUNCTION start_function')
     @function_started = true
     p_start = p;
   }
 
   action end_function {
-    $stderr.puts 'FUNCTION end_function'
+    trace('FUNCTION end_function')
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
@@ -22,7 +22,7 @@
   }
 
   action a_function_eof {
-    $stderr.puts 'FUNCTION a_function_eof'
+    trace('FUNCTION a_function_eof')
     if @function_started
       p_end = p
       chars = data[p_start...p_end]
@@ -34,7 +34,7 @@
   }
 
   action function_node_err {
-    $stderr.puts 'FUNCTION function_node_err'
+    trace('FUNCTION function_node_err')
     if @function_started
       # hit invalid char, include it in the identifier that results
       p_end = p + 1
@@ -48,7 +48,7 @@
   }
 
   action yield_function {
-    $stderr.puts 'FUNCTION yield_function'
+    trace('FUNCTION yield_function')
     yield @buffers[:function]
   }
 
@@ -80,6 +80,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -105,6 +106,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content

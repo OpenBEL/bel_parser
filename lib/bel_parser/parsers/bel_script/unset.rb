@@ -204,14 +204,14 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 7 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -221,7 +221,7 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -230,7 +230,7 @@ begin
 	when 6 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -256,13 +256,13 @@ begin
 	when 8 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 5 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -271,13 +271,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -288,13 +288,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "UNSET add_name"
+    trace('UNSET add_name')
     key = @buffers.delete(:ident)
     @buffers[:unset_name] = key
   		end
 		begin
 
-    $stderr.puts "UNSET unset_end"
+    trace('UNSET unset_end')
     name = @buffers.delete(:unset_name)
     unless name.nil?
       unset_node = unset(name, complete: name.complete)
@@ -305,13 +305,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "UNSET yield_unset"
+    trace('UNSET yield_unset')
     yield @buffers[:unset]
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -320,7 +320,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -331,13 +331,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "UNSET add_name"
+    trace('UNSET add_name')
     key = @buffers.delete(:ident)
     @buffers[:unset_name] = key
   		end
 		begin
 
-    $stderr.puts "UNSET unset_end"
+    trace('UNSET unset_end')
     name = @buffers.delete(:unset_name)
     unless name.nil?
       unset_node = unset(name, complete: name.complete)
@@ -348,7 +348,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "UNSET yield_unset"
+    trace('UNSET yield_unset')
     yield @buffers[:unset]
   		end
 	  end
@@ -368,6 +368,7 @@ end
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -393,6 +394,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
@@ -614,14 +616,14 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 7 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -631,7 +633,7 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -640,7 +642,7 @@ begin
 	when 6 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -666,13 +668,13 @@ begin
 	when 8 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 5 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -681,13 +683,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -698,13 +700,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "UNSET add_name"
+    trace('UNSET add_name')
     key = @buffers.delete(:ident)
     @buffers[:unset_name] = key
   		end
 		begin
 
-    $stderr.puts "UNSET unset_end"
+    trace('UNSET unset_end')
     name = @buffers.delete(:unset_name)
     unless name.nil?
       unset_node = unset(name, complete: name.complete)
@@ -715,13 +717,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "UNSET yield_unset"
+    trace('UNSET yield_unset')
     yield @buffers[:unset]
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -730,7 +732,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -741,13 +743,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "UNSET add_name"
+    trace('UNSET add_name')
     key = @buffers.delete(:ident)
     @buffers[:unset_name] = key
   		end
 		begin
 
-    $stderr.puts "UNSET unset_end"
+    trace('UNSET unset_end')
     name = @buffers.delete(:unset_name)
     unless name.nil?
       unset_node = unset(name, complete: name.complete)
@@ -758,7 +760,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "UNSET yield_unset"
+    trace('UNSET yield_unset')
     yield @buffers[:unset]
   		end
 	  end

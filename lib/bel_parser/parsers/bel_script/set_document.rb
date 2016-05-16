@@ -839,14 +839,14 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 37 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -856,7 +856,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -865,7 +865,7 @@ begin
 	when 36 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -874,7 +874,7 @@ begin
 	when 9 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -899,20 +899,20 @@ begin
 	when 14 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 	when 46 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 	when 17 then
 		begin
 
-    $stderr.puts "LIST add_string"
+    trace('LIST add_string')
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
@@ -920,7 +920,7 @@ begin
 	when 20 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -929,7 +929,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST add_ident"
+    trace('LIST add_ident')
     ident = @buffers.delete(:ident)
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
@@ -937,7 +937,7 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -946,14 +946,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_property"
+    trace('SET_DOCUMENT add_property')
     key = @buffers.delete(:ident)
     @buffers[:set_document_name] = key
   		end
 	when 30 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -970,13 +970,13 @@ begin
 	when 11 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -993,7 +993,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1002,32 +1002,32 @@ begin
 	when 15 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 10 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1036,13 +1036,13 @@ begin
 	when 25 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1050,25 +1050,25 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 24 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1076,7 +1076,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -1099,13 +1099,13 @@ begin
 	when 38 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 35 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1114,13 +1114,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1131,7 +1131,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1148,7 +1148,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -1167,7 +1167,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -1204,7 +1204,7 @@ begin
 	when 43 then
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -1216,13 +1216,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 18 then
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -1243,7 +1243,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -1266,7 +1266,7 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1277,7 +1277,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1285,7 +1285,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -1308,7 +1308,7 @@ begin
 	when 29 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1319,7 +1319,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -1343,13 +1343,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 27 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1365,7 +1365,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -1376,7 +1376,7 @@ begin
 	when 8 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1392,7 +1392,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -1415,7 +1415,7 @@ begin
 	when 23 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1445,7 +1445,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -1466,7 +1466,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -1489,12 +1489,12 @@ begin
 	when 45 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -1506,20 +1506,20 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 42 then
 		begin
 
-    $stderr.puts "LIST add_string"
+    trace('LIST add_string')
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -1531,13 +1531,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 41 then
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -1547,7 +1547,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -1559,19 +1559,19 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 32 then
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_string_value"
+    trace('SET_DOCUMENT add_string_value')
     string = @buffers.delete(:string)
     @buffers[:set_document_value] = string
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -1595,13 +1595,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 19 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1612,7 +1612,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1620,7 +1620,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -1641,7 +1641,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -1664,7 +1664,7 @@ begin
 	when 40 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1675,7 +1675,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -1685,7 +1685,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -1697,13 +1697,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 31 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1714,7 +1714,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -1736,7 +1736,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -1760,7 +1760,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 28 then
@@ -1774,7 +1774,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1785,7 +1785,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1793,7 +1793,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -1812,7 +1812,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1823,7 +1823,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1831,7 +1831,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -1854,13 +1854,13 @@ begin
 	when 39 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1871,7 +1871,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -1883,13 +1883,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 44 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1898,7 +1898,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1909,14 +1909,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST add_ident"
+    trace('LIST add_ident')
     ident = @buffers.delete(:ident)
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -1928,13 +1928,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 33 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1943,7 +1943,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1954,13 +1954,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_ident_value"
+    trace('SET_DOCUMENT add_ident_value')
     ident = @buffers.delete(:ident)
     @buffers[:set_document_value] = ident
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -1984,18 +1984,18 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 34 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -2007,13 +2007,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_list_value"
+    trace('SET_DOCUMENT add_list_value')
     list = @buffers.delete(:list)
     @buffers[:set_document_value] = list
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -2037,7 +2037,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	  end
@@ -2887,14 +2887,14 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 37 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -2904,7 +2904,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -2913,7 +2913,7 @@ begin
 	when 36 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -2922,7 +2922,7 @@ begin
 	when 9 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -2947,20 +2947,20 @@ begin
 	when 14 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 	when 46 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 	when 17 then
 		begin
 
-    $stderr.puts "LIST add_string"
+    trace('LIST add_string')
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
@@ -2968,7 +2968,7 @@ begin
 	when 20 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -2977,7 +2977,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST add_ident"
+    trace('LIST add_ident')
     ident = @buffers.delete(:ident)
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
@@ -2985,7 +2985,7 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -2994,14 +2994,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_property"
+    trace('SET_DOCUMENT add_property')
     key = @buffers.delete(:ident)
     @buffers[:set_document_name] = key
   		end
 	when 30 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -3018,13 +3018,13 @@ begin
 	when 11 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -3041,7 +3041,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -3050,32 +3050,32 @@ begin
 	when 15 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 10 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -3084,13 +3084,13 @@ begin
 	when 25 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -3098,25 +3098,25 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 24 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -3124,7 +3124,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -3147,13 +3147,13 @@ begin
 	when 38 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 35 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -3162,13 +3162,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3179,7 +3179,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -3196,7 +3196,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -3215,7 +3215,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -3252,7 +3252,7 @@ begin
 	when 43 then
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -3264,13 +3264,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 18 then
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -3291,7 +3291,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -3314,7 +3314,7 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3325,7 +3325,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -3333,7 +3333,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -3356,7 +3356,7 @@ begin
 	when 29 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3367,7 +3367,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -3391,13 +3391,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 27 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3413,7 +3413,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -3424,7 +3424,7 @@ begin
 	when 8 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3440,7 +3440,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -3463,7 +3463,7 @@ begin
 	when 23 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3493,7 +3493,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -3514,7 +3514,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -3537,12 +3537,12 @@ begin
 	when 45 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -3554,20 +3554,20 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 42 then
 		begin
 
-    $stderr.puts "LIST add_string"
+    trace('LIST add_string')
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -3579,13 +3579,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 41 then
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -3595,7 +3595,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -3607,19 +3607,19 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 32 then
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_string_value"
+    trace('SET_DOCUMENT add_string_value')
     string = @buffers.delete(:string)
     @buffers[:set_document_value] = string
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -3643,13 +3643,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 19 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3660,7 +3660,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -3668,7 +3668,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -3689,7 +3689,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -3712,7 +3712,7 @@ begin
 	when 40 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3723,7 +3723,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -3733,7 +3733,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -3745,13 +3745,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 31 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3762,7 +3762,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -3784,7 +3784,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -3808,7 +3808,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 28 then
@@ -3822,7 +3822,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3833,7 +3833,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -3841,7 +3841,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -3860,7 +3860,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3871,7 +3871,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -3879,7 +3879,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -3902,13 +3902,13 @@ begin
 	when 39 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3919,7 +3919,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -3931,13 +3931,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 44 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -3946,7 +3946,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3957,14 +3957,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST add_ident"
+    trace('LIST add_ident')
     ident = @buffers.delete(:ident)
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -3976,13 +3976,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 33 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -3991,7 +3991,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -4002,13 +4002,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_ident_value"
+    trace('SET_DOCUMENT add_ident_value')
     ident = @buffers.delete(:ident)
     @buffers[:set_document_value] = ident
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -4032,18 +4032,18 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 34 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -4055,13 +4055,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_list_value"
+    trace('SET_DOCUMENT add_list_value')
     list = @buffers.delete(:list)
     @buffers[:set_document_value] = list
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -4085,7 +4085,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	  end
@@ -4935,14 +4935,14 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 37 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -4952,7 +4952,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -4961,7 +4961,7 @@ begin
 	when 36 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -4970,7 +4970,7 @@ begin
 	when 9 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -4995,20 +4995,20 @@ begin
 	when 14 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 	when 46 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 	when 17 then
 		begin
 
-    $stderr.puts "LIST add_string"
+    trace('LIST add_string')
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
@@ -5016,7 +5016,7 @@ begin
 	when 20 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -5025,7 +5025,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST add_ident"
+    trace('LIST add_ident')
     ident = @buffers.delete(:ident)
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
@@ -5033,7 +5033,7 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -5042,14 +5042,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_property"
+    trace('SET_DOCUMENT add_property')
     key = @buffers.delete(:ident)
     @buffers[:set_document_name] = key
   		end
 	when 30 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -5066,13 +5066,13 @@ begin
 	when 11 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -5089,7 +5089,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -5098,32 +5098,32 @@ begin
 	when 15 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 10 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -5132,13 +5132,13 @@ begin
 	when 25 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -5146,25 +5146,25 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 24 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -5172,7 +5172,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -5195,13 +5195,13 @@ begin
 	when 38 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 35 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -5210,13 +5210,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -5227,7 +5227,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -5244,7 +5244,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -5263,7 +5263,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -5300,7 +5300,7 @@ begin
 	when 43 then
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -5312,13 +5312,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 18 then
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -5339,7 +5339,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -5362,7 +5362,7 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -5373,7 +5373,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -5381,7 +5381,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -5404,7 +5404,7 @@ begin
 	when 29 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -5415,7 +5415,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -5439,13 +5439,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 27 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -5461,7 +5461,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -5472,7 +5472,7 @@ begin
 	when 8 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -5488,7 +5488,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -5511,7 +5511,7 @@ begin
 	when 23 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -5541,7 +5541,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -5562,7 +5562,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -5585,12 +5585,12 @@ begin
 	when 45 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -5602,20 +5602,20 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 42 then
 		begin
 
-    $stderr.puts "LIST add_string"
+    trace('LIST add_string')
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -5627,13 +5627,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 41 then
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -5643,7 +5643,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -5655,19 +5655,19 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 32 then
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_string_value"
+    trace('SET_DOCUMENT add_string_value')
     string = @buffers.delete(:string)
     @buffers[:set_document_value] = string
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -5691,13 +5691,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 19 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -5708,7 +5708,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -5716,7 +5716,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -5737,7 +5737,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -5760,7 +5760,7 @@ begin
 	when 40 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -5771,7 +5771,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -5781,7 +5781,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -5793,13 +5793,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 31 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -5810,7 +5810,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -5832,7 +5832,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -5856,7 +5856,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 28 then
@@ -5870,7 +5870,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -5881,7 +5881,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -5889,7 +5889,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -5908,7 +5908,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -5919,7 +5919,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -5927,7 +5927,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -5950,13 +5950,13 @@ begin
 	when 39 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -5967,7 +5967,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -5979,13 +5979,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 44 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -5994,7 +5994,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -6005,14 +6005,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST add_ident"
+    trace('LIST add_ident')
     ident = @buffers.delete(:ident)
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -6024,13 +6024,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 33 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -6039,7 +6039,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -6050,13 +6050,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_ident_value"
+    trace('SET_DOCUMENT add_ident_value')
     ident = @buffers.delete(:ident)
     @buffers[:set_document_value] = ident
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -6080,18 +6080,18 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 34 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -6103,13 +6103,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_list_value"
+    trace('SET_DOCUMENT add_list_value')
     list = @buffers.delete(:list)
     @buffers[:set_document_value] = list
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -6133,7 +6133,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	  end
@@ -6153,6 +6153,7 @@ end
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -6178,6 +6179,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
@@ -7034,14 +7036,14 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 37 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -7051,7 +7053,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -7060,7 +7062,7 @@ begin
 	when 36 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -7069,7 +7071,7 @@ begin
 	when 9 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -7094,20 +7096,20 @@ begin
 	when 14 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 	when 46 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 	when 17 then
 		begin
 
-    $stderr.puts "LIST add_string"
+    trace('LIST add_string')
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
@@ -7115,7 +7117,7 @@ begin
 	when 20 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -7124,7 +7126,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST add_ident"
+    trace('LIST add_ident')
     ident = @buffers.delete(:ident)
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
@@ -7132,7 +7134,7 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -7141,14 +7143,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_property"
+    trace('SET_DOCUMENT add_property')
     key = @buffers.delete(:ident)
     @buffers[:set_document_name] = key
   		end
 	when 30 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -7165,13 +7167,13 @@ begin
 	when 11 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -7188,7 +7190,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -7197,32 +7199,32 @@ begin
 	when 15 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 10 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -7231,13 +7233,13 @@ begin
 	when 25 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -7245,25 +7247,25 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 24 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -7271,7 +7273,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -7294,13 +7296,13 @@ begin
 	when 38 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 35 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -7309,13 +7311,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -7326,7 +7328,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -7343,7 +7345,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -7362,7 +7364,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -7399,7 +7401,7 @@ begin
 	when 43 then
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -7411,13 +7413,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 18 then
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -7438,7 +7440,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -7461,7 +7463,7 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -7472,7 +7474,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -7480,7 +7482,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -7503,7 +7505,7 @@ begin
 	when 29 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -7514,7 +7516,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -7538,13 +7540,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 27 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -7560,7 +7562,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -7571,7 +7573,7 @@ begin
 	when 8 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -7587,7 +7589,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -7610,7 +7612,7 @@ begin
 	when 23 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -7640,7 +7642,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -7661,7 +7663,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -7684,12 +7686,12 @@ begin
 	when 45 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -7701,20 +7703,20 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 42 then
 		begin
 
-    $stderr.puts "LIST add_string"
+    trace('LIST add_string')
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -7726,13 +7728,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 41 then
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -7742,7 +7744,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -7754,19 +7756,19 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 32 then
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_string_value"
+    trace('SET_DOCUMENT add_string_value')
     string = @buffers.delete(:string)
     @buffers[:set_document_value] = string
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -7790,13 +7792,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 19 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -7807,7 +7809,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -7815,7 +7817,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -7836,7 +7838,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -7859,7 +7861,7 @@ begin
 	when 40 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -7870,7 +7872,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -7880,7 +7882,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -7892,13 +7894,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 31 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -7909,7 +7911,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -7931,7 +7933,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -7955,7 +7957,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 28 then
@@ -7969,7 +7971,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -7980,7 +7982,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -7988,7 +7990,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -8007,7 +8009,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -8018,7 +8020,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -8026,7 +8028,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -8049,13 +8051,13 @@ begin
 	when 39 then
 		begin
 
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -8066,7 +8068,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -8078,13 +8080,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 44 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -8093,7 +8095,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -8104,14 +8106,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST add_ident"
+    trace('LIST add_ident')
     ident = @buffers.delete(:ident)
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -8123,13 +8125,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   		end
 	when 33 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -8138,7 +8140,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -8149,13 +8151,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_ident_value"
+    trace('SET_DOCUMENT add_ident_value')
     ident = @buffers.delete(:ident)
     @buffers[:set_document_value] = ident
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -8179,18 +8181,18 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	when 34 then
 		begin
 
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   		end
 		begin
 
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -8202,13 +8204,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT add_list_value"
+    trace('SET_DOCUMENT add_list_value')
     list = @buffers.delete(:list)
     @buffers[:set_document_value] = list
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -8232,7 +8234,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   		end
 	  end

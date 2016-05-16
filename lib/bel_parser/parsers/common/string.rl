@@ -6,7 +6,7 @@
   include 'common.rl';
 
   action string_end {
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -14,24 +14,24 @@
   }
 
   action yield_string {
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   }
 
   action start_string {
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   }
 
   action stop_string {
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   }
 
   action eof_string {
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -100,6 +100,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -125,6 +126,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content

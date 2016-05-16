@@ -10,6 +10,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -35,6 +36,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
@@ -200,7 +202,7 @@ begin
 	when 4 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -216,13 +218,13 @@ begin
 	when 6 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -230,25 +232,25 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 5 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -256,7 +258,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -293,7 +295,7 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)

@@ -9,13 +9,13 @@
   include 'list.rl';
 
   action add_name {
-    $stderr.puts "DEFINE_ANNOTATION add_name"
+    trace('DEFINE_ANNOTATION add_name')
     name = @buffers.delete(:ident)
     @buffers[:annotation_definition_name] = name
   }
 
   action add_string_value {
-    $stderr.puts "DEFINE_ANNOTATION add_string_value"
+    trace('DEFINE_ANNOTATION add_string_value')
     string_node = @buffers.delete(:string)
     if @url_domain
       leaf = domain(url(string_node))
@@ -32,7 +32,7 @@
   }
 
   action add_list_value {
-    $stderr.puts "DEFINE_ANNOTATION add_list_value"
+    trace('DEFINE_ANNOTATION add_list_value')
     list_node = @buffers.delete(:list)
     if @url_domain
       leaf = domain(url(list_node))
@@ -50,22 +50,22 @@
   }
 
   action add_list_domain {
-    $stderr.puts "DEFINE_ANNOTATION add_list_domain"
+    trace('DEFINE_ANNOTATION add_list_domain')
     @list_domain = true
   }
 
   action add_url_domain {
-    $stderr.puts "DEFINE_ANNOTATION add_url_domain"
+    trace('DEFINE_ANNOTATION add_url_domain')
     @url_domain = true
   }
 
   action add_pattern_domain {
-    $stderr.puts "DEFINE_ANNOTATION add_pattern_domain"
+    trace('DEFINE_ANNOTATION add_pattern_domain')
     @pattern_domain = true
   }
 
   action define_annotation_end {
-    $stderr.puts "DEFINE_ANNOTATION define_annotation_end"
+    trace('DEFINE_ANNOTATION define_annotation_end')
     annotation_definition_node = annotation_definition()
     domain = @buffers.delete(:annotation_definition_domain)
     unless domain.nil?
@@ -76,12 +76,12 @@
   }
 
   action yield_define_annotation {
-    $stderr.puts "DEFINE_ANNOTATION yield_define_annotation"
+    trace('DEFINE_ANNOTATION yield_define_annotation')
     yield @buffers[:annotation_definition]
   }
 
   action define_annotation_node_eof {
-    $stderr.puts "DEFINE_ANNOTATION define_annotation_node_eof"
+    trace('DEFINE_ANNOTATION define_annotation_node_eof')
     annotation_definition_node = annotation_definition()
     if @url_domain
       domain_node = domain(url())
@@ -165,6 +165,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -190,10 +191,10 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
-            $stderr.puts "content: #{@content}"
       # begin: ragel
             %% write data;
       # end: ragel

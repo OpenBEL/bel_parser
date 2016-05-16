@@ -9,31 +9,31 @@
   include 'list.rl';
 
   action add_name {
-    $stderr.puts "SET add_name"
+    trace('SET add_name')
     key = @buffers.delete(:ident)
     @buffers[:set_name] = key
   }
 
   action add_ident_value {
-    $stderr.puts "SET add_ident_value"
+    trace('SET add_ident_value')
     ident = @buffers.delete(:ident)
     @buffers[:set_value] = ident
   }
 
   action add_string_value {
-    $stderr.puts "SET add_string_value"
+    trace('SET add_string_value')
     string = @buffers.delete(:string)
     @buffers[:set_value] = string
   }
 
   action add_list_value {
-    $stderr.puts "SET add_list_value"
+    trace('SET add_list_value')
     list = @buffers.delete(:list)
     @buffers[:set_value] = list
   }
 
   action set_end {
-    $stderr.puts "SET set_end"
+    trace('SET set_end')
     set_node = set()
     completed = true
 
@@ -55,12 +55,12 @@
   }
 
   action yield_set {
-    $stderr.puts "SET yield_set"
+    trace('SET yield_set')
     yield @buffers[:set]
   }
 
   action set_node_eof {
-    $stderr.puts "SET set_node_eof"
+    trace('SET set_node_eof')
     name = @buffers.delete(:set_name)
     set_node = set(name)
     completed = name.complete
@@ -128,6 +128,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -153,10 +154,10 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
-            $stderr.puts "\n---\ncontent: '" + @content + "'"
       # begin: ragel
             %% write data;
       # end: ragel

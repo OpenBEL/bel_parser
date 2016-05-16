@@ -302,14 +302,14 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 20 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -319,7 +319,7 @@ begin
 	when 17 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -328,7 +328,7 @@ begin
 	when 29 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -337,7 +337,7 @@ begin
 	when 7 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -362,7 +362,7 @@ begin
 	when 22 then
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
@@ -370,7 +370,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -387,13 +387,13 @@ begin
 	when 9 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -402,14 +402,14 @@ begin
 	when 26 then
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -418,7 +418,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -430,39 +430,39 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 24 then
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 8 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -471,13 +471,13 @@ begin
 	when 14 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -485,27 +485,27 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 15 then
 		begin
 
-    $stderr.puts "PARAMETER add_string_param_value"
+    trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
     value_node = value(string_node, complete: string_node.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -514,7 +514,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -526,27 +526,27 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 23 then
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -555,7 +555,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -567,13 +567,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 18 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -582,21 +582,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_ident_param_value"
+    trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
     value_node = value(ident, complete: ident.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -605,7 +605,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -617,25 +617,25 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 13 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -643,7 +643,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -666,7 +666,7 @@ begin
 	when 30 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 27 then
@@ -699,7 +699,7 @@ begin
 	when 28 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -708,7 +708,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 4 then
@@ -763,7 +763,7 @@ begin
 	when 25 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -774,14 +774,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -790,7 +790,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -802,13 +802,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 6 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -851,7 +851,7 @@ begin
 	when 12 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -873,21 +873,21 @@ begin
 	when 15 then
 		begin
 
-    $stderr.puts "PARAMETER add_string_param_value"
+    trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
     value_node = value(string_node, complete: string_node.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -896,7 +896,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -908,13 +908,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -925,7 +925,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -968,7 +968,7 @@ begin
 	when 21 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -979,21 +979,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -1002,7 +1002,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -1014,13 +1014,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 16 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1029,7 +1029,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1040,21 +1040,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_ident_param_value"
+    trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
     value_node = value(ident, complete: ident.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -1063,7 +1063,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -1075,13 +1075,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 19 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1092,7 +1092,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1101,21 +1101,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_ident_param_value"
+    trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
     value_node = value(ident, complete: ident.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -1124,7 +1124,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -1136,7 +1136,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	  end
@@ -1449,14 +1449,14 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 20 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1466,7 +1466,7 @@ begin
 	when 17 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1475,7 +1475,7 @@ begin
 	when 29 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1484,7 +1484,7 @@ begin
 	when 7 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -1509,7 +1509,7 @@ begin
 	when 22 then
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
@@ -1517,7 +1517,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1534,13 +1534,13 @@ begin
 	when 9 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1549,14 +1549,14 @@ begin
 	when 26 then
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -1565,7 +1565,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -1577,39 +1577,39 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 24 then
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 8 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1618,13 +1618,13 @@ begin
 	when 14 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1632,27 +1632,27 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 15 then
 		begin
 
-    $stderr.puts "PARAMETER add_string_param_value"
+    trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
     value_node = value(string_node, complete: string_node.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -1661,7 +1661,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -1673,27 +1673,27 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 23 then
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -1702,7 +1702,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -1714,13 +1714,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 18 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1729,21 +1729,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_ident_param_value"
+    trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
     value_node = value(ident, complete: ident.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -1752,7 +1752,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -1764,25 +1764,25 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 13 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1790,7 +1790,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -1813,7 +1813,7 @@ begin
 	when 30 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 27 then
@@ -1846,7 +1846,7 @@ begin
 	when 28 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1855,7 +1855,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 4 then
@@ -1910,7 +1910,7 @@ begin
 	when 25 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1921,14 +1921,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -1937,7 +1937,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -1949,13 +1949,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 6 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1998,7 +1998,7 @@ begin
 	when 12 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2020,21 +2020,21 @@ begin
 	when 15 then
 		begin
 
-    $stderr.puts "PARAMETER add_string_param_value"
+    trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
     value_node = value(string_node, complete: string_node.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -2043,7 +2043,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -2055,13 +2055,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -2072,7 +2072,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -2115,7 +2115,7 @@ begin
 	when 21 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -2126,21 +2126,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -2149,7 +2149,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -2161,13 +2161,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 16 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -2176,7 +2176,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -2187,21 +2187,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_ident_param_value"
+    trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
     value_node = value(ident, complete: ident.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -2210,7 +2210,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -2222,13 +2222,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 19 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -2239,7 +2239,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -2248,21 +2248,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_ident_param_value"
+    trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
     value_node = value(ident, complete: ident.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -2271,7 +2271,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -2283,7 +2283,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	  end
@@ -2303,6 +2303,7 @@ end
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -2328,10 +2329,10 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
-            $stderr.puts "content: " + @content.to_s
       # begin: ragel
             
 class << self
@@ -2650,14 +2651,14 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 20 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -2667,7 +2668,7 @@ begin
 	when 17 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -2676,7 +2677,7 @@ begin
 	when 29 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -2685,7 +2686,7 @@ begin
 	when 7 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -2710,7 +2711,7 @@ begin
 	when 22 then
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
@@ -2718,7 +2719,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -2735,13 +2736,13 @@ begin
 	when 9 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -2750,14 +2751,14 @@ begin
 	when 26 then
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -2766,7 +2767,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -2778,39 +2779,39 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 24 then
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 8 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -2819,13 +2820,13 @@ begin
 	when 14 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -2833,27 +2834,27 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 15 then
 		begin
 
-    $stderr.puts "PARAMETER add_string_param_value"
+    trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
     value_node = value(string_node, complete: string_node.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -2862,7 +2863,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -2874,27 +2875,27 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 23 then
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -2903,7 +2904,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -2915,13 +2916,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 18 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -2930,21 +2931,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_ident_param_value"
+    trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
     value_node = value(ident, complete: ident.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -2953,7 +2954,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -2965,25 +2966,25 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 13 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -2991,7 +2992,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -3014,7 +3015,7 @@ begin
 	when 30 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 27 then
@@ -3047,7 +3048,7 @@ begin
 	when 28 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -3056,7 +3057,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 4 then
@@ -3111,7 +3112,7 @@ begin
 	when 25 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3122,14 +3123,14 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -3138,7 +3139,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -3150,13 +3151,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 6 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3199,7 +3200,7 @@ begin
 	when 12 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3221,21 +3222,21 @@ begin
 	when 15 then
 		begin
 
-    $stderr.puts "PARAMETER add_string_param_value"
+    trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
     value_node = value(string_node, complete: string_node.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -3244,7 +3245,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -3256,13 +3257,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3273,7 +3274,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -3316,7 +3317,7 @@ begin
 	when 21 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3327,21 +3328,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -3350,7 +3351,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -3362,13 +3363,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 16 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -3377,7 +3378,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3388,21 +3389,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_ident_param_value"
+    trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
     value_node = value(ident, complete: ident.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -3411,7 +3412,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -3423,13 +3424,13 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	when 19 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -3440,7 +3441,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -3449,21 +3450,21 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER add_ident_param_value"
+    trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
     value_node = value(ident, complete: ident.complete)
     @buffers[:param_value] = value_node
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -3472,7 +3473,7 @@ begin
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -3484,7 +3485,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
 	  end

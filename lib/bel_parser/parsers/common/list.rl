@@ -8,32 +8,32 @@
   include 'string.rl';
 
   action start_list {
-    $stderr.puts "LIST start_list"
+    trace('LIST start_list')
     @list_opened = true
     @incomplete[:list] = list()
   }
 
   action stop_list {
-    $stderr.puts "LIST stop_list"
+    trace('LIST stop_list')
     @list_closed = true
   }
 
   action add_string {
-    $stderr.puts "LIST add_string"
+    trace('LIST add_string')
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
   }
 
   action add_ident {
-    $stderr.puts "LIST add_ident"
+    trace('LIST add_ident')
     ident = @buffers.delete(:ident)
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   }
 
   action list_end {
-    $stderr.puts "LIST list_end"
+    trace('LIST list_end')
     if @list_opened && @list_closed
       list = @incomplete.delete(:list)
       list.complete = true
@@ -45,7 +45,7 @@
   }
 
   action a_list_eof {
-    $stderr.puts "LIST a_list_eof"
+    trace('LIST a_list_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     unless string.nil?
@@ -66,7 +66,7 @@
   }
 
   action list_node_eof {
-    $stderr.puts "LIST list_node_eof"
+    trace('LIST list_node_eof')
     list = @incomplete.delete(:list)
     string = @buffers.delete(:string)
     item = list_item(string, complete: string.complete)
@@ -76,7 +76,7 @@
   }
 
   action yield_list {
-    $stderr.puts "LIST yield_list"
+    trace('LIST yield_list')
     yield @buffers[:list]
   }
 
@@ -138,6 +138,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -163,10 +164,10 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
-            $stderr.puts "\n---\ncontent: '" + @content + "'"
       # begin: ragel
             %% write data;
       # end: ragel

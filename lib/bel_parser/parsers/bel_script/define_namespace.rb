@@ -381,14 +381,14 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 20 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -398,7 +398,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -407,7 +407,7 @@ begin
 	when 19 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -416,7 +416,7 @@ begin
 	when 9 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -441,13 +441,13 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE add_url_domain"
+    trace('DEFINE_NAMESPACE add_url_domain')
     @url_domain = true
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -456,20 +456,20 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE add_name"
+    trace('DEFINE_NAMESPACE add_name')
     name = @buffers.delete(:ident)
     @buffers[:namespace_definition_name] = name
   		end
 	when 11 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -478,19 +478,19 @@ begin
 	when 10 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -499,13 +499,13 @@ begin
 	when 16 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -513,25 +513,25 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 15 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -539,7 +539,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -562,13 +562,13 @@ begin
 	when 21 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 18 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -577,13 +577,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -594,7 +594,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -611,7 +611,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    trace('DEFINE_NAMESPACE define_namespace_node_eof')
     leaf = url()
     string_node = @buffers.delete(:string)
     unless string_node.nil?
@@ -641,7 +641,7 @@ begin
 	when 8 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -657,7 +657,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    trace('DEFINE_NAMESPACE define_namespace_node_eof')
     leaf = url()
     string_node = @buffers.delete(:string)
     unless string_node.nil?
@@ -673,7 +673,7 @@ begin
 	when 14 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -695,7 +695,7 @@ begin
 	when 17 then
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE add_string_value"
+    trace('DEFINE_NAMESPACE add_string_value')
     string_node = @buffers.delete(:string)
     leaf = domain(url(string_node))
     leaf.complete = string_node.complete
@@ -703,7 +703,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_end"
+    trace('DEFINE_NAMESPACE define_namespace_end')
     namespace_definition_node = namespace_definition()
     domain = @buffers.delete(:namespace_definition_domain)
     unless domain.nil?
@@ -714,7 +714,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE yield_define_namespace"
+    trace('DEFINE_NAMESPACE yield_define_namespace')
     yield @buffers[:namespace_definition]
   		end
 	  end
@@ -1106,14 +1106,14 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 20 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1123,7 +1123,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1132,7 +1132,7 @@ begin
 	when 19 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1141,7 +1141,7 @@ begin
 	when 9 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -1166,13 +1166,13 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE add_url_domain"
+    trace('DEFINE_NAMESPACE add_url_domain')
     @url_domain = true
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1181,20 +1181,20 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE add_name"
+    trace('DEFINE_NAMESPACE add_name')
     name = @buffers.delete(:ident)
     @buffers[:namespace_definition_name] = name
   		end
 	when 11 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1203,19 +1203,19 @@ begin
 	when 10 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1224,13 +1224,13 @@ begin
 	when 16 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1238,25 +1238,25 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 15 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1264,7 +1264,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -1287,13 +1287,13 @@ begin
 	when 21 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 18 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1302,13 +1302,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -1319,7 +1319,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1336,7 +1336,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    trace('DEFINE_NAMESPACE define_namespace_node_eof')
     leaf = url()
     string_node = @buffers.delete(:string)
     unless string_node.nil?
@@ -1366,7 +1366,7 @@ begin
 	when 8 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1382,7 +1382,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    trace('DEFINE_NAMESPACE define_namespace_node_eof')
     leaf = url()
     string_node = @buffers.delete(:string)
     unless string_node.nil?
@@ -1398,7 +1398,7 @@ begin
 	when 14 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1420,7 +1420,7 @@ begin
 	when 17 then
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE add_string_value"
+    trace('DEFINE_NAMESPACE add_string_value')
     string_node = @buffers.delete(:string)
     leaf = domain(url(string_node))
     leaf.complete = string_node.complete
@@ -1428,7 +1428,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_end"
+    trace('DEFINE_NAMESPACE define_namespace_end')
     namespace_definition_node = namespace_definition()
     domain = @buffers.delete(:namespace_definition_domain)
     unless domain.nil?
@@ -1439,7 +1439,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE yield_define_namespace"
+    trace('DEFINE_NAMESPACE yield_define_namespace')
     yield @buffers[:namespace_definition]
   		end
 	  end
@@ -1459,6 +1459,7 @@ end
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -1484,6 +1485,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
@@ -1883,14 +1885,14 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 20 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1900,7 +1902,7 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1909,7 +1911,7 @@ begin
 	when 19 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -1918,7 +1920,7 @@ begin
 	when 9 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
@@ -1943,13 +1945,13 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE add_url_domain"
+    trace('DEFINE_NAMESPACE add_url_domain')
     @url_domain = true
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -1958,20 +1960,20 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE add_name"
+    trace('DEFINE_NAMESPACE add_name')
     name = @buffers.delete(:ident)
     @buffers[:namespace_definition_name] = name
   		end
 	when 11 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -1980,19 +1982,19 @@ begin
 	when 10 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -2001,13 +2003,13 @@ begin
 	when 16 then
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -2015,25 +2017,25 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	when 15 then
 		begin
 
-    $stderr.puts 'STRING start_string'
+    trace('STRING start_string')
     @string_opened = true
     p_start = p
   		end
 		begin
 
-    $stderr.puts 'STRING stop_string'
+    trace('STRING stop_string')
     @string_closed = true
     p_end = p
   		end
 		begin
 
-    $stderr.puts 'STRING string_end'
+    trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: true)
@@ -2041,7 +2043,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING yield_string'
+    trace('STRING yield_string')
     yield @buffers[:string]
   		end
 	end
@@ -2064,13 +2066,13 @@ begin
 	when 21 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 18 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -2079,13 +2081,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -2096,7 +2098,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -2113,7 +2115,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    trace('DEFINE_NAMESPACE define_namespace_node_eof')
     leaf = url()
     string_node = @buffers.delete(:string)
     unless string_node.nil?
@@ -2143,7 +2145,7 @@ begin
 	when 8 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2159,7 +2161,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    trace('DEFINE_NAMESPACE define_namespace_node_eof')
     leaf = url()
     string_node = @buffers.delete(:string)
     unless string_node.nil?
@@ -2175,7 +2177,7 @@ begin
 	when 14 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
+    trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2197,7 +2199,7 @@ begin
 	when 17 then
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE add_string_value"
+    trace('DEFINE_NAMESPACE add_string_value')
     string_node = @buffers.delete(:string)
     leaf = domain(url(string_node))
     leaf.complete = string_node.complete
@@ -2205,7 +2207,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_end"
+    trace('DEFINE_NAMESPACE define_namespace_end')
     namespace_definition_node = namespace_definition()
     domain = @buffers.delete(:namespace_definition_domain)
     unless domain.nil?
@@ -2216,7 +2218,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "DEFINE_NAMESPACE yield_define_namespace"
+    trace('DEFINE_NAMESPACE yield_define_namespace')
     yield @buffers[:namespace_definition]
   		end
 	  end

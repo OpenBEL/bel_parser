@@ -8,13 +8,13 @@
   include 'string.rl';
 
   action add_name {
-    $stderr.puts "DEFINE_NAMESPACE add_name"
+    trace('DEFINE_NAMESPACE add_name')
     name = @buffers.delete(:ident)
     @buffers[:namespace_definition_name] = name
   }
 
   action add_string_value {
-    $stderr.puts "DEFINE_NAMESPACE add_string_value"
+    trace('DEFINE_NAMESPACE add_string_value')
     string_node = @buffers.delete(:string)
     leaf = domain(url(string_node))
     leaf.complete = string_node.complete
@@ -22,12 +22,12 @@
   }
 
   action add_url_domain {
-    $stderr.puts "DEFINE_NAMESPACE add_url_domain"
+    trace('DEFINE_NAMESPACE add_url_domain')
     @url_domain = true
   }
 
   action define_namespace_end {
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_end"
+    trace('DEFINE_NAMESPACE define_namespace_end')
     namespace_definition_node = namespace_definition()
     domain = @buffers.delete(:namespace_definition_domain)
     unless domain.nil?
@@ -38,12 +38,12 @@
   }
 
   action yield_define_namespace {
-    $stderr.puts "DEFINE_NAMESPACE yield_define_namespace"
+    trace('DEFINE_NAMESPACE yield_define_namespace')
     yield @buffers[:namespace_definition]
   }
 
   action define_namespace_node_eof {
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    trace('DEFINE_NAMESPACE define_namespace_node_eof')
     leaf = url()
     string_node = @buffers.delete(:string)
     unless string_node.nil?
@@ -89,6 +89,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -114,6 +115,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
