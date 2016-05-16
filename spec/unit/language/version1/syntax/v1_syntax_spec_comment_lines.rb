@@ -10,6 +10,8 @@ parsers = BELParser::Parsers
 describe 'when parsing comment lines' do
   subject(:parser) { parsers::Common::CommentLine }
 
+  include ::AST::Sexp
+
   it 'is incomplete for \'\'' do
     output = parse_ast(parser, '')
     expect(output).to be_a(ast::CommentLine)

@@ -136,6 +136,7 @@ self.bel_en_main = 2;
             data        = @content.unpack('C*')
             p           = 0
             pe          = data.length
+            eof         = data.length
 
       # begin: ragel
             
