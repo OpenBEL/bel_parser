@@ -141,17 +141,18 @@ module BEL::Translator::Plugins
         return bel unless annotation_references
 
         annotation_references.reduce(bel) { |bel, ref|
-          keyword, type, domain = ref.values_at(:keyword, :type, :domain)
-          bel << "DEFINE ANNOTATION #{keyword} AS "
+          bel << "DEFINE ANNOTATION #{ref.keyword} AS "
 
-          case type.to_sym
+          case ref.type.to_sym
+          when :url
+            bel << %Q{URL "#{ref.domain}"\n}
           when :uri
-            bel << %Q{URL "#{domain}"\n}
+            bel << %Q{URI "#{ref.domain}"\n}
           when :pattern
-            regex = domain.respond_to?(:source) ? domain.source : domain
+            regex = ref.domain.respond_to?(:source) ? ref.domain.source : ref.domain
             bel << %Q{PATTERN "#{regex}"\n}
           when :list
-            bel << %Q|LIST {#{domain.inspect[1...-1]}}\n|
+            bel << %Q|LIST {#{ref.domain.inspect[1...-1]}}\n|
           end
           bel
         }
@@ -168,8 +169,7 @@ module BEL::Translator::Plugins
         return bel unless namespace_references
 
         namespace_references.reduce(bel) { |bel, ref|
-          keyword, url = ref.values_at(:keyword, :uri)
-          bel << %Q{DEFINE NAMESPACE #{keyword} AS URL "#{url}"\n}
+          bel << %Q{DEFINE NAMESPACE #{ref.keyword} AS URL "#{ref.uri}"\n}
           bel
         }
         bel << "\n"
