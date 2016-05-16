@@ -127,7 +127,7 @@ module BELParser
 
       def domain_value(type, domain)
         case type
-        when :uri
+        when :url, :uri
           domain.identifier
         when :list
           domain

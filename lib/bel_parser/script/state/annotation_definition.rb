@@ -53,7 +53,7 @@ module BELParser
           url     = unquote(url_node.string.string_literal)
           dataset = script_context[:resource_reader].retrieve_resource(url)
           script_context[:annotation_definitions] ||= Concurrent::Hash.new
-          script_context[:annotation_definitions][prefix] = [:uri, dataset]
+          script_context[:annotation_definitions][prefix] = [:url, dataset]
         end
         private_class_method :handle_url
       end

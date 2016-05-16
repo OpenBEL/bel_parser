@@ -6,36 +6,33 @@ module BELParser
         include Enumerable
 
         attr_reader :keyword
-        attr_reader :uri
-        attr_reader :url
+        attr_reader :type
+        attr_reader :domain
 
-        def initialize(keyword, uri = nil, url = nil, options = {})
+        def initialize(keyword, type, domain, options = {})
           raise(ArgumentError, 'keyword is nil') unless keyword
+          raise(ArgumentError, 'type is nil') unless type
+          raise(ArgumentError, 'domain is nil') unless domain
+
           @keyword = keyword
-          @uri     = uri
-          @url     = url
+          @type    = type.to_sym
+          @domain  = domain
 
           # configure reader for URIs (RDF).
-          @uri_reader =
-            options.fetch(:uri_reader) {
-              BELParser::Resource.default_uri_reader
-            }
+          @uri_reader = options.fetch(:uri_reader, nil)
           BELParser::Resource::Reader.assert_reader(@uri_reader, 'uri_reader')
 
           # configure reader for URLs (Resource files).
-          @url_reader =
-            options.fetch(:url_reader) {
-              BELParser::Resource.default_url_reader
-            }
+          @url_reader = options.fetch(:url_reader, nil)
           BELParser::Resource::Reader.assert_reader(@url_reader, 'url_reader')
         end
 
         def uri?
-          !@uri.nil?
+          @type == :uri
         end
 
         def url?
-          !@url.nil?
+          @type == :url
         end
 
         def [](value)
