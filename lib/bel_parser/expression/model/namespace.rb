@@ -13,6 +13,8 @@ module BELParser
         attr_accessor :keyword
         attr_accessor :uri
         attr_accessor :url
+        attr_reader   :uri_reader
+        attr_reader   :url_reader
 
         def initialize(keyword, uri = nil, url = nil, options = {})
           raise(ArgumentError, 'keyword is nil') unless keyword
@@ -27,6 +29,14 @@ module BELParser
           # configure reader for URLs (Resource files).
           @url_reader = options.fetch(:url_reader, nil)
           BELParser::Resource::Reader.assert_reader(@url_reader, 'url_reader')
+        end
+
+        def initialize_copy(original)
+          @keyword    = original.keyword
+          @uri        = original.uri
+          @uri_reader = original.uri_reader
+          @url        = original.url
+          @url_reader = original.url_reader
         end
 
         def uri?
@@ -74,6 +84,11 @@ module BELParser
           @keyword == other.keyword && @uri == other.uri && @url == other.url
         end
         alias :eql? :'=='
+
+        def domain_equal?(other)
+          return false if other.nil?
+          @uri == other.uri && @url == other.url
+        end
 
         def to_s
           @keyword.to_s

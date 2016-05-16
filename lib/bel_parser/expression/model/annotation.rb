@@ -5,9 +5,11 @@ module BELParser
       class Annotation
         include Enumerable
 
-        attr_reader :keyword
-        attr_reader :type
-        attr_reader :domain
+        attr_accessor :keyword
+        attr_accessor :type
+        attr_accessor :domain
+        attr_reader :uri_reader
+        attr_reader :url_reader
 
         def initialize(keyword, type, domain, options = {})
           raise(ArgumentError, 'keyword is nil') unless keyword
@@ -18,13 +20,26 @@ module BELParser
           @type    = type.to_sym
           @domain  = domain
 
-          # configure reader for URIs (RDF).
-          @uri_reader = options.fetch(:uri_reader, nil)
-          BELParser::Resource::Reader.assert_reader(@uri_reader, 'uri_reader')
+          uri_reader = options.fetch(:uri_reader, nil)
+          url_reader = options.fetch(:url_reader, nil)
+        end
 
-          # configure reader for URLs (Resource files).
-          @url_reader = options.fetch(:url_reader, nil)
+        def initialize_copy(original)
+          @keyword    = original.keyword
+          @type       = original.type
+          @domain     = original.domain
+          @uri_reader = original.uri_reader
+          @url_reader = original.url_reader
+        end
+
+        def uri_reader=(uri_reader)
+          BELParser::Resource::Reader.assert_reader(@uri_reader, 'uri_reader')
+          @uri_reader = uri_reader
+        end
+
+        def url_reader=(url_reader)
           BELParser::Resource::Reader.assert_reader(@url_reader, 'url_reader')
+          @url_reader = url_reader
         end
 
         def uri?
@@ -37,9 +52,9 @@ module BELParser
 
         def [](value)
           if uri?
-            @uri_reader.retrieve_value_from_resource(@uri, value)
+            @uri_reader.retrieve_value_from_resource(@domain, value)
           elsif url?
-            @url_reader.retrieve_value_from_resource(@url, value)
+            @url_reader.retrieve_value_from_resource(@domain, value)
           else
             nil
           end
@@ -49,9 +64,9 @@ module BELParser
           if block_given?
             values =
               if uri?
-                @uri_reader.retrieve_values_from_resource(@uri)
+                @uri_reader.retrieve_values_from_resource(@domain)
               elsif url?
-                @url_reader.retrieve_values_from_resource(@url)
+                @url_reader.retrieve_values_from_resource(@domain)
               else
                 []
               end
@@ -64,14 +79,21 @@ module BELParser
         end
 
         def hash
-          [@keyword, @uri, @url].hash
+          [@keyword, @type, @domain].hash
         end
 
         def ==(other)
           return false if other.nil?
-          @keyword == other.keyword && @uri == other.uri && @url == other.url
+          @keyword == other.keyword &&
+            @type == other.type &&
+            @domain == other.domain
         end
         alias :eql? :'=='
+
+        def domain_equal?(other)
+          return false if other.nil?
+          @type == other.type && @domain == other.domain
+        end
 
         def to_s
           @keyword.to_s
