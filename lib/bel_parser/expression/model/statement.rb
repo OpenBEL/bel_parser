@@ -1,4 +1,5 @@
 require 'bel_parser/quoting'
+require 'bel_parser/language/relationship'
 
 module BELParser
   module Expression
@@ -31,14 +32,14 @@ module BELParser
           unless relationship.nil? || relationship.is_a?(BELParser::Language::Relationship)
             raise(
               ArgumentError,
-              "relationship: expected nil or Relationship, actual #{@relationship.class}")
+              "relationship: expected nil or Relationship, actual #{relationship.class}")
           end
           @relationship = relationship
 
           unless object.nil? || [Term, Statement].any?(&object.method(:is_a?))
             raise(
               ArgumentError,
-              "object: expected nil, Term, or Statement, actual #{@object.class}")
+              "object: expected nil, Term, or Statement, actual #{object.class}")
           end
           @object       = object
           @comment      = comment
