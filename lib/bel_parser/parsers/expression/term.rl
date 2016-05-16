@@ -6,109 +6,116 @@
   include 'parameter.rl';
 
   action start_function {
-    @incomplete[:function] = []
+    $stderr.puts 'TERM start_function'
+    @buffers[:function] = []
   }
 
   action append_function {
-    @incomplete[:function] << fc
+    $stderr.puts 'TERM append_function'
+    @buffers[:function] << fc
   }
 
   action finish_function {
-    fx = @incomplete.delete(:function)
-    @buffers[:function] = identifier(utf8_string(fx))
+    $stderr.puts 'TERM finish_function'
+    @buffers[:function] = identifier(utf8_string(@buffers[:function]))
   }
 
   action term_init {
-    t = term(complete: false)
-    @buffers[:term_stack] = [t]
+    $stderr.puts 'TERM term_init'
+    @buffers[:term_stack] = [ term() ]
   }
 
   action inner_term_init {
-    t = term(complete: false)
-    @buffers[:term_stack] << t
+    $stderr.puts 'TERM inner_term_init'
+    @buffers[:term_stack] << term()
   }
 
   action term_fx {
-    fx                        = @buffers[:function]
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
+    $stderr.puts 'TERM term_fx'
+    fx = @buffers[:function]
+    fx_node = function(fx)
+    new_term = @buffers[:term_stack][-1] << fx_node
+    @buffers[:term_stack][-1] = new_term
   }
 
   action term_argument {
-    # add a child parameter argument to the last term (creates a new term)
-    t = @buffers[:term_stack][-1] << argument(@buffers[:parameter])
-    t.complete = true
-    @buffers[:term_stack][-1] = t
-    @buffers[:parameter]      = nil
+    $stderr.puts 'TERM term_argument'
+    arg_node = argument(@buffers[:parameter])
+    new_term = @buffers[:term_stack][-1] << arg_node
+    @buffers[:term_stack][-1] = new_term
+    @buffers[:parameter] = nil
   }
 
   action fxbt {
-    fpc -= @incomplete[:function].length + 1
+    $stderr.puts 'TERM fxbt'
+    fpc -= @buffers[:function].length + 1
     fcall inner_term;
   }
 
   action fxret {
+    $stderr.puts 'TERM fxret'
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << argument(inner_term)
+    arg_node = argument(inner_term)
+    new_term = @buffers[:term_stack][-1] << arg_node
+    @buffers[:term_stack][-1] = new_term
     fret;
+  }
+
+  action outer_term_end {
+    $stderr.puts 'TERM outer_term_end'
+    term_stack = @buffers[:term_stack]
+    term_stack.each { |term| term.complete = true }
+  }
+
+  action eof_parameter_argument {
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
   }
 
   action yield_term_ast  {
     yield @buffers[:term_stack][-1]
   }
 
-  action error_term {
-    # $ all states; error_term
-
-    unless @incomplete.empty?
-      fx = @incomplete.delete(:function)
-      fx = identifier(utf8_string(fx))
-      # add a child function to the last term (creates a new term)
-      t = @buffers[:term_stack][-1] << function(fx)
-      @buffers[:term_stack][-1] = t
-    end
-
-    yield @buffers[:term_stack][-1]
-  }
-
-  action eof_term {
-  }
-
   inner_term :=
     an_ident >inner_term_init >start_function $append_function %finish_function
     SP*
-    '(' @term_fx
+    '(' @term_fx $eof{ $stderr.puts "EOF!" }
       (
         a_parameter %term_argument |
         an_ident >start_function $append_function '(' @fxbt
       )
       (
-        SP* ',' SP*
+        COMMA_DELIM
         (
           a_parameter %term_argument |
           an_ident >start_function $append_function '(' @fxbt
         )
       )*
-    ')' @fxret $err(error_term) $eof(eof_term);
+    ')' @fxret;
 
   outer_term =
     an_ident >term_init >start_function $append_function %finish_function
     SP*
     '(' @term_fx
       (
-        a_parameter %term_argument |
+        a_parameter %term_argument $eof(eof_parameter_argument) |
         an_ident >start_function $append_function '(' @fxbt
       )
       (
-        SP* ',' SP*
+        COMMA_DELIM
         (
-          a_parameter %term_argument |
+          a_parameter %term_argument $eof(eof_parameter_argument) |
           an_ident >start_function $append_function '(' @fxbt
         )
       )*
-    ')' $err(error_term) $eof(eof_term);
+    ')';
 
   term :=
-    outer_term %yield_term_ast NL $err(error_term) $eof(eof_term);
+    outer_term
+    %outer_term_end
+    %yield_term_ast
+    NL?;
 }%%
 =end
 # end: ragel
@@ -150,13 +157,12 @@ module BELParser
           end
 
           def each
-            @buffers    = {}
-            @incomplete = {}
-            stack       = []
-            data        = @content.unpack('C*')
-            p           = 0
-            pe          = data.length
-            eof         = data.length
+            @buffers = {}
+            stack    = []
+            data     = @content.unpack('C*')
+            p        = 0
+            pe       = data.length
+            eof      = data.length
 
       # begin: ragel
             %% write init;

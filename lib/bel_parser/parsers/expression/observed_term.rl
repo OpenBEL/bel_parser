@@ -8,19 +8,22 @@
 
   action yield_observed_term {
     @buffers[:comment] ||= comment(nil)
-    yield observed_term(
-            statement(
-              subject(@buffers[:term_stack][-1]),
-              relationship(nil),
-              object(nil),
-              @buffers[:comment]))
+    comment = @buffers[:comment]
+    term = @buffers[:term_stack][-1]
+    subject_term = subject(term)
+    rel = relationship(nil)
+    obj = object(nil)
+    stmt = observed_term(statement(subject_term, rel, obj, comment))
+    stmt.complete = true
+    $stderr.puts stmt.inspect
+    yield stmt
   }
 
   observed_term :=
     outer_term
     SP*
     a_comment? %yield_observed_term
-    NL;
+    NL?;
 }%%
 =end
 # end: ragel

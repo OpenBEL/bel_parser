@@ -81,19 +81,40 @@
     string_value
     ;
 
-  a_parameter =
-    an_ident
+  parameter_prefix_value =
+    prefix
     %add_prefix
     SP*
     value
-    %parameter_end
     ;
 
-  parameter_node :=
+  parameter_prefix_maybe_value =
     prefix
     %add_prefix
     SP*
     value?
+    ;
+
+  parameter_value =
+    SP*
+    value
+    ;
+
+  a_parameter =
+    (
+      parameter_prefix_value |
+      parameter_value |
+      parameter_prefix_maybe_value
+    )
+    %parameter_end
+    ;
+
+  parameter_node :=
+    (
+      parameter_prefix_value |
+      parameter_value |
+      parameter_prefix_maybe_value
+    )
     %parameter_end
     %yield_parameter
     ;
@@ -135,6 +156,7 @@ module BELParser
 
           def initialize(content)
             @content = content
+            $stderr.puts "content: " + @content.to_s
       # begin: ragel
             %% write data;
       # end: ragel

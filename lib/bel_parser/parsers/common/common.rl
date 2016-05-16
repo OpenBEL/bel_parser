@@ -15,6 +15,9 @@ machine bel;
   NOT_DQESC	  = [^"\\];
   COMMA_DELIM = SP* ',' SP*;
   SS          = '//';
+  ID_CHARS	  = [a-zA-Z0-9_]+;
+  LP		  = '(';
+  RP          = ')';
 
   KW_SET = /SET/i;
   KW_UNSET = /UNSET/i;
@@ -59,6 +62,10 @@ machine bel;
   RELATIONSHIP =
     alpha+
     ;
+
+   FUNCTION =
+   	alpha+
+   	;
 }%%
 =end
 # vim: ts=2 sw=2 ft=ragel:

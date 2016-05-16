@@ -6,44 +6,62 @@
   include 'simple_statement.rl';
 
   action statement_init {
+    $stderr.puts 'NESTED_STATEMENT statement_init'
     @buffers[:statement_stack] = [ statement() ]
   }
 
   action inner_statement_init {
+    $stderr.puts 'NESTED_STATEMENT inner_statement_init'
     @buffers[:statement_stack] << statement()
   }
 
   action ast_subject {
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:subject]
+    $stderr.puts 'NESTED_STATEMENT ast_subject'
+    subject_node = @buffers[:subject]
+    stmt = @buffers[:statement_stack][-1] << subject_node
+    @buffers[:statement_stack][-1] = stmt
   }
 
   action ast_relationship {
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:relationship]
+    $stderr.puts 'NESTED_STATEMENT ast_relationship'
+    rel_node = @buffers[:relationship]
+    stmt = @buffers[:statement_stack][-1] << rel_node
+    @buffers[:statement_stack][-1] = stmt
   }
 
   action ast_object {
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << @buffers[:object]
+    $stderr.puts 'NESTED_STATEMENT ast_object'
+    object_node = object(@buffers[:object])
+    stmt = @buffers[:statement_stack][-1] << object_node
+    @buffers[:statement_stack][-1] = stmt
   }
 
   action statement_object_statement {
+    $stderr.puts 'NESTED_STATEMENT statement_object_statement'
     @buffers[:object] = @buffers[:statement_stack][-1]
   }
 
   action call_nested_statement {
+    $stderr.puts 'NESTED_STATEMENT call_nested_statement'
     fcall inner_statement;
   }
 
   action fret {
+    $stderr.puts 'NESTED_STATEMENT fret'
     inner_statement = @buffers[:statement_stack].pop
     @buffers[:object] = inner_statement
-    @buffers[:statement_stack][-1] = @buffers[:statement_stack][-1] << object(inner_statement)
+    obj_node = object(inner_statement)
+    stmt = @buffers[:statement_stack][-1] << obj_node
+    @buffers[:statement_stack][-1] = stmt
+    nested_stmt = nested_statement(stmt)
+    nested_stmt.complete = true
+    @buffers[:nested_statement] = nested_stmt
     fret;
   }
 
   action yield_nested_statement {
-    comment   = @buffers[:comment] ||= comment(nil)
-    statement = @buffers[:statement_stack][-1] << comment
-    yield nested_statement(statement)
+    $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
+    yield @buffers[:nested_statement]
   }
 
   inner_statement :=
@@ -69,8 +87,9 @@
   nested_statement :=
     outer_statement
     SP*
-    a_comment? %yield_nested_statement
-    NL;
+    a_comment?
+    %yield_nested_statement
+    NL?;
 }%%
 =end
 # end: ragel

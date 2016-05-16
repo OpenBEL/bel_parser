@@ -8,25 +8,32 @@
   include 'comment.rl';
 
   action statement_subject {
+    $stderr.puts 'SIMPLE_STATEMENT statement_subject'
     @buffers[:subject]    = subject(
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   }
 
   action statement_object {
-    @buffers[:object]     = object(
-                              @buffers[:term_stack][-1])
+    $stderr.puts 'SIMPLE_STATEMENT statement_object'
+    term = @buffers[:term_stack][-1]
+    @buffers[:object] = object(term)
     @buffers[:term_stack] = nil
+    @buffers[:comment] ||= comment(nil)
+    sub = @buffers[:subject]
+    rel = @buffers[:relationship]
+    obj = @buffers[:object]
+    comment = @buffers[:comment]
+    stmt = statement(sub, rel, obj, comment)
+    simple_stmt = simple_statement(stmt)
+    simple_stmt.complete = true
+    @buffers[:simple_statement] = simple_stmt
   }
 
   action yield_simple_statement {
-    @buffers[:comment] ||= comment(nil)
-    yield simple_statement(
-            statement(
-              @buffers[:subject],
-              @buffers[:relationship],
-              @buffers[:object],
-              @buffers[:comment]))
+    $stderr.puts 'YIELD_SIMPLE_STATEMENT'
+    simple_stmt = @buffers.delete(:simple_statement)
+    yield simple_stmt
   }
 
   STATEMENT_SIMPLE =
@@ -34,13 +41,16 @@
     SP+
     RELATIONSHIP
     SP+
-    outer_term %statement_object;
+    outer_term
+    %statement_object;
 
   simple_statement :=
     STATEMENT_SIMPLE
     SP*
-    a_comment? %yield_simple_statement
-    NL;
+    a_comment?
+    %statement_object
+    %yield_simple_statement
+    NL?;
 }%%
 =end
 # end: ragel

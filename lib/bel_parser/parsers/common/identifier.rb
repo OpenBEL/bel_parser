@@ -146,8 +146,8 @@ self.bel_en_ident_node = 1;
             @incomplete = {}
             data        = @content.unpack('C*')
             p           = 0
-            p_start     = 0
-            p_end       = 0
+            @id_start    = 0
+            @id_end      = 0
             pe          = data.length
             eof         = data.length
             @identifier_started = false
@@ -202,14 +202,14 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    p_start = p;
+    @id_start = p;
   		end
 	when 3 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
+    @id_end = p
+    chars = data[@id_start...@id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -241,8 +241,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    p_end = p
-    chars = data[p_start...p_end]
+    @id_end = p
+    chars = data[@id_start...@id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
