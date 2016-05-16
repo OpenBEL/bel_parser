@@ -87,6 +87,14 @@ module BELParser
         value.to_s
       end
 
+      def to_h(hash = {})
+        hash.merge!({
+          'short'       => short,
+          'long'        => long,
+          'description' => description
+        })
+      end
+
       private
 
       def _form_value(form = :short)
