@@ -9,9 +9,9 @@ end
 self._bel_trans_keys = [
 	0, 0, 85, 117, 78, 110, 
 	83, 115, 69, 101, 84, 
-	116, 9, 32, 9, 122, 
-	10, 122, 48, 122, 10, 122, 
-	0, 0, 0, 0, 0
+	116, 48, 122, 9, 122, 
+	48, 122, 10, 122, 0, 0, 
+	0
 ]
 
 class << self
@@ -19,8 +19,8 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 33, 33, 33, 33, 33, 24, 114, 
-	113, 75, 113, 0, 0
+	0, 33, 33, 33, 33, 33, 75, 114, 
+	75, 113, 0
 ]
 
 class << self
@@ -28,8 +28,8 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 34, 68, 102, 136, 170, 195, 
-	310, 424, 500, 614, 615
+	0, 0, 34, 68, 102, 136, 170, 246, 
+	361, 437, 551
 ]
 
 class << self
@@ -58,62 +58,54 @@ self._bel_indicies = [
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	5, 1, 6, 1, 1, 1, 1, 1, 
+	5, 1, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 1, 1, 1, 1, 
+	1, 1, 1, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 1, 1, 1, 
+	1, 6, 1, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 1, 5, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 6, 1, 8, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 8, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 7, 7, 7, 7, 
-	7, 7, 7, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 7, 7, 7, 
-	7, 9, 7, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 7, 10, 7, 
+	1, 1, 1, 1, 1, 5, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 1, 
+	1, 1, 1, 1, 1, 1, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
+	1, 1, 1, 1, 7, 1, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 7, 7, 
-	7, 7, 7, 7, 7, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 7, 
-	7, 7, 7, 11, 7, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 7, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 12, 12, 12, 12, 12, 12, 
-	12, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 12, 12, 12, 12, 13, 
-	12, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 12, 14, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 12, 12, 12, 12, 
-	12, 12, 12, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 12, 12, 12, 
-	12, 15, 12, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 12, 1, 1, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	1, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 1, 1, 1, 1, 1, 
+	1, 1, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 1, 1, 1, 1, 
+	8, 1, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 1, 9, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 1, 1, 1, 
+	1, 1, 1, 1, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 1, 1, 
+	1, 1, 10, 1, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 1, 1, 
 	0
 ]
 
@@ -122,8 +114,8 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 4, 5, 6, 7, 0, 
-	7, 8, 11, 8, 0, 10, 12, 10
+	2, 0, 3, 4, 5, 7, 9, 8, 
+	8, 10, 9
 ]
 
 class << self
@@ -131,8 +123,8 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 0, 0, 1, 2, 
-	0, 3, 4, 5, 6, 3, 7, 5
+	0, 0, 0, 0, 0, 0, 1, 1, 
+	0, 5, 0
 ]
 
 class << self
@@ -141,7 +133,7 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 2, 
-	2, 6, 6, 0, 0
+	3, 4, 6
 ]
 
 class << self
@@ -151,20 +143,20 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 11;
+self.bel_first_final = 7;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_ident
+	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident = 9;
+self.bel_en_ident_node = 6;
 class << self
-	attr_accessor :bel_en_unset
+	attr_accessor :bel_en_unset_ast_node
 end
-self.bel_en_unset = 1;
+self.bel_en_unset_ast_node = 1;
 
 
 begin
@@ -209,67 +201,22 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 5 then
-		begin
-
-    (@buffers[:ident] ||= []) << data[p].ord
-  		end
-	when 2 then
-		begin
-
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
-  		end
 	when 1 then
 		begin
 
-    @buffers[:unset] = unset()
+    $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
+    @id_start = p;
   		end
-	when 3 then
+	when 5 then
 		begin
 
-    @buffers[:ident] = []
-  		end
-		begin
-
-    (@buffers[:ident] ||= []) << data[p].ord
-  		end
-	when 7 then
-		begin
-
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-	when 6 then
-		begin
-
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
-  		end
-		begin
-
-    @buffers[:ident] ||= []
-    yield @buffers[:ident]
-  		end
-	when 4 then
-		begin
-
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
-  		end
-		begin
-
-    @buffers[:unset] = @buffers[:unset] << name(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:unset]
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
   		end
 	end
 	end
@@ -288,26 +235,103 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 2 then
-		begin
-
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
-  		end
 	when 6 then
 		begin
 
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    $stderr.puts 'IDENTIFIER yield_identifier'
+    yield @buffers[:ident]
+  		end
+	when 4 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER yield_identifier'
+    yield @buffers[:ident]
+  		end
+	when 2 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
     end
   		end
 		begin
 
-    @buffers[:ident] ||= []
-    yield @buffers[:ident]
+    $stderr.puts "UNSET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:unset_name] = key
+  		end
+		begin
+
+    $stderr.puts "UNSET unset_end"
+    name = @buffers.delete(:unset_name)
+    unless name.nil?
+      unset_node = unset(name, complete: name.complete)
+    else
+      unset_node = unset(complete: false)
+    end
+    @buffers[:unset] = unset_node
+  		end
+		begin
+
+    $stderr.puts "UNSET yield_unset"
+    yield @buffers[:unset]
+  		end
+	when 3 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "UNSET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:unset_name] = key
+  		end
+		begin
+
+    $stderr.puts "UNSET unset_end"
+    name = @buffers.delete(:unset_name)
+    unless name.nil?
+      unset_node = unset(name, complete: name.complete)
+    else
+      unset_node = unset(complete: false)
+    end
+    @buffers[:unset] = unset_node
+  		end
+		begin
+
+    $stderr.puts "UNSET yield_unset"
+    yield @buffers[:unset]
   		end
 	  end
 	end
@@ -354,7 +378,7 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             
 class << self
 	attr_accessor :_bel_trans_keys
@@ -363,9 +387,9 @@ end
 self._bel_trans_keys = [
 	0, 0, 85, 117, 78, 110, 
 	83, 115, 69, 101, 84, 
-	116, 9, 32, 9, 122, 
-	10, 122, 48, 122, 10, 122, 
-	0, 0, 0, 0, 0
+	116, 48, 122, 9, 122, 
+	48, 122, 10, 122, 0, 0, 
+	0
 ]
 
 class << self
@@ -373,8 +397,8 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 33, 33, 33, 33, 33, 24, 114, 
-	113, 75, 113, 0, 0
+	0, 33, 33, 33, 33, 33, 75, 114, 
+	75, 113, 0
 ]
 
 class << self
@@ -382,8 +406,8 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 34, 68, 102, 136, 170, 195, 
-	310, 424, 500, 614, 615
+	0, 0, 34, 68, 102, 136, 170, 246, 
+	361, 437, 551
 ]
 
 class << self
@@ -412,62 +436,54 @@ self._bel_indicies = [
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	5, 1, 6, 1, 1, 1, 1, 1, 
+	5, 1, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 1, 1, 1, 1, 
+	1, 1, 1, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 1, 1, 1, 
+	1, 6, 1, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 1, 5, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 6, 1, 8, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 8, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 7, 7, 7, 7, 
-	7, 7, 7, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 7, 7, 7, 
-	7, 9, 7, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 9, 9, 9, 
-	9, 9, 9, 9, 9, 7, 10, 7, 
+	1, 1, 1, 1, 1, 5, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 1, 
+	1, 1, 1, 1, 1, 1, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
+	1, 1, 1, 1, 7, 1, 7, 7, 
 	7, 7, 7, 7, 7, 7, 7, 7, 
-	7, 7, 7, 7, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 7, 7, 
-	7, 7, 7, 7, 7, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 7, 
-	7, 7, 7, 11, 7, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 7, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 12, 12, 12, 12, 12, 12, 
-	12, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 12, 12, 12, 12, 13, 
-	12, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 12, 14, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 12, 12, 12, 12, 12, 12, 
-	12, 12, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 12, 12, 12, 12, 
-	12, 12, 12, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 12, 12, 12, 
-	12, 15, 12, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 15, 15, 15, 
-	15, 15, 15, 15, 15, 12, 1, 1, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	7, 7, 7, 7, 7, 7, 7, 7, 
+	1, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 1, 1, 1, 1, 1, 
+	1, 1, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 1, 1, 1, 1, 
+	8, 1, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 1, 9, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 1, 1, 1, 
+	1, 1, 1, 1, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 1, 1, 
+	1, 1, 10, 1, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 10, 10, 
+	10, 10, 10, 10, 10, 10, 1, 1, 
 	0
 ]
 
@@ -476,8 +492,8 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 4, 5, 6, 7, 0, 
-	7, 8, 11, 8, 0, 10, 12, 10
+	2, 0, 3, 4, 5, 7, 9, 8, 
+	8, 10, 9
 ]
 
 class << self
@@ -485,8 +501,8 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 0, 0, 1, 2, 
-	0, 3, 4, 5, 6, 3, 7, 5
+	0, 0, 0, 0, 0, 0, 1, 1, 
+	0, 5, 0
 ]
 
 class << self
@@ -495,7 +511,7 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 2, 
-	2, 6, 6, 0, 0
+	3, 4, 6
 ]
 
 class << self
@@ -505,33 +521,34 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 11;
+self.bel_first_final = 7;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_ident
+	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident = 9;
+self.bel_en_ident_node = 6;
 class << self
-	attr_accessor :bel_en_unset
+	attr_accessor :bel_en_unset_ast_node
 end
-self.bel_en_unset = 1;
+self.bel_en_unset_ast_node = 1;
 
 
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             
 begin
 	p ||= 0
@@ -576,67 +593,22 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 5 then
-		begin
-
-    (@buffers[:ident] ||= []) << data[p].ord
-  		end
-	when 2 then
-		begin
-
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
-  		end
 	when 1 then
 		begin
 
-    @buffers[:unset] = unset()
+    $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
+    @id_start = p;
   		end
-	when 3 then
+	when 5 then
 		begin
 
-    @buffers[:ident] = []
-  		end
-		begin
-
-    (@buffers[:ident] ||= []) << data[p].ord
-  		end
-	when 7 then
-		begin
-
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-	when 6 then
-		begin
-
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
-  		end
-		begin
-
-    @buffers[:ident] ||= []
-    yield @buffers[:ident]
-  		end
-	when 4 then
-		begin
-
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
-  		end
-		begin
-
-    @buffers[:unset] = @buffers[:unset] << name(@buffers[:ident])
-  		end
-		begin
-
-    yield @buffers[:unset]
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
   		end
 	end
 	end
@@ -655,26 +627,103 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 2 then
-		begin
-
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
-  		end
 	when 6 then
 		begin
 
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+    $stderr.puts 'IDENTIFIER yield_identifier'
+    yield @buffers[:ident]
+  		end
+	when 4 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER yield_identifier'
+    yield @buffers[:ident]
+  		end
+	when 2 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
     end
   		end
 		begin
 
-    @buffers[:ident] ||= []
-    yield @buffers[:ident]
+    $stderr.puts "UNSET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:unset_name] = key
+  		end
+		begin
+
+    $stderr.puts "UNSET unset_end"
+    name = @buffers.delete(:unset_name)
+    unless name.nil?
+      unset_node = unset(name, complete: name.complete)
+    else
+      unset_node = unset(complete: false)
+    end
+    @buffers[:unset] = unset_node
+  		end
+		begin
+
+    $stderr.puts "UNSET yield_unset"
+    yield @buffers[:unset]
+  		end
+	when 3 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "UNSET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:unset_name] = key
+  		end
+		begin
+
+    $stderr.puts "UNSET unset_end"
+    name = @buffers.delete(:unset_name)
+    unless name.nil?
+      unset_node = unset(name, complete: name.complete)
+    else
+      unset_node = unset(complete: false)
+    end
+    @buffers[:unset] = unset_node
+  		end
+		begin
+
+    $stderr.puts "UNSET yield_unset"
+    yield @buffers[:unset]
   		end
 	  end
 	end
@@ -686,7 +735,7 @@ begin
 end
 	end
 
-      # end: ragel        
+      # end: ragel
           end
         end
       end

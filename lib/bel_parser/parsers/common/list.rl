@@ -3,79 +3,134 @@
 %%{
   machine bel;
 
+  include 'common.rl';
   include 'identifier.rl';
   include 'string.rl';
 
-  action clear {
-    @buffers.delete(:string)
-    @buffers.delete(:ident)
-  }
-
-  action string {
-    @buffers[:list_arg] = list_item(@buffers[:string])
-  }
-
-  action ident {
-    @buffers[:list_arg] = list_item(@buffers[:ident])
-  }
-
   action start_list {
-    @buffers[:list] = list()
+    $stderr.puts "LIST start_list"
+    @list_opened = true
+    @incomplete[:list] = list()
   }
 
-  action append_list {
-    # Append list argument if its value is not empty.
-    if @buffers[:list_arg]
-      list_arg_value = @buffers[:list_arg].children[0].children[0]
-      if list_arg_value != ''
-        @buffers[:list] <<= @buffers[:list_arg]
-      end
+  action stop_list {
+    $stderr.puts "LIST stop_list"
+    @list_closed = true
+  }
+
+  action add_string {
+    $stderr.puts "LIST add_string"
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    @incomplete[:list] <<= item
+  }
+
+  action add_ident {
+    $stderr.puts "LIST add_ident"
+    ident = @buffers.delete(:ident)
+    item = list_item(ident, complete: ident.complete)
+    @incomplete[:list] <<= item
+  }
+
+  action list_end {
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
     end
+    @buffers[:list] = list
   }
 
-  action finish_list {
-    #TODO: Mark @buffers[:list] as complete.
+  action a_list_eof {
+    $stderr.puts "LIST a_list_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    unless string.nil?
+      item = list_item(string, complete: string.complete)
+      list <<= item
+    end
+    ident = @buffers.delete(:ident)
+    unless ident.nil?
+      item = list_item(ident, complete: ident.complete)
+      list <<= item
+    end
+    if @list_opened && @list_closed
+      list.complete = true
+    else
+      list.complete = false
+    end
+    @buffers[:list] = list
   }
 
-  action error_list_string {
-    #TODO: Mark @buffers[:list_arg] string as error.
-    @buffers[:list_arg] = list_item(@buffers[:string])
+  action list_node_eof {
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
   }
 
-  action error_list_ident {
-    #TODO: Mark @buffers[:list_arg] identifier as error.
-    @buffers[:list_arg] = list_item(@buffers[:ident])
-  }
-
-  action yield_complete_list {
+  action yield_list {
+    $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   }
 
-  action yield_error_list {
-    @buffers[:list] ||= list()
-    yield @buffers[:list]
-  }
+  START_LIST = '{' SP* >start_list;
+  END_LIST = '}' %stop_list;
 
-  LIST  =
-    '{' @start_list
-    SP*
-    (
-      STRING %string $err(error_list_string) |
-      IDENT  %ident  $err(error_list_ident)
-    )? $err(append_list) %append_list
-    SP*
-    (
-      ',' @clear
-      SP*
-      (
-        STRING %string $err(error_list_string) |
-        IDENT  %ident  $err(error_list_ident)
-      ) $err(append_list) %append_list
-      SP*
-    )*
-    '}' @finish_list;
+  string_item =
+    a_string
+    %add_string
+    ;
 
-  list := LIST $err(yield_error_list) %yield_complete_list NL;
+  ident_item =
+    an_ident
+    %add_ident
+    ;
+
+  item =
+    string_item |
+    ident_item
+    ;
+
+  list_item_0 =
+    item
+    ;
+
+  list_item_n =
+    COMMA_DELIM
+    item
+    ;
+
+  items =
+    list_item_0
+    list_item_n*
+    SP*
+    ;
+
+  a_list =
+    START_LIST
+    items
+    END_LIST
+    %list_end
+    @eof(a_list_eof)
+    ;
+
+  list_node :=
+    START_LIST
+    items?
+    @eof(list_node_eof)
+    END_LIST?
+    @eof(list_node_eof)
+    NL?
+    %list_end
+    %yield_list
+    ;
 }%%
 =end
 # end: ragel
@@ -111,22 +166,26 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+            $stderr.puts "\n---\ncontent: '" + @content + "'"
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers      = {}
+            @incomplete   = {}
+            @list_opened  = false
+            @list_closed  = false
+            data          = @content.unpack('C*')
+            p             = 0
+            pe            = data.length
+            eof           = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

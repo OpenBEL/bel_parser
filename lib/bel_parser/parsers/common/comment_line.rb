@@ -37,15 +37,16 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             
 class << self
 	attr_accessor :_bel_trans_keys
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 9, 35, 10, 10, 
-	10, 10, 0, 0, 0
+	0, 0, 9, 35, 9, 35, 
+	9, 32, 10, 10, 0, 
+	0, 0
 ]
 
 class << self
@@ -53,7 +54,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 27, 1, 1, 0
+	0, 27, 27, 24, 1, 0
 ]
 
 class << self
@@ -61,7 +62,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 28, 30, 32
+	0, 0, 28, 56, 81, 83
 ]
 
 class << self
@@ -72,8 +73,14 @@ self._bel_indicies = [
 	0, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 0, 
-	1, 1, 2, 1, 4, 3, 6, 5, 
-	1, 0
+	1, 1, 2, 1, 0, 3, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 0, 1, 1, 2, 1, 
+	5, 6, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 5, 
+	4, 3, 7, 1, 0
 ]
 
 class << self
@@ -81,7 +88,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	1, 0, 2, 3, 4, 3, 4
+	1, 0, 3, 5, 4, 3, 5, 4
 ]
 
 class << self
@@ -89,38 +96,48 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 1, 2, 3, 4
+	0, 0, 0, 1, 3, 3, 4, 5
+]
+
+class << self
+	attr_accessor :_bel_eof_actions
+	private :_bel_eof_actions, :_bel_eof_actions=
+end
+self._bel_eof_actions = [
+	0, 0, 0, 2, 0, 0
 ]
 
 class << self
 	attr_accessor :bel_start
 end
-self.bel_start = 1;
+self.bel_start = 2;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 4;
+self.bel_first_final = 2;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_comment_line
+	attr_accessor :bel_en_main
 end
-self.bel_en_comment_line = 1;
+self.bel_en_main = 2;
 
 
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
+            @buffers    = {}
+            @started    = false
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
 
-      # begin: ragel        
+      # begin: ragel
             
 begin
 	p ||= 0
@@ -165,43 +182,39 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 3 then
+	when 5 then
 		begin
 
-    @buffers[:comment_line] << data[p].ord
+    @incomplete[:comment_line] << data[p].ord
   		end
 	when 1 then
 		begin
 
-    @buffers[:comment_line] = []
+    cl = @incomplete.delete(:comment_line) || []
+    completed = @started
+    yield comment_line(utf8_string(cl), complete: completed)
+  		end
+	when 3 then
+		begin
+
+    @incomplete[:comment_line] = []
+    @started = true
   		end
 		begin
 
-    @buffers[:comment_line] << data[p].ord
+    @incomplete[:comment_line] << data[p].ord
   		end
 	when 4 then
 		begin
 
-    @buffers[:comment_line] = comment_line(
-                                utf8_string(@buffers[:comment_line]))
+    @incomplete[:comment_line] = []
+    @started = true
   		end
 		begin
 
-    yield @buffers[:comment_line]
-  		end
-	when 2 then
-		begin
-
-    @buffers[:comment_line] = []
-  		end
-		begin
-
-    @buffers[:comment_line] = comment_line(
-                                utf8_string(@buffers[:comment_line]))
-  		end
-		begin
-
-    yield @buffers[:comment_line]
+    cl = @incomplete.delete(:comment_line) || []
+    completed = @started
+    yield comment_line(utf8_string(cl), complete: completed)
   		end
 	end
 	end
@@ -218,6 +231,17 @@ begin
 	end
 	end
 	if _goto_level <= _test_eof
+	if p == eof
+	  case _bel_eof_actions[cs]
+	when 2 then
+		begin
+
+    @incomplete[:comment_line] = []
+    @started = true
+  		end
+	  end
+	end
+
 	end
 	if _goto_level <= _out
 		break
@@ -225,7 +249,7 @@ begin
 end
 	end
 
-      # end: ragel        
+      # end: ragel
           end
         end
       end

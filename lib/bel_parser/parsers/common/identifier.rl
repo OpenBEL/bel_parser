@@ -5,37 +5,57 @@
 
   include 'common.rl';
 
-  action start_ident {
-    @buffers[:ident] = []
+  action start_identifier {
+    $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
+    @id_start = p;
   }
 
-  action append_ident {
-    (@buffers[:ident] ||= []) << fc
+  action end_identifier {
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
   }
 
-  action finish_ident {
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
-  }
-
-  action yield_complete_ident {
+  action yield_identifier {
+    $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   }
 
-  action error_ident {
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
+  action an_ident_eof {
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
     end
   }
 
-  action yield_error_ident {
-    @buffers[:ident] ||= []
-    yield @buffers[:ident]
-  }
+  ident =
+    ID_CHARS
+    >start_identifier
+    %end_identifier
+    ;
 
-  IDENT = [a-zA-Z0-9_]+ >start_ident $append_ident %finish_ident $err(error_ident);
+  maybe_ident =
+    ident?
+    ;
 
-  ident := IDENT $err(yield_error_ident) %yield_complete_ident NL;
+  an_ident =
+    ident
+    $eof(an_ident_eof)
+    ;
+
+  ident_node :=
+    ident
+    NL?
+    %yield_identifier
+    ;
 }%%
 =end
 # end: ragel
@@ -71,22 +91,26 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data = @content.unpack('C*')
-            p   = 0
-            pe  = data.length
-            eof = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            @id_start    = 0
+            @id_end      = 0
+            pe          = data.length
+            eof         = data.length
+            @identifier_started = false
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

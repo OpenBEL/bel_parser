@@ -14,6 +14,7 @@ module LINE
     BELParser::Parsers::Common::Identifier,
     BELParser::Parsers::Common::String,
     BELParser::Parsers::Common::List,
+    BELParser::Parsers::Common::Function,
     BELParser::Parsers::Expression::Parameter,
     BELParser::Parsers::Expression::Term,
     BELParser::Parsers::Expression::Relationship,

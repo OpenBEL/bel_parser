@@ -5,13 +5,12 @@
 
   include 'common.rl';
 
-  action yield_blank_line {
+  action blank_line_yield {
     yield blank_line
   }
 
-  BLANK  = SP*;
-
-  blank := BLANK %yield_blank_line NL;
+  blank = SP*;
+  bl_ast := blank NL? @blank_line_yield;
 }%%
 =end
 # end: ragel
@@ -47,21 +46,22 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

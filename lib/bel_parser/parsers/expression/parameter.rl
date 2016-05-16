@@ -7,26 +7,120 @@
   include 'identifier.rl';
   include 'string.rl';
 
-  action prefix {
-    @buffers[:parameter] = parameter(prefix(@buffers[:ident]))
+  action add_ident_param_value {
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
   }
 
-  action string {
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:string])
+  action add_string_param_value {
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
   }
 
-  action ident {
-    @buffers[:parameter] ||= parameter(prefix(nil))
-    @buffers[:parameter]   = @buffers[:parameter] << value(@buffers[:ident])
+  action parameter_end {
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
   }
 
-  action yield_parameter_ast {
+  action add_prefix {
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  }
+
+  action yield_parameter {
+    $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   }
 
-  BEL_PARAMETER  = (IDENT ':')? @prefix SP* (STRING %string | IDENT %ident);
-  bel_parameter := BEL_PARAMETER %yield_parameter_ast NL;
+  prefix =
+    an_ident
+    COLON
+    ;
+
+  ident_value =
+    an_ident
+    %add_ident_param_value
+    ;
+
+  string_value =
+    a_string
+    %add_string_param_value
+    ;
+
+  value =
+    ident_value |
+    string_value
+    ;
+
+  parameter_prefix_value =
+    prefix
+    %add_prefix
+    SP*
+    value
+    ;
+
+  parameter_prefix_maybe_value =
+    prefix
+    %add_prefix
+    SP*
+    value?
+    ;
+
+  parameter_value =
+    SP*
+    value
+    ;
+
+  a_parameter =
+    (
+      parameter_prefix_value |
+      parameter_value |
+      parameter_prefix_maybe_value
+    )
+    %parameter_end
+    ;
+
+  parameter_node :=
+    (
+      parameter_prefix_value |
+      parameter_value |
+      parameter_prefix_maybe_value
+    )
+    %parameter_end
+    %yield_parameter
+    ;
+
+  #BEL_PARAMETER  = (an_ident ':')? @prefix SP* (a_string %string | an_ident %ident);
+  #bel_parameter := BEL_PARAMETER %yield_parameter_ast NL;
 }%%
 =end
 # end: ragel
@@ -62,22 +156,26 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+            $stderr.puts "content: " + @content.to_s
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            p_start     = 0
+            p_end       = 0
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

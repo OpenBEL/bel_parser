@@ -8,44 +8,119 @@
   include 'string.rl';
   include 'list.rl';
 
-  SET_KW = [sS][eE][tT];
-
-  action set_keyword {
-    @buffers[:set] = set()
+  action add_name {
+    $stderr.puts "SET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:set_name] = key
   }
 
-  action name {
-    @buffers[:set] = @buffers[:set] << name(@buffers[:ident])
+  action add_ident_value {
+    $stderr.puts "SET add_ident_value"
+    ident = @buffers.delete(:ident)
+    @buffers[:set_value] = ident
   }
 
-  action string_value {
-    @buffers[:set] = @buffers[:set] << value(@buffers[:string])
+  action add_string_value {
+    $stderr.puts "SET add_string_value"
+    string = @buffers.delete(:string)
+    @buffers[:set_value] = string
   }
 
-  action ident_value {
-    @buffers[:set] = @buffers[:set] << value(@buffers[:ident])
+  action add_list_value {
+    $stderr.puts "SET add_list_value"
+    list = @buffers.delete(:list)
+    @buffers[:set_value] = list
   }
 
-  action list_value {
-    @buffers[:set] = @buffers[:set] << value(@buffers[:list])
+  action set_end {
+    $stderr.puts "SET set_end"
+    set_node = set()
+    completed = true
+
+    name = @buffers.delete(:set_name)
+    if name.nil?
+      completed = false
+    else
+      set_node <<= name
+    end
+
+    value = @buffers.delete(:set_value)
+    if value.nil?
+      completed = false
+    else
+      set_node <<= value
+    end
+    set_node.complete = completed
+    @buffers[:set] = set_node
   }
 
   action yield_set {
+    $stderr.puts "SET yield_set"
     yield @buffers[:set]
   }
 
-  set :=
-    SET_KW %set_keyword
+  action set_node_eof {
+    $stderr.puts "SET set_node_eof"
+    name = @buffers.delete(:set_name)
+    set_node = set(name)
+    completed = name.complete
+    if @buffers.key?(:string)
+      value = @buffers.delete(:string)
+      set_node <<= value
+      completed = completed && value.complete
+    elsif @buffers.key?(:ident)
+      value = @buffers.delete(:ident)
+      set_node <<= value
+      completed = completed && value.complete
+    elsif @buffers.key?(:list)
+      value = @buffers.delete(:list)
+      set_node <<= value
+      completed = completed && value.complete
+    end
+    set_node.complete = completed
+    yield set_node
+  }
+
+  key =
+    an_ident
+    %add_name
+    ;
+
+  ident_value =
+    an_ident
+    %add_ident_value
+    ;
+
+  string_value =
+    a_string
+    %add_string_value
+    ;
+
+  list_value =
+    a_list
+    %add_list_value
+    ;
+
+  value =
+    ident_value |
+    string_value |
+    list_value
+    ;
+
+  set_node :=
+    KW_SET
     SP+
-    IDENT %name
+    an_ident
+    %add_name
+    @eof(set_node_eof)
     SP+
-    EQL
-    SP+
-    (
-      STRING %string_value |
-      LIST %list_value     |
-      IDENT %ident_value
-    ) NL @yield_set;
+    EQL?
+    SP+?
+    value?
+    @eof(set_node_eof)
+    %set_end
+    %yield_set
+    ;
 }%%
 =end
 # end: ragel
@@ -81,22 +156,28 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+            $stderr.puts "\n---\ncontent: '" + @content + "'"
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers    = {}
+            @incomplete = {}
+            @accum_set  = false
+            @have_set   = false
+            @have_name  = false
+            @have_value = false
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

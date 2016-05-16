@@ -6,27 +6,49 @@
   include 'common.rl';
 
   action start_comment {
-    @buffers[:comment] = []
+    $stderr.puts 'COMMENT start_comment'
+    p_start = p;
   }
 
-  action append_comment {
-    @buffers[:comment] << fc
+  action stop_comment {
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
   }
 
-  action finish_comment {
-    @buffers[:comment] = comment(
-                           utf8_string(@buffers[:comment]))
+  action comment_end {
+    $stderr.puts 'COMMENT comment_end'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = comment(utf8_string(chars), complete: completed)
+    @buffers[:comment] = ast_node
   }
 
   action yield_comment {
+    $stderr.puts 'COMMENT yield_comment'
     yield @buffers[:comment] || comment(nil)
   }
 
-  COMMENT = '//' ^NL+ >start_comment $append_comment %finish_comment;
+  comment =
+    SS
+    SP*
+    ^NL+
+    >start_comment
+    %stop_comment
+    ;
 
-  comment :=
-    COMMENT? %yield_comment
-    NL;
+  a_comment =
+    SS
+    ^NL+
+    >start_comment
+    %stop_comment
+    ;
+
+  comment_node :=
+    comment
+    %comment_end
+    %yield_comment
+    ;
 }%%
 =end
 # end: ragel
@@ -62,22 +84,26 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            stack    = []
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
+            @buffers    = {}
+            @incomplete = {}
+            stack       = []
+            data        = @content.unpack('C*')
+            p           = 0
+            p_start     = 0
+            p_end       = 0
+            pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

@@ -37,7 +37,7 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             
 class << self
 	attr_accessor :_bel_trans_keys
@@ -69,30 +69,30 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 0, 0, 0, 0, 0, 0, 
-	0, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 0, 0, 0, 0, 1, 
-	0, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 0, 2, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 1, 1, 1, 1, 1, 1, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 1, 1, 1, 1, 0, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 0, 0, 0, 0, 
-	0, 0, 0, 3, 3, 3, 3, 3, 
+	0, 0, 0, 1, 2, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 1, 1, 1, 1, 
+	1, 1, 1, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 0, 0, 0, 
-	0, 3, 0, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 1, 1, 1, 
+	1, 3, 1, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 0, 4, 0
+	3, 3, 3, 3, 3, 1, 1, 0
 ]
 
 class << self
@@ -100,7 +100,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 2, 3, 2, 0
+	2, 0, 3, 2
 ]
 
 class << self
@@ -108,7 +108,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 2, 3, 4, 0
+	1, 0, 3, 0
 ]
 
 class << self
@@ -116,7 +116,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 1, 0
+	0, 0, 2, 4
 ]
 
 class << self
@@ -126,29 +126,33 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 3;
+self.bel_first_final = 2;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_ident
+	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident = 1;
+self.bel_en_ident_node = 1;
 
 
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data = @content.unpack('C*')
-            p   = 0
-            pe  = data.length
-            eof = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            @id_start    = 0
+            @id_end      = 0
+            pe          = data.length
+            eof         = data.length
+            @identifier_started = false
 
-      # begin: ragel        
+      # begin: ragel
             
 begin
 	p ||= 0
@@ -193,41 +197,22 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 4 then
+	when 1 then
 		begin
 
-    (@buffers[:ident] ||= []) << data[p].ord
-  		end
-	when 2 then
-		begin
-
-    @buffers[:ident] = []
-  		end
-		begin
-
-    (@buffers[:ident] ||= []) << data[p].ord
+    $stderr.puts 'IDENTIFIER start_identifier'
+    @identifier_started = true
+    @id_start = p;
   		end
 	when 3 then
 		begin
 
-    @buffers[:ident] = identifier(utf8_string(@buffers[:ident]))
-  		end
-		begin
-
-    yield @buffers[:ident]
-  		end
-	when 1 then
-		begin
-
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
-  		end
-		begin
-
-    @buffers[:ident] ||= []
-    yield @buffers[:ident]
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
   		end
 	end
 	end
@@ -246,17 +231,25 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 1 then
+	when 4 then
 		begin
 
-    unless @buffers[:ident].is_a?(::AST::Node)
-      @buffers[:ident] ||= []
-      @buffers[:ident]   = identifier(utf8_string(@buffers[:ident]).sub(/\n$/, ''))
-    end
+    $stderr.puts 'IDENTIFIER yield_identifier'
+    yield @buffers[:ident]
+  		end
+	when 2 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
   		end
 		begin
 
-    @buffers[:ident] ||= []
+    $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
 	  end
@@ -269,7 +262,7 @@ begin
 end
 	end
 
-      # end: ragel        
+      # end: ragel
           end
         end
       end

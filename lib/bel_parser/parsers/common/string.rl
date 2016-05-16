@@ -5,41 +5,78 @@
 
   include 'common.rl';
 
+  action string_end {
+    $stderr.puts 'STRING string_end'
+    completed = @string_opened && @string_closed
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: true)
+    @buffers[:string] = ast_node
+  }
+
+  action yield_string {
+    $stderr.puts 'STRING yield_string'
+    yield @buffers[:string]
+  }
+
   action start_string {
-    @buffers[:string] = []
+    $stderr.puts 'STRING start_string'
+    @string_opened = true
+    p_start = p
   }
 
-  action append_string {
-    (@buffers[:string] ||= []) << fc
+  action stop_string {
+    $stderr.puts 'STRING stop_string'
+    @string_closed = true
+    p_end = p
   }
 
-  action finish_string {
-    @buffers[:string] = string(utf8_string(@buffers[:string]))
+  action eof_string {
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
   }
 
-  action error_string {
-    @buffers[:string] ||= []
-    @buffers[:string] = string(utf8_string(@buffers[:string]).sub(/\n$/, ''))
-  }
-
-  action yield_complete_string {
+  action eof_main {
+    $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   }
 
-  action yield_error_string {
-    @buffers[:string] ||= []
-    yield @buffers[:string]
-  }
+  single =
+    WS* SQ (NOT_SQESC | ESCAPED)*
+    >start_string
+    $eof(eof_string)
+    %stop_string
+    %string_end
+    SQ
+    ;
 
-  STRING  =
-    ('"' ('\\\"' | [^"])** '"') >start_string $append_string %finish_string $err(error_string);
+  double =
+    WS* DQ (NOT_DQESC | ESCAPED)*
+    >start_string
+    $eof(eof_string)
+    %stop_string
+    %string_end
+    DQ
+    ;
 
-  string :=
-    STRING $err(yield_error_string) %yield_complete_string
-    NL;
+  a_string =
+    (single | double)
+    ;
+
+  string_node :=
+    (
+      single |
+      double
+    )
+    @eof(eof_main)
+    @yield_string
+    ;
 }%%
 =end
 # end: ragel
+# ('\"' | ^(0 .. 31 | 34))* ^'\\"'
 
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
@@ -72,22 +109,27 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers        = {}
+            @incomplete     = {}
+            @string_opened  = false
+            @string_closed  = false
+            data            = @content.unpack('C*')
+            p_start         = 0
+            p_end           = 0
+            p               = 0
+            pe              = data.length
+            eof             = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

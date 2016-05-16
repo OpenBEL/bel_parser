@@ -8,19 +8,22 @@
 
   action yield_observed_term {
     @buffers[:comment] ||= comment(nil)
-    yield observed_term(
-            statement(
-              subject(@buffers[:term_stack][-1]),
-              relationship(nil),
-              object(nil),
-              @buffers[:comment]))
+    comment = @buffers[:comment]
+    term = @buffers[:term_stack][-1]
+    subject_term = subject(term)
+    rel = relationship(nil)
+    obj = object(nil)
+    stmt = observed_term(statement(subject_term, rel, obj, comment))
+    stmt.complete = true
+    $stderr.puts stmt.inspect
+    yield stmt
   }
 
   observed_term :=
-    outer_term 
+    outer_term
     SP*
-    COMMENT? %yield_observed_term
-    NL;
+    a_comment? %yield_observed_term
+    NL?;
 }%%
 =end
 # end: ragel
@@ -56,23 +59,24 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            stack    = []
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers    = {}
+            @incomplete = {}
+            stack       = []
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

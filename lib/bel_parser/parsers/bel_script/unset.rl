@@ -6,25 +6,50 @@
   include 'common.rl';
   include 'identifier.rl';
 
-  UNSET  = [uU][nN][sS][eE][tT];
-
-  action unset_keyword {
-    @buffers[:unset] = unset()
+  action add_name {
+    $stderr.puts "UNSET add_name"
+    key = @buffers.delete(:ident)
+    @buffers[:unset_name] = key
   }
 
-  action name  {
-    @buffers[:unset] = @buffers[:unset] << name(@buffers[:ident])
+  action unset_end {
+    $stderr.puts "UNSET unset_end"
+    name = @buffers.delete(:unset_name)
+    unless name.nil?
+      unset_node = unset(name, complete: name.complete)
+    else
+      unset_node = unset(complete: false)
+    end
+    @buffers[:unset] = unset_node
   }
 
-  action yield_set {
+  action yield_unset {
+    $stderr.puts "UNSET yield_unset"
     yield @buffers[:unset]
   }
 
-  unset :=
-    UNSET %unset_keyword
+  action set_node_eof {
+    $stderr.puts "UNSET set_node_eof"
+  }
+
+  an_unset =
+    KW_UNSET
     SP+
-    IDENT %name
-    NL @yield_set;
+    an_ident
+    %add_name
+    @eof(set_node_eof)
+    %unset_end
+    ;
+
+  unset_ast_node :=
+    KW_UNSET
+    SP+?
+    an_ident?
+    %add_name
+    @eof(set_node_eof)
+    %unset_end
+    %yield_unset
+    ;
 }%%
 =end
 # end: ragel
@@ -60,22 +85,23 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

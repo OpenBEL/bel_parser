@@ -9,13 +9,21 @@ def parse_ast(parser, input)
   parser.parse(%(#{input}\n)) { |obj| return obj }
 end
 
+def parse_ast_no_nl(parser, input)
+  parser.parse(input.to_s) { |obj| return obj }
+end
+
+def random_alpha
+  Rantly { sized(range(1, 10)) { string(/[A-Za-z]/) } }
+end
+
 def random_identifier
-  Rantly { sized(range(1, 50)) { string(/[A-Za-z0-9_]/) } }
+  Rantly { sized(range(1, 10)) { string(/[A-Za-z0-9_]/) } }
 end
 
 def random_string(quoted = true)
   Rantly do
-    value = sized(range(1, 50)) { string(:graph) }
+    value = sized(range(1, 10)) { string(:graph) }
 
     if quoted
       quote_value(value)

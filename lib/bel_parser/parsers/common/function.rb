@@ -12,8 +12,8 @@ require_relative '../nonblocking_io_wrapper'
 
 module BELParser
   module Parsers
-    module Expression
-      module Relationship
+    module Common
+      module Function
 
         class << self
 
@@ -44,8 +44,8 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 65, 122, 65, 122, 
-	0
+	0, 0, 65, 122, 10, 122, 
+	0, 0, 0
 ]
 
 class << self
@@ -53,7 +53,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 58, 58
+	0, 58, 113, 0
 ]
 
 class << self
@@ -61,7 +61,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 59
+	0, 0, 59, 173
 ]
 
 class << self
@@ -69,21 +69,28 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 0, 0, 0, 0, 0, 0, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 0, 2, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 1, 1, 1, 1, 1, 1, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 1, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 1, 1, 1, 
-	1, 1, 1, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 1, 0
+	0, 0, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 0, 0, 0, 0, 
+	0, 0, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 0, 4, 0
 ]
 
 class << self
@@ -91,7 +98,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 2
+	0, 2, 3, 2, 0
 ]
 
 class << self
@@ -99,7 +106,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 0, 0
+	1, 2, 4, 0, 0
 ]
 
 class << self
@@ -107,7 +114,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 0, 2
+	0, 1, 3, 5
 ]
 
 class << self
@@ -124,9 +131,9 @@ end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_relationship_node
+	attr_accessor :bel_en_function_node
 end
-self.bel_en_relationship_node = 1;
+self.bel_en_function_node = 1;
 
 
       # end: ragel
@@ -135,13 +142,13 @@ self.bel_en_relationship_node = 1;
           def each
             @buffers    = {}
             @incomplete = {}
-            stack       = []
             data        = @content.unpack('C*')
             p           = 0
             p_start     = 0
             p_end       = 0
             pe          = data.length
             eof         = data.length
+            @function_started = false
 
       # begin: ragel
             
@@ -188,11 +195,38 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
+	when 2 then
+		begin
+
+    $stderr.puts 'FUNCTION start_function'
+    @function_started = true
+    p_start = p;
+  		end
+	when 4 then
+		begin
+
+    $stderr.puts 'FUNCTION end_function'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ident_node = identifier(utf8_string(chars), complete: completed)
+    fx_node = function(ident_node, complete: ident_node.complete)
+    @buffers[:function] = fx_node
+  		end
 	when 1 then
 		begin
 
-    $stderr.puts 'RELATIONSHIP start_relationship'
-    p_start = p;
+    $stderr.puts 'FUNCTION function_node_err'
+    if @function_started
+      # hit invalid char, include it in the identifier that results
+      p_end = p + 1
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: false)
+      @buffers[:function] = fx_node
+      yield @buffers[:function]
+    end
   		end
 	end
 	end
@@ -211,25 +245,42 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 2 then
+	when 1 then
 		begin
 
-    $stderr.puts 'RELATIONSHIP stop_relationship'
-    # It's not you, it's me. You're a p and I'm a non-protein coding r. It
-    # would never work, I just can't reach you.
-    p_end = p;
+    $stderr.puts 'FUNCTION function_node_err'
+    if @function_started
+      # hit invalid char, include it in the identifier that results
+      p_end = p + 1
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: false)
+      @buffers[:function] = fx_node
+      yield @buffers[:function]
+    end
   		end
+	when 5 then
 		begin
 
-    $stderr.puts 'RELATIONSHIP relationship_end'
+    $stderr.puts 'FUNCTION yield_function'
+    yield @buffers[:function]
+  		end
+	when 3 then
+		begin
+
+    $stderr.puts 'FUNCTION end_function'
+    p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
-    ast_node = relationship(utf8_string(chars), complete: completed)
-    @buffers[:relationship] = ast_node
+    ident_node = identifier(utf8_string(chars), complete: completed)
+    fx_node = function(ident_node, complete: ident_node.complete)
+    @buffers[:function] = fx_node
   		end
 		begin
 
-    yield @buffers[:relationship]
+    $stderr.puts 'FUNCTION yield_function'
+    yield @buffers[:function]
   		end
 	  end
 	end
@@ -251,7 +302,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BELParser::Parsers::Expression::Relationship.parse(line) { |obj|
+    BELParser::Parsers::Common::Function.parse(line) { |obj|
       puts obj.inspect
     }
   end

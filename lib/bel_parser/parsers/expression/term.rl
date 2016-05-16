@@ -6,44 +6,71 @@
   include 'parameter.rl';
 
   action start_function {
+    $stderr.puts 'TERM start_function'
     @buffers[:function] = []
   }
 
   action append_function {
+    $stderr.puts 'TERM append_function'
     @buffers[:function] << fc
   }
 
   action finish_function {
+    $stderr.puts 'TERM finish_function'
     @buffers[:function] = identifier(utf8_string(@buffers[:function]))
   }
 
   action term_init {
+    $stderr.puts 'TERM term_init'
     @buffers[:term_stack] = [ term() ]
   }
 
   action inner_term_init {
+    $stderr.puts 'TERM inner_term_init'
     @buffers[:term_stack] << term()
   }
 
   action term_fx {
-    fx                        = @buffers[:function]
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << function(fx)
+    $stderr.puts 'TERM term_fx'
+    fx = @buffers[:function]
+    fx_node = function(fx)
+    new_term = @buffers[:term_stack][-1] << fx_node
+    @buffers[:term_stack][-1] = new_term
   }
 
   action term_argument {
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << argument(@buffers[:parameter])
-    @buffers[:parameter]      = nil
+    $stderr.puts 'TERM term_argument'
+    arg_node = argument(@buffers[:parameter])
+    new_term = @buffers[:term_stack][-1] << arg_node
+    @buffers[:term_stack][-1] = new_term
+    @buffers[:parameter] = nil
   }
 
   action fxbt {
+    $stderr.puts 'TERM fxbt'
     fpc -= @buffers[:function].length + 1
     fcall inner_term;
   }
 
   action fxret {
+    $stderr.puts 'TERM fxret'
     inner_term = @buffers[:term_stack].pop
-    @buffers[:term_stack][-1] = @buffers[:term_stack][-1] << argument(inner_term)
+    arg_node = argument(inner_term)
+    new_term = @buffers[:term_stack][-1] << arg_node
+    @buffers[:term_stack][-1] = new_term
     fret;
+  }
+
+  action outer_term_end {
+    $stderr.puts 'TERM outer_term_end'
+    term_stack = @buffers[:term_stack]
+    term_stack.each { |term| term.complete = true }
+  }
+
+  action eof_parameter_argument {
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
   }
 
   action yield_term_ast  {
@@ -51,41 +78,44 @@
   }
 
   inner_term :=
-    IDENT >inner_term_init >start_function $append_function %finish_function
+    an_ident >inner_term_init >start_function $append_function %finish_function
     SP*
-    '(' @term_fx
+    '(' @term_fx $eof{ $stderr.puts "EOF!" }
       (
-        BEL_PARAMETER %term_argument |
-        IDENT >start_function $append_function '(' @fxbt
+        a_parameter %term_argument |
+        an_ident >start_function $append_function '(' @fxbt
       )
       (
-        SP* ',' SP*
+        COMMA_DELIM
         (
-          BEL_PARAMETER %term_argument |
-          IDENT >start_function $append_function '(' @fxbt
+          a_parameter %term_argument |
+          an_ident >start_function $append_function '(' @fxbt
         )
       )*
     ')' @fxret;
 
   outer_term =
-    IDENT >term_init >start_function $append_function %finish_function
+    an_ident >term_init >start_function $append_function %finish_function
     SP*
     '(' @term_fx
       (
-        BEL_PARAMETER %term_argument |
-        IDENT >start_function $append_function '(' @fxbt
+        a_parameter %term_argument $eof(eof_parameter_argument) |
+        an_ident >start_function $append_function '(' @fxbt
       )
       (
-        SP* ',' SP*
+        COMMA_DELIM
         (
-          BEL_PARAMETER %term_argument |
-          IDENT >start_function $append_function '(' @fxbt
+          a_parameter %term_argument $eof(eof_parameter_argument) |
+          an_ident >start_function $append_function '(' @fxbt
         )
       )*
     ')';
 
   term :=
-    outer_term %yield_term_ast NL;
+    outer_term
+    %outer_term_end
+    %yield_term_ast
+    NL?;
 }%%
 =end
 # end: ragel
@@ -121,9 +151,9 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
@@ -134,10 +164,10 @@ module BELParser
             pe       = data.length
             eof      = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

@@ -5,29 +5,26 @@
 
   include 'common.rl';
 
-  action start_comment_line {
-    @buffers[:comment_line] = []
+  action comment_line_start {
+    @incomplete[:comment_line] = []
+    @started = true
   }
 
-  action append_comment_line {
-    @buffers[:comment_line] << fc
+  action comment_line_more {
+    @incomplete[:comment_line] << fc
   }
 
-  action finish_comment_line {
-    @buffers[:comment_line] = comment_line(
-                                utf8_string(@buffers[:comment_line]))
+  action comment_line_yield {
+    cl = @incomplete.delete(:comment_line) || []
+    completed = @started
+    yield comment_line(utf8_string(cl), complete: completed)
   }
 
-  action yield_comment_line {
-    yield @buffers[:comment_line]
-  }
-
-  COMMENT_LINE  =
-    SP*
-    NUMBER_SIGN
-    (any - NL)* >start_comment_line $append_comment_line %finish_comment_line;
-
-  comment_line := COMMENT_LINE %yield_comment_line NL;
+  comment_start = SP* NUMBER_SIGN SP*;
+  comment = comment_start (any - NL)*
+            >comment_line_start
+            $comment_line_more;
+  main := comment? NL? @comment_line_yield;
 }%%
 =end
 # end: ragel
@@ -63,21 +60,23 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
+            @buffers    = {}
+            @started    = false
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end

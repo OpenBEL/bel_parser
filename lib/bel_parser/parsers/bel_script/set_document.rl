@@ -3,30 +3,128 @@
 %%{
   machine bel;
 
-  include 'set.rl';
+  include 'common.rl';
+  include 'identifier.rl';
+  include 'string.rl';
+  include 'list.rl';
 
-  DOCUMENT_KW = [dD][oO][cC][uU][mM][eE][nN][tT];
-
-  action yield_document_property {
-    yield(
-      document_property(
-        *@buffers[:set].children))
+  action add_property {
+    $stderr.puts "SET_DOCUMENT add_property"
+    key = @buffers.delete(:ident)
+    @buffers[:set_document_name] = key
   }
 
-  set_document :=
-    SET_KW %set_keyword
+  action add_ident_value {
+    $stderr.puts "SET_DOCUMENT add_ident_value"
+    ident = @buffers.delete(:ident)
+    @buffers[:set_document_value] = ident
+  }
+
+  action add_string_value {
+    $stderr.puts "SET_DOCUMENT add_string_value"
+    string = @buffers.delete(:string)
+    @buffers[:set_document_value] = string
+  }
+
+  action add_list_value {
+    $stderr.puts "SET_DOCUMENT add_list_value"
+    list = @buffers.delete(:list)
+    @buffers[:set_document_value] = list
+  }
+
+  action set_document_end {
+    $stderr.puts "SET_DOCUMENT set_document_end"
+    set_document_node = document_property()
+    completed = true
+
+    name = @buffers.delete(:set_document_name)
+    unless name.nil?
+      set_document_node <<= name
+    end
+
+    value = @buffers.delete(:set_document_value)
+    unless value.nil?
+      set_document_node <<= value
+    end
+
+    completed = false
+    unless name.nil? || value.nil?
+      completed = name.complete && value.complete
+    end
+
+    set_document_node.complete = completed
+    @buffers[:set_document] = set_document_node
+  }
+
+  action yield_set_document {
+    $stderr.puts "SET_DOCUMENT yield_set"
+    yield @buffers[:set_document]
+  }
+
+  action set_document_node_eof {
+    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    name = @buffers.delete(:set_document_name)
+    set_document_node = set(name)
+    completed = name.complete
+    if @buffers.key?(:string)
+      value = @buffers.delete(:string)
+      set_document_node <<= value
+      completed = completed && value.complete
+    elsif @buffers.key?(:ident)
+      value = @buffers.delete(:ident)
+      set_document_node <<= value
+      completed = completed && value.complete
+    elsif @buffers.key?(:list)
+      value = @buffers.delete(:list)
+      set_document_node <<= value
+      completed = completed && value.complete
+    end
+    set_document_node.complete = completed
+    yield set_document_node
+  }
+
+  document_property =
+    an_ident &
+    DOCUMENT_PROPERTY
+    ;
+
+  ident_value =
+    an_ident
+    %add_ident_value
+    ;
+
+  string_value =
+    a_string
+    %add_string_value
+    ;
+
+  list_value =
+    a_list
+    %add_list_value
+    ;
+
+  value =
+    ident_value |
+    string_value |
+    list_value
+    ;
+
+  set_document_node :=
+    KW_SET
     SP+
-    DOCUMENT_KW
+    KW_DOCUMENT
     SP+
-    IDENT %name
+    document_property
+    %add_property
+    @eof(set_document_node_eof)
     SP+
-    EQL
-    SP+
-    (
-      STRING %string_value |
-      LIST %list_value     |
-      IDENT %ident_value
-    ) NL @yield_document_property;
+    EQL?
+    SP+?
+    value?
+    @eof(set_document_node_eof)
+    %set_document_end
+    %yield_set_document
+    ;
 }%%
 =end
 # end: ragel
@@ -62,22 +160,23 @@ module BELParser
 
           def initialize(content)
             @content = content
-      # begin: ragel        
+      # begin: ragel
             %% write data;
-      # end: ragel        
+      # end: ragel
           end
 
           def each
-            @buffers = {}
-            data     = @content.unpack('C*')
-            p        = 0
-            pe       = data.length
-            eof      = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            pe          = data.length
+            eof         = data.length
 
-      # begin: ragel        
+      # begin: ragel
             %% write init;
             %% write exec;
-      # end: ragel        
+      # end: ragel
           end
         end
       end
