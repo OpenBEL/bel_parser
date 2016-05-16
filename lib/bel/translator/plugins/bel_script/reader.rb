@@ -24,9 +24,7 @@ module BEL::Translator::Plugins
             Validator.new(
               StateAggregator.new(
                 FirstNode.new(Filter.new(BELParser::ASTGenerator.new(@io))),
-                @state)),
-            true,
-            false
+                @state))
           ).each do |(num, line, ast_node, nanopub_hash)|
             yield ::BEL::Nanopub::Nanopub.create(nanopub_hash)
           end
