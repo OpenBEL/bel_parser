@@ -56,6 +56,58 @@
     @buffers[:param_prefix] = prefix_node
   }
 
+  action a_parameter_eof {
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  }
+
+  action parameter_node_eof {
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  }
+
   action yield_parameter {
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
@@ -106,6 +158,8 @@
       parameter_value |
       parameter_prefix_maybe_value
     )
+
+    @eof(a_parameter_eof)
     %parameter_end
     ;
 
@@ -115,8 +169,10 @@
       parameter_value |
       parameter_prefix_maybe_value
     )
+    @eof(parameter_node_eof)
     %parameter_end
     %yield_parameter
+    NL?
     ;
 
   #BEL_PARAMETER  = (an_ident ':')? @prefix SP* (a_string %string | an_ident %ident);

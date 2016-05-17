@@ -94,4 +94,29 @@ describe 'when parsing parameters' do
       )
     end
   end
+
+  context 'with incomplete strings' do
+    rnd_id1 = random_identifier
+    rnd_id2 = random_identifier
+    input = "#{rnd_id1}:\"#{rnd_id2}"
+    bug = 'https://github.com/OpenBEL/bel_parser/issues/63'
+    it "is incomplete for #{input} (#{bug})" do
+      output = parse_ast_no_nl(parser, input)
+      expect(output).to be_a(ast::Parameter)
+      expect(output).to respond_to(:complete)
+      expect(output.complete).to be(false)
+      expect(output.children?).to be(true)
+      expect(output.first_child).to be_a(ast::Prefix)
+      expect(output.second_child).to be_a(ast::String)
+      expect(output.first_child.complete).to be(true)
+      expect(output.second_child.complete).to be(false)
+
+      expect(output).to eq(
+        s(:parameter,
+          s(:prefix,
+            s(:identifier, rnd_id1)),
+          s(:string, rnd_id2))
+      )
+    end
+  end
 end
