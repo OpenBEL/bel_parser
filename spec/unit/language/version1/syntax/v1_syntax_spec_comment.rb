@@ -3,7 +3,7 @@ require 'bel_parser/parsers/ast/node'
 require 'bel_parser/parsers/common'
 require 'bel_parser/parsers/expression'
 require 'bel_parser/parsers/bel_script'
-require 'bel_parser/language/quoting'
+require 'bel_parser/quoting'
 include AST::Sexp
 include BELParser::Quoting
 
