@@ -6,48 +6,48 @@
   include 'simple_statement.rl';
 
   action statement_init {
-    $stderr.puts 'NESTED_STATEMENT statement_init'
+    trace('NESTED_STATEMENT statement_init')
     @buffers[:statement_stack] = [ statement() ]
   }
 
   action inner_statement_init {
-    $stderr.puts 'NESTED_STATEMENT inner_statement_init'
+    trace('NESTED_STATEMENT inner_statement_init')
     @buffers[:statement_stack] << statement()
   }
 
   action ast_subject {
-    $stderr.puts 'NESTED_STATEMENT ast_subject'
+    trace('NESTED_STATEMENT ast_subject')
     subject_node = @buffers[:subject]
     stmt = @buffers[:statement_stack][-1] << subject_node
     @buffers[:statement_stack][-1] = stmt
   }
 
   action ast_relationship {
-    $stderr.puts 'NESTED_STATEMENT ast_relationship'
+    trace('NESTED_STATEMENT ast_relationship')
     rel_node = @buffers[:relationship]
     stmt = @buffers[:statement_stack][-1] << rel_node
     @buffers[:statement_stack][-1] = stmt
   }
 
   action ast_object {
-    $stderr.puts 'NESTED_STATEMENT ast_object'
+    trace('NESTED_STATEMENT ast_object')
     object_node = object(@buffers[:object])
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   }
 
   action statement_object_statement {
-    $stderr.puts 'NESTED_STATEMENT statement_object_statement'
+    trace('NESTED_STATEMENT statement_object_statement')
     @buffers[:object] = @buffers[:statement_stack][-1]
   }
 
   action call_nested_statement {
-    $stderr.puts 'NESTED_STATEMENT call_nested_statement'
+    trace('NESTED_STATEMENT call_nested_statement')
     fcall inner_statement;
   }
 
   action fret {
-    $stderr.puts 'NESTED_STATEMENT fret'
+    trace('NESTED_STATEMENT fret')
     inner_statement = @buffers[:statement_stack].pop
     @buffers[:object] = inner_statement
     obj_node = object(inner_statement)
@@ -60,7 +60,7 @@
   }
 
   action yield_nested_statement {
-    $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
+    trace('NESTED_STATEMENT yield_nested_statement')
     yield @buffers[:nested_statement]
   }
 
@@ -97,6 +97,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -122,6 +123,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content

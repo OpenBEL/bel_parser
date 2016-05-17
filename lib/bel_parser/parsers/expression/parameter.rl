@@ -8,28 +8,28 @@
   include 'string.rl';
 
   action add_ident_param_value {
-    $stderr.puts "PARAMETER add_ident_param_value"
+    trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
     value_node = value(ident, complete: ident.complete)
     @buffers[:param_value] = value_node
   }
 
   action add_string_param_value {
-    $stderr.puts "PARAMETER add_string_param_value"
+    trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
     value_node = value(string_node, complete: string_node.complete)
     @buffers[:param_value] = value_node
   }
 
   action parameter_end {
-    $stderr.puts "PARAMETER parameter_end"
+    trace('PARAMETER parameter_end')
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
     unless prefix_node.nil?
       param_node <<= prefix_node
       unless prefix_node.complete
-        $stderr.puts "PN incomplete"
+        trace('PN incomplete')
         completed = false
       end
     end
@@ -38,7 +38,7 @@
     unless value_node.nil?
       param_node <<= value_node
       unless value_node.complete
-        $stderr.puts "VN incomplete"
+        trace('VN incomplete')
         completed = false
       end
     else
@@ -50,7 +50,7 @@
   }
 
   action add_prefix {
-    $stderr.puts "PARAMETER add_prefix"
+    trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
     prefix_node = prefix(ident, complete: ident.complete)
     @buffers[:param_prefix] = prefix_node
@@ -109,7 +109,7 @@
   }
 
   action yield_parameter {
-    $stderr.puts "PARAMETER yield_parameter"
+    trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   }
 
@@ -184,6 +184,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -209,10 +210,10 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
-            $stderr.puts "content: " + @content.to_s
       # begin: ragel
             %% write data;
       # end: ragel

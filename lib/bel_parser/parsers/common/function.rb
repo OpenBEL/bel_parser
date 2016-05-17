@@ -9,6 +9,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -34,6 +35,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
@@ -44,7 +46,7 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 48, 122, 10, 122, 
+	0, 0, 33, 126, 10, 126, 
 	0, 0, 0
 ]
 
@@ -53,7 +55,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 75, 113, 0
+	0, 94, 117, 0
 ]
 
 class << self
@@ -61,7 +63,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 76, 190
+	0, 0, 95, 213
 ]
 
 class << self
@@ -69,30 +71,33 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 0, 0, 0, 0, 0, 0, 
-	0, 1, 1, 1, 1, 1, 1, 1, 
+	1, 0, 1, 1, 1, 1, 0, 0, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 0, 0, 0, 0, 1, 
-	0, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 0, 2, 0, 0, 0, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 0, 2, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 0, 0, 0, 0, 
-	0, 0, 0, 3, 3, 3, 3, 3, 
+	0, 0, 0, 0, 0, 0, 3, 0, 
+	3, 3, 3, 3, 0, 0, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 0, 0, 0, 
-	0, 3, 0, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 0, 4, 0
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 0, 4, 0
 ]
 
 class << self
@@ -200,14 +205,14 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'FUNCTION start_function'
+    trace('FUNCTION start_function')
     @function_started = true
     p_start = p;
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'FUNCTION end_function'
+    trace('FUNCTION end_function')
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
@@ -218,7 +223,7 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'FUNCTION function_node_err'
+    trace('FUNCTION function_node_err')
     if @function_started
       # hit invalid char, include it in the identifier that results
       p_end = p + 1
@@ -250,7 +255,7 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'FUNCTION function_node_err'
+    trace('FUNCTION function_node_err')
     if @function_started
       # hit invalid char, include it in the identifier that results
       p_end = p + 1
@@ -265,13 +270,13 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts 'FUNCTION yield_function'
+    trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
 	when 3 then
 		begin
 
-    $stderr.puts 'FUNCTION end_function'
+    trace('FUNCTION end_function')
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
@@ -281,7 +286,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'FUNCTION yield_function'
+    trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
 	  end

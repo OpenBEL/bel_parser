@@ -9,31 +9,31 @@
   include 'list.rl';
 
   action add_property {
-    $stderr.puts "SET_DOCUMENT add_property"
+    trace('SET_DOCUMENT add_property')
     key = @buffers.delete(:ident)
     @buffers[:set_document_name] = key
   }
 
   action add_ident_value {
-    $stderr.puts "SET_DOCUMENT add_ident_value"
+    trace('SET_DOCUMENT add_ident_value')
     ident = @buffers.delete(:ident)
     @buffers[:set_document_value] = ident
   }
 
   action add_string_value {
-    $stderr.puts "SET_DOCUMENT add_string_value"
+    trace('SET_DOCUMENT add_string_value')
     string = @buffers.delete(:string)
     @buffers[:set_document_value] = string
   }
 
   action add_list_value {
-    $stderr.puts "SET_DOCUMENT add_list_value"
+    trace('SET_DOCUMENT add_list_value')
     list = @buffers.delete(:list)
     @buffers[:set_document_value] = list
   }
 
   action set_document_end {
-    $stderr.puts "SET_DOCUMENT set_document_end"
+    trace('SET_DOCUMENT set_document_end')
     set_document_node = document_property()
     completed = true
 
@@ -57,12 +57,12 @@
   }
 
   action yield_set_document {
-    $stderr.puts "SET_DOCUMENT yield_set"
+    trace('SET_DOCUMENT yield_set')
     yield @buffers[:set_document]
   }
 
   action set_document_node_eof {
-    $stderr.puts "SET_DOCUMENT set_document_node_eof"
+    trace('SET_DOCUMENT set_document_node_eof')
     name = @buffers.delete(:set_document_name)
     set_document_node = set(name)
     completed = name.complete
@@ -132,6 +132,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -157,6 +158,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content

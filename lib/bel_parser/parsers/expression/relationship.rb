@@ -9,6 +9,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -34,6 +35,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
@@ -200,7 +202,7 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'RELATIONSHIP start_relationship'
+    trace('RELATIONSHIP start_relationship')
     p_start = p;
   		end
 	end
@@ -223,14 +225,14 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'RELATIONSHIP stop_relationship'
+    trace('RELATIONSHIP stop_relationship')
     # It's not you, it's me. You're a p and I'm a non-protein coding r. It
     # would never work, I just can't reach you.
     p_end = p;
   		end
 		begin
 
-    $stderr.puts 'RELATIONSHIP relationship_end'
+    trace('RELATIONSHIP relationship_end')
     chars = data[p_start...p_end]
     completed = !chars.empty?
     ast_node = relationship(utf8_string(chars), complete: completed)

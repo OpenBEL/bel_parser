@@ -9,6 +9,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -34,6 +35,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
@@ -200,14 +202,14 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   		end
 	when 4 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -217,7 +219,7 @@ begin
 	when 3 then
 		begin
 
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -243,13 +245,13 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	when 2 then
 		begin
 
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -258,7 +260,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
 	  end

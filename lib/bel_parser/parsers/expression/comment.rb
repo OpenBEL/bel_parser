@@ -9,6 +9,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -34,6 +35,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
@@ -185,18 +187,18 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'COMMENT start_comment'
+    trace('COMMENT start_comment')
     p_start = p;
   		end
 	when 2 then
 		begin
 
-    $stderr.puts 'COMMENT stop_comment'
+    trace('COMMENT stop_comment')
     p_end = p;
   		end
 		begin
 
-    $stderr.puts 'COMMENT comment_end'
+    trace('COMMENT comment_end')
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
@@ -205,7 +207,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'COMMENT yield_comment'
+    trace('COMMENT yield_comment')
     yield @buffers[:comment] || comment(nil)
   		end
 	end
@@ -228,12 +230,12 @@ begin
 	when 2 then
 		begin
 
-    $stderr.puts 'COMMENT stop_comment'
+    trace('COMMENT stop_comment')
     p_end = p;
   		end
 		begin
 
-    $stderr.puts 'COMMENT comment_end'
+    trace('COMMENT comment_end')
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
@@ -242,7 +244,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'COMMENT yield_comment'
+    trace('COMMENT yield_comment')
     yield @buffers[:comment] || comment(nil)
   		end
 	  end

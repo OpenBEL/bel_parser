@@ -6,13 +6,13 @@
   include 'common.rl';
 
   action start_identifier {
-    $stderr.puts 'IDENTIFIER start_identifier'
+    trace('IDENTIFIER start_identifier')
     @identifier_started = true
     id_start = p;
   }
 
   action end_identifier {
-    $stderr.puts 'IDENTIFIER end_identifier'
+    trace('IDENTIFIER end_identifier')
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
@@ -21,7 +21,7 @@
   }
 
   action an_ident_err {
-    $stderr.puts 'IDENTIFIER an_ident_err'
+    trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -29,7 +29,7 @@
   }
 
   action ident_node_err {
-    $stderr.puts 'IDENTIFIER ident_node_err'
+    trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
@@ -37,12 +37,12 @@
   }
 
   action yield_identifier {
-    $stderr.puts 'IDENTIFIER yield_identifier'
+    trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   }
 
   action an_ident_eof {
-    $stderr.puts 'IDENTIFIER an_ident_eof'
+    trace('IDENTIFIER an_ident_eof')
     if @identifier_started
       id_end = p
       chars = data[id_start...id_end]
@@ -81,6 +81,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -106,6 +107,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content

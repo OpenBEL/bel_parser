@@ -7,13 +7,13 @@
   include 'identifier.rl';
 
   action add_name {
-    $stderr.puts "UNSET add_name"
+    trace('UNSET add_name')
     key = @buffers.delete(:ident)
     @buffers[:unset_name] = key
   }
 
   action unset_end {
-    $stderr.puts "UNSET unset_end"
+    trace('UNSET unset_end')
     name = @buffers.delete(:unset_name)
     unless name.nil?
       unset_node = unset(name, complete: name.complete)
@@ -24,12 +24,12 @@
   }
 
   action yield_unset {
-    $stderr.puts "UNSET yield_unset"
+    trace('UNSET yield_unset')
     yield @buffers[:unset]
   }
 
   action set_node_eof {
-    $stderr.puts "UNSET set_node_eof"
+    trace('UNSET set_node_eof')
   }
 
   an_unset =
@@ -57,6 +57,7 @@
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
+require_relative '../tracer'
 
 module BELParser
   module Parsers
@@ -82,6 +83,7 @@ module BELParser
           include Enumerable
           include BELParser::Parsers::Buffer
           include BELParser::Parsers::AST::Sexp
+          include BELParser::Parsers::Tracer
 
           def initialize(content)
             @content = content
