@@ -65,7 +65,7 @@ machine bel;
     ;
 
   FUNCTION =
-    [a-zA-Z0-9_]+
+    (print - (' ' | "'" | '"' | '('))+
     ;
 }%%
 =end
