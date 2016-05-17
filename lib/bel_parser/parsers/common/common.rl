@@ -60,7 +60,8 @@ machine bel;
     ;
 
   RELATIONSHIP =
-    alpha+
+    # ASCII range '!' to '~'
+    (33..126)+
     ;
 
   FUNCTION =

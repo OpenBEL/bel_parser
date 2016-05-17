@@ -21,6 +21,10 @@ def random_identifier
   Rantly { sized(range(1, 10)) { string(/[A-Za-z0-9_]/) } }
 end
 
+def random_relationship
+  Rantly { sized(range(1, 10)) { string(/[\x21-\x7E]/) } }
+end
+
 def random_string(quoted = true)
   Rantly do
     value = sized(range(1, 10)) { string(:graph) }
