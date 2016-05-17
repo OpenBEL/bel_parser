@@ -7,16 +7,16 @@ machine bel;
   WS          = space;
   EQL         = '=';
   NUMBER_SIGN = '#';
-  SQ		      = "'";
+  SQ          = "'";
   DQ          = '"';
   COLON       = ':';
   ESCAPED     = /\\./;
-  NOT_SQESC	  = [^'\\];
-  NOT_DQESC	  = [^"\\];
+  NOT_SQESC   = [^'\\];
+  NOT_DQESC   = [^"\\];
   COMMA_DELIM = SP* ',' SP*;
   SS          = '//';
-  ID_CHARS	  = [a-zA-Z0-9_]+;
-  LP		  = '(';
+  ID_CHARS    = [a-zA-Z0-9_]+;
+  LP          = '(';
   RP          = ')';
 
   KW_SET = /SET/i;
@@ -63,9 +63,9 @@ machine bel;
     alpha+
     ;
 
-   FUNCTION =
-   	alpha+
-   	;
+  FUNCTION =
+    [a-zA-Z0-9_]+
+    ;
 }%%
 =end
 # vim: ts=2 sw=2 ft=ragel:

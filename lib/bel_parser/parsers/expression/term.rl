@@ -3,22 +3,8 @@
 %%{
   machine bel;
 
+  include 'function.rl';
   include 'parameter.rl';
-
-  action start_function {
-    $stderr.puts 'TERM start_function'
-    @buffers[:function] = []
-  }
-
-  action append_function {
-    $stderr.puts 'TERM append_function'
-    @buffers[:function] << fc
-  }
-
-  action finish_function {
-    $stderr.puts 'TERM finish_function'
-    @buffers[:function] = identifier(utf8_string(@buffers[:function]))
-  }
 
   action term_init {
     $stderr.puts 'TERM term_init'
@@ -32,9 +18,7 @@
 
   action term_fx {
     $stderr.puts 'TERM term_fx'
-    fx = @buffers[:function]
-    fx_node = function(fx)
-    new_term = @buffers[:term_stack][-1] << fx_node
+    new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   }
 
@@ -48,7 +32,8 @@
 
   action fxbt {
     $stderr.puts 'TERM fxbt'
-    fpc -= @buffers[:function].length + 1
+    function_string = @buffers[:function].identifier.string_literal
+    fpc -= function_string.length + 1
     fcall inner_term;
   }
 
@@ -78,35 +63,35 @@
   }
 
   inner_term :=
-    an_ident >inner_term_init >start_function $append_function %finish_function
+    a_function >inner_term_init
     SP*
     '(' @term_fx $eof{ $stderr.puts "EOF!" }
       (
         a_parameter %term_argument |
-        an_ident >start_function $append_function '(' @fxbt
+        a_function '(' @fxbt
       )
       (
         COMMA_DELIM
         (
           a_parameter %term_argument |
-          an_ident >start_function $append_function '(' @fxbt
+          a_function '(' @fxbt
         )
       )*
     ')' @fxret;
 
   outer_term =
-    an_ident >term_init >start_function $append_function %finish_function
+    a_function >term_init
     SP*
     '(' @term_fx
       (
         a_parameter %term_argument $eof(eof_parameter_argument) |
-        an_ident >start_function $append_function '(' @fxbt
+        a_function '(' @fxbt
       )
       (
         COMMA_DELIM
         (
           a_parameter %term_argument $eof(eof_parameter_argument) |
-          an_ident >start_function $append_function '(' @fxbt
+          a_function '(' @fxbt
         )
       )*
     ')';
