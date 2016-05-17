@@ -209,97 +209,97 @@ self._bel_indicies = [
 	28, 1, 29, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 29, 1, 30, 30, 30, 30, 30, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 30, 1, 31, 1, 1, 1, 
-	1, 32, 1, 34, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 35, 33, 37, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 38, 36, 36, 34, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 40, 39, 37, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	42, 41, 41, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 1, 1, 1, 
-	1, 1, 1, 1, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 1, 1, 
-	1, 1, 43, 1, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 1, 44, 
-	44, 44, 44, 44, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 44, 1, 
-	45, 1, 1, 1, 1, 46, 1, 48, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 49, 47, 51, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 52, 50, 50, 
-	48, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 54, 53, 51, 
+	1, 29, 1, 31, 31, 31, 31, 31, 
+	30, 30, 30, 30, 30, 30, 30, 30, 
+	30, 30, 30, 30, 30, 30, 30, 30, 
+	30, 30, 31, 30, 32, 30, 30, 30, 
+	30, 33, 30, 35, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 36, 34, 38, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 39, 37, 37, 35, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 41, 40, 38, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	43, 42, 42, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 1, 1, 1, 
+	1, 1, 1, 1, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 1, 1, 
+	1, 1, 44, 1, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 1, 46, 
+	46, 46, 46, 46, 45, 45, 45, 45, 
+	45, 45, 45, 45, 45, 45, 45, 45, 
+	45, 45, 45, 45, 45, 45, 46, 45, 
+	47, 45, 45, 45, 45, 48, 45, 50, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 51, 49, 53, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 54, 52, 52, 
+	50, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
-	55, 55, 55, 55, 55, 55, 55, 55, 
-	55, 55, 55, 55, 56, 55, 55, 1, 
-	58, 57, 57, 57, 57, 57, 57, 57, 
+	55, 55, 55, 55, 55, 56, 55, 53, 
 	57, 57, 57, 57, 57, 57, 57, 57, 
 	57, 57, 57, 57, 57, 57, 57, 57, 
 	57, 57, 57, 57, 57, 57, 57, 57, 
-	57, 57, 57, 57, 57, 57, 59, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	57, 57, 57, 57, 57, 57, 57, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 57, 57, 57, 57, 59, 57, 59, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 58, 57, 57, 30, 
+	60, 59, 59, 59, 59, 59, 59, 59, 
 	59, 59, 59, 59, 59, 59, 59, 59, 
 	59, 59, 59, 59, 59, 59, 59, 59, 
 	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 57, 57, 1, 0
+	59, 59, 59, 59, 59, 59, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	59, 59, 59, 59, 59, 59, 59, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 59, 59, 59, 59, 61, 59, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 59, 59, 45, 0
 ]
 
 class << self
@@ -310,11 +310,11 @@ self._bel_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
 	17, 18, 0, 19, 20, 19, 20, 21, 
-	22, 23, 24, 25, 26, 27, 27, 28, 
-	31, 29, 42, 30, 29, 42, 30, 32, 
-	33, 32, 33, 43, 35, 36, 39, 37, 
-	45, 38, 37, 45, 38, 40, 41, 40, 
-	41, 0, 44, 43
+	22, 23, 24, 25, 26, 27, 0, 27, 
+	28, 31, 29, 42, 30, 29, 42, 30, 
+	32, 33, 32, 33, 43, 0, 35, 36, 
+	39, 37, 45, 38, 37, 45, 38, 40, 
+	41, 40, 41, 0, 44, 43
 ]
 
 class << self
@@ -325,11 +325,11 @@ self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 2, 3, 4, 0, 0, 0, 
-	0, 0, 0, 0, 0, 5, 0, 0, 
-	0, 8, 9, 8, 0, 10, 0, 8, 
-	8, 0, 0, 3, 0, 0, 0, 8, 
-	13, 8, 0, 14, 0, 8, 8, 0, 
-	0, 17, 18, 0
+	0, 0, 0, 0, 0, 5, 7, 0, 
+	0, 0, 9, 10, 9, 0, 11, 0, 
+	9, 9, 0, 0, 3, 13, 0, 0, 
+	0, 9, 15, 9, 0, 16, 0, 9, 
+	9, 0, 0, 19, 20, 0
 ]
 
 class << self
@@ -340,9 +340,9 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 1, 1, 0, 0, 0, 0, 
-	0, 0, 0, 6, 7, 7, 7, 7, 
-	7, 7, 0, 11, 12, 12, 12, 12, 
-	12, 12, 15, 16, 19, 0
+	0, 0, 0, 6, 8, 8, 8, 8, 
+	8, 8, 0, 12, 14, 14, 14, 14, 
+	14, 14, 17, 18, 21, 0
 ]
 
 class << self
@@ -421,7 +421,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -440,7 +440,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
@@ -449,12 +449,30 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
-	when 8 then
+	when 9 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
+  		end
+	when 7 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+	when 13 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
   		end
 	when 5 then
 		begin
@@ -478,7 +496,7 @@ begin
     name = @buffers.delete(:ident)
     @buffers[:namespace_definition_name] = name
   		end
-	when 10 then
+	when 11 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -493,7 +511,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 9 then
+	when 10 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -514,7 +532,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 14 then
+	when 16 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -534,7 +552,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 13 then
+	when 15 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -577,35 +595,13 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 11 then
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 6 then
-		begin
-
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
-    leaf = url()
-    string_node = @buffers.delete(:string)
-    unless string_node.nil?
-      leaf <<= string_node
-      leaf.complete = string_node.complete
-    end
-    domain_node = domain(leaf)
-    domain_node.complete = leaf.complete
-    namespace_definition_node = namespace_definition(domain_node)
-    namespace_definition_node.complete = domain_node.complete
-    yield namespace_definition_node
-  		end
-	when 16 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -640,24 +636,10 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 12 then
+	when 6 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 7 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
+    $stderr.puts 'STRING a_string_err'
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -678,7 +660,75 @@ begin
     namespace_definition_node.complete = domain_node.complete
     yield namespace_definition_node
   		end
-	when 15 then
+	when 12 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    leaf = url()
+    string_node = @buffers.delete(:string)
+    unless string_node.nil?
+      leaf <<= string_node
+      leaf.complete = string_node.complete
+    end
+    domain_node = domain(leaf)
+    domain_node.complete = leaf.complete
+    namespace_definition_node = namespace_definition(domain_node)
+    namespace_definition_node.complete = domain_node.complete
+    yield namespace_definition_node
+  		end
+	when 14 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts "DEFINE_NAMESPACE add_string_value"
@@ -920,97 +970,97 @@ self._bel_indicies = [
 	28, 1, 29, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 29, 1, 30, 30, 30, 30, 30, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 30, 1, 31, 1, 1, 1, 
-	1, 32, 1, 34, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 35, 33, 37, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 38, 36, 36, 34, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 40, 39, 37, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	42, 41, 41, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 1, 1, 1, 
-	1, 1, 1, 1, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 1, 1, 
-	1, 1, 43, 1, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 1, 44, 
-	44, 44, 44, 44, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 44, 1, 
-	45, 1, 1, 1, 1, 46, 1, 48, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 49, 47, 51, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 52, 50, 50, 
-	48, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 54, 53, 51, 
+	1, 29, 1, 31, 31, 31, 31, 31, 
+	30, 30, 30, 30, 30, 30, 30, 30, 
+	30, 30, 30, 30, 30, 30, 30, 30, 
+	30, 30, 31, 30, 32, 30, 30, 30, 
+	30, 33, 30, 35, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 36, 34, 38, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 39, 37, 37, 35, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 41, 40, 38, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	43, 42, 42, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 1, 1, 1, 
+	1, 1, 1, 1, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 1, 1, 
+	1, 1, 44, 1, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 1, 46, 
+	46, 46, 46, 46, 45, 45, 45, 45, 
+	45, 45, 45, 45, 45, 45, 45, 45, 
+	45, 45, 45, 45, 45, 45, 46, 45, 
+	47, 45, 45, 45, 45, 48, 45, 50, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 51, 49, 53, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 54, 52, 52, 
+	50, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
-	55, 55, 55, 55, 55, 55, 55, 55, 
-	55, 55, 55, 55, 56, 55, 55, 1, 
-	58, 57, 57, 57, 57, 57, 57, 57, 
+	55, 55, 55, 55, 55, 56, 55, 53, 
 	57, 57, 57, 57, 57, 57, 57, 57, 
 	57, 57, 57, 57, 57, 57, 57, 57, 
 	57, 57, 57, 57, 57, 57, 57, 57, 
-	57, 57, 57, 57, 57, 57, 59, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	57, 57, 57, 57, 57, 57, 57, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 57, 57, 57, 57, 59, 57, 59, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 58, 57, 57, 30, 
+	60, 59, 59, 59, 59, 59, 59, 59, 
 	59, 59, 59, 59, 59, 59, 59, 59, 
 	59, 59, 59, 59, 59, 59, 59, 59, 
 	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 57, 57, 1, 0
+	59, 59, 59, 59, 59, 59, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	59, 59, 59, 59, 59, 59, 59, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 59, 59, 59, 59, 61, 59, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 59, 59, 45, 0
 ]
 
 class << self
@@ -1021,11 +1071,11 @@ self._bel_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
 	17, 18, 0, 19, 20, 19, 20, 21, 
-	22, 23, 24, 25, 26, 27, 27, 28, 
-	31, 29, 42, 30, 29, 42, 30, 32, 
-	33, 32, 33, 43, 35, 36, 39, 37, 
-	45, 38, 37, 45, 38, 40, 41, 40, 
-	41, 0, 44, 43
+	22, 23, 24, 25, 26, 27, 0, 27, 
+	28, 31, 29, 42, 30, 29, 42, 30, 
+	32, 33, 32, 33, 43, 0, 35, 36, 
+	39, 37, 45, 38, 37, 45, 38, 40, 
+	41, 40, 41, 0, 44, 43
 ]
 
 class << self
@@ -1036,11 +1086,11 @@ self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 2, 3, 4, 0, 0, 0, 
-	0, 0, 0, 0, 0, 5, 0, 0, 
-	0, 8, 9, 8, 0, 10, 0, 8, 
-	8, 0, 0, 3, 0, 0, 0, 8, 
-	13, 8, 0, 14, 0, 8, 8, 0, 
-	0, 17, 18, 0
+	0, 0, 0, 0, 0, 5, 7, 0, 
+	0, 0, 9, 10, 9, 0, 11, 0, 
+	9, 9, 0, 0, 3, 13, 0, 0, 
+	0, 9, 15, 9, 0, 16, 0, 9, 
+	9, 0, 0, 19, 20, 0
 ]
 
 class << self
@@ -1051,9 +1101,9 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 1, 1, 0, 0, 0, 0, 
-	0, 0, 0, 6, 7, 7, 7, 7, 
-	7, 7, 0, 11, 12, 12, 12, 12, 
-	12, 12, 15, 16, 19, 0
+	0, 0, 0, 6, 8, 8, 8, 8, 
+	8, 8, 0, 12, 14, 14, 14, 14, 
+	14, 14, 17, 18, 21, 0
 ]
 
 class << self
@@ -1132,7 +1182,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1151,7 +1201,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
@@ -1160,12 +1210,30 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
-	when 8 then
+	when 9 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
+  		end
+	when 7 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+	when 13 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
   		end
 	when 5 then
 		begin
@@ -1189,7 +1257,7 @@ begin
     name = @buffers.delete(:ident)
     @buffers[:namespace_definition_name] = name
   		end
-	when 10 then
+	when 11 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1204,7 +1272,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 9 then
+	when 10 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1225,7 +1293,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 14 then
+	when 16 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1245,7 +1313,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 13 then
+	when 15 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1288,35 +1356,13 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 11 then
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 6 then
-		begin
-
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
-    leaf = url()
-    string_node = @buffers.delete(:string)
-    unless string_node.nil?
-      leaf <<= string_node
-      leaf.complete = string_node.complete
-    end
-    domain_node = domain(leaf)
-    domain_node.complete = leaf.complete
-    namespace_definition_node = namespace_definition(domain_node)
-    namespace_definition_node.complete = domain_node.complete
-    yield namespace_definition_node
-  		end
-	when 16 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1351,24 +1397,10 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 12 then
+	when 6 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 7 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
+    $stderr.puts 'STRING a_string_err'
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1389,7 +1421,75 @@ begin
     namespace_definition_node.complete = domain_node.complete
     yield namespace_definition_node
   		end
-	when 15 then
+	when 12 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    leaf = url()
+    string_node = @buffers.delete(:string)
+    unless string_node.nil?
+      leaf <<= string_node
+      leaf.complete = string_node.complete
+    end
+    domain_node = domain(leaf)
+    domain_node.complete = leaf.complete
+    namespace_definition_node = namespace_definition(domain_node)
+    namespace_definition_node.complete = domain_node.complete
+    yield namespace_definition_node
+  		end
+	when 14 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts "DEFINE_NAMESPACE add_string_value"
@@ -1668,97 +1768,97 @@ self._bel_indicies = [
 	28, 1, 29, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 29, 1, 30, 30, 30, 30, 30, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 30, 1, 31, 1, 1, 1, 
-	1, 32, 1, 34, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 33, 33, 33, 
-	33, 33, 33, 33, 33, 35, 33, 37, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 38, 36, 36, 34, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 40, 39, 37, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	41, 41, 41, 41, 41, 41, 41, 41, 
-	42, 41, 41, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 1, 1, 1, 
-	1, 1, 1, 1, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 1, 1, 
-	1, 1, 43, 1, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 1, 44, 
-	44, 44, 44, 44, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 44, 1, 
-	45, 1, 1, 1, 1, 46, 1, 48, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 47, 47, 47, 47, 47, 47, 47, 
-	47, 49, 47, 51, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 50, 50, 50, 
-	50, 50, 50, 50, 50, 52, 50, 50, 
-	48, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 53, 53, 53, 
-	53, 53, 53, 53, 53, 54, 53, 51, 
+	1, 29, 1, 31, 31, 31, 31, 31, 
+	30, 30, 30, 30, 30, 30, 30, 30, 
+	30, 30, 30, 30, 30, 30, 30, 30, 
+	30, 30, 31, 30, 32, 30, 30, 30, 
+	30, 33, 30, 35, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 34, 34, 34, 
+	34, 34, 34, 34, 34, 36, 34, 38, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 37, 37, 37, 37, 37, 37, 37, 
+	37, 39, 37, 37, 35, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 41, 40, 38, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	42, 42, 42, 42, 42, 42, 42, 42, 
+	43, 42, 42, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 1, 1, 1, 
+	1, 1, 1, 1, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 1, 1, 
+	1, 1, 44, 1, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 1, 46, 
+	46, 46, 46, 46, 45, 45, 45, 45, 
+	45, 45, 45, 45, 45, 45, 45, 45, 
+	45, 45, 45, 45, 45, 45, 46, 45, 
+	47, 45, 45, 45, 45, 48, 45, 50, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 49, 49, 49, 49, 49, 49, 49, 
+	49, 51, 49, 53, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 54, 52, 52, 
+	50, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
 	55, 55, 55, 55, 55, 55, 55, 55, 
-	55, 55, 55, 55, 55, 55, 55, 55, 
-	55, 55, 55, 55, 56, 55, 55, 1, 
-	58, 57, 57, 57, 57, 57, 57, 57, 
+	55, 55, 55, 55, 55, 56, 55, 53, 
 	57, 57, 57, 57, 57, 57, 57, 57, 
 	57, 57, 57, 57, 57, 57, 57, 57, 
 	57, 57, 57, 57, 57, 57, 57, 57, 
-	57, 57, 57, 57, 57, 57, 59, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	57, 57, 57, 57, 57, 57, 57, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 57, 57, 57, 57, 59, 57, 59, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 58, 57, 57, 30, 
+	60, 59, 59, 59, 59, 59, 59, 59, 
 	59, 59, 59, 59, 59, 59, 59, 59, 
 	59, 59, 59, 59, 59, 59, 59, 59, 
 	59, 59, 59, 59, 59, 59, 59, 59, 
-	59, 57, 57, 1, 0
+	59, 59, 59, 59, 59, 59, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	59, 59, 59, 59, 59, 59, 59, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 59, 59, 59, 59, 61, 59, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 61, 61, 61, 61, 61, 61, 61, 
+	61, 59, 59, 45, 0
 ]
 
 class << self
@@ -1769,11 +1869,11 @@ self._bel_trans_targs = [
 	2, 0, 3, 4, 5, 6, 7, 8, 
 	9, 10, 11, 12, 13, 14, 15, 16, 
 	17, 18, 0, 19, 20, 19, 20, 21, 
-	22, 23, 24, 25, 26, 27, 27, 28, 
-	31, 29, 42, 30, 29, 42, 30, 32, 
-	33, 32, 33, 43, 35, 36, 39, 37, 
-	45, 38, 37, 45, 38, 40, 41, 40, 
-	41, 0, 44, 43
+	22, 23, 24, 25, 26, 27, 0, 27, 
+	28, 31, 29, 42, 30, 29, 42, 30, 
+	32, 33, 32, 33, 43, 0, 35, 36, 
+	39, 37, 45, 38, 37, 45, 38, 40, 
+	41, 40, 41, 0, 44, 43
 ]
 
 class << self
@@ -1784,11 +1884,11 @@ self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 2, 3, 4, 0, 0, 0, 
-	0, 0, 0, 0, 0, 5, 0, 0, 
-	0, 8, 9, 8, 0, 10, 0, 8, 
-	8, 0, 0, 3, 0, 0, 0, 8, 
-	13, 8, 0, 14, 0, 8, 8, 0, 
-	0, 17, 18, 0
+	0, 0, 0, 0, 0, 5, 7, 0, 
+	0, 0, 9, 10, 9, 0, 11, 0, 
+	9, 9, 0, 0, 3, 13, 0, 0, 
+	0, 9, 15, 9, 0, 16, 0, 9, 
+	9, 0, 0, 19, 20, 0
 ]
 
 class << self
@@ -1799,9 +1899,9 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 1, 1, 0, 0, 0, 0, 
-	0, 0, 0, 6, 7, 7, 7, 7, 
-	7, 7, 0, 11, 12, 12, 12, 12, 
-	12, 12, 15, 16, 19, 0
+	0, 0, 0, 6, 8, 8, 8, 8, 
+	8, 8, 0, 12, 14, 14, 14, 14, 
+	14, 14, 17, 18, 21, 0
 ]
 
 class << self
@@ -1895,7 +1995,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1914,7 +2014,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
@@ -1923,12 +2023,30 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
-	when 8 then
+	when 9 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
+  		end
+	when 7 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+	when 13 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
   		end
 	when 5 then
 		begin
@@ -1952,7 +2070,7 @@ begin
     name = @buffers.delete(:ident)
     @buffers[:namespace_definition_name] = name
   		end
-	when 10 then
+	when 11 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1967,7 +2085,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 9 then
+	when 10 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1988,7 +2106,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 14 then
+	when 16 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -2008,7 +2126,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 13 then
+	when 15 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -2051,35 +2169,13 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 11 then
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 6 then
-		begin
-
-    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
-    leaf = url()
-    string_node = @buffers.delete(:string)
-    unless string_node.nil?
-      leaf <<= string_node
-      leaf.complete = string_node.complete
-    end
-    domain_node = domain(leaf)
-    domain_node.complete = leaf.complete
-    namespace_definition_node = namespace_definition(domain_node)
-    namespace_definition_node.complete = domain_node.complete
-    yield namespace_definition_node
-  		end
-	when 16 then
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2114,24 +2210,10 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 12 then
+	when 6 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 7 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
+    $stderr.puts 'STRING a_string_err'
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2152,7 +2234,75 @@ begin
     namespace_definition_node.complete = domain_node.complete
     yield namespace_definition_node
   		end
-	when 15 then
+	when 12 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "DEFINE_NAMESPACE define_namespace_node_eof"
+    leaf = url()
+    string_node = @buffers.delete(:string)
+    unless string_node.nil?
+      leaf <<= string_node
+      leaf.complete = string_node.complete
+    end
+    domain_node = domain(leaf)
+    domain_node.complete = leaf.complete
+    namespace_definition_node = namespace_definition(domain_node)
+    namespace_definition_node.complete = domain_node.complete
+    yield namespace_definition_node
+  		end
+	when 14 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts "DEFINE_NAMESPACE add_string_value"

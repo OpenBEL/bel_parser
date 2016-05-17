@@ -74,10 +74,10 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 0, 0, 0, 0, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 0, 
-	1, 2, 1, 1, 1, 1, 3, 1, 
+	1, 1, 1, 1, 1, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 1, 
+	0, 2, 0, 0, 0, 0, 3, 0, 
 	5, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
 	4, 4, 4, 4, 4, 4, 4, 4, 
@@ -107,7 +107,7 @@ self._bel_indicies = [
 	12, 12, 12, 12, 12, 12, 12, 12, 
 	12, 12, 12, 12, 12, 12, 12, 12, 
 	12, 12, 12, 12, 12, 13, 12, 12, 
-	1, 0
+	0, 0
 ]
 
 class << self
@@ -115,7 +115,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	1, 0, 2, 5, 3, 8, 4, 3, 
+	0, 1, 2, 5, 3, 8, 4, 3, 
 	8, 4, 6, 7, 6, 7
 ]
 
@@ -124,8 +124,8 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 3, 4, 3, 0, 
-	5, 0, 3, 3, 0, 0
+	2, 0, 0, 0, 4, 5, 4, 0, 
+	6, 0, 4, 4, 0, 0
 ]
 
 class << self
@@ -133,7 +133,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 2, 2, 2, 2, 2, 2, 
+	0, 1, 3, 3, 3, 3, 3, 3, 
 	0
 ]
 
@@ -216,14 +216,23 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
   		end
-	when 5 then
+	when 2 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+	when 6 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -243,7 +252,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 4 then
+	when 5 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -289,10 +298,18 @@ begin
 	when 1 then
 		begin
 
-    $stderr.puts 'STRING eof_main; yielding'
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
     yield @buffers[:string]
   		end
-	when 2 then
+	when 3 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -303,7 +320,15 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING eof_main; yielding'
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
     yield @buffers[:string]
   		end
 	  end

@@ -16,7 +16,24 @@ describe 'when parsing strings' do
 
   it 'is a nil-parse for \'\'' do
     output = parse_ast(parser, '')
-    expect(output).to be_nil
+    expect(output).to be_a(ast::String)
+    expect(output).to respond_to(:complete)
+    expect(output.complete).to be(false)
+    expect(output.children?).to be(true)
+    expect(output).to eq(
+      s(:string, "\n")
+    )
+  end
+
+  it 'is incomplete for \'f"' do
+    output = parse_ast(parser, 'f"')
+    expect(output).to be_a(ast::String)
+    expect(output).to respond_to(:complete)
+    expect(output.complete).to be(false)
+    expect(output.children?).to be(true)
+    expect(output).to eq(
+      s(:string, '')
+    )
   end
 
   it 'is incomplete for \'"f\'' do

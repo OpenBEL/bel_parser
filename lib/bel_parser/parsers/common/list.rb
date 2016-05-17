@@ -47,189 +47,189 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 1, 2, 2, 2, 2, 2, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 2, 1, 3, 1, 1, 1, 1, 
-	4, 1, 6, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 7, 5, 9, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	10, 8, 12, 2, 2, 2, 2, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 12, 11, 3, 11, 11, 11, 11, 
-	4, 11, 11, 11, 11, 11, 11, 11, 
-	11, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 11, 11, 11, 11, 11, 
-	11, 11, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 11, 11, 11, 11, 
-	13, 11, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 11, 6, 14, 14, 
+	0, 1, 3, 3, 3, 3, 3, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 3, 2, 4, 2, 2, 2, 2, 
+	5, 2, 7, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 8, 6, 10, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	11, 9, 13, 3, 3, 3, 3, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 13, 12, 4, 12, 12, 12, 12, 
+	5, 12, 12, 12, 12, 12, 12, 12, 
+	12, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 12, 12, 12, 12, 12, 
+	12, 12, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 12, 12, 12, 12, 
+	14, 12, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 15, 14, 9, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 17, 16, 16, 8, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 1, 
-	1, 1, 1, 1, 1, 1, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	1, 1, 1, 1, 18, 1, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	1, 19, 19, 19, 19, 19, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	19, 1, 20, 1, 1, 1, 1, 21, 
-	1, 23, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 24, 22, 26, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 27, 
-	25, 25, 23, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 29, 
-	28, 26, 30, 30, 30, 30, 30, 30, 
+	14, 14, 14, 14, 12, 7, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 16, 15, 10, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 18, 17, 17, 9, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 1, 
+	1, 1, 1, 1, 1, 1, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	1, 1, 1, 1, 19, 1, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	1, 21, 21, 21, 21, 21, 20, 20, 
+	20, 20, 20, 20, 20, 20, 20, 20, 
+	20, 20, 20, 20, 20, 20, 20, 20, 
+	21, 20, 22, 20, 20, 20, 20, 23, 
+	20, 25, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 26, 24, 28, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 29, 
+	27, 27, 25, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
-	30, 30, 30, 30, 30, 30, 31, 30, 
-	30, 32, 33, 34, 34, 34, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	32, 11, 35, 11, 11, 11, 11, 36, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 11, 11, 11, 11, 11, 11, 
-	11, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 11, 11, 11, 11, 37, 
-	11, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 11, 11, 38, 11, 39, 
-	40, 2, 2, 2, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 39, 11, 
-	3, 11, 11, 11, 11, 4, 11, 11, 
-	11, 11, 11, 11, 11, 11, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	11, 11, 11, 11, 11, 11, 11, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 11, 11, 11, 11, 13, 11, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 11, 11, 41, 11, 2, 2, 2, 
-	2, 2, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 2, 1, 3, 1, 
-	1, 1, 1, 4, 1, 42, 43, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 42, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	44, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 45, 1, 46, 47, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 46, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 12, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
+	30, 30, 30, 30, 30, 30, 30, 31, 
+	30, 28, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 33, 32, 
+	32, 34, 35, 36, 36, 36, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	34, 12, 37, 12, 12, 12, 12, 38, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 12, 12, 12, 12, 12, 12, 
+	12, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 12, 12, 12, 12, 39, 
+	12, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 12, 12, 40, 12, 41, 
+	42, 3, 3, 3, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 41, 12, 
+	4, 12, 12, 12, 12, 5, 12, 12, 
+	12, 12, 12, 12, 12, 12, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	12, 12, 12, 12, 12, 12, 12, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 12, 12, 12, 12, 14, 12, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 12, 12, 43, 12, 3, 3, 3, 
+	3, 3, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 3, 2, 4, 2, 
+	2, 2, 2, 5, 2, 44, 45, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 44, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	46, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 47, 2, 48, 49, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 48, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 13, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 41, 
-	1, 1, 48, 49, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 48, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 50, 11, 11, 
-	11, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 11, 11, 11, 11, 11, 
-	11, 11, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 11, 11, 11, 11, 
-	51, 11, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 11, 11, 52, 11, 
-	53, 1, 55, 54, 54, 54, 54, 54, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 43, 
+	1, 1, 51, 52, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 51, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 53, 50, 50, 
+	50, 54, 54, 54, 54, 54, 54, 54, 
+	54, 54, 54, 50, 50, 50, 50, 50, 
+	50, 50, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
+	54, 54, 54, 54, 50, 50, 50, 50, 
+	54, 50, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 54, 54, 54, 54, 54, 54, 
-	54, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 54, 54, 54, 54, 56, 
-	54, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 54, 54, 1, 0
+	54, 54, 54, 54, 50, 50, 55, 50, 
+	56, 1, 58, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 57, 57, 57, 57, 57, 57, 
+	57, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 57, 57, 57, 57, 59, 
+	57, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 57, 57, 20, 0
 ]
 
 class << self
@@ -237,14 +237,14 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	18, 0, 2, 3, 6, 4, 21, 9, 
-	4, 21, 9, 0, 5, 24, 7, 8, 
-	7, 8, 26, 11, 12, 15, 13, 28, 
-	14, 13, 28, 14, 16, 17, 16, 17, 
-	19, 20, 2, 3, 6, 24, 25, 19, 
-	20, 25, 22, 23, 5, 25, 22, 23, 
-	22, 23, 5, 24, 25, 23, 0, 27, 
-	26
+	18, 0, 0, 2, 3, 6, 4, 21, 
+	9, 4, 21, 9, 0, 5, 24, 7, 
+	8, 7, 8, 26, 0, 11, 12, 15, 
+	13, 28, 14, 13, 28, 14, 16, 17, 
+	16, 17, 19, 20, 2, 3, 6, 24, 
+	25, 19, 20, 25, 22, 23, 5, 25, 
+	22, 23, 0, 22, 23, 5, 24, 25, 
+	23, 0, 27, 26
 ]
 
 class << self
@@ -252,14 +252,14 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 0, 3, 4, 3, 
-	0, 5, 0, 7, 0, 8, 3, 3, 
-	0, 0, 8, 0, 0, 0, 3, 11, 
-	3, 0, 12, 0, 3, 3, 0, 0, 
-	14, 14, 14, 14, 14, 15, 14, 0, 
-	0, 0, 19, 19, 19, 19, 0, 0, 
-	22, 22, 22, 0, 22, 24, 26, 27, 
-	0
+	0, 0, 2, 0, 0, 0, 4, 5, 
+	4, 0, 6, 0, 8, 0, 9, 4, 
+	4, 0, 0, 9, 11, 0, 0, 0, 
+	4, 13, 4, 0, 14, 0, 4, 4, 
+	0, 0, 16, 16, 16, 16, 16, 17, 
+	16, 0, 0, 0, 21, 21, 21, 21, 
+	0, 0, 24, 25, 25, 25, 0, 25, 
+	27, 29, 30, 0
 ]
 
 class << self
@@ -267,10 +267,10 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 0, 1, 2, 2, 6, 2, 2, 
-	2, 2, 0, 9, 10, 10, 10, 10, 
-	10, 10, 13, 16, 17, 18, 20, 20, 
-	21, 23, 25, 28, 0
+	0, 0, 1, 3, 3, 7, 3, 3, 
+	3, 3, 0, 10, 12, 12, 12, 12, 
+	12, 12, 15, 18, 19, 20, 22, 22, 
+	23, 26, 28, 31, 0
 ]
 
 class << self
@@ -342,14 +342,14 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 8 then
+	when 9 then
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
     @id_start = p;
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -359,7 +359,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 7 then
+	when 24 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
@@ -368,7 +368,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 26 then
+	when 29 then
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
@@ -377,27 +377,45 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
   		end
-	when 14 then
+	when 2 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "LIST start_list"
     @list_opened = true
     @incomplete[:list] = list()
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "LIST stop_list"
     @list_closed = true
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -405,7 +423,7 @@ begin
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
   		end
-	when 22 then
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -422,7 +440,7 @@ begin
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
-	when 5 then
+	when 6 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -437,7 +455,24 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 15 then
+	when 8 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_err'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    @buffers[:ident] = ast_node
+  		end
+	when 17 then
 		begin
 
     $stderr.puts "LIST start_list"
@@ -450,7 +485,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 4 then
+	when 5 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -471,7 +506,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 12 then
+	when 14 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -491,7 +526,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 13 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -534,30 +569,13 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 9 then
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 1 then
-		begin
-
-    $stderr.puts "LIST list_node_eof"
-    list = @incomplete.delete(:list)
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    list <<= item
-    list.complete = false
-    yield list
-  		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -572,24 +590,10 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 10 then
+	when 1 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 2 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
+    $stderr.puts 'STRING a_string_err'
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -605,7 +609,21 @@ begin
     list.complete = false
     yield list
   		end
-	when 20 then
+	when 10 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 22 then
 		begin
 
     $stderr.puts "LIST list_end"
@@ -623,7 +641,179 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 6 then
+	when 3 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+	when 12 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 26 then
+		begin
+
+    $stderr.puts "LIST stop_list"
+    @list_closed = true
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 20 then
+		begin
+
+    $stderr.puts "LIST add_string"
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    @incomplete[:list] <<= item
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 19 then
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 18 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 7 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -653,122 +843,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 23 then
-		begin
-
-    $stderr.puts "LIST stop_list"
-    @list_closed = true
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 18 then
-		begin
-
-    $stderr.puts "LIST add_string"
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    @incomplete[:list] <<= item
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 17 then
-		begin
-
-    $stderr.puts "LIST list_node_eof"
-    list = @incomplete.delete(:list)
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    list <<= item
-    list.complete = false
-    yield list
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 16 then
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts "LIST list_node_eof"
-    list = @incomplete.delete(:list)
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    list <<= item
-    list.complete = false
-    yield list
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 13 then
+	when 15 then
 		begin
 
     $stderr.puts "LIST start_list"
@@ -803,7 +878,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -903,189 +978,189 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 1, 2, 2, 2, 2, 2, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 2, 1, 3, 1, 1, 1, 1, 
-	4, 1, 6, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 7, 5, 9, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	10, 8, 12, 2, 2, 2, 2, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 12, 11, 3, 11, 11, 11, 11, 
-	4, 11, 11, 11, 11, 11, 11, 11, 
-	11, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 11, 11, 11, 11, 11, 
-	11, 11, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 11, 11, 11, 11, 
-	13, 11, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 11, 6, 14, 14, 
+	0, 1, 3, 3, 3, 3, 3, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 3, 2, 4, 2, 2, 2, 2, 
+	5, 2, 7, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 8, 6, 10, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	11, 9, 13, 3, 3, 3, 3, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 13, 12, 4, 12, 12, 12, 12, 
+	5, 12, 12, 12, 12, 12, 12, 12, 
+	12, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 12, 12, 12, 12, 12, 
+	12, 12, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 12, 12, 12, 12, 
+	14, 12, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 15, 14, 9, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 17, 16, 16, 8, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 1, 
-	1, 1, 1, 1, 1, 1, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	1, 1, 1, 1, 18, 1, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	1, 19, 19, 19, 19, 19, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	19, 1, 20, 1, 1, 1, 1, 21, 
-	1, 23, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 24, 22, 26, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 27, 
-	25, 25, 23, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 29, 
-	28, 26, 30, 30, 30, 30, 30, 30, 
+	14, 14, 14, 14, 12, 7, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 16, 15, 10, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 18, 17, 17, 9, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 1, 
+	1, 1, 1, 1, 1, 1, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	1, 1, 1, 1, 19, 1, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	1, 21, 21, 21, 21, 21, 20, 20, 
+	20, 20, 20, 20, 20, 20, 20, 20, 
+	20, 20, 20, 20, 20, 20, 20, 20, 
+	21, 20, 22, 20, 20, 20, 20, 23, 
+	20, 25, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 26, 24, 28, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 29, 
+	27, 27, 25, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
-	30, 30, 30, 30, 30, 30, 31, 30, 
-	30, 32, 33, 34, 34, 34, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	32, 11, 35, 11, 11, 11, 11, 36, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 11, 11, 11, 11, 11, 11, 
-	11, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 11, 11, 11, 11, 37, 
-	11, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 11, 11, 38, 11, 39, 
-	40, 2, 2, 2, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 39, 11, 
-	3, 11, 11, 11, 11, 4, 11, 11, 
-	11, 11, 11, 11, 11, 11, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	11, 11, 11, 11, 11, 11, 11, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 11, 11, 11, 11, 13, 11, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 11, 11, 41, 11, 2, 2, 2, 
-	2, 2, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 2, 1, 3, 1, 
-	1, 1, 1, 4, 1, 42, 43, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 42, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	44, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 45, 1, 46, 47, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 46, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 12, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
+	30, 30, 30, 30, 30, 30, 30, 31, 
+	30, 28, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 33, 32, 
+	32, 34, 35, 36, 36, 36, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	34, 12, 37, 12, 12, 12, 12, 38, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 12, 12, 12, 12, 12, 12, 
+	12, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 12, 12, 12, 12, 39, 
+	12, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 12, 12, 40, 12, 41, 
+	42, 3, 3, 3, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 41, 12, 
+	4, 12, 12, 12, 12, 5, 12, 12, 
+	12, 12, 12, 12, 12, 12, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	12, 12, 12, 12, 12, 12, 12, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 12, 12, 12, 12, 14, 12, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 12, 12, 43, 12, 3, 3, 3, 
+	3, 3, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 3, 2, 4, 2, 
+	2, 2, 2, 5, 2, 44, 45, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 44, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	46, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 47, 2, 48, 49, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 48, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 13, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 41, 
-	1, 1, 48, 49, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 48, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 50, 11, 11, 
-	11, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 11, 11, 11, 11, 11, 
-	11, 11, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 11, 11, 11, 11, 
-	51, 11, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 11, 11, 52, 11, 
-	53, 1, 55, 54, 54, 54, 54, 54, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 43, 
+	1, 1, 51, 52, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 51, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 53, 50, 50, 
+	50, 54, 54, 54, 54, 54, 54, 54, 
+	54, 54, 54, 50, 50, 50, 50, 50, 
+	50, 50, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
+	54, 54, 54, 54, 50, 50, 50, 50, 
+	54, 50, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 54, 54, 54, 54, 54, 54, 
-	54, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 54, 54, 54, 54, 56, 
-	54, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 54, 54, 1, 0
+	54, 54, 54, 54, 50, 50, 55, 50, 
+	56, 1, 58, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 57, 57, 57, 57, 57, 57, 
+	57, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 57, 57, 57, 57, 59, 
+	57, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 57, 57, 20, 0
 ]
 
 class << self
@@ -1093,14 +1168,14 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	18, 0, 2, 3, 6, 4, 21, 9, 
-	4, 21, 9, 0, 5, 24, 7, 8, 
-	7, 8, 26, 11, 12, 15, 13, 28, 
-	14, 13, 28, 14, 16, 17, 16, 17, 
-	19, 20, 2, 3, 6, 24, 25, 19, 
-	20, 25, 22, 23, 5, 25, 22, 23, 
-	22, 23, 5, 24, 25, 23, 0, 27, 
-	26
+	18, 0, 0, 2, 3, 6, 4, 21, 
+	9, 4, 21, 9, 0, 5, 24, 7, 
+	8, 7, 8, 26, 0, 11, 12, 15, 
+	13, 28, 14, 13, 28, 14, 16, 17, 
+	16, 17, 19, 20, 2, 3, 6, 24, 
+	25, 19, 20, 25, 22, 23, 5, 25, 
+	22, 23, 0, 22, 23, 5, 24, 25, 
+	23, 0, 27, 26
 ]
 
 class << self
@@ -1108,14 +1183,14 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 0, 3, 4, 3, 
-	0, 5, 0, 7, 0, 8, 3, 3, 
-	0, 0, 8, 0, 0, 0, 3, 11, 
-	3, 0, 12, 0, 3, 3, 0, 0, 
-	14, 14, 14, 14, 14, 15, 14, 0, 
-	0, 0, 19, 19, 19, 19, 0, 0, 
-	22, 22, 22, 0, 22, 24, 26, 27, 
-	0
+	0, 0, 2, 0, 0, 0, 4, 5, 
+	4, 0, 6, 0, 8, 0, 9, 4, 
+	4, 0, 0, 9, 11, 0, 0, 0, 
+	4, 13, 4, 0, 14, 0, 4, 4, 
+	0, 0, 16, 16, 16, 16, 16, 17, 
+	16, 0, 0, 0, 21, 21, 21, 21, 
+	0, 0, 24, 25, 25, 25, 0, 25, 
+	27, 29, 30, 0
 ]
 
 class << self
@@ -1123,10 +1198,10 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 0, 1, 2, 2, 6, 2, 2, 
-	2, 2, 0, 9, 10, 10, 10, 10, 
-	10, 10, 13, 16, 17, 18, 20, 20, 
-	21, 23, 25, 28, 0
+	0, 0, 1, 3, 3, 7, 3, 3, 
+	3, 3, 0, 10, 12, 12, 12, 12, 
+	12, 12, 15, 18, 19, 20, 22, 22, 
+	23, 26, 28, 31, 0
 ]
 
 class << self
@@ -1198,14 +1273,14 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 8 then
+	when 9 then
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
     @id_start = p;
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1215,7 +1290,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 7 then
+	when 24 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
@@ -1224,7 +1299,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 26 then
+	when 29 then
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
@@ -1233,27 +1308,45 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
   		end
-	when 14 then
+	when 2 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "LIST start_list"
     @list_opened = true
     @incomplete[:list] = list()
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "LIST stop_list"
     @list_closed = true
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -1261,7 +1354,7 @@ begin
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
   		end
-	when 22 then
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1278,7 +1371,7 @@ begin
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
-	when 5 then
+	when 6 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1293,7 +1386,24 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 15 then
+	when 8 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_err'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    @buffers[:ident] = ast_node
+  		end
+	when 17 then
 		begin
 
     $stderr.puts "LIST start_list"
@@ -1306,7 +1416,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 4 then
+	when 5 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1327,7 +1437,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 12 then
+	when 14 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -1347,7 +1457,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 13 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -1390,30 +1500,13 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 9 then
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 1 then
-		begin
-
-    $stderr.puts "LIST list_node_eof"
-    list = @incomplete.delete(:list)
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    list <<= item
-    list.complete = false
-    yield list
-  		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1428,24 +1521,10 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 10 then
+	when 1 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 2 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
+    $stderr.puts 'STRING a_string_err'
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1461,7 +1540,21 @@ begin
     list.complete = false
     yield list
   		end
-	when 20 then
+	when 10 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 22 then
 		begin
 
     $stderr.puts "LIST list_end"
@@ -1479,7 +1572,179 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 6 then
+	when 3 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+	when 12 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 26 then
+		begin
+
+    $stderr.puts "LIST stop_list"
+    @list_closed = true
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 20 then
+		begin
+
+    $stderr.puts "LIST add_string"
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    @incomplete[:list] <<= item
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 19 then
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 18 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 7 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -1509,122 +1774,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 23 then
-		begin
-
-    $stderr.puts "LIST stop_list"
-    @list_closed = true
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 18 then
-		begin
-
-    $stderr.puts "LIST add_string"
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    @incomplete[:list] <<= item
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 17 then
-		begin
-
-    $stderr.puts "LIST list_node_eof"
-    list = @incomplete.delete(:list)
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    list <<= item
-    list.complete = false
-    yield list
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 16 then
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts "LIST list_node_eof"
-    list = @incomplete.delete(:list)
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    list <<= item
-    list.complete = false
-    yield list
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 13 then
+	when 15 then
 		begin
 
     $stderr.puts "LIST start_list"
@@ -1659,7 +1809,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -1797,189 +1947,189 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	0, 1, 2, 2, 2, 2, 2, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 2, 1, 3, 1, 1, 1, 1, 
-	4, 1, 6, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 5, 5, 5, 5, 
-	5, 5, 5, 5, 7, 5, 9, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	8, 8, 8, 8, 8, 8, 8, 8, 
-	10, 8, 12, 2, 2, 2, 2, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 12, 11, 3, 11, 11, 11, 11, 
-	4, 11, 11, 11, 11, 11, 11, 11, 
-	11, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 11, 11, 11, 11, 11, 
-	11, 11, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 11, 11, 11, 11, 
-	13, 11, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 11, 6, 14, 14, 
+	0, 1, 3, 3, 3, 3, 3, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 3, 2, 4, 2, 2, 2, 2, 
+	5, 2, 7, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 8, 6, 10, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	9, 9, 9, 9, 9, 9, 9, 9, 
+	11, 9, 13, 3, 3, 3, 3, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 13, 12, 4, 12, 12, 12, 12, 
+	5, 12, 12, 12, 12, 12, 12, 12, 
+	12, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 12, 12, 12, 12, 12, 
+	12, 12, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 12, 12, 12, 12, 
+	14, 12, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
 	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 14, 14, 14, 14, 14, 14, 
-	14, 14, 15, 14, 9, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 16, 16, 16, 16, 16, 16, 16, 
-	16, 17, 16, 16, 8, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 1, 
-	1, 1, 1, 1, 1, 1, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	1, 1, 1, 1, 18, 1, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	18, 18, 18, 18, 18, 18, 18, 18, 
-	1, 19, 19, 19, 19, 19, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	19, 1, 20, 1, 1, 1, 1, 21, 
-	1, 23, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 22, 22, 22, 22, 22, 
-	22, 22, 22, 24, 22, 26, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 25, 
-	25, 25, 25, 25, 25, 25, 25, 27, 
-	25, 25, 23, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 28, 
-	28, 28, 28, 28, 28, 28, 28, 29, 
-	28, 26, 30, 30, 30, 30, 30, 30, 
+	14, 14, 14, 14, 12, 7, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 15, 15, 15, 15, 15, 15, 
+	15, 15, 16, 15, 10, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 17, 17, 17, 17, 17, 17, 17, 
+	17, 18, 17, 17, 9, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 1, 
+	1, 1, 1, 1, 1, 1, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	1, 1, 1, 1, 19, 1, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	19, 19, 19, 19, 19, 19, 19, 19, 
+	1, 21, 21, 21, 21, 21, 20, 20, 
+	20, 20, 20, 20, 20, 20, 20, 20, 
+	20, 20, 20, 20, 20, 20, 20, 20, 
+	21, 20, 22, 20, 20, 20, 20, 23, 
+	20, 25, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 24, 24, 24, 24, 24, 
+	24, 24, 24, 26, 24, 28, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 27, 
+	27, 27, 27, 27, 27, 27, 27, 29, 
+	27, 27, 25, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
 	30, 30, 30, 30, 30, 30, 30, 30, 
-	30, 30, 30, 30, 30, 30, 31, 30, 
-	30, 32, 33, 34, 34, 34, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	32, 11, 35, 11, 11, 11, 11, 36, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 11, 11, 11, 11, 11, 11, 
-	11, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 11, 11, 11, 11, 37, 
-	11, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 37, 37, 37, 37, 37, 
-	37, 37, 37, 11, 11, 38, 11, 39, 
-	40, 2, 2, 2, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 39, 11, 
-	3, 11, 11, 11, 11, 4, 11, 11, 
-	11, 11, 11, 11, 11, 11, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	11, 11, 11, 11, 11, 11, 11, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 11, 11, 11, 11, 13, 11, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 13, 13, 13, 13, 13, 13, 13, 
-	13, 11, 11, 41, 11, 2, 2, 2, 
-	2, 2, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 2, 1, 3, 1, 
-	1, 1, 1, 4, 1, 42, 43, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 42, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	44, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 45, 1, 46, 47, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 46, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 12, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
+	30, 30, 30, 30, 30, 30, 30, 31, 
+	30, 28, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 32, 32, 
+	32, 32, 32, 32, 32, 32, 33, 32, 
+	32, 34, 35, 36, 36, 36, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	34, 12, 37, 12, 12, 12, 12, 38, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 12, 12, 12, 12, 12, 12, 
+	12, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 12, 12, 12, 12, 39, 
+	12, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 39, 39, 39, 39, 39, 
+	39, 39, 39, 12, 12, 40, 12, 41, 
+	42, 3, 3, 3, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 12, 12, 
+	12, 12, 12, 12, 12, 12, 41, 12, 
+	4, 12, 12, 12, 12, 5, 12, 12, 
+	12, 12, 12, 12, 12, 12, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	12, 12, 12, 12, 12, 12, 12, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 12, 12, 12, 12, 14, 12, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 14, 14, 14, 14, 14, 14, 14, 
+	14, 12, 12, 43, 12, 3, 3, 3, 
+	3, 3, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 3, 2, 4, 2, 
+	2, 2, 2, 5, 2, 44, 45, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 44, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	46, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 47, 2, 48, 49, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 48, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 13, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 41, 
-	1, 1, 48, 49, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 11, 11, 11, 
-	11, 48, 11, 11, 11, 11, 11, 11, 
-	11, 11, 11, 11, 11, 50, 11, 11, 
-	11, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 11, 11, 11, 11, 11, 
-	11, 11, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 11, 11, 11, 11, 
-	51, 11, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 11, 11, 52, 11, 
-	53, 1, 55, 54, 54, 54, 54, 54, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 43, 
+	1, 1, 51, 52, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 51, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 53, 50, 50, 
+	50, 54, 54, 54, 54, 54, 54, 54, 
+	54, 54, 54, 50, 50, 50, 50, 50, 
+	50, 50, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
+	54, 54, 54, 54, 50, 50, 50, 50, 
+	54, 50, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
 	54, 54, 54, 54, 54, 54, 54, 54, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 54, 54, 54, 54, 54, 54, 
-	54, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 54, 54, 54, 54, 56, 
-	54, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 56, 56, 56, 56, 56, 
-	56, 56, 56, 54, 54, 1, 0
+	54, 54, 54, 54, 50, 50, 55, 50, 
+	56, 1, 58, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	57, 57, 57, 57, 57, 57, 57, 57, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 57, 57, 57, 57, 57, 57, 
+	57, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 57, 57, 57, 57, 59, 
+	57, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 59, 59, 59, 59, 59, 
+	59, 59, 59, 57, 57, 20, 0
 ]
 
 class << self
@@ -1987,14 +2137,14 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	18, 0, 2, 3, 6, 4, 21, 9, 
-	4, 21, 9, 0, 5, 24, 7, 8, 
-	7, 8, 26, 11, 12, 15, 13, 28, 
-	14, 13, 28, 14, 16, 17, 16, 17, 
-	19, 20, 2, 3, 6, 24, 25, 19, 
-	20, 25, 22, 23, 5, 25, 22, 23, 
-	22, 23, 5, 24, 25, 23, 0, 27, 
-	26
+	18, 0, 0, 2, 3, 6, 4, 21, 
+	9, 4, 21, 9, 0, 5, 24, 7, 
+	8, 7, 8, 26, 0, 11, 12, 15, 
+	13, 28, 14, 13, 28, 14, 16, 17, 
+	16, 17, 19, 20, 2, 3, 6, 24, 
+	25, 19, 20, 25, 22, 23, 5, 25, 
+	22, 23, 0, 22, 23, 5, 24, 25, 
+	23, 0, 27, 26
 ]
 
 class << self
@@ -2002,14 +2152,14 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 0, 0, 3, 4, 3, 
-	0, 5, 0, 7, 0, 8, 3, 3, 
-	0, 0, 8, 0, 0, 0, 3, 11, 
-	3, 0, 12, 0, 3, 3, 0, 0, 
-	14, 14, 14, 14, 14, 15, 14, 0, 
-	0, 0, 19, 19, 19, 19, 0, 0, 
-	22, 22, 22, 0, 22, 24, 26, 27, 
-	0
+	0, 0, 2, 0, 0, 0, 4, 5, 
+	4, 0, 6, 0, 8, 0, 9, 4, 
+	4, 0, 0, 9, 11, 0, 0, 0, 
+	4, 13, 4, 0, 14, 0, 4, 4, 
+	0, 0, 16, 16, 16, 16, 16, 17, 
+	16, 0, 0, 0, 21, 21, 21, 21, 
+	0, 0, 24, 25, 25, 25, 0, 25, 
+	27, 29, 30, 0
 ]
 
 class << self
@@ -2017,10 +2167,10 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 0, 1, 2, 2, 6, 2, 2, 
-	2, 2, 0, 9, 10, 10, 10, 10, 
-	10, 10, 13, 16, 17, 18, 20, 20, 
-	21, 23, 25, 28, 0
+	0, 0, 1, 3, 3, 7, 3, 3, 
+	3, 3, 0, 10, 12, 12, 12, 12, 
+	12, 12, 15, 18, 19, 20, 22, 22, 
+	23, 26, 28, 31, 0
 ]
 
 class << self
@@ -2108,14 +2258,14 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 8 then
+	when 9 then
 		begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
     @id_start = p;
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2125,7 +2275,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
   		end
-	when 7 then
+	when 24 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
@@ -2134,7 +2284,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 26 then
+	when 29 then
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
@@ -2143,27 +2293,45 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'STRING start_string'
     @string_opened = true
     p_start = p
   		end
-	when 14 then
+	when 2 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "LIST start_list"
     @list_opened = true
     @incomplete[:list] = list()
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "LIST stop_list"
     @list_closed = true
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts "LIST add_string"
@@ -2171,7 +2339,7 @@ begin
     item = list_item(string, complete: string.complete)
     @incomplete[:list] <<= item
   		end
-	when 22 then
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2188,7 +2356,7 @@ begin
     item = list_item(ident, complete: ident.complete)
     @incomplete[:list] <<= item
   		end
-	when 5 then
+	when 6 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -2203,7 +2371,24 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 15 then
+	when 8 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_err'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    @buffers[:ident] = ast_node
+  		end
+	when 17 then
 		begin
 
     $stderr.puts "LIST start_list"
@@ -2216,7 +2401,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 4 then
+	when 5 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -2237,7 +2422,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 12 then
+	when 14 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -2257,7 +2442,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 13 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -2300,30 +2485,13 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 9 then
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 1 then
-		begin
-
-    $stderr.puts "LIST list_node_eof"
-    list = @incomplete.delete(:list)
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    list <<= item
-    list.complete = false
-    yield list
-  		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2338,24 +2506,10 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 10 then
+	when 1 then
 		begin
 
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    $stderr.puts 'STRING eof_main; yielding'
-    yield @buffers[:string]
-  		end
-	when 2 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
+    $stderr.puts 'STRING a_string_err'
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2371,7 +2525,21 @@ begin
     list.complete = false
     yield list
   		end
-	when 20 then
+	when 10 then
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 22 then
 		begin
 
     $stderr.puts "LIST list_end"
@@ -2389,7 +2557,179 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 6 then
+	when 3 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+	when 12 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
+  		end
+		begin
+
+    $stderr.puts 'STRING string_node_eof'
+    yield @buffers[:string]
+  		end
+	when 26 then
+		begin
+
+    $stderr.puts "LIST stop_list"
+    @list_closed = true
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 20 then
+		begin
+
+    $stderr.puts "LIST add_string"
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    @incomplete[:list] <<= item
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 19 then
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 18 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "LIST list_node_eof"
+    list = @incomplete.delete(:list)
+    string = @buffers.delete(:string)
+    item = list_item(string, complete: string.complete)
+    list <<= item
+    list.complete = false
+    yield list
+  		end
+		begin
+
+    $stderr.puts "LIST list_end"
+    if @list_opened && @list_closed
+      list = @incomplete.delete(:list)
+      list.complete = true
+    elsif !@list_closed
+      list = @incomplete.delete(:list)
+      list.complete = false
+    end
+    @buffers[:list] = list
+  		end
+		begin
+
+    $stderr.puts "LIST yield_list"
+    yield @buffers[:list]
+  		end
+	when 7 then
+		begin
+
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -2419,122 +2759,7 @@ begin
     list.complete = false
     yield list
   		end
-	when 23 then
-		begin
-
-    $stderr.puts "LIST stop_list"
-    @list_closed = true
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 18 then
-		begin
-
-    $stderr.puts "LIST add_string"
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    @incomplete[:list] <<= item
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 17 then
-		begin
-
-    $stderr.puts "LIST list_node_eof"
-    list = @incomplete.delete(:list)
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    list <<= item
-    list.complete = false
-    yield list
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 16 then
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts "LIST list_node_eof"
-    list = @incomplete.delete(:list)
-    string = @buffers.delete(:string)
-    item = list_item(string, complete: string.complete)
-    list <<= item
-    list.complete = false
-    yield list
-  		end
-		begin
-
-    $stderr.puts "LIST list_end"
-    if @list_opened && @list_closed
-      list = @incomplete.delete(:list)
-      list.complete = true
-    elsif !@list_closed
-      list = @incomplete.delete(:list)
-      list.complete = false
-    end
-    @buffers[:list] = list
-  		end
-		begin
-
-    $stderr.puts "LIST yield_list"
-    yield @buffers[:list]
-  		end
-	when 13 then
+	when 15 then
 		begin
 
     $stderr.puts "LIST start_list"
@@ -2569,7 +2794,7 @@ begin
     $stderr.puts "LIST yield_list"
     yield @buffers[:list]
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'

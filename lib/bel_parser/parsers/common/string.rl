@@ -38,9 +38,25 @@
     @buffers[:string] = ast_node
   }
 
-  action eof_main {
-    $stderr.puts 'STRING eof_main; yielding'
+  action string_node_eof {
+    $stderr.puts 'STRING string_node_eof'
     yield @buffers[:string]
+  }
+
+  action a_string_err {
+    $stderr.puts 'STRING a_string_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  }
+
+  action string_node_err {
+    $stderr.puts 'STRING string_node_err'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    yield ast_node
   }
 
   single =
@@ -63,6 +79,7 @@
 
   a_string =
     (single | double)
+    $err(a_string_err)
     ;
 
   string_node :=
@@ -70,7 +87,8 @@
       single |
       double
     )
-    @eof(eof_main)
+    $err(string_node_err)
+    @eof(string_node_eof)
     @yield_string
     ;
 }%%
