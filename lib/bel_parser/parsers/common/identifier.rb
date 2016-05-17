@@ -78,21 +78,21 @@ self._bel_indicies = [
 	1, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 1, 2, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 1, 1, 1, 1, 
-	1, 1, 1, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 1, 1, 1, 
-	1, 3, 1, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 1, 1, 0
+	0, 0, 0, 1, 3, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 2, 2, 2, 2, 
+	2, 2, 2, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 2, 2, 2, 
+	2, 4, 2, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 4, 4, 4, 
+	4, 4, 4, 4, 4, 2, 2, 0
 ]
 
 class << self
@@ -100,7 +100,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 2
+	2, 0, 0, 3, 2
 ]
 
 class << self
@@ -108,7 +108,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 0, 3, 0
+	1, 0, 3, 4, 0
 ]
 
 class << self
@@ -116,7 +116,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 0, 2, 4
+	0, 0, 2, 5
 ]
 
 class << self
@@ -204,7 +204,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 3 then
+	when 4 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -213,6 +213,15 @@ begin
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
+  		end
+	when 3 then
+		begin
+
+    $stderr.puts 'IDENTIFIER ident_node_err'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    yield ast_node
   		end
 	end
 	end
@@ -231,7 +240,7 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 4 then
+	when 5 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'

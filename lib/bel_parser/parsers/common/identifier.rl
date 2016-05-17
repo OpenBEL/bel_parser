@@ -20,6 +20,22 @@
     @buffers[:ident] = ast_node
   }
 
+  action an_ident_err {
+    $stderr.puts 'IDENTIFIER an_ident_err'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    @buffers[:ident] = ast_node
+  }
+
+  action ident_node_err {
+    $stderr.puts 'IDENTIFIER ident_node_err'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    yield ast_node
+  }
+
   action yield_identifier {
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
@@ -49,11 +65,13 @@
   an_ident =
     ident
     $eof(an_ident_eof)
+    $err(an_ident_err)
     ;
 
   ident_node :=
     ident
     NL?
+    $err(ident_node_err)
     %yield_identifier
     ;
 }%%

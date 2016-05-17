@@ -30,4 +30,22 @@ describe 'when parsing identifiers' do
       )
     end
   end
+
+  context 'when given malformed identifiers' do
+    prefix = random_identifier
+    suffix = random_identifier
+    teststr = "#{prefix}-#{suffix}"
+    bug = 'https://github.com/OpenBEL/bel_parser/issues/65'
+    it "is incomplete given malformed identifiers #{teststr} (#{bug})" do
+      output = parse_ast(parser, teststr)
+      expect(output).to be_a(ast::Identifier)
+      expect(output).to respond_to(:complete)
+      expect(output.complete).to be(false)
+      expect(output.children?).to be(true)
+      expect(output.first_child).to be_a(String)
+      expect(output).to eq(
+        s(:identifier, prefix)
+      )
+    end
+  end
 end
