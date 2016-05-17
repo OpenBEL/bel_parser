@@ -823,14 +823,14 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 	when 23 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -839,8 +839,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -848,8 +848,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
@@ -956,7 +956,7 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 		begin
 
@@ -968,8 +968,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -1079,7 +1079,7 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 	when 2 then
 		begin
@@ -1383,8 +1383,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -1433,8 +1433,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -1630,8 +1630,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -1825,8 +1825,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -1841,8 +1841,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -1851,8 +1851,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -1971,8 +1971,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -1981,8 +1981,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -2003,8 +2003,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2013,8 +2013,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -2031,8 +2031,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2041,8 +2041,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -2057,8 +2057,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2292,8 +2292,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2302,8 +2302,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -2346,8 +2346,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2356,8 +2356,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -2400,8 +2400,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2410,8 +2410,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -2434,8 +2434,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2444,8 +2444,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -2472,8 +2472,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2572,8 +2572,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -2582,8 +2582,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2634,8 +2634,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2644,8 +2644,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -2695,8 +2695,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2705,8 +2705,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -2761,8 +2761,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2771,8 +2771,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -2821,8 +2821,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2831,8 +2831,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -2895,8 +2895,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -2905,8 +2905,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -3787,14 +3787,14 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 	when 23 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -3803,8 +3803,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -3812,8 +3812,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
@@ -3920,7 +3920,7 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 		begin
 
@@ -3932,8 +3932,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -4043,7 +4043,7 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 	when 2 then
 		begin
@@ -4347,8 +4347,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -4397,8 +4397,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -4594,8 +4594,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -4789,8 +4789,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -4805,8 +4805,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -4815,8 +4815,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -4935,8 +4935,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -4945,8 +4945,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -4967,8 +4967,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -4977,8 +4977,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -4995,8 +4995,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5005,8 +5005,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -5021,8 +5021,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5256,8 +5256,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5266,8 +5266,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -5310,8 +5310,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5320,8 +5320,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -5364,8 +5364,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5374,8 +5374,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -5398,8 +5398,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5408,8 +5408,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -5436,8 +5436,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5536,8 +5536,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -5546,8 +5546,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5598,8 +5598,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5608,8 +5608,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -5659,8 +5659,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5669,8 +5669,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -5725,8 +5725,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5735,8 +5735,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -5785,8 +5785,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5795,8 +5795,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -5859,8 +5859,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -5869,8 +5869,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -6751,14 +6751,14 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 	when 23 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -6767,8 +6767,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -6776,8 +6776,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
@@ -6884,7 +6884,7 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 		begin
 
@@ -6896,8 +6896,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -7007,7 +7007,7 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 	when 2 then
 		begin
@@ -7311,8 +7311,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -7361,8 +7361,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -7558,8 +7558,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -7753,8 +7753,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -7769,8 +7769,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -7779,8 +7779,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -7899,8 +7899,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -7909,8 +7909,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -7931,8 +7931,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -7941,8 +7941,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -7959,8 +7959,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -7969,8 +7969,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -7985,8 +7985,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8220,8 +8220,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8230,8 +8230,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -8274,8 +8274,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8284,8 +8284,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -8328,8 +8328,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8338,8 +8338,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -8362,8 +8362,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8372,8 +8372,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -8400,8 +8400,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8500,8 +8500,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -8510,8 +8510,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8562,8 +8562,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8572,8 +8572,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -8623,8 +8623,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8633,8 +8633,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -8689,8 +8689,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8699,8 +8699,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -8749,8 +8749,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8759,8 +8759,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -8823,8 +8823,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -8833,8 +8833,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -9715,14 +9715,14 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 	when 23 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -9731,8 +9731,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -9740,8 +9740,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
@@ -9848,7 +9848,7 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 		begin
 
@@ -9860,8 +9860,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -9971,7 +9971,7 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 	when 2 then
 		begin
@@ -10275,8 +10275,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -10325,8 +10325,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -10522,8 +10522,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -10717,8 +10717,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -10733,8 +10733,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -10743,8 +10743,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -10863,8 +10863,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -10873,8 +10873,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -10895,8 +10895,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -10905,8 +10905,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -10923,8 +10923,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -10933,8 +10933,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -10949,8 +10949,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11184,8 +11184,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11194,8 +11194,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -11238,8 +11238,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11248,8 +11248,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -11292,8 +11292,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11302,8 +11302,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -11326,8 +11326,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11336,8 +11336,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -11364,8 +11364,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11464,8 +11464,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -11474,8 +11474,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11526,8 +11526,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11536,8 +11536,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -11587,8 +11587,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11597,8 +11597,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -11653,8 +11653,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11663,8 +11663,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -11713,8 +11713,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11723,8 +11723,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -11787,8 +11787,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -11797,8 +11797,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -12730,14 +12730,14 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 	when 23 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -12746,8 +12746,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -12755,8 +12755,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER ident_node_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   		end
@@ -12863,7 +12863,7 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 		begin
 
@@ -12875,8 +12875,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -12986,7 +12986,7 @@ begin
 
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   		end
 	when 2 then
 		begin
@@ -13290,8 +13290,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -13340,8 +13340,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -13537,8 +13537,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -13732,8 +13732,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -13748,8 +13748,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -13758,8 +13758,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -13878,8 +13878,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -13888,8 +13888,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -13910,8 +13910,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -13920,8 +13920,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -13938,8 +13938,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -13948,8 +13948,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -13964,8 +13964,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14199,8 +14199,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14209,8 +14209,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -14253,8 +14253,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14263,8 +14263,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -14307,8 +14307,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14317,8 +14317,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -14341,8 +14341,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14351,8 +14351,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -14379,8 +14379,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14479,8 +14479,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -14489,8 +14489,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14541,8 +14541,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14551,8 +14551,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -14602,8 +14602,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14612,8 +14612,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -14668,8 +14668,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14678,8 +14678,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -14728,8 +14728,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14738,8 +14738,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
@@ -14802,8 +14802,8 @@ begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -14812,8 +14812,8 @@ begin
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end

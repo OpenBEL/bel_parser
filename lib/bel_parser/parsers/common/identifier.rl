@@ -8,13 +8,13 @@
   action start_identifier {
     $stderr.puts 'IDENTIFIER start_identifier'
     @identifier_started = true
-    @id_start = p;
+    id_start = p;
   }
 
   action end_identifier {
     $stderr.puts 'IDENTIFIER end_identifier'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     completed = !chars.empty?
     ast_node = identifier(utf8_string(chars), complete: completed)
     @buffers[:ident] = ast_node
@@ -22,16 +22,16 @@
 
   action an_ident_err {
     $stderr.puts 'IDENTIFIER an_ident_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   }
 
   action ident_node_err {
     $stderr.puts 'IDENTIFIER ident_node_err'
-    @id_end = p
-    chars = data[@id_start...@id_end]
+    id_end = p
+    chars = data[id_start...id_end]
     ast_node = identifier(utf8_string(chars), complete: false)
     yield ast_node
   }
@@ -44,8 +44,8 @@
   action an_ident_eof {
     $stderr.puts 'IDENTIFIER an_ident_eof'
     if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
+      id_end = p
+      chars = data[id_start...id_end]
       completed = !chars.empty?
       ast_node = identifier(utf8_string(chars), complete: completed)
       @buffers[:ident] = ast_node
@@ -119,12 +119,12 @@ module BELParser
             @incomplete = {}
             data        = @content.unpack('C*')
             p           = 0
-            @id_start    = 0
-            @id_end      = 0
+            id_start    = 0
+            id_end      = 0
             pe          = data.length
             eof         = data.length
-            @identifier_started = false
 
+            identifier_started = false
       # begin: ragel
             %% write init;
             %% write exec;
