@@ -59,14 +59,14 @@
     yield ast_node
   }
 
-  single =
-    WS* SQ (NOT_SQESC | ESCAPED)*
-    >start_string
-    $eof(eof_string)
-    %stop_string
-    %string_end
-    SQ
-    ;
+  #single =
+  #  WS* SQ (NOT_SQESC | ESCAPED)*
+  #  >start_string
+  #  $eof(eof_string)
+  #  %stop_string
+  #  %string_end
+  #  SQ
+  #  ;
 
   double =
     WS* DQ (NOT_DQESC | ESCAPED)*
@@ -78,13 +78,14 @@
     ;
 
   a_string =
-    (single | double)
+    #(single | double)
+    double
     $err(a_string_err)
     ;
 
   string_node :=
     (
-      single |
+      #single |
       double
     )
     $err(string_node_err)
