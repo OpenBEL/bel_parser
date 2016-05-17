@@ -77,13 +77,13 @@ self._bel_trans_keys = [
 	9, 47, 0, 0, 10, 
 	10, 10, 122, 0, 0, 
 	10, 122, 0, 0, 0, 0, 
-	0, 0, 48, 122, 48, 
-	122, 9, 122, 9, 122, 
-	0, 0, 10, 10, 0, 0, 
-	65, 122, 10, 10, 9, 
-	32, 9, 47, 9, 47, 
-	0, 0, 10, 10, 0, 0, 
-	0
+	10, 10, 0, 0, 10, 
+	122, 10, 122, 9, 122, 
+	9, 122, 9, 39, 0, 0, 
+	10, 10, 0, 0, 65, 
+	122, 10, 10, 9, 32, 
+	9, 47, 9, 47, 0, 0, 
+	10, 10, 0, 0, 0
 ]
 
 class << self
@@ -114,9 +114,9 @@ self._bel_key_spans = [
 	31, 59, 59, 36, 36, 114, 54, 54, 
 	0, 114, 36, 114, 114, 114, 0, 114, 
 	114, 114, 0, 39, 0, 1, 113, 0, 
-	113, 0, 0, 0, 75, 75, 114, 114, 
-	0, 1, 0, 58, 1, 24, 39, 39, 
-	0, 1, 0
+	113, 0, 0, 1, 0, 113, 113, 114, 
+	114, 31, 0, 1, 0, 58, 1, 24, 
+	39, 39, 0, 1, 0
 ]
 
 class << self
@@ -147,9 +147,9 @@ self._bel_index_offsets = [
 	10418, 10450, 10510, 10570, 10607, 10644, 10759, 10814, 
 	10869, 10870, 10985, 11022, 11137, 11252, 11367, 11368, 
 	11483, 11598, 11713, 11714, 11754, 11755, 11757, 11871, 
-	11872, 11986, 11987, 11988, 11989, 12065, 12141, 12256, 
-	12371, 12372, 12374, 12375, 12434, 12436, 12461, 12501, 
-	12541, 12542, 12544
+	11872, 11986, 11987, 11988, 11990, 11991, 12105, 12219, 
+	12334, 12449, 12481, 12482, 12484, 12485, 12544, 12546, 
+	12571, 12611, 12651, 12652, 12654
 ]
 
 class << self
@@ -1655,77 +1655,90 @@ self._bel_indicies = [
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
-	382, 1, 1, 1, 1, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 1, 
-	1, 1, 1, 1, 1, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 1, 1, 1, 383, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 385, 1, 1, 1, 1, 
-	1, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 1, 1, 1, 
-	384, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 386, 387, 387, 
-	387, 387, 1, 1, 1, 1, 1, 1, 
+	382, 1, 1, 1, 383, 1, 1, 384, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 386, 1, 388, 1, 
-	1, 1, 1, 389, 1, 1, 1, 1, 
-	1, 1, 1, 1, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 1, 1, 
-	1, 1, 1, 1, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	1, 1, 1, 390, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	391, 72, 72, 72, 72, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 391, 
-	1, 73, 1, 1, 1, 1, 74, 1, 
-	1, 1, 1, 1, 1, 1, 1, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 1, 1, 1, 1, 1, 1, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 1, 1, 76, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 392, 1, 1, 393, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 1, 
+	1, 1, 1, 1, 1, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 1, 1, 1, 385, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 384, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 387, 1, 1, 1, 1, 1, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 1, 1, 1, 386, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 388, 389, 390, 390, 390, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 388, 1, 391, 1, 1, 1, 
+	1, 392, 1, 1, 1, 1, 1, 1, 
+	1, 1, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 1, 1, 1, 1, 
+	1, 1, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 393, 1, 1, 1, 
+	1, 393, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 1, 1, 1, 1, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 394, 181, 1, 180, 180, 
+	393, 393, 393, 393, 393, 1, 394, 395, 
+	72, 72, 72, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 394, 1, 73, 
+	1, 1, 1, 1, 74, 1, 1, 1, 
+	1, 1, 1, 1, 1, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 1, 
+	1, 1, 1, 1, 1, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 1, 1, 1, 76, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 72, 72, 72, 72, 72, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	72, 1, 73, 1, 1, 1, 1, 74, 
+	1, 1, 396, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 1, 1, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 398, 181, 1, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
-	180, 180, 180, 181, 180, 395, 396, 1, 
+	180, 181, 180, 399, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 395, 1, 1, 1, 
+	1, 1, 399, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 397, 1, 398, 396, 1, 
+	1, 401, 1, 402, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 398, 1, 1, 1, 
+	1, 1, 402, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 399, 1, 1, 401, 400, 
-	1, 0
+	1, 403, 1, 1, 405, 404, 1, 0
 ]
 
 class << self
@@ -1742,48 +1755,48 @@ self._bel_trans_targs = [
 	17, 11, 26, 25, 17, 11, 26, 0, 
 	182, 184, 30, 31, 34, 32, 186, 33, 
 	32, 186, 33, 35, 36, 35, 36, 38, 
-	39, 40, 43, 189, 188, 41, 187, 42, 
+	39, 40, 43, 190, 189, 41, 187, 42, 
 	41, 187, 42, 44, 45, 44, 45, 47, 
 	48, 49, 47, 48, 49, 50, 51, 52, 
 	57, 60, 64, 53, 54, 65, 53, 54, 
-	65, 55, 192, 56, 55, 56, 58, 59, 
-	58, 59, 55, 61, 192, 56, 60, 62, 
-	192, 63, 51, 52, 57, 192, 56, 64, 
-	63, 192, 56, 64, 67, 68, 69, 67, 
+	65, 55, 194, 56, 55, 56, 58, 59, 
+	58, 59, 55, 61, 194, 56, 60, 62, 
+	194, 63, 51, 52, 57, 194, 56, 64, 
+	63, 194, 56, 64, 67, 68, 69, 67, 
 	68, 69, 70, 71, 72, 77, 80, 84, 
-	73, 74, 85, 73, 74, 85, 75, 193, 
+	73, 74, 85, 73, 74, 85, 75, 195, 
 	76, 75, 76, 78, 79, 78, 79, 75, 
-	81, 193, 76, 80, 82, 193, 83, 71, 
-	72, 77, 193, 76, 84, 83, 193, 76, 
-	84, 195, 88, 89, 196, 197, 91, 92, 
+	81, 195, 76, 80, 82, 195, 83, 71, 
+	72, 77, 195, 76, 84, 83, 195, 76, 
+	84, 197, 88, 89, 198, 199, 91, 92, 
 	93, 91, 92, 93, 94, 95, 96, 101, 
 	104, 133, 97, 98, 134, 97, 98, 134, 
 	99, 106, 100, 99, 100, 102, 103, 102, 
 	103, 99, 105, 106, 100, 104, 131, 106, 
 	107, 107, 108, 109, 110, 111, 112, 110, 
 	111, 112, 113, 114, 115, 120, 123, 129, 
-	116, 117, 130, 116, 117, 130, 118, 198, 
+	116, 117, 130, 116, 117, 130, 118, 200, 
 	119, 118, 119, 121, 122, 121, 122, 118, 
-	124, 198, 119, 123, 127, 198, 126, 201, 
-	128, 114, 115, 120, 198, 119, 129, 128, 
-	198, 119, 129, 132, 95, 96, 101, 106, 
+	124, 200, 119, 123, 127, 200, 126, 203, 
+	128, 114, 115, 120, 200, 119, 129, 128, 
+	200, 119, 129, 132, 95, 96, 101, 106, 
 	100, 133, 132, 106, 100, 133, 136, 137, 
 	138, 136, 137, 138, 139, 140, 141, 146, 
 	149, 177, 142, 143, 178, 142, 143, 178, 
 	144, 151, 145, 144, 145, 147, 148, 147, 
 	148, 144, 150, 151, 145, 149, 175, 151, 
-	152, 152, 153, 154, 154, 155, 156, 202, 
+	152, 152, 153, 154, 154, 155, 156, 204, 
 	157, 158, 156, 157, 158, 159, 160, 161, 
 	166, 169, 173, 162, 163, 174, 162, 163, 
-	174, 164, 202, 165, 164, 165, 167, 168, 
-	167, 168, 164, 170, 202, 165, 169, 171, 
-	202, 172, 160, 161, 166, 202, 165, 173, 
-	172, 202, 165, 173, 176, 140, 141, 146, 
+	174, 164, 204, 165, 164, 165, 167, 168, 
+	167, 168, 164, 170, 204, 165, 169, 171, 
+	204, 172, 160, 161, 166, 204, 165, 173, 
+	172, 204, 165, 173, 176, 140, 141, 146, 
 	151, 145, 177, 176, 151, 145, 177, 180, 
 	22, 181, 180, 183, 182, 185, 184, 188, 
-	189, 190, 191, 39, 40, 43, 188, 191, 
-	194, 195, 196, 199, 200, 125, 199, 125, 
-	201, 200
+	188, 189, 190, 191, 192, 193, 39, 40, 
+	43, 189, 192, 193, 196, 197, 198, 201, 
+	202, 125, 201, 125, 203, 202
 ]
 
 class << self
@@ -1793,55 +1806,55 @@ end
 self._bel_trans_actions = [
 	2, 0, 3, 4, 0, 0, 5, 0, 
 	0, 0, 0, 7, 9, 12, 13, 12, 
-	0, 14, 0, 15, 15, 15, 0, 0, 
-	12, 12, 0, 0, 16, 17, 16, 16, 
-	0, 18, 0, 19, 0, 0, 20, 0, 
-	21, 0, 0, 22, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 27, 
-	28, 9, 0, 0, 0, 12, 31, 12, 
-	0, 32, 0, 12, 12, 0, 0, 0, 
+	0, 14, 0, 16, 16, 16, 0, 0, 
+	12, 12, 0, 0, 18, 19, 18, 18, 
+	0, 20, 0, 21, 0, 0, 22, 0, 
+	23, 0, 0, 24, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 30, 
+	31, 9, 0, 0, 0, 12, 34, 12, 
+	0, 35, 0, 12, 12, 0, 0, 0, 
 	0, 0, 0, 9, 9, 12, 13, 12, 
-	0, 14, 0, 12, 12, 0, 0, 35, 
+	0, 14, 0, 12, 12, 0, 0, 39, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 39, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 41, 16, 0, 18, 
-	42, 23, 24, 24, 24, 43, 23, 25, 
-	26, 44, 26, 0, 45, 3, 4, 0, 
+	0, 16, 46, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 49, 18, 0, 20, 
+	50, 26, 27, 27, 27, 52, 26, 28, 
+	29, 53, 29, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 23, 24, 
-	24, 24, 23, 23, 25, 26, 26, 26, 
-	0, 46, 0, 0, 22, 22, 45, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 26, 27, 
+	27, 27, 26, 26, 28, 29, 29, 29, 
+	0, 55, 0, 0, 24, 24, 54, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	47, 0, 0, 0, 45, 3, 4, 0, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	56, 0, 0, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 0, 22, 
-	23, 24, 24, 24, 23, 23, 25, 26, 
-	26, 26, 0, 23, 24, 24, 24, 23, 
-	23, 25, 26, 26, 26, 0, 48, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 0, 24, 
+	26, 27, 27, 27, 26, 26, 28, 29, 
+	29, 29, 0, 26, 27, 27, 27, 26, 
+	26, 28, 29, 29, 29, 0, 57, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	19, 0, 0, 20, 0, 21, 45, 49, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	21, 0, 0, 22, 0, 23, 54, 58, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 50, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 51, 16, 0, 18, 
-	52, 23, 24, 24, 24, 53, 23, 25, 
-	26, 54, 26, 0, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 55, 
-	0, 0, 56, 3, 0, 18, 0, 0, 
-	0, 18, 24, 24, 24, 24, 25, 0, 
-	66, 0, 0, 70, 69, 70, 0, 0, 
-	0, 71
+	0, 16, 59, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 60, 18, 0, 20, 
+	61, 26, 27, 27, 27, 62, 26, 28, 
+	29, 63, 29, 0, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 64, 
+	0, 0, 65, 3, 0, 20, 0, 70, 
+	72, 0, 0, 20, 27, 75, 27, 27, 
+	27, 28, 0, 77, 78, 0, 0, 82, 
+	81, 82, 0, 0, 0, 83
 ]
 
 class << self
@@ -1850,31 +1863,31 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 1, 1, 0, 6, 8, 10, 11, 
-	11, 10, 0, 6, 11, 11, 11, 6, 
+	11, 15, 0, 6, 11, 11, 11, 17, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	8, 8, 8, 11, 27, 0, 29, 30, 
-	30, 30, 30, 30, 30, 33, 33, 0, 
-	34, 34, 34, 34, 34, 34, 1, 36, 
-	37, 38, 33, 0, 34, 34, 0, 0, 
-	40, 34, 34, 34, 40, 0, 33, 33, 
-	33, 34, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 8, 8, 8, 11, 0, 0, 
+	25, 25, 25, 11, 30, 0, 32, 33, 
+	33, 33, 33, 33, 33, 36, 36, 37, 
+	38, 38, 38, 38, 38, 38, 1, 40, 
+	41, 42, 43, 44, 45, 45, 0, 0, 
+	47, 45, 45, 45, 48, 0, 51, 51, 
+	51, 45, 1, 1, 0, 6, 8, 10, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 25, 25, 25, 11, 0, 0, 
 	0, 0, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 0, 0, 0, 1, 1, 0, 
-	6, 8, 10, 11, 11, 10, 0, 6, 
-	11, 11, 11, 6, 0, 0, 0, 8, 
-	8, 8, 11, 8, 8, 8, 11, 1, 
-	1, 0, 6, 8, 10, 11, 11, 10, 
-	0, 6, 11, 11, 11, 6, 0, 0, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 0, 0, 0, 1, 1, 0, 
+	6, 8, 10, 11, 11, 15, 0, 6, 
+	11, 11, 11, 17, 0, 0, 0, 25, 
+	25, 25, 11, 25, 25, 25, 11, 1, 
+	1, 0, 6, 8, 10, 11, 11, 15, 
+	0, 6, 11, 11, 11, 17, 0, 0, 
 	0, 0, 1, 0, 1, 0, 6, 8, 
-	10, 11, 11, 10, 0, 6, 11, 11, 
-	11, 6, 0, 8, 8, 8, 11, 8, 
-	8, 8, 11, 55, 0, 56, 57, 58, 
-	59, 60, 0, 61, 62, 63, 64, 65, 
-	0, 66, 0, 67, 68, 68, 69, 69, 
-	0, 71, 0
+	10, 11, 11, 15, 0, 6, 11, 11, 
+	11, 17, 0, 25, 25, 25, 11, 25, 
+	25, 25, 11, 64, 0, 65, 66, 67, 
+	68, 69, 0, 70, 0, 71, 73, 74, 
+	76, 37, 0, 78, 0, 79, 80, 80, 
+	81, 81, 0, 83, 0
 ]
 
 class << self
@@ -1979,7 +1992,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'FUNCTION start_function'
@@ -1997,7 +2010,7 @@ begin
     fx_node = function(ident_node, complete: ident_node.complete)
     @buffers[:function] = fx_node
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -2019,7 +2032,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2036,7 +2049,7 @@ begin
     @string_opened = true
     p_start = p
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -2051,7 +2064,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 42 then
+	when 50 then
 		begin
 
     $stderr.puts 'TERM fxret'
@@ -2067,19 +2080,19 @@ begin
 	end
 
   		end
-	when 46 then
+	when 55 then
 		begin
 
     $stderr.puts 'RELATIONSHIP start_relationship'
     p_start = p;
   		end
-	when 22 then
+	when 24 then
 		begin
 
     $stderr.puts 'COMMENT start_comment'
     p_start = p;
   		end
-	when 47 then
+	when 56 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -2087,7 +2100,7 @@ begin
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-	when 70 then
+	when 82 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -2104,7 +2117,7 @@ begin
     simple_stmt.complete = true
     @buffers[:simple_statement] = simple_stmt
   		end
-	when 20 then
+	when 22 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT ast_relationship'
@@ -2112,7 +2125,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << rel_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT call_nested_statement'
@@ -2125,7 +2138,7 @@ begin
 	end
 
   		end
-	when 49 then
+	when 58 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT fret'
@@ -2145,7 +2158,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
@@ -2168,7 +2181,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -2221,7 +2234,41 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 26 then
+	when 77 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -2258,7 +2305,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -2272,7 +2319,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 45 then
+	when 54 then
 		begin
 
     $stderr.puts 'TERM term_init'
@@ -2284,7 +2331,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 35 then
+	when 39 then
 		begin
 
     $stderr.puts 'TERM inner_term_init'
@@ -2296,7 +2343,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -2307,7 +2354,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -2318,7 +2365,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -2333,7 +2380,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << subject_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -2377,7 +2424,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 35 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -2397,7 +2444,48 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 70 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -2441,7 +2529,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 44 then
+	when 53 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -2493,7 +2581,48 @@ begin
 	end
 
   		end
-	when 23 then
+	when 75 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 26 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -2537,7 +2666,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -2565,7 +2694,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 52 then
+	when 61 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -2625,7 +2754,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 48 then
+	when 57 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT inner_statement_init'
@@ -2642,7 +2771,57 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 16 then
+	when 72 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2695,7 +2874,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 31 then
+	when 34 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -2721,7 +2900,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 39 then
+	when 46 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -2780,7 +2959,7 @@ begin
 	end
 
   		end
-	when 43 then
+	when 52 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -2839,7 +3018,7 @@ begin
 	end
 
   		end
-	when 41 then
+	when 49 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -2907,7 +3086,7 @@ begin
 	end
 
   		end
-	when 54 then
+	when 63 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -2986,7 +3165,7 @@ begin
 	end
 
   		end
-	when 50 then
+	when 59 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -3072,7 +3251,7 @@ begin
 	end
 
   		end
-	when 53 then
+	when 62 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -3158,7 +3337,7 @@ begin
 	end
 
   		end
-	when 51 then
+	when 60 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -3283,7 +3462,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -3298,19 +3477,19 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 58 then
+	when 67 then
 		begin
 
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 60 then
+	when 69 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 33 then
+	when 51 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -3322,38 +3501,83 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 34 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-	when 29 then
+	when 32 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 10 then
+	when 44 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 37 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 15 then
 		begin
 
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 37 then
+	when 41 then
 		begin
  $stderr.puts "EOF!" 		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 57 then
+	when 66 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -3369,7 +3593,7 @@ begin
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 36 then
+	when 40 then
 		begin
 
     $stderr.puts 'FUNCTION a_function_eof'
@@ -3384,7 +3608,7 @@ begin
   		end
 		begin
  $stderr.puts "EOF!" 		end
-	when 59 then
+	when 68 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -3399,7 +3623,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 40 then
+	when 48 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -3423,7 +3647,83 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 8 then
+	when 43 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -3441,7 +3741,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 30 then
+	when 33 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -3455,7 +3755,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 45 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -3466,11 +3766,99 @@ begin
   		end
 		begin
 
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 10 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -3481,7 +3869,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -3492,7 +3880,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -3515,7 +3903,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 65 then
+	when 76 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -3560,7 +3948,101 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 6 then
+	when 47 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -3590,7 +4072,48 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 61 then
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 70 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -3631,33 +4154,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 38 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts 'FUNCTION a_function_eof'
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 67 then
+	when 79 then
 		begin
 
     $stderr.puts 'RELATIONSHIP stop_relationship'
@@ -3677,7 +4174,7 @@ begin
 
     yield @buffers[:relationship]
   		end
-	when 68 then
+	when 80 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -3697,7 +4194,7 @@ begin
     $stderr.puts 'COMMENT yield_comment'
     yield @buffers[:comment] || comment(nil)
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -3725,7 +4222,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 64 then
+	when 74 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -3777,7 +4274,115 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 62 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 42 then
+		begin
+ $stderr.puts "EOF!" 		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 71 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -3838,7 +4443,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 73 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -3984,13 +4589,13 @@ self._bel_trans_keys = [
 	9, 47, 0, 0, 10, 
 	10, 10, 122, 0, 0, 
 	10, 122, 0, 0, 0, 0, 
-	0, 0, 48, 122, 48, 
-	122, 9, 122, 9, 122, 
-	0, 0, 10, 10, 0, 0, 
-	65, 122, 10, 10, 9, 
-	32, 9, 47, 9, 47, 
-	0, 0, 10, 10, 0, 0, 
-	0
+	10, 10, 0, 0, 10, 
+	122, 10, 122, 9, 122, 
+	9, 122, 9, 39, 0, 0, 
+	10, 10, 0, 0, 65, 
+	122, 10, 10, 9, 32, 
+	9, 47, 9, 47, 0, 0, 
+	10, 10, 0, 0, 0
 ]
 
 class << self
@@ -4021,9 +4626,9 @@ self._bel_key_spans = [
 	31, 59, 59, 36, 36, 114, 54, 54, 
 	0, 114, 36, 114, 114, 114, 0, 114, 
 	114, 114, 0, 39, 0, 1, 113, 0, 
-	113, 0, 0, 0, 75, 75, 114, 114, 
-	0, 1, 0, 58, 1, 24, 39, 39, 
-	0, 1, 0
+	113, 0, 0, 1, 0, 113, 113, 114, 
+	114, 31, 0, 1, 0, 58, 1, 24, 
+	39, 39, 0, 1, 0
 ]
 
 class << self
@@ -4054,9 +4659,9 @@ self._bel_index_offsets = [
 	10418, 10450, 10510, 10570, 10607, 10644, 10759, 10814, 
 	10869, 10870, 10985, 11022, 11137, 11252, 11367, 11368, 
 	11483, 11598, 11713, 11714, 11754, 11755, 11757, 11871, 
-	11872, 11986, 11987, 11988, 11989, 12065, 12141, 12256, 
-	12371, 12372, 12374, 12375, 12434, 12436, 12461, 12501, 
-	12541, 12542, 12544
+	11872, 11986, 11987, 11988, 11990, 11991, 12105, 12219, 
+	12334, 12449, 12481, 12482, 12484, 12485, 12544, 12546, 
+	12571, 12611, 12651, 12652, 12654
 ]
 
 class << self
@@ -5562,77 +6167,90 @@ self._bel_indicies = [
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
-	382, 1, 1, 1, 1, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 1, 
-	1, 1, 1, 1, 1, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 1, 1, 1, 383, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 385, 1, 1, 1, 1, 
-	1, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 1, 1, 1, 
-	384, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 386, 387, 387, 
-	387, 387, 1, 1, 1, 1, 1, 1, 
+	382, 1, 1, 1, 383, 1, 1, 384, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 386, 1, 388, 1, 
-	1, 1, 1, 389, 1, 1, 1, 1, 
-	1, 1, 1, 1, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 1, 1, 
-	1, 1, 1, 1, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	1, 1, 1, 390, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	391, 72, 72, 72, 72, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 391, 
-	1, 73, 1, 1, 1, 1, 74, 1, 
-	1, 1, 1, 1, 1, 1, 1, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 1, 1, 1, 1, 1, 1, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 1, 1, 76, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 392, 1, 1, 393, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 1, 
+	1, 1, 1, 1, 1, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 1, 1, 1, 385, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 384, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 387, 1, 1, 1, 1, 1, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 1, 1, 1, 386, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 388, 389, 390, 390, 390, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 388, 1, 391, 1, 1, 1, 
+	1, 392, 1, 1, 1, 1, 1, 1, 
+	1, 1, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 1, 1, 1, 1, 
+	1, 1, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 393, 1, 1, 1, 
+	1, 393, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 1, 1, 1, 1, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 394, 181, 1, 180, 180, 
+	393, 393, 393, 393, 393, 1, 394, 395, 
+	72, 72, 72, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 394, 1, 73, 
+	1, 1, 1, 1, 74, 1, 1, 1, 
+	1, 1, 1, 1, 1, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 1, 
+	1, 1, 1, 1, 1, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 1, 1, 1, 76, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 72, 72, 72, 72, 72, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	72, 1, 73, 1, 1, 1, 1, 74, 
+	1, 1, 396, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 1, 1, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 398, 181, 1, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
-	180, 180, 180, 181, 180, 395, 396, 1, 
+	180, 181, 180, 399, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 395, 1, 1, 1, 
+	1, 1, 399, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 397, 1, 398, 396, 1, 
+	1, 401, 1, 402, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 398, 1, 1, 1, 
+	1, 1, 402, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 399, 1, 1, 401, 400, 
-	1, 0
+	1, 403, 1, 1, 405, 404, 1, 0
 ]
 
 class << self
@@ -5649,48 +6267,48 @@ self._bel_trans_targs = [
 	17, 11, 26, 25, 17, 11, 26, 0, 
 	182, 184, 30, 31, 34, 32, 186, 33, 
 	32, 186, 33, 35, 36, 35, 36, 38, 
-	39, 40, 43, 189, 188, 41, 187, 42, 
+	39, 40, 43, 190, 189, 41, 187, 42, 
 	41, 187, 42, 44, 45, 44, 45, 47, 
 	48, 49, 47, 48, 49, 50, 51, 52, 
 	57, 60, 64, 53, 54, 65, 53, 54, 
-	65, 55, 192, 56, 55, 56, 58, 59, 
-	58, 59, 55, 61, 192, 56, 60, 62, 
-	192, 63, 51, 52, 57, 192, 56, 64, 
-	63, 192, 56, 64, 67, 68, 69, 67, 
+	65, 55, 194, 56, 55, 56, 58, 59, 
+	58, 59, 55, 61, 194, 56, 60, 62, 
+	194, 63, 51, 52, 57, 194, 56, 64, 
+	63, 194, 56, 64, 67, 68, 69, 67, 
 	68, 69, 70, 71, 72, 77, 80, 84, 
-	73, 74, 85, 73, 74, 85, 75, 193, 
+	73, 74, 85, 73, 74, 85, 75, 195, 
 	76, 75, 76, 78, 79, 78, 79, 75, 
-	81, 193, 76, 80, 82, 193, 83, 71, 
-	72, 77, 193, 76, 84, 83, 193, 76, 
-	84, 195, 88, 89, 196, 197, 91, 92, 
+	81, 195, 76, 80, 82, 195, 83, 71, 
+	72, 77, 195, 76, 84, 83, 195, 76, 
+	84, 197, 88, 89, 198, 199, 91, 92, 
 	93, 91, 92, 93, 94, 95, 96, 101, 
 	104, 133, 97, 98, 134, 97, 98, 134, 
 	99, 106, 100, 99, 100, 102, 103, 102, 
 	103, 99, 105, 106, 100, 104, 131, 106, 
 	107, 107, 108, 109, 110, 111, 112, 110, 
 	111, 112, 113, 114, 115, 120, 123, 129, 
-	116, 117, 130, 116, 117, 130, 118, 198, 
+	116, 117, 130, 116, 117, 130, 118, 200, 
 	119, 118, 119, 121, 122, 121, 122, 118, 
-	124, 198, 119, 123, 127, 198, 126, 201, 
-	128, 114, 115, 120, 198, 119, 129, 128, 
-	198, 119, 129, 132, 95, 96, 101, 106, 
+	124, 200, 119, 123, 127, 200, 126, 203, 
+	128, 114, 115, 120, 200, 119, 129, 128, 
+	200, 119, 129, 132, 95, 96, 101, 106, 
 	100, 133, 132, 106, 100, 133, 136, 137, 
 	138, 136, 137, 138, 139, 140, 141, 146, 
 	149, 177, 142, 143, 178, 142, 143, 178, 
 	144, 151, 145, 144, 145, 147, 148, 147, 
 	148, 144, 150, 151, 145, 149, 175, 151, 
-	152, 152, 153, 154, 154, 155, 156, 202, 
+	152, 152, 153, 154, 154, 155, 156, 204, 
 	157, 158, 156, 157, 158, 159, 160, 161, 
 	166, 169, 173, 162, 163, 174, 162, 163, 
-	174, 164, 202, 165, 164, 165, 167, 168, 
-	167, 168, 164, 170, 202, 165, 169, 171, 
-	202, 172, 160, 161, 166, 202, 165, 173, 
-	172, 202, 165, 173, 176, 140, 141, 146, 
+	174, 164, 204, 165, 164, 165, 167, 168, 
+	167, 168, 164, 170, 204, 165, 169, 171, 
+	204, 172, 160, 161, 166, 204, 165, 173, 
+	172, 204, 165, 173, 176, 140, 141, 146, 
 	151, 145, 177, 176, 151, 145, 177, 180, 
 	22, 181, 180, 183, 182, 185, 184, 188, 
-	189, 190, 191, 39, 40, 43, 188, 191, 
-	194, 195, 196, 199, 200, 125, 199, 125, 
-	201, 200
+	188, 189, 190, 191, 192, 193, 39, 40, 
+	43, 189, 192, 193, 196, 197, 198, 201, 
+	202, 125, 201, 125, 203, 202
 ]
 
 class << self
@@ -5700,55 +6318,55 @@ end
 self._bel_trans_actions = [
 	2, 0, 3, 4, 0, 0, 5, 0, 
 	0, 0, 0, 7, 9, 12, 13, 12, 
-	0, 14, 0, 15, 15, 15, 0, 0, 
-	12, 12, 0, 0, 16, 17, 16, 16, 
-	0, 18, 0, 19, 0, 0, 20, 0, 
-	21, 0, 0, 22, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 27, 
-	28, 9, 0, 0, 0, 12, 31, 12, 
-	0, 32, 0, 12, 12, 0, 0, 0, 
+	0, 14, 0, 16, 16, 16, 0, 0, 
+	12, 12, 0, 0, 18, 19, 18, 18, 
+	0, 20, 0, 21, 0, 0, 22, 0, 
+	23, 0, 0, 24, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 30, 
+	31, 9, 0, 0, 0, 12, 34, 12, 
+	0, 35, 0, 12, 12, 0, 0, 0, 
 	0, 0, 0, 9, 9, 12, 13, 12, 
-	0, 14, 0, 12, 12, 0, 0, 35, 
+	0, 14, 0, 12, 12, 0, 0, 39, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 39, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 41, 16, 0, 18, 
-	42, 23, 24, 24, 24, 43, 23, 25, 
-	26, 44, 26, 0, 45, 3, 4, 0, 
+	0, 16, 46, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 49, 18, 0, 20, 
+	50, 26, 27, 27, 27, 52, 26, 28, 
+	29, 53, 29, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 23, 24, 
-	24, 24, 23, 23, 25, 26, 26, 26, 
-	0, 46, 0, 0, 22, 22, 45, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 26, 27, 
+	27, 27, 26, 26, 28, 29, 29, 29, 
+	0, 55, 0, 0, 24, 24, 54, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	47, 0, 0, 0, 45, 3, 4, 0, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	56, 0, 0, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 0, 22, 
-	23, 24, 24, 24, 23, 23, 25, 26, 
-	26, 26, 0, 23, 24, 24, 24, 23, 
-	23, 25, 26, 26, 26, 0, 48, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 0, 24, 
+	26, 27, 27, 27, 26, 26, 28, 29, 
+	29, 29, 0, 26, 27, 27, 27, 26, 
+	26, 28, 29, 29, 29, 0, 57, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	19, 0, 0, 20, 0, 21, 45, 49, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	21, 0, 0, 22, 0, 23, 54, 58, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 50, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 51, 16, 0, 18, 
-	52, 23, 24, 24, 24, 53, 23, 25, 
-	26, 54, 26, 0, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 55, 
-	0, 0, 56, 3, 0, 18, 0, 0, 
-	0, 18, 24, 24, 24, 24, 25, 0, 
-	66, 0, 0, 70, 69, 70, 0, 0, 
-	0, 71
+	0, 16, 59, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 60, 18, 0, 20, 
+	61, 26, 27, 27, 27, 62, 26, 28, 
+	29, 63, 29, 0, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 64, 
+	0, 0, 65, 3, 0, 20, 0, 70, 
+	72, 0, 0, 20, 27, 75, 27, 27, 
+	27, 28, 0, 77, 78, 0, 0, 82, 
+	81, 82, 0, 0, 0, 83
 ]
 
 class << self
@@ -5757,31 +6375,31 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 1, 1, 0, 6, 8, 10, 11, 
-	11, 10, 0, 6, 11, 11, 11, 6, 
+	11, 15, 0, 6, 11, 11, 11, 17, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	8, 8, 8, 11, 27, 0, 29, 30, 
-	30, 30, 30, 30, 30, 33, 33, 0, 
-	34, 34, 34, 34, 34, 34, 1, 36, 
-	37, 38, 33, 0, 34, 34, 0, 0, 
-	40, 34, 34, 34, 40, 0, 33, 33, 
-	33, 34, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 8, 8, 8, 11, 0, 0, 
+	25, 25, 25, 11, 30, 0, 32, 33, 
+	33, 33, 33, 33, 33, 36, 36, 37, 
+	38, 38, 38, 38, 38, 38, 1, 40, 
+	41, 42, 43, 44, 45, 45, 0, 0, 
+	47, 45, 45, 45, 48, 0, 51, 51, 
+	51, 45, 1, 1, 0, 6, 8, 10, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 25, 25, 25, 11, 0, 0, 
 	0, 0, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 0, 0, 0, 1, 1, 0, 
-	6, 8, 10, 11, 11, 10, 0, 6, 
-	11, 11, 11, 6, 0, 0, 0, 8, 
-	8, 8, 11, 8, 8, 8, 11, 1, 
-	1, 0, 6, 8, 10, 11, 11, 10, 
-	0, 6, 11, 11, 11, 6, 0, 0, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 0, 0, 0, 1, 1, 0, 
+	6, 8, 10, 11, 11, 15, 0, 6, 
+	11, 11, 11, 17, 0, 0, 0, 25, 
+	25, 25, 11, 25, 25, 25, 11, 1, 
+	1, 0, 6, 8, 10, 11, 11, 15, 
+	0, 6, 11, 11, 11, 17, 0, 0, 
 	0, 0, 1, 0, 1, 0, 6, 8, 
-	10, 11, 11, 10, 0, 6, 11, 11, 
-	11, 6, 0, 8, 8, 8, 11, 8, 
-	8, 8, 11, 55, 0, 56, 57, 58, 
-	59, 60, 0, 61, 62, 63, 64, 65, 
-	0, 66, 0, 67, 68, 68, 69, 69, 
-	0, 71, 0
+	10, 11, 11, 15, 0, 6, 11, 11, 
+	11, 17, 0, 25, 25, 25, 11, 25, 
+	25, 25, 11, 64, 0, 65, 66, 67, 
+	68, 69, 0, 70, 0, 71, 73, 74, 
+	76, 37, 0, 78, 0, 79, 80, 80, 
+	81, 81, 0, 83, 0
 ]
 
 class << self
@@ -5886,7 +6504,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'FUNCTION start_function'
@@ -5904,7 +6522,7 @@ begin
     fx_node = function(ident_node, complete: ident_node.complete)
     @buffers[:function] = fx_node
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -5926,7 +6544,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -5943,7 +6561,7 @@ begin
     @string_opened = true
     p_start = p
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -5958,7 +6576,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 42 then
+	when 50 then
 		begin
 
     $stderr.puts 'TERM fxret'
@@ -5974,19 +6592,19 @@ begin
 	end
 
   		end
-	when 46 then
+	when 55 then
 		begin
 
     $stderr.puts 'RELATIONSHIP start_relationship'
     p_start = p;
   		end
-	when 22 then
+	when 24 then
 		begin
 
     $stderr.puts 'COMMENT start_comment'
     p_start = p;
   		end
-	when 47 then
+	when 56 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -5994,7 +6612,7 @@ begin
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-	when 70 then
+	when 82 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -6011,7 +6629,7 @@ begin
     simple_stmt.complete = true
     @buffers[:simple_statement] = simple_stmt
   		end
-	when 20 then
+	when 22 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT ast_relationship'
@@ -6019,7 +6637,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << rel_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT call_nested_statement'
@@ -6032,7 +6650,7 @@ begin
 	end
 
   		end
-	when 49 then
+	when 58 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT fret'
@@ -6052,7 +6670,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
@@ -6075,7 +6693,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -6128,7 +6746,41 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 26 then
+	when 77 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -6165,7 +6817,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -6179,7 +6831,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 45 then
+	when 54 then
 		begin
 
     $stderr.puts 'TERM term_init'
@@ -6191,7 +6843,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 35 then
+	when 39 then
 		begin
 
     $stderr.puts 'TERM inner_term_init'
@@ -6203,7 +6855,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -6214,7 +6866,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -6225,7 +6877,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -6240,7 +6892,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << subject_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -6284,7 +6936,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 35 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -6304,7 +6956,48 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 70 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -6348,7 +7041,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 44 then
+	when 53 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -6400,7 +7093,48 @@ begin
 	end
 
   		end
-	when 23 then
+	when 75 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 26 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -6444,7 +7178,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -6472,7 +7206,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 52 then
+	when 61 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -6532,7 +7266,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 48 then
+	when 57 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT inner_statement_init'
@@ -6549,7 +7283,57 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 16 then
+	when 72 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -6602,7 +7386,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 31 then
+	when 34 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -6628,7 +7412,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 39 then
+	when 46 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -6687,7 +7471,7 @@ begin
 	end
 
   		end
-	when 43 then
+	when 52 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -6746,7 +7530,7 @@ begin
 	end
 
   		end
-	when 41 then
+	when 49 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -6814,7 +7598,7 @@ begin
 	end
 
   		end
-	when 54 then
+	when 63 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -6893,7 +7677,7 @@ begin
 	end
 
   		end
-	when 50 then
+	when 59 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -6979,7 +7763,7 @@ begin
 	end
 
   		end
-	when 53 then
+	when 62 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -7065,7 +7849,7 @@ begin
 	end
 
   		end
-	when 51 then
+	when 60 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -7190,7 +7974,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -7205,19 +7989,19 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 58 then
+	when 67 then
 		begin
 
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 60 then
+	when 69 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 33 then
+	when 51 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -7229,38 +8013,83 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 34 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-	when 29 then
+	when 32 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 10 then
+	when 44 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 37 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 15 then
 		begin
 
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 37 then
+	when 41 then
 		begin
  $stderr.puts "EOF!" 		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 57 then
+	when 66 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -7276,7 +8105,7 @@ begin
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 36 then
+	when 40 then
 		begin
 
     $stderr.puts 'FUNCTION a_function_eof'
@@ -7291,7 +8120,7 @@ begin
   		end
 		begin
  $stderr.puts "EOF!" 		end
-	when 59 then
+	when 68 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -7306,7 +8135,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 40 then
+	when 48 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -7330,7 +8159,83 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 8 then
+	when 43 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -7348,7 +8253,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 30 then
+	when 33 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -7362,7 +8267,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 45 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -7373,11 +8278,99 @@ begin
   		end
 		begin
 
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 10 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -7388,7 +8381,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -7399,7 +8392,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -7422,7 +8415,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 65 then
+	when 76 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -7467,7 +8460,101 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 6 then
+	when 47 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -7497,7 +8584,48 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 61 then
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 70 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -7538,33 +8666,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 38 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts 'FUNCTION a_function_eof'
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 67 then
+	when 79 then
 		begin
 
     $stderr.puts 'RELATIONSHIP stop_relationship'
@@ -7584,7 +8686,7 @@ begin
 
     yield @buffers[:relationship]
   		end
-	when 68 then
+	when 80 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -7604,7 +8706,7 @@ begin
     $stderr.puts 'COMMENT yield_comment'
     yield @buffers[:comment] || comment(nil)
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -7632,7 +8734,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 64 then
+	when 74 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -7684,7 +8786,115 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 62 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 42 then
+		begin
+ $stderr.puts "EOF!" 		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 71 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -7745,7 +8955,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 73 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -7891,13 +9101,13 @@ self._bel_trans_keys = [
 	9, 47, 0, 0, 10, 
 	10, 10, 122, 0, 0, 
 	10, 122, 0, 0, 0, 0, 
-	0, 0, 48, 122, 48, 
-	122, 9, 122, 9, 122, 
-	0, 0, 10, 10, 0, 0, 
-	65, 122, 10, 10, 9, 
-	32, 9, 47, 9, 47, 
-	0, 0, 10, 10, 0, 0, 
-	0
+	10, 10, 0, 0, 10, 
+	122, 10, 122, 9, 122, 
+	9, 122, 9, 39, 0, 0, 
+	10, 10, 0, 0, 65, 
+	122, 10, 10, 9, 32, 
+	9, 47, 9, 47, 0, 0, 
+	10, 10, 0, 0, 0
 ]
 
 class << self
@@ -7928,9 +9138,9 @@ self._bel_key_spans = [
 	31, 59, 59, 36, 36, 114, 54, 54, 
 	0, 114, 36, 114, 114, 114, 0, 114, 
 	114, 114, 0, 39, 0, 1, 113, 0, 
-	113, 0, 0, 0, 75, 75, 114, 114, 
-	0, 1, 0, 58, 1, 24, 39, 39, 
-	0, 1, 0
+	113, 0, 0, 1, 0, 113, 113, 114, 
+	114, 31, 0, 1, 0, 58, 1, 24, 
+	39, 39, 0, 1, 0
 ]
 
 class << self
@@ -7961,9 +9171,9 @@ self._bel_index_offsets = [
 	10418, 10450, 10510, 10570, 10607, 10644, 10759, 10814, 
 	10869, 10870, 10985, 11022, 11137, 11252, 11367, 11368, 
 	11483, 11598, 11713, 11714, 11754, 11755, 11757, 11871, 
-	11872, 11986, 11987, 11988, 11989, 12065, 12141, 12256, 
-	12371, 12372, 12374, 12375, 12434, 12436, 12461, 12501, 
-	12541, 12542, 12544
+	11872, 11986, 11987, 11988, 11990, 11991, 12105, 12219, 
+	12334, 12449, 12481, 12482, 12484, 12485, 12544, 12546, 
+	12571, 12611, 12651, 12652, 12654
 ]
 
 class << self
@@ -9469,77 +10679,90 @@ self._bel_indicies = [
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
-	382, 1, 1, 1, 1, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 1, 
-	1, 1, 1, 1, 1, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 1, 1, 1, 383, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 385, 1, 1, 1, 1, 
-	1, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 1, 1, 1, 
-	384, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 386, 387, 387, 
-	387, 387, 1, 1, 1, 1, 1, 1, 
+	382, 1, 1, 1, 383, 1, 1, 384, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 386, 1, 388, 1, 
-	1, 1, 1, 389, 1, 1, 1, 1, 
-	1, 1, 1, 1, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 1, 1, 
-	1, 1, 1, 1, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	1, 1, 1, 390, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	391, 72, 72, 72, 72, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 391, 
-	1, 73, 1, 1, 1, 1, 74, 1, 
-	1, 1, 1, 1, 1, 1, 1, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 1, 1, 1, 1, 1, 1, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 1, 1, 76, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 392, 1, 1, 393, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 1, 
+	1, 1, 1, 1, 1, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 1, 1, 1, 385, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 384, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 387, 1, 1, 1, 1, 1, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 1, 1, 1, 386, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 388, 389, 390, 390, 390, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 388, 1, 391, 1, 1, 1, 
+	1, 392, 1, 1, 1, 1, 1, 1, 
+	1, 1, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 1, 1, 1, 1, 
+	1, 1, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 393, 1, 1, 1, 
+	1, 393, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 1, 1, 1, 1, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 394, 181, 1, 180, 180, 
+	393, 393, 393, 393, 393, 1, 394, 395, 
+	72, 72, 72, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 394, 1, 73, 
+	1, 1, 1, 1, 74, 1, 1, 1, 
+	1, 1, 1, 1, 1, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 1, 
+	1, 1, 1, 1, 1, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 1, 1, 1, 76, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 72, 72, 72, 72, 72, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	72, 1, 73, 1, 1, 1, 1, 74, 
+	1, 1, 396, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 1, 1, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 398, 181, 1, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
-	180, 180, 180, 181, 180, 395, 396, 1, 
+	180, 181, 180, 399, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 395, 1, 1, 1, 
+	1, 1, 399, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 397, 1, 398, 396, 1, 
+	1, 401, 1, 402, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 398, 1, 1, 1, 
+	1, 1, 402, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 399, 1, 1, 401, 400, 
-	1, 0
+	1, 403, 1, 1, 405, 404, 1, 0
 ]
 
 class << self
@@ -9556,48 +10779,48 @@ self._bel_trans_targs = [
 	17, 11, 26, 25, 17, 11, 26, 0, 
 	182, 184, 30, 31, 34, 32, 186, 33, 
 	32, 186, 33, 35, 36, 35, 36, 38, 
-	39, 40, 43, 189, 188, 41, 187, 42, 
+	39, 40, 43, 190, 189, 41, 187, 42, 
 	41, 187, 42, 44, 45, 44, 45, 47, 
 	48, 49, 47, 48, 49, 50, 51, 52, 
 	57, 60, 64, 53, 54, 65, 53, 54, 
-	65, 55, 192, 56, 55, 56, 58, 59, 
-	58, 59, 55, 61, 192, 56, 60, 62, 
-	192, 63, 51, 52, 57, 192, 56, 64, 
-	63, 192, 56, 64, 67, 68, 69, 67, 
+	65, 55, 194, 56, 55, 56, 58, 59, 
+	58, 59, 55, 61, 194, 56, 60, 62, 
+	194, 63, 51, 52, 57, 194, 56, 64, 
+	63, 194, 56, 64, 67, 68, 69, 67, 
 	68, 69, 70, 71, 72, 77, 80, 84, 
-	73, 74, 85, 73, 74, 85, 75, 193, 
+	73, 74, 85, 73, 74, 85, 75, 195, 
 	76, 75, 76, 78, 79, 78, 79, 75, 
-	81, 193, 76, 80, 82, 193, 83, 71, 
-	72, 77, 193, 76, 84, 83, 193, 76, 
-	84, 195, 88, 89, 196, 197, 91, 92, 
+	81, 195, 76, 80, 82, 195, 83, 71, 
+	72, 77, 195, 76, 84, 83, 195, 76, 
+	84, 197, 88, 89, 198, 199, 91, 92, 
 	93, 91, 92, 93, 94, 95, 96, 101, 
 	104, 133, 97, 98, 134, 97, 98, 134, 
 	99, 106, 100, 99, 100, 102, 103, 102, 
 	103, 99, 105, 106, 100, 104, 131, 106, 
 	107, 107, 108, 109, 110, 111, 112, 110, 
 	111, 112, 113, 114, 115, 120, 123, 129, 
-	116, 117, 130, 116, 117, 130, 118, 198, 
+	116, 117, 130, 116, 117, 130, 118, 200, 
 	119, 118, 119, 121, 122, 121, 122, 118, 
-	124, 198, 119, 123, 127, 198, 126, 201, 
-	128, 114, 115, 120, 198, 119, 129, 128, 
-	198, 119, 129, 132, 95, 96, 101, 106, 
+	124, 200, 119, 123, 127, 200, 126, 203, 
+	128, 114, 115, 120, 200, 119, 129, 128, 
+	200, 119, 129, 132, 95, 96, 101, 106, 
 	100, 133, 132, 106, 100, 133, 136, 137, 
 	138, 136, 137, 138, 139, 140, 141, 146, 
 	149, 177, 142, 143, 178, 142, 143, 178, 
 	144, 151, 145, 144, 145, 147, 148, 147, 
 	148, 144, 150, 151, 145, 149, 175, 151, 
-	152, 152, 153, 154, 154, 155, 156, 202, 
+	152, 152, 153, 154, 154, 155, 156, 204, 
 	157, 158, 156, 157, 158, 159, 160, 161, 
 	166, 169, 173, 162, 163, 174, 162, 163, 
-	174, 164, 202, 165, 164, 165, 167, 168, 
-	167, 168, 164, 170, 202, 165, 169, 171, 
-	202, 172, 160, 161, 166, 202, 165, 173, 
-	172, 202, 165, 173, 176, 140, 141, 146, 
+	174, 164, 204, 165, 164, 165, 167, 168, 
+	167, 168, 164, 170, 204, 165, 169, 171, 
+	204, 172, 160, 161, 166, 204, 165, 173, 
+	172, 204, 165, 173, 176, 140, 141, 146, 
 	151, 145, 177, 176, 151, 145, 177, 180, 
 	22, 181, 180, 183, 182, 185, 184, 188, 
-	189, 190, 191, 39, 40, 43, 188, 191, 
-	194, 195, 196, 199, 200, 125, 199, 125, 
-	201, 200
+	188, 189, 190, 191, 192, 193, 39, 40, 
+	43, 189, 192, 193, 196, 197, 198, 201, 
+	202, 125, 201, 125, 203, 202
 ]
 
 class << self
@@ -9607,55 +10830,55 @@ end
 self._bel_trans_actions = [
 	2, 0, 3, 4, 0, 0, 5, 0, 
 	0, 0, 0, 7, 9, 12, 13, 12, 
-	0, 14, 0, 15, 15, 15, 0, 0, 
-	12, 12, 0, 0, 16, 17, 16, 16, 
-	0, 18, 0, 19, 0, 0, 20, 0, 
-	21, 0, 0, 22, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 27, 
-	28, 9, 0, 0, 0, 12, 31, 12, 
-	0, 32, 0, 12, 12, 0, 0, 0, 
+	0, 14, 0, 16, 16, 16, 0, 0, 
+	12, 12, 0, 0, 18, 19, 18, 18, 
+	0, 20, 0, 21, 0, 0, 22, 0, 
+	23, 0, 0, 24, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 30, 
+	31, 9, 0, 0, 0, 12, 34, 12, 
+	0, 35, 0, 12, 12, 0, 0, 0, 
 	0, 0, 0, 9, 9, 12, 13, 12, 
-	0, 14, 0, 12, 12, 0, 0, 35, 
+	0, 14, 0, 12, 12, 0, 0, 39, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 39, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 41, 16, 0, 18, 
-	42, 23, 24, 24, 24, 43, 23, 25, 
-	26, 44, 26, 0, 45, 3, 4, 0, 
+	0, 16, 46, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 49, 18, 0, 20, 
+	50, 26, 27, 27, 27, 52, 26, 28, 
+	29, 53, 29, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 23, 24, 
-	24, 24, 23, 23, 25, 26, 26, 26, 
-	0, 46, 0, 0, 22, 22, 45, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 26, 27, 
+	27, 27, 26, 26, 28, 29, 29, 29, 
+	0, 55, 0, 0, 24, 24, 54, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	47, 0, 0, 0, 45, 3, 4, 0, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	56, 0, 0, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 0, 22, 
-	23, 24, 24, 24, 23, 23, 25, 26, 
-	26, 26, 0, 23, 24, 24, 24, 23, 
-	23, 25, 26, 26, 26, 0, 48, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 0, 24, 
+	26, 27, 27, 27, 26, 26, 28, 29, 
+	29, 29, 0, 26, 27, 27, 27, 26, 
+	26, 28, 29, 29, 29, 0, 57, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	19, 0, 0, 20, 0, 21, 45, 49, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	21, 0, 0, 22, 0, 23, 54, 58, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 50, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 51, 16, 0, 18, 
-	52, 23, 24, 24, 24, 53, 23, 25, 
-	26, 54, 26, 0, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 55, 
-	0, 0, 56, 3, 0, 18, 0, 0, 
-	0, 18, 24, 24, 24, 24, 25, 0, 
-	66, 0, 0, 70, 69, 70, 0, 0, 
-	0, 71
+	0, 16, 59, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 60, 18, 0, 20, 
+	61, 26, 27, 27, 27, 62, 26, 28, 
+	29, 63, 29, 0, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 64, 
+	0, 0, 65, 3, 0, 20, 0, 70, 
+	72, 0, 0, 20, 27, 75, 27, 27, 
+	27, 28, 0, 77, 78, 0, 0, 82, 
+	81, 82, 0, 0, 0, 83
 ]
 
 class << self
@@ -9664,31 +10887,31 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 1, 1, 0, 6, 8, 10, 11, 
-	11, 10, 0, 6, 11, 11, 11, 6, 
+	11, 15, 0, 6, 11, 11, 11, 17, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	8, 8, 8, 11, 27, 0, 29, 30, 
-	30, 30, 30, 30, 30, 33, 33, 0, 
-	34, 34, 34, 34, 34, 34, 1, 36, 
-	37, 38, 33, 0, 34, 34, 0, 0, 
-	40, 34, 34, 34, 40, 0, 33, 33, 
-	33, 34, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 8, 8, 8, 11, 0, 0, 
+	25, 25, 25, 11, 30, 0, 32, 33, 
+	33, 33, 33, 33, 33, 36, 36, 37, 
+	38, 38, 38, 38, 38, 38, 1, 40, 
+	41, 42, 43, 44, 45, 45, 0, 0, 
+	47, 45, 45, 45, 48, 0, 51, 51, 
+	51, 45, 1, 1, 0, 6, 8, 10, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 25, 25, 25, 11, 0, 0, 
 	0, 0, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 0, 0, 0, 1, 1, 0, 
-	6, 8, 10, 11, 11, 10, 0, 6, 
-	11, 11, 11, 6, 0, 0, 0, 8, 
-	8, 8, 11, 8, 8, 8, 11, 1, 
-	1, 0, 6, 8, 10, 11, 11, 10, 
-	0, 6, 11, 11, 11, 6, 0, 0, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 0, 0, 0, 1, 1, 0, 
+	6, 8, 10, 11, 11, 15, 0, 6, 
+	11, 11, 11, 17, 0, 0, 0, 25, 
+	25, 25, 11, 25, 25, 25, 11, 1, 
+	1, 0, 6, 8, 10, 11, 11, 15, 
+	0, 6, 11, 11, 11, 17, 0, 0, 
 	0, 0, 1, 0, 1, 0, 6, 8, 
-	10, 11, 11, 10, 0, 6, 11, 11, 
-	11, 6, 0, 8, 8, 8, 11, 8, 
-	8, 8, 11, 55, 0, 56, 57, 58, 
-	59, 60, 0, 61, 62, 63, 64, 65, 
-	0, 66, 0, 67, 68, 68, 69, 69, 
-	0, 71, 0
+	10, 11, 11, 15, 0, 6, 11, 11, 
+	11, 17, 0, 25, 25, 25, 11, 25, 
+	25, 25, 11, 64, 0, 65, 66, 67, 
+	68, 69, 0, 70, 0, 71, 73, 74, 
+	76, 37, 0, 78, 0, 79, 80, 80, 
+	81, 81, 0, 83, 0
 ]
 
 class << self
@@ -9793,7 +11016,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'FUNCTION start_function'
@@ -9811,7 +11034,7 @@ begin
     fx_node = function(ident_node, complete: ident_node.complete)
     @buffers[:function] = fx_node
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -9833,7 +11056,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -9850,7 +11073,7 @@ begin
     @string_opened = true
     p_start = p
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -9865,7 +11088,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 42 then
+	when 50 then
 		begin
 
     $stderr.puts 'TERM fxret'
@@ -9881,19 +11104,19 @@ begin
 	end
 
   		end
-	when 46 then
+	when 55 then
 		begin
 
     $stderr.puts 'RELATIONSHIP start_relationship'
     p_start = p;
   		end
-	when 22 then
+	when 24 then
 		begin
 
     $stderr.puts 'COMMENT start_comment'
     p_start = p;
   		end
-	when 47 then
+	when 56 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -9901,7 +11124,7 @@ begin
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-	when 70 then
+	when 82 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -9918,7 +11141,7 @@ begin
     simple_stmt.complete = true
     @buffers[:simple_statement] = simple_stmt
   		end
-	when 20 then
+	when 22 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT ast_relationship'
@@ -9926,7 +11149,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << rel_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT call_nested_statement'
@@ -9939,7 +11162,7 @@ begin
 	end
 
   		end
-	when 49 then
+	when 58 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT fret'
@@ -9959,7 +11182,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
@@ -9982,7 +11205,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -10035,7 +11258,41 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 26 then
+	when 77 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -10072,7 +11329,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -10086,7 +11343,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 45 then
+	when 54 then
 		begin
 
     $stderr.puts 'TERM term_init'
@@ -10098,7 +11355,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 35 then
+	when 39 then
 		begin
 
     $stderr.puts 'TERM inner_term_init'
@@ -10110,7 +11367,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -10121,7 +11378,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -10132,7 +11389,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -10147,7 +11404,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << subject_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -10191,7 +11448,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 35 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -10211,7 +11468,48 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 70 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -10255,7 +11553,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 44 then
+	when 53 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -10307,7 +11605,48 @@ begin
 	end
 
   		end
-	when 23 then
+	when 75 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 26 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -10351,7 +11690,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -10379,7 +11718,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 52 then
+	when 61 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -10439,7 +11778,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 48 then
+	when 57 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT inner_statement_init'
@@ -10456,7 +11795,57 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 16 then
+	when 72 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -10509,7 +11898,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 31 then
+	when 34 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -10535,7 +11924,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 39 then
+	when 46 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -10594,7 +11983,7 @@ begin
 	end
 
   		end
-	when 43 then
+	when 52 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -10653,7 +12042,7 @@ begin
 	end
 
   		end
-	when 41 then
+	when 49 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -10721,7 +12110,7 @@ begin
 	end
 
   		end
-	when 54 then
+	when 63 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -10800,7 +12189,7 @@ begin
 	end
 
   		end
-	when 50 then
+	when 59 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -10886,7 +12275,7 @@ begin
 	end
 
   		end
-	when 53 then
+	when 62 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -10972,7 +12361,7 @@ begin
 	end
 
   		end
-	when 51 then
+	when 60 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -11097,7 +12486,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -11112,19 +12501,19 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 58 then
+	when 67 then
 		begin
 
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 60 then
+	when 69 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 33 then
+	when 51 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -11136,38 +12525,83 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 34 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-	when 29 then
+	when 32 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 10 then
+	when 44 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 37 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 15 then
 		begin
 
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 37 then
+	when 41 then
 		begin
  $stderr.puts "EOF!" 		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 57 then
+	when 66 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -11183,7 +12617,7 @@ begin
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 36 then
+	when 40 then
 		begin
 
     $stderr.puts 'FUNCTION a_function_eof'
@@ -11198,7 +12632,7 @@ begin
   		end
 		begin
  $stderr.puts "EOF!" 		end
-	when 59 then
+	when 68 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -11213,7 +12647,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 40 then
+	when 48 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -11237,7 +12671,83 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 8 then
+	when 43 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -11255,7 +12765,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 30 then
+	when 33 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -11269,7 +12779,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 45 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -11280,11 +12790,99 @@ begin
   		end
 		begin
 
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 10 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -11295,7 +12893,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -11306,7 +12904,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -11329,7 +12927,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 65 then
+	when 76 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -11374,7 +12972,101 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 6 then
+	when 47 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -11404,7 +13096,48 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 61 then
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 70 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -11445,33 +13178,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 38 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts 'FUNCTION a_function_eof'
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 67 then
+	when 79 then
 		begin
 
     $stderr.puts 'RELATIONSHIP stop_relationship'
@@ -11491,7 +13198,7 @@ begin
 
     yield @buffers[:relationship]
   		end
-	when 68 then
+	when 80 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -11511,7 +13218,7 @@ begin
     $stderr.puts 'COMMENT yield_comment'
     yield @buffers[:comment] || comment(nil)
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -11539,7 +13246,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 64 then
+	when 74 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -11591,7 +13298,115 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 62 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 42 then
+		begin
+ $stderr.puts "EOF!" 		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 71 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -11652,7 +13467,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 73 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -11798,13 +13613,13 @@ self._bel_trans_keys = [
 	9, 47, 0, 0, 10, 
 	10, 10, 122, 0, 0, 
 	10, 122, 0, 0, 0, 0, 
-	0, 0, 48, 122, 48, 
-	122, 9, 122, 9, 122, 
-	0, 0, 10, 10, 0, 0, 
-	65, 122, 10, 10, 9, 
-	32, 9, 47, 9, 47, 
-	0, 0, 10, 10, 0, 0, 
-	0
+	10, 10, 0, 0, 10, 
+	122, 10, 122, 9, 122, 
+	9, 122, 9, 39, 0, 0, 
+	10, 10, 0, 0, 65, 
+	122, 10, 10, 9, 32, 
+	9, 47, 9, 47, 0, 0, 
+	10, 10, 0, 0, 0
 ]
 
 class << self
@@ -11835,9 +13650,9 @@ self._bel_key_spans = [
 	31, 59, 59, 36, 36, 114, 54, 54, 
 	0, 114, 36, 114, 114, 114, 0, 114, 
 	114, 114, 0, 39, 0, 1, 113, 0, 
-	113, 0, 0, 0, 75, 75, 114, 114, 
-	0, 1, 0, 58, 1, 24, 39, 39, 
-	0, 1, 0
+	113, 0, 0, 1, 0, 113, 113, 114, 
+	114, 31, 0, 1, 0, 58, 1, 24, 
+	39, 39, 0, 1, 0
 ]
 
 class << self
@@ -11868,9 +13683,9 @@ self._bel_index_offsets = [
 	10418, 10450, 10510, 10570, 10607, 10644, 10759, 10814, 
 	10869, 10870, 10985, 11022, 11137, 11252, 11367, 11368, 
 	11483, 11598, 11713, 11714, 11754, 11755, 11757, 11871, 
-	11872, 11986, 11987, 11988, 11989, 12065, 12141, 12256, 
-	12371, 12372, 12374, 12375, 12434, 12436, 12461, 12501, 
-	12541, 12542, 12544
+	11872, 11986, 11987, 11988, 11990, 11991, 12105, 12219, 
+	12334, 12449, 12481, 12482, 12484, 12485, 12544, 12546, 
+	12571, 12611, 12651, 12652, 12654
 ]
 
 class << self
@@ -13376,77 +15191,90 @@ self._bel_indicies = [
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
-	382, 1, 1, 1, 1, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 1, 
-	1, 1, 1, 1, 1, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 1, 1, 1, 383, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 385, 1, 1, 1, 1, 
-	1, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 1, 1, 1, 
-	384, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 386, 387, 387, 
-	387, 387, 1, 1, 1, 1, 1, 1, 
+	382, 1, 1, 1, 383, 1, 1, 384, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 386, 1, 388, 1, 
-	1, 1, 1, 389, 1, 1, 1, 1, 
-	1, 1, 1, 1, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 1, 1, 
-	1, 1, 1, 1, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	1, 1, 1, 390, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	391, 72, 72, 72, 72, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 391, 
-	1, 73, 1, 1, 1, 1, 74, 1, 
-	1, 1, 1, 1, 1, 1, 1, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 1, 1, 1, 1, 1, 1, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 1, 1, 76, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 392, 1, 1, 393, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 1, 
+	1, 1, 1, 1, 1, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 1, 1, 1, 385, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 384, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 387, 1, 1, 1, 1, 1, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 1, 1, 1, 386, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 388, 389, 390, 390, 390, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 388, 1, 391, 1, 1, 1, 
+	1, 392, 1, 1, 1, 1, 1, 1, 
+	1, 1, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 1, 1, 1, 1, 
+	1, 1, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 393, 1, 1, 1, 
+	1, 393, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 1, 1, 1, 1, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 394, 181, 1, 180, 180, 
+	393, 393, 393, 393, 393, 1, 394, 395, 
+	72, 72, 72, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 394, 1, 73, 
+	1, 1, 1, 1, 74, 1, 1, 1, 
+	1, 1, 1, 1, 1, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 1, 
+	1, 1, 1, 1, 1, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 1, 1, 1, 76, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 72, 72, 72, 72, 72, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	72, 1, 73, 1, 1, 1, 1, 74, 
+	1, 1, 396, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 1, 1, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 398, 181, 1, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
-	180, 180, 180, 181, 180, 395, 396, 1, 
+	180, 181, 180, 399, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 395, 1, 1, 1, 
+	1, 1, 399, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 397, 1, 398, 396, 1, 
+	1, 401, 1, 402, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 398, 1, 1, 1, 
+	1, 1, 402, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 399, 1, 1, 401, 400, 
-	1, 0
+	1, 403, 1, 1, 405, 404, 1, 0
 ]
 
 class << self
@@ -13463,48 +15291,48 @@ self._bel_trans_targs = [
 	17, 11, 26, 25, 17, 11, 26, 0, 
 	182, 184, 30, 31, 34, 32, 186, 33, 
 	32, 186, 33, 35, 36, 35, 36, 38, 
-	39, 40, 43, 189, 188, 41, 187, 42, 
+	39, 40, 43, 190, 189, 41, 187, 42, 
 	41, 187, 42, 44, 45, 44, 45, 47, 
 	48, 49, 47, 48, 49, 50, 51, 52, 
 	57, 60, 64, 53, 54, 65, 53, 54, 
-	65, 55, 192, 56, 55, 56, 58, 59, 
-	58, 59, 55, 61, 192, 56, 60, 62, 
-	192, 63, 51, 52, 57, 192, 56, 64, 
-	63, 192, 56, 64, 67, 68, 69, 67, 
+	65, 55, 194, 56, 55, 56, 58, 59, 
+	58, 59, 55, 61, 194, 56, 60, 62, 
+	194, 63, 51, 52, 57, 194, 56, 64, 
+	63, 194, 56, 64, 67, 68, 69, 67, 
 	68, 69, 70, 71, 72, 77, 80, 84, 
-	73, 74, 85, 73, 74, 85, 75, 193, 
+	73, 74, 85, 73, 74, 85, 75, 195, 
 	76, 75, 76, 78, 79, 78, 79, 75, 
-	81, 193, 76, 80, 82, 193, 83, 71, 
-	72, 77, 193, 76, 84, 83, 193, 76, 
-	84, 195, 88, 89, 196, 197, 91, 92, 
+	81, 195, 76, 80, 82, 195, 83, 71, 
+	72, 77, 195, 76, 84, 83, 195, 76, 
+	84, 197, 88, 89, 198, 199, 91, 92, 
 	93, 91, 92, 93, 94, 95, 96, 101, 
 	104, 133, 97, 98, 134, 97, 98, 134, 
 	99, 106, 100, 99, 100, 102, 103, 102, 
 	103, 99, 105, 106, 100, 104, 131, 106, 
 	107, 107, 108, 109, 110, 111, 112, 110, 
 	111, 112, 113, 114, 115, 120, 123, 129, 
-	116, 117, 130, 116, 117, 130, 118, 198, 
+	116, 117, 130, 116, 117, 130, 118, 200, 
 	119, 118, 119, 121, 122, 121, 122, 118, 
-	124, 198, 119, 123, 127, 198, 126, 201, 
-	128, 114, 115, 120, 198, 119, 129, 128, 
-	198, 119, 129, 132, 95, 96, 101, 106, 
+	124, 200, 119, 123, 127, 200, 126, 203, 
+	128, 114, 115, 120, 200, 119, 129, 128, 
+	200, 119, 129, 132, 95, 96, 101, 106, 
 	100, 133, 132, 106, 100, 133, 136, 137, 
 	138, 136, 137, 138, 139, 140, 141, 146, 
 	149, 177, 142, 143, 178, 142, 143, 178, 
 	144, 151, 145, 144, 145, 147, 148, 147, 
 	148, 144, 150, 151, 145, 149, 175, 151, 
-	152, 152, 153, 154, 154, 155, 156, 202, 
+	152, 152, 153, 154, 154, 155, 156, 204, 
 	157, 158, 156, 157, 158, 159, 160, 161, 
 	166, 169, 173, 162, 163, 174, 162, 163, 
-	174, 164, 202, 165, 164, 165, 167, 168, 
-	167, 168, 164, 170, 202, 165, 169, 171, 
-	202, 172, 160, 161, 166, 202, 165, 173, 
-	172, 202, 165, 173, 176, 140, 141, 146, 
+	174, 164, 204, 165, 164, 165, 167, 168, 
+	167, 168, 164, 170, 204, 165, 169, 171, 
+	204, 172, 160, 161, 166, 204, 165, 173, 
+	172, 204, 165, 173, 176, 140, 141, 146, 
 	151, 145, 177, 176, 151, 145, 177, 180, 
 	22, 181, 180, 183, 182, 185, 184, 188, 
-	189, 190, 191, 39, 40, 43, 188, 191, 
-	194, 195, 196, 199, 200, 125, 199, 125, 
-	201, 200
+	188, 189, 190, 191, 192, 193, 39, 40, 
+	43, 189, 192, 193, 196, 197, 198, 201, 
+	202, 125, 201, 125, 203, 202
 ]
 
 class << self
@@ -13514,55 +15342,55 @@ end
 self._bel_trans_actions = [
 	2, 0, 3, 4, 0, 0, 5, 0, 
 	0, 0, 0, 7, 9, 12, 13, 12, 
-	0, 14, 0, 15, 15, 15, 0, 0, 
-	12, 12, 0, 0, 16, 17, 16, 16, 
-	0, 18, 0, 19, 0, 0, 20, 0, 
-	21, 0, 0, 22, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 27, 
-	28, 9, 0, 0, 0, 12, 31, 12, 
-	0, 32, 0, 12, 12, 0, 0, 0, 
+	0, 14, 0, 16, 16, 16, 0, 0, 
+	12, 12, 0, 0, 18, 19, 18, 18, 
+	0, 20, 0, 21, 0, 0, 22, 0, 
+	23, 0, 0, 24, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 30, 
+	31, 9, 0, 0, 0, 12, 34, 12, 
+	0, 35, 0, 12, 12, 0, 0, 0, 
 	0, 0, 0, 9, 9, 12, 13, 12, 
-	0, 14, 0, 12, 12, 0, 0, 35, 
+	0, 14, 0, 12, 12, 0, 0, 39, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 39, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 41, 16, 0, 18, 
-	42, 23, 24, 24, 24, 43, 23, 25, 
-	26, 44, 26, 0, 45, 3, 4, 0, 
+	0, 16, 46, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 49, 18, 0, 20, 
+	50, 26, 27, 27, 27, 52, 26, 28, 
+	29, 53, 29, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 23, 24, 
-	24, 24, 23, 23, 25, 26, 26, 26, 
-	0, 46, 0, 0, 22, 22, 45, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 26, 27, 
+	27, 27, 26, 26, 28, 29, 29, 29, 
+	0, 55, 0, 0, 24, 24, 54, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	47, 0, 0, 0, 45, 3, 4, 0, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	56, 0, 0, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 0, 22, 
-	23, 24, 24, 24, 23, 23, 25, 26, 
-	26, 26, 0, 23, 24, 24, 24, 23, 
-	23, 25, 26, 26, 26, 0, 48, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 0, 24, 
+	26, 27, 27, 27, 26, 26, 28, 29, 
+	29, 29, 0, 26, 27, 27, 27, 26, 
+	26, 28, 29, 29, 29, 0, 57, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	19, 0, 0, 20, 0, 21, 45, 49, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	21, 0, 0, 22, 0, 23, 54, 58, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 50, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 51, 16, 0, 18, 
-	52, 23, 24, 24, 24, 53, 23, 25, 
-	26, 54, 26, 0, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 55, 
-	0, 0, 56, 3, 0, 18, 0, 0, 
-	0, 18, 24, 24, 24, 24, 25, 0, 
-	66, 0, 0, 70, 69, 70, 0, 0, 
-	0, 71
+	0, 16, 59, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 60, 18, 0, 20, 
+	61, 26, 27, 27, 27, 62, 26, 28, 
+	29, 63, 29, 0, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 64, 
+	0, 0, 65, 3, 0, 20, 0, 70, 
+	72, 0, 0, 20, 27, 75, 27, 27, 
+	27, 28, 0, 77, 78, 0, 0, 82, 
+	81, 82, 0, 0, 0, 83
 ]
 
 class << self
@@ -13571,31 +15399,31 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 1, 1, 0, 6, 8, 10, 11, 
-	11, 10, 0, 6, 11, 11, 11, 6, 
+	11, 15, 0, 6, 11, 11, 11, 17, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	8, 8, 8, 11, 27, 0, 29, 30, 
-	30, 30, 30, 30, 30, 33, 33, 0, 
-	34, 34, 34, 34, 34, 34, 1, 36, 
-	37, 38, 33, 0, 34, 34, 0, 0, 
-	40, 34, 34, 34, 40, 0, 33, 33, 
-	33, 34, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 8, 8, 8, 11, 0, 0, 
+	25, 25, 25, 11, 30, 0, 32, 33, 
+	33, 33, 33, 33, 33, 36, 36, 37, 
+	38, 38, 38, 38, 38, 38, 1, 40, 
+	41, 42, 43, 44, 45, 45, 0, 0, 
+	47, 45, 45, 45, 48, 0, 51, 51, 
+	51, 45, 1, 1, 0, 6, 8, 10, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 25, 25, 25, 11, 0, 0, 
 	0, 0, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 0, 0, 0, 1, 1, 0, 
-	6, 8, 10, 11, 11, 10, 0, 6, 
-	11, 11, 11, 6, 0, 0, 0, 8, 
-	8, 8, 11, 8, 8, 8, 11, 1, 
-	1, 0, 6, 8, 10, 11, 11, 10, 
-	0, 6, 11, 11, 11, 6, 0, 0, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 0, 0, 0, 1, 1, 0, 
+	6, 8, 10, 11, 11, 15, 0, 6, 
+	11, 11, 11, 17, 0, 0, 0, 25, 
+	25, 25, 11, 25, 25, 25, 11, 1, 
+	1, 0, 6, 8, 10, 11, 11, 15, 
+	0, 6, 11, 11, 11, 17, 0, 0, 
 	0, 0, 1, 0, 1, 0, 6, 8, 
-	10, 11, 11, 10, 0, 6, 11, 11, 
-	11, 6, 0, 8, 8, 8, 11, 8, 
-	8, 8, 11, 55, 0, 56, 57, 58, 
-	59, 60, 0, 61, 62, 63, 64, 65, 
-	0, 66, 0, 67, 68, 68, 69, 69, 
-	0, 71, 0
+	10, 11, 11, 15, 0, 6, 11, 11, 
+	11, 17, 0, 25, 25, 25, 11, 25, 
+	25, 25, 11, 64, 0, 65, 66, 67, 
+	68, 69, 0, 70, 0, 71, 73, 74, 
+	76, 37, 0, 78, 0, 79, 80, 80, 
+	81, 81, 0, 83, 0
 ]
 
 class << self
@@ -13700,7 +15528,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'FUNCTION start_function'
@@ -13718,7 +15546,7 @@ begin
     fx_node = function(ident_node, complete: ident_node.complete)
     @buffers[:function] = fx_node
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -13740,7 +15568,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -13757,7 +15585,7 @@ begin
     @string_opened = true
     p_start = p
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -13772,7 +15600,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 42 then
+	when 50 then
 		begin
 
     $stderr.puts 'TERM fxret'
@@ -13788,19 +15616,19 @@ begin
 	end
 
   		end
-	when 46 then
+	when 55 then
 		begin
 
     $stderr.puts 'RELATIONSHIP start_relationship'
     p_start = p;
   		end
-	when 22 then
+	when 24 then
 		begin
 
     $stderr.puts 'COMMENT start_comment'
     p_start = p;
   		end
-	when 47 then
+	when 56 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -13808,7 +15636,7 @@ begin
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-	when 70 then
+	when 82 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -13825,7 +15653,7 @@ begin
     simple_stmt.complete = true
     @buffers[:simple_statement] = simple_stmt
   		end
-	when 20 then
+	when 22 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT ast_relationship'
@@ -13833,7 +15661,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << rel_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT call_nested_statement'
@@ -13846,7 +15674,7 @@ begin
 	end
 
   		end
-	when 49 then
+	when 58 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT fret'
@@ -13866,7 +15694,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
@@ -13889,7 +15717,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -13942,7 +15770,41 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 26 then
+	when 77 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -13979,7 +15841,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -13993,7 +15855,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 45 then
+	when 54 then
 		begin
 
     $stderr.puts 'TERM term_init'
@@ -14005,7 +15867,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 35 then
+	when 39 then
 		begin
 
     $stderr.puts 'TERM inner_term_init'
@@ -14017,7 +15879,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -14028,7 +15890,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -14039,7 +15901,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -14054,7 +15916,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << subject_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -14098,7 +15960,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 35 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -14118,7 +15980,48 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 70 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -14162,7 +16065,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 44 then
+	when 53 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -14214,7 +16117,48 @@ begin
 	end
 
   		end
-	when 23 then
+	when 75 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 26 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -14258,7 +16202,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -14286,7 +16230,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 52 then
+	when 61 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -14346,7 +16290,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 48 then
+	when 57 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT inner_statement_init'
@@ -14363,7 +16307,57 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 16 then
+	when 72 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -14416,7 +16410,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 31 then
+	when 34 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -14442,7 +16436,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 39 then
+	when 46 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -14501,7 +16495,7 @@ begin
 	end
 
   		end
-	when 43 then
+	when 52 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -14560,7 +16554,7 @@ begin
 	end
 
   		end
-	when 41 then
+	when 49 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -14628,7 +16622,7 @@ begin
 	end
 
   		end
-	when 54 then
+	when 63 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -14707,7 +16701,7 @@ begin
 	end
 
   		end
-	when 50 then
+	when 59 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -14793,7 +16787,7 @@ begin
 	end
 
   		end
-	when 53 then
+	when 62 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -14879,7 +16873,7 @@ begin
 	end
 
   		end
-	when 51 then
+	when 60 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -15004,7 +16998,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -15019,19 +17013,19 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 58 then
+	when 67 then
 		begin
 
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 60 then
+	when 69 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 33 then
+	when 51 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -15043,38 +17037,83 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 34 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-	when 29 then
+	when 32 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 10 then
+	when 44 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 37 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 15 then
 		begin
 
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 37 then
+	when 41 then
 		begin
  $stderr.puts "EOF!" 		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 57 then
+	when 66 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -15090,7 +17129,7 @@ begin
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 36 then
+	when 40 then
 		begin
 
     $stderr.puts 'FUNCTION a_function_eof'
@@ -15105,7 +17144,7 @@ begin
   		end
 		begin
  $stderr.puts "EOF!" 		end
-	when 59 then
+	when 68 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -15120,7 +17159,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 40 then
+	when 48 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -15144,7 +17183,83 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 8 then
+	when 43 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -15162,7 +17277,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 30 then
+	when 33 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -15176,7 +17291,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 45 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -15187,11 +17302,99 @@ begin
   		end
 		begin
 
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 10 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -15202,7 +17405,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -15213,7 +17416,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -15236,7 +17439,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 65 then
+	when 76 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -15281,7 +17484,101 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 6 then
+	when 47 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -15311,7 +17608,48 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 61 then
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 70 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -15352,33 +17690,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 38 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts 'FUNCTION a_function_eof'
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 67 then
+	when 79 then
 		begin
 
     $stderr.puts 'RELATIONSHIP stop_relationship'
@@ -15398,7 +17710,7 @@ begin
 
     yield @buffers[:relationship]
   		end
-	when 68 then
+	when 80 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -15418,7 +17730,7 @@ begin
     $stderr.puts 'COMMENT yield_comment'
     yield @buffers[:comment] || comment(nil)
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -15446,7 +17758,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 64 then
+	when 74 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -15498,7 +17810,115 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 62 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 42 then
+		begin
+ $stderr.puts "EOF!" 		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 71 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -15559,7 +17979,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 73 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -15705,13 +18125,13 @@ self._bel_trans_keys = [
 	9, 47, 0, 0, 10, 
 	10, 10, 122, 0, 0, 
 	10, 122, 0, 0, 0, 0, 
-	0, 0, 48, 122, 48, 
-	122, 9, 122, 9, 122, 
-	0, 0, 10, 10, 0, 0, 
-	65, 122, 10, 10, 9, 
-	32, 9, 47, 9, 47, 
-	0, 0, 10, 10, 0, 0, 
-	0
+	10, 10, 0, 0, 10, 
+	122, 10, 122, 9, 122, 
+	9, 122, 9, 39, 0, 0, 
+	10, 10, 0, 0, 65, 
+	122, 10, 10, 9, 32, 
+	9, 47, 9, 47, 0, 0, 
+	10, 10, 0, 0, 0
 ]
 
 class << self
@@ -15742,9 +18162,9 @@ self._bel_key_spans = [
 	31, 59, 59, 36, 36, 114, 54, 54, 
 	0, 114, 36, 114, 114, 114, 0, 114, 
 	114, 114, 0, 39, 0, 1, 113, 0, 
-	113, 0, 0, 0, 75, 75, 114, 114, 
-	0, 1, 0, 58, 1, 24, 39, 39, 
-	0, 1, 0
+	113, 0, 0, 1, 0, 113, 113, 114, 
+	114, 31, 0, 1, 0, 58, 1, 24, 
+	39, 39, 0, 1, 0
 ]
 
 class << self
@@ -15775,9 +18195,9 @@ self._bel_index_offsets = [
 	10418, 10450, 10510, 10570, 10607, 10644, 10759, 10814, 
 	10869, 10870, 10985, 11022, 11137, 11252, 11367, 11368, 
 	11483, 11598, 11713, 11714, 11754, 11755, 11757, 11871, 
-	11872, 11986, 11987, 11988, 11989, 12065, 12141, 12256, 
-	12371, 12372, 12374, 12375, 12434, 12436, 12461, 12501, 
-	12541, 12542, 12544
+	11872, 11986, 11987, 11988, 11990, 11991, 12105, 12219, 
+	12334, 12449, 12481, 12482, 12484, 12485, 12544, 12546, 
+	12571, 12611, 12651, 12652, 12654
 ]
 
 class << self
@@ -17283,77 +19703,90 @@ self._bel_indicies = [
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
-	382, 1, 1, 1, 1, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 1, 
-	1, 1, 1, 1, 1, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 1, 1, 1, 383, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 385, 1, 1, 1, 1, 
-	1, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 1, 1, 1, 
-	384, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 386, 387, 387, 
-	387, 387, 1, 1, 1, 1, 1, 1, 
+	382, 1, 1, 1, 383, 1, 1, 384, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 386, 1, 388, 1, 
-	1, 1, 1, 389, 1, 1, 1, 1, 
-	1, 1, 1, 1, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 1, 1, 
-	1, 1, 1, 1, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	1, 1, 1, 390, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	391, 72, 72, 72, 72, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 391, 
-	1, 73, 1, 1, 1, 1, 74, 1, 
-	1, 1, 1, 1, 1, 1, 1, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 1, 1, 1, 1, 1, 1, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 1, 1, 76, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 392, 1, 1, 393, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 1, 
+	1, 1, 1, 1, 1, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 1, 1, 1, 385, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 384, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 387, 1, 1, 1, 1, 1, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 1, 1, 1, 386, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 388, 389, 390, 390, 390, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 388, 1, 391, 1, 1, 1, 
+	1, 392, 1, 1, 1, 1, 1, 1, 
+	1, 1, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 1, 1, 1, 1, 
+	1, 1, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 393, 1, 1, 1, 
+	1, 393, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 1, 1, 1, 1, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 394, 181, 1, 180, 180, 
+	393, 393, 393, 393, 393, 1, 394, 395, 
+	72, 72, 72, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 394, 1, 73, 
+	1, 1, 1, 1, 74, 1, 1, 1, 
+	1, 1, 1, 1, 1, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 1, 
+	1, 1, 1, 1, 1, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 1, 1, 1, 76, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 72, 72, 72, 72, 72, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	72, 1, 73, 1, 1, 1, 1, 74, 
+	1, 1, 396, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 1, 1, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 398, 181, 1, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
-	180, 180, 180, 181, 180, 395, 396, 1, 
+	180, 181, 180, 399, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 395, 1, 1, 1, 
+	1, 1, 399, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 397, 1, 398, 396, 1, 
+	1, 401, 1, 402, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 398, 1, 1, 1, 
+	1, 1, 402, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 399, 1, 1, 401, 400, 
-	1, 0
+	1, 403, 1, 1, 405, 404, 1, 0
 ]
 
 class << self
@@ -17370,48 +19803,48 @@ self._bel_trans_targs = [
 	17, 11, 26, 25, 17, 11, 26, 0, 
 	182, 184, 30, 31, 34, 32, 186, 33, 
 	32, 186, 33, 35, 36, 35, 36, 38, 
-	39, 40, 43, 189, 188, 41, 187, 42, 
+	39, 40, 43, 190, 189, 41, 187, 42, 
 	41, 187, 42, 44, 45, 44, 45, 47, 
 	48, 49, 47, 48, 49, 50, 51, 52, 
 	57, 60, 64, 53, 54, 65, 53, 54, 
-	65, 55, 192, 56, 55, 56, 58, 59, 
-	58, 59, 55, 61, 192, 56, 60, 62, 
-	192, 63, 51, 52, 57, 192, 56, 64, 
-	63, 192, 56, 64, 67, 68, 69, 67, 
+	65, 55, 194, 56, 55, 56, 58, 59, 
+	58, 59, 55, 61, 194, 56, 60, 62, 
+	194, 63, 51, 52, 57, 194, 56, 64, 
+	63, 194, 56, 64, 67, 68, 69, 67, 
 	68, 69, 70, 71, 72, 77, 80, 84, 
-	73, 74, 85, 73, 74, 85, 75, 193, 
+	73, 74, 85, 73, 74, 85, 75, 195, 
 	76, 75, 76, 78, 79, 78, 79, 75, 
-	81, 193, 76, 80, 82, 193, 83, 71, 
-	72, 77, 193, 76, 84, 83, 193, 76, 
-	84, 195, 88, 89, 196, 197, 91, 92, 
+	81, 195, 76, 80, 82, 195, 83, 71, 
+	72, 77, 195, 76, 84, 83, 195, 76, 
+	84, 197, 88, 89, 198, 199, 91, 92, 
 	93, 91, 92, 93, 94, 95, 96, 101, 
 	104, 133, 97, 98, 134, 97, 98, 134, 
 	99, 106, 100, 99, 100, 102, 103, 102, 
 	103, 99, 105, 106, 100, 104, 131, 106, 
 	107, 107, 108, 109, 110, 111, 112, 110, 
 	111, 112, 113, 114, 115, 120, 123, 129, 
-	116, 117, 130, 116, 117, 130, 118, 198, 
+	116, 117, 130, 116, 117, 130, 118, 200, 
 	119, 118, 119, 121, 122, 121, 122, 118, 
-	124, 198, 119, 123, 127, 198, 126, 201, 
-	128, 114, 115, 120, 198, 119, 129, 128, 
-	198, 119, 129, 132, 95, 96, 101, 106, 
+	124, 200, 119, 123, 127, 200, 126, 203, 
+	128, 114, 115, 120, 200, 119, 129, 128, 
+	200, 119, 129, 132, 95, 96, 101, 106, 
 	100, 133, 132, 106, 100, 133, 136, 137, 
 	138, 136, 137, 138, 139, 140, 141, 146, 
 	149, 177, 142, 143, 178, 142, 143, 178, 
 	144, 151, 145, 144, 145, 147, 148, 147, 
 	148, 144, 150, 151, 145, 149, 175, 151, 
-	152, 152, 153, 154, 154, 155, 156, 202, 
+	152, 152, 153, 154, 154, 155, 156, 204, 
 	157, 158, 156, 157, 158, 159, 160, 161, 
 	166, 169, 173, 162, 163, 174, 162, 163, 
-	174, 164, 202, 165, 164, 165, 167, 168, 
-	167, 168, 164, 170, 202, 165, 169, 171, 
-	202, 172, 160, 161, 166, 202, 165, 173, 
-	172, 202, 165, 173, 176, 140, 141, 146, 
+	174, 164, 204, 165, 164, 165, 167, 168, 
+	167, 168, 164, 170, 204, 165, 169, 171, 
+	204, 172, 160, 161, 166, 204, 165, 173, 
+	172, 204, 165, 173, 176, 140, 141, 146, 
 	151, 145, 177, 176, 151, 145, 177, 180, 
 	22, 181, 180, 183, 182, 185, 184, 188, 
-	189, 190, 191, 39, 40, 43, 188, 191, 
-	194, 195, 196, 199, 200, 125, 199, 125, 
-	201, 200
+	188, 189, 190, 191, 192, 193, 39, 40, 
+	43, 189, 192, 193, 196, 197, 198, 201, 
+	202, 125, 201, 125, 203, 202
 ]
 
 class << self
@@ -17421,55 +19854,55 @@ end
 self._bel_trans_actions = [
 	2, 0, 3, 4, 0, 0, 5, 0, 
 	0, 0, 0, 7, 9, 12, 13, 12, 
-	0, 14, 0, 15, 15, 15, 0, 0, 
-	12, 12, 0, 0, 16, 17, 16, 16, 
-	0, 18, 0, 19, 0, 0, 20, 0, 
-	21, 0, 0, 22, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 27, 
-	28, 9, 0, 0, 0, 12, 31, 12, 
-	0, 32, 0, 12, 12, 0, 0, 0, 
+	0, 14, 0, 16, 16, 16, 0, 0, 
+	12, 12, 0, 0, 18, 19, 18, 18, 
+	0, 20, 0, 21, 0, 0, 22, 0, 
+	23, 0, 0, 24, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 30, 
+	31, 9, 0, 0, 0, 12, 34, 12, 
+	0, 35, 0, 12, 12, 0, 0, 0, 
 	0, 0, 0, 9, 9, 12, 13, 12, 
-	0, 14, 0, 12, 12, 0, 0, 35, 
+	0, 14, 0, 12, 12, 0, 0, 39, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 39, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 41, 16, 0, 18, 
-	42, 23, 24, 24, 24, 43, 23, 25, 
-	26, 44, 26, 0, 45, 3, 4, 0, 
+	0, 16, 46, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 49, 18, 0, 20, 
+	50, 26, 27, 27, 27, 52, 26, 28, 
+	29, 53, 29, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 23, 24, 
-	24, 24, 23, 23, 25, 26, 26, 26, 
-	0, 46, 0, 0, 22, 22, 45, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 26, 27, 
+	27, 27, 26, 26, 28, 29, 29, 29, 
+	0, 55, 0, 0, 24, 24, 54, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	47, 0, 0, 0, 45, 3, 4, 0, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	56, 0, 0, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 0, 22, 
-	23, 24, 24, 24, 23, 23, 25, 26, 
-	26, 26, 0, 23, 24, 24, 24, 23, 
-	23, 25, 26, 26, 26, 0, 48, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 0, 24, 
+	26, 27, 27, 27, 26, 26, 28, 29, 
+	29, 29, 0, 26, 27, 27, 27, 26, 
+	26, 28, 29, 29, 29, 0, 57, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	19, 0, 0, 20, 0, 21, 45, 49, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	21, 0, 0, 22, 0, 23, 54, 58, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 50, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 51, 16, 0, 18, 
-	52, 23, 24, 24, 24, 53, 23, 25, 
-	26, 54, 26, 0, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 55, 
-	0, 0, 56, 3, 0, 18, 0, 0, 
-	0, 18, 24, 24, 24, 24, 25, 0, 
-	66, 0, 0, 70, 69, 70, 0, 0, 
-	0, 71
+	0, 16, 59, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 60, 18, 0, 20, 
+	61, 26, 27, 27, 27, 62, 26, 28, 
+	29, 63, 29, 0, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 64, 
+	0, 0, 65, 3, 0, 20, 0, 70, 
+	72, 0, 0, 20, 27, 75, 27, 27, 
+	27, 28, 0, 77, 78, 0, 0, 82, 
+	81, 82, 0, 0, 0, 83
 ]
 
 class << self
@@ -17478,31 +19911,31 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 1, 1, 0, 6, 8, 10, 11, 
-	11, 10, 0, 6, 11, 11, 11, 6, 
+	11, 15, 0, 6, 11, 11, 11, 17, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	8, 8, 8, 11, 27, 0, 29, 30, 
-	30, 30, 30, 30, 30, 33, 33, 0, 
-	34, 34, 34, 34, 34, 34, 1, 36, 
-	37, 38, 33, 0, 34, 34, 0, 0, 
-	40, 34, 34, 34, 40, 0, 33, 33, 
-	33, 34, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 8, 8, 8, 11, 0, 0, 
+	25, 25, 25, 11, 30, 0, 32, 33, 
+	33, 33, 33, 33, 33, 36, 36, 37, 
+	38, 38, 38, 38, 38, 38, 1, 40, 
+	41, 42, 43, 44, 45, 45, 0, 0, 
+	47, 45, 45, 45, 48, 0, 51, 51, 
+	51, 45, 1, 1, 0, 6, 8, 10, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 25, 25, 25, 11, 0, 0, 
 	0, 0, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 0, 0, 0, 1, 1, 0, 
-	6, 8, 10, 11, 11, 10, 0, 6, 
-	11, 11, 11, 6, 0, 0, 0, 8, 
-	8, 8, 11, 8, 8, 8, 11, 1, 
-	1, 0, 6, 8, 10, 11, 11, 10, 
-	0, 6, 11, 11, 11, 6, 0, 0, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 0, 0, 0, 1, 1, 0, 
+	6, 8, 10, 11, 11, 15, 0, 6, 
+	11, 11, 11, 17, 0, 0, 0, 25, 
+	25, 25, 11, 25, 25, 25, 11, 1, 
+	1, 0, 6, 8, 10, 11, 11, 15, 
+	0, 6, 11, 11, 11, 17, 0, 0, 
 	0, 0, 1, 0, 1, 0, 6, 8, 
-	10, 11, 11, 10, 0, 6, 11, 11, 
-	11, 6, 0, 8, 8, 8, 11, 8, 
-	8, 8, 11, 55, 0, 56, 57, 58, 
-	59, 60, 0, 61, 62, 63, 64, 65, 
-	0, 66, 0, 67, 68, 68, 69, 69, 
-	0, 71, 0
+	10, 11, 11, 15, 0, 6, 11, 11, 
+	11, 17, 0, 25, 25, 25, 11, 25, 
+	25, 25, 11, 64, 0, 65, 66, 67, 
+	68, 69, 0, 70, 0, 71, 73, 74, 
+	76, 37, 0, 78, 0, 79, 80, 80, 
+	81, 81, 0, 83, 0
 ]
 
 class << self
@@ -17607,7 +20040,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'FUNCTION start_function'
@@ -17625,7 +20058,7 @@ begin
     fx_node = function(ident_node, complete: ident_node.complete)
     @buffers[:function] = fx_node
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -17647,7 +20080,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -17664,7 +20097,7 @@ begin
     @string_opened = true
     p_start = p
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -17679,7 +20112,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 42 then
+	when 50 then
 		begin
 
     $stderr.puts 'TERM fxret'
@@ -17695,19 +20128,19 @@ begin
 	end
 
   		end
-	when 46 then
+	when 55 then
 		begin
 
     $stderr.puts 'RELATIONSHIP start_relationship'
     p_start = p;
   		end
-	when 22 then
+	when 24 then
 		begin
 
     $stderr.puts 'COMMENT start_comment'
     p_start = p;
   		end
-	when 47 then
+	when 56 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -17715,7 +20148,7 @@ begin
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-	when 70 then
+	when 82 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -17732,7 +20165,7 @@ begin
     simple_stmt.complete = true
     @buffers[:simple_statement] = simple_stmt
   		end
-	when 20 then
+	when 22 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT ast_relationship'
@@ -17740,7 +20173,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << rel_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT call_nested_statement'
@@ -17753,7 +20186,7 @@ begin
 	end
 
   		end
-	when 49 then
+	when 58 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT fret'
@@ -17773,7 +20206,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
@@ -17796,7 +20229,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -17849,7 +20282,41 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 26 then
+	when 77 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -17886,7 +20353,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -17900,7 +20367,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 45 then
+	when 54 then
 		begin
 
     $stderr.puts 'TERM term_init'
@@ -17912,7 +20379,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 35 then
+	when 39 then
 		begin
 
     $stderr.puts 'TERM inner_term_init'
@@ -17924,7 +20391,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -17935,7 +20402,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -17946,7 +20413,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -17961,7 +20428,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << subject_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -18005,7 +20472,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 35 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -18025,7 +20492,48 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 70 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -18069,7 +20577,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 44 then
+	when 53 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -18121,7 +20629,48 @@ begin
 	end
 
   		end
-	when 23 then
+	when 75 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 26 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -18165,7 +20714,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -18193,7 +20742,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 52 then
+	when 61 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -18253,7 +20802,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 48 then
+	when 57 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT inner_statement_init'
@@ -18270,7 +20819,57 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 16 then
+	when 72 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -18323,7 +20922,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 31 then
+	when 34 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -18349,7 +20948,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 39 then
+	when 46 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -18408,7 +21007,7 @@ begin
 	end
 
   		end
-	when 43 then
+	when 52 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -18467,7 +21066,7 @@ begin
 	end
 
   		end
-	when 41 then
+	when 49 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -18535,7 +21134,7 @@ begin
 	end
 
   		end
-	when 54 then
+	when 63 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -18614,7 +21213,7 @@ begin
 	end
 
   		end
-	when 50 then
+	when 59 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -18700,7 +21299,7 @@ begin
 	end
 
   		end
-	when 53 then
+	when 62 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -18786,7 +21385,7 @@ begin
 	end
 
   		end
-	when 51 then
+	when 60 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -18911,7 +21510,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -18926,19 +21525,19 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 58 then
+	when 67 then
 		begin
 
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 60 then
+	when 69 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 33 then
+	when 51 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -18950,38 +21549,83 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 34 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-	when 29 then
+	when 32 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 10 then
+	when 44 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 37 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 15 then
 		begin
 
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 37 then
+	when 41 then
 		begin
  $stderr.puts "EOF!" 		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 57 then
+	when 66 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -18997,7 +21641,7 @@ begin
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 36 then
+	when 40 then
 		begin
 
     $stderr.puts 'FUNCTION a_function_eof'
@@ -19012,7 +21656,7 @@ begin
   		end
 		begin
  $stderr.puts "EOF!" 		end
-	when 59 then
+	when 68 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -19027,7 +21671,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 40 then
+	when 48 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -19051,7 +21695,83 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 8 then
+	when 43 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -19069,7 +21789,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 30 then
+	when 33 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -19083,7 +21803,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 45 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -19094,11 +21814,99 @@ begin
   		end
 		begin
 
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 10 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -19109,7 +21917,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -19120,7 +21928,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -19143,7 +21951,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 65 then
+	when 76 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -19188,7 +21996,101 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 6 then
+	when 47 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -19218,7 +22120,48 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 61 then
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 70 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -19259,33 +22202,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 38 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts 'FUNCTION a_function_eof'
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 67 then
+	when 79 then
 		begin
 
     $stderr.puts 'RELATIONSHIP stop_relationship'
@@ -19305,7 +22222,7 @@ begin
 
     yield @buffers[:relationship]
   		end
-	when 68 then
+	when 80 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -19325,7 +22242,7 @@ begin
     $stderr.puts 'COMMENT yield_comment'
     yield @buffers[:comment] || comment(nil)
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -19353,7 +22270,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 64 then
+	when 74 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -19405,7 +22322,115 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 62 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 42 then
+		begin
+ $stderr.puts "EOF!" 		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 71 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -19466,7 +22491,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 73 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -19612,13 +22637,13 @@ self._bel_trans_keys = [
 	9, 47, 0, 0, 10, 
 	10, 10, 122, 0, 0, 
 	10, 122, 0, 0, 0, 0, 
-	0, 0, 48, 122, 48, 
-	122, 9, 122, 9, 122, 
-	0, 0, 10, 10, 0, 0, 
-	65, 122, 10, 10, 9, 
-	32, 9, 47, 9, 47, 
-	0, 0, 10, 10, 0, 0, 
-	0
+	10, 10, 0, 0, 10, 
+	122, 10, 122, 9, 122, 
+	9, 122, 9, 39, 0, 0, 
+	10, 10, 0, 0, 65, 
+	122, 10, 10, 9, 32, 
+	9, 47, 9, 47, 0, 0, 
+	10, 10, 0, 0, 0
 ]
 
 class << self
@@ -19649,9 +22674,9 @@ self._bel_key_spans = [
 	31, 59, 59, 36, 36, 114, 54, 54, 
 	0, 114, 36, 114, 114, 114, 0, 114, 
 	114, 114, 0, 39, 0, 1, 113, 0, 
-	113, 0, 0, 0, 75, 75, 114, 114, 
-	0, 1, 0, 58, 1, 24, 39, 39, 
-	0, 1, 0
+	113, 0, 0, 1, 0, 113, 113, 114, 
+	114, 31, 0, 1, 0, 58, 1, 24, 
+	39, 39, 0, 1, 0
 ]
 
 class << self
@@ -19682,9 +22707,9 @@ self._bel_index_offsets = [
 	10418, 10450, 10510, 10570, 10607, 10644, 10759, 10814, 
 	10869, 10870, 10985, 11022, 11137, 11252, 11367, 11368, 
 	11483, 11598, 11713, 11714, 11754, 11755, 11757, 11871, 
-	11872, 11986, 11987, 11988, 11989, 12065, 12141, 12256, 
-	12371, 12372, 12374, 12375, 12434, 12436, 12461, 12501, 
-	12541, 12542, 12544
+	11872, 11986, 11987, 11988, 11990, 11991, 12105, 12219, 
+	12334, 12449, 12481, 12482, 12484, 12485, 12544, 12546, 
+	12571, 12611, 12651, 12652, 12654
 ]
 
 class << self
@@ -21190,77 +24215,90 @@ self._bel_indicies = [
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
-	382, 1, 1, 1, 1, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 1, 
-	1, 1, 1, 1, 1, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 1, 1, 1, 383, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 385, 1, 1, 1, 1, 
-	1, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 1, 1, 1, 
-	384, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 386, 387, 387, 
-	387, 387, 1, 1, 1, 1, 1, 1, 
+	382, 1, 1, 1, 383, 1, 1, 384, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 386, 1, 388, 1, 
-	1, 1, 1, 389, 1, 1, 1, 1, 
-	1, 1, 1, 1, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 1, 1, 
-	1, 1, 1, 1, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	1, 1, 1, 390, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	391, 72, 72, 72, 72, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 391, 
-	1, 73, 1, 1, 1, 1, 74, 1, 
-	1, 1, 1, 1, 1, 1, 1, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 1, 1, 1, 1, 1, 1, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 1, 1, 76, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 392, 1, 1, 393, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 1, 
+	1, 1, 1, 1, 1, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 1, 1, 1, 385, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 384, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 387, 1, 1, 1, 1, 1, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 1, 1, 1, 386, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 388, 389, 390, 390, 390, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 388, 1, 391, 1, 1, 1, 
+	1, 392, 1, 1, 1, 1, 1, 1, 
+	1, 1, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 1, 1, 1, 1, 
+	1, 1, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 393, 1, 1, 1, 
+	1, 393, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 1, 1, 1, 1, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 394, 181, 1, 180, 180, 
+	393, 393, 393, 393, 393, 1, 394, 395, 
+	72, 72, 72, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 394, 1, 73, 
+	1, 1, 1, 1, 74, 1, 1, 1, 
+	1, 1, 1, 1, 1, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 1, 
+	1, 1, 1, 1, 1, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 1, 1, 1, 76, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 72, 72, 72, 72, 72, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	72, 1, 73, 1, 1, 1, 1, 74, 
+	1, 1, 396, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 1, 1, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 398, 181, 1, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
-	180, 180, 180, 181, 180, 395, 396, 1, 
+	180, 181, 180, 399, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 395, 1, 1, 1, 
+	1, 1, 399, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 397, 1, 398, 396, 1, 
+	1, 401, 1, 402, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 398, 1, 1, 1, 
+	1, 1, 402, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 399, 1, 1, 401, 400, 
-	1, 0
+	1, 403, 1, 1, 405, 404, 1, 0
 ]
 
 class << self
@@ -21277,48 +24315,48 @@ self._bel_trans_targs = [
 	17, 11, 26, 25, 17, 11, 26, 0, 
 	182, 184, 30, 31, 34, 32, 186, 33, 
 	32, 186, 33, 35, 36, 35, 36, 38, 
-	39, 40, 43, 189, 188, 41, 187, 42, 
+	39, 40, 43, 190, 189, 41, 187, 42, 
 	41, 187, 42, 44, 45, 44, 45, 47, 
 	48, 49, 47, 48, 49, 50, 51, 52, 
 	57, 60, 64, 53, 54, 65, 53, 54, 
-	65, 55, 192, 56, 55, 56, 58, 59, 
-	58, 59, 55, 61, 192, 56, 60, 62, 
-	192, 63, 51, 52, 57, 192, 56, 64, 
-	63, 192, 56, 64, 67, 68, 69, 67, 
+	65, 55, 194, 56, 55, 56, 58, 59, 
+	58, 59, 55, 61, 194, 56, 60, 62, 
+	194, 63, 51, 52, 57, 194, 56, 64, 
+	63, 194, 56, 64, 67, 68, 69, 67, 
 	68, 69, 70, 71, 72, 77, 80, 84, 
-	73, 74, 85, 73, 74, 85, 75, 193, 
+	73, 74, 85, 73, 74, 85, 75, 195, 
 	76, 75, 76, 78, 79, 78, 79, 75, 
-	81, 193, 76, 80, 82, 193, 83, 71, 
-	72, 77, 193, 76, 84, 83, 193, 76, 
-	84, 195, 88, 89, 196, 197, 91, 92, 
+	81, 195, 76, 80, 82, 195, 83, 71, 
+	72, 77, 195, 76, 84, 83, 195, 76, 
+	84, 197, 88, 89, 198, 199, 91, 92, 
 	93, 91, 92, 93, 94, 95, 96, 101, 
 	104, 133, 97, 98, 134, 97, 98, 134, 
 	99, 106, 100, 99, 100, 102, 103, 102, 
 	103, 99, 105, 106, 100, 104, 131, 106, 
 	107, 107, 108, 109, 110, 111, 112, 110, 
 	111, 112, 113, 114, 115, 120, 123, 129, 
-	116, 117, 130, 116, 117, 130, 118, 198, 
+	116, 117, 130, 116, 117, 130, 118, 200, 
 	119, 118, 119, 121, 122, 121, 122, 118, 
-	124, 198, 119, 123, 127, 198, 126, 201, 
-	128, 114, 115, 120, 198, 119, 129, 128, 
-	198, 119, 129, 132, 95, 96, 101, 106, 
+	124, 200, 119, 123, 127, 200, 126, 203, 
+	128, 114, 115, 120, 200, 119, 129, 128, 
+	200, 119, 129, 132, 95, 96, 101, 106, 
 	100, 133, 132, 106, 100, 133, 136, 137, 
 	138, 136, 137, 138, 139, 140, 141, 146, 
 	149, 177, 142, 143, 178, 142, 143, 178, 
 	144, 151, 145, 144, 145, 147, 148, 147, 
 	148, 144, 150, 151, 145, 149, 175, 151, 
-	152, 152, 153, 154, 154, 155, 156, 202, 
+	152, 152, 153, 154, 154, 155, 156, 204, 
 	157, 158, 156, 157, 158, 159, 160, 161, 
 	166, 169, 173, 162, 163, 174, 162, 163, 
-	174, 164, 202, 165, 164, 165, 167, 168, 
-	167, 168, 164, 170, 202, 165, 169, 171, 
-	202, 172, 160, 161, 166, 202, 165, 173, 
-	172, 202, 165, 173, 176, 140, 141, 146, 
+	174, 164, 204, 165, 164, 165, 167, 168, 
+	167, 168, 164, 170, 204, 165, 169, 171, 
+	204, 172, 160, 161, 166, 204, 165, 173, 
+	172, 204, 165, 173, 176, 140, 141, 146, 
 	151, 145, 177, 176, 151, 145, 177, 180, 
 	22, 181, 180, 183, 182, 185, 184, 188, 
-	189, 190, 191, 39, 40, 43, 188, 191, 
-	194, 195, 196, 199, 200, 125, 199, 125, 
-	201, 200
+	188, 189, 190, 191, 192, 193, 39, 40, 
+	43, 189, 192, 193, 196, 197, 198, 201, 
+	202, 125, 201, 125, 203, 202
 ]
 
 class << self
@@ -21328,55 +24366,55 @@ end
 self._bel_trans_actions = [
 	2, 0, 3, 4, 0, 0, 5, 0, 
 	0, 0, 0, 7, 9, 12, 13, 12, 
-	0, 14, 0, 15, 15, 15, 0, 0, 
-	12, 12, 0, 0, 16, 17, 16, 16, 
-	0, 18, 0, 19, 0, 0, 20, 0, 
-	21, 0, 0, 22, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 27, 
-	28, 9, 0, 0, 0, 12, 31, 12, 
-	0, 32, 0, 12, 12, 0, 0, 0, 
+	0, 14, 0, 16, 16, 16, 0, 0, 
+	12, 12, 0, 0, 18, 19, 18, 18, 
+	0, 20, 0, 21, 0, 0, 22, 0, 
+	23, 0, 0, 24, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 30, 
+	31, 9, 0, 0, 0, 12, 34, 12, 
+	0, 35, 0, 12, 12, 0, 0, 0, 
 	0, 0, 0, 9, 9, 12, 13, 12, 
-	0, 14, 0, 12, 12, 0, 0, 35, 
+	0, 14, 0, 12, 12, 0, 0, 39, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 39, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 41, 16, 0, 18, 
-	42, 23, 24, 24, 24, 43, 23, 25, 
-	26, 44, 26, 0, 45, 3, 4, 0, 
+	0, 16, 46, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 49, 18, 0, 20, 
+	50, 26, 27, 27, 27, 52, 26, 28, 
+	29, 53, 29, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 23, 24, 
-	24, 24, 23, 23, 25, 26, 26, 26, 
-	0, 46, 0, 0, 22, 22, 45, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 26, 27, 
+	27, 27, 26, 26, 28, 29, 29, 29, 
+	0, 55, 0, 0, 24, 24, 54, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	47, 0, 0, 0, 45, 3, 4, 0, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	56, 0, 0, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 0, 22, 
-	23, 24, 24, 24, 23, 23, 25, 26, 
-	26, 26, 0, 23, 24, 24, 24, 23, 
-	23, 25, 26, 26, 26, 0, 48, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 0, 24, 
+	26, 27, 27, 27, 26, 26, 28, 29, 
+	29, 29, 0, 26, 27, 27, 27, 26, 
+	26, 28, 29, 29, 29, 0, 57, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	19, 0, 0, 20, 0, 21, 45, 49, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	21, 0, 0, 22, 0, 23, 54, 58, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 50, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 51, 16, 0, 18, 
-	52, 23, 24, 24, 24, 53, 23, 25, 
-	26, 54, 26, 0, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 55, 
-	0, 0, 56, 3, 0, 18, 0, 0, 
-	0, 18, 24, 24, 24, 24, 25, 0, 
-	66, 0, 0, 70, 69, 70, 0, 0, 
-	0, 71
+	0, 16, 59, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 60, 18, 0, 20, 
+	61, 26, 27, 27, 27, 62, 26, 28, 
+	29, 63, 29, 0, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 64, 
+	0, 0, 65, 3, 0, 20, 0, 70, 
+	72, 0, 0, 20, 27, 75, 27, 27, 
+	27, 28, 0, 77, 78, 0, 0, 82, 
+	81, 82, 0, 0, 0, 83
 ]
 
 class << self
@@ -21385,31 +24423,31 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 1, 1, 0, 6, 8, 10, 11, 
-	11, 10, 0, 6, 11, 11, 11, 6, 
+	11, 15, 0, 6, 11, 11, 11, 17, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	8, 8, 8, 11, 27, 0, 29, 30, 
-	30, 30, 30, 30, 30, 33, 33, 0, 
-	34, 34, 34, 34, 34, 34, 1, 36, 
-	37, 38, 33, 0, 34, 34, 0, 0, 
-	40, 34, 34, 34, 40, 0, 33, 33, 
-	33, 34, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 8, 8, 8, 11, 0, 0, 
+	25, 25, 25, 11, 30, 0, 32, 33, 
+	33, 33, 33, 33, 33, 36, 36, 37, 
+	38, 38, 38, 38, 38, 38, 1, 40, 
+	41, 42, 43, 44, 45, 45, 0, 0, 
+	47, 45, 45, 45, 48, 0, 51, 51, 
+	51, 45, 1, 1, 0, 6, 8, 10, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 25, 25, 25, 11, 0, 0, 
 	0, 0, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 0, 0, 0, 1, 1, 0, 
-	6, 8, 10, 11, 11, 10, 0, 6, 
-	11, 11, 11, 6, 0, 0, 0, 8, 
-	8, 8, 11, 8, 8, 8, 11, 1, 
-	1, 0, 6, 8, 10, 11, 11, 10, 
-	0, 6, 11, 11, 11, 6, 0, 0, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 0, 0, 0, 1, 1, 0, 
+	6, 8, 10, 11, 11, 15, 0, 6, 
+	11, 11, 11, 17, 0, 0, 0, 25, 
+	25, 25, 11, 25, 25, 25, 11, 1, 
+	1, 0, 6, 8, 10, 11, 11, 15, 
+	0, 6, 11, 11, 11, 17, 0, 0, 
 	0, 0, 1, 0, 1, 0, 6, 8, 
-	10, 11, 11, 10, 0, 6, 11, 11, 
-	11, 6, 0, 8, 8, 8, 11, 8, 
-	8, 8, 11, 55, 0, 56, 57, 58, 
-	59, 60, 0, 61, 62, 63, 64, 65, 
-	0, 66, 0, 67, 68, 68, 69, 69, 
-	0, 71, 0
+	10, 11, 11, 15, 0, 6, 11, 11, 
+	11, 17, 0, 25, 25, 25, 11, 25, 
+	25, 25, 11, 64, 0, 65, 66, 67, 
+	68, 69, 0, 70, 0, 71, 73, 74, 
+	76, 37, 0, 78, 0, 79, 80, 80, 
+	81, 81, 0, 83, 0
 ]
 
 class << self
@@ -21514,7 +24552,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'FUNCTION start_function'
@@ -21532,7 +24570,7 @@ begin
     fx_node = function(ident_node, complete: ident_node.complete)
     @buffers[:function] = fx_node
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -21554,7 +24592,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -21571,7 +24609,7 @@ begin
     @string_opened = true
     p_start = p
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -21586,7 +24624,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 42 then
+	when 50 then
 		begin
 
     $stderr.puts 'TERM fxret'
@@ -21602,19 +24640,19 @@ begin
 	end
 
   		end
-	when 46 then
+	when 55 then
 		begin
 
     $stderr.puts 'RELATIONSHIP start_relationship'
     p_start = p;
   		end
-	when 22 then
+	when 24 then
 		begin
 
     $stderr.puts 'COMMENT start_comment'
     p_start = p;
   		end
-	when 47 then
+	when 56 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -21622,7 +24660,7 @@ begin
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-	when 70 then
+	when 82 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -21639,7 +24677,7 @@ begin
     simple_stmt.complete = true
     @buffers[:simple_statement] = simple_stmt
   		end
-	when 20 then
+	when 22 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT ast_relationship'
@@ -21647,7 +24685,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << rel_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT call_nested_statement'
@@ -21660,7 +24698,7 @@ begin
 	end
 
   		end
-	when 49 then
+	when 58 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT fret'
@@ -21680,7 +24718,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
@@ -21703,7 +24741,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -21756,7 +24794,41 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 26 then
+	when 77 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -21793,7 +24865,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -21807,7 +24879,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 45 then
+	when 54 then
 		begin
 
     $stderr.puts 'TERM term_init'
@@ -21819,7 +24891,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 35 then
+	when 39 then
 		begin
 
     $stderr.puts 'TERM inner_term_init'
@@ -21831,7 +24903,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -21842,7 +24914,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -21853,7 +24925,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -21868,7 +24940,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << subject_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -21912,7 +24984,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 35 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -21932,7 +25004,48 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 70 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -21976,7 +25089,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 44 then
+	when 53 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -22028,7 +25141,48 @@ begin
 	end
 
   		end
-	when 23 then
+	when 75 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 26 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -22072,7 +25226,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -22100,7 +25254,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 52 then
+	when 61 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -22160,7 +25314,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 48 then
+	when 57 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT inner_statement_init'
@@ -22177,7 +25331,57 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 16 then
+	when 72 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -22230,7 +25434,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 31 then
+	when 34 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -22256,7 +25460,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 39 then
+	when 46 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -22315,7 +25519,7 @@ begin
 	end
 
   		end
-	when 43 then
+	when 52 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -22374,7 +25578,7 @@ begin
 	end
 
   		end
-	when 41 then
+	when 49 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -22442,7 +25646,7 @@ begin
 	end
 
   		end
-	when 54 then
+	when 63 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -22521,7 +25725,7 @@ begin
 	end
 
   		end
-	when 50 then
+	when 59 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -22607,7 +25811,7 @@ begin
 	end
 
   		end
-	when 53 then
+	when 62 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -22693,7 +25897,7 @@ begin
 	end
 
   		end
-	when 51 then
+	when 60 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -22818,7 +26022,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -22833,19 +26037,19 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 58 then
+	when 67 then
 		begin
 
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 60 then
+	when 69 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 33 then
+	when 51 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -22857,38 +26061,83 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 34 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-	when 29 then
+	when 32 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 10 then
+	when 44 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 37 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 15 then
 		begin
 
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 37 then
+	when 41 then
 		begin
  $stderr.puts "EOF!" 		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 57 then
+	when 66 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -22904,7 +26153,7 @@ begin
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 36 then
+	when 40 then
 		begin
 
     $stderr.puts 'FUNCTION a_function_eof'
@@ -22919,7 +26168,7 @@ begin
   		end
 		begin
  $stderr.puts "EOF!" 		end
-	when 59 then
+	when 68 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -22934,7 +26183,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 40 then
+	when 48 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -22958,7 +26207,83 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 8 then
+	when 43 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -22976,7 +26301,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 30 then
+	when 33 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -22990,7 +26315,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 45 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -23001,11 +26326,99 @@ begin
   		end
 		begin
 
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 10 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -23016,7 +26429,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -23027,7 +26440,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -23050,7 +26463,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 65 then
+	when 76 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -23095,7 +26508,101 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 6 then
+	when 47 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -23125,7 +26632,48 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 61 then
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 70 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -23166,33 +26714,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 38 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts 'FUNCTION a_function_eof'
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 67 then
+	when 79 then
 		begin
 
     $stderr.puts 'RELATIONSHIP stop_relationship'
@@ -23212,7 +26734,7 @@ begin
 
     yield @buffers[:relationship]
   		end
-	when 68 then
+	when 80 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -23232,7 +26754,7 @@ begin
     $stderr.puts 'COMMENT yield_comment'
     yield @buffers[:comment] || comment(nil)
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -23260,7 +26782,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 64 then
+	when 74 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -23312,7 +26834,115 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 62 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 42 then
+		begin
+ $stderr.puts "EOF!" 		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 71 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -23373,7 +27003,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 73 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -23519,13 +27149,13 @@ self._bel_trans_keys = [
 	9, 47, 0, 0, 10, 
 	10, 10, 122, 0, 0, 
 	10, 122, 0, 0, 0, 0, 
-	0, 0, 48, 122, 48, 
-	122, 9, 122, 9, 122, 
-	0, 0, 10, 10, 0, 0, 
-	65, 122, 10, 10, 9, 
-	32, 9, 47, 9, 47, 
-	0, 0, 10, 10, 0, 0, 
-	0
+	10, 10, 0, 0, 10, 
+	122, 10, 122, 9, 122, 
+	9, 122, 9, 39, 0, 0, 
+	10, 10, 0, 0, 65, 
+	122, 10, 10, 9, 32, 
+	9, 47, 9, 47, 0, 0, 
+	10, 10, 0, 0, 0
 ]
 
 class << self
@@ -23556,9 +27186,9 @@ self._bel_key_spans = [
 	31, 59, 59, 36, 36, 114, 54, 54, 
 	0, 114, 36, 114, 114, 114, 0, 114, 
 	114, 114, 0, 39, 0, 1, 113, 0, 
-	113, 0, 0, 0, 75, 75, 114, 114, 
-	0, 1, 0, 58, 1, 24, 39, 39, 
-	0, 1, 0
+	113, 0, 0, 1, 0, 113, 113, 114, 
+	114, 31, 0, 1, 0, 58, 1, 24, 
+	39, 39, 0, 1, 0
 ]
 
 class << self
@@ -23589,9 +27219,9 @@ self._bel_index_offsets = [
 	10418, 10450, 10510, 10570, 10607, 10644, 10759, 10814, 
 	10869, 10870, 10985, 11022, 11137, 11252, 11367, 11368, 
 	11483, 11598, 11713, 11714, 11754, 11755, 11757, 11871, 
-	11872, 11986, 11987, 11988, 11989, 12065, 12141, 12256, 
-	12371, 12372, 12374, 12375, 12434, 12436, 12461, 12501, 
-	12541, 12542, 12544
+	11872, 11986, 11987, 11988, 11990, 11991, 12105, 12219, 
+	12334, 12449, 12481, 12482, 12484, 12485, 12544, 12546, 
+	12571, 12611, 12651, 12652, 12654
 ]
 
 class << self
@@ -25097,77 +28727,90 @@ self._bel_indicies = [
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
-	382, 1, 1, 1, 1, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 1, 
-	1, 1, 1, 1, 1, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 1, 1, 1, 383, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 385, 1, 1, 1, 1, 
-	1, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 1, 1, 1, 
-	384, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 386, 387, 387, 
-	387, 387, 1, 1, 1, 1, 1, 1, 
+	382, 1, 1, 1, 383, 1, 1, 384, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 386, 1, 388, 1, 
-	1, 1, 1, 389, 1, 1, 1, 1, 
-	1, 1, 1, 1, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 1, 1, 
-	1, 1, 1, 1, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	1, 1, 1, 390, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	391, 72, 72, 72, 72, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 391, 
-	1, 73, 1, 1, 1, 1, 74, 1, 
-	1, 1, 1, 1, 1, 1, 1, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 1, 1, 1, 1, 1, 1, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 1, 1, 76, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 392, 1, 1, 393, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 1, 
+	1, 1, 1, 1, 1, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 1, 1, 1, 385, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 384, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 387, 1, 1, 1, 1, 1, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 1, 1, 1, 386, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 388, 389, 390, 390, 390, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 388, 1, 391, 1, 1, 1, 
+	1, 392, 1, 1, 1, 1, 1, 1, 
+	1, 1, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 1, 1, 1, 1, 
+	1, 1, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 393, 1, 1, 1, 
+	1, 393, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 1, 1, 1, 1, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 394, 181, 1, 180, 180, 
+	393, 393, 393, 393, 393, 1, 394, 395, 
+	72, 72, 72, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 394, 1, 73, 
+	1, 1, 1, 1, 74, 1, 1, 1, 
+	1, 1, 1, 1, 1, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 1, 
+	1, 1, 1, 1, 1, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 1, 1, 1, 76, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 72, 72, 72, 72, 72, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	72, 1, 73, 1, 1, 1, 1, 74, 
+	1, 1, 396, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 1, 1, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 398, 181, 1, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
-	180, 180, 180, 181, 180, 395, 396, 1, 
+	180, 181, 180, 399, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 395, 1, 1, 1, 
+	1, 1, 399, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 397, 1, 398, 396, 1, 
+	1, 401, 1, 402, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 398, 1, 1, 1, 
+	1, 1, 402, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 399, 1, 1, 401, 400, 
-	1, 0
+	1, 403, 1, 1, 405, 404, 1, 0
 ]
 
 class << self
@@ -25184,48 +28827,48 @@ self._bel_trans_targs = [
 	17, 11, 26, 25, 17, 11, 26, 0, 
 	182, 184, 30, 31, 34, 32, 186, 33, 
 	32, 186, 33, 35, 36, 35, 36, 38, 
-	39, 40, 43, 189, 188, 41, 187, 42, 
+	39, 40, 43, 190, 189, 41, 187, 42, 
 	41, 187, 42, 44, 45, 44, 45, 47, 
 	48, 49, 47, 48, 49, 50, 51, 52, 
 	57, 60, 64, 53, 54, 65, 53, 54, 
-	65, 55, 192, 56, 55, 56, 58, 59, 
-	58, 59, 55, 61, 192, 56, 60, 62, 
-	192, 63, 51, 52, 57, 192, 56, 64, 
-	63, 192, 56, 64, 67, 68, 69, 67, 
+	65, 55, 194, 56, 55, 56, 58, 59, 
+	58, 59, 55, 61, 194, 56, 60, 62, 
+	194, 63, 51, 52, 57, 194, 56, 64, 
+	63, 194, 56, 64, 67, 68, 69, 67, 
 	68, 69, 70, 71, 72, 77, 80, 84, 
-	73, 74, 85, 73, 74, 85, 75, 193, 
+	73, 74, 85, 73, 74, 85, 75, 195, 
 	76, 75, 76, 78, 79, 78, 79, 75, 
-	81, 193, 76, 80, 82, 193, 83, 71, 
-	72, 77, 193, 76, 84, 83, 193, 76, 
-	84, 195, 88, 89, 196, 197, 91, 92, 
+	81, 195, 76, 80, 82, 195, 83, 71, 
+	72, 77, 195, 76, 84, 83, 195, 76, 
+	84, 197, 88, 89, 198, 199, 91, 92, 
 	93, 91, 92, 93, 94, 95, 96, 101, 
 	104, 133, 97, 98, 134, 97, 98, 134, 
 	99, 106, 100, 99, 100, 102, 103, 102, 
 	103, 99, 105, 106, 100, 104, 131, 106, 
 	107, 107, 108, 109, 110, 111, 112, 110, 
 	111, 112, 113, 114, 115, 120, 123, 129, 
-	116, 117, 130, 116, 117, 130, 118, 198, 
+	116, 117, 130, 116, 117, 130, 118, 200, 
 	119, 118, 119, 121, 122, 121, 122, 118, 
-	124, 198, 119, 123, 127, 198, 126, 201, 
-	128, 114, 115, 120, 198, 119, 129, 128, 
-	198, 119, 129, 132, 95, 96, 101, 106, 
+	124, 200, 119, 123, 127, 200, 126, 203, 
+	128, 114, 115, 120, 200, 119, 129, 128, 
+	200, 119, 129, 132, 95, 96, 101, 106, 
 	100, 133, 132, 106, 100, 133, 136, 137, 
 	138, 136, 137, 138, 139, 140, 141, 146, 
 	149, 177, 142, 143, 178, 142, 143, 178, 
 	144, 151, 145, 144, 145, 147, 148, 147, 
 	148, 144, 150, 151, 145, 149, 175, 151, 
-	152, 152, 153, 154, 154, 155, 156, 202, 
+	152, 152, 153, 154, 154, 155, 156, 204, 
 	157, 158, 156, 157, 158, 159, 160, 161, 
 	166, 169, 173, 162, 163, 174, 162, 163, 
-	174, 164, 202, 165, 164, 165, 167, 168, 
-	167, 168, 164, 170, 202, 165, 169, 171, 
-	202, 172, 160, 161, 166, 202, 165, 173, 
-	172, 202, 165, 173, 176, 140, 141, 146, 
+	174, 164, 204, 165, 164, 165, 167, 168, 
+	167, 168, 164, 170, 204, 165, 169, 171, 
+	204, 172, 160, 161, 166, 204, 165, 173, 
+	172, 204, 165, 173, 176, 140, 141, 146, 
 	151, 145, 177, 176, 151, 145, 177, 180, 
 	22, 181, 180, 183, 182, 185, 184, 188, 
-	189, 190, 191, 39, 40, 43, 188, 191, 
-	194, 195, 196, 199, 200, 125, 199, 125, 
-	201, 200
+	188, 189, 190, 191, 192, 193, 39, 40, 
+	43, 189, 192, 193, 196, 197, 198, 201, 
+	202, 125, 201, 125, 203, 202
 ]
 
 class << self
@@ -25235,55 +28878,55 @@ end
 self._bel_trans_actions = [
 	2, 0, 3, 4, 0, 0, 5, 0, 
 	0, 0, 0, 7, 9, 12, 13, 12, 
-	0, 14, 0, 15, 15, 15, 0, 0, 
-	12, 12, 0, 0, 16, 17, 16, 16, 
-	0, 18, 0, 19, 0, 0, 20, 0, 
-	21, 0, 0, 22, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 27, 
-	28, 9, 0, 0, 0, 12, 31, 12, 
-	0, 32, 0, 12, 12, 0, 0, 0, 
+	0, 14, 0, 16, 16, 16, 0, 0, 
+	12, 12, 0, 0, 18, 19, 18, 18, 
+	0, 20, 0, 21, 0, 0, 22, 0, 
+	23, 0, 0, 24, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 30, 
+	31, 9, 0, 0, 0, 12, 34, 12, 
+	0, 35, 0, 12, 12, 0, 0, 0, 
 	0, 0, 0, 9, 9, 12, 13, 12, 
-	0, 14, 0, 12, 12, 0, 0, 35, 
+	0, 14, 0, 12, 12, 0, 0, 39, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 39, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 41, 16, 0, 18, 
-	42, 23, 24, 24, 24, 43, 23, 25, 
-	26, 44, 26, 0, 45, 3, 4, 0, 
+	0, 16, 46, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 49, 18, 0, 20, 
+	50, 26, 27, 27, 27, 52, 26, 28, 
+	29, 53, 29, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 23, 24, 
-	24, 24, 23, 23, 25, 26, 26, 26, 
-	0, 46, 0, 0, 22, 22, 45, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 26, 27, 
+	27, 27, 26, 26, 28, 29, 29, 29, 
+	0, 55, 0, 0, 24, 24, 54, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	47, 0, 0, 0, 45, 3, 4, 0, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	56, 0, 0, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 0, 22, 
-	23, 24, 24, 24, 23, 23, 25, 26, 
-	26, 26, 0, 23, 24, 24, 24, 23, 
-	23, 25, 26, 26, 26, 0, 48, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 0, 24, 
+	26, 27, 27, 27, 26, 26, 28, 29, 
+	29, 29, 0, 26, 27, 27, 27, 26, 
+	26, 28, 29, 29, 29, 0, 57, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	19, 0, 0, 20, 0, 21, 45, 49, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	21, 0, 0, 22, 0, 23, 54, 58, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 50, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 51, 16, 0, 18, 
-	52, 23, 24, 24, 24, 53, 23, 25, 
-	26, 54, 26, 0, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 55, 
-	0, 0, 56, 3, 0, 18, 0, 0, 
-	0, 18, 24, 24, 24, 24, 25, 0, 
-	66, 0, 0, 70, 69, 70, 0, 0, 
-	0, 71
+	0, 16, 59, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 60, 18, 0, 20, 
+	61, 26, 27, 27, 27, 62, 26, 28, 
+	29, 63, 29, 0, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 64, 
+	0, 0, 65, 3, 0, 20, 0, 70, 
+	72, 0, 0, 20, 27, 75, 27, 27, 
+	27, 28, 0, 77, 78, 0, 0, 82, 
+	81, 82, 0, 0, 0, 83
 ]
 
 class << self
@@ -25292,31 +28935,31 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 1, 1, 0, 6, 8, 10, 11, 
-	11, 10, 0, 6, 11, 11, 11, 6, 
+	11, 15, 0, 6, 11, 11, 11, 17, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	8, 8, 8, 11, 27, 0, 29, 30, 
-	30, 30, 30, 30, 30, 33, 33, 0, 
-	34, 34, 34, 34, 34, 34, 1, 36, 
-	37, 38, 33, 0, 34, 34, 0, 0, 
-	40, 34, 34, 34, 40, 0, 33, 33, 
-	33, 34, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 8, 8, 8, 11, 0, 0, 
+	25, 25, 25, 11, 30, 0, 32, 33, 
+	33, 33, 33, 33, 33, 36, 36, 37, 
+	38, 38, 38, 38, 38, 38, 1, 40, 
+	41, 42, 43, 44, 45, 45, 0, 0, 
+	47, 45, 45, 45, 48, 0, 51, 51, 
+	51, 45, 1, 1, 0, 6, 8, 10, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 25, 25, 25, 11, 0, 0, 
 	0, 0, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 0, 0, 0, 1, 1, 0, 
-	6, 8, 10, 11, 11, 10, 0, 6, 
-	11, 11, 11, 6, 0, 0, 0, 8, 
-	8, 8, 11, 8, 8, 8, 11, 1, 
-	1, 0, 6, 8, 10, 11, 11, 10, 
-	0, 6, 11, 11, 11, 6, 0, 0, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 0, 0, 0, 1, 1, 0, 
+	6, 8, 10, 11, 11, 15, 0, 6, 
+	11, 11, 11, 17, 0, 0, 0, 25, 
+	25, 25, 11, 25, 25, 25, 11, 1, 
+	1, 0, 6, 8, 10, 11, 11, 15, 
+	0, 6, 11, 11, 11, 17, 0, 0, 
 	0, 0, 1, 0, 1, 0, 6, 8, 
-	10, 11, 11, 10, 0, 6, 11, 11, 
-	11, 6, 0, 8, 8, 8, 11, 8, 
-	8, 8, 11, 55, 0, 56, 57, 58, 
-	59, 60, 0, 61, 62, 63, 64, 65, 
-	0, 66, 0, 67, 68, 68, 69, 69, 
-	0, 71, 0
+	10, 11, 11, 15, 0, 6, 11, 11, 
+	11, 17, 0, 25, 25, 25, 11, 25, 
+	25, 25, 11, 64, 0, 65, 66, 67, 
+	68, 69, 0, 70, 0, 71, 73, 74, 
+	76, 37, 0, 78, 0, 79, 80, 80, 
+	81, 81, 0, 83, 0
 ]
 
 class << self
@@ -25421,7 +29064,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'FUNCTION start_function'
@@ -25439,7 +29082,7 @@ begin
     fx_node = function(ident_node, complete: ident_node.complete)
     @buffers[:function] = fx_node
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -25461,7 +29104,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -25478,7 +29121,7 @@ begin
     @string_opened = true
     p_start = p
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -25493,7 +29136,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 42 then
+	when 50 then
 		begin
 
     $stderr.puts 'TERM fxret'
@@ -25509,19 +29152,19 @@ begin
 	end
 
   		end
-	when 46 then
+	when 55 then
 		begin
 
     $stderr.puts 'RELATIONSHIP start_relationship'
     p_start = p;
   		end
-	when 22 then
+	when 24 then
 		begin
 
     $stderr.puts 'COMMENT start_comment'
     p_start = p;
   		end
-	when 47 then
+	when 56 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -25529,7 +29172,7 @@ begin
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-	when 70 then
+	when 82 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -25546,7 +29189,7 @@ begin
     simple_stmt.complete = true
     @buffers[:simple_statement] = simple_stmt
   		end
-	when 20 then
+	when 22 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT ast_relationship'
@@ -25554,7 +29197,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << rel_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT call_nested_statement'
@@ -25567,7 +29210,7 @@ begin
 	end
 
   		end
-	when 49 then
+	when 58 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT fret'
@@ -25587,7 +29230,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
@@ -25610,7 +29253,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -25663,7 +29306,41 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 26 then
+	when 77 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -25700,7 +29377,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -25714,7 +29391,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 45 then
+	when 54 then
 		begin
 
     $stderr.puts 'TERM term_init'
@@ -25726,7 +29403,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 35 then
+	when 39 then
 		begin
 
     $stderr.puts 'TERM inner_term_init'
@@ -25738,7 +29415,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -25749,7 +29426,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -25760,7 +29437,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -25775,7 +29452,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << subject_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -25819,7 +29496,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 35 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -25839,7 +29516,48 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 70 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -25883,7 +29601,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 44 then
+	when 53 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -25935,7 +29653,48 @@ begin
 	end
 
   		end
-	when 23 then
+	when 75 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 26 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -25979,7 +29738,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -26007,7 +29766,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 52 then
+	when 61 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -26067,7 +29826,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 48 then
+	when 57 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT inner_statement_init'
@@ -26084,7 +29843,57 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 16 then
+	when 72 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -26137,7 +29946,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 31 then
+	when 34 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -26163,7 +29972,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 39 then
+	when 46 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -26222,7 +30031,7 @@ begin
 	end
 
   		end
-	when 43 then
+	when 52 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -26281,7 +30090,7 @@ begin
 	end
 
   		end
-	when 41 then
+	when 49 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -26349,7 +30158,7 @@ begin
 	end
 
   		end
-	when 54 then
+	when 63 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -26428,7 +30237,7 @@ begin
 	end
 
   		end
-	when 50 then
+	when 59 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -26514,7 +30323,7 @@ begin
 	end
 
   		end
-	when 53 then
+	when 62 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -26600,7 +30409,7 @@ begin
 	end
 
   		end
-	when 51 then
+	when 60 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -26725,7 +30534,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -26740,19 +30549,19 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 58 then
+	when 67 then
 		begin
 
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 60 then
+	when 69 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 33 then
+	when 51 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -26764,38 +30573,83 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 34 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-	when 29 then
+	when 32 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 10 then
+	when 44 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 37 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 15 then
 		begin
 
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 37 then
+	when 41 then
 		begin
  $stderr.puts "EOF!" 		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 57 then
+	when 66 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -26811,7 +30665,7 @@ begin
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 36 then
+	when 40 then
 		begin
 
     $stderr.puts 'FUNCTION a_function_eof'
@@ -26826,7 +30680,7 @@ begin
   		end
 		begin
  $stderr.puts "EOF!" 		end
-	when 59 then
+	when 68 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -26841,7 +30695,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 40 then
+	when 48 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -26865,7 +30719,83 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 8 then
+	when 43 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -26883,7 +30813,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 30 then
+	when 33 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -26897,7 +30827,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 45 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -26908,11 +30838,99 @@ begin
   		end
 		begin
 
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 10 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -26923,7 +30941,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -26934,7 +30952,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -26957,7 +30975,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 65 then
+	when 76 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -27002,7 +31020,101 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 6 then
+	when 47 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -27032,7 +31144,48 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 61 then
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 70 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -27073,33 +31226,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 38 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts 'FUNCTION a_function_eof'
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 67 then
+	when 79 then
 		begin
 
     $stderr.puts 'RELATIONSHIP stop_relationship'
@@ -27119,7 +31246,7 @@ begin
 
     yield @buffers[:relationship]
   		end
-	when 68 then
+	when 80 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -27139,7 +31266,7 @@ begin
     $stderr.puts 'COMMENT yield_comment'
     yield @buffers[:comment] || comment(nil)
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -27167,7 +31294,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 64 then
+	when 74 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -27219,7 +31346,115 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 62 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 42 then
+		begin
+ $stderr.puts "EOF!" 		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 71 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -27280,7 +31515,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 73 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -27426,13 +31661,13 @@ self._bel_trans_keys = [
 	9, 47, 0, 0, 10, 
 	10, 10, 122, 0, 0, 
 	10, 122, 0, 0, 0, 0, 
-	0, 0, 48, 122, 48, 
-	122, 9, 122, 9, 122, 
-	0, 0, 10, 10, 0, 0, 
-	65, 122, 10, 10, 9, 
-	32, 9, 47, 9, 47, 
-	0, 0, 10, 10, 0, 0, 
-	0
+	10, 10, 0, 0, 10, 
+	122, 10, 122, 9, 122, 
+	9, 122, 9, 39, 0, 0, 
+	10, 10, 0, 0, 65, 
+	122, 10, 10, 9, 32, 
+	9, 47, 9, 47, 0, 0, 
+	10, 10, 0, 0, 0
 ]
 
 class << self
@@ -27463,9 +31698,9 @@ self._bel_key_spans = [
 	31, 59, 59, 36, 36, 114, 54, 54, 
 	0, 114, 36, 114, 114, 114, 0, 114, 
 	114, 114, 0, 39, 0, 1, 113, 0, 
-	113, 0, 0, 0, 75, 75, 114, 114, 
-	0, 1, 0, 58, 1, 24, 39, 39, 
-	0, 1, 0
+	113, 0, 0, 1, 0, 113, 113, 114, 
+	114, 31, 0, 1, 0, 58, 1, 24, 
+	39, 39, 0, 1, 0
 ]
 
 class << self
@@ -27496,9 +31731,9 @@ self._bel_index_offsets = [
 	10418, 10450, 10510, 10570, 10607, 10644, 10759, 10814, 
 	10869, 10870, 10985, 11022, 11137, 11252, 11367, 11368, 
 	11483, 11598, 11713, 11714, 11754, 11755, 11757, 11871, 
-	11872, 11986, 11987, 11988, 11989, 12065, 12141, 12256, 
-	12371, 12372, 12374, 12375, 12434, 12436, 12461, 12501, 
-	12541, 12542, 12544
+	11872, 11986, 11987, 11988, 11990, 11991, 12105, 12219, 
+	12334, 12449, 12481, 12482, 12484, 12485, 12544, 12546, 
+	12571, 12611, 12651, 12652, 12654
 ]
 
 class << self
@@ -29004,77 +33239,90 @@ self._bel_indicies = [
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
-	382, 1, 1, 1, 1, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 1, 
-	1, 1, 1, 1, 1, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 1, 1, 1, 383, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 385, 1, 1, 1, 1, 
-	1, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 1, 1, 1, 
-	384, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 386, 387, 387, 
-	387, 387, 1, 1, 1, 1, 1, 1, 
+	382, 1, 1, 1, 383, 1, 1, 384, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 386, 1, 388, 1, 
-	1, 1, 1, 389, 1, 1, 1, 1, 
-	1, 1, 1, 1, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 1, 1, 
-	1, 1, 1, 1, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	1, 1, 1, 390, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	391, 72, 72, 72, 72, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 391, 
-	1, 73, 1, 1, 1, 1, 74, 1, 
-	1, 1, 1, 1, 1, 1, 1, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 1, 1, 1, 1, 1, 1, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 1, 1, 76, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 392, 1, 1, 393, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 1, 
+	1, 1, 1, 1, 1, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 1, 1, 1, 385, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 384, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 387, 1, 1, 1, 1, 1, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 1, 1, 1, 386, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 388, 389, 390, 390, 390, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 388, 1, 391, 1, 1, 1, 
+	1, 392, 1, 1, 1, 1, 1, 1, 
+	1, 1, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 1, 1, 1, 1, 
+	1, 1, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 393, 1, 1, 1, 
+	1, 393, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 1, 1, 1, 1, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 394, 181, 1, 180, 180, 
+	393, 393, 393, 393, 393, 1, 394, 395, 
+	72, 72, 72, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 394, 1, 73, 
+	1, 1, 1, 1, 74, 1, 1, 1, 
+	1, 1, 1, 1, 1, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 1, 
+	1, 1, 1, 1, 1, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 1, 1, 1, 76, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 72, 72, 72, 72, 72, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	72, 1, 73, 1, 1, 1, 1, 74, 
+	1, 1, 396, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 1, 1, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 398, 181, 1, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
-	180, 180, 180, 181, 180, 395, 396, 1, 
+	180, 181, 180, 399, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 395, 1, 1, 1, 
+	1, 1, 399, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 397, 1, 398, 396, 1, 
+	1, 401, 1, 402, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 398, 1, 1, 1, 
+	1, 1, 402, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 399, 1, 1, 401, 400, 
-	1, 0
+	1, 403, 1, 1, 405, 404, 1, 0
 ]
 
 class << self
@@ -29091,48 +33339,48 @@ self._bel_trans_targs = [
 	17, 11, 26, 25, 17, 11, 26, 0, 
 	182, 184, 30, 31, 34, 32, 186, 33, 
 	32, 186, 33, 35, 36, 35, 36, 38, 
-	39, 40, 43, 189, 188, 41, 187, 42, 
+	39, 40, 43, 190, 189, 41, 187, 42, 
 	41, 187, 42, 44, 45, 44, 45, 47, 
 	48, 49, 47, 48, 49, 50, 51, 52, 
 	57, 60, 64, 53, 54, 65, 53, 54, 
-	65, 55, 192, 56, 55, 56, 58, 59, 
-	58, 59, 55, 61, 192, 56, 60, 62, 
-	192, 63, 51, 52, 57, 192, 56, 64, 
-	63, 192, 56, 64, 67, 68, 69, 67, 
+	65, 55, 194, 56, 55, 56, 58, 59, 
+	58, 59, 55, 61, 194, 56, 60, 62, 
+	194, 63, 51, 52, 57, 194, 56, 64, 
+	63, 194, 56, 64, 67, 68, 69, 67, 
 	68, 69, 70, 71, 72, 77, 80, 84, 
-	73, 74, 85, 73, 74, 85, 75, 193, 
+	73, 74, 85, 73, 74, 85, 75, 195, 
 	76, 75, 76, 78, 79, 78, 79, 75, 
-	81, 193, 76, 80, 82, 193, 83, 71, 
-	72, 77, 193, 76, 84, 83, 193, 76, 
-	84, 195, 88, 89, 196, 197, 91, 92, 
+	81, 195, 76, 80, 82, 195, 83, 71, 
+	72, 77, 195, 76, 84, 83, 195, 76, 
+	84, 197, 88, 89, 198, 199, 91, 92, 
 	93, 91, 92, 93, 94, 95, 96, 101, 
 	104, 133, 97, 98, 134, 97, 98, 134, 
 	99, 106, 100, 99, 100, 102, 103, 102, 
 	103, 99, 105, 106, 100, 104, 131, 106, 
 	107, 107, 108, 109, 110, 111, 112, 110, 
 	111, 112, 113, 114, 115, 120, 123, 129, 
-	116, 117, 130, 116, 117, 130, 118, 198, 
+	116, 117, 130, 116, 117, 130, 118, 200, 
 	119, 118, 119, 121, 122, 121, 122, 118, 
-	124, 198, 119, 123, 127, 198, 126, 201, 
-	128, 114, 115, 120, 198, 119, 129, 128, 
-	198, 119, 129, 132, 95, 96, 101, 106, 
+	124, 200, 119, 123, 127, 200, 126, 203, 
+	128, 114, 115, 120, 200, 119, 129, 128, 
+	200, 119, 129, 132, 95, 96, 101, 106, 
 	100, 133, 132, 106, 100, 133, 136, 137, 
 	138, 136, 137, 138, 139, 140, 141, 146, 
 	149, 177, 142, 143, 178, 142, 143, 178, 
 	144, 151, 145, 144, 145, 147, 148, 147, 
 	148, 144, 150, 151, 145, 149, 175, 151, 
-	152, 152, 153, 154, 154, 155, 156, 202, 
+	152, 152, 153, 154, 154, 155, 156, 204, 
 	157, 158, 156, 157, 158, 159, 160, 161, 
 	166, 169, 173, 162, 163, 174, 162, 163, 
-	174, 164, 202, 165, 164, 165, 167, 168, 
-	167, 168, 164, 170, 202, 165, 169, 171, 
-	202, 172, 160, 161, 166, 202, 165, 173, 
-	172, 202, 165, 173, 176, 140, 141, 146, 
+	174, 164, 204, 165, 164, 165, 167, 168, 
+	167, 168, 164, 170, 204, 165, 169, 171, 
+	204, 172, 160, 161, 166, 204, 165, 173, 
+	172, 204, 165, 173, 176, 140, 141, 146, 
 	151, 145, 177, 176, 151, 145, 177, 180, 
 	22, 181, 180, 183, 182, 185, 184, 188, 
-	189, 190, 191, 39, 40, 43, 188, 191, 
-	194, 195, 196, 199, 200, 125, 199, 125, 
-	201, 200
+	188, 189, 190, 191, 192, 193, 39, 40, 
+	43, 189, 192, 193, 196, 197, 198, 201, 
+	202, 125, 201, 125, 203, 202
 ]
 
 class << self
@@ -29142,55 +33390,55 @@ end
 self._bel_trans_actions = [
 	2, 0, 3, 4, 0, 0, 5, 0, 
 	0, 0, 0, 7, 9, 12, 13, 12, 
-	0, 14, 0, 15, 15, 15, 0, 0, 
-	12, 12, 0, 0, 16, 17, 16, 16, 
-	0, 18, 0, 19, 0, 0, 20, 0, 
-	21, 0, 0, 22, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 27, 
-	28, 9, 0, 0, 0, 12, 31, 12, 
-	0, 32, 0, 12, 12, 0, 0, 0, 
+	0, 14, 0, 16, 16, 16, 0, 0, 
+	12, 12, 0, 0, 18, 19, 18, 18, 
+	0, 20, 0, 21, 0, 0, 22, 0, 
+	23, 0, 0, 24, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 30, 
+	31, 9, 0, 0, 0, 12, 34, 12, 
+	0, 35, 0, 12, 12, 0, 0, 0, 
 	0, 0, 0, 9, 9, 12, 13, 12, 
-	0, 14, 0, 12, 12, 0, 0, 35, 
+	0, 14, 0, 12, 12, 0, 0, 39, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 39, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 41, 16, 0, 18, 
-	42, 23, 24, 24, 24, 43, 23, 25, 
-	26, 44, 26, 0, 45, 3, 4, 0, 
+	0, 16, 46, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 49, 18, 0, 20, 
+	50, 26, 27, 27, 27, 52, 26, 28, 
+	29, 53, 29, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 23, 24, 
-	24, 24, 23, 23, 25, 26, 26, 26, 
-	0, 46, 0, 0, 22, 22, 45, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 26, 27, 
+	27, 27, 26, 26, 28, 29, 29, 29, 
+	0, 55, 0, 0, 24, 24, 54, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	47, 0, 0, 0, 45, 3, 4, 0, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	56, 0, 0, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 0, 22, 
-	23, 24, 24, 24, 23, 23, 25, 26, 
-	26, 26, 0, 23, 24, 24, 24, 23, 
-	23, 25, 26, 26, 26, 0, 48, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 0, 24, 
+	26, 27, 27, 27, 26, 26, 28, 29, 
+	29, 29, 0, 26, 27, 27, 27, 26, 
+	26, 28, 29, 29, 29, 0, 57, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	19, 0, 0, 20, 0, 21, 45, 49, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	21, 0, 0, 22, 0, 23, 54, 58, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 50, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 51, 16, 0, 18, 
-	52, 23, 24, 24, 24, 53, 23, 25, 
-	26, 54, 26, 0, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 55, 
-	0, 0, 56, 3, 0, 18, 0, 0, 
-	0, 18, 24, 24, 24, 24, 25, 0, 
-	66, 0, 0, 70, 69, 70, 0, 0, 
-	0, 71
+	0, 16, 59, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 60, 18, 0, 20, 
+	61, 26, 27, 27, 27, 62, 26, 28, 
+	29, 63, 29, 0, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 64, 
+	0, 0, 65, 3, 0, 20, 0, 70, 
+	72, 0, 0, 20, 27, 75, 27, 27, 
+	27, 28, 0, 77, 78, 0, 0, 82, 
+	81, 82, 0, 0, 0, 83
 ]
 
 class << self
@@ -29199,31 +33447,31 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 1, 1, 0, 6, 8, 10, 11, 
-	11, 10, 0, 6, 11, 11, 11, 6, 
+	11, 15, 0, 6, 11, 11, 11, 17, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	8, 8, 8, 11, 27, 0, 29, 30, 
-	30, 30, 30, 30, 30, 33, 33, 0, 
-	34, 34, 34, 34, 34, 34, 1, 36, 
-	37, 38, 33, 0, 34, 34, 0, 0, 
-	40, 34, 34, 34, 40, 0, 33, 33, 
-	33, 34, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 8, 8, 8, 11, 0, 0, 
+	25, 25, 25, 11, 30, 0, 32, 33, 
+	33, 33, 33, 33, 33, 36, 36, 37, 
+	38, 38, 38, 38, 38, 38, 1, 40, 
+	41, 42, 43, 44, 45, 45, 0, 0, 
+	47, 45, 45, 45, 48, 0, 51, 51, 
+	51, 45, 1, 1, 0, 6, 8, 10, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 25, 25, 25, 11, 0, 0, 
 	0, 0, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 0, 0, 0, 1, 1, 0, 
-	6, 8, 10, 11, 11, 10, 0, 6, 
-	11, 11, 11, 6, 0, 0, 0, 8, 
-	8, 8, 11, 8, 8, 8, 11, 1, 
-	1, 0, 6, 8, 10, 11, 11, 10, 
-	0, 6, 11, 11, 11, 6, 0, 0, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 0, 0, 0, 1, 1, 0, 
+	6, 8, 10, 11, 11, 15, 0, 6, 
+	11, 11, 11, 17, 0, 0, 0, 25, 
+	25, 25, 11, 25, 25, 25, 11, 1, 
+	1, 0, 6, 8, 10, 11, 11, 15, 
+	0, 6, 11, 11, 11, 17, 0, 0, 
 	0, 0, 1, 0, 1, 0, 6, 8, 
-	10, 11, 11, 10, 0, 6, 11, 11, 
-	11, 6, 0, 8, 8, 8, 11, 8, 
-	8, 8, 11, 55, 0, 56, 57, 58, 
-	59, 60, 0, 61, 62, 63, 64, 65, 
-	0, 66, 0, 67, 68, 68, 69, 69, 
-	0, 71, 0
+	10, 11, 11, 15, 0, 6, 11, 11, 
+	11, 17, 0, 25, 25, 25, 11, 25, 
+	25, 25, 11, 64, 0, 65, 66, 67, 
+	68, 69, 0, 70, 0, 71, 73, 74, 
+	76, 37, 0, 78, 0, 79, 80, 80, 
+	81, 81, 0, 83, 0
 ]
 
 class << self
@@ -29328,7 +33576,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'FUNCTION start_function'
@@ -29346,7 +33594,7 @@ begin
     fx_node = function(ident_node, complete: ident_node.complete)
     @buffers[:function] = fx_node
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -29368,7 +33616,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -29385,7 +33633,7 @@ begin
     @string_opened = true
     p_start = p
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -29400,7 +33648,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 42 then
+	when 50 then
 		begin
 
     $stderr.puts 'TERM fxret'
@@ -29416,19 +33664,19 @@ begin
 	end
 
   		end
-	when 46 then
+	when 55 then
 		begin
 
     $stderr.puts 'RELATIONSHIP start_relationship'
     p_start = p;
   		end
-	when 22 then
+	when 24 then
 		begin
 
     $stderr.puts 'COMMENT start_comment'
     p_start = p;
   		end
-	when 47 then
+	when 56 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -29436,7 +33684,7 @@ begin
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-	when 70 then
+	when 82 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -29453,7 +33701,7 @@ begin
     simple_stmt.complete = true
     @buffers[:simple_statement] = simple_stmt
   		end
-	when 20 then
+	when 22 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT ast_relationship'
@@ -29461,7 +33709,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << rel_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT call_nested_statement'
@@ -29474,7 +33722,7 @@ begin
 	end
 
   		end
-	when 49 then
+	when 58 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT fret'
@@ -29494,7 +33742,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
@@ -29517,7 +33765,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -29570,7 +33818,41 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 26 then
+	when 77 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -29607,7 +33889,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -29621,7 +33903,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 45 then
+	when 54 then
 		begin
 
     $stderr.puts 'TERM term_init'
@@ -29633,7 +33915,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 35 then
+	when 39 then
 		begin
 
     $stderr.puts 'TERM inner_term_init'
@@ -29645,7 +33927,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -29656,7 +33938,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -29667,7 +33949,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -29682,7 +33964,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << subject_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -29726,7 +34008,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 35 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -29746,7 +34028,48 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 70 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -29790,7 +34113,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 44 then
+	when 53 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -29842,7 +34165,48 @@ begin
 	end
 
   		end
-	when 23 then
+	when 75 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 26 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -29886,7 +34250,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -29914,7 +34278,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 52 then
+	when 61 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -29974,7 +34338,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 48 then
+	when 57 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT inner_statement_init'
@@ -29991,7 +34355,57 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 16 then
+	when 72 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -30044,7 +34458,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 31 then
+	when 34 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -30070,7 +34484,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 39 then
+	when 46 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -30129,7 +34543,7 @@ begin
 	end
 
   		end
-	when 43 then
+	when 52 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -30188,7 +34602,7 @@ begin
 	end
 
   		end
-	when 41 then
+	when 49 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -30256,7 +34670,7 @@ begin
 	end
 
   		end
-	when 54 then
+	when 63 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -30335,7 +34749,7 @@ begin
 	end
 
   		end
-	when 50 then
+	when 59 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -30421,7 +34835,7 @@ begin
 	end
 
   		end
-	when 53 then
+	when 62 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -30507,7 +34921,7 @@ begin
 	end
 
   		end
-	when 51 then
+	when 60 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -30632,7 +35046,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -30647,19 +35061,19 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 58 then
+	when 67 then
 		begin
 
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 60 then
+	when 69 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 33 then
+	when 51 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -30671,38 +35085,83 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 34 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-	when 29 then
+	when 32 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 10 then
+	when 44 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 37 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 15 then
 		begin
 
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 37 then
+	when 41 then
 		begin
  $stderr.puts "EOF!" 		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 57 then
+	when 66 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -30718,7 +35177,7 @@ begin
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 36 then
+	when 40 then
 		begin
 
     $stderr.puts 'FUNCTION a_function_eof'
@@ -30733,7 +35192,7 @@ begin
   		end
 		begin
  $stderr.puts "EOF!" 		end
-	when 59 then
+	when 68 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -30748,7 +35207,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 40 then
+	when 48 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -30772,7 +35231,83 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 8 then
+	when 43 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -30790,7 +35325,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 30 then
+	when 33 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -30804,7 +35339,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 45 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -30815,11 +35350,99 @@ begin
   		end
 		begin
 
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 10 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -30830,7 +35453,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -30841,7 +35464,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -30864,7 +35487,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 65 then
+	when 76 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -30909,7 +35532,101 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 6 then
+	when 47 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -30939,7 +35656,48 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 61 then
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 70 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -30980,33 +35738,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 38 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts 'FUNCTION a_function_eof'
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 67 then
+	when 79 then
 		begin
 
     $stderr.puts 'RELATIONSHIP stop_relationship'
@@ -31026,7 +35758,7 @@ begin
 
     yield @buffers[:relationship]
   		end
-	when 68 then
+	when 80 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -31046,7 +35778,7 @@ begin
     $stderr.puts 'COMMENT yield_comment'
     yield @buffers[:comment] || comment(nil)
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -31074,7 +35806,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 64 then
+	when 74 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -31126,7 +35858,115 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 62 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 42 then
+		begin
+ $stderr.puts "EOF!" 		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 71 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -31187,7 +36027,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 73 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -31370,13 +36210,13 @@ self._bel_trans_keys = [
 	9, 47, 0, 0, 10, 
 	10, 10, 122, 0, 0, 
 	10, 122, 0, 0, 0, 0, 
-	0, 0, 48, 122, 48, 
-	122, 9, 122, 9, 122, 
-	0, 0, 10, 10, 0, 0, 
-	65, 122, 10, 10, 9, 
-	32, 9, 47, 9, 47, 
-	0, 0, 10, 10, 0, 0, 
-	0
+	10, 10, 0, 0, 10, 
+	122, 10, 122, 9, 122, 
+	9, 122, 9, 39, 0, 0, 
+	10, 10, 0, 0, 65, 
+	122, 10, 10, 9, 32, 
+	9, 47, 9, 47, 0, 0, 
+	10, 10, 0, 0, 0
 ]
 
 class << self
@@ -31407,9 +36247,9 @@ self._bel_key_spans = [
 	31, 59, 59, 36, 36, 114, 54, 54, 
 	0, 114, 36, 114, 114, 114, 0, 114, 
 	114, 114, 0, 39, 0, 1, 113, 0, 
-	113, 0, 0, 0, 75, 75, 114, 114, 
-	0, 1, 0, 58, 1, 24, 39, 39, 
-	0, 1, 0
+	113, 0, 0, 1, 0, 113, 113, 114, 
+	114, 31, 0, 1, 0, 58, 1, 24, 
+	39, 39, 0, 1, 0
 ]
 
 class << self
@@ -31440,9 +36280,9 @@ self._bel_index_offsets = [
 	10418, 10450, 10510, 10570, 10607, 10644, 10759, 10814, 
 	10869, 10870, 10985, 11022, 11137, 11252, 11367, 11368, 
 	11483, 11598, 11713, 11714, 11754, 11755, 11757, 11871, 
-	11872, 11986, 11987, 11988, 11989, 12065, 12141, 12256, 
-	12371, 12372, 12374, 12375, 12434, 12436, 12461, 12501, 
-	12541, 12542, 12544
+	11872, 11986, 11987, 11988, 11990, 11991, 12105, 12219, 
+	12334, 12449, 12481, 12482, 12484, 12485, 12544, 12546, 
+	12571, 12611, 12651, 12652, 12654
 ]
 
 class << self
@@ -32948,77 +37788,90 @@ self._bel_indicies = [
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
 	382, 382, 382, 382, 382, 382, 382, 382, 
-	382, 1, 1, 1, 1, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 1, 
-	1, 1, 1, 1, 1, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 1, 1, 1, 383, 1, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	383, 383, 383, 383, 383, 383, 383, 383, 
-	1, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 385, 1, 1, 1, 1, 
-	1, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 1, 1, 1, 
-	384, 1, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 384, 384, 384, 384, 
-	384, 384, 384, 384, 1, 386, 387, 387, 
-	387, 387, 1, 1, 1, 1, 1, 1, 
+	382, 1, 1, 1, 383, 1, 1, 384, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 386, 1, 388, 1, 
-	1, 1, 1, 389, 1, 1, 1, 1, 
-	1, 1, 1, 1, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 1, 1, 
-	1, 1, 1, 1, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	1, 1, 1, 390, 1, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 390, 
-	390, 390, 390, 390, 390, 390, 390, 1, 
-	391, 72, 72, 72, 72, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 1, 1, 1, 391, 
-	1, 73, 1, 1, 1, 1, 74, 1, 
-	1, 1, 1, 1, 1, 1, 1, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 1, 1, 1, 1, 1, 1, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 1, 1, 76, 1, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 76, 76, 76, 76, 76, 76, 
-	76, 76, 1, 1, 392, 1, 1, 393, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 1, 
+	1, 1, 1, 1, 1, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 1, 1, 1, 385, 1, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	385, 385, 385, 385, 385, 385, 385, 385, 
+	1, 384, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 387, 1, 1, 1, 1, 1, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 1, 1, 1, 386, 1, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 386, 386, 386, 386, 386, 386, 
+	386, 386, 1, 388, 389, 390, 390, 390, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 388, 1, 391, 1, 1, 1, 
+	1, 392, 1, 1, 1, 1, 1, 1, 
+	1, 1, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 1, 1, 1, 1, 
+	1, 1, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
+	393, 393, 393, 393, 393, 1, 1, 1, 
+	1, 393, 1, 393, 393, 393, 393, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 1, 1, 1, 1, 393, 
 	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 393, 393, 393, 393, 393, 393, 393, 
-	393, 1, 1, 394, 181, 1, 180, 180, 
+	393, 393, 393, 393, 393, 1, 394, 395, 
+	72, 72, 72, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 394, 1, 73, 
+	1, 1, 1, 1, 74, 1, 1, 1, 
+	1, 1, 1, 1, 1, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 1, 
+	1, 1, 1, 1, 1, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 1, 1, 1, 76, 1, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	76, 76, 76, 76, 76, 76, 76, 76, 
+	1, 72, 72, 72, 72, 72, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	72, 1, 73, 1, 1, 1, 1, 74, 
+	1, 1, 396, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 1, 1, 1, 1, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 397, 
+	397, 397, 397, 397, 397, 397, 397, 1, 
+	1, 398, 181, 1, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
 	180, 180, 180, 180, 180, 180, 180, 180, 
-	180, 180, 180, 181, 180, 395, 396, 1, 
+	180, 181, 180, 399, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 395, 1, 1, 1, 
+	1, 1, 399, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 397, 1, 398, 396, 1, 
+	1, 401, 1, 402, 400, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 1, 398, 1, 1, 1, 
+	1, 1, 402, 1, 1, 1, 1, 1, 
 	1, 1, 1, 1, 1, 1, 1, 1, 
-	1, 1, 1, 399, 1, 1, 401, 400, 
-	1, 0
+	1, 403, 1, 1, 405, 404, 1, 0
 ]
 
 class << self
@@ -33035,48 +37888,48 @@ self._bel_trans_targs = [
 	17, 11, 26, 25, 17, 11, 26, 0, 
 	182, 184, 30, 31, 34, 32, 186, 33, 
 	32, 186, 33, 35, 36, 35, 36, 38, 
-	39, 40, 43, 189, 188, 41, 187, 42, 
+	39, 40, 43, 190, 189, 41, 187, 42, 
 	41, 187, 42, 44, 45, 44, 45, 47, 
 	48, 49, 47, 48, 49, 50, 51, 52, 
 	57, 60, 64, 53, 54, 65, 53, 54, 
-	65, 55, 192, 56, 55, 56, 58, 59, 
-	58, 59, 55, 61, 192, 56, 60, 62, 
-	192, 63, 51, 52, 57, 192, 56, 64, 
-	63, 192, 56, 64, 67, 68, 69, 67, 
+	65, 55, 194, 56, 55, 56, 58, 59, 
+	58, 59, 55, 61, 194, 56, 60, 62, 
+	194, 63, 51, 52, 57, 194, 56, 64, 
+	63, 194, 56, 64, 67, 68, 69, 67, 
 	68, 69, 70, 71, 72, 77, 80, 84, 
-	73, 74, 85, 73, 74, 85, 75, 193, 
+	73, 74, 85, 73, 74, 85, 75, 195, 
 	76, 75, 76, 78, 79, 78, 79, 75, 
-	81, 193, 76, 80, 82, 193, 83, 71, 
-	72, 77, 193, 76, 84, 83, 193, 76, 
-	84, 195, 88, 89, 196, 197, 91, 92, 
+	81, 195, 76, 80, 82, 195, 83, 71, 
+	72, 77, 195, 76, 84, 83, 195, 76, 
+	84, 197, 88, 89, 198, 199, 91, 92, 
 	93, 91, 92, 93, 94, 95, 96, 101, 
 	104, 133, 97, 98, 134, 97, 98, 134, 
 	99, 106, 100, 99, 100, 102, 103, 102, 
 	103, 99, 105, 106, 100, 104, 131, 106, 
 	107, 107, 108, 109, 110, 111, 112, 110, 
 	111, 112, 113, 114, 115, 120, 123, 129, 
-	116, 117, 130, 116, 117, 130, 118, 198, 
+	116, 117, 130, 116, 117, 130, 118, 200, 
 	119, 118, 119, 121, 122, 121, 122, 118, 
-	124, 198, 119, 123, 127, 198, 126, 201, 
-	128, 114, 115, 120, 198, 119, 129, 128, 
-	198, 119, 129, 132, 95, 96, 101, 106, 
+	124, 200, 119, 123, 127, 200, 126, 203, 
+	128, 114, 115, 120, 200, 119, 129, 128, 
+	200, 119, 129, 132, 95, 96, 101, 106, 
 	100, 133, 132, 106, 100, 133, 136, 137, 
 	138, 136, 137, 138, 139, 140, 141, 146, 
 	149, 177, 142, 143, 178, 142, 143, 178, 
 	144, 151, 145, 144, 145, 147, 148, 147, 
 	148, 144, 150, 151, 145, 149, 175, 151, 
-	152, 152, 153, 154, 154, 155, 156, 202, 
+	152, 152, 153, 154, 154, 155, 156, 204, 
 	157, 158, 156, 157, 158, 159, 160, 161, 
 	166, 169, 173, 162, 163, 174, 162, 163, 
-	174, 164, 202, 165, 164, 165, 167, 168, 
-	167, 168, 164, 170, 202, 165, 169, 171, 
-	202, 172, 160, 161, 166, 202, 165, 173, 
-	172, 202, 165, 173, 176, 140, 141, 146, 
+	174, 164, 204, 165, 164, 165, 167, 168, 
+	167, 168, 164, 170, 204, 165, 169, 171, 
+	204, 172, 160, 161, 166, 204, 165, 173, 
+	172, 204, 165, 173, 176, 140, 141, 146, 
 	151, 145, 177, 176, 151, 145, 177, 180, 
 	22, 181, 180, 183, 182, 185, 184, 188, 
-	189, 190, 191, 39, 40, 43, 188, 191, 
-	194, 195, 196, 199, 200, 125, 199, 125, 
-	201, 200
+	188, 189, 190, 191, 192, 193, 39, 40, 
+	43, 189, 192, 193, 196, 197, 198, 201, 
+	202, 125, 201, 125, 203, 202
 ]
 
 class << self
@@ -33086,55 +37939,55 @@ end
 self._bel_trans_actions = [
 	2, 0, 3, 4, 0, 0, 5, 0, 
 	0, 0, 0, 7, 9, 12, 13, 12, 
-	0, 14, 0, 15, 15, 15, 0, 0, 
-	12, 12, 0, 0, 16, 17, 16, 16, 
-	0, 18, 0, 19, 0, 0, 20, 0, 
-	21, 0, 0, 22, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 27, 
-	28, 9, 0, 0, 0, 12, 31, 12, 
-	0, 32, 0, 12, 12, 0, 0, 0, 
+	0, 14, 0, 16, 16, 16, 0, 0, 
+	12, 12, 0, 0, 18, 19, 18, 18, 
+	0, 20, 0, 21, 0, 0, 22, 0, 
+	23, 0, 0, 24, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 30, 
+	31, 9, 0, 0, 0, 12, 34, 12, 
+	0, 35, 0, 12, 12, 0, 0, 0, 
 	0, 0, 0, 9, 9, 12, 13, 12, 
-	0, 14, 0, 12, 12, 0, 0, 35, 
+	0, 14, 0, 12, 12, 0, 0, 39, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 39, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 41, 16, 0, 18, 
-	42, 23, 24, 24, 24, 43, 23, 25, 
-	26, 44, 26, 0, 45, 3, 4, 0, 
+	0, 16, 46, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 49, 18, 0, 20, 
+	50, 26, 27, 27, 27, 52, 26, 28, 
+	29, 53, 29, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 23, 24, 
-	24, 24, 23, 23, 25, 26, 26, 26, 
-	0, 46, 0, 0, 22, 22, 45, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 26, 27, 
+	27, 27, 26, 26, 28, 29, 29, 29, 
+	0, 55, 0, 0, 24, 24, 54, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	47, 0, 0, 0, 45, 3, 4, 0, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	56, 0, 0, 0, 54, 3, 4, 0, 
 	0, 5, 0, 0, 0, 0, 7, 9, 
-	12, 13, 12, 0, 14, 0, 15, 15, 
-	15, 0, 0, 12, 12, 0, 0, 16, 
-	17, 16, 16, 0, 18, 0, 0, 22, 
-	23, 24, 24, 24, 23, 23, 25, 26, 
-	26, 26, 0, 23, 24, 24, 24, 23, 
-	23, 25, 26, 26, 26, 0, 48, 3, 
+	12, 13, 12, 0, 14, 0, 16, 16, 
+	16, 0, 0, 12, 12, 0, 0, 18, 
+	19, 18, 18, 0, 20, 0, 0, 24, 
+	26, 27, 27, 27, 26, 26, 28, 29, 
+	29, 29, 0, 26, 27, 27, 27, 26, 
+	26, 28, 29, 29, 29, 0, 57, 3, 
 	4, 0, 0, 5, 0, 0, 0, 0, 
 	7, 9, 12, 13, 12, 0, 14, 0, 
-	15, 15, 15, 0, 0, 12, 12, 0, 
-	0, 16, 17, 16, 16, 0, 18, 0, 
-	19, 0, 0, 20, 0, 21, 45, 49, 
+	16, 16, 16, 0, 0, 12, 12, 0, 
+	0, 18, 19, 18, 18, 0, 20, 0, 
+	21, 0, 0, 22, 0, 23, 54, 58, 
 	3, 4, 0, 0, 5, 0, 0, 0, 
 	0, 7, 9, 12, 13, 12, 0, 14, 
-	0, 15, 50, 15, 0, 0, 12, 12, 
-	0, 0, 16, 17, 51, 16, 0, 18, 
-	52, 23, 24, 24, 24, 53, 23, 25, 
-	26, 54, 26, 0, 23, 24, 24, 24, 
-	23, 23, 25, 26, 26, 26, 0, 55, 
-	0, 0, 56, 3, 0, 18, 0, 0, 
-	0, 18, 24, 24, 24, 24, 25, 0, 
-	66, 0, 0, 70, 69, 70, 0, 0, 
-	0, 71
+	0, 16, 59, 16, 0, 0, 12, 12, 
+	0, 0, 18, 19, 60, 18, 0, 20, 
+	61, 26, 27, 27, 27, 62, 26, 28, 
+	29, 63, 29, 0, 26, 27, 27, 27, 
+	26, 26, 28, 29, 29, 29, 0, 64, 
+	0, 0, 65, 3, 0, 20, 0, 70, 
+	72, 0, 0, 20, 27, 75, 27, 27, 
+	27, 28, 0, 77, 78, 0, 0, 82, 
+	81, 82, 0, 0, 0, 83
 ]
 
 class << self
@@ -33143,31 +37996,31 @@ class << self
 end
 self._bel_eof_actions = [
 	0, 1, 1, 0, 6, 8, 10, 11, 
-	11, 10, 0, 6, 11, 11, 11, 6, 
+	11, 15, 0, 6, 11, 11, 11, 17, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
-	8, 8, 8, 11, 27, 0, 29, 30, 
-	30, 30, 30, 30, 30, 33, 33, 0, 
-	34, 34, 34, 34, 34, 34, 1, 36, 
-	37, 38, 33, 0, 34, 34, 0, 0, 
-	40, 34, 34, 34, 40, 0, 33, 33, 
-	33, 34, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 8, 8, 8, 11, 0, 0, 
+	25, 25, 25, 11, 30, 0, 32, 33, 
+	33, 33, 33, 33, 33, 36, 36, 37, 
+	38, 38, 38, 38, 38, 38, 1, 40, 
+	41, 42, 43, 44, 45, 45, 0, 0, 
+	47, 45, 45, 45, 48, 0, 51, 51, 
+	51, 45, 1, 1, 0, 6, 8, 10, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 25, 25, 25, 11, 0, 0, 
 	0, 0, 1, 1, 0, 6, 8, 10, 
-	11, 11, 10, 0, 6, 11, 11, 11, 
-	6, 0, 0, 0, 0, 1, 1, 0, 
-	6, 8, 10, 11, 11, 10, 0, 6, 
-	11, 11, 11, 6, 0, 0, 0, 8, 
-	8, 8, 11, 8, 8, 8, 11, 1, 
-	1, 0, 6, 8, 10, 11, 11, 10, 
-	0, 6, 11, 11, 11, 6, 0, 0, 
+	11, 11, 15, 0, 6, 11, 11, 11, 
+	17, 0, 0, 0, 0, 1, 1, 0, 
+	6, 8, 10, 11, 11, 15, 0, 6, 
+	11, 11, 11, 17, 0, 0, 0, 25, 
+	25, 25, 11, 25, 25, 25, 11, 1, 
+	1, 0, 6, 8, 10, 11, 11, 15, 
+	0, 6, 11, 11, 11, 17, 0, 0, 
 	0, 0, 1, 0, 1, 0, 6, 8, 
-	10, 11, 11, 10, 0, 6, 11, 11, 
-	11, 6, 0, 8, 8, 8, 11, 8, 
-	8, 8, 11, 55, 0, 56, 57, 58, 
-	59, 60, 0, 61, 62, 63, 64, 65, 
-	0, 66, 0, 67, 68, 68, 69, 69, 
-	0, 71, 0
+	10, 11, 11, 15, 0, 6, 11, 11, 
+	11, 17, 0, 25, 25, 25, 11, 25, 
+	25, 25, 11, 64, 0, 65, 66, 67, 
+	68, 69, 0, 70, 0, 71, 73, 74, 
+	76, 37, 0, 78, 0, 79, 80, 80, 
+	81, 81, 0, 83, 0
 ]
 
 class << self
@@ -33288,7 +38141,7 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
-	when 28 then
+	when 31 then
 		begin
 
     $stderr.puts 'FUNCTION start_function'
@@ -33306,7 +38159,7 @@ begin
     fx_node = function(ident_node, complete: ident_node.complete)
     @buffers[:function] = fx_node
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -33328,7 +38181,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 18 then
+	when 20 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -33345,7 +38198,7 @@ begin
     @string_opened = true
     p_start = p
   		end
-	when 24 then
+	when 27 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -33360,7 +38213,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 42 then
+	when 50 then
 		begin
 
     $stderr.puts 'TERM fxret'
@@ -33376,19 +38229,19 @@ begin
 	end
 
   		end
-	when 46 then
+	when 55 then
 		begin
 
     $stderr.puts 'RELATIONSHIP start_relationship'
     p_start = p;
   		end
-	when 22 then
+	when 24 then
 		begin
 
     $stderr.puts 'COMMENT start_comment'
     p_start = p;
   		end
-	when 47 then
+	when 56 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -33396,7 +38249,7 @@ begin
                               @buffers[:term_stack][-1])
     @buffers[:term_stack] = nil
   		end
-	when 70 then
+	when 82 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -33413,7 +38266,7 @@ begin
     simple_stmt.complete = true
     @buffers[:simple_statement] = simple_stmt
   		end
-	when 20 then
+	when 22 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT ast_relationship'
@@ -33421,7 +38274,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << rel_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 21 then
+	when 23 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT call_nested_statement'
@@ -33434,7 +38287,7 @@ begin
 	end
 
   		end
-	when 49 then
+	when 58 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT fret'
@@ -33454,7 +38307,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
@@ -33477,7 +38330,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 17 then
+	when 19 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -33530,7 +38383,41 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 26 then
+	when 77 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 29 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -33567,7 +38454,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 25 then
+	when 28 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -33581,7 +38468,7 @@ begin
     @identifier_started = true
     @id_start = p;
   		end
-	when 45 then
+	when 54 then
 		begin
 
     $stderr.puts 'TERM term_init'
@@ -33593,7 +38480,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 35 then
+	when 39 then
 		begin
 
     $stderr.puts 'TERM inner_term_init'
@@ -33605,7 +38492,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -33616,7 +38503,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -33627,7 +38514,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 19 then
+	when 21 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_subject'
@@ -33642,7 +38529,7 @@ begin
     stmt = @buffers[:statement_stack][-1] << subject_node
     @buffers[:statement_stack][-1] = stmt
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -33686,7 +38573,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 32 then
+	when 35 then
 		begin
 
     $stderr.puts 'STRING stop_string'
@@ -33706,7 +38593,48 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 15 then
+	when 70 then
+		begin
+
+    $stderr.puts "PARAMETER add_string_param_value"
+    string_node = @buffers.delete(:string)
+    value_node = value(string_node, complete: string_node.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 16 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -33750,7 +38678,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 44 then
+	when 53 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -33802,7 +38730,48 @@ begin
 	end
 
   		end
-	when 23 then
+	when 75 then
+		begin
+
+    $stderr.puts "PARAMETER add_prefix"
+    ident = @buffers.delete(:ident)
+    prefix_node = prefix(ident, complete: ident.complete)
+    @buffers[:param_prefix] = prefix_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 26 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -33846,7 +38815,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -33874,7 +38843,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 52 then
+	when 61 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -33934,7 +38903,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 48 then
+	when 57 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT inner_statement_init'
@@ -33951,7 +38920,57 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 16 then
+	when 72 then
+		begin
+
+    $stderr.puts 'IDENTIFIER end_identifier'
+    @id_end = p
+    chars = data[@id_start...@id_end]
+    completed = !chars.empty?
+    ast_node = identifier(utf8_string(chars), complete: completed)
+    @buffers[:ident] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER add_ident_param_value"
+    ident = @buffers.delete(:ident)
+    value_node = value(ident, complete: ident.complete)
+    @buffers[:param_value] = value_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_end"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        $stderr.puts "PN incomplete"
+        completed = false
+      end
+    end
+
+    value_node = @buffers.delete(:param_value)
+    unless value_node.nil?
+      param_node <<= value_node
+      unless value_node.complete
+        $stderr.puts "VN incomplete"
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER yield_parameter"
+    yield @buffers[:parameter]
+  		end
+	when 18 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -34004,7 +39023,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 31 then
+	when 34 then
 		begin
 
     $stderr.puts 'STRING start_string'
@@ -34030,7 +39049,7 @@ begin
     $stderr.puts 'STRING yield_string'
     yield @buffers[:string]
   		end
-	when 39 then
+	when 46 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -34089,7 +39108,7 @@ begin
 	end
 
   		end
-	when 43 then
+	when 52 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -34148,7 +39167,7 @@ begin
 	end
 
   		end
-	when 41 then
+	when 49 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -34216,7 +39235,7 @@ begin
 	end
 
   		end
-	when 54 then
+	when 63 then
 		begin
 
     $stderr.puts "PARAMETER parameter_end"
@@ -34295,7 +39314,7 @@ begin
 	end
 
   		end
-	when 50 then
+	when 59 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -34381,7 +39400,7 @@ begin
 	end
 
   		end
-	when 53 then
+	when 62 then
 		begin
 
     $stderr.puts "PARAMETER add_prefix"
@@ -34467,7 +39486,7 @@ begin
 	end
 
   		end
-	when 51 then
+	when 60 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -34592,7 +39611,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 27 then
+	when 30 then
 		begin
 
     $stderr.puts 'FUNCTION function_node_err'
@@ -34607,19 +39626,19 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 58 then
+	when 67 then
 		begin
 
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 60 then
+	when 69 then
 		begin
 
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 33 then
+	when 51 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -34631,38 +39650,83 @@ begin
       @buffers[:ident] = ast_node
     end
   		end
-	when 34 then
-		begin
-
-    $stderr.puts 'STRING eof_string'
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-	when 29 then
+	when 32 then
 		begin
 
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 10 then
+	when 44 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 37 then
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 15 then
 		begin
 
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 37 then
+	when 41 then
 		begin
  $stderr.puts "EOF!" 		end
-	when 55 then
+	when 64 then
 		begin
 
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 57 then
+	when 66 then
 		begin
 
     $stderr.puts 'FUNCTION end_function'
@@ -34678,7 +39742,7 @@ begin
     $stderr.puts 'FUNCTION yield_function'
     yield @buffers[:function]
   		end
-	when 36 then
+	when 40 then
 		begin
 
     $stderr.puts 'FUNCTION a_function_eof'
@@ -34693,7 +39757,7 @@ begin
   		end
 		begin
  $stderr.puts "EOF!" 		end
-	when 59 then
+	when 68 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -34708,7 +39772,7 @@ begin
     $stderr.puts 'IDENTIFIER yield_identifier'
     yield @buffers[:ident]
   		end
-	when 40 then
+	when 48 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -34732,7 +39796,83 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 8 then
+	when 43 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 36 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 25 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -34750,7 +39890,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 30 then
+	when 33 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -34764,7 +39904,7 @@ begin
     $stderr.puts 'STRING eof_main; yielding'
     yield @buffers[:string]
   		end
-	when 11 then
+	when 45 then
 		begin
 
     $stderr.puts 'STRING eof_string'
@@ -34775,11 +39915,99 @@ begin
   		end
 		begin
 
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+	when 38 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER parameter_node_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    yield param_node
+  		end
+	when 10 then
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
     $stderr.puts 'TERM eof_parameter_argument'
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 66 then
+	when 78 then
 		begin
 
     $stderr.puts 'TERM outer_term_end'
@@ -34790,7 +40018,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 65 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -34801,7 +40029,7 @@ begin
     $stderr.puts 'NESTED_STATEMENT yield_nested_statement'
     yield @buffers[:nested_statement]
   		end
-	when 69 then
+	when 81 then
 		begin
 
     $stderr.puts 'SIMPLE_STATEMENT statement_object'
@@ -34824,7 +40052,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 65 then
+	when 76 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -34869,7 +40097,101 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 6 then
+	when 47 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 8 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 17 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -34899,7 +40221,48 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 61 then
+	when 11 then
+		begin
+
+    $stderr.puts 'STRING eof_string'
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+	when 70 then
 		begin
 
     $stderr.puts "PARAMETER add_string_param_value"
@@ -34940,33 +40303,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 38 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    $stderr.puts 'IDENTIFIER an_ident_eof'
-    if @identifier_started
-      @id_end = p
-      chars = data[@id_start...@id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    $stderr.puts 'FUNCTION a_function_eof'
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 67 then
+	when 79 then
 		begin
 
     $stderr.puts 'RELATIONSHIP stop_relationship'
@@ -34986,7 +40323,7 @@ begin
 
     yield @buffers[:relationship]
   		end
-	when 68 then
+	when 80 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -35006,7 +40343,7 @@ begin
     $stderr.puts 'COMMENT yield_comment'
     yield @buffers[:comment] || comment(nil)
   		end
-	when 71 then
+	when 83 then
 		begin
 
     $stderr.puts 'COMMENT stop_comment'
@@ -35034,7 +40371,7 @@ begin
     simple_stmt = @buffers.delete(:simple_statement)
     yield simple_stmt
   		end
-	when 64 then
+	when 74 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
@@ -35086,7 +40423,115 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 62 then
+	when 6 then
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'TERM eof_parameter_argument'
+    @buffers[:term_stack][-1].complete = false
+    yield @buffers[:term_stack][-1]
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 42 then
+		begin
+ $stderr.puts "EOF!" 		end
+		begin
+
+    $stderr.puts 'IDENTIFIER an_ident_eof'
+    if @identifier_started
+      @id_end = p
+      chars = data[@id_start...@id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    $stderr.puts "PARAMETER a_parameter_eof"
+    param_node = parameter()
+    completed = true
+    prefix_node = @buffers.delete(:param_prefix)
+    unless prefix_node.nil?
+      param_node <<= prefix_node
+      unless prefix_node.complete
+        completed = false
+      end
+    end
+
+    string_value_node = @buffers.delete(:string)
+    unless string_value_node.nil?
+      param_node <<= string_value_node
+      unless string_value_node.complete
+        completed = false
+      end
+    else
+      completed = false
+    end
+
+    param_node.complete = completed
+    @buffers[:parameter] = param_node
+  		end
+		begin
+
+    $stderr.puts 'FUNCTION a_function_eof'
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+	when 71 then
 		begin
 
     $stderr.puts 'IDENTIFIER end_identifier'
@@ -35147,7 +40592,7 @@ begin
     $stderr.puts "PARAMETER yield_parameter"
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 73 then
 		begin
 
     $stderr.puts 'IDENTIFIER an_ident_eof'
