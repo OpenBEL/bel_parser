@@ -48,6 +48,7 @@
     comment
     %comment_end
     %yield_comment
+    NL?
     ;
 }%%
 =end

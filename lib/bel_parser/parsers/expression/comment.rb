@@ -45,8 +45,8 @@ class << self
 end
 self._bel_trans_keys = [
 	0, 0, 47, 47, 47, 47, 
-	9, 32, 10, 10, 9, 
-	32, 0
+	9, 32, 10, 10, 0, 
+	0, 9, 32, 0
 ]
 
 class << self
@@ -54,7 +54,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 1, 1, 24, 1, 24
+	0, 1, 1, 24, 1, 0, 24
 ]
 
 class << self
@@ -62,7 +62,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 2, 4, 29, 31
+	0, 0, 2, 4, 29, 31, 32
 ]
 
 class << self
@@ -73,11 +73,11 @@ self._bel_indicies = [
 	0, 1, 2, 1, 4, 1, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 4, 3, 1, 5, 4, 
-	1, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 4, 3, 6, 5, 1, 
+	4, 6, 3, 3, 3, 3, 3, 3, 
 	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 4, 3, 
-	0
+	3, 3, 3, 3, 3, 3, 3, 4, 
+	3, 0
 ]
 
 class << self
@@ -85,7 +85,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 3, 4, 5, 4
+	2, 0, 3, 4, 6, 4, 5
 ]
 
 class << self
@@ -93,7 +93,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	0, 0, 0, 1, 1, 0
+	0, 0, 0, 1, 1, 0, 2
 ]
 
 class << self
@@ -101,7 +101,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 0, 0, 0, 2, 2
+	0, 0, 0, 0, 2, 0, 2
 ]
 
 class << self
@@ -187,6 +187,26 @@ begin
 
     $stderr.puts 'COMMENT start_comment'
     p_start = p;
+  		end
+	when 2 then
+		begin
+
+    $stderr.puts 'COMMENT stop_comment'
+    p_end = p;
+  		end
+		begin
+
+    $stderr.puts 'COMMENT comment_end'
+    p_end = p
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = comment(utf8_string(chars), complete: completed)
+    @buffers[:comment] = ast_node
+  		end
+		begin
+
+    $stderr.puts 'COMMENT yield_comment'
+    yield @buffers[:comment] || comment(nil)
   		end
 	end
 	end
