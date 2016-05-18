@@ -106,7 +106,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BELParser::Parsers::Expression::Relationship.parse(line) { |obj|
+    BELParser::Parsers::Expression::Relationship.parse(line.strip) { |obj|
       puts obj.inspect
     }
   end
