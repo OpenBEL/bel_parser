@@ -174,6 +174,8 @@ module BELParser
             p           = 0
             pe          = data.length
             eof         = data.length
+            id_start    = 0
+            id_end      = 0
 
       # begin: ragel
             %% write init;
