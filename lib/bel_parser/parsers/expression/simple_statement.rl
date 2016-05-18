@@ -39,7 +39,7 @@
   STATEMENT_SIMPLE =
     outer_term %statement_subject
     SP+
-    RELATIONSHIP
+    relationship %relationship_end
     SP+
     outer_term
     %statement_object;

@@ -67,7 +67,7 @@
   inner_statement :=
     outer_term >inner_statement_init %statement_subject %ast_subject
     SP+
-    RELATIONSHIP %ast_relationship
+    relationship %relationship_end %ast_relationship
     SP+
     (
       outer_term @statement_object @ast_object |
@@ -77,7 +77,7 @@
   outer_statement =
     outer_term >statement_init %statement_subject %ast_subject
     SP+
-    RELATIONSHIP %ast_relationship
+    relationship %relationship_end %ast_relationship
     SP+
     '(' @call_nested_statement
     ')'
