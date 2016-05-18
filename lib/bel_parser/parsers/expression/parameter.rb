@@ -2601,6 +2601,8 @@ self.bel_en_parameter_node = 1;
             pe          = data.length
             p_start     = 0
             p_end       = 0
+            id_start    = 0
+            id_end      = 0
             eof         = data.length
 
       # begin: ragel
