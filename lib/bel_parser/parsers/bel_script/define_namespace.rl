@@ -81,6 +81,7 @@
     @eof(define_namespace_node_eof)
     %define_namespace_end
     %yield_define_namespace
+    NL
     ;
 }%%
 =end

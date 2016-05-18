@@ -18,11 +18,11 @@ self._bel_trans_keys = [
 	115, 9, 32, 9, 117, 
 	82, 114, 76, 108, 9, 32, 
 	9, 34, 34, 92, 34, 
-	92, 0, 0, 48, 122, 
-	9, 34, 34, 92, 34, 92, 
-	0, 0, 0, 0, 10, 
-	122, 0, 0, 0, 0, 
-	0
+	92, 10, 10, 0, 0, 
+	48, 122, 9, 34, 34, 92, 
+	34, 92, 0, 0, 0, 
+	0, 10, 122, 0, 0, 
+	0, 0, 0
 ]
 
 class << self
@@ -33,8 +33,9 @@ self._bel_key_spans = [
 	0, 33, 33, 33, 33, 33, 33, 24, 
 	102, 33, 33, 33, 33, 33, 33, 33, 
 	33, 24, 114, 114, 89, 33, 24, 109, 
-	33, 33, 24, 26, 59, 59, 0, 75, 
-	26, 59, 59, 0, 0, 113, 0, 0
+	33, 33, 24, 26, 59, 59, 1, 0, 
+	75, 26, 59, 59, 0, 0, 113, 0, 
+	0
 ]
 
 class << self
@@ -45,8 +46,9 @@ self._bel_index_offsets = [
 	0, 0, 34, 68, 102, 136, 170, 204, 
 	229, 332, 366, 400, 434, 468, 502, 536, 
 	570, 604, 629, 744, 859, 949, 983, 1008, 
-	1118, 1152, 1186, 1211, 1238, 1298, 1358, 1359, 
-	1435, 1462, 1522, 1582, 1583, 1584, 1698, 1699
+	1118, 1152, 1186, 1211, 1238, 1298, 1358, 1360, 
+	1361, 1437, 1464, 1524, 1584, 1585, 1586, 1700, 
+	1701
 ]
 
 class << self
@@ -223,50 +225,50 @@ self._bel_indicies = [
 	36, 36, 36, 36, 36, 36, 36, 36, 
 	36, 36, 36, 36, 36, 36, 36, 36, 
 	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 38, 36, 36, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 1, 1, 1, 1, 1, 1, 1, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 1, 1, 1, 1, 39, 1, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 1, 41, 41, 41, 41, 41, 
+	36, 36, 36, 36, 38, 36, 39, 30, 
+	36, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 1, 1, 1, 1, 1, 
+	1, 1, 40, 40, 40, 40, 40, 40, 
 	40, 40, 40, 40, 40, 40, 40, 40, 
 	40, 40, 40, 40, 40, 40, 40, 40, 
-	40, 40, 41, 40, 42, 40, 44, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	45, 43, 47, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 48, 46, 46, 30, 
-	50, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	49, 49, 49, 49, 49, 49, 49, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 49, 49, 49, 49, 51, 49, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 49, 49, 40, 0
+	40, 40, 40, 40, 1, 1, 1, 1, 
+	40, 1, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 1, 42, 42, 42, 
+	42, 42, 41, 41, 41, 41, 41, 41, 
+	41, 41, 41, 41, 41, 41, 41, 41, 
+	41, 41, 41, 41, 42, 41, 43, 41, 
+	45, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 46, 44, 48, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 49, 47, 
+	47, 1, 51, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 50, 50, 50, 50, 50, 50, 
+	50, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 50, 50, 50, 50, 52, 
+	50, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 50, 50, 41, 0
 ]
 
 class << self
@@ -278,9 +280,9 @@ self._bel_trans_targs = [
 	9, 10, 11, 12, 13, 14, 15, 16, 
 	17, 18, 0, 19, 20, 19, 20, 21, 
 	22, 23, 24, 25, 26, 27, 0, 27, 
-	28, 29, 36, 30, 29, 36, 30, 37, 
-	0, 32, 33, 34, 39, 35, 34, 39, 
-	35, 0, 38, 37
+	28, 29, 30, 31, 29, 30, 31, 37, 
+	38, 0, 33, 34, 35, 40, 36, 35, 
+	40, 36, 0, 39, 38
 ]
 
 class << self
@@ -292,9 +294,9 @@ self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 2, 3, 4, 0, 0, 0, 
 	0, 0, 0, 0, 0, 5, 7, 0, 
-	0, 9, 10, 9, 0, 11, 0, 3, 
-	13, 0, 0, 9, 15, 9, 0, 16, 
-	0, 19, 20, 0
+	0, 9, 10, 9, 0, 11, 0, 12, 
+	3, 14, 0, 0, 9, 16, 9, 0, 
+	17, 0, 19, 20, 0
 ]
 
 class << self
@@ -305,8 +307,9 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 1, 1, 0, 0, 0, 0, 
-	0, 0, 0, 6, 8, 8, 8, 0, 
-	12, 14, 14, 14, 17, 18, 21, 0
+	0, 0, 0, 6, 8, 8, 7, 8, 
+	0, 13, 15, 15, 15, 0, 18, 21, 
+	0
 ]
 
 class << self
@@ -316,7 +319,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 36;
+self.bel_first_final = 37;
 class << self
 	attr_accessor :bel_error
 end
@@ -325,11 +328,11 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident_node = 31;
+self.bel_en_ident_node = 32;
 class << self
 	attr_accessor :bel_en_string_node
 end
-self.bel_en_string_node = 32;
+self.bel_en_string_node = 33;
 class << self
 	attr_accessor :bel_en_define_namespace_node
 end
@@ -429,7 +432,7 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 13 then
+	when 14 then
 		begin
 
     trace('STRING string_node_err')
@@ -496,7 +499,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 16 then
+	when 17 then
 		begin
 
     trace('STRING stop_string')
@@ -516,7 +519,32 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 15 then
+	when 12 then
+		begin
+
+    trace('DEFINE_NAMESPACE add_string_value')
+    string_node = @buffers.delete(:string)
+    leaf = domain(url(string_node))
+    leaf.complete = string_node.complete
+    @buffers[:namespace_definition_domain] = leaf
+  		end
+		begin
+
+    trace('DEFINE_NAMESPACE define_namespace_end')
+    namespace_definition_node = namespace_definition()
+    domain = @buffers.delete(:namespace_definition_domain)
+    unless domain.nil?
+      namespace_definition_node <<= domain
+      namespace_definition_node.complete = domain.complete
+    end
+    @buffers[:namespace_definition] = namespace_definition_node
+  		end
+		begin
+
+    trace('DEFINE_NAMESPACE yield_define_namespace')
+    yield @buffers[:namespace_definition]
+  		end
+	when 16 then
 		begin
 
     trace('STRING start_string')
@@ -564,6 +592,15 @@ begin
 
     trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
+  		end
+	when 7 then
+		begin
+
+    trace('STRING a_string_err')
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
   		end
 	when 18 then
 		begin
@@ -624,7 +661,7 @@ begin
     namespace_definition_node.complete = domain_node.complete
     yield namespace_definition_node
   		end
-	when 12 then
+	when 13 then
 		begin
 
     trace('STRING string_node_err')
@@ -670,7 +707,7 @@ begin
     namespace_definition_node.complete = domain_node.complete
     yield namespace_definition_node
   		end
-	when 14 then
+	when 15 then
 		begin
 
     trace('STRING eof_string')
@@ -691,31 +728,6 @@ begin
 
     trace('STRING string_node_eof')
     yield @buffers[:string]
-  		end
-	when 17 then
-		begin
-
-    trace('DEFINE_NAMESPACE add_string_value')
-    string_node = @buffers.delete(:string)
-    leaf = domain(url(string_node))
-    leaf.complete = string_node.complete
-    @buffers[:namespace_definition_domain] = leaf
-  		end
-		begin
-
-    trace('DEFINE_NAMESPACE define_namespace_end')
-    namespace_definition_node = namespace_definition()
-    domain = @buffers.delete(:namespace_definition_domain)
-    unless domain.nil?
-      namespace_definition_node <<= domain
-      namespace_definition_node.complete = domain.complete
-    end
-    @buffers[:namespace_definition] = namespace_definition_node
-  		end
-		begin
-
-    trace('DEFINE_NAMESPACE yield_define_namespace')
-    yield @buffers[:namespace_definition]
   		end
 	  end
 	end
@@ -743,11 +755,11 @@ self._bel_trans_keys = [
 	115, 9, 32, 9, 117, 
 	82, 114, 76, 108, 9, 32, 
 	9, 34, 34, 92, 34, 
-	92, 0, 0, 48, 122, 
-	9, 34, 34, 92, 34, 92, 
-	0, 0, 0, 0, 10, 
-	122, 0, 0, 0, 0, 
-	0
+	92, 10, 10, 0, 0, 
+	48, 122, 9, 34, 34, 92, 
+	34, 92, 0, 0, 0, 
+	0, 10, 122, 0, 0, 
+	0, 0, 0
 ]
 
 class << self
@@ -758,8 +770,9 @@ self._bel_key_spans = [
 	0, 33, 33, 33, 33, 33, 33, 24, 
 	102, 33, 33, 33, 33, 33, 33, 33, 
 	33, 24, 114, 114, 89, 33, 24, 109, 
-	33, 33, 24, 26, 59, 59, 0, 75, 
-	26, 59, 59, 0, 0, 113, 0, 0
+	33, 33, 24, 26, 59, 59, 1, 0, 
+	75, 26, 59, 59, 0, 0, 113, 0, 
+	0
 ]
 
 class << self
@@ -770,8 +783,9 @@ self._bel_index_offsets = [
 	0, 0, 34, 68, 102, 136, 170, 204, 
 	229, 332, 366, 400, 434, 468, 502, 536, 
 	570, 604, 629, 744, 859, 949, 983, 1008, 
-	1118, 1152, 1186, 1211, 1238, 1298, 1358, 1359, 
-	1435, 1462, 1522, 1582, 1583, 1584, 1698, 1699
+	1118, 1152, 1186, 1211, 1238, 1298, 1358, 1360, 
+	1361, 1437, 1464, 1524, 1584, 1585, 1586, 1700, 
+	1701
 ]
 
 class << self
@@ -948,50 +962,50 @@ self._bel_indicies = [
 	36, 36, 36, 36, 36, 36, 36, 36, 
 	36, 36, 36, 36, 36, 36, 36, 36, 
 	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 38, 36, 36, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 1, 1, 1, 1, 1, 1, 1, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 1, 1, 1, 1, 39, 1, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 1, 41, 41, 41, 41, 41, 
+	36, 36, 36, 36, 38, 36, 39, 30, 
+	36, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 1, 1, 1, 1, 1, 
+	1, 1, 40, 40, 40, 40, 40, 40, 
 	40, 40, 40, 40, 40, 40, 40, 40, 
 	40, 40, 40, 40, 40, 40, 40, 40, 
-	40, 40, 41, 40, 42, 40, 44, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	45, 43, 47, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 48, 46, 46, 30, 
-	50, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	49, 49, 49, 49, 49, 49, 49, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 49, 49, 49, 49, 51, 49, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 49, 49, 40, 0
+	40, 40, 40, 40, 1, 1, 1, 1, 
+	40, 1, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 1, 42, 42, 42, 
+	42, 42, 41, 41, 41, 41, 41, 41, 
+	41, 41, 41, 41, 41, 41, 41, 41, 
+	41, 41, 41, 41, 42, 41, 43, 41, 
+	45, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 46, 44, 48, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 49, 47, 
+	47, 1, 51, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 50, 50, 50, 50, 50, 50, 
+	50, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 50, 50, 50, 50, 52, 
+	50, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 50, 50, 41, 0
 ]
 
 class << self
@@ -1003,9 +1017,9 @@ self._bel_trans_targs = [
 	9, 10, 11, 12, 13, 14, 15, 16, 
 	17, 18, 0, 19, 20, 19, 20, 21, 
 	22, 23, 24, 25, 26, 27, 0, 27, 
-	28, 29, 36, 30, 29, 36, 30, 37, 
-	0, 32, 33, 34, 39, 35, 34, 39, 
-	35, 0, 38, 37
+	28, 29, 30, 31, 29, 30, 31, 37, 
+	38, 0, 33, 34, 35, 40, 36, 35, 
+	40, 36, 0, 39, 38
 ]
 
 class << self
@@ -1017,9 +1031,9 @@ self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 2, 3, 4, 0, 0, 0, 
 	0, 0, 0, 0, 0, 5, 7, 0, 
-	0, 9, 10, 9, 0, 11, 0, 3, 
-	13, 0, 0, 9, 15, 9, 0, 16, 
-	0, 19, 20, 0
+	0, 9, 10, 9, 0, 11, 0, 12, 
+	3, 14, 0, 0, 9, 16, 9, 0, 
+	17, 0, 19, 20, 0
 ]
 
 class << self
@@ -1030,8 +1044,9 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 1, 1, 0, 0, 0, 0, 
-	0, 0, 0, 6, 8, 8, 8, 0, 
-	12, 14, 14, 14, 17, 18, 21, 0
+	0, 0, 0, 6, 8, 8, 7, 8, 
+	0, 13, 15, 15, 15, 0, 18, 21, 
+	0
 ]
 
 class << self
@@ -1041,7 +1056,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 36;
+self.bel_first_final = 37;
 class << self
 	attr_accessor :bel_error
 end
@@ -1050,11 +1065,11 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident_node = 31;
+self.bel_en_ident_node = 32;
 class << self
 	attr_accessor :bel_en_string_node
 end
-self.bel_en_string_node = 32;
+self.bel_en_string_node = 33;
 class << self
 	attr_accessor :bel_en_define_namespace_node
 end
@@ -1154,7 +1169,7 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 13 then
+	when 14 then
 		begin
 
     trace('STRING string_node_err')
@@ -1221,7 +1236,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 16 then
+	when 17 then
 		begin
 
     trace('STRING stop_string')
@@ -1241,7 +1256,32 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 15 then
+	when 12 then
+		begin
+
+    trace('DEFINE_NAMESPACE add_string_value')
+    string_node = @buffers.delete(:string)
+    leaf = domain(url(string_node))
+    leaf.complete = string_node.complete
+    @buffers[:namespace_definition_domain] = leaf
+  		end
+		begin
+
+    trace('DEFINE_NAMESPACE define_namespace_end')
+    namespace_definition_node = namespace_definition()
+    domain = @buffers.delete(:namespace_definition_domain)
+    unless domain.nil?
+      namespace_definition_node <<= domain
+      namespace_definition_node.complete = domain.complete
+    end
+    @buffers[:namespace_definition] = namespace_definition_node
+  		end
+		begin
+
+    trace('DEFINE_NAMESPACE yield_define_namespace')
+    yield @buffers[:namespace_definition]
+  		end
+	when 16 then
 		begin
 
     trace('STRING start_string')
@@ -1289,6 +1329,15 @@ begin
 
     trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
+  		end
+	when 7 then
+		begin
+
+    trace('STRING a_string_err')
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
   		end
 	when 18 then
 		begin
@@ -1349,7 +1398,7 @@ begin
     namespace_definition_node.complete = domain_node.complete
     yield namespace_definition_node
   		end
-	when 12 then
+	when 13 then
 		begin
 
     trace('STRING string_node_err')
@@ -1395,7 +1444,7 @@ begin
     namespace_definition_node.complete = domain_node.complete
     yield namespace_definition_node
   		end
-	when 14 then
+	when 15 then
 		begin
 
     trace('STRING eof_string')
@@ -1416,31 +1465,6 @@ begin
 
     trace('STRING string_node_eof')
     yield @buffers[:string]
-  		end
-	when 17 then
-		begin
-
-    trace('DEFINE_NAMESPACE add_string_value')
-    string_node = @buffers.delete(:string)
-    leaf = domain(url(string_node))
-    leaf.complete = string_node.complete
-    @buffers[:namespace_definition_domain] = leaf
-  		end
-		begin
-
-    trace('DEFINE_NAMESPACE define_namespace_end')
-    namespace_definition_node = namespace_definition()
-    domain = @buffers.delete(:namespace_definition_domain)
-    unless domain.nil?
-      namespace_definition_node <<= domain
-      namespace_definition_node.complete = domain.complete
-    end
-    @buffers[:namespace_definition] = namespace_definition_node
-  		end
-		begin
-
-    trace('DEFINE_NAMESPACE yield_define_namespace')
-    yield @buffers[:namespace_definition]
   		end
 	  end
 	end
@@ -1507,11 +1531,11 @@ self._bel_trans_keys = [
 	115, 9, 32, 9, 117, 
 	82, 114, 76, 108, 9, 32, 
 	9, 34, 34, 92, 34, 
-	92, 0, 0, 48, 122, 
-	9, 34, 34, 92, 34, 92, 
-	0, 0, 0, 0, 10, 
-	122, 0, 0, 0, 0, 
-	0
+	92, 10, 10, 0, 0, 
+	48, 122, 9, 34, 34, 92, 
+	34, 92, 0, 0, 0, 
+	0, 10, 122, 0, 0, 
+	0, 0, 0
 ]
 
 class << self
@@ -1522,8 +1546,9 @@ self._bel_key_spans = [
 	0, 33, 33, 33, 33, 33, 33, 24, 
 	102, 33, 33, 33, 33, 33, 33, 33, 
 	33, 24, 114, 114, 89, 33, 24, 109, 
-	33, 33, 24, 26, 59, 59, 0, 75, 
-	26, 59, 59, 0, 0, 113, 0, 0
+	33, 33, 24, 26, 59, 59, 1, 0, 
+	75, 26, 59, 59, 0, 0, 113, 0, 
+	0
 ]
 
 class << self
@@ -1534,8 +1559,9 @@ self._bel_index_offsets = [
 	0, 0, 34, 68, 102, 136, 170, 204, 
 	229, 332, 366, 400, 434, 468, 502, 536, 
 	570, 604, 629, 744, 859, 949, 983, 1008, 
-	1118, 1152, 1186, 1211, 1238, 1298, 1358, 1359, 
-	1435, 1462, 1522, 1582, 1583, 1584, 1698, 1699
+	1118, 1152, 1186, 1211, 1238, 1298, 1358, 1360, 
+	1361, 1437, 1464, 1524, 1584, 1585, 1586, 1700, 
+	1701
 ]
 
 class << self
@@ -1712,50 +1738,50 @@ self._bel_indicies = [
 	36, 36, 36, 36, 36, 36, 36, 36, 
 	36, 36, 36, 36, 36, 36, 36, 36, 
 	36, 36, 36, 36, 36, 36, 36, 36, 
-	36, 36, 36, 36, 38, 36, 36, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 1, 1, 1, 1, 1, 1, 1, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 1, 1, 1, 1, 39, 1, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 39, 39, 39, 39, 39, 39, 
-	39, 39, 1, 41, 41, 41, 41, 41, 
+	36, 36, 36, 36, 38, 36, 39, 30, 
+	36, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 1, 1, 1, 1, 1, 
+	1, 1, 40, 40, 40, 40, 40, 40, 
 	40, 40, 40, 40, 40, 40, 40, 40, 
 	40, 40, 40, 40, 40, 40, 40, 40, 
-	40, 40, 41, 40, 42, 40, 44, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	43, 43, 43, 43, 43, 43, 43, 43, 
-	45, 43, 47, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 46, 46, 46, 46, 
-	46, 46, 46, 46, 48, 46, 46, 30, 
-	50, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 49, 49, 
-	49, 49, 49, 49, 49, 49, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	49, 49, 49, 49, 49, 49, 49, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 49, 49, 49, 49, 51, 49, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 51, 51, 51, 51, 51, 51, 51, 
-	51, 49, 49, 40, 0
+	40, 40, 40, 40, 1, 1, 1, 1, 
+	40, 1, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 40, 40, 40, 40, 
+	40, 40, 40, 40, 1, 42, 42, 42, 
+	42, 42, 41, 41, 41, 41, 41, 41, 
+	41, 41, 41, 41, 41, 41, 41, 41, 
+	41, 41, 41, 41, 42, 41, 43, 41, 
+	45, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 44, 44, 44, 44, 44, 44, 
+	44, 44, 46, 44, 48, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 47, 47, 
+	47, 47, 47, 47, 47, 47, 49, 47, 
+	47, 1, 51, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	50, 50, 50, 50, 50, 50, 50, 50, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 50, 50, 50, 50, 50, 50, 
+	50, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 50, 50, 50, 50, 52, 
+	50, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 52, 52, 52, 52, 52, 
+	52, 52, 52, 50, 50, 41, 0
 ]
 
 class << self
@@ -1767,9 +1793,9 @@ self._bel_trans_targs = [
 	9, 10, 11, 12, 13, 14, 15, 16, 
 	17, 18, 0, 19, 20, 19, 20, 21, 
 	22, 23, 24, 25, 26, 27, 0, 27, 
-	28, 29, 36, 30, 29, 36, 30, 37, 
-	0, 32, 33, 34, 39, 35, 34, 39, 
-	35, 0, 38, 37
+	28, 29, 30, 31, 29, 30, 31, 37, 
+	38, 0, 33, 34, 35, 40, 36, 35, 
+	40, 36, 0, 39, 38
 ]
 
 class << self
@@ -1781,9 +1807,9 @@ self._bel_trans_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 2, 3, 4, 0, 0, 0, 
 	0, 0, 0, 0, 0, 5, 7, 0, 
-	0, 9, 10, 9, 0, 11, 0, 3, 
-	13, 0, 0, 9, 15, 9, 0, 16, 
-	0, 19, 20, 0
+	0, 9, 10, 9, 0, 11, 0, 12, 
+	3, 14, 0, 0, 9, 16, 9, 0, 
+	17, 0, 19, 20, 0
 ]
 
 class << self
@@ -1794,8 +1820,9 @@ self._bel_eof_actions = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 1, 1, 0, 0, 0, 0, 
-	0, 0, 0, 6, 8, 8, 8, 0, 
-	12, 14, 14, 14, 17, 18, 21, 0
+	0, 0, 0, 6, 8, 8, 7, 8, 
+	0, 13, 15, 15, 15, 0, 18, 21, 
+	0
 ]
 
 class << self
@@ -1805,7 +1832,7 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 36;
+self.bel_first_final = 37;
 class << self
 	attr_accessor :bel_error
 end
@@ -1814,11 +1841,11 @@ self.bel_error = 0;
 class << self
 	attr_accessor :bel_en_ident_node
 end
-self.bel_en_ident_node = 31;
+self.bel_en_ident_node = 32;
 class << self
 	attr_accessor :bel_en_string_node
 end
-self.bel_en_string_node = 32;
+self.bel_en_string_node = 33;
 class << self
 	attr_accessor :bel_en_define_namespace_node
 end
@@ -1933,7 +1960,7 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 13 then
+	when 14 then
 		begin
 
     trace('STRING string_node_err')
@@ -2000,7 +2027,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 16 then
+	when 17 then
 		begin
 
     trace('STRING stop_string')
@@ -2020,7 +2047,32 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 15 then
+	when 12 then
+		begin
+
+    trace('DEFINE_NAMESPACE add_string_value')
+    string_node = @buffers.delete(:string)
+    leaf = domain(url(string_node))
+    leaf.complete = string_node.complete
+    @buffers[:namespace_definition_domain] = leaf
+  		end
+		begin
+
+    trace('DEFINE_NAMESPACE define_namespace_end')
+    namespace_definition_node = namespace_definition()
+    domain = @buffers.delete(:namespace_definition_domain)
+    unless domain.nil?
+      namespace_definition_node <<= domain
+      namespace_definition_node.complete = domain.complete
+    end
+    @buffers[:namespace_definition] = namespace_definition_node
+  		end
+		begin
+
+    trace('DEFINE_NAMESPACE yield_define_namespace')
+    yield @buffers[:namespace_definition]
+  		end
+	when 16 then
 		begin
 
     trace('STRING start_string')
@@ -2068,6 +2120,15 @@ begin
 
     trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
+  		end
+	when 7 then
+		begin
+
+    trace('STRING a_string_err')
+    p_end = p
+    chars = data[p_start...p_end]
+    ast_node = string(utf8_string(chars), complete: false)
+    @buffers[:string] = ast_node
   		end
 	when 18 then
 		begin
@@ -2128,7 +2189,7 @@ begin
     namespace_definition_node.complete = domain_node.complete
     yield namespace_definition_node
   		end
-	when 12 then
+	when 13 then
 		begin
 
     trace('STRING string_node_err')
@@ -2174,7 +2235,7 @@ begin
     namespace_definition_node.complete = domain_node.complete
     yield namespace_definition_node
   		end
-	when 14 then
+	when 15 then
 		begin
 
     trace('STRING eof_string')
@@ -2195,31 +2256,6 @@ begin
 
     trace('STRING string_node_eof')
     yield @buffers[:string]
-  		end
-	when 17 then
-		begin
-
-    trace('DEFINE_NAMESPACE add_string_value')
-    string_node = @buffers.delete(:string)
-    leaf = domain(url(string_node))
-    leaf.complete = string_node.complete
-    @buffers[:namespace_definition_domain] = leaf
-  		end
-		begin
-
-    trace('DEFINE_NAMESPACE define_namespace_end')
-    namespace_definition_node = namespace_definition()
-    domain = @buffers.delete(:namespace_definition_domain)
-    unless domain.nil?
-      namespace_definition_node <<= domain
-      namespace_definition_node.complete = domain.complete
-    end
-    @buffers[:namespace_definition] = namespace_definition_node
-  		end
-		begin
-
-    trace('DEFINE_NAMESPACE yield_define_namespace')
-    yield @buffers[:namespace_definition]
   		end
 	  end
 	end
