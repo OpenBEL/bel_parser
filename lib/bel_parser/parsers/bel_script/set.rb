@@ -609,7 +609,7 @@ begin
 	when 7 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -618,7 +618,7 @@ begin
 	when 22 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -689,7 +689,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -713,7 +713,7 @@ begin
 	when 13 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -868,7 +868,7 @@ begin
 	when 26 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -887,7 +887,7 @@ begin
 	when 6 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -918,7 +918,7 @@ begin
 	when 21 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -926,7 +926,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 43 then
@@ -1083,7 +1083,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1110,7 +1110,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1149,7 +1149,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1157,13 +1157,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 16 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1488,7 +1488,7 @@ begin
 	when 28 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1526,7 +1526,7 @@ begin
 	when 12 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2375,7 +2375,7 @@ begin
 	when 7 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2384,7 +2384,7 @@ begin
 	when 22 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2455,7 +2455,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2479,7 +2479,7 @@ begin
 	when 13 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2634,7 +2634,7 @@ begin
 	when 26 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2653,7 +2653,7 @@ begin
 	when 6 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2684,7 +2684,7 @@ begin
 	when 21 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2692,7 +2692,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 43 then
@@ -2849,7 +2849,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2876,7 +2876,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2915,7 +2915,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2923,13 +2923,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 16 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3254,7 +3254,7 @@ begin
 	when 28 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3292,7 +3292,7 @@ begin
 	when 12 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4141,7 +4141,7 @@ begin
 	when 7 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4150,7 +4150,7 @@ begin
 	when 22 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4221,7 +4221,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4245,7 +4245,7 @@ begin
 	when 13 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4400,7 +4400,7 @@ begin
 	when 26 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4419,7 +4419,7 @@ begin
 	when 6 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4450,7 +4450,7 @@ begin
 	when 21 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4458,7 +4458,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 43 then
@@ -4615,7 +4615,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4642,7 +4642,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4681,7 +4681,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -4689,13 +4689,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 16 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -5020,7 +5020,7 @@ begin
 	when 28 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -5058,7 +5058,7 @@ begin
 	when 12 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -5964,7 +5964,7 @@ begin
 	when 7 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -5973,7 +5973,7 @@ begin
 	when 22 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6044,7 +6044,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6068,7 +6068,7 @@ begin
 	when 13 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6223,7 +6223,7 @@ begin
 	when 26 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6242,7 +6242,7 @@ begin
 	when 6 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6273,7 +6273,7 @@ begin
 	when 21 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6281,7 +6281,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 43 then
@@ -6438,7 +6438,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6465,7 +6465,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6504,7 +6504,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6512,13 +6512,13 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 16 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6843,7 +6843,7 @@ begin
 	when 28 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -6881,7 +6881,7 @@ begin
 	when 12 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)

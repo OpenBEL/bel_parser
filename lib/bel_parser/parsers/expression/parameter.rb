@@ -344,7 +344,7 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -353,7 +353,7 @@ begin
 	when 11 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -378,7 +378,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -672,7 +672,7 @@ begin
 	when 27 then
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -714,7 +714,7 @@ begin
 	when 4 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -722,7 +722,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -749,7 +749,7 @@ begin
 	when 10 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -757,7 +757,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 25 then
@@ -816,7 +816,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -824,7 +824,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -859,7 +859,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -867,7 +867,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 15 then
@@ -933,7 +933,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -941,7 +941,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -1491,7 +1491,7 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1500,7 +1500,7 @@ begin
 	when 11 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1525,7 +1525,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1819,7 +1819,7 @@ begin
 	when 27 then
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -1861,7 +1861,7 @@ begin
 	when 4 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1869,7 +1869,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -1896,7 +1896,7 @@ begin
 	when 10 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1904,7 +1904,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 25 then
@@ -1963,7 +1963,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -1971,7 +1971,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -2006,7 +2006,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2014,7 +2014,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 15 then
@@ -2080,7 +2080,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2088,7 +2088,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -2693,7 +2693,7 @@ begin
 	when 5 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2702,7 +2702,7 @@ begin
 	when 11 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -2727,7 +2727,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3021,7 +3021,7 @@ begin
 	when 27 then
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -3063,7 +3063,7 @@ begin
 	when 4 then
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3071,7 +3071,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -3098,7 +3098,7 @@ begin
 	when 10 then
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3106,7 +3106,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 25 then
@@ -3165,7 +3165,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3173,7 +3173,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -3208,7 +3208,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3216,7 +3216,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
 	when 15 then
@@ -3282,7 +3282,7 @@ begin
   		end
 		begin
 
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -3290,7 +3290,7 @@ begin
   		end
 		begin
 
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)

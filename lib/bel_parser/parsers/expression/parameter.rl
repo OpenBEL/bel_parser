@@ -57,7 +57,7 @@
   }
 
   action a_parameter_eof {
-    $stderr.puts "PARAMETER a_parameter_eof"
+    trace("PARAMETER a_parameter_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
@@ -83,7 +83,7 @@
   }
 
   action parameter_node_eof {
-    $stderr.puts "PARAMETER parameter_node_eof"
+    trace("PARAMETER parameter_node_eof")
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)

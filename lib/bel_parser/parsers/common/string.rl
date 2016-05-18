@@ -39,12 +39,12 @@
   }
 
   action string_node_eof {
-    $stderr.puts 'STRING string_node_eof'
+    trace('STRING string_node_eof')
     yield @buffers[:string]
   }
 
   action a_string_err {
-    $stderr.puts 'STRING a_string_err'
+    trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
@@ -52,7 +52,7 @@
   }
 
   action string_node_err {
-    $stderr.puts 'STRING string_node_err'
+    trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
     ast_node = string(utf8_string(chars), complete: false)
