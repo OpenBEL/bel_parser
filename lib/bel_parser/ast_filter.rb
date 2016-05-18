@@ -5,7 +5,7 @@ module BELParser
   class ASTFilter
     def initialize(ast_enum, *types)
       @ast_enum = ast_enum
-      @types    = types
+      @types    = Hash[types.map { |t| [t, true] }]
     end
 
     def each(enum = @ast_enum)
@@ -21,7 +21,11 @@ module BELParser
 
     def filter(ast_enum)
       ast_enum.select do |node|
-        @types.include?(node.type)
+        if node.nil?
+          @types[nil]
+        else
+          @types[node.type]
+        end
       end
     end
   end
