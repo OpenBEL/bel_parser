@@ -532,6 +532,10 @@ begin
 
     trace('DEFINE_NAMESPACE define_namespace_end')
     namespace_definition_node = namespace_definition()
+
+    name = @buffers.delete(:namespace_definition_name)
+    namespace_definition_node <<= keyword(name)
+
     domain = @buffers.delete(:namespace_definition_domain)
     unless domain.nil?
       namespace_definition_node <<= domain
@@ -1269,6 +1273,10 @@ begin
 
     trace('DEFINE_NAMESPACE define_namespace_end')
     namespace_definition_node = namespace_definition()
+
+    name = @buffers.delete(:namespace_definition_name)
+    namespace_definition_node <<= keyword(name)
+
     domain = @buffers.delete(:namespace_definition_domain)
     unless domain.nil?
       namespace_definition_node <<= domain
@@ -2060,6 +2068,10 @@ begin
 
     trace('DEFINE_NAMESPACE define_namespace_end')
     namespace_definition_node = namespace_definition()
+
+    name = @buffers.delete(:namespace_definition_name)
+    namespace_definition_node <<= keyword(name)
+
     domain = @buffers.delete(:namespace_definition_domain)
     unless domain.nil?
       namespace_definition_node <<= domain
