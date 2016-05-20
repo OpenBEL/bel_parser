@@ -1,0 +1,75 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift(
+  File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
+
+require 'optparse'
+require 'bel_parser'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = <<-USAGE.gsub(/^ {4}/, '')
+    Debug the AST.
+
+    Read from a BEL file.
+    usage: #$PROGRAM_NAME --file [FILE]
+
+    Read from standard input.
+    usage: #$PROGRAM_NAME
+  USAGE
+
+  opts.on('-f', '--file FILE', 'BEL script file to read.') do |bel|
+    options[:file] = bel
+  end
+
+  opts.on('-c', '--[no-]complete', 'Output only complete AST.') do |c|
+    options[:complete] = c
+  end
+end.parse!
+
+file = options[:file]
+io   =
+  if file
+    File.open(file, external_encoding: 'UTF-8')
+  else
+    $stdin
+  end
+puts options[:complete]
+
+class ::AST::Node
+
+  def _metadata
+    ivars = instance_variables - [:@type, :@children, :@hash]
+    ivars.map { |iv| [iv, instance_variable_get(iv)] }.to_s
+  end
+  private :_metadata
+
+  def to_sexp(indent=0)
+    indented = "  " * indent
+    sexp = "#{indented}(#{fancy_type} #{_metadata}"
+
+    first_node_child = children.index do |child|
+      child.is_a?(::AST::Node) || child.is_a?(Array)
+    end || children.count
+
+    children.each_with_index do |child, idx|
+      if child.is_a?(::AST::Node) && idx >= first_node_child
+        sexp << "\n#{child.to_sexp(indent + 1)}"
+      else
+        sexp << " #{child.inspect}"
+      end
+    end
+
+    sexp << ")"
+
+    sexp
+  end
+end
+
+BELParser::ASTGenerator.new(io).each do |result|
+  line_number, line, asts = result
+  puts line
+  asts.each do |ast|
+    next if options[:complete] && ast.incomplete?
+    puts ast.to_sexp(1)
+  end
+end
