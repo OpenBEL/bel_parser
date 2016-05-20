@@ -65,7 +65,7 @@
   inner_term :=
     a_function >inner_term_init
     SP*
-    '(' @term_fx $eof{ $stderr.puts "EOF!" }
+    '(' @term_fx
       (
         a_parameter %term_argument |
         a_function '(' @fxbt

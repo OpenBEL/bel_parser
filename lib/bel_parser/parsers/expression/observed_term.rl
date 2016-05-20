@@ -15,7 +15,6 @@
     obj = object(nil)
     stmt = observed_term(statement(subject_term, rel, obj, comment))
     stmt.complete = true
-    $stderr.puts stmt.inspect
     yield stmt
   }
 

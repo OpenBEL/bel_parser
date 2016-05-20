@@ -956,14 +956,14 @@ self._bel_trans_actions = [
 	0, 0, 0, 11, 11, 15, 16, 15, 
 	0, 17, 0, 44, 3, 0, 4, 0, 
 	5, 0, 0, 8, 0, 9, 11, 15, 
-	16, 15, 0, 17, 0, 19, 51, 19, 
-	0, 0, 9, 0, 20, 53, 23, 55, 
-	23, 0, 24, 26, 27, 27, 57, 26, 
-	28, 30, 59, 30, 55, 23, 0, 0, 
+	16, 15, 0, 17, 0, 19, 49, 19, 
+	0, 0, 9, 0, 20, 50, 23, 52, 
+	23, 0, 24, 26, 27, 27, 54, 26, 
+	28, 30, 56, 30, 52, 23, 0, 0, 
 	23, 0, 24, 9, 0, 24, 26, 28, 
-	0, 28, 0, 64, 3, 0, 69, 24, 
-	0, 71, 73, 0, 0, 24, 27, 76, 
-	27, 27, 28, 0, 78
+	0, 28, 0, 61, 3, 0, 66, 24, 
+	0, 68, 70, 0, 0, 24, 27, 73, 
+	27, 27, 28, 0, 75
 ]
 
 class << self
@@ -976,12 +976,12 @@ self._bel_eof_actions = [
 	25, 29, 31, 21, 14, 21, 32, 33, 
 	34, 33, 25, 21, 35, 0, 36, 38, 
 	38, 38, 41, 41, 42, 43, 43, 43, 
-	1, 45, 46, 47, 48, 49, 50, 50, 
-	13, 0, 52, 1, 0, 54, 52, 56, 
-	58, 60, 54, 50, 54, 61, 62, 63, 
-	62, 56, 54, 64, 0, 65, 66, 67, 
-	68, 70, 0, 71, 0, 72, 74, 75, 
-	77, 79, 0, 1
+	1, 1, 0, 45, 46, 47, 48, 48, 
+	13, 0, 45, 1, 0, 51, 45, 53, 
+	55, 57, 51, 48, 51, 58, 59, 60, 
+	59, 53, 51, 61, 0, 62, 63, 64, 
+	65, 67, 0, 68, 0, 69, 71, 72, 
+	74, 76, 0, 1
 ]
 
 class << self
@@ -1125,7 +1125,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 69 then
+	when 66 then
 		begin
 
     trace('IDENTIFIER ident_node_err')
@@ -1174,7 +1174,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 53 then
+	when 50 then
 		begin
 
     trace('TERM fxret')
@@ -1277,7 +1277,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 78 then
+	when 75 then
 		begin
 
     trace('PARAMETER parameter_end')
@@ -1386,7 +1386,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 64 then
+	when 61 then
 		begin
 
     trace('TERM outer_term_end')
@@ -1438,7 +1438,7 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 71 then
+	when 68 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -1523,7 +1523,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 59 then
+	when 56 then
 		begin
 
     trace('PARAMETER parameter_end')
@@ -1575,7 +1575,7 @@ begin
 	end
 
   		end
-	when 76 then
+	when 73 then
 		begin
 
     trace('PARAMETER add_prefix')
@@ -1660,7 +1660,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 73 then
+	when 70 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -1789,7 +1789,7 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 51 then
+	when 49 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -1848,7 +1848,7 @@ begin
 	end
 
   		end
-	when 57 then
+	when 54 then
 		begin
 
     trace('PARAMETER add_prefix')
@@ -1907,7 +1907,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 52 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -2020,13 +2020,13 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 67 then
+	when 64 then
 		begin
 
     trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
-	when 70 then
+	when 67 then
 		begin
 
     trace('IDENTIFIER yield_identifier')
@@ -2041,7 +2041,7 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 79 then
+	when 76 then
 		begin
 
     trace("PARAMETER parameter_node_eof")
@@ -2068,10 +2068,7 @@ begin
     param_node.complete = completed
     yield param_node
   		end
-	when 46 then
-		begin
- $stderr.puts "EOF!" 		end
-	when 66 then
+	when 63 then
 		begin
 
     trace('FUNCTION end_function')
@@ -2087,22 +2084,7 @@ begin
     trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
-	when 45 then
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-		begin
- $stderr.puts "EOF!" 		end
-	when 68 then
+	when 65 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -2117,7 +2099,7 @@ begin
     trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
-	when 60 then
+	when 57 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -2137,7 +2119,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 49 then
+	when 47 then
 		begin
 
     trace('STRING a_string_err')
@@ -2236,7 +2218,7 @@ begin
     trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
-	when 64 then
+	when 61 then
 		begin
 
     trace('TERM outer_term_end')
@@ -2246,6 +2228,38 @@ begin
 		begin
 
     yield @buffers[:term_stack][-1]
+  		end
+	when 59 then
+		begin
+
+    trace('FUNCTION a_function_eof')
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+		begin
+
+    trace('IDENTIFIER an_ident_eof')
+    if @identifier_started
+      id_end = p
+      chars = data[id_start...id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    trace('IDENTIFIER an_ident_err')
+    id_end = p
+    chars = data[id_start...id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    @buffers[:ident] = ast_node
   		end
 	when 62 then
 		begin
@@ -2262,38 +2276,6 @@ begin
   		end
 		begin
 
-    trace('IDENTIFIER an_ident_eof')
-    if @identifier_started
-      id_end = p
-      chars = data[id_start...id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    trace('IDENTIFIER an_ident_err')
-    id_end = p
-    chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
-    @buffers[:ident] = ast_node
-  		end
-	when 65 then
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-		begin
-
     trace('TERM outer_term_end')
     term_stack = @buffers[:term_stack]
     term_stack.each { |term| term.complete = true }
@@ -2302,7 +2284,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 54 then
+	when 51 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -2334,7 +2316,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 58 then
+	when 55 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -2388,7 +2370,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 77 then
+	when 74 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -2433,7 +2415,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 50 then
+	when 48 then
 		begin
 
     trace('STRING eof_string')
@@ -2582,7 +2564,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 71 then
+	when 68 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -2623,7 +2605,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 60 then
 		begin
 
     trace('FUNCTION a_function_eof')
@@ -2701,7 +2683,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 53 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -2741,7 +2723,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 48 then
+	when 46 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -2921,7 +2903,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 75 then
+	when 72 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -3022,7 +3004,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 61 then
+	when 58 then
 		begin
 
     trace('FUNCTION a_function_eof')
@@ -3134,7 +3116,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 72 then
+	when 69 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -3195,7 +3177,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 74 then
+	when 71 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -3256,7 +3238,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 52 then
+	when 45 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -3559,74 +3541,6 @@ begin
     trace('TERM eof_parameter_argument')
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
-  		end
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 47 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    trace('IDENTIFIER an_ident_eof')
-    if @identifier_started
-      id_end = p
-      chars = data[id_start...id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    trace('IDENTIFIER an_ident_err')
-    id_end = p
-    chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    trace('STRING a_string_err')
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    trace("PARAMETER a_parameter_eof")
-    param_node = parameter()
-    completed = true
-    prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
-      param_node <<= prefix_node
-      unless prefix_node.complete
-        completed = false
-      end
-    end
-
-    string_value_node = @buffers.delete(:string)
-    unless string_value_node.nil?
-      param_node <<= string_value_node
-      unless string_value_node.complete
-        completed = false
-      end
-    else
-      completed = false
-    end
-
-    param_node.complete = completed
-    @buffers[:parameter] = param_node
   		end
 		begin
 
@@ -4604,14 +4518,14 @@ self._bel_trans_actions = [
 	0, 0, 0, 11, 11, 15, 16, 15, 
 	0, 17, 0, 44, 3, 0, 4, 0, 
 	5, 0, 0, 8, 0, 9, 11, 15, 
-	16, 15, 0, 17, 0, 19, 51, 19, 
-	0, 0, 9, 0, 20, 53, 23, 55, 
-	23, 0, 24, 26, 27, 27, 57, 26, 
-	28, 30, 59, 30, 55, 23, 0, 0, 
+	16, 15, 0, 17, 0, 19, 49, 19, 
+	0, 0, 9, 0, 20, 50, 23, 52, 
+	23, 0, 24, 26, 27, 27, 54, 26, 
+	28, 30, 56, 30, 52, 23, 0, 0, 
 	23, 0, 24, 9, 0, 24, 26, 28, 
-	0, 28, 0, 64, 3, 0, 69, 24, 
-	0, 71, 73, 0, 0, 24, 27, 76, 
-	27, 27, 28, 0, 78
+	0, 28, 0, 61, 3, 0, 66, 24, 
+	0, 68, 70, 0, 0, 24, 27, 73, 
+	27, 27, 28, 0, 75
 ]
 
 class << self
@@ -4624,12 +4538,12 @@ self._bel_eof_actions = [
 	25, 29, 31, 21, 14, 21, 32, 33, 
 	34, 33, 25, 21, 35, 0, 36, 38, 
 	38, 38, 41, 41, 42, 43, 43, 43, 
-	1, 45, 46, 47, 48, 49, 50, 50, 
-	13, 0, 52, 1, 0, 54, 52, 56, 
-	58, 60, 54, 50, 54, 61, 62, 63, 
-	62, 56, 54, 64, 0, 65, 66, 67, 
-	68, 70, 0, 71, 0, 72, 74, 75, 
-	77, 79, 0, 1
+	1, 1, 0, 45, 46, 47, 48, 48, 
+	13, 0, 45, 1, 0, 51, 45, 53, 
+	55, 57, 51, 48, 51, 58, 59, 60, 
+	59, 53, 51, 61, 0, 62, 63, 64, 
+	65, 67, 0, 68, 0, 69, 71, 72, 
+	74, 76, 0, 1
 ]
 
 class << self
@@ -4773,7 +4687,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 69 then
+	when 66 then
 		begin
 
     trace('IDENTIFIER ident_node_err')
@@ -4822,7 +4736,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 53 then
+	when 50 then
 		begin
 
     trace('TERM fxret')
@@ -4925,7 +4839,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 78 then
+	when 75 then
 		begin
 
     trace('PARAMETER parameter_end')
@@ -5034,7 +4948,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 64 then
+	when 61 then
 		begin
 
     trace('TERM outer_term_end')
@@ -5086,7 +5000,7 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 71 then
+	when 68 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -5171,7 +5085,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 59 then
+	when 56 then
 		begin
 
     trace('PARAMETER parameter_end')
@@ -5223,7 +5137,7 @@ begin
 	end
 
   		end
-	when 76 then
+	when 73 then
 		begin
 
     trace('PARAMETER add_prefix')
@@ -5308,7 +5222,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 73 then
+	when 70 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -5437,7 +5351,7 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 51 then
+	when 49 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -5496,7 +5410,7 @@ begin
 	end
 
   		end
-	when 57 then
+	when 54 then
 		begin
 
     trace('PARAMETER add_prefix')
@@ -5555,7 +5469,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 52 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -5668,13 +5582,13 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 67 then
+	when 64 then
 		begin
 
     trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
-	when 70 then
+	when 67 then
 		begin
 
     trace('IDENTIFIER yield_identifier')
@@ -5689,7 +5603,7 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 79 then
+	when 76 then
 		begin
 
     trace("PARAMETER parameter_node_eof")
@@ -5716,10 +5630,7 @@ begin
     param_node.complete = completed
     yield param_node
   		end
-	when 46 then
-		begin
- $stderr.puts "EOF!" 		end
-	when 66 then
+	when 63 then
 		begin
 
     trace('FUNCTION end_function')
@@ -5735,22 +5646,7 @@ begin
     trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
-	when 45 then
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-		begin
- $stderr.puts "EOF!" 		end
-	when 68 then
+	when 65 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -5765,7 +5661,7 @@ begin
     trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
-	when 60 then
+	when 57 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -5785,7 +5681,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 49 then
+	when 47 then
 		begin
 
     trace('STRING a_string_err')
@@ -5884,7 +5780,7 @@ begin
     trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
-	when 64 then
+	when 61 then
 		begin
 
     trace('TERM outer_term_end')
@@ -5894,6 +5790,38 @@ begin
 		begin
 
     yield @buffers[:term_stack][-1]
+  		end
+	when 59 then
+		begin
+
+    trace('FUNCTION a_function_eof')
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+		begin
+
+    trace('IDENTIFIER an_ident_eof')
+    if @identifier_started
+      id_end = p
+      chars = data[id_start...id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    trace('IDENTIFIER an_ident_err')
+    id_end = p
+    chars = data[id_start...id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    @buffers[:ident] = ast_node
   		end
 	when 62 then
 		begin
@@ -5910,38 +5838,6 @@ begin
   		end
 		begin
 
-    trace('IDENTIFIER an_ident_eof')
-    if @identifier_started
-      id_end = p
-      chars = data[id_start...id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    trace('IDENTIFIER an_ident_err')
-    id_end = p
-    chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
-    @buffers[:ident] = ast_node
-  		end
-	when 65 then
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-		begin
-
     trace('TERM outer_term_end')
     term_stack = @buffers[:term_stack]
     term_stack.each { |term| term.complete = true }
@@ -5950,7 +5846,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 54 then
+	when 51 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -5982,7 +5878,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 58 then
+	when 55 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -6036,7 +5932,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 77 then
+	when 74 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -6081,7 +5977,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 50 then
+	when 48 then
 		begin
 
     trace('STRING eof_string')
@@ -6230,7 +6126,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 71 then
+	when 68 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -6271,7 +6167,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 60 then
 		begin
 
     trace('FUNCTION a_function_eof')
@@ -6349,7 +6245,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 53 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -6389,7 +6285,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 48 then
+	when 46 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -6569,7 +6465,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 75 then
+	when 72 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -6670,7 +6566,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 61 then
+	when 58 then
 		begin
 
     trace('FUNCTION a_function_eof')
@@ -6782,7 +6678,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 72 then
+	when 69 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -6843,7 +6739,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 74 then
+	when 71 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -6904,7 +6800,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 52 then
+	when 45 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -7207,74 +7103,6 @@ begin
     trace('TERM eof_parameter_argument')
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
-  		end
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 47 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    trace('IDENTIFIER an_ident_eof')
-    if @identifier_started
-      id_end = p
-      chars = data[id_start...id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    trace('IDENTIFIER an_ident_err')
-    id_end = p
-    chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    trace('STRING a_string_err')
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    trace("PARAMETER a_parameter_eof")
-    param_node = parameter()
-    completed = true
-    prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
-      param_node <<= prefix_node
-      unless prefix_node.complete
-        completed = false
-      end
-    end
-
-    string_value_node = @buffers.delete(:string)
-    unless string_value_node.nil?
-      param_node <<= string_value_node
-      unless string_value_node.complete
-        completed = false
-      end
-    else
-      completed = false
-    end
-
-    param_node.complete = completed
-    @buffers[:parameter] = param_node
   		end
 		begin
 
@@ -8252,14 +8080,14 @@ self._bel_trans_actions = [
 	0, 0, 0, 11, 11, 15, 16, 15, 
 	0, 17, 0, 44, 3, 0, 4, 0, 
 	5, 0, 0, 8, 0, 9, 11, 15, 
-	16, 15, 0, 17, 0, 19, 51, 19, 
-	0, 0, 9, 0, 20, 53, 23, 55, 
-	23, 0, 24, 26, 27, 27, 57, 26, 
-	28, 30, 59, 30, 55, 23, 0, 0, 
+	16, 15, 0, 17, 0, 19, 49, 19, 
+	0, 0, 9, 0, 20, 50, 23, 52, 
+	23, 0, 24, 26, 27, 27, 54, 26, 
+	28, 30, 56, 30, 52, 23, 0, 0, 
 	23, 0, 24, 9, 0, 24, 26, 28, 
-	0, 28, 0, 64, 3, 0, 69, 24, 
-	0, 71, 73, 0, 0, 24, 27, 76, 
-	27, 27, 28, 0, 78
+	0, 28, 0, 61, 3, 0, 66, 24, 
+	0, 68, 70, 0, 0, 24, 27, 73, 
+	27, 27, 28, 0, 75
 ]
 
 class << self
@@ -8272,12 +8100,12 @@ self._bel_eof_actions = [
 	25, 29, 31, 21, 14, 21, 32, 33, 
 	34, 33, 25, 21, 35, 0, 36, 38, 
 	38, 38, 41, 41, 42, 43, 43, 43, 
-	1, 45, 46, 47, 48, 49, 50, 50, 
-	13, 0, 52, 1, 0, 54, 52, 56, 
-	58, 60, 54, 50, 54, 61, 62, 63, 
-	62, 56, 54, 64, 0, 65, 66, 67, 
-	68, 70, 0, 71, 0, 72, 74, 75, 
-	77, 79, 0, 1
+	1, 1, 0, 45, 46, 47, 48, 48, 
+	13, 0, 45, 1, 0, 51, 45, 53, 
+	55, 57, 51, 48, 51, 58, 59, 60, 
+	59, 53, 51, 61, 0, 62, 63, 64, 
+	65, 67, 0, 68, 0, 69, 71, 72, 
+	74, 76, 0, 1
 ]
 
 class << self
@@ -8421,7 +8249,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 69 then
+	when 66 then
 		begin
 
     trace('IDENTIFIER ident_node_err')
@@ -8470,7 +8298,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 53 then
+	when 50 then
 		begin
 
     trace('TERM fxret')
@@ -8573,7 +8401,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 78 then
+	when 75 then
 		begin
 
     trace('PARAMETER parameter_end')
@@ -8682,7 +8510,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 64 then
+	when 61 then
 		begin
 
     trace('TERM outer_term_end')
@@ -8734,7 +8562,7 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 71 then
+	when 68 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -8819,7 +8647,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 59 then
+	when 56 then
 		begin
 
     trace('PARAMETER parameter_end')
@@ -8871,7 +8699,7 @@ begin
 	end
 
   		end
-	when 76 then
+	when 73 then
 		begin
 
     trace('PARAMETER add_prefix')
@@ -8956,7 +8784,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 73 then
+	when 70 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -9085,7 +8913,7 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 51 then
+	when 49 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -9144,7 +8972,7 @@ begin
 	end
 
   		end
-	when 57 then
+	when 54 then
 		begin
 
     trace('PARAMETER add_prefix')
@@ -9203,7 +9031,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 52 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -9316,13 +9144,13 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 67 then
+	when 64 then
 		begin
 
     trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
-	when 70 then
+	when 67 then
 		begin
 
     trace('IDENTIFIER yield_identifier')
@@ -9337,7 +9165,7 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 79 then
+	when 76 then
 		begin
 
     trace("PARAMETER parameter_node_eof")
@@ -9364,10 +9192,7 @@ begin
     param_node.complete = completed
     yield param_node
   		end
-	when 46 then
-		begin
- $stderr.puts "EOF!" 		end
-	when 66 then
+	when 63 then
 		begin
 
     trace('FUNCTION end_function')
@@ -9383,22 +9208,7 @@ begin
     trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
-	when 45 then
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-		begin
- $stderr.puts "EOF!" 		end
-	when 68 then
+	when 65 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -9413,7 +9223,7 @@ begin
     trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
-	when 60 then
+	when 57 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -9433,7 +9243,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 49 then
+	when 47 then
 		begin
 
     trace('STRING a_string_err')
@@ -9532,7 +9342,7 @@ begin
     trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
-	when 64 then
+	when 61 then
 		begin
 
     trace('TERM outer_term_end')
@@ -9542,6 +9352,38 @@ begin
 		begin
 
     yield @buffers[:term_stack][-1]
+  		end
+	when 59 then
+		begin
+
+    trace('FUNCTION a_function_eof')
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+		begin
+
+    trace('IDENTIFIER an_ident_eof')
+    if @identifier_started
+      id_end = p
+      chars = data[id_start...id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    trace('IDENTIFIER an_ident_err')
+    id_end = p
+    chars = data[id_start...id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    @buffers[:ident] = ast_node
   		end
 	when 62 then
 		begin
@@ -9558,38 +9400,6 @@ begin
   		end
 		begin
 
-    trace('IDENTIFIER an_ident_eof')
-    if @identifier_started
-      id_end = p
-      chars = data[id_start...id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    trace('IDENTIFIER an_ident_err')
-    id_end = p
-    chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
-    @buffers[:ident] = ast_node
-  		end
-	when 65 then
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-		begin
-
     trace('TERM outer_term_end')
     term_stack = @buffers[:term_stack]
     term_stack.each { |term| term.complete = true }
@@ -9598,7 +9408,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 54 then
+	when 51 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -9630,7 +9440,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 58 then
+	when 55 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -9684,7 +9494,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 77 then
+	when 74 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -9729,7 +9539,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 50 then
+	when 48 then
 		begin
 
     trace('STRING eof_string')
@@ -9878,7 +9688,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 71 then
+	when 68 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -9919,7 +9729,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 60 then
 		begin
 
     trace('FUNCTION a_function_eof')
@@ -9997,7 +9807,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 53 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -10037,7 +9847,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 48 then
+	when 46 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -10217,7 +10027,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 75 then
+	when 72 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -10318,7 +10128,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 61 then
+	when 58 then
 		begin
 
     trace('FUNCTION a_function_eof')
@@ -10430,7 +10240,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 72 then
+	when 69 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -10491,7 +10301,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 74 then
+	when 71 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -10552,7 +10362,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 52 then
+	when 45 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -10855,74 +10665,6 @@ begin
     trace('TERM eof_parameter_argument')
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
-  		end
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 47 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    trace('IDENTIFIER an_ident_eof')
-    if @identifier_started
-      id_end = p
-      chars = data[id_start...id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    trace('IDENTIFIER an_ident_err')
-    id_end = p
-    chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    trace('STRING a_string_err')
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    trace("PARAMETER a_parameter_eof")
-    param_node = parameter()
-    completed = true
-    prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
-      param_node <<= prefix_node
-      unless prefix_node.complete
-        completed = false
-      end
-    end
-
-    string_value_node = @buffers.delete(:string)
-    unless string_value_node.nil?
-      param_node <<= string_value_node
-      unless string_value_node.complete
-        completed = false
-      end
-    else
-      completed = false
-    end
-
-    param_node.complete = completed
-    @buffers[:parameter] = param_node
   		end
 		begin
 
@@ -11900,14 +11642,14 @@ self._bel_trans_actions = [
 	0, 0, 0, 11, 11, 15, 16, 15, 
 	0, 17, 0, 44, 3, 0, 4, 0, 
 	5, 0, 0, 8, 0, 9, 11, 15, 
-	16, 15, 0, 17, 0, 19, 51, 19, 
-	0, 0, 9, 0, 20, 53, 23, 55, 
-	23, 0, 24, 26, 27, 27, 57, 26, 
-	28, 30, 59, 30, 55, 23, 0, 0, 
+	16, 15, 0, 17, 0, 19, 49, 19, 
+	0, 0, 9, 0, 20, 50, 23, 52, 
+	23, 0, 24, 26, 27, 27, 54, 26, 
+	28, 30, 56, 30, 52, 23, 0, 0, 
 	23, 0, 24, 9, 0, 24, 26, 28, 
-	0, 28, 0, 64, 3, 0, 69, 24, 
-	0, 71, 73, 0, 0, 24, 27, 76, 
-	27, 27, 28, 0, 78
+	0, 28, 0, 61, 3, 0, 66, 24, 
+	0, 68, 70, 0, 0, 24, 27, 73, 
+	27, 27, 28, 0, 75
 ]
 
 class << self
@@ -11920,12 +11662,12 @@ self._bel_eof_actions = [
 	25, 29, 31, 21, 14, 21, 32, 33, 
 	34, 33, 25, 21, 35, 0, 36, 38, 
 	38, 38, 41, 41, 42, 43, 43, 43, 
-	1, 45, 46, 47, 48, 49, 50, 50, 
-	13, 0, 52, 1, 0, 54, 52, 56, 
-	58, 60, 54, 50, 54, 61, 62, 63, 
-	62, 56, 54, 64, 0, 65, 66, 67, 
-	68, 70, 0, 71, 0, 72, 74, 75, 
-	77, 79, 0, 1
+	1, 1, 0, 45, 46, 47, 48, 48, 
+	13, 0, 45, 1, 0, 51, 45, 53, 
+	55, 57, 51, 48, 51, 58, 59, 60, 
+	59, 53, 51, 61, 0, 62, 63, 64, 
+	65, 67, 0, 68, 0, 69, 71, 72, 
+	74, 76, 0, 1
 ]
 
 class << self
@@ -12069,7 +11811,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 69 then
+	when 66 then
 		begin
 
     trace('IDENTIFIER ident_node_err')
@@ -12118,7 +11860,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 53 then
+	when 50 then
 		begin
 
     trace('TERM fxret')
@@ -12221,7 +11963,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 78 then
+	when 75 then
 		begin
 
     trace('PARAMETER parameter_end')
@@ -12330,7 +12072,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 64 then
+	when 61 then
 		begin
 
     trace('TERM outer_term_end')
@@ -12382,7 +12124,7 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 71 then
+	when 68 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -12467,7 +12209,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 59 then
+	when 56 then
 		begin
 
     trace('PARAMETER parameter_end')
@@ -12519,7 +12261,7 @@ begin
 	end
 
   		end
-	when 76 then
+	when 73 then
 		begin
 
     trace('PARAMETER add_prefix')
@@ -12604,7 +12346,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 73 then
+	when 70 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -12733,7 +12475,7 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 51 then
+	when 49 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -12792,7 +12534,7 @@ begin
 	end
 
   		end
-	when 57 then
+	when 54 then
 		begin
 
     trace('PARAMETER add_prefix')
@@ -12851,7 +12593,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 52 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -12964,13 +12706,13 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 67 then
+	when 64 then
 		begin
 
     trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
-	when 70 then
+	when 67 then
 		begin
 
     trace('IDENTIFIER yield_identifier')
@@ -12985,7 +12727,7 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 79 then
+	when 76 then
 		begin
 
     trace("PARAMETER parameter_node_eof")
@@ -13012,10 +12754,7 @@ begin
     param_node.complete = completed
     yield param_node
   		end
-	when 46 then
-		begin
- $stderr.puts "EOF!" 		end
-	when 66 then
+	when 63 then
 		begin
 
     trace('FUNCTION end_function')
@@ -13031,22 +12770,7 @@ begin
     trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
-	when 45 then
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-		begin
- $stderr.puts "EOF!" 		end
-	when 68 then
+	when 65 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -13061,7 +12785,7 @@ begin
     trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
-	when 60 then
+	when 57 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -13081,7 +12805,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 49 then
+	when 47 then
 		begin
 
     trace('STRING a_string_err')
@@ -13180,7 +12904,7 @@ begin
     trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
-	when 64 then
+	when 61 then
 		begin
 
     trace('TERM outer_term_end')
@@ -13190,6 +12914,38 @@ begin
 		begin
 
     yield @buffers[:term_stack][-1]
+  		end
+	when 59 then
+		begin
+
+    trace('FUNCTION a_function_eof')
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+		begin
+
+    trace('IDENTIFIER an_ident_eof')
+    if @identifier_started
+      id_end = p
+      chars = data[id_start...id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    trace('IDENTIFIER an_ident_err')
+    id_end = p
+    chars = data[id_start...id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    @buffers[:ident] = ast_node
   		end
 	when 62 then
 		begin
@@ -13206,38 +12962,6 @@ begin
   		end
 		begin
 
-    trace('IDENTIFIER an_ident_eof')
-    if @identifier_started
-      id_end = p
-      chars = data[id_start...id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    trace('IDENTIFIER an_ident_err')
-    id_end = p
-    chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
-    @buffers[:ident] = ast_node
-  		end
-	when 65 then
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-		begin
-
     trace('TERM outer_term_end')
     term_stack = @buffers[:term_stack]
     term_stack.each { |term| term.complete = true }
@@ -13246,7 +12970,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 54 then
+	when 51 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -13278,7 +13002,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 58 then
+	when 55 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -13332,7 +13056,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 77 then
+	when 74 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -13377,7 +13101,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 50 then
+	when 48 then
 		begin
 
     trace('STRING eof_string')
@@ -13526,7 +13250,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 71 then
+	when 68 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -13567,7 +13291,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 60 then
 		begin
 
     trace('FUNCTION a_function_eof')
@@ -13645,7 +13369,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 53 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -13685,7 +13409,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 48 then
+	when 46 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -13865,7 +13589,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 75 then
+	when 72 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -13966,7 +13690,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 61 then
+	when 58 then
 		begin
 
     trace('FUNCTION a_function_eof')
@@ -14078,7 +13802,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 72 then
+	when 69 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -14139,7 +13863,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 74 then
+	when 71 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -14200,7 +13924,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 52 then
+	when 45 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -14503,74 +14227,6 @@ begin
     trace('TERM eof_parameter_argument')
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
-  		end
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 47 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    trace('IDENTIFIER an_ident_eof')
-    if @identifier_started
-      id_end = p
-      chars = data[id_start...id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    trace('IDENTIFIER an_ident_err')
-    id_end = p
-    chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    trace('STRING a_string_err')
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    trace("PARAMETER a_parameter_eof")
-    param_node = parameter()
-    completed = true
-    prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
-      param_node <<= prefix_node
-      unless prefix_node.complete
-        completed = false
-      end
-    end
-
-    string_value_node = @buffers.delete(:string)
-    unless string_value_node.nil?
-      param_node <<= string_value_node
-      unless string_value_node.complete
-        completed = false
-      end
-    else
-      completed = false
-    end
-
-    param_node.complete = completed
-    @buffers[:parameter] = param_node
   		end
 		begin
 
@@ -15587,14 +15243,14 @@ self._bel_trans_actions = [
 	0, 0, 0, 11, 11, 15, 16, 15, 
 	0, 17, 0, 44, 3, 0, 4, 0, 
 	5, 0, 0, 8, 0, 9, 11, 15, 
-	16, 15, 0, 17, 0, 19, 51, 19, 
-	0, 0, 9, 0, 20, 53, 23, 55, 
-	23, 0, 24, 26, 27, 27, 57, 26, 
-	28, 30, 59, 30, 55, 23, 0, 0, 
+	16, 15, 0, 17, 0, 19, 49, 19, 
+	0, 0, 9, 0, 20, 50, 23, 52, 
+	23, 0, 24, 26, 27, 27, 54, 26, 
+	28, 30, 56, 30, 52, 23, 0, 0, 
 	23, 0, 24, 9, 0, 24, 26, 28, 
-	0, 28, 0, 64, 3, 0, 69, 24, 
-	0, 71, 73, 0, 0, 24, 27, 76, 
-	27, 27, 28, 0, 78
+	0, 28, 0, 61, 3, 0, 66, 24, 
+	0, 68, 70, 0, 0, 24, 27, 73, 
+	27, 27, 28, 0, 75
 ]
 
 class << self
@@ -15607,12 +15263,12 @@ self._bel_eof_actions = [
 	25, 29, 31, 21, 14, 21, 32, 33, 
 	34, 33, 25, 21, 35, 0, 36, 38, 
 	38, 38, 41, 41, 42, 43, 43, 43, 
-	1, 45, 46, 47, 48, 49, 50, 50, 
-	13, 0, 52, 1, 0, 54, 52, 56, 
-	58, 60, 54, 50, 54, 61, 62, 63, 
-	62, 56, 54, 64, 0, 65, 66, 67, 
-	68, 70, 0, 71, 0, 72, 74, 75, 
-	77, 79, 0, 1
+	1, 1, 0, 45, 46, 47, 48, 48, 
+	13, 0, 45, 1, 0, 51, 45, 53, 
+	55, 57, 51, 48, 51, 58, 59, 60, 
+	59, 53, 51, 61, 0, 62, 63, 64, 
+	65, 67, 0, 68, 0, 69, 71, 72, 
+	74, 76, 0, 1
 ]
 
 class << self
@@ -15770,7 +15426,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 69 then
+	when 66 then
 		begin
 
     trace('IDENTIFIER ident_node_err')
@@ -15819,7 +15475,7 @@ begin
     new_term = @buffers[:term_stack][-1] << @buffers[:function]
     @buffers[:term_stack][-1] = new_term
   		end
-	when 53 then
+	when 50 then
 		begin
 
     trace('TERM fxret')
@@ -15922,7 +15578,7 @@ begin
     ast_node = string(utf8_string(chars), complete: true)
     @buffers[:string] = ast_node
   		end
-	when 78 then
+	when 75 then
 		begin
 
     trace('PARAMETER parameter_end')
@@ -16031,7 +15687,7 @@ begin
     @function_started = true
     p_start = p;
   		end
-	when 64 then
+	when 61 then
 		begin
 
     trace('TERM outer_term_end')
@@ -16083,7 +15739,7 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 71 then
+	when 68 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -16168,7 +15824,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 59 then
+	when 56 then
 		begin
 
     trace('PARAMETER parameter_end')
@@ -16220,7 +15876,7 @@ begin
 	end
 
   		end
-	when 76 then
+	when 73 then
 		begin
 
     trace('PARAMETER add_prefix')
@@ -16305,7 +15961,7 @@ begin
     @buffers[:term_stack][-1] = new_term
     @buffers[:parameter] = nil
   		end
-	when 73 then
+	when 70 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -16434,7 +16090,7 @@ begin
     trace('STRING yield_string')
     yield @buffers[:string]
   		end
-	when 51 then
+	when 49 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -16493,7 +16149,7 @@ begin
 	end
 
   		end
-	when 57 then
+	when 54 then
 		begin
 
     trace('PARAMETER add_prefix')
@@ -16552,7 +16208,7 @@ begin
 	end
 
   		end
-	when 55 then
+	when 52 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -16665,13 +16321,13 @@ begin
       yield @buffers[:function]
     end
   		end
-	when 67 then
+	when 64 then
 		begin
 
     trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
-	when 70 then
+	when 67 then
 		begin
 
     trace('IDENTIFIER yield_identifier')
@@ -16686,7 +16342,7 @@ begin
     ast_node = string(utf8_string(chars), complete: false)
     @buffers[:string] = ast_node
   		end
-	when 79 then
+	when 76 then
 		begin
 
     trace("PARAMETER parameter_node_eof")
@@ -16713,10 +16369,7 @@ begin
     param_node.complete = completed
     yield param_node
   		end
-	when 46 then
-		begin
- $stderr.puts "EOF!" 		end
-	when 66 then
+	when 63 then
 		begin
 
     trace('FUNCTION end_function')
@@ -16732,22 +16385,7 @@ begin
     trace('FUNCTION yield_function')
     yield @buffers[:function]
   		end
-	when 45 then
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-		begin
- $stderr.puts "EOF!" 		end
-	when 68 then
+	when 65 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -16762,7 +16400,7 @@ begin
     trace('IDENTIFIER yield_identifier')
     yield @buffers[:ident]
   		end
-	when 60 then
+	when 57 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -16782,7 +16420,7 @@ begin
     ast_node = identifier(utf8_string(chars), complete: false)
     @buffers[:ident] = ast_node
   		end
-	when 49 then
+	when 47 then
 		begin
 
     trace('STRING a_string_err')
@@ -16881,7 +16519,7 @@ begin
     trace('STRING string_node_eof')
     yield @buffers[:string]
   		end
-	when 64 then
+	when 61 then
 		begin
 
     trace('TERM outer_term_end')
@@ -16891,6 +16529,38 @@ begin
 		begin
 
     yield @buffers[:term_stack][-1]
+  		end
+	when 59 then
+		begin
+
+    trace('FUNCTION a_function_eof')
+    if @function_started
+      p_end = p
+      chars = data[p_start...p_end]
+      completed = !chars.empty?
+      ident_node = identifier(utf8_string(chars), complete: completed)
+      fx_node = function(ident_node, complete: ident_node.complete)
+      @buffers[:function] = fx_node
+    end
+  		end
+		begin
+
+    trace('IDENTIFIER an_ident_eof')
+    if @identifier_started
+      id_end = p
+      chars = data[id_start...id_end]
+      completed = !chars.empty?
+      ast_node = identifier(utf8_string(chars), complete: completed)
+      @buffers[:ident] = ast_node
+    end
+  		end
+		begin
+
+    trace('IDENTIFIER an_ident_err')
+    id_end = p
+    chars = data[id_start...id_end]
+    ast_node = identifier(utf8_string(chars), complete: false)
+    @buffers[:ident] = ast_node
   		end
 	when 62 then
 		begin
@@ -16907,38 +16577,6 @@ begin
   		end
 		begin
 
-    trace('IDENTIFIER an_ident_eof')
-    if @identifier_started
-      id_end = p
-      chars = data[id_start...id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    trace('IDENTIFIER an_ident_err')
-    id_end = p
-    chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
-    @buffers[:ident] = ast_node
-  		end
-	when 65 then
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-		begin
-
     trace('TERM outer_term_end')
     term_stack = @buffers[:term_stack]
     term_stack.each { |term| term.complete = true }
@@ -16947,7 +16585,7 @@ begin
 
     yield @buffers[:term_stack][-1]
   		end
-	when 54 then
+	when 51 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -16979,7 +16617,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 58 then
+	when 55 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -17033,7 +16671,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 77 then
+	when 74 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -17078,7 +16716,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 50 then
+	when 48 then
 		begin
 
     trace('STRING eof_string')
@@ -17227,7 +16865,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 71 then
+	when 68 then
 		begin
 
     trace('PARAMETER add_string_param_value')
@@ -17268,7 +16906,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 63 then
+	when 60 then
 		begin
 
     trace('FUNCTION a_function_eof')
@@ -17346,7 +16984,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 56 then
+	when 53 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -17386,7 +17024,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 48 then
+	when 46 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -17566,7 +17204,7 @@ begin
       @buffers[:function] = fx_node
     end
   		end
-	when 75 then
+	when 72 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -17667,7 +17305,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 61 then
+	when 58 then
 		begin
 
     trace('FUNCTION a_function_eof')
@@ -17779,7 +17417,7 @@ begin
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
   		end
-	when 72 then
+	when 69 then
 		begin
 
     trace('IDENTIFIER end_identifier')
@@ -17840,7 +17478,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 74 then
+	when 71 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -17901,7 +17539,7 @@ begin
     trace('PARAMETER yield_parameter')
     yield @buffers[:parameter]
   		end
-	when 52 then
+	when 45 then
 		begin
 
     trace('IDENTIFIER an_ident_eof')
@@ -18204,74 +17842,6 @@ begin
     trace('TERM eof_parameter_argument')
     @buffers[:term_stack][-1].complete = false
     yield @buffers[:term_stack][-1]
-  		end
-		begin
-
-    trace('FUNCTION a_function_eof')
-    if @function_started
-      p_end = p
-      chars = data[p_start...p_end]
-      completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
-      @buffers[:function] = fx_node
-    end
-  		end
-	when 47 then
-		begin
- $stderr.puts "EOF!" 		end
-		begin
-
-    trace('IDENTIFIER an_ident_eof')
-    if @identifier_started
-      id_end = p
-      chars = data[id_start...id_end]
-      completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
-      @buffers[:ident] = ast_node
-    end
-  		end
-		begin
-
-    trace('IDENTIFIER an_ident_err')
-    id_end = p
-    chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
-    @buffers[:ident] = ast_node
-  		end
-		begin
-
-    trace('STRING a_string_err')
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    trace("PARAMETER a_parameter_eof")
-    param_node = parameter()
-    completed = true
-    prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
-      param_node <<= prefix_node
-      unless prefix_node.complete
-        completed = false
-      end
-    end
-
-    string_value_node = @buffers.delete(:string)
-    unless string_value_node.nil?
-      param_node <<= string_value_node
-      unless string_value_node.complete
-        completed = false
-      end
-    else
-      completed = false
-    end
-
-    param_node.complete = completed
-    @buffers[:parameter] = param_node
   		end
 		begin
 
