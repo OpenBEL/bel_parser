@@ -31,23 +31,11 @@
 
   comment =
     SS
-    SP*
-    ^NL+
-    >start_comment
-    %stop_comment
-    ;
-
-  a_comment =
-    SS
-    ^NL+
-    >start_comment
-    %stop_comment
+    ^NL+ >start_comment %stop_comment %comment_end
     ;
 
   comment_node :=
-    comment
-    %comment_end
-    %yield_comment
+    comment %yield_comment
     NL?
     ;
 }%%

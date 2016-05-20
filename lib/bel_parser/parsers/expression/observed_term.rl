@@ -22,7 +22,7 @@
   observed_term :=
     outer_term
     SP*
-    a_comment? %yield_observed_term
+    comment? %yield_observed_term
     NL?;
 }%%
 =end

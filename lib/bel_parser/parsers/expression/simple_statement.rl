@@ -19,15 +19,21 @@
     term = @buffers[:term_stack][-1]
     @buffers[:object] = object(term)
     @buffers[:term_stack] = nil
-    @buffers[:comment] ||= comment(nil)
     sub = @buffers[:subject]
     rel = @buffers[:relationship]
     obj = @buffers[:object]
-    comment = @buffers[:comment]
-    stmt = statement(sub, rel, obj, comment)
+    stmt = statement(sub, rel, obj)
     simple_stmt = simple_statement(stmt)
     simple_stmt.complete = true
     @buffers[:simple_statement] = simple_stmt
+  }
+
+  action simple_statement_comment {
+    trace('SIMPLE_STATEMENT simple_statement_comment')
+    comment = @buffers[:comment]
+    @buffers[:simple_statement] =
+      simple_statement(
+        @buffers[:simple_statement].statement << comment)
   }
 
   action yield_simple_statement {
@@ -47,9 +53,7 @@
   simple_statement :=
     STATEMENT_SIMPLE
     SP*
-    a_comment?
-    %statement_object
-    %yield_simple_statement
+    comment? %simple_statement_comment %yield_simple_statement
     NL?;
 }%%
 =end

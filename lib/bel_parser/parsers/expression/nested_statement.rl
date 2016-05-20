@@ -59,6 +59,14 @@
     fret;
   }
 
+  action nested_statement_comment {
+    trace('NESTED_STATEMENT nested_statement_comment')
+    comment = @buffers[:comment]
+    @buffers[:nested_statement] =
+      nested_statement(
+        @buffers[:nested_statement].statement << comment)
+  }
+
   action yield_nested_statement {
     trace('NESTED_STATEMENT yield_nested_statement')
     yield @buffers[:nested_statement]
@@ -84,11 +92,11 @@
     # ')' @ast_object
     ;
 
+
   nested_statement :=
     outer_statement
     SP*
-    a_comment?
-    %yield_nested_statement
+    comment? %nested_statement_comment %yield_nested_statement
     NL?;
 }%%
 =end
