@@ -19,27 +19,25 @@ module BELParser
 
         def self.consume(ast_node, script_context)
           return nil unless ast_node.is_a?(TARGET_NODE)
-          name, value = ast_node.children
-          name_string = name.identifier.string_literal
-          value_node  = ast_node.value.children[0]
+          name_node, value_node = ast_node.children
+          name_string           = name_node.identifier.string_literal
           case
           when is_citation?(name_string)
             handle_citation(value_node, script_context)
           when is_support?(name_string)
             handle_support(value_node, script_context)
           when value_node.is_a?(LIST_NODE)
-            value_node
+            value.node
               .list_items.map { |li| li.children[0].string_literal }
               .each do |string|
                 handle_annotation(name_string, string, script_context)
               end
           else
-            value_string = value_node.string_literal
             case name_string
             when /\ASTATEMENT_GROUP\Z/
-              handle_statement_group(value_string, script_context)
+              handle_statement_group(value_node, script_context)
             else
-              handle_annotation(name_string, value_string, script_context)
+              handle_annotation(name_string, value_node, script_context)
             end
           end
         end
@@ -57,18 +55,18 @@ module BELParser
         end
 
         def self.handle_support(value_node, script_context)
-          script_context[:support] = value_node.string_literal
+          script_context[:support] = value_node.children[0].string_literal
         end
 
-        def self.handle_annotation(name, value, script_context)
+        def self.handle_annotation(name_string, value_node, script_context)
           # add to annotation state
-          script_context[:annotations]       ||= Concurrent::Hash.new
-          script_context[:annotations][name]   = value
+          script_context[:annotations]              ||= Concurrent::Hash.new
+          script_context[:annotations][name_string]   = value_node.children[0].string_literal
         end
         private_class_method :handle_annotation
 
-        def self.handle_statement_group(value, script_context)
-          script_context[:statement_group] = value
+        def self.handle_statement_group(value_node, script_context)
+          script_context[:statement_group] = value_node.children[0].string_literal
 
           # clear annotation state
           script_context[:annotations]     ||= Concurrent::Hash.new
