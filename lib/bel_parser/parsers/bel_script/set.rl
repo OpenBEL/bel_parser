@@ -11,25 +11,25 @@
   action add_name {
     trace('SET add_name')
     key = @buffers.delete(:ident)
-    @buffers[:set_name] = key
+    @buffers[:set_name] = name(key)
   }
 
   action add_ident_value {
     trace('SET add_ident_value')
     ident = @buffers.delete(:ident)
-    @buffers[:set_value] = ident
+    @buffers[:set_value] = value(ident)
   }
 
   action add_string_value {
     trace('SET add_string_value')
     string = @buffers.delete(:string)
-    @buffers[:set_value] = string
+    @buffers[:set_value] = value(string)
   }
 
   action add_list_value {
     trace('SET add_list_value')
     list = @buffers.delete(:list)
-    @buffers[:set_value] = list
+    @buffers[:set_value] = value(list)
   }
 
   action set_end {
@@ -120,6 +120,7 @@
     @eof(set_node_eof)
     %set_end
     %yield_set
+    NL
     ;
 }%%
 =end
