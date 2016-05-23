@@ -70,6 +70,10 @@ BELParser::ASTGenerator.new(io).each do |result|
   puts line
   asts.each do |ast|
     next if options[:complete] && ast.incomplete?
-    puts ast.to_sexp(1)
+    if ast
+      puts ast.to_sexp(1)
+    else
+      puts '  (null)'
+    end
   end
 end
