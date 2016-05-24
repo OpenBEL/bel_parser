@@ -152,7 +152,7 @@ module BELParser
       end
 
       def on_string(string_node)
-        @string << string_node.string_literal
+        @string << %("#{string_node.string_literal}")
       end
 
       def on_subject(subject_node)
