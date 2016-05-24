@@ -23,7 +23,7 @@ module BELParser
           name_string           = name_node.identifier.string_literal
           case
           when is_citation?(name_string)
-            handle_citation(value_node, script_context)
+            handle_citation(value_node.children[0], script_context)
           when is_support?(name_string)
             handle_support(value_node, script_context)
           when value_node.children[0].is_a?(LIST_NODE)
