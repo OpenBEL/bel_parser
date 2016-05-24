@@ -11,25 +11,25 @@
   action add_property {
     trace('SET_DOCUMENT add_property')
     key = @buffers.delete(:ident)
-    @buffers[:set_document_name] = key
+    @buffers[:set_document_name] = name(key)
   }
 
   action add_ident_value {
     trace('SET_DOCUMENT add_ident_value')
     ident = @buffers.delete(:ident)
-    @buffers[:set_document_value] = ident
+    @buffers[:set_document_value] = value(ident)
   }
 
   action add_string_value {
     trace('SET_DOCUMENT add_string_value')
     string = @buffers.delete(:string)
-    @buffers[:set_document_value] = string
+    @buffers[:set_document_value] = value(string)
   }
 
   action add_list_value {
     trace('SET_DOCUMENT add_list_value')
     list = @buffers.delete(:list)
-    @buffers[:set_document_value] = list
+    @buffers[:set_document_value] = value(list)
   }
 
   action set_document_end {
@@ -68,15 +68,15 @@
     completed = name.complete
     if @buffers.key?(:string)
       value = @buffers.delete(:string)
-      set_document_node <<= value
+      set_document_node <<= value(value)
       completed = completed && value.complete
     elsif @buffers.key?(:ident)
       value = @buffers.delete(:ident)
-      set_document_node <<= value
+      set_document_node <<= value(value)
       completed = completed && value.complete
     elsif @buffers.key?(:list)
       value = @buffers.delete(:list)
-      set_document_node <<= value
+      set_document_node <<= value(value)
       completed = completed && value.complete
     end
     set_document_node.complete = completed
@@ -84,8 +84,7 @@
   }
 
   document_property =
-    an_ident &
-    DOCUMENT_PROPERTY
+    an_ident
     ;
 
   ident_value =
@@ -124,6 +123,7 @@
     @eof(set_document_node_eof)
     %set_document_end
     %yield_set_document
+    NL?
     ;
 }%%
 =end

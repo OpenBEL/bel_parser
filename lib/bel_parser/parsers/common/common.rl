@@ -29,23 +29,6 @@ machine bel;
   KW_PATTERN = /PATTERN/i;
   KW_URL = /URL/i;
   KW_DOCUMENT = /DOCUMENT/i;
-  KW_AUTHORS = /Authors/i;
-  KW_CONTACT_INFO = /ContactInfo/i;
-  KW_COPYRIGHT = /Copyright/i;
-  KW_DESCRIPTION = /Description/i;
-  KW_LICENSES = /Licenses/i;
-  KW_NAME = /Name/i;
-  KW_VERSION = /Version/i;
-
-  DOCUMENT_PROPERTY =
-    KW_AUTHORS |
-    KW_CONTACT_INFO |
-    KW_COPYRIGHT |
-    KW_DESCRIPTION |
-    KW_LICENSES |
-    KW_NAME |
-    KW_VERSION
-    ;
 
   DEFINE_ANNOTATION =
     KW_DEFINE
