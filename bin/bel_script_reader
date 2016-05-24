@@ -96,7 +96,7 @@ module BELParser
             select(syntax_errors, SYN_WARN) +
             select(syntax_errors, SEM_WARN)
 
-          report(line_number, ast_node, errors, warnings)
+          report(line_number, line, ast_node, errors, warnings)
 
           unless errors.empty?
             puts "Exiting due to error on line #{line_number}: #{line}"
@@ -111,15 +111,17 @@ module BELParser
         list.select { |item| item.is_a?(cls) }
       end
 
-      def report(line_number, ast, errors, warnings)
+      def report(line_number, line, ast, errors, warnings)
         log = !errors.empty? || !warnings.empty?
         if log
           puts "On line #{line_number} for #{ast.type}"
-          puts "  Errors:"
+          puts '  Line:'
+          puts "    #{line}"
+          puts '  Errors:'
           errors.each do |err|
             puts "    #{err}"
           end
-          puts "  Warnings:"
+          puts '  Warnings:'
           warnings.each do |warn|
             puts "    #{warn}"
           end
