@@ -26,11 +26,12 @@ module BELParser
             handle_citation(value_node, script_context)
           when is_support?(name_string)
             handle_support(value_node, script_context)
-          when value_node.is_a?(LIST_NODE)
-            value.node
-              .list_items.map { |li| li.children[0].string_literal }
-              .each do |string|
-                handle_annotation(name_string, string, script_context)
+          when value_node.children[0].is_a?(LIST_NODE)
+            value_node
+              .children[0]
+              .list_items
+              .each do |list_item|
+                handle_annotation(name_string, list_item, script_context)
               end
           else
             case name_string
