@@ -1284,12 +1284,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1318,12 +1325,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1452,12 +1466,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1493,12 +1514,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1530,12 +1558,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1589,12 +1624,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1630,12 +1672,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1683,12 +1732,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1733,12 +1789,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1803,12 +1866,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1862,12 +1932,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -1930,12 +2007,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -2388,12 +2472,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -2578,12 +2669,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -2928,12 +3026,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -3150,12 +3255,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -3211,12 +3323,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -4846,12 +4965,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -4880,12 +5006,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5014,12 +5147,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5055,12 +5195,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5092,12 +5239,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5151,12 +5305,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5192,12 +5353,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5245,12 +5413,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5295,12 +5470,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5365,12 +5547,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5424,12 +5613,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5492,12 +5688,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -5950,12 +6153,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -6140,12 +6350,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -6490,12 +6707,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -6712,12 +6936,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -6773,12 +7004,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8408,12 +8646,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8442,12 +8687,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8576,12 +8828,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8617,12 +8876,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8654,12 +8920,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8713,12 +8986,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8754,12 +9034,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8807,12 +9094,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8857,12 +9151,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8927,12 +9228,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -8986,12 +9294,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -9054,12 +9369,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -9512,12 +9834,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -9702,12 +10031,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -10052,12 +10388,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -10274,12 +10617,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -10335,12 +10685,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -11970,12 +12327,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12004,12 +12368,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12138,12 +12509,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12179,12 +12557,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12216,12 +12601,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12275,12 +12667,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12316,12 +12715,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12369,12 +12775,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12419,12 +12832,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12489,12 +12909,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12548,12 +12975,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -12616,12 +13050,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -13074,12 +13515,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -13264,12 +13712,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -13614,12 +14069,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -13836,12 +14298,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -13897,12 +14366,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -15585,12 +16061,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -15619,12 +16102,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -15753,12 +16243,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -15794,12 +16291,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -15831,12 +16335,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -15890,12 +16401,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -15931,12 +16449,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -15984,12 +16509,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -16034,12 +16566,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -16104,12 +16643,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -16163,12 +16709,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -16231,12 +16784,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -16689,12 +17249,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -16879,12 +17446,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -17229,12 +17803,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -17451,12 +18032,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
@@ -17512,12 +18100,19 @@ begin
     param_node = parameter()
     completed = true
     prefix_node = @buffers.delete(:param_prefix)
-    unless prefix_node.nil?
+    if prefix_node
       param_node <<= prefix_node
       unless prefix_node.complete
         trace('PN incomplete')
         completed = false
       end
+    else
+      prefix_node          = prefix(nil)
+      prefix_node.complete = true
+
+      trace('PN complete (no prefix)')
+      param_node <<= prefix_node
+      completed    = true
     end
 
     value_node = @buffers.delete(:param_value)
