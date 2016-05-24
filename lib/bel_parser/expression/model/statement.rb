@@ -45,6 +45,7 @@ module BELParser
           @comment      = comment
 
           if @relationship && !@object
+            require 'pry'; binding.pry
             raise(
               ArgumentError,
               "object must be set when specifying a relationship")

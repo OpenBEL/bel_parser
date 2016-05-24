@@ -4205,7 +4205,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -4723,7 +4723,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -4886,7 +4886,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -4970,7 +4970,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -5063,7 +5063,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -11640,7 +11640,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -12158,7 +12158,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -12321,7 +12321,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -12405,7 +12405,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -12498,7 +12498,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -19075,7 +19075,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -19593,7 +19593,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -19756,7 +19756,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -19840,7 +19840,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -19933,7 +19933,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -26510,7 +26510,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -27028,7 +27028,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -27191,7 +27191,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -27275,7 +27275,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -27368,7 +27368,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -33945,7 +33945,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -34463,7 +34463,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -34626,7 +34626,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -34710,7 +34710,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -34803,7 +34803,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -41380,7 +41380,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -41898,7 +41898,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -42061,7 +42061,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -42145,7 +42145,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -42238,7 +42238,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -48815,7 +48815,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -49333,7 +49333,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -49496,7 +49496,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -49580,7 +49580,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -49673,7 +49673,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -56250,7 +56250,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -56768,7 +56768,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -56931,7 +56931,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -57015,7 +57015,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -57108,7 +57108,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -63740,7 +63740,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -64258,7 +64258,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -64421,7 +64421,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -64505,7 +64505,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
@@ -64598,7 +64598,7 @@ begin
 		begin
 
     trace('NESTED_STATEMENT ast_object')
-    object_node = object(@buffers[:object])
+    object_node = @buffers[:object]
     stmt = @buffers[:statement_stack][-1] << object_node
     @buffers[:statement_stack][-1] = stmt
   		end
