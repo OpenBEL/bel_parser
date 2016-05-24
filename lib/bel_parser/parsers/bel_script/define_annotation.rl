@@ -67,6 +67,10 @@
   action define_annotation_end {
     trace('DEFINE_ANNOTATION define_annotation_end')
     annotation_definition_node = annotation_definition()
+
+    name = @buffers.delete(:annotation_definition_name)
+    annotation_definition_node <<= keyword(name)
+
     domain = @buffers.delete(:annotation_definition_domain)
     unless domain.nil?
       annotation_definition_node <<= domain
@@ -157,6 +161,7 @@
     @eof(define_annotation_node_eof)
     %define_annotation_end
     %yield_define_annotation
+    NL
     ;
 }%%
 =end

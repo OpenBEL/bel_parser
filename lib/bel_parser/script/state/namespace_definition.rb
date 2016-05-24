@@ -18,7 +18,6 @@ module BELParser
           resource_reader = script_context[:resource_reader]
 
           keyword, domain = ast_node.children
-          require 'pry'; binding.pry unless domain
           if domain.url?
             prefix  = keyword.identifier.string_literal
             url     = unquote(domain.child.string.string_literal)
