@@ -23,16 +23,22 @@ module BELParser
           name_string  = ast_node.name.identifier.string_literal
 
           return nil if is_implicit_annotation?(name_string)
-          dataset = annotation(name_string, script_context)
-          return nil unless dataset
+          type, dataset = annotation(name_string, script_context)
+          return nil unless type == :uri || type == :url
 
-          rr         = script_context[:resource_reader]
+          reader =
+            case type
+            when :uri
+              script_context[:uri_reader]
+            when :url
+              script_context[:url_reader]
+            end
           value_node = ast_node.value.children[0]
           if value_node.is_a?(LIST_NODE)
             value_node
               .list_items.map { |li| li.children[0].string_literal }
               .map do |string|
-                map_value(ast_node, name_string, string, dataset.identifier, rr)
+                map_value(ast_node, name_string, string, dataset.identifier, reader)
               end
           else
             map_value(
@@ -40,20 +46,19 @@ module BELParser
               name_string,
               value_node.string_literal,
               dataset.identifier,
-              rr)
+              reader)
           end
         end
 
         def self.annotation(name_string, script_context)
           hash =
             script_context[:annotation_definitions] ||= Concurrent::Hash.new
-          type, definition = hash[name_string]
-          type == :url ? definition : nil
+          hash[name_string]
         end
 
-        def self.map_value(ast_node, name_string, value_string, identifier, rr)
+        def self.map_value(ast_node, name_string, value_string, identifier, reader)
           value_string = unquote(value_string)
-          value = rr.retrieve_value_from_resource(identifier, value_string)
+          value = reader.retrieve_value_from_resource(identifier, value_string)
           UndefinedAnnotationValueWarning.new(
             ast_node,
             name_string,

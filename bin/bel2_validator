@@ -2,13 +2,69 @@
 $LOAD_PATH.unshift(
   File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
 
-unless ARGV.first
-  program = File.basename($PROGRAM_NAME)
-  $stderr.puts <<-USAGE.gsub(/ {4}/, '')
-    usage: #{program} [BEL specification version] [PREFIX=URI]...
+require 'optparse'
+require 'bel_parser'
+
+options = {
+  uri_reader: BELParser::Resource.default_uri_reader,
+  url_reader: BELParser::Resource.default_url_reader,
+  spec: BELParser::Language.specification(
+    BELParser::Language.latest_supported_version)
+}
+OptionParser.new do |opts|
+  opts.banner = <<-USAGE.gsub(/^ {4}/, '')
+    Validates BEL 2.0 expressions.
+
+    Read from a BEL file.
+    usage: #$PROGRAM_NAME --file [FILE]
+
+    Read from standard input.
+    usage: #$PROGRAM_NAME
   USAGE
-  exit 1
-end
+
+  opts.on('-f', '--file FILE', 'BEL script file to read.') do |bel|
+    options[:file] = bel
+  end
+
+  opts.on(
+    '-v',
+    '--[no-]verbose',
+    'Enable verbose logging.') do |verbose|
+      options[:verbose] = verbose
+    end
+
+  opts.on(
+    '-s',
+    '--specification VERSION',
+    'BEL specification version (e.g. 1.0, 2.0).') do |spec|
+      unless BELParser::Language.defines_version?(spec)
+        $stderr.puts %(Invalid BEL specification "#{spec}")
+        exit 1
+      end
+
+      options[:spec] = BELParser::Language.specification(spec)
+    end
+
+  opts.on(
+    '-q',
+    '--sparql-endpoint URL',
+    'SPARQL endpoint URL containing BEL RDF resources.') do |sparql|
+
+      require 'bel_parser/resource/sparql_reader'
+      options[:uri_reader] = BELParser::Resource::SPARQLReader.new(sparql)
+    end
+
+  if RUBY_ENGINE =~ /^jruby/i
+    opts.on(
+      '-t',
+      '--read-jena-tdb DIRECTORY',
+      'Jena TDB directory containing BEL RDF resources.') do |tdb|
+
+        require 'bel_parser/resource/jena_tdb_reader'
+        options[:uri_reader] = BELParser::Resource::JenaTDBReader.new(tdb)
+      end
+  end
+end.parse!
 
 def syntax_results(results)
   results.select do |res|
@@ -22,22 +78,22 @@ def semantics_results(results)
   end
 end
 
-require 'bel_parser'
 require 'bel_parser/expression/validator'
 require 'bel_parser/resource/resource_url_reader'
 
-resource_reader = BELParser::Resource::ResourceURLReader.new(true)
-namespaces      =
+uri_reader, url_reader = options.values_at(:uri_reader, :url_reader)
+
+namespaces =
   Hash[
     ARGV.map do |ns|
       prefix, identifier = ns.split('=')
-      dataset            = resource_reader.retrieve_resource(identifier)
-      dataset ? [prefix, dataset] : nil
+      dataset            = uri_reader.retrieve_resource(identifier)
+      dataset ? [prefix, [:uri, dataset]] : nil
     end.compact
   ]
 
 BELParser::Expression::Validator
-  .new(ARGV.first, namespaces, resource_reader)
+  .new(options[:spec], namespaces, uri_reader, url_reader)
   .each($stdin) do |(line_number, line, ast, results)|
     puts "#{line_number}: #{line}"
     puts "  AST Type: #{ast.type}"

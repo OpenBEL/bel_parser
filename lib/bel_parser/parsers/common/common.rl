@@ -28,6 +28,7 @@ machine bel;
   KW_LIST = /LIST/i;
   KW_PATTERN = /PATTERN/i;
   KW_URL = /URL/i;
+  KW_URI = /URI/i;
   KW_DOCUMENT = /DOCUMENT/i;
 
   DEFINE_ANNOTATION =

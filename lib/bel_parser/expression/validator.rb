@@ -19,10 +19,10 @@ module BELParser
         :nested_statement
       ]
 
-      def initialize(specification_version, namespaces, resource_reader)
-        @spec      = BELParser::Language.specification(specification_version)
+      def initialize(specification, namespaces, uri_reader, url_reader)
+        @spec      = specification
         @validator = BELParser::Language::ExpressionValidator.new(
-          @spec, namespaces, resource_reader)
+          @spec, namespaces, uri_reader, url_reader)
       end
 
       def each(io)
@@ -52,19 +52,18 @@ if __FILE__ == $PROGRAM_NAME
     exit 1
   end
 
-  require 'bel_parser/resource/resource_url_reader'
-
-  resource_reader = BELParser::Resource::ResourceURLReader.new
+  uri_reader = BELParser::Resource.default_uri_reader
+  url_reader = BELParser::Resource.default_url_reader
   namespaces      =
     Hash[
       ARGV[1..-1]
       .map do |ns|
         prefix, identifier = ns.split('=')
-        [prefix, resource_reader.retrieve_resource(identifier)]
+        [prefix, uri_reader.retrieve_resource(identifier)]
       end
     ]
   BELParser::Expression::Validator
-    .new(ARGV.first, namespaces, resource_reader)
+    .new(ARGV.first, namespaces, uri_reader, url_reader)
     .each($stdin) do |(line_number, line, ast, results)|
       results.select { |res| res.is_a? BELParser::Language::Syntax::SyntaxError }
       puts "#{line_number}: #{line}"

@@ -16,14 +16,21 @@
   action add_string_value {
     trace('DEFINE_NAMESPACE add_string_value')
     string_node = @buffers.delete(:string)
-    leaf = domain(url(string_node))
+    domain   = @buffers.delete(:namespace_definition_domain)
+    domain <<= string_node
+    leaf = domain(domain)
     leaf.complete = string_node.complete
     @buffers[:namespace_definition_domain] = leaf
   }
 
+  action add_uri_domain {
+    trace('DEFINE_NAMESPACE add_uri_domain')
+    @buffers[:namespace_definition_domain] = uri()
+  }
+
   action add_url_domain {
     trace('DEFINE_NAMESPACE add_url_domain')
-    @url_domain = true
+    @buffers[:namespace_definition_domain] = url()
   }
 
   action define_namespace_end {
@@ -66,6 +73,11 @@
     %add_string_value
     ;
 
+  uri_domain =
+    KW_URI
+    %add_uri_domain
+    ;
+
   url_domain =
     KW_URL
     %add_url_domain
@@ -79,7 +91,7 @@
     SP+
     KW_AS
     SP+
-    url_domain
+    (url_domain | uri_domain)
     SP+
     string_value
     @eof(define_namespace_node_eof)

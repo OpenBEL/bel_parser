@@ -266,6 +266,9 @@ module BELParser
         def domain
           children[1]
         end
+
+        # Get/Set the uri property.
+        attr_accessor :uri
       end
 
       # AST node representing the function of a BEL term.
@@ -317,6 +320,9 @@ module BELParser
         def domain
           children[1]
         end
+
+        # Get/Set the uri property.
+        attr_accessor :uri
       end
 
       # AST node representing a keyword (e.g. definitions).
@@ -363,6 +369,11 @@ module BELParser
           children[0] && children[0].is_a?(Pattern)
         end
 
+        # Determine if this is a URI domain.
+        def uri?
+          children[0] && children[0].is_a?(Uri)
+        end
+
         # Determine if this is a URL domain.
         def url?
           children[0] && children[0].is_a?(Url)
@@ -389,6 +400,26 @@ module BELParser
         end
 
         # Get the url's string.
+        def string
+          children[0]
+        end
+      end
+
+      # AST node representing a URI.
+      class Uri < Node
+        # AST node type
+        @ast_type = :uri
+        # Urls have semantic meaning
+        @has_semantics = true
+
+        # New Uri AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(Uri.ast_type, children, properties)
+        end
+
+        # Get the uri's string.
         def string
           children[0]
         end
@@ -1027,6 +1058,10 @@ module BELParser
 
         def url(*children, **props)
           Url.new(children, props)
+        end
+
+        def uri(*children, **props)
+          Uri.new(children, props)
         end
 
         def pattern(*children, **props)

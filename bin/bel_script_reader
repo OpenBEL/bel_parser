@@ -4,9 +4,10 @@ $LOAD_PATH.unshift(
 
 require 'optparse'
 require 'bel_parser'
-require 'bel_parser/resource/resource_url_reader'
 
 options = {
+  uri_reader: BELParser::Resource.default_uri_reader,
+  url_reader: BELParser::Resource.default_url_reader,
   spec: BELParser::Language.specification(
     BELParser::Language.latest_supported_version)
 }
@@ -26,24 +27,42 @@ OptionParser.new do |opts|
   end
 
   opts.on(
-    '-s',
-    '--specification VERSION',
-    'BEL specification version (e.g. 1.0, 2.0)') do |spec|
-
-    unless BELParser::Language.defines_version?(spec)
-      $stderr.puts %(Invalid BEL specification "#{spec}")
-      exit 1
+    '-v',
+    '--[no-]verbose',
+    'Enable verbose logging.') do |verbose|
+      options[:verbose] = verbose
     end
 
-    options[:spec] = BELParser::Language.specification(spec)
-  end
+  opts.on(
+    '-s',
+    '--specification VERSION',
+    'BEL specification version (e.g. 1.0, 2.0).') do |spec|
+      unless BELParser::Language.defines_version?(spec)
+        $stderr.puts %(Invalid BEL specification "#{spec}")
+        exit 1
+      end
+
+      options[:spec] = BELParser::Language.specification(spec)
+    end
 
   opts.on(
-    '-r',
-    '--[no-]reuse-resource-databases',
-    'Enable to reuse resource databases if they exist.') do |reuse|
+    '-q',
+    '--sparql-endpoint URL',
+    'SPARQL endpoint URL containing BEL RDF resources.') do |sparql|
 
-    options[:reuse] = reuse
+      require 'bel_parser/resource/sparql_reader'
+      options[:uri_reader] = BELParser::Resource::SPARQLReader.new(sparql)
+    end
+
+  if RUBY_ENGINE =~ /^jruby/i
+    opts.on(
+      '-t',
+      '--read-jena-tdb DIRECTORY',
+      'Jena TDB directory containing BEL RDF resources.') do |tdb|
+
+        require 'bel_parser/resource/jena_tdb_reader'
+        options[:uri_reader] = BELParser::Resource::JenaTDBReader.new(tdb)
+      end
   end
 end.parse!
 
@@ -55,17 +74,20 @@ io =
     $stdin
   end
 
-rr = BELParser::Resource::ResourceURLReader.new(options[:reuse])
+uri_reader = options[:uri_reader]
+url_reader = options[:url_reader]
+
 namespaces = Hash[
   ARGV.map do |ns|
     prefix, identifier = ns.split('=')
-    dataset            = rr.retrieve_resource(identifier)
+    dataset            = uri_reader.retrieve_resource(identifier)
     dataset ? [prefix, dataset] : nil
   end.compact
 ]
 
 initial_state = {
-  resource_reader:       rr,
+  uri_reader:            uri_reader,
+  url_reader:            url_reader,
   specification:         spec,
   namespace_definitions: namespaces
 }
@@ -80,7 +102,8 @@ module BELParser
       SYN_WARN = BELParser::Language::Syntax::SyntaxWarning
       SEM_WARN = BELParser::Language::Semantics::SemanticsWarning
 
-      def initialize(initial_state, io)
+      def initialize(initial_state, io, verbose)
+        @verbose   = verbose
         @validator =
           Validator.new(
             StateAggregator.new(
@@ -117,18 +140,24 @@ module BELParser
           puts "On line #{line_number} for #{ast.type}"
           puts '  Line:'
           puts "    #{line}"
-          puts '  Errors:'
-          errors.each do |err|
-            puts "    #{err}"
+          unless errors.empty?
+            puts '  Errors:'
+            errors.each do |err|
+              puts "    #{err}"
+            end
           end
-          puts '  Warnings:'
-          warnings.each do |warn|
-            puts "    #{warn}"
+          unless warnings.empty?
+            puts '  Warnings:'
+            warnings.each do |warn|
+              puts "    #{warn}"
+            end
           end
+        else
+          puts "Line OK: #{line}" if @verbose
         end
       end
     end
   end
 end
 
-BELParser::Script::Reader.new(initial_state, io).read
+BELParser::Script::Reader.new(initial_state, io, options[:verbose]).read

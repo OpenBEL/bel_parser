@@ -8,13 +8,13 @@ module BELParser
     # when supplied a {BELParser::Language::Specification} and Hash of
     # namespaces.
     class ExpressionValidator
-      def initialize(spec, namespaces, resource_reader)
+      def initialize(spec, namespaces, uri_reader, url_reader)
         @spec                = spec
         @namespaces          = namespaces || {}
         @syntax_functions    = Syntax.syntax_functions
         @semantics_functions = Semantics.semantics_functions
         @transform           =
-          ApplyNamespaceEncoding.new(@spec, @namespaces, resource_reader)
+          ApplyNamespaceEncoding.new(@spec, @namespaces, uri_reader, url_reader)
       end
 
       # Validate the syntax and semantics of

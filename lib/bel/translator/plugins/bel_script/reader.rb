@@ -12,7 +12,8 @@ module BEL::Translator::Plugins
       def initialize(io, options = {})
         @io    = io
         @state = {
-          resource_reader:       BELParser::Resource::ResourceURLReader.new(true),
+          uri_reader:            BELParser::Resource.default_uri_reader,
+          url_reader:            BELParser::Resource.default_url_reader,
           specification:         BELParser::Language.specification('2.0'),
           namespace_definitions: {}
         }

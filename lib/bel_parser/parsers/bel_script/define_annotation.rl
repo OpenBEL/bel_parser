@@ -17,10 +17,15 @@
   action add_string_value {
     trace('DEFINE_ANNOTATION add_string_value')
     string_node = @buffers.delete(:string)
-    if @url_domain
+
+    case
+    when @uri_domain
+      leaf = domain(uri(string_node))
+      leaf.complete = string_node.complete
+    when @url_domain
       leaf = domain(url(string_node))
       leaf.complete = string_node.complete
-    elsif @pattern_domain
+    when @pattern_domain
       leaf = domain(pattern(string_node))
       leaf.complete = string_node.complete
     else
@@ -52,6 +57,11 @@
   action add_list_domain {
     trace('DEFINE_ANNOTATION add_list_domain')
     @list_domain = true
+  }
+
+  action add_uri_domain {
+    trace('DEFINE_ANNOTATION add_uri_domain')
+    @uri_domain = true
   }
 
   action add_url_domain {
@@ -87,9 +97,13 @@
   action define_annotation_node_eof {
     trace('DEFINE_ANNOTATION define_annotation_node_eof')
     annotation_definition_node = annotation_definition()
-    if @url_domain
+
+    case
+    when @uri_domain
+      domain_node = domain(uri())
+    when @url_domain
       domain_node = domain(url())
-    elsif @pattern_domain
+    when @pattern_domain
       domain_node = domain(pattern())
     else
       domain_node = domain()
@@ -131,6 +145,11 @@
     %add_list_domain
     ;
 
+  uri_domain =
+    KW_URI
+    %add_uri_domain
+    ;
+
   url_domain =
     KW_URL
     %add_url_domain
@@ -143,6 +162,7 @@
 
   domain =
     list_domain |
+    uri_domain |
     url_domain |
     pattern_domain
     ;

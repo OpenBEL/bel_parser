@@ -30,7 +30,7 @@ module BELParser
       #
       # @param [Boolean] reuse_database_files specify +true+ to reuse database
       #        files; +false+ to create new database files (default)
-      def initialize(reuse_database_files = false)
+      def initialize(reuse_database_files = true)
         @resources = {}
         @datasets  = ResourceURLReader.open_datasets_file
         @reuse     = reuse_database_files
@@ -50,7 +50,7 @@ module BELParser
         resource = read_resource(resource_identifier)
         encoding = resource[:values][value]
         return nil unless encoding
-        FileResourceValue.new(resource[:dataset], value, encoding)
+        [FileResourceValue.new(resource[:dataset], value, encoding)]
       end
 
       def retrieve_values_from_resource(resource_identifier)

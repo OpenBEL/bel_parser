@@ -1,17 +1,15 @@
-require 'bel_parser/quoting'
-
 module BELParser
   module Language
     # ApplyNamespaceEncoding applies _namespace_ and _encoding_ properties to
     # {BELParser::Parsers::AST::Parameter} child nodes.
     class ApplyNamespaceEncoding
       include AST::Processor::Mixin
-      include BELParser::Quoting
 
-      def initialize(language_spec, namespace_hash, resource_reader)
-        @language_spec   = language_spec
-        @namespace_hash  = namespace_hash
-        @resource_reader = resource_reader
+      def initialize(language_spec, namespace_hash, uri_reader, url_reader)
+        @language_spec  = language_spec
+        @namespace_hash = namespace_hash
+        @uri_reader     = uri_reader
+        @url_reader     = url_reader
       end
 
       def on_observed_term(observed_term_node)
@@ -51,8 +49,9 @@ module BELParser
       end
 
       def on_parameter(parameter_node)
-        @resolved_dataset = nil
-        @prefix           = nil
+        @type    = nil
+        @dataset = nil
+        @prefix  = nil
         process(parameter_node.prefix)
         process(parameter_node.value)
       end
@@ -60,28 +59,26 @@ module BELParser
       def on_prefix(prefix_node)
         return prefix_node unless prefix_node.identifier
 
-        @prefix    = prefix_node.identifier.string_literal
-        dataset    = @namespace_hash[@prefix]
-        return prefix_node unless dataset
+        @prefix         = prefix_node.identifier.string_literal
+        @type, @dataset = @namespace_hash[@prefix]
+        return prefix_node unless @dataset
 
-        @resolved_dataset     = dataset
-        prefix_node.namespace = dataset
-
+        prefix_node.namespace = @dataset
         prefix_node
       end
 
       def on_value(value_node)
-        return value_node unless @resolved_dataset
-        value_node.namespace = @resolved_dataset
-        identifier           = @resolved_dataset.identifier
-        value_literal        = unquote(value_node.children[0].string_literal)
+        return value_node unless @dataset
+        value_node.namespace = @dataset
+        identifier           = @dataset.identifier
+        value_literal        = value_node.children[0].string_literal
 
-        value =
-          @resource_reader
-          .retrieve_value_from_resource(identifier, value_literal)
+        reader = @type == :uri ? @uri_reader : @url_reader
+        values = reader.retrieve_value_from_resource(identifier, value_literal)
 
         value_node.prefix = @prefix
-        if value
+        if values
+          value = values.first
           value_node.encoding =
             value
             .encodings

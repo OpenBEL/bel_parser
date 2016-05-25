@@ -1,7 +1,6 @@
 require 'bel_parser/language'
 require 'bel_parser/language/syntax_function'
 require 'bel_parser/language/syntax_error'
-require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
 
@@ -10,20 +9,28 @@ module BELParser
     module Syntax
       class UnresolvableNamespace
         extend BELParser::Language::Syntax::SyntaxFunction
-        extend BELParser::Quoting
 
         TARGET_NODE = BELParser::Parsers::AST::NamespaceDefinition
 
         def self.map(ast_node, script_context)
           return nil unless ast_node.is_a?(TARGET_NODE)
-          resource_reader = script_context[:resource_reader]
+          uri_reader, url_reader = script_context.values_at(:uri_reader, :url_reader)
 
           keyword, domain = ast_node.children
           if domain.url?
-            url = unquote(domain.child.string.string_literal)
-            unless resource_reader.retrieve_resource(url)
-              prefix = keyword.identifier.string_literal
-              return UnresolvableNamespaceError.new(ast_node, prefix, url)
+            ApplyResourceURI.new.process(ast_node)
+            if ast_node.uri
+              uri = ast_node.uri
+              unless uri_reader.retrieve_resource(uri)
+                prefix = keyword.identifier.string_literal
+                return UnresolvableNamespaceError.new(ast_node, prefix, uri)
+              end
+            else
+              url = domain.child.string.string_literal
+              unless url_reader.retrieve_resource(url)
+                prefix = keyword.identifier.string_literal
+                return UnresolvableNamespaceError.new(ast_node, prefix, url)
+              end
             end
           end
 

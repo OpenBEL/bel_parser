@@ -116,10 +116,11 @@ module BELParser
               domain:  domain_value(type, domain)
             }
           end,
-          namespaces: (ns_defs || []).map do |keyword, uri|
+          namespaces: (ns_defs || []).map do |keyword, (type, domain)|
             {
               keyword: keyword,
-              uri:     domain_value(:uri, uri)
+              type:    type,
+              domain:  domain_value(type, domain)
             }
           end
         }
@@ -151,17 +152,20 @@ if __FILE__ == $PROGRAM_NAME
   require 'bel_parser/resource/resource_url_reader'
   include BELParser::Script
 
-  rr = BELParser::Resource::ResourceURLReader.new(true)
+  uri_reader = BELParser::Resource.default_uri_reader
+  url_reader = BELParser::Resource::ResourceURLReader.new(true)
+
   namespaces = Hash[
     ARGV.map do |ns|
       prefix, identifier = ns.split('=')
-      dataset            = rr.retrieve_resource(identifier)
+      dataset            = uri_reader.retrieve_resource(identifier)
       dataset ? [prefix, dataset] : nil
     end.compact
   ]
 
   initial_state = {
-    resource_reader:       rr,
+    uri_reader:            uri_reader,
+    url_reader:            url_reader,
     specification:         BELParser::Language.specification('2.0'),
     namespace_definitions: namespaces
   }

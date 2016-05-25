@@ -30,13 +30,14 @@ module BELParser
 
         def self.expression_validator(script_context)
           unless defined? @expression_validator
-            spec, namespaces, reader =
-              script_context
-              .values_at(
+            spec, namespaces, uri_reader, url_reader =
+              script_context.values_at(
                 :specification,
                 :namespace_definitions,
-                :resource_reader)
-            @expression_validator = EXP_VALIDATOR.new(spec, namespaces, reader)
+                :uri_reader,
+                :url_reader)
+            @expression_validator = EXP_VALIDATOR.new(
+              spec, namespaces, uri_reader, url_reader)
           end
           @expression_validator
         end
