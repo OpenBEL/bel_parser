@@ -1,4 +1,3 @@
-require 'bel_parser/quoting'
 require_relative 'semantics_match'
 require_relative 'semantics_result'
 require_relative 'semantics_ast_warnings'
@@ -739,14 +738,12 @@ module BELParser
         UNDETERMINED       = /[1?]_[?*]/
         UNKNOWN_START_STOP = '?'.freeze
 
-        include BELParser::Quoting
-
         def initialize(**properties)
           super(:is_amino_acid_range, [], properties)
         end
 
         def match(value_node, spec)
-          string_literal = unquote(value_node.children[0])
+          string_literal = value_node.children[0]
           case string_literal
           when START_STOP, UNDETERMINED, UNKNOWN_START_STOP
             success(value_node, spec)
@@ -758,14 +755,12 @@ module BELParser
 
       # AST node for IsSequencePosition is a semantic AST.
       class SemanticIsSequencePosition < SemanticASTNode
-        include BELParser::Quoting
-
         def initialize(**properties)
           super(:is_sequence_position, [], properties)
         end
 
         def match(value_node, spec)
-          string_literal = unquote(value_node.children[0].string_literal)
+          string_literal = value_node.children[0].string_literal
           integer_position =
             begin
               Integer(string_literal)

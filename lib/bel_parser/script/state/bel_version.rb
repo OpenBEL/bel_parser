@@ -1,6 +1,5 @@
 require 'bel_parser/language'
 require 'bel_parser/parsers/ast/node'
-require 'bel_parser/quoting'
 require 'concurrent/hash'
 require_relative '../keywords'
 require_relative '../state_function'
@@ -10,7 +9,6 @@ module BELParser
     module State
       class BELVersion
         extend StateFunction
-        extend BELParser::Quoting
         extend Keyword
 
         TARGET_NODE         = BELParser::Parsers::AST::DocumentProperty
@@ -22,7 +20,7 @@ module BELParser
           name_string  = name.identifier.string_literal
           return unless is_bel_version?(name_string)
 
-          value_string = unquote(value.children[0].string_literal)
+          value_string = value.children[0].string_literal
           begin
             spec = BELParser::Language.specification(value_string)
           rescue ArgumentError

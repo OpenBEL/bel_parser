@@ -1,5 +1,3 @@
-require 'bel_parser/quoting'
-
 module BELParser
   module Expression
     module Model

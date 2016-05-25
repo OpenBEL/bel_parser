@@ -1,7 +1,6 @@
 require 'bel_parser/language'
 require 'bel_parser/language/syntax_function'
 require 'bel_parser/language/syntax_error'
-require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
 require_relative '../keywords'
@@ -11,18 +10,17 @@ module BELParser
     module Syntax
       class UnsupportedBELVersion
         extend BELParser::Language::Syntax::SyntaxFunction
-        extend BELParser::Quoting
         extend Keyword
 
-        TARGET_NODE         = BELParser::Parsers::AST::DocumentProperty
+        TARGET_NODE = BELParser::Parsers::AST::DocumentProperty
 
         def self.map(ast_node, script_context)
           return nil unless ast_node.is_a?(TARGET_NODE)
           name, value = ast_node.children
-          name_string  = name.identifier.string_literal
+          name_string = name.identifier.string_literal
           return nil unless is_bel_version?(name_string)
 
-          value_string = unquote(value.children[0].string_literal)
+          value_string = value.children[0].string_literal
           begin
             BELParser::Language.specification(value_string)
             nil

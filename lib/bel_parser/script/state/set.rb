@@ -1,5 +1,4 @@
 require 'bel_parser/language'
-require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
 require_relative '../keywords'
@@ -11,7 +10,6 @@ module BELParser
       class Set
         extend StateFunction
         extend BELParser::Script::Keyword
-        extend BELParser::Quoting
 
         TARGET_NODE = BELParser::Parsers::AST::Set
         LIST_NODE   = BELParser::Parsers::AST::List

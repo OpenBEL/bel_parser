@@ -1,7 +1,6 @@
 require 'bel_parser/language'
 require 'bel_parser/language/syntax_function'
 require 'bel_parser/language/syntax_warning'
-require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
 require_relative '../keywords'
@@ -11,7 +10,6 @@ module BELParser
     module Syntax
       class UndefinedAnnotationValue
         extend BELParser::Language::Syntax::SyntaxFunction
-        extend BELParser::Quoting
         extend BELParser::Script::Keyword
 
         TARGET_NODE       = BELParser::Parsers::AST::Set
@@ -57,7 +55,6 @@ module BELParser
         end
 
         def self.map_value(ast_node, name_string, value_string, identifier, reader)
-          value_string = unquote(value_string)
           value = reader.retrieve_value_from_resource(identifier, value_string)
           UndefinedAnnotationValueWarning.new(
             ast_node,

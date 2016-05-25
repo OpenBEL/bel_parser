@@ -1,4 +1,3 @@
-require 'bel_parser/quoting'
 require_relative '../parsers/serializer'
 
 module BELParser
@@ -7,7 +6,6 @@ module BELParser
     # nanopub hash objects.
     class NanopubMapper
       include BELParser::Parsers
-      include BELParser::Quoting
 
       STATEMENT_TYPES = [
         :simple_statement,
@@ -90,19 +88,19 @@ module BELParser
       def citation(citation)
         return nil unless citation
         citation.each do |field, value|
-          citation[field] = unquote(value)
+          citation[field] = value
         end
       end
 
       def support(support)
-        unquote(support)
+        support
       end
 
       def experiment_context(annotations)
         (annotations || []).map do |name, value|
           {
             name:  name,
-            value: unquote(value)
+            value: value
           }
         end
       end

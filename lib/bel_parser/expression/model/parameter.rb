@@ -93,7 +93,7 @@ module BELParser
             end
           Parameter.new(
             namespace,
-            unquote(value.children[0].string_literal))
+            value.children[0].string_literal)
         end
       end
     end

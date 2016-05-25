@@ -1,4 +1,3 @@
-require 'bel_parser/quoting'
 require 'bel_parser/language/relationship'
 
 module BELParser
@@ -114,7 +113,6 @@ module BELParser
       end
 
       module Converters
-        include BELParser::Quoting
         include BELParser::Parsers::AST
 
         def ast_to_statement(ast, spec, namespaces = {})

@@ -60,7 +60,7 @@ module BELParser
         return prefix_node unless prefix_node.identifier
 
         @prefix         = prefix_node.identifier.string_literal
-        @type, @dataset = @namespace_hash[@prefix]
+        @type, @dataset = @namespace_hash[@prefix.downcase]
         return prefix_node unless @dataset
 
         prefix_node.namespace = @dataset

@@ -2,7 +2,6 @@ require 'bel_parser/language'
 require 'bel_parser/language/expression_validator'
 require 'bel_parser/language/syntax_function'
 require 'bel_parser/language/syntax_warning'
-require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
 
@@ -11,7 +10,6 @@ module BELParser
     module Syntax
       class ExpressionValidation
         extend BELParser::Language::Syntax::SyntaxFunction
-        extend BELParser::Quoting
 
         TARGET_NODES = [
           BELParser::Parsers::AST::ObservedTerm,

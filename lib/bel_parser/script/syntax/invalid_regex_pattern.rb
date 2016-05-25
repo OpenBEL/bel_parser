@@ -1,7 +1,6 @@
 require 'bel_parser/language'
 require 'bel_parser/language/syntax_function'
 require 'bel_parser/language/syntax_error'
-require 'bel_parser/quoting'
 require 'bel_parser/parsers/ast/node'
 require 'concurrent/hash'
 
@@ -10,13 +9,12 @@ module BELParser
     module Syntax
       class InvalidRegexPattern
         extend BELParser::Language::Syntax::SyntaxFunction
-        extend BELParser::Quoting
 
         TARGET_NODE = BELParser::Parsers::AST::Pattern
 
         def self.map(ast_node, script_context)
           return nil unless ast_node.is_a?(TARGET_NODE)
-          pattern = unquote(ast_node.string.string_literal)
+          pattern = ast_node.string.string_literal
           begin
             Regexp.new(pattern)
             nil

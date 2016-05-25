@@ -17,7 +17,7 @@ module BELParser
           return nil if prefix_identifier.nil?
 
           prefix = prefix_identifier.string_literal
-          unless namespaces[prefix]
+          unless namespaces[prefix.downcase]
             UndefinedNamespaceError.new(prefix_node, spec, prefix, namespaces)
           end
         end
