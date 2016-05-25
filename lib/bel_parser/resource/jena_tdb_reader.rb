@@ -45,7 +45,7 @@ module BELParser
           end
         end
         return nil unless types.any?(&method(:scheme_class?))
-        ConceptScheme.new(uri, domain, prefix, pref_label, types)
+        ConceptScheme.new(uri.to_s, domain, prefix, pref_label, types.map(&:to_s))
       end
 
       def retrieve_value_from_resource(identifier, value)
