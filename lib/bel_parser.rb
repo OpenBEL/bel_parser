@@ -16,6 +16,9 @@ require 'bel_parser/ast_filter'
 # Language; version-independent classes
 require 'bel_parser/language'
 
+# BEL Resource support
+require 'bel_parser/resources'
+
 # BEL Expression support
 require 'bel_parser/expression'
 
