@@ -5,8 +5,7 @@ require_relative 'resource/resource_url_reader'
 module BELParser
   module Resource
 
-    DEFAULT_SPARQL_ENDPOINT = 'http://build.openbel.org/sparql'
-    #DEFAULT_SPARQL_ENDPOINT = 'http://localhost:3030/identifiers/sparql'
+    DEFAULT_SPARQL_ENDPOINT = 'http://resources.openbel.org/sparql'
 
     READER_LOCK       = Mutex.new
     private_constant :READER_LOCK
