@@ -64,7 +64,7 @@ module BELParser
         end
 
         def to_s
-          prefix = @expression_node.identifier.string_literal
+          prefix = @expression_node.identifier && @expression_node.identifier.string_literal
           %(Missing namespace for prefix "#{prefix}".)
         end
       end
