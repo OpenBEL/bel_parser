@@ -85,7 +85,7 @@ module BELParser
                 []
               end
             values.each do |value|
-              yield Parameter.new(self, value.first)
+              yield Parameter.new(self, value.name, value.encodings)
             end
           else
             to_enum(:each)
