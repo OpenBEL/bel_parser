@@ -122,9 +122,11 @@ module BELParser
         where {
             <<%= uri %>> rdf:type       skos:ConceptScheme .
             <<%= uri %>> rdf:type       ?type .
-            <<%= uri %>> belv:domain    ?domain .
             <<%= uri %>> belv:prefix    ?prefix .
             <<%= uri %>> skos:prefLabel ?prefLabel .
+            optional {
+              <<%= uri %>> belv:domain    ?domain .
+            }
         }
         group by ?domain ?prefix ?prefLabel
       SPARQL
