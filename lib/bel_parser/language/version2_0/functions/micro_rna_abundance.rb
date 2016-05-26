@@ -17,7 +17,7 @@ module BELParser
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::MicroRNAAbundance
           M_ENC       = Version2_0::ValueEncodings::MicroRNAAbundance
           DESCRIPTION = 'Denotes the abundance of a processed, functional
-          icroRNA'.freeze
+          microRNA'.freeze
 
           def self.short
             SHORT

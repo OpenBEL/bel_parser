@@ -18,7 +18,7 @@ module BELParser
           T_ENC       = Version2_0::ValueEncodings::Activity
           DESCRIPTION = 'Denotes the frequency or abundance of events
           n which a member acts as a causal agent at the
-          olecular scale'.freeze
+          molecular scale'.freeze
 
           def self.short
             SHORT

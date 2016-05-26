@@ -17,8 +17,8 @@ module BELParser
           LONG        = :degradation
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::Abundance
           DESCRIPTION = 'Denotes the frequency or abundance of events
-          n which a member is degraded in some way such
-          hat it is no longer a member.'.freeze
+          in which a member is degraded in some way such
+          that it is no longer a member.'.freeze
 
           def self.short
             SHORT

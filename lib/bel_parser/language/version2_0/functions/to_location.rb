@@ -16,7 +16,7 @@ module BELParser
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::ToLocation
           L_ENC       = Version2_0::ValueEncodings::Location
           DESCRIPTION = 'Denotes the to cellular location of the
-          bundance.'.freeze
+          abundance.'.freeze
 
           def self.short
             SHORT

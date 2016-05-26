@@ -19,7 +19,7 @@ module BELParser
           P_ENC       = Version2_0::ValueEncodings::ProteinAbundance
           R_ENC       = Version2_0::ValueEncodings::RNAAbundance
           DESCRIPTION = 'Specifies the abundance of a protein translated
-          rom the fusion of a gene.'.freeze
+          from the fusion of a gene.'.freeze
 
           def self.short
             SHORT

@@ -18,7 +18,7 @@ module BELParser
           RETURN_TYPE = Version2_0::ReturnTypes::ProteinModification
           E_ENC       = Version2_0::ValueEncodings::ProteinModification
           DESCRIPTION = 'Denotes a covalently modified protein
-          bundance'.freeze
+          abundance'.freeze
 
           def self.short
             SHORT

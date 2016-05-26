@@ -15,8 +15,7 @@ module BELParser
           LONG        = :biologicalProcess
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::BiologicalProcess
           B_ENC       = Version2_0::ValueEncodings::BiologicalProcess
-          DESCRIPTION = 'Denotes a process or population of
-          vents.'.freeze
+          DESCRIPTION = 'Denotes a process or population of events.'.freeze
 
           def self.short
             SHORT
