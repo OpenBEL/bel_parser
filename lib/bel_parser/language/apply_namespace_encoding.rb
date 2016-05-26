@@ -49,9 +49,9 @@ module BELParser
       end
 
       def on_parameter(parameter_node)
-        @type    = nil
-        @dataset = nil
-        @prefix  = nil
+        @type      = nil
+        @namespace = nil
+        @prefix    = nil
         process(parameter_node.prefix)
         process(parameter_node.value)
       end
@@ -60,29 +60,25 @@ module BELParser
         return prefix_node unless prefix_node.identifier
 
         @prefix         = prefix_node.identifier.string_literal
-        @type, @dataset = @namespace_hash[@prefix.downcase]
-        return prefix_node unless @dataset
+        @namespace      = @namespace_hash[@prefix]
+        return prefix_node unless @namespace
 
-        prefix_node.namespace = @dataset
+        prefix_node.namespace = @namespace
         prefix_node
       end
 
       def on_value(value_node)
-        return value_node unless @dataset
-        value_node.namespace = @dataset
-        identifier           = @dataset.identifier
+        return value_node unless @namespace
+        value_node.prefix    = @prefix
+        value_node.namespace = @namespace
+
         value_literal        = value_node.children[0].string_literal
+        value                = @namespace[value_literal]
 
-        reader = @type == :uri ? @uri_reader : @url_reader
-        values = reader.retrieve_value_from_resource(identifier, value_literal)
-
-        value_node.prefix = @prefix
-        if values
-          value = values.first
+        if value
           value_node.encoding =
-            value
-            .encodings
-            .map(&@language_spec.method(:value_encoding))
+            value.encoding &&
+            value.encoding.map(&@language_spec.method(:value_encoding))
           value_node.namespace_value = value
         else
           value_node.encoding        = nil

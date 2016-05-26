@@ -14,7 +14,8 @@ module BELParser
           return nil unless value_node.is_a?(BELParser::Parsers::AST::Value)
           return nil unless value_node.namespace
 
-          unless value_node.namespace_value
+          nsv = value_node.namespace_value
+          if nsv.nil? || nsv.encoding.nil?
             value = value_node.children[0].string_literal
             UndefinedNamespaceValueWarning.new(value_node, spec, value)
           end

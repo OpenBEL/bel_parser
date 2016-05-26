@@ -19,6 +19,7 @@ module BELParser
             encodings.chars.map(&:to_sym)
           end
       end
+
     end
   end
 end

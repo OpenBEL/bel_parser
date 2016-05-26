@@ -16,6 +16,14 @@ module BELParser
         @types      = convert_types(types.to_s)
       end
 
+      def uri?
+        true
+      end
+
+      def url?
+        false
+      end
+
       private
 
       def convert_types(types)

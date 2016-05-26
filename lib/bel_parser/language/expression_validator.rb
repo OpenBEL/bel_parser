@@ -24,10 +24,38 @@ module BELParser
       # @return [BELParser::Language::Syntax::SyntaxResult] syntax results
       def validate(expression_node)
         @transform.process(expression_node)
-        results = syntax(expression_node)
-        results << Syntax::Valid.new(expression_node, @spec) if results.empty?
-        results.concat(semantics(expression_node))
-        results
+
+        case expression_node
+        when BELParser::Parsers::AST::SimpleStatement
+          SimpleStatementResult.new(
+            validate(expression_node.statement.subject.term),
+            validate(expression_node.statement.object.child),
+            syntax(expression_node),
+            semantics(expression_node))
+        when BELParser::Parsers::AST::ObservedTerm
+          ObservedTermResult.new(
+            validate(expression_node.statement.subject.term),
+            syntax(expression_node),
+            semantics(expression_node))
+        when BELParser::Parsers::AST::NestedStatement
+          NestedStatementResult.new(
+            validate(expression_node.statement.subject.term),
+            validate(expression_node.statement.object.child),
+            syntax(expression_node),
+            semantics(expression_node))
+        when BELParser::Parsers::AST::Statement
+          SimpleStatementResult.new(
+            validate(expression_node.subject.term),
+            validate(expression_node.object.child),
+            syntax(expression_node),
+            semantics(expression_node))
+        when BELParser::Parsers::AST::Term
+          TermResult.new(syntax(expression_node), semantics(expression_node))
+        when BELParser::Parsers::AST::Parameter
+          ParameterResult.new(syntax(expression_node), semantics(expression_node))
+        else
+          nil
+        end
       end
 
       private
@@ -39,29 +67,376 @@ module BELParser
       end
 
       def semantics(expression_node)
-        semantic_results =
-          expression_node.traverse.flat_map do |node|
-            @semantics_functions.flat_map { |func| func.map(node, @spec, @namespaces) }
-          end.compact
-        sigmap_results, other_results =
-          semantic_results.partition do |result|
-            result.is_a?(Semantics::SignatureMappingSuccess) ||
-              result.is_a?(Semantics::SignatureMappingWarning)
+        expression_node.traverse.flat_map do |node|
+          @semantics_functions.flat_map { |func| func.map(node, @spec, @namespaces) }
+        end.compact
+      end
+
+      module Result
+        def valid?
+          valid_syntax? && valid_semantics?
+        end
+
+        def valid_syntax?
+          @syntax_results.empty?
+        end
+
+        def valid_semantics?
+          @semantics_results.empty?
+        end
+
+        def valid_signature_mappings
+          @semantics_results
+            .select do |res|
+              res.is_a?(Semantics::SignatureMappingSuccess)
+            end.uniq
+        end
+
+        def invalid_signature_mappings
+          @semantics_results
+            .select do |res|
+              res.is_a?(Semantics::SignatureMappingWarning)
+            end
+        end
+
+        def detail
+          ''
+        end
+
+        def to_s
+          <<-HEADER.gsub(/^ {12}/, '')
+            Syntax:    #{valid_syntax?    ? 'Valid' : 'Invalid'}
+            Semantics: #{valid_semantics? ? 'Valid' : 'Invalid'}
+
+            #{syntax_errors_s}#{semantics_errors_s}#{detail}
+          HEADER
+        end
+
+        private
+
+        def syntax_errors_s
+          return nil if @syntax_results.empty?
+
+          report = "Syntax errors\n"
+          @syntax_results.each { |res| report += "#{res}\n" }
+          report
+        end
+
+        def semantics_errors_s
+          return nil if @semantics_results.empty?
+
+          report = "Semantic errors\n"
+          @semantics_results.each { |res| report += "#{res}\n" }
+          report
+        end
+      end
+
+      class ParameterResult
+        attr_reader :syntax_results, :semantics_results
+        include Result
+
+        def initialize(syntax_results, semantics_results)
+          @syntax_results    = syntax_results
+          @semantics_results = semantics_results
+        end
+
+        def valid_signature_mappings
+          nil
+        end
+
+        def invalid_signature_mappings
+          nil
+        end
+      end
+
+      class TermResult
+        attr_reader :syntax_results, :semantics_results
+        include Result
+
+        def initialize(syntax_results, semantics_results)
+          @syntax_results    = syntax_results
+          @semantics_results = semantics_results
+        end
+
+        def valid_semantics?
+          @semantics_results.any? do |res|
+            res.is_a?(Semantics::SignatureMappingSuccess)
           end
-        expression_node
-          .traverse
-          .select do |node|
-            node.is_a?(BELParser::Parsers::AST::Term)
-          end
-          .map do |term_node|
-            sigmap_term =
-              sigmap_results
-              .select { |res| res.expression_node == term_node }
-            unless sigmap_term.any?(&:success?)
-              other_results.concat(sigmap_term)
+        end
+
+        def detail
+          report = "Valid signatures\n"
+          valid_signature_mappings.each do |mapping|
+            report += "  #{mapping.signature}\n"
+            mapping.results.each do |reason|
+              report += "    #{reason}\n"
             end
           end
-        other_results
+          report += "\n"
+
+          report += "Invalid signatures\n"
+          invalid_signature_mappings.each do |mapping|
+            report += "  #{mapping.signature}\n"
+            mapping.results.each do |reason|
+              report += "    #{reason}\n"
+            end
+          end
+          report
+        end
+      end
+
+      class ObservedTermResult
+        attr_reader :syntax_results, :semantics_results
+        include Result
+
+        def initialize(subject_result, syntax, semantics)
+          @subject_result    = subject_result
+          @syntax_results    = syntax
+          @semantics_results =
+            semantics.reject! do |res|
+              res.is_a?(Semantics::SignatureMappingWarning) ||
+              res.is_a?(Semantics::SignatureMappingSuccess)
+            end
+        end
+
+        def valid_syntax?
+          @subject_result.valid_syntax? && @syntax_results.empty?
+        end
+
+        def valid_semantics?
+          @subject_result.valid_semantics? && @semantics_results.empty?
+        end
+
+        def subject_valid?
+          valid?
+        end
+
+        def detail
+          report = "Subject term - Valid signatures\n"
+          @subject_result.valid_signature_mappings.each do |mapping|
+            report += "  #{mapping.signature}\n"
+            mapping.results.each do |reason|
+              report += "    #{reason}\n"
+            end
+          end
+          report += "\n"
+
+          report += "Subject term - Invalid signatures\n"
+          @subject_result.invalid_signature_mappings.each do |mapping|
+            report += "  #{mapping.signature}\n"
+            mapping.results.each do |reason|
+              report += "    #{reason}\n"
+            end
+          end
+          report
+        end
+      end
+
+      class SimpleStatementResult
+        attr_reader :syntax_results, :semantics_results
+        include Result
+
+        def initialize(subject_result, object_result, syntax, semantics)
+          @subject_result    = subject_result
+          @object_result     = object_result
+          @syntax_results    = syntax
+          @semantics_results =
+            semantics.reject! do |res|
+              res.is_a?(Semantics::SignatureMappingWarning) ||
+              res.is_a?(Semantics::SignatureMappingSuccess)
+            end
+        end
+
+        def valid?
+          valid_syntax? && valid_semantics?
+        end
+
+        def valid_syntax?
+          @subject_result.valid_syntax? &&
+            @object_result.valid_syntax? &&
+            @syntax_results.empty?
+        end
+
+        def valid_semantics?
+          @subject_result.valid_semantics? &&
+            @object_result.valid_semantics? &&
+            @semantics_results.empty?
+        end
+
+        def subject_valid?
+          @subject_result.valid?
+        end
+
+        def object_valid?
+          @object_result.valid?
+        end
+
+        def valid_subject_signatures
+          @subject_result.semantics_results
+            .select do |res|
+              res.is_a?(Semantics::SignatureMappingSuccess)
+            end.uniq
+        end
+
+        def invalid_subject_signatures
+          @subject_result.semantics_results
+            .select do |res|
+              res.is_a?(Semantics::SignatureMappingWarning)
+            end
+        end
+
+        def valid_object_signatures
+          @object_result.semantics_results
+            .select do |res|
+              res.is_a?(Semantics::SignatureMappingSuccess)
+            end.uniq
+        end
+
+        def invalid_object_signatures
+          @object_result.semantics_results
+            .select do |res|
+              res.is_a?(Semantics::SignatureMappingWarning)
+            end
+        end
+
+        def detail
+          report = "Subject term - Valid signatures\n"
+          @subject_result.valid_signature_mappings.each do |mapping|
+            report += "  #{mapping.signature}\n"
+            mapping.results.each do |reason|
+              report += "    #{reason}\n"
+            end
+          end
+          report += "\n"
+
+          report += "Subject term - Invalid signatures\n"
+          @subject_result.invalid_signature_mappings.each do |mapping|
+            report += "  #{mapping.signature}\n"
+            mapping.results.each do |reason|
+              report += "    #{reason}\n"
+            end
+          end
+          report += "\n"
+
+          report += "Object term - Valid signatures\n"
+          @object_result.valid_signature_mappings.each do |mapping|
+            report += "  #{mapping.signature}\n"
+            mapping.results.each do |reason|
+              report += "    #{reason}\n"
+            end
+          end
+          report += "\n"
+
+          report += "Object term - Invalid signatures\n"
+          @object_result.invalid_signature_mappings.each do |mapping|
+            report += "  #{mapping.signature}\n"
+            mapping.results.each do |reason|
+              report += "    #{reason}\n"
+            end
+          end
+          report
+        end
+      end
+
+      class NestedStatementResult
+        attr_reader :syntax_results, :semantics_results
+        include Result
+
+        def initialize(subject_result, object_result, syntax, semantics)
+          @subject_result    = subject_result
+          @object_result     = object_result
+          @syntax_results    = syntax
+          @semantics_results =
+            semantics.reject! do |res|
+              res.is_a?(Semantics::SignatureMappingWarning) ||
+              res.is_a?(Semantics::SignatureMappingSuccess)
+            end
+        end
+
+        def valid?
+          valid_syntax? && valid_semantics?
+        end
+
+        def valid_syntax?
+          @subject_result.valid_syntax? &&
+            @object_result.valid_syntax? &&
+            @syntax_results.empty?
+        end
+
+        def valid_semantics?
+          @subject_result.valid_semantics? &&
+            @object_result.valid_semantics? &&
+            @semantics_results.empty?
+        end
+
+        def subject_valid?
+          @subject_result.valid?
+        end
+
+        def object_valid?
+          @object_result.valid?
+        end
+
+        def valid_subject_signatures
+          @subject_result.semantics_results
+            .select do |res|
+              res.is_a?(Semantics::SignatureMappingSuccess)
+            end.uniq
+        end
+
+        def invalid_subject_signatures
+          @subject_result.semantics_results
+            .select do |res|
+              res.is_a?(Semantics::SignatureMappingWarning)
+            end
+        end
+
+        def valid_object_signatures
+          @object_result.semantics_results
+            .select do |res|
+              res.is_a?(Semantics::SignatureMappingSuccess)
+            end.uniq
+        end
+
+        def invalid_object_signatures
+          @object_result.semantics_results
+            .select do |res|
+              res.is_a?(Semantics::SignatureMappingWarning)
+            end
+        end
+
+        def to_s
+          report = @object_result.to_s
+          <<-HEADER.gsub(/^ {12}/, '')
+            Syntax:    #{valid_syntax?    ? 'Valid' : 'Invalid'}
+            Semantics: #{valid_semantics? ? 'Valid' : 'Invalid'}
+
+            #{syntax_errors_s}#{semantics_errors_s}#{detail}
+          HEADER
+        end
+
+        def detail
+          report = "Subject term - Valid signatures\n"
+          @subject_result.valid_signature_mappings.each do |mapping|
+            report += "  #{mapping.signature}\n"
+            mapping.results.each do |reason|
+              report += "    #{reason}\n"
+            end
+          end
+          report += "\n"
+
+          report += "Subject term - Invalid signatures\n"
+          @subject_result.invalid_signature_mappings.each do |mapping|
+            report += "  #{mapping.signature}\n"
+            mapping.results.each do |reason|
+              report += "    #{reason}\n"
+            end
+          end
+          report += "\n"
+
+          report += @object_result.detail
+          report
+        end
       end
     end
   end

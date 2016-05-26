@@ -29,6 +29,30 @@ module BELParser
       def types
         raise NotImplementedError, "#{__method__} is not implemented."
       end
+
+      def uri?
+        raise NotImplementedError, "#{__method__} is not implemented."
+      end
+
+      def url?
+        raise NotImplementedError, "#{__method__} is not implemented."
+      end
+
+      def <=>(another_dataset)
+        keyword <=> another_dataset.keyword
+      end
+
+      def hash
+        [types, identifier, keyword].hash
+      end
+
+      def ==(another_dataset)
+        return false if another_dataset == nil
+        types      == another_dataset.types &&
+        identifier == another_dataset.identifier &&
+        keyword    == another_dataset.keyword
+      end
+      alias :eql? :'=='
     end
   end
 end

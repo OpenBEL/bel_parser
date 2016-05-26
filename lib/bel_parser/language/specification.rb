@@ -61,6 +61,10 @@ module BELParser
         end
       end
 
+      def inspect
+        "BEL specification, version #@version"
+      end
+
       # @param [Array<#long,#short>] language_objects to be indexed by
       # +long+ and +short+ method return
       def index_long_short(language_objects)

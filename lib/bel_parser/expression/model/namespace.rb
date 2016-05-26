@@ -1,4 +1,3 @@
-require 'bel_parser/quoting'
 require 'bel_parser/resource'
 
 module BELParser
@@ -8,8 +7,6 @@ module BELParser
       # identify parameter values like genes (e.g. _AKT1_),
       # diseases (e.g. _hypertropia_), and processes (e.g. _anaphase_).
       class Namespace
-        include Enumerable
-
         attr_accessor :keyword
         attr_accessor :uri
         attr_accessor :url
@@ -23,11 +20,11 @@ module BELParser
           @url     = url
 
           # configure reader for URIs (RDF).
-          @uri_reader = options.fetch(:uri_reader, nil)
+          @uri_reader = options.fetch(:uri_reader, BELParser::Resource.default_uri_reader)
           BELParser::Resource::Reader.assert_reader(@uri_reader, 'uri_reader')
 
           # configure reader for URLs (Resource files).
-          @url_reader = options.fetch(:url_reader, nil)
+          @url_reader = options.fetch(:url_reader, BELParser::Resource.default_url_reader)
           BELParser::Resource::Reader.assert_reader(@url_reader, 'url_reader')
         end
 
@@ -47,13 +44,33 @@ module BELParser
           !@url.nil?
         end
 
+        def include?(value)
+          resolved_value =
+            if uri? && @uri_reader
+              @uri_reader.retrieve_value_from_resource(@uri, value)
+            elsif url? && @url_reader
+              @url_reader.retrieve_value_from_resource(@url, value)
+            else
+              nil
+            end
+          !resolved_value.nil?
+        end
+
         def [](value)
-          if uri? && @uri_reader
-            @uri_reader.retrieve_value_from_resource(@uri, value)
-          elsif url? && @url_reader
-            @url_reader.retrieve_value_from_resource(@url, value)
+          resolved_value =
+            if uri? && @uri_reader
+              @uri_reader.retrieve_value_from_resource(@uri, value)
+            elsif url? && @url_reader
+              @url_reader.retrieve_value_from_resource(@url, value)
+            else
+              nil
+            end
+
+          if resolved_value
+            value = resolved_value.first
+            Parameter.new(self, value.name, value.encodings)
           else
-            nil
+            Parameter.new(self, value, nil)
           end
         end
 
@@ -68,7 +85,7 @@ module BELParser
                 []
               end
             values.each do |value|
-              yield value
+              yield Parameter.new(self, value.first)
             end
           else
             to_enum(:each)
@@ -96,15 +113,38 @@ module BELParser
       end
 
       module Converters
-        include BELParser::Quoting
+        def ast_to_namespace(ast, namespace_hash = {})
+          return nil if ast.nil?
 
-        def ast_to_namespace(ast)
-          return nil if ast.nil? ||
-            !ast.is_a?(BELParser::Parsers::AST::NamespaceDefinition)
-          keyword, domain = ast.children
-          # TODO Support URI when it's an available domain.
-          url = domain.child.string.string_literal
-          Namespace.new(keyword, nil, unquote(url))
+          case ast
+          when BELParser::Parsers::AST::Prefix
+            if ast.namespace
+              dataset = ast.namespace
+              case
+              when dataset.uri?
+                Namespace.new(dataset.keyword, dataset.identifier, nil)
+              when dataset.url?
+                Namespace.new(dataset.keyword, nil, dataset.identifier)
+              else
+                Namespace.new(dataset.keyword, nil, nil)
+              end
+            else
+              return nil unless ast.identifier
+              prefix_s = ast.identifier.string_literal
+              namespace_hash[prefix_s]
+            end
+          when BELParser::Parsers::AST::NamespaceDefinition
+            keyword, domain = ast.children
+            keyword_s       = keyword.identifier.string_literal
+            case
+            when domain.uri?
+              uri = domain.child.string_literal
+              Namespace.new(keyword_s, uri, nil)
+            when domain.url?
+              url = domain.child.string_literal
+              Namespace.new(keyword_s, ast.uri, url)
+            end
+          end
         end
       end
     end

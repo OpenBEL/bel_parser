@@ -14,27 +14,30 @@ module BELParser
     URISTRING_PATTERN = /^URIString *= *(.*)$/
     private_constant :URISTRING_PATTERN
 
+    @default_uri_reader = SPARQLReader.new(DEFAULT_SPARQL_ENDPOINT, false)
+    @default_url_reader = ResourceURLReader.new
+
     def self.default_uri_reader
       READER_LOCK.synchronize do
-        @default_uri_reader ||= SPARQLReader.new(DEFAULT_SPARQL_ENDPOINT)
+        @default_uri_reader
       end
     end
 
     def self.default_uri_reader=(uri_reader)
       READER_LOCK.synchronize do
-        @default_uri_reader ||= uri_reader
+        @default_uri_reader = uri_reader
       end
     end
 
     def self.default_url_reader
       READER_LOCK.synchronize do
-        @default_url_reader ||= ResourceURLReader.new
+        @default_url_reader
       end
     end
 
     def self.default_url_reader=(url_reader)
       READER_LOCK.synchronize do
-        @default_url_reader ||= url_reader
+        @default_url_reader = url_reader
       end
     end
 

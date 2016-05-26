@@ -165,7 +165,19 @@ module BELParser
 end
 
 if __FILE__ == $PROGRAM_NAME
-  BELParser::Expression.parse($stdin).each do |obj|
-    puts "  #{obj.class.name.split('::')[-1]}: #{obj}"
-  end
+  namespaces =
+    Hash[
+      ARGV.map do |ns|
+        keyword, uri = ns.split('=')
+        [keyword, BELParser::Expression::Model::Namespace.new(keyword, uri, nil)]
+      end.compact
+    ]
+
+  BELParser::Expression.parse(
+    $stdin,
+    BELParser::Language.latest_supported_specification,
+    namespaces
+  ).each do |obj|
+      puts "  #{obj.class.name.split('::')[-1]}: #{obj}"
+    end
 end

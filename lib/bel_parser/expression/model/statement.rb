@@ -25,8 +25,12 @@ module BELParser
         # @param [Term, Statement] object
         # @param [String] comment
         def initialize(subject, relationship = nil, object = nil, comment = nil)
-          raise(ArgumentError, 'subject is nil') unless subject
-          @subject      = subject
+          if subject.nil? || !subject.is_a?(Term)
+            raise(
+              ArgumentError,
+              "subject: expected Term, actual #{subject.class}")
+          end
+          @subject = subject
 
           unless relationship.nil? || relationship.is_a?(BELParser::Language::Relationship)
             raise(
@@ -68,8 +72,29 @@ module BELParser
           @object && @object.is_a?(Statement)
         end
 
+        def namespaces
+          ns = @subject.namespaces
+          ns.concat(@object.namespaces) unless @object.nil?
+          ns
+        end
+
+        def validation(
+          spec       = BELParser::Language.latest_supported_specification,
+          uri_reader = BELParser::Resource.default_uri_reader,
+          url_reader = BELParser::Resource.default_url_reader)
+
+          validator =
+            BELParser::Expression::Validator.new(
+              spec,
+              Hash[namespaces.map { |ns| [ns.keyword, ns] }],
+              uri_reader,
+              url_reader)
+          _, _, _, result = validator.each(StringIO.new("#{to_s}\n")).first
+          result
+        end
+
         def valid?
-          # TODO Use expression validator.
+          @subject.valid? && @object.valid?
         end
 
         def hash

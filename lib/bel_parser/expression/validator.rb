@@ -3,6 +3,7 @@ require_relative '../ast_generator'
 require_relative '../parsers/expression'
 require_relative '../language'
 require_relative '../language/expression_validator'
+require_relative 'model'
 
 module BELParser
   module Expression
@@ -52,27 +53,24 @@ if __FILE__ == $PROGRAM_NAME
     exit 1
   end
 
-  uri_reader = BELParser::Resource.default_uri_reader
-  url_reader = BELParser::Resource.default_url_reader
-  namespaces      =
+  namespaces =
     Hash[
       ARGV[1..-1]
       .map do |ns|
-        prefix, identifier = ns.split('=')
-        [prefix, uri_reader.retrieve_resource(identifier)]
+        keyword, identifier = ns.split('=')
+        [keyword, BELParser::Expression::Model::Namespace.new(keyword, identifier, nil)]
       end
     ]
+
   BELParser::Expression::Validator
-    .new(ARGV.first, namespaces, uri_reader, url_reader)
-    .each($stdin) do |(line_number, line, ast, results)|
-      results.select { |res| res.is_a? BELParser::Language::Syntax::SyntaxError }
+    .new(
+      BELParser::Language.specification(ARGV.first),
+      namespaces,
+      BELParser::Resource.default_uri_reader,
+      BELParser::Resource.default_url_reader)
+    .each($stdin) do |(line_number, line, ast, result)|
       puts "#{line_number}: #{line}"
-      puts "  AST Type: #{ast.type}"
-      puts results
-        .map { |r| "#{r}\n" }
-        .join
-        .each_line
-        .map { |l| "  #{l}" }
-        .join
+      puts "AST Type:  #{ast.type}"
+      puts result
     end
 end

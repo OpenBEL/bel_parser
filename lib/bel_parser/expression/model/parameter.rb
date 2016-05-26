@@ -8,45 +8,33 @@ module BELParser
         include BELParser::Quoting
         include Comparable
 
-        attr_reader :namespace, :value
+        attr_reader :namespace, :value, :encoding
 
-        def initialize(namespace, value)
-          raise(ArgumentError, 'value is nil') unless value
-          unless namespace.nil? || namespace.is_a?(Namespace)
-            raise(
-              ArgumentError,
-              "namespace: expected nil or Namespace, actual #{namespace.class}")
-          end
+        def initialize(namespace, value, encoding = nil)
+          assert_namespace_type(namespace)
+          assert_value_type(value)
           @namespace = namespace
           @value     = value
+          @encoding  = encoding
         end
 
         def namespace=(namespace)
-          unless namespace.nil? || namespace.is_a?(Namespace)
-            raise(
-              ArgumentError,
-              "namespace: expected nil or Namespace, actual #{namespace.class}")
-          end
-
+          assert_namespace_type(namespace)
           @namespace = namespace
         end
 
         def value=(value)
-          raise(ArgumentError, 'value is nil') unless value
-
+          assert_value_type(value)
           @value = value
         end
 
-        def encoding
-          nsv = @namespace[@value]
-          return nil unless nsv
-          nsv.first.encodings
+        def valid?
+          return true if @namespace.nil?
+          @namespace.include?(@value)
         end
 
-        def valid?
-          return false unless @value
-          return true unless @namespace
-          !@namespace[@value].nil?
+        def invalid?
+          !valid?
         end
 
         def <=>(other)
@@ -76,24 +64,30 @@ module BELParser
           end
           %Q{#{prefix}#{quote_if_needed(@value)}}
         end
+
+        private
+
+        def assert_namespace_type(namespace)
+          unless namespace.nil? || namespace.is_a?(Namespace)
+            msg = "namespace: expected nil or Namespace, actual #{namespace.class}"
+            raise(ArgumentError, msg)
+          end
+        end
+
+        def assert_value_type(value)
+          unless value.is_a?(String)
+            msg = "value: expected String, actual #{value.class}"
+            raise(ArgumentError, msg)
+          end
+        end
       end
 
       module Converters
-        include BELParser::Quoting
-
         def ast_to_parameter(ast, namespace_hash = {})
           return nil if ast.nil? ||
             !ast.is_a?(BELParser::Parsers::AST::Parameter)
-          prefix, value = ast.children
-          namespace =
-            if prefix.identifier
-              namespace_hash[prefix.identifier.string_literal]
-            else
-              nil
-            end
-          Parameter.new(
-            namespace,
-            value.children[0].string_literal)
+          namespace = ast_to_namespace(ast.prefix, namespace_hash)
+          namespace[ast.value.children[0].string_literal]
         end
       end
     end

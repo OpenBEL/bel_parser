@@ -16,6 +16,14 @@ module BELParser
         @name       = name.to_s
         @types      = [type]
       end
+
+      def uri?
+        false
+      end
+
+      def url?
+        true
+      end
     end
   end
 end

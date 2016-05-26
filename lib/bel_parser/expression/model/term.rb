@@ -1,3 +1,5 @@
+require_relative '../validator'
+
 module BELParser
   module Expression
     module Model
@@ -17,7 +19,7 @@ module BELParser
               ArgumentError,
               %(function: expected Function, actual #{function.class}))
           end
-          @function  = function
+          @function = function
         end
 
         def arguments=(*args)
@@ -25,7 +27,7 @@ module BELParser
           invalid = args.any?(&method(:invalid_argument?))
           raise(
             ArgumentError,
-            'args must be Parameter or Term objects') if invalid
+            "args: expected Parameter or Term objects") if invalid
 
           @arguments = args
         end
@@ -33,12 +35,50 @@ module BELParser
         def <<(arg)
             raise(
               ArgumentError,
-              'argument must be Parameter or Term') if invalid_argument?(arg)
+              'arg: expected Parameter or Term') if invalid_argument?(arg)
           @arguments << item
         end
 
-        def valid?
-          # TODO Use expression validator.
+        def namespaces
+          @arguments.flat_map do |arg|
+            case arg
+            when Term
+              arg.namespaces
+            when Parameter
+              arg.namespace
+            end
+          end
+        end
+
+        def validation(
+          spec       = BELParser::Language.latest_supported_specification,
+          uri_reader = BELParser::Resource.default_uri_reader,
+          url_reader = BELParser::Resource.default_url_reader)
+
+          validator =
+            BELParser::Expression::Validator.new(
+              spec,
+              Hash[namespaces.map { |ns| [ns.keyword, ns] }],
+              uri_reader,
+              url_reader)
+          _, _, _, result = validator.each(StringIO.new("#{to_s}\n")).first
+          result
+        end
+
+        def valid?(
+          spec       = BELParser::Language.latest_supported_specification,
+          uri_reader = BELParser::Resource.default_uri_reader,
+          url_reader = BELParser::Resource.default_url_reader)
+
+          validation(spec, uri_reader, url_reader).valid?
+        end
+
+        def invalid?(
+          spec = BELParser::Language.latest_supported_specification,
+          uri_reader = BELParser::Resource.default_uri_reader,
+          url_reader = BELParser::Resource.default_url_reader)
+
+          !validation(spec, uri_reader, url_reader).valid?
         end
 
         def hash
@@ -66,8 +106,7 @@ module BELParser
         private
 
         def invalid_argument?(arg)
-          !arg.is_a?(BELParser::Expression::Model::Parameter) &&
-            !arg.is_a?(BELParser::Expression::Model::Term)
+          arg.nil? || [Parameter, Term].none? { |type| arg.is_a?(type) }
         end
       end
 

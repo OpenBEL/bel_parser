@@ -126,7 +126,7 @@ module BELParser
 
         def to_s
           function = @expression_node.string_literal
-          %(Function of "#{function}" does not match return types: #{@expected_return_types.join(', ')})
+          %(Function of "#{function}" does not match return types: #{@expected_return_types.map(&:to_sym).join(', ')})
         end
       end
 
