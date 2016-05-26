@@ -17,7 +17,7 @@ module BELParser
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::Activity
           DESCRIPTION = 'Denotes the frequency or abundance of events
           n which a member acts as a causal agent at the
-          olecular scale.'.freeze
+          molecular scale.'.freeze
 
           def self.short
             SHORT
