@@ -12,7 +12,7 @@ module BELParser
         extend Keyword
 
         TARGET_NODE         = BELParser::Parsers::AST::DocumentProperty
-        DEFAULT_BEL_VERSION = '2.0'
+        DEFAULT_BEL_VERSION = '1.0'
 
         def self.consume(ast_node, script_context)
           return unless ast_node.is_a?(TARGET_NODE)
