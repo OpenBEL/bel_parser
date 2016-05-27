@@ -88,7 +88,16 @@ module BELParser
           return nil if ast.nil? ||
             !ast.is_a?(BELParser::Parsers::AST::Parameter)
           namespace = ast_to_namespace(ast.prefix, namespace_hash)
-          namespace[ast.value.children[0].string_literal]
+          value     = ast.value.children[0].string_literal
+          if namespace
+            namespace[value]
+          else
+            BELParser::Expression::Model::Parameter.new(
+              nil,   # nil namespace
+              value,
+              nil    # nil encoding
+            )
+          end
         end
       end
     end
