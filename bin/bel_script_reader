@@ -79,9 +79,8 @@ url_reader = options[:url_reader]
 
 namespaces = Hash[
   ARGV.map do |ns|
-    prefix, identifier = ns.split('=')
-    dataset            = uri_reader.retrieve_resource(identifier)
-    dataset ? [prefix, dataset] : nil
+    keyword, identifier = ns.split('=')
+    [keyword, BELParser::Expression::Model::Namespace.new(keyword, identifier, nil)]
   end.compact
 ]
 
