@@ -23,7 +23,7 @@ module BELParser
           return nil unless script_context.key?(:specification)
 
           validator = expression_validator(script_context)
-          validator.validate(ast_node).select(&:failure?)
+          validator.validate(ast_node)
         end
 
         def self.expression_validator(script_context)
