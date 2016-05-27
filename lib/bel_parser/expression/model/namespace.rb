@@ -1,4 +1,5 @@
 require 'bel_parser/resource'
+require 'bel_parser/parsers/ast/node'
 
 module BELParser
   module Expression

@@ -1,3 +1,4 @@
+require          'bel_parser/parsers/ast/node'
 require_relative '../validator'
 
 module BELParser
