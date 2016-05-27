@@ -5,6 +5,10 @@ module BELParser
     module Specification
       EMPTY_ARRAY = [].freeze
 
+      def uri
+        @uri
+      end
+
       def version
         @version
       end

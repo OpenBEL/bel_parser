@@ -11,6 +11,7 @@ module BELParser
 
         def initialize
           @version = '2.0'.freeze
+          @uri     = 'http://www.openbel.org/2.0'
           load_language_constants(Version2_0)
           freeze
         end
