@@ -114,11 +114,11 @@ module BELParser
               domain:  domain_value(type, domain)
             }
           end,
-          namespaces: (ns_defs || []).map do |keyword, (type, domain)|
+          namespaces: (ns_defs || []).map do |keyword, namespace|
             {
               keyword: keyword,
-              type:    type,
-              domain:  domain_value(type, domain)
+              type:    namespace.uri? ? :uri : :url,
+              domain:  namespace.uri? ? namespace.uri : namespace.url
             }
           end
         }
