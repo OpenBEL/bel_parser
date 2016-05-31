@@ -8,12 +8,12 @@ require 'bel_parser'
 options = {}
 OptionParser.new do |opts|
   opts.banner = <<-USAGE.gsub(/^ {4}/, '')
-    Debug the AST.
+    Debug the AST of BEL Script.
 
-    Read from a BEL file.
+    Read from a BEL Script file.
     usage: #$PROGRAM_NAME --file [FILE]
 
-    Read from standard input.
+    Read BEL Script from standard input.
     usage: #$PROGRAM_NAME
   USAGE
 
@@ -69,8 +69,8 @@ BELParser::ASTGenerator.new(io).each do |result|
   line_number, line, asts = result
   puts line
   asts.each do |ast|
-    next if options[:complete] && ast.incomplete?
     if ast
+      next if options[:complete] && ast.incomplete?
       puts ast.to_sexp(1)
     else
       puts '  (null)'
