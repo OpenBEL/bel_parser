@@ -145,11 +145,19 @@ module BELParser
       end
 
       def self.open_datasets_file
-        @dataset_file ||= ::DBM.open(_temporary_datasets_file)
+        if RUBY_ENGINE =~ /^jruby/i
+          @dataset_file ||= ::DBM.new
+        else
+          @dataset_file ||= ::DBM.open(_temporary_datasets_file)
+        end
       end
 
       def self.open_resource_file(url)
-        @resource_files[url] ||= ::DBM.open(_temporary_resource_file(url))
+        if RUBY_ENGINE =~ /^jruby/i
+          @resource_files[url] ||= ::DBM.new
+        else
+          @resource_files[url] ||= ::DBM.open(_temporary_resource_file(url))
+        end
       end
 
       def self._temporary_datasets_file
