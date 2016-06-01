@@ -45,6 +45,28 @@ module BELParser
           !@url.nil?
         end
 
+        def type
+          case
+          when uri?
+            :uri
+          when url?
+            :url
+          else
+            nil
+          end
+        end
+
+        def domain
+          case
+          when uri?
+            @uri
+          when url?
+            @url
+          else
+            nil
+          end
+        end
+
         def include?(value)
           resolved_value =
             if uri? && @uri_reader
