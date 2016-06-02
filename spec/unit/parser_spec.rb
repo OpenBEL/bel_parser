@@ -49,10 +49,14 @@ describe BELParser::Parsers::Common::String, '#parse' do
   let(:parser) { BELParser::Parsers::Common::String }
 
   it 'yields correct AST' do
-    assert_ast(parser, '"cat-scratch disease"',
-               s(:string, '"cat-scratch disease"'))
-    assert_ast(parser, '"This is a \"quote\""',
-               s(:string, '"This is a \"quote\""'))
+    output = []
+    parser.parse('"cat-scratch disease"') { |x| output.push(x) }
+    expect(output.size).to eql(1)
+    expect(output[0]).to eq(s(:string, 'cat-scratch disease'))
+    output.clear
+    parser.parse('"This is a \"quote\""') { |x| output.push(x) }
+    expect(output.size).to eql(1)
+    expect(output[0]).to eq(s(:string, 'This is a \"quote\"'))
   end
 end
 
@@ -61,35 +65,25 @@ describe BELParser::Parsers::Common::List, '#parse' do
   let(:parser) { BELParser::Parsers::Common::List }
 
   it 'yields correct AST' do
-    assert_ast(
-      parser,
-      '{"Adipose Tissue","white adipose"}',
-      s(:list,
-        s(:list_item,
-          s(:string, '"Adipose Tissue"')),
-        s(:list_item,
-          s(:string, '"white adipose"')))
-    )
+    input = '{"Adipose Tissue","white adipose"}'
+    output = []
+    parser.parse(input) { |x| output.push(x) }
+    expect(output.size).to be 1
+    expect(output[0].children.size).to be 2
+
+    item0 = output[0].children[0]
+    expect(item0.children.first).to eq(s(:string, 'Adipose Tissue'))
+
+    item1 = output[0].children[1]
+    expect(item1.children.first).to eq(s(:string, 'white adipose'))
   end
 
   it 'yields correct AST' do
-    assert_ast(
-      parser,
-      '{"PubMed","Forensic Sci 1999 Jan 25 99(3) 197-208","10098258","","",""}',
-      s(:list,
-        s(:list_item,
-          s(:string, '"PubMed"')),
-        s(:list_item,
-          s(:string, '"Forensic Sci 1999 Jan 25 99(3) 197-208"')),
-        s(:list_item,
-          s(:string, '"10098258"')),
-        s(:list_item,
-          s(:string, '""')),
-        s(:list_item,
-          s(:string, '""')),
-        s(:list_item,
-          s(:string, '""')))
-    )
+    input = '{"PubMed","Forensic Sci 1999 Jan 25 99(3) 197-208","10098258","","",""}'
+    output = []
+    parser.parse(input) { |x| output.push(x) }
+    expect(output.size).to be 1
+    expect(output[0].children.size).to be 6
   end
 end
 
@@ -106,32 +100,54 @@ describe BELParser::Parsers::Expression::Parameter, '#parse' do
         s(:value,
           s(:identifier, 'AKT1')))
     )
-    assert_ast(
-      BELParser::Parsers::Expression::Parameter,
-      'GOBP:"apoptotic process"',
-      s(:parameter,
-        s(:prefix,
-          s(:identifier, 'GOBP')),
-        s(:value,
-          s(:string, '"apoptotic process"')))
-    )
-    assert_ast(
-      BELParser::Parsers::Expression::Parameter,
-      'meshpp: "cat-scratch disease"',
-      s(:parameter,
-        s(:prefix,
-          s(:identifier, 'meshpp')),
-        s(:value,
-          s(:string, '"cat-scratch disease"')))
-    )
-    assert_ast(
-      BELParser::Parsers::Expression::Parameter,
-      '"free entity name"',
-      s(:parameter,
-        s(:prefix, nil),
-        s(:value,
-          s(:string, '"free entity name"')))
-    )
+
+    input = 'GOBP:"apoptotic process"'
+    parser = BELParser::Parsers::Expression::Parameter
+    output = []
+    parser.parse(input) { |x| output.push(x) }
+    expect(output.size).to be 1
+    expect(output[0].children.size).to be 2
+
+    prefix0 = output[0].children[0]
+    expect(prefix0.children.size).to be 1
+    ident0 = prefix0.children[0]
+    expect(ident0).to eq(s(:identifier, 'GOBP'))
+
+    prefix1 = output[0].children[1]
+    expect(prefix1.children.size).to be 1
+    ident1 = prefix1.children[0]
+    expect(ident1).to eq(s(:string, 'apoptotic process'))
+
+    output.clear
+    input = 'meshpp: "cat-scratch disease"'
+    parser.parse(input) { |x| output.push(x) }
+    expect(output.size).to be 1
+    expect(output[0].children.size).to be 2
+
+    prefix = output[0].children[0]
+    expect(prefix.children.size).to be 1
+    ident = prefix.children[0]
+    expect(ident).to eq(s(:identifier, 'meshpp'))
+
+    value = output[0].children[1]
+    expect(value.children.size).to be 1
+    string = value.children[0]
+    expect(string).to eq(s(:string, 'cat-scratch disease'))
+
+    output.clear
+    input = '"free entity name"'
+    parser.parse(input) { |x| output.push(x) }
+    expect(output.size).to be 1
+    expect(output[0].children.size).to be 2
+
+    prefix = output[0].children[0]
+    expect(prefix).to eq(s(:prefix, nil))
+
+    value = output[0].children[1]
+    expect(value.children.size).to be 1
+
+    string = value.children[0]
+    expect(string).to eq(s(:string, input.delete('"')))
   end
 end
 

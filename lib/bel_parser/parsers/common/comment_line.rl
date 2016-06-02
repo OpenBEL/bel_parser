@@ -20,7 +20,7 @@
     yield comment_line(utf8_string(cl), complete: completed)
   }
 
-  comment_start = SP* NUMBER_SIGN SP*;
+  comment_start = SP* NUMBER_SIGN;
   comment = comment_start (any - NL)*
             >comment_line_start
             $comment_line_more;
