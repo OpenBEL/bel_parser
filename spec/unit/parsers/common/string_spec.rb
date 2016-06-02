@@ -118,15 +118,6 @@ describe CommonString, '#parse' do
       end
     end
 
-    it 'yields string AST with partial value' do
-      missing_end_quote.check do |example|
-        assert_ast(
-          CommonString,
-          example,
-          s(:string, example))
-      end
-    end
-
     xit 'yields string AST with "error" metadata' do
       # TODO
     end
