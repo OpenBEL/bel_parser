@@ -25,9 +25,7 @@ module BELParser
             BELParser::Language.specification(value_string)
             nil
           rescue ArgumentError
-            latest_version = BELParser::Language.latest_supported_version
-            latest_spec    = BELParser::Language.specification(latest_version)
-            script_context[:specification] = latest_spec
+            script_context[:specification] = BELParser::Language.default_specification
             UnsupportedBELVersionWarning.new(ast_node, value_string)
           end
         end
@@ -42,13 +40,13 @@ module BELParser
         def initialize(document_property_node, unsupported_version)
           super(document_property_node, nil)
           @unsupported_version = unsupported_version
-          @latest              = BELParser::Language.latest_supported_version
+          @default             = BELParser::Language.default_version
         end
 
         def msg
           <<-MSG.gsub(/^ +/, '').delete("\n")
             Unsupported BEL version "#@unsupported_version". 
-            Setting BEL version to the latest supported version "#@latest".
+            Setting BEL version to the default version "#@default".
           MSG
         end
       end

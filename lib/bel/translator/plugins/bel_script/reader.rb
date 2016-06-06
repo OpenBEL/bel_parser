@@ -11,12 +11,18 @@ module BEL::Translator::Plugins
 
       def initialize(io, options = {})
         @io    = io
+        require 'pry'; binding.pry
+
+        options = {
+          :language => '1.0'
+        }.merge(options)
+
         @state = {
           uri_reader:            BELParser::Resource.default_uri_reader,
           url_reader:            BELParser::Resource.default_url_reader,
-          specification:         BELParser::Language.specification('2.0'),
+          specification:         BELParser::Language.specification(options[:language]),
           namespace_definitions: {}
-        }
+        }.merge(options)
       end
 
       def each

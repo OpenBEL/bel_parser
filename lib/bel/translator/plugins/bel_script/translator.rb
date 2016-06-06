@@ -12,7 +12,7 @@ module BEL::Translator::Plugins
       include ::BEL::Translator
 
       def read(data, options = {})
-        Reader.new(data)
+        Reader.new(data, options)
       end
 
       def write(objects, writer = StringIO.new, options = {})

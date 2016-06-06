@@ -25,6 +25,8 @@ module BELParser
     LOCK = Mutex.new
     private_constant :LOCK
 
+    DEFAULT_VERSION = '1.0'
+
     # Indicates if +version+ is a defined BEL specification.
     #
     # @param  [#to_s] version the BEL version string (e.g. +"2.0"+)
@@ -51,6 +53,14 @@ module BELParser
         file_name = File.basename(path)
         file_name.scan(/[0-9]+_[0-9]+/).first.sub('_', '.')
       end.sort
+    end
+
+    def self.default_version
+      DEFAULT_VERSION
+    end
+
+    def self.default_specification
+      specification(DEFAULT_VERSION)
     end
 
     # Returns the latest supported version string according to the

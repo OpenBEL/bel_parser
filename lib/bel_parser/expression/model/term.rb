@@ -52,7 +52,7 @@ module BELParser
         end
 
         def validation(
-          spec       = BELParser::Language.latest_supported_specification,
+          spec       = BELParser::Language.default_specification,
           uri_reader = BELParser::Resource.default_uri_reader,
           url_reader = BELParser::Resource.default_url_reader)
 
@@ -67,7 +67,7 @@ module BELParser
         end
 
         def valid?(
-          spec       = BELParser::Language.latest_supported_specification,
+          spec       = BELParser::Language.default_specification,
           uri_reader = BELParser::Resource.default_uri_reader,
           url_reader = BELParser::Resource.default_url_reader)
 
@@ -75,7 +75,7 @@ module BELParser
         end
 
         def invalid?(
-          spec = BELParser::Language.latest_supported_specification,
+          spec = BELParser::Language.default_specification,
           uri_reader = BELParser::Resource.default_uri_reader,
           url_reader = BELParser::Resource.default_url_reader)
 
@@ -117,7 +117,7 @@ module BELParser
         def ast_to_term(ast, spec, namespaces = {})
           return nil if ast.nil? ||
             !ast.is_a?(BELParser::Parsers::AST::Term)
-          spec    ||= BELParser::Language.latest_supported_specification
+          spec    ||= BELParser::Language.default_specification
           convert   = method(:convert_argument).to_proc.curry[spec][namespaces]
 
           Term.new(

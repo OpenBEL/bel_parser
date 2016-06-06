@@ -80,7 +80,7 @@ module BELParser
         end
 
         def validation(
-          spec       = BELParser::Language.latest_supported_specification,
+          spec       = BELParser::Language.default_specification,
           uri_reader = BELParser::Resource.default_uri_reader,
           url_reader = BELParser::Resource.default_url_reader)
 
@@ -153,7 +153,7 @@ module BELParser
             end
           return nil if statement.nil?
 
-          spec  ||= BELParser::Language.latest_supported_specification
+          spec  ||= BELParser::Language.default_specification
           comment = statement.comment && statement.comment.children[0]
 
           Statement.new(
