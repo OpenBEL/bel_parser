@@ -33,7 +33,6 @@ io   =
   else
     $stdin
   end
-puts options[:complete]
 
 class ::AST::Node
 
