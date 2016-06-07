@@ -11,7 +11,6 @@ module BEL::Translator::Plugins
 
       def initialize(io, options = {})
         @io    = io
-        require 'pry'; binding.pry
 
         options = {
           :language => '1.0'
