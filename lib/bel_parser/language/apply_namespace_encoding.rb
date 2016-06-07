@@ -59,8 +59,8 @@ module BELParser
       def on_prefix(prefix_node)
         return prefix_node unless prefix_node.identifier
 
-        @prefix         = prefix_node.identifier.string_literal
-        @namespace      = @namespace_hash[@prefix]
+        @prefix    = prefix_node.identifier.string_literal
+        @namespace = @namespace_hash[@prefix]
         return prefix_node unless @namespace
 
         prefix_node.namespace = @namespace

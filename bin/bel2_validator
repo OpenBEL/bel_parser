@@ -83,14 +83,12 @@ require 'bel_parser/resource/resource_url_reader'
 
 uri_reader, url_reader = options.values_at(:uri_reader, :url_reader)
 
-namespaces =
-  Hash[
-    ARGV.map do |ns|
-      prefix, identifier = ns.split('=')
-      dataset            = uri_reader.retrieve_resource(identifier)
-      dataset ? [prefix, [:uri, dataset]] : nil
-    end.compact
-  ]
+namespaces = Hash[
+  ARGV.map do |ns|
+    keyword, identifier = ns.split('=')
+    [keyword, BELParser::Expression::Model::Namespace.new(keyword, identifier, nil)]
+  end.compact
+]
 
 BELParser::Expression::Validator
   .new(options[:spec], namespaces, uri_reader, url_reader)
@@ -99,12 +97,13 @@ BELParser::Expression::Validator
     puts "  AST Type: #{ast.type}"
 
     puts "  Syntax results:"
-    syntax_results(results).each do |res|
+
+    results.syntax_results.each do |res|
       puts "    #{res}"
     end
 
     puts "  Semantics results:"
-    semantics_results(results).each do |res|
+    results.semantics_results.each do |res|
       if res.is_a?(BELParser::Language::Semantics::SignatureMappingSuccess)
         puts "    Matched signature: #{res.signature.string_form}"
       end
