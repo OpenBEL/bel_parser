@@ -1,0 +1,123 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift(
+  File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
+
+require 'optparse'
+require 'bel_parser'
+
+options = {
+  uri_reader: BELParser::Resource.default_uri_reader,
+  url_reader: BELParser::Resource.default_url_reader,
+  spec: BELParser::Language.specification(
+    BELParser::Language.latest_supported_version)
+}
+OptionParser.new do |opts|
+  opts.banner = <<-USAGE.gsub(/^ {4}/, '')
+    Confirm compatibility with BEL 2.0 expressions.
+  USAGE
+end.parse!
+
+def syntax_results(results)
+  results.select do |res|
+    res.is_a? BELParser::Language::Syntax::SyntaxResult
+  end
+end
+
+def semantics_results(results)
+  results.select do |res|
+    res.is_a? BELParser::Language::Semantics::SemanticsResult
+  end
+end
+
+require 'bel_parser/expression/validator'
+require 'bel_parser/resource/resource_url_reader'
+
+uri_reader, url_reader = options.values_at(:uri_reader, :url_reader)
+
+namespaces = Hash[
+  ARGV.map do |ns|
+    keyword, identifier = ns.split('=')
+    [keyword, BELParser::Expression::Model::Namespace.new(keyword, identifier, nil)]
+  end.compact
+]
+
+def validate(expression)
+  v2 = BELParser::Language.specification('2.0')
+  ns = {
+    'CHEBI' =>
+      BELParser::Expression::Model::Namespace.new(
+        'CHEBI',
+        'http://www.openbel.org/bel/namespace/chebi',
+        nil),
+    'GOCC' =>
+      BELParser::Expression::Model::Namespace.new(
+        'GOCC',
+        'http://www.openbel.org/bel/namespace/go-cellular-component',
+        nil),
+    'HGNC' =>
+      BELParser::Expression::Model::Namespace.new(
+        'HGNC',
+        'http://www.openbel.org/bel/namespace/hgnc-human-genes',
+        nil),
+    'DEFAULT' =>
+      BELParser::Expression::Model::Namespace.new(
+        'DEFAULT',
+        'http://www.openbel.org/bel/namespace/default',
+        nil)
+  }
+  uri_reader = BELParser::Resource.default_uri_reader
+  url_reader = BELParser::Resource.default_url_reader
+
+  BELParser::Expression::Validator
+    .new(v2, ns, uri_reader, url_reader)
+    .each(StringIO.new(expression)) do |(line_number, line, ast, results)|
+      puts "#{line_number}: #{line}"
+      puts "  AST Type: #{ast.type}"
+
+      puts "  Syntax results:"
+
+      results.syntax_results.each do |res|
+        puts "    #{res}"
+      end
+
+      puts "  Semantics results:"
+      results.semantics_results.each do |res|
+        if res.is_a?(BELParser::Language::Semantics::SignatureMappingSuccess)
+          puts "    Matched signature: #{res.signature.string_form}"
+        end
+      end
+    end
+end
+
+puts "Protein Variant"
+validate('proteinAbundance(HGNC:PIK3CA, variant("p.Glu545Lys"))')
+validate('p(HGNC:ABCA1, var("p.Arg1851*"))')
+puts
+
+puts "Protein Fusion"
+validate('proteinAbundance(fusion(HGNC:BCR, "p.1_426", HGNC:JAK2, "p.812_1132"))')
+puts
+
+puts "Protein Cleavage Fragments"
+validate('p(HGNC:AKT1, frag("5_20"))')
+validate('p(HGNC:AKT1, frag("1_?"))')
+validate('p(HGNC:AKT1, frag("?_*"))')
+validate('p(HGNC:AKT1, frag("?"))')
+validate('p(HGNC:AKT1, frag("?", "55kD"))')
+puts
+
+puts "Cellular locations"
+validate('a(CHEBI:"calcium(2+)", loc(GOCC:"endoplasmic reticulum"))')
+puts
+
+puts "Translocation with cellular location"
+validate('tloc(p(HGNC:EGFR), fromLoc(GOCC:"cell surface"), toLoc(GOCC:endosome))')
+puts
+
+puts "Process Modifiers"
+validate('act(p(HGNC:FOXO1), ma(DEFAULT:tscript))')
+validate('activity(proteinAbundance(MGI:Casp3), molecularActivity(DEFAULT:pep))')
+puts
+
+puts "Regulates relationship"
+validate('p(HGNC:AKT1) regulates p(HGNC:EGFR)')
