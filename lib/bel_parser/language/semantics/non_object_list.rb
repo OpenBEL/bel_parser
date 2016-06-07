@@ -19,6 +19,7 @@ module BELParser
           return nil unless list_func
 
           rel = spec.relationship(stmt_node.relationship.string_literal.to_sym)
+          return nil unless rel
           return nil unless rel.listable?
 
           map_object(stmt_node.object, rel, list_func, spec)

@@ -15,6 +15,7 @@ module BELParser
           return nil unless stmt_node.is_a?(BELParser::Parsers::AST::Statement)
           return nil if stmt_node.relationship.string_literal.nil?
           rel = spec.relationship(stmt_node.relationship.string_literal.to_sym)
+          return nil unless rel
           return nil unless rel.listable?
 
           list_func = spec.function(:list)
