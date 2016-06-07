@@ -5,6 +5,7 @@ require_relative 'language/semantics'
 require_relative 'language/signature'
 require_relative 'language/specification'
 require_relative 'language/expression_validator'
+require_relative 'language/term_transformation'
 
 module BELParser
   # Language defines the concepts needed to define, represent, and

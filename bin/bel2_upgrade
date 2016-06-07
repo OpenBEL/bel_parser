@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift(
+  File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
+
+require 'optparse'
+require 'bel_parser'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = <<-USAGE.gsub(/^ {4}/, '')
+    Convert BEL 1.0 to 2.0.
+
+    Read from a BEL Script file.
+    usage: #$PROGRAM_NAME --file [FILE]
+
+    Read BEL Script from standard input.
+    usage: #$PROGRAM_NAME
+  USAGE
+
+  opts.on('-f', '--file FILE', 'BEL script file to read.') do |bel|
+    options[:file] = bel
+  end
+end.parse!
+
+file = options[:file]
+io   =
+  if file
+    File.open(file, external_encoding: 'UTF-8')
+  else
+    $stdin
+  end
+
+CONVERSION_TYPES = [
+  :simple_statement,
+  :nested_statement,
+  :observed_term
+]
+
+spec     = BELParser::Language.specification('1.0')
+upgrades = spec.upgrades.map(&:new)
+
+include BELParser::Parsers
+include BELParser::Parsers::AST::Sexp
+
+puts serialize(
+  document_property(
+    name(
+      identifier('BELVersion')),
+    value(
+      string('"2.0"'))))
+BELParser::ASTGenerator.new(io).each do |result|
+  line_number, line, asts = result
+
+  document_property =
+    asts.find { |ast|
+      ast && ast.type == :document_property
+    }
+  next if document_property && document_property.name.identifier.string_literal.downcase == 'belversion'
+
+  ast =
+    asts.find do |ast|
+      ast && CONVERSION_TYPES.include?(ast.type)
+    end
+
+  if ast
+    ast =
+      upgrades.reduce(ast) do |ast, upgrade|
+        upgrade.process(ast)
+      end
+    puts serialize(ast)
+  else
+    puts line
+  end
+end

@@ -45,6 +45,10 @@ module BELParser
         end
       end
 
+      def upgrades
+        @upgrades.freeze
+      end
+
       attr_reader :causal_relationships
       attr_reader :correlative_relationships
       attr_reader :decreasing_relationships

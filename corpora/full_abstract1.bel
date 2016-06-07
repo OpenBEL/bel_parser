@@ -1,6 +1,5 @@
 ###################################################################################
 # Document Properties Section
-SET DOCUMENT BELVersion = "1.0"
 SET DOCUMENT Name = "BEL Framework Example 1 Document"
 SET DOCUMENT Description = "Example of modeling a full abstract taken from the BEL V1.0 Language Overview. "
 SET DOCUMENT Version = "20150611"
@@ -8,6 +7,7 @@ SET DOCUMENT Copyright = "Copyright (c) 2011-2015, Selventa. All Rights Reserved
 SET DOCUMENT ContactInfo = "support@belframework.org"
 SET DOCUMENT Authors = Selventa
 SET DOCUMENT Licenses = "Creative Commons Attribution-Non-Commercial-ShareAlike 3.0 Unported License"
+SET DOCUMENT BELVersion = "1.0"
 
 ##################################################################################
 # Definitions Section

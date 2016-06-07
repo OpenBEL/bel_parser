@@ -8,7 +8,7 @@ module BELParser
 
       def self.load_version_path(version_path)
         base_path = File.expand_path(File.dirname(__FILE__)) + File::SEPARATOR
-        ['return_types', 'value_encodings', 'functions', 'relationships']
+        ['return_types', 'value_encodings', 'functions', 'relationships', 'upgrades']
           .each do |set|
             Dir[File.join(base_path, version_path, set, '*.rb')]
               .each do |ruby_file|
@@ -25,6 +25,7 @@ module BELParser
         load_value_encodings(version_module)
         load_functions(version_module)
         load_relationships(version_module)
+        load_upgrades(version_module)
       end
 
       private
@@ -76,6 +77,17 @@ module BELParser
         @relationships         = rel_classes.compact
         @indexed_relationships = index_long_short(@relationships)
         assign_relationship_categories(@relationships)
+      end
+
+      def load_upgrades(version_module)
+        # Collect upgrades
+        upgrade_classes =
+          version_module::Upgrades.constants.collect do |symbol|
+            const = version_module::Upgrades.const_get(symbol)
+            const if
+              const.include?(BELParser::Language::TermTransformation)
+          end
+        @upgrades = upgrade_classes.compact
       end
     end
   end
