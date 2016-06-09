@@ -14,6 +14,7 @@ SET DOCUMENT ContactInfo = "support@belframework.org"
 # Definitions Section
 
 DEFINE NAMESPACE CHEBI AS URI "http://www.openbel.org/bel/namespace/chebi"
+DEFINE NAMESPACE DEFAULT AS URI "http://www.openbel.org/bel/namespace/default"
 DEFINE NAMESPACE EGID AS URI "http://www.openbel.org/bel/namespace/entrez-gene"
 DEFINE NAMESPACE GOBP AS URI "http://www.openbel.org/bel/namespace/go-biological-process"
 DEFINE NAMESPACE HGNC AS URI "http://www.openbel.org/bel/namespace/hgnc-human-genes"

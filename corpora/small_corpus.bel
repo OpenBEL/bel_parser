@@ -1,7 +1,6 @@
 ##################################################################################
 # Document Properties Section
 
-SET DOCUMENT BELVersion = "1.0"
 SET DOCUMENT Name = "BEL Framework Small Corpus Document"
 SET DOCUMENT Description = "Approximately 2000 hand curated statements drawn from 57 PubMeds."
 SET DOCUMENT Version = 20150611
