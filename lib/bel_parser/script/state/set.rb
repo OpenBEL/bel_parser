@@ -60,7 +60,7 @@ module BELParser
         def self.handle_annotation(name_string, value_node, script_context)
           # add to annotation state
           script_context[:annotations]              ||= Concurrent::Hash.new
-          script_context[:annotations][name_string]   = value_node.children[0]
+          script_context[:annotations][name_string]   = value_node.children[0].string_literal
         end
         private_class_method :handle_annotation
 
