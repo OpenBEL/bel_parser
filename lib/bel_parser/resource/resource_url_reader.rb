@@ -180,13 +180,9 @@ module BELParser
       private
 
       def _get(url, &block)
-        Net::HTTP.start(url.host, url.port) do |http|
-          http.request(Net::HTTP::Get.new(url)) do |response|
-            return response.read_body
-          end
-        end
+        http = Net::HTTP.new(url.host, url.port)
+        http.request_get(url).response.read_body
       end
-
     end
   end
 end
