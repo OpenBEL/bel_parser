@@ -1105,7 +1105,7 @@ compositeAbundance(proteinAbundance(HGNC:FN1), proteinAbundance(HGNC:VEGFA)) inc
 biologicalProcess(GOBP:"cell-matrix adhesion") increases activity(proteinAbundance(HGNC:PRKCA), molecularActivity(default:kin))
 compositeAbundance(proteinAbundance(HGNC:FN1), proteinAbundance(HGNC:VEGFA)) increases activity(proteinAbundance(HGNC:PRKCA), molecularActivity(default:kin))
 proteinAbundance(HGNC:VEGFA) increases (proteinAbundance(HGNC:ITGB1) increases biologicalProcess(GOBP:"cell migration"))
-proteinAbundance(HGNC:VEGFA) increases (compositeAbundance(molecularActivity(proteinAbundance(HGNC:ITGB1)), kinaseActivity(proteinAbundance(HGNC:PRKCA))) increases biologicalProcess(GOBP:"cell-matrix adhesion"))
+proteinAbundance(HGNC:VEGFA) increases (compositeAbundance(molecularActivity(proteinAbundance(HGNC:ITGB1)), act(proteinAbundance(HGNC:PRKCA), ma(default:kin))) increases biologicalProcess(GOBP:"cell-matrix adhesion"))
 complexAbundance(proteinAbundance(HGNC:PRKCA), proteinAbundance(HGNC:ITGB1))
 
 SET Support = "These data are consistent with PKC alpha-dependent exocytosis of activated beta(1) integrin to the plasma membrane, where its increased surface expression mediates binding to fibronectin; conversely, catalytically active PKC alpha-driven internalization of beta(1) integrin results in MM cell de-adhesion."
