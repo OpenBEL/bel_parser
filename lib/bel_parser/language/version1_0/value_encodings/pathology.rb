@@ -1,4 +1,3 @@
-require_relative '../../version1_0'
 require_relative 'biological_process'
 
 module BELParser

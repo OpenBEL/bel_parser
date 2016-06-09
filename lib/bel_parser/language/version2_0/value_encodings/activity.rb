@@ -1,4 +1,3 @@
-require_relative '../../version2_0'
 require_relative 'any'
 
 module BELParser
