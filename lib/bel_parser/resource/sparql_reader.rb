@@ -81,10 +81,9 @@ module BELParser
         scheme, host, port = URI(url_s).select(:scheme, :host, :port)
         validate_uri_scheme(scheme, url_s)
 
+        http             = Net::HTTP.start(host, port)
         options_request  = Net::HTTP::Options.new(url_s)
-        options_response = Net::HTTP.start(host, port) do |http|
-          http.request(Net::HTTP::Options.new(url_s))
-        end
+        options_response = http.request(options_request)
         validate_200(options_response, url_s)
         validate_allowed_methods(options_response, url_s)
       end

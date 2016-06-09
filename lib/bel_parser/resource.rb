@@ -60,20 +60,16 @@ module BELParser
       request['Range'] = 'bytes=0-5000'
       resource_uri     = nil
 
-      Net::HTTP.start(
-        uri.hostname,
-        uri.port) { |http|
-
-        http.request(request) do |response|
-          response.read_body do |chunk|
-            uristring    = chunk.lines.detect { |l| l =~ URISTRING_PATTERN }
-            if uristring
-              resource_uri = uristring.match(URISTRING_PATTERN)[1]
-              break
-            end
+      http = Net::HTTP.new(uri.hostname, uri.port)
+      http.request(request) do |response|
+        response.read_body do |chunk|
+          uristring    = chunk.lines.detect { |l| l =~ URISTRING_PATTERN }
+          if uristring
+            resource_uri = uristring.match(URISTRING_PATTERN)[1]
+            break
           end
         end
-      }
+      end
 
       RESOLVE_URI_LOCK.synchronize do
         @uri_hash ||= {}
