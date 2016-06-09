@@ -18,7 +18,7 @@ module BELParser
       SCHEMES      = [URI::HTTP, URI::HTTPS].freeze
       ALLOW_HEADER = 'Allow'.freeze
 
-      def initialize(sparql_endpoint_url, validate_url = true)
+      def initialize(sparql_endpoint_url, validate_url = false)
         validate_sparql_endpoint_url(sparql_endpoint_url) if validate_url
         @sparql_repository = SPARQL::Client.new(sparql_endpoint_url)
       end
