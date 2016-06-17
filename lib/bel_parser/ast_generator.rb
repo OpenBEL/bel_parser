@@ -2,14 +2,12 @@ require_relative 'parsers/common'
 require_relative 'parsers/expression'
 require_relative 'parsers/bel_script'
 require_relative 'mixin/line_mapping'
-require_relative 'mixin/line_continuator'
 
 module BELParser
   # ASTGenerator yields AST results for each line in some {IO}.
   # See #{ASTGenerator#each}.
   class ASTGenerator
     include LineMapping
-    include LineContinuator
 
     map_const = ->(x) { x.constants.map { |c| x.const_get(c) } }
     PARSERS = [
@@ -17,6 +15,7 @@ module BELParser
       map_const.call(BELParser::Parsers::Expression),
       map_const.call(BELParser::Parsers::BELScript)
     ].flatten!
+    LINE_CONTINUATOR = "\\\n".freeze
 
     def initialize(io)
       @io = io
@@ -48,21 +47,23 @@ module BELParser
     #         {Enumerator#each}
     def each # rubocop:disable MethodLength
       if block_given?
-        line_enumerator = map_lines(@io.each_line.lazy)
-
-        line_number = 1
-        loop do
-          begin
-            line = expand_line_continuator(line_enumerator)
+        line_number   = 1
+        expanded_line = nil
+        map_lines(@io.each_line.lazy).each do |line|
+          if line.end_with?(LINE_CONTINUATOR)
+            expanded_line = "#{expanded_line}#{line.chomp(LINE_CONTINUATOR)}"
+          else
+            expanded_line = "#{expanded_line}#{line}"
 
             ast_results = []
             PARSERS.map do |parser|
-              parser.parse(line) { |ast| ast_results << ast }
+              parser.parse(expanded_line) { |ast| ast_results << ast }
             end
-            yield [line_number, line, ast_results]
+
+            yield [line_number, expanded_line, ast_results]
+
             line_number += 1
-          rescue StopIteration
-            return
+            expanded_line = nil
           end
         end
       else
@@ -77,7 +78,7 @@ if __FILE__ == $PROGRAM_NAME
     line_number, line, ast_results = line_results
     puts "#{line_number}: #{line}"
     ast_results.each do |ast|
-      puts ast.to_s(1)
+      puts ast.to_s
     end
   end
 end
