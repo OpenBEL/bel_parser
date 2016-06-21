@@ -3,7 +3,7 @@ module BELParser
   module LineMapping
     def normalize_line_terminator(line)
       return nil unless line
-      line.sub(/[\r\n]+$/, '') + "\n"
+      "#{line.chomp}\n"
     end
 
     def map_lines(line_enumerator)
