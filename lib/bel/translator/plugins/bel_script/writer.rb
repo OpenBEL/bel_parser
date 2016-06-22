@@ -169,7 +169,13 @@ module BEL::Translator::Plugins
         return bel unless namespace_references
 
         namespace_references.reduce(bel) { |bel, ref|
-          bel << %Q{DEFINE NAMESPACE #{ref.keyword} AS URL "#{ref.uri}"\n}
+          case
+          when ref.uri?
+            bel << %Q{DEFINE NAMESPACE #{ref.keyword} AS URI "#{ref.uri}"\n}
+          when ref.url?
+            bel << %Q{DEFINE NAMESPACE #{ref.keyword} AS URL "#{ref.url}"\n}
+          end
+
           bel
         }
         bel << "\n"
