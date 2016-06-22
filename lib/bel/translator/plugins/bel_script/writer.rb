@@ -45,7 +45,7 @@ module BEL::Translator::Plugins
             }
             serialization_module = serialization_refs[serialization.to_sym]
             unless serialization_module
-                raise %Q{No BEL serialization strategy for "#{serialization}"}
+                raise %(No BEL serialization strategy for "#{serialization}")
             end
             serialization_module
           else
@@ -81,7 +81,7 @@ module BEL::Translator::Plugins
             bel = to_bel(nanopub)
 
             if @write_header && header_flag
-              yield document_header(nanopub.metadata.document_header)
+              yield document_header(nanopub.metadata)
               yield namespaces(combiner.namespace_references)
               yield annotations(combiner.annotation_references)
 
@@ -103,30 +103,35 @@ module BEL::Translator::Plugins
 
       private
 
-      def document_header(header)
-        return "" unless header
-
+      def document_header(metadata)
         bel = <<-COMMENT.gsub(/^\s+/, '')
           ###############################################
           # Document Properties Section
         COMMENT
 
-        header.each { |name, value|
-          name_s  = name.to_s
-          value_s =
-            if value.respond_to?(:each)
-              value.join('|')
-            else
-              value.to_s
-            end
+        bel_version =
+          metadata.bel_version || BELParser::Language.default_version
+        bel << %(SET DOCUMENT BELVersion = "#{bel_version}"\n)
 
-          # handle casing for document properties (special case, contactinfo)
-          name_s = (name_s.downcase == 'contactinfo') ?
-            'ContactInfo' :
-            name_s.capitalize
+        if metadata.document_header
+          header = metadata.document_header
+          header.each do |name, value|
+            name_s  = name.to_s
+            value_s =
+              if value.respond_to?(:each)
+                value.join('|')
+              else
+                value.to_s
+              end
 
-          bel << %Q{SET DOCUMENT #{name_s} = "#{value_s}"\n}
-        }
+            # handle casing for document properties (special case, contactinfo)
+            name_s = (name_s.downcase == 'contactinfo') ?
+              'ContactInfo' :
+              name_s.capitalize
+
+            bel << %(SET DOCUMENT #{name_s} = "#{value_s}"\n)
+          end
+        end
 
         bel << "\n"
         bel
@@ -145,14 +150,14 @@ module BEL::Translator::Plugins
 
           case ref.type.to_sym
           when :url
-            bel << %Q{URL "#{ref.domain}"\n}
+            bel << %(URL "#{ref.domain}"\n)
           when :uri
-            bel << %Q{URI "#{ref.domain}"\n}
+            bel << %(URI "#{ref.domain}"\n)
           when :pattern
             regex = ref.domain.respond_to?(:source) ? ref.domain.source : ref.domain
-            bel << %Q{PATTERN "#{regex}"\n}
+            bel << %(PATTERN "#{regex}"\n)
           when :list
-            bel << %Q|LIST {#{ref.domain.inspect[1...-1]}}\n|
+            bel << %(LIST {#{ref.domain.inspect[1...-1]}}\n)
           end
           bel
         }
@@ -171,9 +176,9 @@ module BEL::Translator::Plugins
         namespace_references.reduce(bel) { |bel, ref|
           case
           when ref.uri?
-            bel << %Q{DEFINE NAMESPACE #{ref.keyword} AS URI "#{ref.uri}"\n}
+            bel << %(DEFINE NAMESPACE #{ref.keyword} AS URI "#{ref.uri}"\n)
           when ref.url?
-            bel << %Q{DEFINE NAMESPACE #{ref.keyword} AS URL "#{ref.url}"\n}
+            bel << %(DEFINE NAMESPACE #{ref.keyword} AS URL "#{ref.url}"\n)
           end
 
           bel
