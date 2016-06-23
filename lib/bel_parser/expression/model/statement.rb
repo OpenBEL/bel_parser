@@ -16,7 +16,7 @@ module BELParser
       # - SUBJECT RELATIONSHIP OBJECT(Statement)
       #   - +p(HGNC:VHL) -> (p(HGNC:TNF) -> bp(GOBP:"cell death"))+
       class Statement
-        attr_accessor :subject, :relationship, :object, :comment
+        attr_reader :subject, :relationship, :object, :comment, :type
 
         # Creates a {Statement} with +subject+, +relationship+, +object+, and
         # +comment+.
@@ -33,44 +33,58 @@ module BELParser
           end
           @subject = subject
 
-          unless relationship.nil? || relationship.is_a?(BELParser::Language::Relationship)
-            raise(
-              ArgumentError,
+          case relationship
+          when nil
+            @type         = :observed_term
+            @relationship = nil
+          when BELParser::Language::Relationship
+            @type         = :simple_statement
+            @relationship = relationship
+          else
+            raise(ArgumentError,
               "relationship: expected nil or Relationship, actual #{relationship.class}")
           end
-          @relationship = relationship
 
-          unless object.nil? || [Term, Statement].any?(&object.method(:is_a?))
-            raise(
-              ArgumentError,
+          case object
+          when nil
+            @type   = :observed_term
+            @object = nil
+          when BELParser::Expression::Model::Term
+            @type   = :simple_statement
+            @object = object
+          when BELParser::Expression::Model::Statement
+            @type   = :nested_statement
+            @object = object
+          else
+            raise(ArgumentError,
               "object: expected nil, Term, or Statement, actual #{object.class}")
           end
-          @object       = object
-          @comment      = comment
 
-          if @relationship && !@object
+          @comment = comment
+
+          if @relationship && @object.nil?
             raise(
               ArgumentError,
               "object must be set when specifying a relationship")
           end
 
-          if @object && !@relationship
+          if @object && @relationship.nil?
             raise(
               ArgumentError,
-              "relationsihp must be set when specifying an object")
+              "relationship must be set when specifying an object")
           end
         end
 
         def subject_only?
-          !@relationship
+          @type == :observed_term
         end
 
         def simple?
-          @object && @object.is_a?(Term)
+          @type == :simple_statement
         end
 
         def nested?
-          @object && @object.is_a?(Statement)
+          @type == :nested_statement
         end
 
         def namespaces
