@@ -76,9 +76,7 @@ module BELParser
       end
 
       def to_sym(form = :short)
-        value = _form_value(form)
-        return nil unless value
-        value.to_s
+        _form_value(form)
       end
 
       def to_s(form = :short)
