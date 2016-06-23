@@ -33,11 +33,11 @@ module BEL::Translator::Plugins::BelScript::NanopubSerialization
     values = citation.to_a
     values.map! { |v|
       v = %("") if v.nil? || v.empty?
-      v.delete!("\r\n")
       if v.respond_to?(:each)
         v.map! { |item| item.delete("\r\n") }
         quote(v.join('|'))
       else
+        v.delete!("\r\n")
         quote(v)
       end
     }
