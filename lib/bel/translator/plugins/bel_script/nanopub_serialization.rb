@@ -1,11 +1,11 @@
-require 'bel/quoting'
+require 'bel_parser/quoting'
 
 # Serializing of common {BEL::Nanopub::Nanopub nanopub} components to BEL
 # Script syntax.
 #
 # @abstract
 module BEL::Translator::Plugins::BelScript::NanopubSerialization
-  include BEL::Quoting
+  include BELParser::Quoting
 
   # Serialize the {BEL::Nanopub::Nanopub nanopub} to a BEL Script string.
   #
@@ -32,11 +32,13 @@ module BEL::Translator::Plugins::BelScript::NanopubSerialization
 
     values = citation.to_a
     values.map! { |v|
-      v ||= ""
+      v = %("") if v.nil? || v.empty?
+      v.delete!("\r\n")
       if v.respond_to?(:each)
-        %Q{"#{v.join('|')}"}
+        v.map! { |item| item.delete("\r\n") }
+        quote(v.join('|'))
       else
-        %Q{"#{v}"}
+        quote(v)
       end
     }
     values.join(', ')
