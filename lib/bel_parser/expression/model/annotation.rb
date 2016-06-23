@@ -20,8 +20,13 @@ module BELParser
           @type    = type.to_sym
           @domain  = domain
 
-          uri_reader = options.fetch(:uri_reader, nil)
-          url_reader = options.fetch(:url_reader, nil)
+          # configure reader for URIs (RDF).
+          @uri_reader = options.fetch(:uri_reader, BELParser::Resource.default_uri_reader)
+          BELParser::Resource::Reader.assert_reader(@uri_reader, 'uri_reader')
+
+          # configure reader for URLs (Resource files).
+          @url_reader = options.fetch(:url_reader, BELParser::Resource.default_url_reader)
+          BELParser::Resource::Reader.assert_reader(@url_reader, 'url_reader')
         end
 
         def initialize_copy(original)
