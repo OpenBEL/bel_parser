@@ -63,6 +63,16 @@
     @buffers[:param_prefix] = prefix_node
   }
 
+  action eat_space {
+    trace('PARAMETER eat_space')
+    while data[p] == 32 do
+      data.delete_at(p)
+      pe -= 1
+      eof -= 1
+    end
+    fhold;
+  }
+
   action a_parameter_eof {
     trace("PARAMETER a_parameter_eof")
     param_node = parameter()
@@ -143,19 +153,20 @@
   parameter_prefix_value =
     prefix
     %add_prefix
-    SP*
+    (SP $eat_space)
     value
     ;
 
   parameter_prefix_maybe_value =
     prefix
     %add_prefix
+    (SP $eat_space)
     SP*
     value?
     ;
 
   parameter_value =
-    SP*
+    (SP $eat_space)
     value
     ;
 
@@ -192,6 +203,7 @@ require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 require_relative '../tracer'
+require 'byebug'
 
 module BELParser
   module Parsers
@@ -229,6 +241,7 @@ module BELParser
           def each
             @buffers    = {}
             @incomplete = {}
+            stack    = []
             data        = @content.unpack('C*')
             p           = 0
             pe          = data.length
