@@ -203,7 +203,6 @@ require_relative '../ast/node'
 require_relative '../mixin/buffer'
 require_relative '../nonblocking_io_wrapper'
 require_relative '../tracer'
-require 'byebug'
 
 module BELParser
   module Parsers
