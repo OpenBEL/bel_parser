@@ -26,5 +26,13 @@ Gem::Specification.new do |spec|
   spec.require_paths         = ['lib']
   spec.required_ruby_version = '>= 2.0.0'
 
-  spec.add_runtime_dependency  'sparql-client', '~> 2.0.0'
+  if RUBY_ENGINE =~ /jruby/
+    spec.platform               = 'java'
+    spec.add_runtime_dependency   'sparql-client', '~> 2.0.0'
+    spec.add_runtime_dependency   'dbm-mapdb3',    '~> 0.6.0.beta'
+  else
+    spec.platform               = 'ruby'
+    spec.add_runtime_dependency   'sparql-client', '~> 2.0.0'
+  end
 end
+# vim: ft=ruby
