@@ -213,7 +213,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 3 then
@@ -222,7 +222,7 @@ begin
     trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     yield ast_node
   		end
 	end
@@ -255,7 +255,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin

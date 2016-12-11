@@ -9,7 +9,7 @@
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   }
 
@@ -34,7 +34,7 @@
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   }
 
@@ -47,7 +47,7 @@
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   }
 
@@ -55,7 +55,7 @@
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   }
 

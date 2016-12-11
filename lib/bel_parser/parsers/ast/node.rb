@@ -61,7 +61,7 @@ module BELParser
         # Get the character range enclosing this AST node.  It is defined
         # as the close interval containing all the characters of this
         # AST node.
-        attr_reader :character_range
+        attr_accessor :character_range
 
         # Get/Set the complete property.
         attr_accessor :complete

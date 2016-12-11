@@ -642,7 +642,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 2 then
@@ -651,7 +651,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 39 then
@@ -660,7 +660,7 @@ begin
     trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     yield ast_node
   		end
 	when 9 then
@@ -676,7 +676,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 22 then
@@ -685,7 +685,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 	when 14 then
@@ -716,7 +716,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -733,7 +733,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -748,7 +748,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -756,7 +756,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 11 then
@@ -771,7 +771,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 13 then
@@ -780,7 +780,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -788,7 +788,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 15 then
@@ -852,7 +852,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 25 then
@@ -867,7 +867,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -918,7 +918,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -974,7 +974,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1088,7 +1088,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1104,7 +1104,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1113,7 +1113,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 26 then
@@ -1122,7 +1122,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1141,7 +1141,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1172,7 +1172,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -1250,7 +1250,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1259,7 +1259,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1292,7 +1292,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1331,7 +1331,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1339,7 +1339,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1358,7 +1358,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1366,7 +1366,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1397,7 +1397,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1405,7 +1405,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -1419,7 +1419,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1585,7 +1585,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1594,7 +1594,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1648,7 +1648,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1687,7 +1687,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1748,7 +1748,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1758,7 +1758,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1767,7 +1767,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1786,7 +1786,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1796,7 +1796,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1805,7 +1805,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1844,7 +1844,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1872,7 +1872,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1882,7 +1882,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1917,7 +1917,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1927,7 +1927,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -2669,7 +2669,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 2 then
@@ -2678,7 +2678,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 39 then
@@ -2687,7 +2687,7 @@ begin
     trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     yield ast_node
   		end
 	when 9 then
@@ -2703,7 +2703,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 22 then
@@ -2712,7 +2712,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 	when 14 then
@@ -2743,7 +2743,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -2760,7 +2760,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -2775,7 +2775,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -2783,7 +2783,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 11 then
@@ -2798,7 +2798,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 13 then
@@ -2807,7 +2807,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -2815,7 +2815,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 15 then
@@ -2879,7 +2879,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 25 then
@@ -2894,7 +2894,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -2945,7 +2945,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3001,7 +3001,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3115,7 +3115,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3131,7 +3131,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3140,7 +3140,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 26 then
@@ -3149,7 +3149,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3168,7 +3168,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3199,7 +3199,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -3277,7 +3277,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3286,7 +3286,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3319,7 +3319,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3358,7 +3358,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3366,7 +3366,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3385,7 +3385,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3393,7 +3393,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3424,7 +3424,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3432,7 +3432,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -3446,7 +3446,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3612,7 +3612,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3621,7 +3621,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3675,7 +3675,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3714,7 +3714,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3775,7 +3775,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3785,7 +3785,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3794,7 +3794,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3813,7 +3813,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3823,7 +3823,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3832,7 +3832,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3871,7 +3871,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3899,7 +3899,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3909,7 +3909,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3944,7 +3944,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3954,7 +3954,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -4696,7 +4696,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 2 then
@@ -4705,7 +4705,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 39 then
@@ -4714,7 +4714,7 @@ begin
     trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     yield ast_node
   		end
 	when 9 then
@@ -4730,7 +4730,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 22 then
@@ -4739,7 +4739,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 	when 14 then
@@ -4770,7 +4770,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -4787,7 +4787,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -4802,7 +4802,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -4810,7 +4810,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 11 then
@@ -4825,7 +4825,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 13 then
@@ -4834,7 +4834,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -4842,7 +4842,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 15 then
@@ -4906,7 +4906,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 25 then
@@ -4921,7 +4921,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -4972,7 +4972,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -5028,7 +5028,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5142,7 +5142,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -5158,7 +5158,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -5167,7 +5167,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 26 then
@@ -5176,7 +5176,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5195,7 +5195,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5226,7 +5226,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -5304,7 +5304,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -5313,7 +5313,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -5346,7 +5346,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -5385,7 +5385,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5393,7 +5393,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5412,7 +5412,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5420,7 +5420,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5451,7 +5451,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5459,7 +5459,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -5473,7 +5473,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5639,7 +5639,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -5648,7 +5648,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -5702,7 +5702,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -5741,7 +5741,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -5802,7 +5802,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5812,7 +5812,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -5821,7 +5821,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -5840,7 +5840,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -5850,7 +5850,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -5859,7 +5859,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -5898,7 +5898,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -5926,7 +5926,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -5936,7 +5936,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -5971,7 +5971,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -5981,7 +5981,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -6778,7 +6778,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 2 then
@@ -6787,7 +6787,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 39 then
@@ -6796,7 +6796,7 @@ begin
     trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     yield ast_node
   		end
 	when 9 then
@@ -6812,7 +6812,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 22 then
@@ -6821,7 +6821,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 	when 14 then
@@ -6852,7 +6852,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6869,7 +6869,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6884,7 +6884,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -6892,7 +6892,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 11 then
@@ -6907,7 +6907,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 13 then
@@ -6916,7 +6916,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -6924,7 +6924,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 15 then
@@ -6988,7 +6988,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 25 then
@@ -7003,7 +7003,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7054,7 +7054,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -7110,7 +7110,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7224,7 +7224,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -7240,7 +7240,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -7249,7 +7249,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 26 then
@@ -7258,7 +7258,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7277,7 +7277,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7308,7 +7308,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -7386,7 +7386,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -7395,7 +7395,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -7428,7 +7428,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -7467,7 +7467,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7475,7 +7475,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7494,7 +7494,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7502,7 +7502,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7533,7 +7533,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7541,7 +7541,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -7555,7 +7555,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7721,7 +7721,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -7730,7 +7730,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -7784,7 +7784,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -7823,7 +7823,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -7884,7 +7884,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7894,7 +7894,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -7903,7 +7903,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -7922,7 +7922,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -7932,7 +7932,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -7941,7 +7941,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -7980,7 +7980,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -8008,7 +8008,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -8018,7 +8018,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -8053,7 +8053,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -8063,7 +8063,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
