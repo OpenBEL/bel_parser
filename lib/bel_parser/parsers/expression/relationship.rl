@@ -33,6 +33,7 @@
     RELATIONSHIP
     >start_relationship
     %stop_relationship
+    NL?
     ;
 
   relationship_node :=

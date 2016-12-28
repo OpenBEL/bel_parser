@@ -46,8 +46,8 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 33, 126, 33, 126, 
-	0
+	0, 0, 33, 126, 10, 126, 
+	0, 0, 0
 ]
 
 class << self
@@ -55,7 +55,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 94, 94
+	0, 94, 117, 0
 ]
 
 class << self
@@ -63,7 +63,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 95
+	0, 0, 95, 213
 ]
 
 class << self
@@ -83,18 +83,21 @@ self._bel_indicies = [
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 1, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 1, 0
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 1, 1, 
+	1, 1, 1, 1, 1, 1, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 3, 3, 3, 3, 
+	3, 3, 3, 3, 1, 1, 0
 ]
 
 class << self
@@ -102,7 +105,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	2, 0, 2
+	2, 0, 3, 2
 ]
 
 class << self
@@ -110,7 +113,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	1, 0, 0
+	1, 0, 3, 0
 ]
 
 class << self
@@ -118,7 +121,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 0, 2
+	0, 0, 2, 4
 ]
 
 class << self
@@ -205,6 +208,14 @@ begin
     trace('RELATIONSHIP start_relationship')
     p_start = p;
   		end
+	when 3 then
+		begin
+
+    trace('RELATIONSHIP stop_relationship')
+    # It's not you, it's me. You're a p and I'm a non-protein coding r. It
+    # would never work, I just can't reach you.
+    p_end = p;
+  		end
 	end
 	end
 	end
@@ -222,6 +233,19 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
+	when 4 then
+		begin
+
+    trace('RELATIONSHIP relationship_end')
+    chars = data[p_start...p_end]
+    completed = !chars.empty?
+    ast_node = relationship(utf8_string(chars), complete: completed)
+    @buffers[:relationship] = ast_node
+  		end
+		begin
+
+    yield @buffers[:relationship]
+  		end
 	when 2 then
 		begin
 
