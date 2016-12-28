@@ -445,7 +445,7 @@ module BELParser
         end
       end
 
-      # AST node representing the definition of a namespace.
+      # AST node representing an identifier (e.g. non-quoted value).
       class Identifier < Node
         # AST node type
         @ast_type = :identifier
@@ -457,6 +457,26 @@ module BELParser
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
           super(Identifier.ast_type, children, properties)
+        end
+
+        # Get the string literal.
+        def string_literal
+          children[0]
+        end
+      end
+
+      # AST node representing a multi-valued identifier without needing quotes (e.g. greedy).
+      class MultiIdentifier < Node
+        # AST node type
+        @ast_type = :multi_identifier
+        # MultiIdentifier have no semantics
+        @has_semantics = false
+
+        # New MultiIdentifier AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(MultiIdentifier.ast_type, children, properties)
         end
 
         # Get the string literal.
@@ -1002,6 +1022,10 @@ module BELParser
 
         def identifier(*children, **props)
           Identifier.new(children, props)
+        end
+
+        def multi_identifier(*children, **props)
+          MultiIdentifier.new(children, props)
         end
 
         def string(*children, **props)

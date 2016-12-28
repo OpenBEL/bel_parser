@@ -1,6 +1,7 @@
 require_relative 'common/blank_line'
 require_relative 'common/comment_line'
 require_relative 'common/identifier'
+require_relative 'common/multi_identifier'
 require_relative 'common/string'
 require_relative 'common/list'
 require_relative 'common/function'
