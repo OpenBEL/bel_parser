@@ -964,6 +964,20 @@ module BELParser
       #
       # @see https://en.wikipedia.org/wiki/S-expression S-expression
       module Sexp
+        def self.build(&block)
+          raise ArgumentError, 'expecting block' unless block_given?
+
+          builder = _builder_class.new
+          builder.instance_eval(&block)
+        end
+
+        def self._builder_class
+          Class.new do
+            include Sexp
+          end
+        end
+        private_class_method :_builder_class
+
         def nested_statement(*children, **props)
           NestedStatement.new(children, props)
         end
