@@ -20,6 +20,18 @@ OptionParser.new do |opts|
   opts.on('-f', '--file FILE', 'BEL script file to read.') do |bel|
     options[:file] = bel
   end
+
+  if RUBY_ENGINE =~ /^jruby/i
+    opts.on(
+      '-t',
+      '--read-jena-tdb DIRECTORY',
+      'Jena TDB directory containing BEL RDF resources.') do |tdb|
+
+        require 'bel_parser/resource/jena_tdb_reader'
+        options[:uri_reader] = BELParser::Resource::JenaTDBReader.new(tdb)
+        BELParser::Resource.default_uri_reader = options[:uri_reader]
+      end
+  end
 end.parse!
 
 file = options[:file]
@@ -49,7 +61,7 @@ puts serialize(
     value(
       string('"2.0"'))))
 BELParser::ASTGenerator.new(io).each do |result|
-  line_number, line, asts = result
+  _, line, asts = result
 
   document_property =
     asts.find { |ast|
@@ -57,17 +69,17 @@ BELParser::ASTGenerator.new(io).each do |result|
     }
   next if document_property && document_property.name.identifier.string_literal.downcase == 'belversion'
 
-  ast =
+  convert_ast =
     asts.find do |ast|
       ast && CONVERSION_TYPES.include?(ast.type)
     end
 
-  if ast
-    ast =
-      upgrades.reduce(ast) do |ast, upgrade|
+  if convert_ast
+    puts serialize(
+      upgrades.reduce(convert_ast) do |ast, upgrade|
         upgrade.process(ast)
       end
-    puts serialize(ast)
+    )
   else
     puts line
   end
