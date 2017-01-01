@@ -253,9 +253,18 @@ te = p+1
     @last_state = :STRING
 
     trace('STRING')
-    @value = string(utf8_string(data[ts...te]))
+    @value =
+      string(
+        utf8_string(data[ts...te]),
+        character_range: [ts, te])
     if !@prefix.nil?
-      @param = parameter(@prefix, value(@value))
+      @param =
+        parameter(
+          @prefix,
+          value(
+            @value,
+            character_range: @value.character_range),
+          character_range: [@prefix.range_start, @value.range_end])
       @value = nil
     end
 # end ruby
@@ -269,7 +278,12 @@ te = p+1
     @last_state = :O_PAREN
 
     trace('O_PAREN')
-    @term_stack << term(function(@value))
+    @term_stack <<
+      term(
+        function(
+          @value,
+          character_range: @value.character_range),
+        character_range: [@value.range_start, @value.range_end + 1])
     @value = nil
 # end ruby
    end
@@ -283,19 +297,39 @@ te = p+1
     if @last_state == :COMMA
       @last_state = :C_PAREN
       function, arguments = @term_stack[-1].children
-      empty_argument      = argument(nil)
-      @term_stack[-1]     = term(*[function, arguments, empty_argument].flatten.compact)
+      empty_argument      =
+        argument(
+          nil,
+          character_range: [ts, ts])
+      @term_stack[-1]     =
+        term(
+          *[function, arguments, empty_argument].flatten.compact,
+          character_range: [function.range_start, te])
     else
       @last_state = :C_PAREN
       if !@param.nil?
         function, arguments = @term_stack[-1].children
-        @term_stack[-1]     = term(*[function, arguments, argument(@param)].flatten.compact)
-        @param              = nil
-        @prefix             = nil
+        @term_stack[-1]     =
+          term(
+            *[function, arguments, argument(@param)].flatten.compact,
+            character_range: [function.range_start, te])
+        @param  = nil
+        @prefix = nil
       elsif !@value.nil?
         function, arguments = @term_stack[-1].children
-        arg_from_value      = argument(parameter(prefix(nil), value(@value)))
-        @term_stack[-1]     = term(*[function, arguments, arg_from_value].flatten.compact)
+        arg_from_value      =
+          argument(
+            parameter(
+              prefix(nil),
+              value(
+                @value,
+                character_range: @value.character_range),
+              character_range: @value.character_range),
+            character_range: @value.character_range)
+        @term_stack[-1]     =
+          term(
+            *[function, arguments, arg_from_value].flatten.compact,
+            character_range: [function.range_start, @value.range_end + 1])
         @param              = nil
       end
     end
@@ -311,9 +345,15 @@ te = p+1
 
     trace('COLON')
     if !@value.nil?
-      @prefix = prefix(@value)
+      @prefix =
+        prefix(
+          @value,
+          character_range: @value.character_range)
     else
-      @prefix = prefix(nil)
+      @prefix =
+        prefix(
+          nil,
+          character_range: [ts, ts])
     end
 # end ruby
    end
@@ -329,13 +369,27 @@ te = p+1
     if !@term_stack.empty?
       if !@param.nil?
         function, arguments = @term_stack[-1].children
-        @term_stack[-1]     = term(*([function, arguments, argument(@param)].flatten.compact))
+        @term_stack[-1]     =
+          term(
+            *([function, arguments, argument(@param)].flatten.compact),
+            character_range: [function.range_start, @param.range_end + 1])
         @param              = nil
         @prefix             = nil
       elsif !@value.nil?
         function, arguments = @term_stack[-1].children
-        arg_from_value      = argument(parameter(prefix(nil), value(@value)))
-        @term_stack[-1]     = term(*[function, arguments, arg_from_value].flatten.compact)
+        arg_from_value      =
+          argument(
+            parameter(
+              prefix(nil),
+              value(
+                @value,
+                character_range: @value.character_range),
+              character_range: @value.character_range),
+            character_range: @value.character_range)
+        @term_stack[-1]     =
+          term(
+            *[function, arguments, arg_from_value].flatten.compact,
+            character_range: [function.range_start, arg_from_value.range_end + 1])
         @param              = nil
       end
     end
@@ -356,7 +410,10 @@ te = p+1
       if !@param.nil?
         yield @param
       elsif !@prefix.nil?
-        yield parameter(@prefix, nil)
+        yield parameter(
+          @prefix,
+          nil,
+          character_range: @prefix.character_range)
       elsif !@value.nil?
         yield @value
       end
@@ -365,32 +422,83 @@ te = p+1
       when :IDENT
         if !@param.nil?
           function, arguments = @term_stack[-1].children
-          arg_from_param      = argument(@param)
-          @term_stack[-1]     = term(*[function, arguments, arg_from_param].flatten.compact)
+          arg_from_param      =
+            argument(
+              @param,
+              character_range: @param.character_range)
+          @term_stack[-1]     =
+            term(
+              *[function, arguments, arg_from_param].flatten.compact,
+              character_range: [function.range_start, arg_from_param.range_end])
         elsif !@value.nil?
           function, arguments = @term_stack[-1].children
-          arg_from_value      = argument(parameter(prefix(nil), value(@value)))
-          @term_stack[-1]     = term(*[function, arguments, arg_from_value].flatten.compact)
+          arg_from_value      =
+            argument(
+              parameter(
+                prefix(
+                  nil),
+                value(
+                  @value,
+                  character_range: @value.character_range),
+                character_range: @value.character_range),
+              character_range: @value.character_range)
+          @term_stack[-1]     =
+            term(
+              *[function, arguments, arg_from_value].flatten.compact,
+              character_range: [function.range_start, @value.range_end])
         end
       when :STRING
         if !@param.nil?
           function, arguments = @term_stack[-1].children
-          arg_from_param      = argument(@param)
-          @term_stack[-1]     = term(*[function, arguments, arg_from_param].flatten.compact)
+          arg_from_param      =
+            argument(
+              @param,
+              character_range: @param.character_range)
+          @term_stack[-1]     =
+            term(
+              *[function, arguments, arg_from_param].flatten.compact,
+              character_range: [function.range_start, arg_from_param.range_end])
         elsif !@value.nil?
           function, arguments = @term_stack[-1].children
-          arg_from_value      = argument(parameter(prefix(nil), value(@value)))
-          @term_stack[-1]     = term(*[function, arguments, arg_from_value].flatten.compact)
+          arg_from_value      =
+            argument(
+              parameter(
+                prefix(
+                  nil),
+                value(
+                  @value,
+                  character_range: @value.character_range),
+                character_range: @value.character_range),
+              character_range: @value.character_range)
+          @term_stack[-1]     =
+            term(
+              *[function, arguments, arg_from_value].flatten.compact,
+              character_range: [function.range_start, arg_from_value.range_end])
         end
       when :COMMA
         function  = @term_stack[-1].function
         arguments = @term_stack[-1].arguments
-        empty_argument      = argument(nil)
-        @term_stack[-1]     = term(*([function, arguments, empty_argument].flatten.compact))
+        empty_argument      =
+          argument(
+            nil,
+            character_range: [te, te])
+        @term_stack[-1]     =
+          term(
+            *([function, arguments, empty_argument].flatten.compact),
+            character_range: [function.range_start, empty_argument.range_end])
       when :COLON
         function, arguments = @term_stack[-1].children
-        empty_argument      = argument(parameter(@prefix, nil))
-        @term_stack[-1]     = term(*[function, arguments, empty_argument].flatten.compact)
+        empty_argument      =
+          argument(
+            parameter(
+              @prefix,
+              nil,
+              character_range: [@prefix.range_start, @prefix.range_end + 1]),
+            character_range: [@prefix.range_start, @prefix.range_end + 1])
+        @term_stack[-1]     =
+          term(
+            *[function, arguments, empty_argument].flatten.compact,
+            character_range: [function.range_start, empty_argument.range_end])
       end
 
       yield @term_stack[0]
@@ -406,9 +514,16 @@ p = p - 1; begin
     @last_state = :IDENT
 
     trace('IDENT')
-    @value = identifier(utf8_string(data[ts...te]))
+    @value =
+      identifier(
+        utf8_string(data[ts...te]),
+        character_range: [ts, te])
     if !@prefix.nil?
-      @param = parameter(@prefix, value(@value))
+      @param =
+        parameter(
+          @prefix,
+          value(@value),
+          character_range: [@prefix.range_start, @value.range_end])
       @value = nil
     end
 # end ruby
@@ -422,9 +537,18 @@ p = p - 1; begin
     @last_state = :STRING
 
     trace('STRING')
-    @value = string(utf8_string(data[ts...te]))
+    @value =
+      string(
+        utf8_string(data[ts...te]),
+        character_range: [ts, te])
     if !@prefix.nil?
-      @param = parameter(@prefix, value(@value))
+      @param =
+        parameter(
+          @prefix,
+          value(
+            @value,
+            character_range: @value.character_range),
+          character_range: [@prefix.range_start, @value.range_end])
       @value = nil
     end
 # end ruby
@@ -485,9 +609,39 @@ end
 end
 
 if __FILE__ == $0
+  class ::AST::Node
+
+    def _metadata
+      ivars = instance_variables - [:@type, :@children, :@hash]
+      ivars.map { |iv| [iv, instance_variable_get(iv)] }.to_s
+    end
+    private :_metadata
+
+    def to_sexp(indent=0)
+      indented = "  " * indent
+      sexp = "#{indented}(#{fancy_type} #{_metadata}"
+
+      first_node_child = children.index do |child|
+        child.is_a?(::AST::Node) || child.is_a?(Array)
+      end || children.count
+
+      children.each_with_index do |child, idx|
+        if child.is_a?(::AST::Node) && idx >= first_node_child
+          sexp << "\n#{child.to_sexp(indent + 1)}"
+        else
+          sexp << " #{child.inspect}"
+        end
+      end
+
+      sexp << ")"
+
+      sexp
+    end
+  end
+
   $stdin.each_line do |line|
     BELParser::Parsers::Expression::StatementAutocomplete.parse(line) { |obj|
-      puts obj.inspect
+      puts obj.to_sexp(1)
     }
   end
 end
