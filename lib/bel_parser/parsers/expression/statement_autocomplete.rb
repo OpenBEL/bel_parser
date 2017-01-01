@@ -250,7 +250,6 @@ ts = p
 te = p+1
  begin 
 # begin ruby
-    ts         -= @spaces
     @last_state = :STRING
 
     trace('STRING')
@@ -259,7 +258,6 @@ te = p+1
       @param = parameter(@prefix, value(@value))
       @value = nil
     end
-    trace("  value:\n#{@value}")
 # end ruby
    end
 		end
@@ -268,13 +266,11 @@ te = p+1
 te = p+1
  begin 
 # begin ruby
-    ts         -= @spaces
     @last_state = :O_PAREN
 
     trace('O_PAREN')
     @term_stack << term(function(@value))
     @value = nil
-    trace("  term:\n#{@term_stack[-1]}")
 # end ruby
    end
 		end
@@ -283,8 +279,7 @@ te = p+1
 te = p+1
  begin 
 # begin ruby
-    ts         -= @spaces
-
+    trace('C_PAREN')
     if @last_state == :COMMA
       @last_state = :C_PAREN
       function, arguments = @term_stack[-1].children
@@ -292,7 +287,6 @@ te = p+1
       @term_stack[-1]     = term(*[function, arguments, empty_argument].flatten.compact)
     else
       @last_state = :C_PAREN
-      trace('C_PAREN')
       if !@param.nil?
         function, arguments = @term_stack[-1].children
         @term_stack[-1]     = term(*[function, arguments, argument(@param)].flatten.compact)
@@ -313,7 +307,6 @@ te = p+1
 te = p+1
  begin 
 # begin ruby
-    ts         -= @spaces
     @last_state = :COLON
 
     trace('COLON')
@@ -330,7 +323,6 @@ te = p+1
 te = p+1
  begin 
 # begin ruby
-    ts         -= @spaces
     @last_state = :COMMA
 
     trace('COMMA')
@@ -355,7 +347,6 @@ te = p+1
 te = p+1
  begin 
 # begin ruby
-    ts -= @spaces
     if !@param.nil?
       @term_stack[0]
     end
@@ -364,6 +355,8 @@ te = p+1
     if @term_stack.empty?
       if !@param.nil?
         yield @param
+      elsif !@prefix.nil?
+        yield parameter(@prefix, nil)
       elsif !@value.nil?
         yield @value
       end
@@ -410,7 +403,6 @@ te = p+1
 te = p
 p = p - 1; begin 
 # begin ruby
-    ts         -= @spaces
     @last_state = :IDENT
 
     trace('IDENT')
@@ -419,7 +411,6 @@ p = p - 1; begin
       @param = parameter(@prefix, value(@value))
       @value = nil
     end
-    trace("  value:\n#{@value}")
 # end ruby
    end
 		end
@@ -428,7 +419,6 @@ p = p - 1; begin
 te = p
 p = p - 1; begin 
 # begin ruby
-    ts         -= @spaces
     @last_state = :STRING
 
     trace('STRING')
@@ -437,7 +427,6 @@ p = p - 1; begin
       @param = parameter(@prefix, value(@value))
       @value = nil
     end
-    trace("  value:\n#{@value}")
 # end ruby
    end
 		end
@@ -446,9 +435,12 @@ p = p - 1; begin
 te = p
 p = p - 1; begin 
 # begin ruby
-    @spaces = te-ts
-
-    trace("SPACES")
+    spaces = te-ts
+    trace("SPACES (#{spaces})")
+    data.slice!(ts, spaces)
+    p   -= spaces
+    pe  -= spaces
+    eof -= spaces
 # end ruby
    end
 		end

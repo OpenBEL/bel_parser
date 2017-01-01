@@ -15,7 +15,6 @@
 
   action IDENT   {
 # begin ruby
-    ts         -= @spaces
     @last_state = :IDENT
 
     trace('IDENT')
@@ -24,13 +23,11 @@
       @param = parameter(@prefix, value(@value))
       @value = nil
     end
-    trace("  value:\n#{@value}")
 # end ruby
   }
 
   action STRING  {
 # begin ruby
-    ts         -= @spaces
     @last_state = :STRING
 
     trace('STRING')
@@ -39,26 +36,22 @@
       @param = parameter(@prefix, value(@value))
       @value = nil
     end
-    trace("  value:\n#{@value}")
 # end ruby
   }
 
   action O_PAREN {
 # begin ruby
-    ts         -= @spaces
     @last_state = :O_PAREN
 
     trace('O_PAREN')
     @term_stack << term(function(@value))
     @value = nil
-    trace("  term:\n#{@term_stack[-1]}")
 # end ruby
   }
 
   action C_PAREN {
 # begin ruby
-    ts         -= @spaces
-
+    trace('C_PAREN')
     if @last_state == :COMMA
       @last_state = :C_PAREN
       function, arguments = @term_stack[-1].children
@@ -66,7 +59,6 @@
       @term_stack[-1]     = term(*[function, arguments, empty_argument].flatten.compact)
     else
       @last_state = :C_PAREN
-      trace('C_PAREN')
       if !@param.nil?
         function, arguments = @term_stack[-1].children
         @term_stack[-1]     = term(*[function, arguments, argument(@param)].flatten.compact)
@@ -84,7 +76,6 @@
 
   action COLON   {
 # begin ruby
-    ts         -= @spaces
     @last_state = :COLON
 
     trace('COLON')
@@ -98,7 +89,6 @@
 
   action COMMA   {
 # begin ruby
-    ts         -= @spaces
     @last_state = :COMMA
 
     trace('COMMA')
@@ -120,15 +110,17 @@
 
   action SPACES  {
 # begin ruby
-    @spaces = te-ts
-
-    trace("SPACES")
+    spaces = te-ts
+    trace("SPACES (#{spaces})")
+    data.slice!(ts, spaces)
+    p   -= spaces
+    pe  -= spaces
+    eof -= spaces
 # end ruby
   }
 
   action EOF {
 # begin ruby
-    ts -= @spaces
     if !@param.nil?
       @term_stack[0]
     end
@@ -137,6 +129,8 @@
     if @term_stack.empty?
       if !@param.nil?
         yield @param
+      elsif !@prefix.nil?
+        yield parameter(@prefix, nil)
       elsif !@value.nil?
         yield @value
       end
