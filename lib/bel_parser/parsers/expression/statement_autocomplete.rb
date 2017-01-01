@@ -369,9 +369,13 @@ te = p+1
     if !@term_stack.empty?
       if !@param.nil?
         function, arguments = @term_stack[-1].children
+        arg_from_param      =
+          argument(
+            @param,
+            character_range: @param.character_range)
         @term_stack[-1]     =
           term(
-            *([function, arguments, argument(@param)].flatten.compact),
+            *([function, arguments, arg_from_param].flatten.compact),
             character_range: [function.range_start, @param.range_end + 1])
         @param              = nil
         @prefix             = nil
