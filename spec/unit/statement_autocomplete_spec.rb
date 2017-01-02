@@ -1,6 +1,8 @@
 require_relative 'spec_helper'
 require 'bel_parser/parsers/expression/statement_autocomplete'
 
+# TODO Refactor AST assertion to compare properties.
+# TODO This will reduce duplication and allow checking of character_range.
 describe BELParser::Parsers::Expression::StatementAutocomplete, '#parse' do
   include BELParser::Parsers::AST::Sexp
 
@@ -11,55 +13,122 @@ describe BELParser::Parsers::Expression::StatementAutocomplete, '#parse' do
   it '|a| yields identifier' do
     assert_ast(
       parser,
-      "a",
-      identifier("a")
+      'a',
+      identifier('a')
     )
+  end
+
+  it '|a| yields identifier with character_range' do
+    identifier = parse_ast(
+      parser,
+      'a'
+    )
+    expect(identifier.type).to eql(:identifier)
+    expect(identifier.character_range).to eql([0, 1])
   end
 
   it '|a:| yields parameter with prefix' do
     assert_ast(
       parser,
-      "a:",
+      'a:',
       parameter(
         prefix(
           identifier(
-            "a")),
+            'a')),
         nil)
     )
+  end
+
+  it '|a:| yields parameter with character_range' do
+    parameter = parse_ast(
+      parser,
+      'a:'
+    )
+    expect(parameter.type).to eql(:parameter)
+    expect(parameter.character_range).to eql([0, 2])
+    expect(parameter.prefix.character_range).to eql([0,1])
+    expect(parameter.prefix.identifier).to_not be_nil
+    expect(parameter.prefix.identifier.character_range).to eql([0,1])
+    expect(parameter.value).to be_nil
   end
 
   it '|:a| yields parameter with value' do
     assert_ast(
       parser,
-      ":a",
+      ':a',
       parameter(
         prefix(
           nil),
         value(
-          identifier("a")))
+          identifier('a')))
     )
+  end
+
+  it '|:a| yields parameter with character_range' do
+    parameter = parse_ast(
+      parser,
+      ':a'
+    )
+    expect(parameter.type).to eql(:parameter)
+    expect(parameter.character_range).to eql([0, 2])
+    expect(parameter.prefix).to_not be_nil
+    expect(parameter.prefix.character_range).to eql([0,0])
+    expect(parameter.prefix.identifier).to be_nil
+    expect(parameter.value).to_not be_nil
+    expect(parameter.value.character_range).to eql([1,2])
+    expect(parameter.value.first_child).to_not be_nil
+    expect(parameter.value.first_child.character_range).to eql([1,2])
   end
 
   it '|a:b| yields parameter with prefix and value' do
     assert_ast(
       parser,
-      "a:b",
+      'a:b',
       parameter(
         prefix(
-          identifier("a")),
+          identifier('a')),
         value(
-          identifier("b")))
+          identifier('b')))
     )
+  end
+
+  it '|a:b| yields parameter with character_range' do
+    parameter = parse_ast(
+      parser,
+      'a:b'
+    )
+    expect(parameter.type).to eql(:parameter)
+    expect(parameter.character_range).to eql([0, 3])
+    expect(parameter.prefix).to_not be_nil
+    expect(parameter.prefix.character_range).to eql([0,1])
+    expect(parameter.prefix.identifier).to_not be_nil
+    expect(parameter.prefix.identifier.character_range).to eql([0,1])
+    expect(parameter.value).to_not be_nil
+    expect(parameter.value.character_range).to eql([2,3])
+    expect(parameter.value.first_child).to_not be_nil
+    expect(parameter.value.first_child.character_range).to eql([2,3])
   end
 
   it '|a(| yields term with function' do
     assert_ast(
       parser,
-      "a(",
+      'a(',
       term(
         function(
-          identifier("a")))
+          identifier('a')))
     )
+  end
+
+  it '|a(| yields term with character_range' do
+    term = parse_ast(
+      parser,
+      'a('
+    )
+    expect(term.type).to eql(:term)
+    expect(term.character_range).to eql([0, 2])
+    expect(term.function).to_not be_nil
+    expect(term.function.character_range).to eql([0, 1])
+    expect(term.arguments).to eql([])
   end
 
   it '|a(b| yields term with parameter value "b"' do
@@ -77,6 +146,28 @@ describe BELParser::Parsers::Expression::StatementAutocomplete, '#parse' do
                 identifier(
                   "b")))))
     )
+  end
+
+  it '|a(b| yields term with character_range' do
+    term = parse_ast(
+      parser,
+      'a(b'
+    )
+    expect(term.type).to eql(:term)
+    expect(term.character_range).to eql([0, 3])
+    expect(term.function).to_not be_nil
+    expect(term.function.character_range).to eql([0, 1])
+    expect(term.arguments.length).to eql(1)
+    expect(term.arguments[0].type).to eql(:argument)
+
+    argument = term.arguments[0]
+    expect(argument.character_range).to eql([2,3])
+    expect(argument.parameter?).to be
+    expect(argument.term?).not_to be
+    parameter = argument.child
+    expect(parameter.character_range).to eql([2,3])
+    expect(parameter.prefix.character_range).to be_nil
+    expect(parameter.prefix.identifier).to be_nil
   end
 
   it '|a(:b| yields term with parameter value "b"' do

@@ -26,7 +26,9 @@
       @param =
         parameter(
           @prefix,
-          value(@value),
+          value(
+            @value,
+            character_range: @value.character_range),
           character_range: [@prefix.range_start, @value.range_end])
       @value = nil
     end
@@ -73,7 +75,7 @@
   action C_PAREN {
 # begin ruby
     trace('C_PAREN')
-    if @last_state == :COMMA
+    if @last_state == :COMMA || @last_state == :O_PAREN
       @last_state = :C_PAREN
       function, arguments = @term_stack[-1].children
       empty_argument      =
@@ -110,6 +112,9 @@
             *[function, arguments, arg_from_value].flatten.compact,
             character_range: [function.range_start, @value.range_end + 1])
         @param              = nil
+      else
+        term = @term_stack[-1]
+        term.character_range = [term.range_start, term.range_end + 1]
       end
     end
 # end ruby
@@ -192,17 +197,19 @@
 
     trace("last state in EOF: " + @last_state.to_s)
     if @term_stack.empty?
+      trace('term stack is empty')
       if !@param.nil?
         yield @param
       elsif !@prefix.nil?
         yield parameter(
           @prefix,
           nil,
-          character_range: @prefix.character_range)
+          character_range: [@prefix.range_start, @prefix.range_end + 1])
       elsif !@value.nil?
         yield @value
       end
     else
+      trace('term stack is not empty')
       case @last_state
       when :IDENT
         if !@param.nil?
@@ -323,8 +330,12 @@ module BELParser
           def parse(content)
             return nil unless content
 
-            Parser.new(content).each do |obj|
-              yield obj
+            if !content.end_with?("\n")
+              content = "#{content}\n"
+            end
+
+            Parser.new(content).each do |ast|
+              return ast
             end
           end
         end
