@@ -68,4 +68,12 @@ describe BELParser::Completion::ParameterCompleter do
     match = completer.complete('AKT1S1', 6).find { |(_, value)| value == 'AKT1S1' }
     expect(match).to match(['HGNC', 'AKT1S1'])
   end
+
+  it 'namespace value matches are sorted by increasing levenshtein distance' do
+    expect(completer.complete('AKT1', 4)).to start_with(
+      ['HGNC', 'AKT1'],
+      ['MGI',  'Akt1'],
+      ['RGD',  'Akt1']
+    )
+  end
 end

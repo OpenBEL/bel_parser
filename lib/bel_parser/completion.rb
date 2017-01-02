@@ -1,4 +1,5 @@
 require 'bel_parser/parsers/expression/statement_autocomplete'
+require_relative 'mixin/levenshtein'
 require 'pry'
 
 # Use simple-statement as a base.
@@ -58,10 +59,7 @@ module BELParser
     end
 
     class ParameterCompleter < BaseCompleter
-
-      # TODO Order matches by pref_label edit distance.
-      # mri:  https://github.com/GlobalNamesArchitecture/damerau-levenshtein
-      # jruy: https://github.com/dwbutler/levenshtein-jruby
+      L = BELParser::Levenshtein
 
       def complete(string_literal, caret_position)
         query =
@@ -75,14 +73,20 @@ module BELParser
             post = string_literal.slice(caret_position..-1)
             "#{ante}*#{post}"
           end
-        @search.search(query, :namespace_concept, nil, nil, size: 10).map { |match|
-          ns = @namespaces.find(match.scheme_uri).first
-          if ns
-            [ns.prefix.first.upcase, match.pref_label]
-          else
-            nil
-          end
-        }.to_a
+        @search
+          .search(query, :namespace_concept, nil, nil, size: 200)
+          .sort { |match1, match2|
+            L.distance(string_literal.downcase, match1.pref_label.downcase) <=>
+            L.distance(string_literal.downcase, match2.pref_label.downcase)
+          }
+          .map { |match|
+            ns = @namespaces.find(match.scheme_uri).first
+            if ns
+              [ns.prefix.first.upcase, match.pref_label]
+            else
+              nil
+            end
+          }.compact.take(20)
       end
     end
   end
@@ -130,10 +134,10 @@ if __FILE__ == $0
   caret_position = ARGV.shift
 
   puts "Ready."
-  $stdin.each_line do |line|
-    line.strip!
-    puts search.search(line, :namespace_concept, nil, nil, size: 10).select { |v| v.pref_label == line }.to_a
-  end
+  #$stdin.each_line do |line|
+    #line.strip!
+    #puts search.search(line, :namespace_concept, nil, nil, size: 10).select { |v| v.pref_label == line }.to_a
+  #end
 
   $stdin.each_line do |line|
     line.strip!

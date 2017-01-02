@@ -28,11 +28,13 @@ Gem::Specification.new do |spec|
 
   if RUBY_ENGINE =~ /jruby/
     spec.platform               = 'java'
-    spec.add_runtime_dependency   'sparql-client', '~> 2.0.0'
-    spec.add_runtime_dependency   'dbm-mapdb3',    '~> 0.6.0.beta'
+    spec.add_runtime_dependency   'sparql-client',       '~> 2.0.0'
+    spec.add_runtime_dependency   'dbm-mapdb3',          '~> 0.6.0.beta'
+    spec.add_runtime_dependency   'levenshtein-jruby',   '0.1.0'
   else
     spec.platform               = 'ruby'
-    spec.add_runtime_dependency   'sparql-client', '~> 2.0.0'
+    spec.add_runtime_dependency   'sparql-client',       '~> 2.0.0'
+    spec.add_runtime_dependency   'damerau-levenshtein', '1.2.0'
   end
 end
 # vim: ft=ruby
