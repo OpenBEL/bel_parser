@@ -1,4 +1,5 @@
 require 'bel_parser/parsers/expression/statement_autocomplete'
+require 'bel_parser/parsers/serializer'
 require_relative 'mixin/levenshtein'
 require 'pry'
 
@@ -6,8 +7,10 @@ require 'pry'
 # 0. Build a new partial AST parser for statement. Provide specific statement type on yield.
 module BELParser
   module Completion
+    extend BELParser::Parsers::AST::Sexp
+    extend BELParser::Parsers
 
-    def self.complete(input, spec, search, caret_position = input.length)
+    def self.complete(input, spec, search, namespaces, caret_position = input.length)
       # 1. Parse AST using statement_autocomplete ragel FSM.
       # 2. For cursor, find node in AST.
       # 3. Determine the node type being completed.
@@ -18,9 +21,28 @@ module BELParser
       puts ast.to_sexp(1)
 
       completing_node = find_node(ast, caret_position)
-      puts "completing node:"
-      puts completing_node.to_sexp(1)
-      completing_node
+      case completing_node.type
+      when :identifier
+        string_literal = completing_node.string_literal
+        functions = FunctionCompleter.new(spec, search, namespaces).complete(string_literal, caret_position)
+        functions.map { |fx|
+          fx_name = fx.short.to_s
+          completion =
+            serialize(
+              term(
+                function(
+                  identifier(
+                    fx_name)))
+            )
+
+          {
+            completion: completion,
+            caret_position: fx_name.length + 1
+          }
+        }
+      else
+        []
+      end
     end
 
     def self.find_node(ast, caret_position)
@@ -41,7 +63,7 @@ module BELParser
         @namespaces = namespaces
       end
 
-      def complete(input_node, caret_position, options = {})
+      def complete(string_literal, caret_position, options = {})
         raise NotImplementedError, "#{__method__} is not implemented."
       end
     end
@@ -50,11 +72,7 @@ module BELParser
 
       def complete(string_literal, caret_position)
         pattern = /.*#{Regexp.quote(string_literal)}.*/i
-        @spec.functions
-          .select { |fx| fx =~ pattern }
-          .map    { |fx|
-            fx.short.to_s
-          }
+        @spec.functions.select { |fx| fx =~ pattern }
       end
     end
 
@@ -86,7 +104,9 @@ module BELParser
             else
               nil
             end
-          }.compact.take(20)
+          }
+          .compact
+          .take(20)
       end
     end
   end
@@ -136,12 +156,12 @@ if __FILE__ == $0
   puts "Ready."
   #$stdin.each_line do |line|
     #line.strip!
-    #puts search.search(line, :namespace_concept, nil, nil, size: 10).select { |v| v.pref_label == line }.to_a
+    #puts search.search(line, :namespace_concept, nil, nil, size: 10).to_a.map(&:to_h)
   #end
 
   $stdin.each_line do |line|
     line.strip!
-    BELParser::Completion.complete(line, spec, search, caret_position.to_i).to_sexp(1)
+    puts BELParser::Completion.complete(line, spec, search, caret_position.to_i)
   end
 end
 # vim: ft=ruby ts=2 sw=2:
