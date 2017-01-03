@@ -1,7 +1,6 @@
 require 'bel_parser/parsers/expression/statement_autocomplete'
 require 'bel_parser/parsers/serializer'
 require_relative 'mixin/levenshtein'
-require 'pry'
 
 # Use simple-statement as a base.
 # 0. Build a new partial AST parser for statement. Provide specific statement type on yield.
@@ -21,6 +20,7 @@ module BELParser
       puts ast.to_sexp(1)
 
       completing_node = find_node(ast, caret_position)
+      puts "completing_node: #{completing_node}"
       case completing_node.type
       when :identifier
         string_literal = completing_node.string_literal
@@ -36,9 +36,10 @@ module BELParser
             )
 
           {
-            type: :function,
-            label: fx.long.to_s,
-            value: completion,
+            type:           :function,
+            id:             fx.long.to_s,
+            label:          fx.long.to_s,
+            value:          completion,
             caret_position: fx_name.length + 1
           }
         }
