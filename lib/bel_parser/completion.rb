@@ -36,7 +36,9 @@ module BELParser
             )
 
           {
-            completion: completion,
+            type: :function,
+            label: fx.long.to_s,
+            value: completion,
             caret_position: fx_name.length + 1
           }
         }
