@@ -101,7 +101,9 @@
         arg_from_value      =
           argument(
             parameter(
-              prefix(nil),
+              prefix(
+                nil,
+                character_range: [@value.range_start, @value.range_start]),
               value(
                 @value,
                 character_range: @value.character_range),
@@ -162,7 +164,9 @@
         arg_from_value      =
           argument(
             parameter(
-              prefix(nil),
+              prefix(
+                nil,
+                character_range: [@value.range_start, @value.range_start]),
               value(
                 @value,
                 character_range: @value.character_range),
@@ -228,7 +232,8 @@
             argument(
               parameter(
                 prefix(
-                  nil),
+                  nil,
+                  character_range: [@value.range_start, @value.range_start]),
                 value(
                   @value,
                   character_range: @value.character_range),
@@ -256,7 +261,8 @@
             argument(
               parameter(
                 prefix(
-                  nil),
+                  nil,
+                  character_range: [@value.range_start, @value.range_start]),
                 value(
                   @value,
                   character_range: @value.character_range),
@@ -267,13 +273,13 @@
               *[function, arguments, arg_from_value].flatten.compact,
               character_range: [function.range_start, arg_from_value.range_end])
         end
-      when :COMMA
+      when :COMMA, :O_PAREN
         function  = @term_stack[-1].function
         arguments = @term_stack[-1].arguments
         empty_argument      =
           argument(
             nil,
-            character_range: [te, te])
+            character_range: [te - 1, te - 1])
         @term_stack[-1]     =
           term(
             *([function, arguments, empty_argument].flatten.compact),
