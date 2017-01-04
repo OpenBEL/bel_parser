@@ -2,6 +2,36 @@ require 'bel_parser/parsers/expression/statement_autocomplete'
 require 'bel_parser/parsers/serializer'
 require_relative 'mixin/levenshtein'
 
+class ::AST::Node
+
+  def _metadata
+    ivars = instance_variables - [:@type, :@children, :@hash]
+    ivars.map { |iv| [iv, instance_variable_get(iv)] }.to_s
+  end
+  private :_metadata
+
+  def to_sexp(indent=0)
+    indented = "  " * indent
+    sexp = "#{indented}(#{fancy_type} #{_metadata}"
+
+    first_node_child = children.index do |child|
+      child.is_a?(::AST::Node) || child.is_a?(Array)
+    end || children.count
+
+    children.each_with_index do |child, idx|
+      if child.is_a?(::AST::Node) && idx >= first_node_child
+        sexp << "\n#{child.to_sexp(indent + 1)}"
+      else
+        sexp << " #{child.inspect}"
+      end
+    end
+
+    sexp << ")"
+
+    sexp
+  end
+end
+
 # Use simple-statement as a base.
 # 0. Build a new partial AST parser for statement. Provide specific statement type on yield.
 module BELParser
@@ -18,9 +48,12 @@ module BELParser
       ast = BELParser::Parsers::Expression::StatementAutocomplete.parse(input)
       puts "parsed AST:"
       puts ast.to_sexp(1)
+      puts "caret: #{caret_position}"
 
       completing_node = find_node(ast, caret_position)
       puts "completing_node: #{completing_node}"
+      return [] unless completing_node
+
       case completing_node.type
       when :identifier
         string_literal = completing_node.string_literal
@@ -43,6 +76,70 @@ module BELParser
             caret_position: fx_name.length + 1
           }
         }
+      when :argument
+        if completing_node.child.nil?
+          completion_node =
+            argument(
+              parameter(
+                prefix(
+                  identifier(
+                    "HGNC")),
+                value(
+                  identifier(
+                    "AKT1"))),
+            character_range: completing_node.character_range)
+          completion = serialize(MergeCompletion.new(completion_node).process(ast))
+
+          [
+            {
+              type:           :namespace_value,
+              id:             'HGNC:AKT1',
+              label:          'HGNC:AKT1',
+              value:          completion,
+              caret_position: completion.length
+            }
+          ]
+        elsif completing_node.parameter?
+          parameter = completing_node.child
+          prefix, value = parameter.children
+          if Range.new(*prefix.character_range, true).include?(caret_position)
+            puts "completing the argument->parameter->prefix..."
+            puts "  #{prefix.to_sexp(1)}"
+          else
+            puts "completing the argument->parameter->value..."
+            puts "  #{value.to_sexp(1)}"
+            value_str = value.first_child.string_literal
+
+            parameters =
+              ParameterCompleter.new(
+                spec, search, namespaces
+              ).complete(value_str, caret_position - value.range_start)
+
+            parameters.map { |(ns, v)|
+              completion_node =
+                argument(
+                  parameter(
+                    prefix(
+                      identifier(
+                        ns)),
+                    value(
+                      identifier(
+                        v))),
+                character_range: completing_node.character_range)
+              completion = serialize(MergeCompletion.new(completion_node).process(ast))
+
+              {
+                type:           :namespace_value,
+                id:             "#{ns}:#{v}",
+                label:          "#{ns}:#{v}",
+                value:          completion,
+                caret_position: completion.length
+              }
+            }
+          end
+        else
+          # TODO Completing term argument, will we ever get here?
+        end
       else
         []
       end
@@ -50,7 +147,7 @@ module BELParser
 
     def self.find_node(ast, caret_position)
       ast.traverse do |node|
-        next unless node.respond_to?(:type)
+        next if node.type == :term
         return node if node.range_end == caret_position
       end
 
@@ -112,49 +209,46 @@ module BELParser
           .take(20)
       end
     end
+
+    class MergeCompletion
+      include ::AST::Processor::Mixin
+
+      def initialize(completion_node)
+        @completion_node = completion_node
+        @target_type     = completion_node.type
+        @range_start     = completion_node.range_start
+      end
+
+      def handler_missing(node)
+        if node.type == @target_type && node.range_start == @range_start
+          node = @completion_node
+        end
+
+        node.updated(
+          node.children.map { |n|
+            if n.respond_to?(:type)
+              process(n)
+            else
+              n
+            end
+          }
+        )
+      end
+    end
   end
 end
 
 if __FILE__ == $0
   require 'bel_parser'
   require 'bel'
+  include BELParser::Parsers::AST::Sexp
 
-  class ::AST::Node
+  #spec   = BELParser::Language.specification('2.0')
+  #search = BEL::Resource::Search.plugins[:sqlite].create_search(
+    #:database_file => '/home/tony/projects/openbel/openbel-api/data/rdf_resources.db'
+  #)
 
-    def _metadata
-      ivars = instance_variables - [:@type, :@children, :@hash]
-      ivars.map { |iv| [iv, instance_variable_get(iv)] }.to_s
-    end
-    private :_metadata
-
-    def to_sexp(indent=0)
-      indented = "  " * indent
-      sexp = "#{indented}(#{fancy_type} #{_metadata}"
-
-      first_node_child = children.index do |child|
-        child.is_a?(::AST::Node) || child.is_a?(Array)
-      end || children.count
-
-      children.each_with_index do |child, idx|
-        if child.is_a?(::AST::Node) && idx >= first_node_child
-          sexp << "\n#{child.to_sexp(indent + 1)}"
-        else
-          sexp << " #{child.inspect}"
-        end
-      end
-
-      sexp << ")"
-
-      sexp
-    end
-  end
-
-  spec   = BELParser::Language.specification('2.0')
-  search = BEL::Resource::Search.plugins[:sqlite].create_search(
-    :database_file => '/home/tony/projects/openbel/openbel-api/data/rdf_resources.db'
-  )
-
-  caret_position = ARGV.shift
+  #caret_position = ARGV.shift
 
   puts "Ready."
   #$stdin.each_line do |line|
@@ -162,10 +256,23 @@ if __FILE__ == $0
     #puts search.search(line, :namespace_concept, nil, nil, size: 10).to_a.map(&:to_h)
   #end
 
-  $stdin.each_line do |line|
-    line.strip!
-    puts BELParser::Completion.complete(line, spec, search, caret_position.to_i)
-  end
+  #$stdin.each_line do |line|
+    #line.strip!
+    #puts BELParser::Completion.complete(line, spec, search, caret_position.to_i)
+  #end
+
+  ast = BELParser::Parsers::Expression::StatementAutocomplete.parse('bp()')
+  puts BELParser::Completion::MergeCompletion.new(
+    argument(
+      parameter(
+        prefix(
+          identifier(
+            "HGNC")),
+        value(
+          identifier(
+            "AKT1"))),
+      character_range: [3,3])
+  ).process(ast)
 end
 # vim: ft=ruby ts=2 sw=2:
 # encoding: utf-8
