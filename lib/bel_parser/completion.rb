@@ -45,6 +45,13 @@ module BELParser
       # 3. Determine the node type being completed.
       # 4. Compute completion AST for each suggestion.
       # 5. For each suggestion, transform original AST into full completion.
+
+      # TODO 1. Pass caret_position to StatementAutocomplete; adjust if spaces removed before caret position.
+      #      e.g. p(HGNC:AKT1, |)  - here we should subtract 1 from caret_position since we drop the space.
+      # TODO 2. Make sure all prefix, value, and parameter completions all work.
+      # TODO 3. Add inner term completion for argument or value matching function.
+      # TODO 4. Work on a term stack within StatementAutocomplete.
+      # TODO 5. Make inner term completions work.
       ast = BELParser::Parsers::Expression::StatementAutocomplete.parse(input)
       puts "parsed AST:"
       puts ast.to_sexp(1)
