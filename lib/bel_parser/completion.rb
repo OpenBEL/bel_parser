@@ -123,15 +123,24 @@ module BELParser
               ).complete(value_str, caret_position - value.range_start)
 
             parameters.map { |(ns, v)|
+              value =
+                if v.scan(/[^\w]/)
+                  value(
+                    string(
+                      v))
+                else
+                  value(
+                    identifier(
+                      v))
+                end
+
               completion_node =
                 argument(
                   parameter(
                     prefix(
                       identifier(
                         ns)),
-                    value(
-                      identifier(
-                        v))),
+                    value),
                 character_range: completing_node.character_range)
               completion = serialize(MergeCompletion.new(completion_node).process(ast))
 
