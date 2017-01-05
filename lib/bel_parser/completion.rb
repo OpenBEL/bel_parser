@@ -158,14 +158,17 @@ module BELParser
             puts "  #{value.to_sexp(1)}"
             value_str = value.first_child.string_literal
 
+            prefix_string = prefix ? prefix.identifier.string_literal : nil
+
             parameters =
               ParameterCompleter.new(
                 spec, search, namespaces
-              ).complete(value_str, caret_position - value.range_start)
+              ).complete(value_str, caret_position - value.range_start, prefix: prefix_string)
 
             parameters.map { |(ns, v)|
+              puts "the value found was #{v}|"
               value =
-                if v.scan(/[^\w]/)
+                if !v.scan(/[^\w]/).empty?
                   value(
                     string(
                       v))
@@ -257,7 +260,7 @@ module BELParser
     class ParameterCompleter < BaseCompleter
       L = BELParser::Levenshtein
 
-      def complete(string_literal, caret_position)
+      def complete(string_literal, caret_position, options = {})
         query =
           case
           when caret_position == string_literal.length
@@ -273,8 +276,25 @@ module BELParser
             "#{ante}*#{post}"
           end
         puts "query: #{query}"
+
+        # find namespace URI if prefix was provided
+        prefix = options[:prefix]
+        if prefix
+          specified_prefix = prefix.to_s
+          matched_namespace =
+            @namespaces.each.find { |ns|
+              prefix_s = ns.prefix.first
+              prefix_s && prefix_s.to_s.casecmp(specified_prefix) == 0
+            }
+          uri = matched_namespace ? matched_namespace.uri : nil
+        else
+          uri = nil
+        end
+
+        puts "prefix was #{prefix}, found uri #{uri}"
+
         @search
-          .search(query, :namespace_concept, nil, nil, size: 200)
+          .search(query, :namespace_concept, uri, nil, size: 200)
           .sort { |match1, match2|
             L.distance(string_literal.downcase, match1.pref_label.downcase) <=>
             L.distance(string_literal.downcase, match2.pref_label.downcase)
