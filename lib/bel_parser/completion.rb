@@ -107,7 +107,6 @@ module BELParser
               character_range: completing_node.character_range)
             completion = serialize(MergeCompletion.new(completion_node).process(ast))
 
-            puts "new caret: #{completing_node.range_start + px.length + 1}"
             {
               type:           :namespace_prefix,
               id:             px,
@@ -121,8 +120,6 @@ module BELParser
           parameter = completing_node.child
           prefix, value = parameter.children
           if Range.new(*prefix.character_range, false).include?(caret_position)
-            puts "completing the argument->parameter->prefix..."
-            puts "  #{prefix.to_sexp(1)}"
             prefix_str = prefix.identifier.string_literal
 
             prefixes =
@@ -143,7 +140,6 @@ module BELParser
                 character_range: completing_node.character_range)
               completion = serialize(MergeCompletion.new(completion_node).process(ast))
 
-              puts "new caret: #{completing_node.range_start + px.length + 1}"
               {
                 type:           :namespace_prefix,
                 id:             px,
@@ -154,19 +150,49 @@ module BELParser
               }
             }
           else
-            puts "completing the argument->parameter->value..."
-            puts "  #{value.to_sexp(1)}"
             value_str = value.first_child.string_literal
 
-            prefix_string = prefix ? prefix.identifier.string_literal : nil
+            prefix_completions = []
+            if prefix && prefix.identifier
+              prefix_string = prefix.identifier.string_literal
+            else
+              # prefix is nil, so try to complete one
+              # the value could also complete a namespace prefix, we're not sure yet
+              prefixes =
+                NamespacePrefixCompleter.new(
+                  spec, search, namespaces
+                ).complete(value_str, nil)
+
+              prefix_completions = prefixes.map { |px|
+                completion_node =
+                  argument(
+                    parameter(
+                      prefix(
+                        identifier(
+                          px)),
+                      value(
+                        identifier(
+                          ""))),
+                  character_range: completing_node.character_range)
+                completion = serialize(MergeCompletion.new(completion_node).process(ast))
+
+                {
+                  type:           :namespace_prefix,
+                  id:             px,
+                  label:          px,
+                  value:          completion,
+                  # e.g. p({rs}HGNC{pxl}:{1}
+                  caret_position: completing_node.range_start + px.length + 1
+                }
+              }
+            end
 
             parameters =
               ParameterCompleter.new(
                 spec, search, namespaces
               ).complete(value_str, caret_position - value.range_start, prefix: prefix_string)
 
-            parameters.map { |(ns, v)|
-              puts "the value found was #{v}|"
+            parameter_completions = parameters.map { |(ns, v)|
               value =
                 if !v.scan(/[^\w]/).empty?
                   value(
@@ -196,6 +222,8 @@ module BELParser
                 caret_position: completion.length
               }
             }
+
+            prefix_completions + parameter_completions
           end
         else
           # TODO Completing term argument, will we ever get here?
@@ -264,13 +292,10 @@ module BELParser
         query =
           case
           when caret_position == string_literal.length
-            puts "completing at end of parameter, (#{caret_position} == #{string_literal.length})"
             "#{string_literal}*"
           when caret_position == 0
-            puts "completing at start of parameter, (#{caret_position} == 0)"
             "*#{string_literal}"
           else
-            puts "completing in the middle, (#{caret_position} in between 0 and #{string_literal.length})"
             ante = string_literal.slice(0...caret_position)
             post = string_literal.slice(caret_position..-1)
             "#{ante}*#{post}"
@@ -290,8 +315,6 @@ module BELParser
         else
           uri = nil
         end
-
-        puts "prefix was #{prefix}, found uri #{uri}"
 
         @search
           .search(query, :namespace_concept, uri, nil, size: 200)
