@@ -346,6 +346,24 @@ te = p+1
             *[function, arguments, arg_from_value].flatten.compact,
             character_range: [function.range_start, @value.range_end + 1])
         @param              = nil
+      elsif !@prefix.nil?
+        function, arguments = @term_stack[-1].children
+        arg_from_prefix     =
+          argument(
+            parameter(
+              @prefix,
+              value(
+                identifier(
+                  '',
+                  character_range: [@prefix.range_end + 1, @prefix.range_end + 1]),
+                character_range: [@prefix.range_end + 1, @prefix.range_end + 1]),
+              character_range: @prefix.character_range),
+            character_range: @prefix.character_range)
+        @term_stack[-1]     =
+          term(
+            *[function, arguments, arg_from_prefix].flatten.compact,
+            character_range: [function.range_start, @prefix.range_end + 1])
+        @prefix             = nil
       else
         term = @term_stack[-1]
         term.character_range = [term.range_start, term.range_end + 1]
@@ -367,6 +385,7 @@ te = p+1
         prefix(
           @value,
           character_range: @value.character_range)
+      @value = nil
     else
       @prefix =
         prefix(

@@ -46,7 +46,7 @@ module BELParser
       # 4. Compute completion AST for each suggestion.
       # 5. For each suggestion, transform original AST into full completion.
 
-      # TODO 1. Pass caret_position to StatementAutocomplete; adjust if spaces removed before caret position.
+      # TODO [x] 1. Pass caret_position to StatementAutocomplete; adjust if spaces removed before caret position.
       #      e.g. p(HGNC:AKT1, |)  - here we should subtract 1 from caret_position since we drop the space.
       # TODO 2. Make sure all prefix, value, and parameter completions all work.
       # TODO 3. Add inner term completion for argument or value matching function.
@@ -85,33 +85,74 @@ module BELParser
         }
       when :argument
         if completing_node.child.nil?
-          completion_node =
-            argument(
-              parameter(
-                prefix(
-                  identifier(
-                    "HGNC")),
-                value(
-                  identifier(
-                    "AKT1"))),
-            character_range: completing_node.character_range)
-          completion = serialize(MergeCompletion.new(completion_node).process(ast))
+          # suggest namespaces
+          # suggest functions
+          # TODO Ultimately these should be filtered by semantics.
 
-          [
+          prefixes =
+            AllNamespacePrefixCompleter
+              .new(spec, search, namespaces)
+              .complete(nil, nil)
+
+          prefixes.map { |px|
+            completion_node =
+              argument(
+                parameter(
+                  prefix(
+                    identifier(
+                      px)),
+                  value(
+                    identifier(
+                      ""))),
+              character_range: completing_node.character_range)
+            completion = serialize(MergeCompletion.new(completion_node).process(ast))
+
+            puts "new caret: #{completing_node.range_start + px.length + 1}"
             {
-              type:           :namespace_value,
-              id:             'HGNC:AKT1',
-              label:          'HGNC:AKT1',
+              type:           :namespace_prefix,
+              id:             px,
+              label:          px,
               value:          completion,
-              caret_position: completion.length
+              # e.g. p({rs}HGNC{pxl}:{1}
+              caret_position: completing_node.range_start + px.length + 1
             }
-          ]
+          }
         elsif completing_node.parameter?
           parameter = completing_node.child
           prefix, value = parameter.children
-          if Range.new(*prefix.character_range, true).include?(caret_position)
+          if Range.new(*prefix.character_range, false).include?(caret_position)
             puts "completing the argument->parameter->prefix..."
             puts "  #{prefix.to_sexp(1)}"
+            prefix_str = prefix.identifier.string_literal
+
+            prefixes =
+              NamespacePrefixCompleter.new(
+                spec, search, namespaces
+              ).complete(prefix_str, nil)
+
+            prefixes.map { |px|
+              completion_node =
+                argument(
+                  parameter(
+                    prefix(
+                      identifier(
+                        px)),
+                    value(
+                      identifier(
+                        ""))),
+                character_range: completing_node.character_range)
+              completion = serialize(MergeCompletion.new(completion_node).process(ast))
+
+              puts "new caret: #{completing_node.range_start + px.length + 1}"
+              {
+                type:           :namespace_prefix,
+                id:             px,
+                label:          px,
+                value:          completion,
+                # e.g. p({rs}HGNC{pxl}:{1}
+                caret_position: completing_node.range_start + px.length + 1
+              }
+            }
           else
             puts "completing the argument->parameter->value..."
             puts "  #{value.to_sexp(1)}"
@@ -192,6 +233,27 @@ module BELParser
       end
     end
 
+    class AllNamespacePrefixCompleter < BaseCompleter
+      def complete(_, _)
+        @namespaces.each
+          .map    { |ns| ns.prefix.first }
+          .compact
+          .map    { |px| px.upcase }
+      end
+    end
+
+    class NamespacePrefixCompleter < BaseCompleter
+
+      def complete(string_literal, _)
+        lowercase_substring = string_literal.downcase
+        @namespaces.each
+          .map    { |ns| ns.prefix.first }
+          .compact
+          .select { |px| px.include?(lowercase_substring) }
+          .map    { |px| px.upcase }
+      end
+    end
+
     class ParameterCompleter < BaseCompleter
       L = BELParser::Levenshtein
 
@@ -199,14 +261,18 @@ module BELParser
         query =
           case
           when caret_position == string_literal.length
+            puts "completing at end of parameter, (#{caret_position} == #{string_literal.length})"
             "#{string_literal}*"
           when caret_position == 0
+            puts "completing at start of parameter, (#{caret_position} == 0)"
             "*#{string_literal}"
           else
+            puts "completing in the middle, (#{caret_position} in between 0 and #{string_literal.length})"
             ante = string_literal.slice(0...caret_position)
             post = string_literal.slice(caret_position..-1)
             "#{ante}*#{post}"
           end
+        puts "query: #{query}"
         @search
           .search(query, :namespace_concept, nil, nil, size: 200)
           .sort { |match1, match2|
