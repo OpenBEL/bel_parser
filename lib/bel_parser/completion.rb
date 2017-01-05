@@ -164,7 +164,7 @@ module BELParser
     def self.find_node(ast, caret_position)
       ast.traverse do |node|
         next if node.type == :term
-        return node if node.range_end == caret_position
+        return node if caret_position >= node.range_start && caret_position <= node.range_end
       end
 
       nil
