@@ -90,9 +90,13 @@
       @last_state = :C_PAREN
       if !@param.nil?
         function, arguments = @term_stack[-1].children
+        arg_from_param      =
+          argument(
+            @param,
+            character_range: @param.character_range)
         @term_stack[-1]     =
           term(
-            *[function, arguments, argument(@param)].flatten.compact,
+            *[function, arguments, arg_from_param].flatten.compact,
             character_range: [function.range_start, te])
         @param  = nil
         @prefix = nil
