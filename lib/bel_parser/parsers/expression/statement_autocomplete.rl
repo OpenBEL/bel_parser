@@ -185,6 +185,13 @@
   action SPACES  {
 # begin ruby
     spaces = te-ts
+    if @original_caret > ts
+      if @original_caret < te
+        @space_adjusted_caret_position -= (@original_caret - ts)
+      else
+        @space_adjusted_caret_position -= spaces
+      end
+    end
     trace("SPACES (#{spaces})")
     data.slice!(ts, spaces)
     p   -= spaces
@@ -333,15 +340,16 @@ module BELParser
 
           MAX_LENGTH = 1024 * 128 # 128K
 
-          def parse(content)
+          def parse(content, caret_position)
             return nil unless content
 
             if !content.end_with?("\n")
               content = "#{content}\n"
             end
 
-            Parser.new(content).each do |ast|
-              return ast
+            parser = Parser.new(content, caret_position)
+            parser.each do |ast|
+              return [ast, parser.space_adjusted_caret_position]
             end
           end
         end
@@ -355,8 +363,12 @@ module BELParser
           include BELParser::Parsers::AST::Sexp
           include BELParser::Parsers::Tracer
 
-          def initialize(content)
-            @content = content
+          attr_reader :space_adjusted_caret_position
+
+          def initialize(content, caret_position)
+            @content                       = content
+            @original_caret                = caret_position
+            @space_adjusted_caret_position = caret_position
             %% write data;
           end
 

@@ -52,7 +52,7 @@ module BELParser
       # TODO 3. Add inner term completion for argument or value matching function.
       # TODO 4. Work on a term stack within StatementAutocomplete.
       # TODO 5. Make inner term completions work.
-      ast = BELParser::Parsers::Expression::StatementAutocomplete.parse(input)
+      ast, caret_position = BELParser::Parsers::Expression::StatementAutocomplete.parse(input, caret_position)
       puts "parsed AST:"
       puts ast.to_sexp(1)
       puts "caret: #{caret_position}"
