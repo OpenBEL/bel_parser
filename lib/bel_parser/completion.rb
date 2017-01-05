@@ -48,10 +48,13 @@ module BELParser
 
       # TODO [x] 1. Pass caret_position to StatementAutocomplete; adjust if spaces removed before caret position.
       #      e.g. p(HGNC:AKT1, |)  - here we should subtract 1 from caret_position since we drop the space.
-      # TODO 2. Make sure all prefix, value, and parameter completions all work.
-      # TODO 3. Add inner term completion for argument or value matching function.
-      # TODO 4. Work on a term stack within StatementAutocomplete.
+      # TODO [x] 2. Make sure all prefix, value, and parameter completions all work.
+      # TODO [x] 3. Work on a term stack within StatementAutocomplete.
+      # TODO 4. Add inner term completion for argument or value matching function.
       # TODO 5. Make inner term completions work.
+      # TODO 6. Complete outer term to subject.
+      # TODO 7. Complete relationship.
+      # TODO 8. Complete object.
       ast, caret_position = BELParser::Parsers::Expression::StatementAutocomplete.parse(input, caret_position)
       puts "parsed AST:"
       puts ast.to_sexp(1)

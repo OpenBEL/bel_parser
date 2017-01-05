@@ -68,6 +68,8 @@
           @value,
           character_range: @value.character_range),
         character_range: [@value.range_start, @value.range_end + 1])
+    puts "term stack..."
+    puts @term_stack
     @value = nil
 # end ruby
   }
@@ -77,7 +79,7 @@
     trace('C_PAREN')
     if @last_state == :COMMA || @last_state == :O_PAREN
       @last_state = :C_PAREN
-      function, arguments = @term_stack[-1].children
+      function, *arguments = @term_stack[-1].children
       empty_argument      =
         argument(
           nil,
@@ -89,7 +91,7 @@
     else
       @last_state = :C_PAREN
       if !@param.nil?
-        function, arguments = @term_stack[-1].children
+        function, *arguments = @term_stack[-1].children
         arg_from_param      =
           argument(
             @param,
@@ -101,7 +103,7 @@
         @param  = nil
         @prefix = nil
       elsif !@value.nil?
-        function, arguments = @term_stack[-1].children
+        function, *arguments = @term_stack[-1].children
         arg_from_value      =
           argument(
             parameter(
@@ -117,9 +119,9 @@
           term(
             *[function, arguments, arg_from_value].flatten.compact,
             character_range: [function.range_start, @value.range_end + 1])
-        @param              = nil
+        @value              = nil
       elsif !@prefix.nil?
-        function, arguments = @term_stack[-1].children
+        function, *arguments = @term_stack[-1].children
         arg_from_prefix     =
           argument(
             parameter(
@@ -140,6 +142,19 @@
         term = @term_stack[-1]
         term.character_range = [term.range_start, term.range_end + 1]
       end
+    end
+
+    if @term_stack.length > 1
+      # pop stack
+      inner = @term_stack.pop
+      outer = @term_stack[-1]
+
+      # reconstruct previous term on stack
+      @term_stack[-1] =
+        term(
+          outer.function,
+          *(outer.arguments << argument(inner, character_range: inner.character_range)),
+          character_range: [outer.range_start, inner.range_end + 1])
     end
 # end ruby
   }
@@ -171,7 +186,7 @@
     trace('COMMA')
     if !@term_stack.empty?
       if !@param.nil?
-        function, arguments = @term_stack[-1].children
+        function, *arguments = @term_stack[-1].children
         arg_from_param      =
           argument(
             @param,
@@ -182,8 +197,9 @@
             character_range: [function.range_start, @param.range_end + 1])
         @param              = nil
         @prefix             = nil
+        @value              = nil
       elsif !@value.nil?
-        function, arguments = @term_stack[-1].children
+        function, *arguments = @term_stack[-1].children
         arg_from_value      =
           argument(
             parameter(
@@ -200,6 +216,8 @@
             *[function, arguments, arg_from_value].flatten.compact,
             character_range: [function.range_start, arg_from_value.range_end + 1])
         @param              = nil
+        @prefix             = nil
+        @value              = nil
       end
     end
 # end ruby
@@ -247,7 +265,7 @@
       case @last_state
       when :IDENT
         if !@param.nil?
-          function, arguments = @term_stack[-1].children
+          function, *arguments = @term_stack[-1].children
           arg_from_param      =
             argument(
               @param,
@@ -257,7 +275,7 @@
               *[function, arguments, arg_from_param].flatten.compact,
               character_range: [function.range_start, arg_from_param.range_end])
         elsif !@value.nil?
-          function, arguments = @term_stack[-1].children
+          function, *arguments = @term_stack[-1].children
           arg_from_value      =
             argument(
               parameter(
@@ -276,7 +294,7 @@
         end
       when :STRING
         if !@param.nil?
-          function, arguments = @term_stack[-1].children
+          function, *arguments = @term_stack[-1].children
           arg_from_param      =
             argument(
               @param,
@@ -286,7 +304,7 @@
               *[function, arguments, arg_from_param].flatten.compact,
               character_range: [function.range_start, arg_from_param.range_end])
         elsif !@value.nil?
-          function, arguments = @term_stack[-1].children
+          function, *arguments = @term_stack[-1].children
           arg_from_value      =
             argument(
               parameter(
@@ -304,8 +322,7 @@
               character_range: [function.range_start, arg_from_value.range_end])
         end
       when :COMMA, :O_PAREN
-        function  = @term_stack[-1].function
-        arguments = @term_stack[-1].arguments
+        function, *arguments = @term_stack[-1].children
         empty_argument      =
           argument(
             nil,
@@ -315,7 +332,7 @@
             *([function, arguments, empty_argument].flatten.compact),
             character_range: [function.range_start, empty_argument.range_end])
       when :COLON
-        function, arguments = @term_stack[-1].children
+        function, *arguments = @term_stack[-1].children
         empty_argument      =
           argument(
             parameter(
@@ -452,9 +469,8 @@ if __FILE__ == $0
   end
 
   $stdin.each_line do |line|
-    BELParser::Parsers::Expression::StatementAutocomplete.parse(line) { |obj|
-      puts obj.to_sexp(1)
-    }
+    ast, _ = BELParser::Parsers::Expression::StatementAutocomplete.parse(line, line.length)
+    puts ast.to_sexp(1)
   end
 end
 # end ruby
