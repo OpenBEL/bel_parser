@@ -65,6 +65,23 @@ module BELParser
       return [] unless completing_node
 
       case completing_node.type
+      when :parameter
+        # TODO Change find_node to match :parameter, not :identifier.
+
+        # If the caret is within a non-nil prefix then complete for namespace prefix.
+        #
+        # If the caret is within a non-nil value and the prefix is nil then we try two
+        # things.
+        #   first find functions that match
+        #   second find namespace prefixes that match
+        #   wildcard search across all namespaces according to before, within, around positioning
+        #
+        # If we have a namespace value then
+        #   lookup exact value in namespace
+        #     if one was found, return terms with functions that take the value's encoding
+        #     else do a wildcard search for value in namespace according to before, within, around positioning
+        #
+        #
       when :identifier
         string_literal = completing_node.string_literal
         functions = FunctionCompleter.new(spec, search, namespaces).complete(string_literal, caret_position)
@@ -238,8 +255,17 @@ module BELParser
 
     def self.find_node(ast, caret_position)
       ast.traverse do |node|
-        next if node.type == :term
-        return node if caret_position >= node.range_start && caret_position <= node.range_end
+        next if
+          node.type == :term ||
+          caret_position < node.range_start ||
+          caret_position > node.range_end
+
+        case node.type
+        when :argument
+          return node if node.child.nil? || node.parameter?
+        when :identifier
+          return node
+        end
       end
 
       nil
