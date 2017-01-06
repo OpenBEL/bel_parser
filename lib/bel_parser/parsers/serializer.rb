@@ -152,7 +152,7 @@ module BELParser
       end
 
       def on_string(string_node)
-        @string << %("#{string_node.string_literal}")
+        @string << %("#{string_node.string_value}")
       end
 
       def on_subject(subject_node)
@@ -197,7 +197,7 @@ if __FILE__ == $PROGRAM_NAME
 
   types      = ARGV.map(&:to_sym)
   generator  = BELParser::ASTGenerator.new($stdin)
-  BELParser::ASTFilter.new(generator, *types).each do |(num, line, results)|
+  BELParser::ASTFilter.new(generator, *types).each do |(_, _, results)|
     serializer = BELParser::Parsers::Serializer.new
     serializer.process(results.first)
     puts serializer.string

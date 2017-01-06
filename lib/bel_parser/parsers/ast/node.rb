@@ -845,6 +845,15 @@ module BELParser
         def string_literal
           children[0]
         end
+
+        def string_value
+          return nil if children[0].nil?
+
+          value = children[0].dup
+          value.slice!(0)  if value[0]  == '"'
+          value.slice!(-1) if value[-1] == '"'
+          value
+        end
       end
 
       # AST node representing a term.
