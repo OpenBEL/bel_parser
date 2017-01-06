@@ -66,43 +66,155 @@ module BELParser
 
       case completing_node.type
       when :parameter
-        # TODO Change find_node to match :parameter, not :identifier.
+        prefix, value = completing_node.children
 
-        # If the caret is within a non-nil prefix then complete for namespace prefix.
-        #
-        # If the caret is within a non-nil value and the prefix is nil then we try two
+        # If the caret is within a non-nil value and the prefix is nil then we try three
         # things.
-        #   first find functions that match
-        #   second find namespace prefixes that match
-        #   wildcard search across all namespaces according to before, within, around positioning
+        #   [x] first find functions that match
+        #   [x] second find namespace prefixes that match
+        #   [x] wildcard search across all namespaces according to before, within, around positioning
+        #     (completion for namespace_value should include surrounding parentheses with caret at 0)
+        #     (this will allow completion of function name, according to semantics)
+        #
+        # If the caret is within a non-nil prefix then complete for namespace prefix.
         #
         # If we have a namespace value then
         #   lookup exact value in namespace
         #     if one was found, return terms with functions that take the value's encoding
         #     else do a wildcard search for value in namespace according to before, within, around positioning
         #
-        #
-      when :identifier
-        string_literal = completing_node.string_literal
-        functions = FunctionCompleter.new(spec, search, namespaces).complete(string_literal, caret_position)
-        functions.map { |fx|
-          fx_name = fx.short.to_s
-          completion =
-            serialize(
-              term(
-                function(
-                  identifier(
-                    fx_name)))
-            )
 
-          {
-            type:           :function,
-            id:             fx.long.to_s,
-            label:          fx.long.to_s,
-            value:          completion,
-            caret_position: fx_name.length + 1
+        # Completing prefix
+        if Range.new(*prefix.character_range, false).include?(caret_position)
+          if prefix.identifier.nil?
+            # Provide all namespace prefix completions.
+            all_prefix_completions = AllNamespacePrefixCompleter
+              .new(spec, search, namespaces)
+              .complete(nil, nil)
+              .map { |(bel_prefix, completion_ast)|
+                completion_ast.character_range = [
+                  prefix.range_start,
+                  prefix.range_start + bel_prefix.length + 1
+                ]
+                completion = serialize(MergeCompletion.new(completion_ast).process(ast))
+
+                {
+                  type:           :namespace_prefix,
+                  id:             bel_prefix,
+                  label:          bel_prefix,
+                  value:          completion,
+                  # e.g. p({rs}HGNC{pxl}:{1}
+                  caret_position: completing_node.range_start + bel_prefix.length + 1
+                }
+              }
+
+            all_prefix_completions
+          else
+            # Match provided namespace prefix.
+            string_literal = prefix.identifier.string_literal
+            prefix_completions = NamespacePrefixCompleter
+              .new(spec, search, namespaces)
+              .complete(string_literal, caret_position)
+              .map { |(bel_prefix, completion_ast)|
+                completion_ast.character_range = [
+                  prefix.range_start,
+                  prefix.range_start + bel_prefix.length + 1
+                ]
+                completion = serialize(MergeCompletion.new(completion_ast).process(ast))
+
+                {
+                  type:           :namespace_prefix,
+                  id:             bel_prefix,
+                  label:          bel_prefix,
+                  value:          completion,
+                  # e.g. p({rs}HGNC{pxl}:{1}
+                  caret_position: completing_node.range_start + bel_prefix.length + 1
+                }
+              }
+
+            prefix_completions
+          end
+        else
+          string_literal = value.string_literal
+          function_completions = FunctionTermCompleter
+            .new(spec, search, namespaces)
+            .complete(string_literal, caret_position)
+            .map { |(function, completion_ast)|
+              short      = function.short.to_s
+              long       = function.long.to_s
+              completion = serialize(completion_ast)
+              {
+                type:           :function,
+                id:             long,
+                label:          long,
+                value:          completion,
+                caret_position: short.length + 1
+              }
+            }
+          prefix_completions = NamespacePrefixParameterCompleter
+            .new(spec, search, namespaces)
+            .complete(string_literal, nil)
+            .map { |(bel_prefix, completion_ast)|
+              completion = serialize(completion_ast)
+
+              {
+                type:           :namespace_prefix,
+                id:             bel_prefix,
+                label:          bel_prefix,
+                value:          completion,
+                # e.g. p({rs}HGNC{pxl}:{1}
+                caret_position: completing_node.range_start + bel_prefix.length + 1
+              }
+            }
+
+          namespace_value_completions = ParameterCompleter
+            .new(spec, search, namespaces)
+            .complete(string_literal, caret_position - value.range_start, prefix: nil)
+            .map { |(ns_value, completion_ast)|
+              completion = "(#{serialize(completion_ast)})"
+
+              {
+                type:           :namespace_value,
+                id:             ns_value,
+                label:          ns_value,
+                value:          completion,
+                caret_position: 0
+              }
+            }
+
+          function_completions + prefix_completions + namespace_value_completions
+        end
+      when :function
+        string_literal =
+          if completing_node.identifier.nil?
+            ''
+          else
+            completing_node.identifier.string_literal
+          end
+
+        function_completions = FunctionCompleter
+          .new(spec, search, namespaces)
+          .complete(string_literal, caret_position)
+          .map { |(function, completion_ast)|
+            short      = function.short.to_s
+            long       = function.long.to_s
+
+            completion_ast.character_range = [
+              completing_node.range_start,
+              completing_node.range_start + short.length
+            ]
+            completion = serialize(MergeCompletion.new(completion_ast).process(ast))
+
+            {
+              type:           :function,
+              id:             long,
+              label:          long,
+              value:          completion,
+              caret_position: short.length + 1
+            }
           }
-        }
+
+        function_completions
       when :argument
         if completing_node.child.nil?
           # suggest namespaces
@@ -143,7 +255,7 @@ module BELParser
             prefix_str = prefix.identifier.string_literal
 
             prefixes =
-              NamespacePrefixCompleter.new(
+              NamespacePrefixParameterCompleter.new(
                 spec, search, namespaces
               ).complete(prefix_str, nil)
 
@@ -179,7 +291,7 @@ module BELParser
               # prefix is nil, so try to complete one
               # the value could also complete a namespace prefix, we're not sure yet
               prefixes =
-                NamespacePrefixCompleter.new(
+                NamespacePrefixParameterCompleter.new(
                   spec, search, namespaces
                 ).complete(value_str, nil)
 
@@ -263,7 +375,7 @@ module BELParser
         case node.type
         when :argument
           return node if node.child.nil? || node.parameter?
-        when :identifier
+        when :parameter, :function
           return node
         end
       end
@@ -289,16 +401,35 @@ module BELParser
 
       def complete(string_literal, caret_position)
         pattern = /.*#{Regexp.quote(string_literal)}.*/i
-        @spec.functions.select { |fx| fx =~ pattern }
+        @spec.functions
+          .select { |fx| fx =~ pattern }
+          .map    { |fx|
+            make_completion(fx)
+          }
+      end
+
+      protected
+
+      def make_completion(function)
+        [
+          function,
+          function(
+            identifier(
+              function.short.to_s))
+        ]
       end
     end
 
-    class AllNamespacePrefixCompleter < BaseCompleter
-      def complete(_, _)
-        @namespaces.each
-          .map    { |ns| ns.prefix.first }
-          .compact
-          .map    { |px| px.upcase }
+    class FunctionTermCompleter < FunctionCompleter
+
+      def make_completion(function)
+        [
+          function,
+          term(
+            function(
+              identifier(
+                function.short.to_s)))
+        ]
       end
     end
 
@@ -310,7 +441,61 @@ module BELParser
           .map    { |ns| ns.prefix.first }
           .compact
           .select { |px| px.include?(lowercase_substring) }
-          .map    { |px| px.upcase }
+          .map    { |px|
+            make_completion(px.upcase)
+          }
+      end
+
+      protected
+
+      def make_completion(bel_prefix)
+        [
+          bel_prefix,
+          prefix(
+            identifier(
+              bel_prefix))
+        ]
+      end
+    end
+
+    class NamespacePrefixParameterCompleter < BaseCompleter
+
+      def make_completion(prefix)
+        [
+          prefix,
+          argument(
+            parameter(
+              prefix(
+                identifier(
+                  prefix)),
+              value(
+                identifier(
+                  ""))))
+        ]
+      end
+    end
+
+    class AllNamespacePrefixCompleter < NamespacePrefixCompleter
+
+      def complete(_, _)
+        @namespaces.each
+          .map    { |ns| ns.prefix.first }
+          .compact
+          .map    { |px|
+            make_completion(px.upcase)
+          }
+      end
+    end
+
+    class AllNamespacePrefixParameterCompleter < NamespacePrefixParameterCompleter
+
+      def complete(_, _)
+        @namespaces.each
+          .map    { |ns| ns.prefix.first }
+          .compact
+          .map    { |px|
+            make_completion(px.upcase)
+          }
       end
     end
 
@@ -361,6 +546,31 @@ module BELParser
           }
           .compact
           .take(20)
+          .map { |(ns, v)|
+            ns_value = nil
+            value =
+              if !v.scan(/[^\w]/).empty?
+                ns_value = %Q{#{ns}:"#{v}"}
+                value(
+                  string(
+                    v))
+              else
+                ns_value = %Q{#{ns}:#{v}}
+                value(
+                  identifier(
+                    v))
+              end
+
+            [
+              ns_value,
+              argument(
+                parameter(
+                  prefix(
+                    identifier(
+                      ns)),
+                  value))
+            ]
+          }
       end
     end
 
