@@ -62,14 +62,22 @@
     @last_state = :O_PAREN
 
     trace('O_PAREN')
-    @term_stack <<
-      term(
-        function(
-          @value,
-          character_range: @value.character_range),
-        character_range: [@value.range_start, @value.range_end + 1])
-    puts "term stack..."
-    puts @term_stack
+    term =
+      if @value == nil
+        term(
+          function(
+            nil,
+            character_range: [ts, ts]),
+          character_range: [ts, te])
+      else
+        term(
+          function(
+            @value,
+            character_range: @value.character_range),
+          character_range: [@value.range_start, @value.range_end + 1])
+      end
+
+    @term_stack << term
     @value = nil
 # end ruby
   }
