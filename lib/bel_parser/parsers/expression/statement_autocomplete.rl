@@ -253,12 +253,21 @@
       if !@param.nil?
         yield @param
       elsif !@prefix.nil?
-        yield parameter(
-          @prefix,
-          nil,
-          character_range: [@prefix.range_start, @prefix.range_end + 1])
+        yield(
+          parameter(
+            @prefix,
+            nil,
+            character_range: [@prefix.range_start, @prefix.range_end + 1])
+        )
       elsif !@value.nil?
-        yield @value
+        yield(
+          parameter(
+            prefix(
+              nil,
+              character_range: [@value.range_start, @value.range_start]),
+            @value,
+            character_range: @value.character_range)
+        )
       end
     else
       trace('term stack is not empty')
@@ -346,7 +355,20 @@
             character_range: [function.range_start, empty_argument.range_end])
       end
 
-      yield @term_stack[0]
+      # yield combined term
+      while @term_stack.length > 1
+        # pop stack
+        inner = @term_stack.pop
+        outer = @term_stack[-1]
+
+        # reconstruct previous term on stack
+        @term_stack[-1] =
+          term(
+            outer.function,
+            *(outer.arguments << argument(inner, character_range: inner.character_range)),
+            character_range: [outer.range_start, inner.range_end + 1])
+      end
+      yield @term_stack.pop
     end
 # end ruby
   }
