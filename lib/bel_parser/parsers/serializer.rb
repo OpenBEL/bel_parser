@@ -138,9 +138,11 @@ module BELParser
 
       def on_statement(statement_node)
         process(statement_node.subject)
-        return if statement_node.object.child.nil?
 
+        return unless statement_node.relationship?
         process(statement_node.relationship)
+
+        return unless statement_node.object?
         object_node = statement_node.object
         if object_node.statement?
           @string << '('
