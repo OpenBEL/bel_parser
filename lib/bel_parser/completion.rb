@@ -323,7 +323,7 @@ module BELParser
                   .complete(value_str, nil)
                   .map { |(bel_prefix, completion_ast)|
                     completion_ast.character_range = completing_node.character_range
-                    completion = serialize(MergeCompletion.new(completion_node).process(ast))
+                    completion = serialize(MergeCompletion.new(completion_ast).process(ast))
 
                     {
                       type:           :namespace_prefix,
@@ -331,10 +331,33 @@ module BELParser
                       label:          bel_prefix,
                       value:          completion,
                       # e.g. p({rs}HGNC{pxl}:{1}
-                      caret_position: completing_ast.range_start + bel_prefix.length + 1
+                      caret_position: completion_ast.range_start + bel_prefix.length + 1
                     }
                   }
               end
+
+            puts "...completing functions for #{value_str}"
+            function_completions = FunctionArgumentCompleter
+              .new(spec, search, namespaces)
+              .complete(value_str, caret_position)
+              .map { |(function, completion_ast)|
+                short = function.short.to_s
+                long  = function.long.to_s
+
+                completion_ast.character_range = [
+                  completing_node.range_start,
+                  completing_node.range_start + short.length
+                ]
+                completion = serialize(MergeCompletion.new(completion_ast).process(ast))
+
+                {
+                  type:           :function,
+                  id:             long,
+                  label:          long,
+                  value:          completion,
+                  caret_position: short.length + 1
+                }
+              }
 
             puts "...completing parameters for #{value_str}, prefix is #{prefix_string}"
             parameter_completions = ParameterCompleter
@@ -353,7 +376,7 @@ module BELParser
                 }
               }
 
-            prefix_completions + parameter_completions
+            prefix_completions + function_completions + parameter_completions
           end
         else
           # TODO Completing term argument, will we ever get here?
@@ -428,6 +451,20 @@ module BELParser
             function(
               identifier(
                 function.short.to_s)))
+        ]
+      end
+    end
+
+    class FunctionArgumentCompleter < FunctionCompleter
+
+      def make_completion(function)
+        [
+          function,
+          argument(
+            term(
+              function(
+                identifier(
+                  function.short.to_s))))
         ]
       end
     end
