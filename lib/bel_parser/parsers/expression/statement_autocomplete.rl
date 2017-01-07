@@ -1,23 +1,27 @@
 =begin
 %%{
   machine statement_autocomplete;
-  include 'common.rl';
 
   O_PAREN      = '(';
   C_PAREN      = ')';
 
-  SPACES       = [ ]+;
+  SPACES       = [ \t]+;
   COLON        = ':';
   COMMA        = ',';
 
   IDENT        = [a-zA-Z0-9_]+;
   STRING       = '"' ('\\\"' | [^"\n])* '"'?;
 
+  # '!' to '~'
+  # RELATIONSHIP = (33..126)+ 
+  RELATIONSHIP = (33..126)+; # skips parentheses
+
   action IDENT   {
 # begin ruby
     @last_state = :IDENT
-
     trace('IDENT')
+
+    trace('...completing :term part')
     @value =
       identifier(
         utf8_string(data[ts...te]),
@@ -32,6 +36,36 @@
           character_range: [@prefix.range_start, @value.range_end])
       @value = nil
     end
+# end ruby
+  }
+
+  action RELATIONSHIP {
+# begin ruby
+    @last_state = :RELATIONSHIP
+    trace('RELATIONSHIP')
+
+    @relationship =
+      relationship(
+        utf8_string(data[ts...te]),
+        character_range: [ts, te])
+
+    range_end =
+      if @statement_ast.object?
+        @statement_ast.object.range_end
+      else
+        @relationship.range_end
+      end
+
+    @statement_ast =
+      statement(
+        @statement_ast.subject,
+        @relationship,
+        @statement_ast.object,
+        character_range: [@statement_ast.range_start, range_end])
+
+    # return to term scanner
+    fret;
+
 # end ruby
   }
 
@@ -164,6 +198,35 @@
           *(outer.arguments << argument(inner, character_range: inner.character_range)),
           character_range: [outer.range_start, inner.range_end + 1])
     end
+
+    if @term_stack.length == 1
+      # we completed an outer term
+
+      # add to statement_ast
+      completed_term = @term_stack[-1]
+      if @statement_ast.subject.nil?
+        @statement_ast =
+          statement(
+            subject(
+              completed_term,
+              character_range: completed_term.character_range),
+            nil,
+            nil,
+            character_range: completed_term.character_range)
+        @bel_part = :relationship
+      elsif @statement_ast.object.nil?
+        object_node =
+          object(
+            completed_term,
+            character_range: completed_term.character_range)
+        @statement_ast =
+          statement(
+            @statement_ast.subject,
+            @statement_ast.relationship,
+            object_node,
+            character_range: [@statement_ast.range_start, object_node.range_end])
+      end
+    end
 # end ruby
   }
 
@@ -234,6 +297,23 @@
   action SPACES  {
 # begin ruby
     spaces = te-ts
+    trace("SPACES (#{spaces})")
+
+    if @relationship
+      # relationship was just completed, set part back to :term
+      @bel_part   = :term
+      @term_stack = []
+    end
+
+    if @bel_part == :relationship
+      trace("...completing relationship, squeezing down to one space")
+      spaces -= 1
+
+      # push the target state, jump to relationship scanner
+      # ...eventually to return
+      fcall relationship;
+    end
+
     if @original_caret > ts
       if @original_caret < te
         @space_adjusted_caret_position -= (@original_caret - ts)
@@ -241,16 +321,18 @@
         @space_adjusted_caret_position -= spaces
       end
     end
-    trace("SPACES (#{spaces})")
-    data.slice!(ts, spaces)
-    p   -= spaces
-    pe  -= spaces
-    eof -= spaces
 # end ruby
   }
 
   action EOF {
 # begin ruby
+    trace('EOF')
+    # yield the statement if we at least completed the subject
+    if !@statement_ast.subject.nil?
+      yield @statement_ast
+      return
+    end
+
     if !@param.nil?
       @term_stack[0]
     end
@@ -383,15 +465,19 @@
 # end ruby
   }
 
+  relationship := |*
+      RELATIONSHIP => RELATIONSHIP;
+  *|;
+
   term := |*
-      IDENT    => IDENT;
-      STRING   => STRING;
-      O_PAREN  => O_PAREN;
-      C_PAREN  => C_PAREN;
-      COLON    => COLON;
-      COMMA    => COMMA;
-      SPACES   => SPACES;
-      any      => EOF;
+      IDENT        => IDENT;
+      STRING       => STRING;
+      O_PAREN      => O_PAREN;
+      C_PAREN      => C_PAREN;
+      COLON        => COLON;
+      COMMA        => COMMA;
+      SPACES       => SPACES;
+      any          => EOF;
   *|;
 }%%
 =end
@@ -445,18 +531,21 @@ module BELParser
           end
 
           def each
-            @last_state = nil
-            @spaces     = 0
-            @value      = nil
-            @prefix     = nil
-            @param      = nil
-            @term_stack = []
+            @last_state    = nil
+            @spaces        = 0
+            @value         = nil
+            @prefix        = nil
+            @param         = nil
+            @term_stack    = []
+            @relationship  = nil
+            @bel_part      = :term
+            @statement_ast = statement(nil, nil, nil)
 
-            stack       = []
-            data        = @content.unpack('C*')
-            p           = 0
-            pe          = data.length
-            eof         = data.length
+            stack          = []
+            data           = @content.unpack('C*')
+            p              = 0
+            pe             = data.length
+            eof            = data.length
 
             # begin: ragel
             %% write init;
@@ -470,7 +559,9 @@ module BELParser
 end
 
 if __FILE__ == $0
+  require 'bel_parser/parsers/serializer'
   class ::AST::Node
+    include BELParser::Parsers
 
     def _metadata
       ivars = instance_variables - [:@type, :@children, :@hash]
@@ -498,11 +589,21 @@ if __FILE__ == $0
 
       sexp
     end
+
+    def to_bel
+      serialize(self)
+    end
   end
 
   $stdin.each_line do |line|
-    ast, _ = BELParser::Parsers::Expression::StatementAutocomplete.parse(line, line.length)
+    ast, caret = BELParser::Parsers::Expression::StatementAutocomplete.parse(
+      line,
+      line.length-1 # adjust for newline
+    )
     puts ast.to_sexp(1)
+    puts ast.to_bel
+    puts "#{' ' * caret}|"
+    puts "caret: #{caret}"
   end
 end
 # end ruby

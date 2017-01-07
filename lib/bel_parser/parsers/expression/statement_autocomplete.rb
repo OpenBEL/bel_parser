@@ -55,8 +55,10 @@ class << self
 	private :_statement_autocomplete_trans_keys, :_statement_autocomplete_trans_keys=
 end
 self._statement_autocomplete_trans_keys = [
-	32, 122, 32, 32, 10, 92, 
-	10, 92, 48, 122, 0
+	0, 0, 9, 122, 9, 32, 
+	10, 92, 10, 92, 48, 
+	122, 33, 126, 33, 126, 
+	0
 ]
 
 class << self
@@ -64,7 +66,7 @@ class << self
 	private :_statement_autocomplete_key_spans, :_statement_autocomplete_key_spans=
 end
 self._statement_autocomplete_key_spans = [
-	91, 1, 83, 83, 75
+	0, 114, 24, 83, 83, 75, 94, 94
 ]
 
 class << self
@@ -72,7 +74,7 @@ class << self
 	private :_statement_autocomplete_index_offsets, :_statement_autocomplete_index_offsets=
 end
 self._statement_autocomplete_index_offsets = [
-	0, 92, 94, 178, 262
+	0, 0, 115, 140, 224, 308, 384, 479
 ]
 
 class << self
@@ -80,49 +82,78 @@ class << self
 	private :_statement_autocomplete_indicies, :_statement_autocomplete_indicies=
 end
 self._statement_autocomplete_indicies = [
-	1, 0, 2, 0, 0, 0, 0, 0, 
-	3, 4, 0, 0, 5, 0, 0, 0, 
+	1, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 0, 0, 0, 0, 0, 0, 1, 
+	0, 2, 0, 0, 0, 0, 0, 3, 
+	4, 0, 0, 5, 0, 0, 0, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 7, 0, 0, 0, 0, 0, 
-	0, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 0, 0, 0, 0, 6, 
-	0, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 0, 1, 8, 9, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 10, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	11, 2, 9, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 2, 2, 2, 2, 
-	2, 2, 2, 2, 11, 2, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	12, 12, 12, 12, 12, 12, 12, 6, 
+	6, 7, 0, 0, 0, 0, 0, 0, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 12, 12, 12, 12, 6, 12, 6, 
+	6, 6, 0, 0, 0, 0, 6, 0, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
 	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 12, 0
+	6, 6, 0, 1, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 8, 8, 8, 8, 8, 8, 
+	8, 8, 1, 8, 9, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 10, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 11, 2, 
+	9, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 11, 2, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 12, 12, 
+	12, 12, 12, 12, 12, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 12, 
+	12, 12, 12, 6, 12, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 6, 
+	6, 6, 6, 6, 6, 6, 6, 12, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 14, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 13, 13, 13, 
+	13, 13, 13, 13, 13, 15, 0
 ]
 
 class << self
@@ -130,8 +161,8 @@ class << self
 	private :_statement_autocomplete_trans_targs, :_statement_autocomplete_trans_targs=
 end
 self._statement_autocomplete_trans_targs = [
-	0, 1, 2, 0, 0, 0, 4, 0, 
-	0, 0, 0, 3, 0
+	1, 2, 3, 1, 1, 1, 5, 1, 
+	1, 1, 1, 4, 1, 7, 0, 6
 ]
 
 class << self
@@ -140,7 +171,7 @@ class << self
 end
 self._statement_autocomplete_trans_actions = [
 	3, 0, 0, 4, 5, 6, 0, 7, 
-	8, 9, 10, 0, 11
+	8, 9, 10, 0, 11, 0, 0, 12
 ]
 
 class << self
@@ -148,7 +179,7 @@ class << self
 	private :_statement_autocomplete_to_state_actions, :_statement_autocomplete_to_state_actions=
 end
 self._statement_autocomplete_to_state_actions = [
-	1, 0, 0, 0, 0
+	0, 1, 0, 0, 0, 0, 1, 0
 ]
 
 class << self
@@ -156,7 +187,7 @@ class << self
 	private :_statement_autocomplete_from_state_actions, :_statement_autocomplete_from_state_actions=
 end
 self._statement_autocomplete_from_state_actions = [
-	2, 0, 0, 0, 0
+	0, 2, 0, 0, 0, 0, 2, 0
 ]
 
 class << self
@@ -164,43 +195,50 @@ class << self
 	private :_statement_autocomplete_eof_trans, :_statement_autocomplete_eof_trans=
 end
 self._statement_autocomplete_eof_trans = [
-	0, 9, 10, 10, 13
+	0, 0, 9, 10, 10, 13, 0, 16
 ]
 
 class << self
 	attr_accessor :statement_autocomplete_start
 end
-self.statement_autocomplete_start = 0;
+self.statement_autocomplete_start = 1;
 class << self
 	attr_accessor :statement_autocomplete_first_final
 end
-self.statement_autocomplete_first_final = 0;
+self.statement_autocomplete_first_final = 1;
 class << self
 	attr_accessor :statement_autocomplete_error
 end
-self.statement_autocomplete_error = -1;
+self.statement_autocomplete_error = 0;
 
+class << self
+	attr_accessor :statement_autocomplete_en_relationship
+end
+self.statement_autocomplete_en_relationship = 6;
 class << self
 	attr_accessor :statement_autocomplete_en_term
 end
-self.statement_autocomplete_en_term = 0;
+self.statement_autocomplete_en_term = 1;
 
 
           end
 
           def each
-            @last_state = nil
-            @spaces     = 0
-            @value      = nil
-            @prefix     = nil
-            @param      = nil
-            @term_stack = []
+            @last_state    = nil
+            @spaces        = 0
+            @value         = nil
+            @prefix        = nil
+            @param         = nil
+            @term_stack    = []
+            @relationship  = nil
+            @bel_part      = :term
+            @statement_ast = statement(nil, nil, nil)
 
-            stack       = []
-            data        = @content.unpack('C*')
-            p           = 0
-            pe          = data.length
-            eof         = data.length
+            stack          = []
+            data           = @content.unpack('C*')
+            p              = 0
+            pe             = data.length
+            eof            = data.length
 
             # begin: ragel
             
@@ -208,6 +246,7 @@ begin
 	p ||= 0
 	pe ||= data.length
 	cs = statement_autocomplete_start
+	top = 0
 	ts = nil
 	te = nil
 	act = 0
@@ -227,6 +266,10 @@ begin
 	if _goto_level <= 0
 	if p == pe
 		_goto_level = _test_eof
+		next
+	end
+	if cs == 0
+		_goto_level = _out
 		next
 	end
 	end
@@ -254,6 +297,45 @@ ts = p
 	cs = _statement_autocomplete_trans_targs[_trans]
 	if _statement_autocomplete_trans_actions[_trans] != 0
 	case _statement_autocomplete_trans_actions[_trans]
+	when 12 then
+		begin
+te = p
+p = p - 1; begin 
+# begin ruby
+    @last_state = :RELATIONSHIP
+    trace('RELATIONSHIP')
+
+    @relationship =
+      relationship(
+        utf8_string(data[ts...te]),
+        character_range: [ts, te])
+
+    range_end =
+      if @statement_ast.object?
+        @statement_ast.object.range_end
+      else
+        @relationship.range_end
+      end
+
+    @statement_ast =
+      statement(
+        @statement_ast.subject,
+        @relationship,
+        @statement_ast.object,
+        character_range: [@statement_ast.range_start, range_end])
+
+    # return to term scanner
+    	begin
+		top -= 1
+		cs = stack[top]
+		_goto_level = _again
+		next
+	end
+
+
+# end ruby
+   end
+		end
 	when 10 then
 		begin
 te = p+1
@@ -392,6 +474,35 @@ te = p+1
           *(outer.arguments << argument(inner, character_range: inner.character_range)),
           character_range: [outer.range_start, inner.range_end + 1])
     end
+
+    if @term_stack.length == 1
+      # we completed an outer term
+
+      # add to statement_ast
+      completed_term = @term_stack[-1]
+      if @statement_ast.subject.nil?
+        @statement_ast =
+          statement(
+            subject(
+              completed_term,
+              character_range: completed_term.character_range),
+            nil,
+            nil,
+            character_range: completed_term.character_range)
+        @bel_part = :relationship
+      elsif @statement_ast.object.nil?
+        object_node =
+          object(
+            completed_term,
+            character_range: completed_term.character_range)
+        @statement_ast =
+          statement(
+            @statement_ast.subject,
+            @statement_ast.relationship,
+            object_node,
+            character_range: [@statement_ast.range_start, object_node.range_end])
+      end
+    end
 # end ruby
    end
 		end
@@ -470,6 +581,13 @@ te = p+1
 te = p+1
  begin 
 # begin ruby
+    trace('EOF')
+    # yield the statement if we at least completed the subject
+    if !@statement_ast.subject.nil?
+      yield @statement_ast
+      return
+    end
+
     if !@param.nil?
       @term_stack[0]
     end
@@ -608,8 +726,9 @@ te = p
 p = p - 1; begin 
 # begin ruby
     @last_state = :IDENT
-
     trace('IDENT')
+
+    trace('...completing :term part')
     @value =
       identifier(
         utf8_string(data[ts...te]),
@@ -658,6 +777,30 @@ te = p
 p = p - 1; begin 
 # begin ruby
     spaces = te-ts
+    trace("SPACES (#{spaces})")
+
+    if @relationship
+      # relationship was just completed, set part back to :term
+      @bel_part   = :term
+      @term_stack = []
+    end
+
+    if @bel_part == :relationship
+      trace("...completing relationship, squeezing down to one space")
+      spaces -= 1
+
+      # push the target state, jump to relationship scanner
+      # ...eventually to return
+      	begin
+		stack[top] = cs
+		top+= 1
+		cs = 6
+		_goto_level = _again
+		next
+	end
+
+    end
+
     if @original_caret > ts
       if @original_caret < te
         @space_adjusted_caret_position -= (@original_caret - ts)
@@ -665,11 +808,6 @@ p = p - 1; begin
         @space_adjusted_caret_position -= spaces
       end
     end
-    trace("SPACES (#{spaces})")
-    data.slice!(ts, spaces)
-    p   -= spaces
-    pe  -= spaces
-    eof -= spaces
 # end ruby
    end
 		end
@@ -683,6 +821,10 @@ p = p - 1; begin
 ts = nil;		end
 	end
 
+	if cs == 0
+		_goto_level = _out
+		next
+	end
 	p += 1
 	if p != pe
 		_goto_level = _resume
@@ -714,7 +856,9 @@ end
 end
 
 if __FILE__ == $0
+  require 'bel_parser/parsers/serializer'
   class ::AST::Node
+    include BELParser::Parsers
 
     def _metadata
       ivars = instance_variables - [:@type, :@children, :@hash]
@@ -742,11 +886,21 @@ if __FILE__ == $0
 
       sexp
     end
+
+    def to_bel
+      serialize(self)
+    end
   end
 
   $stdin.each_line do |line|
-    ast, _ = BELParser::Parsers::Expression::StatementAutocomplete.parse(line, line.length)
+    ast, caret = BELParser::Parsers::Expression::StatementAutocomplete.parse(
+      line,
+      line.length-1 # adjust for newline
+    )
     puts ast.to_sexp(1)
+    puts ast.to_bel
+    puts "#{' ' * caret}|"
+    puts "caret: #{caret}"
   end
 end
 # end ruby
