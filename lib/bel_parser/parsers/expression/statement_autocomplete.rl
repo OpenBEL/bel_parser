@@ -273,7 +273,9 @@
             prefix(
               nil,
               character_range: [@value.range_start, @value.range_start]),
-            @value,
+            value(
+              @value,
+              character_range: @value.character_range),
             character_range: @value.character_range)
         )
       end

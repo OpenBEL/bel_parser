@@ -140,7 +140,14 @@ module BELParser
           end
         else
           puts "#{completing_node.type}: within value range"
-          string_literal = value.string_literal
+          string_literal = value.first_child.string_literal
+
+          prefix_str =
+            if prefix && prefix.identifier
+              prefix.identifier.string_literal
+            else
+              nil
+            end
 
           puts "...complete functions for #{string_literal}"
           function_completions = FunctionTermCompleter
@@ -179,7 +186,7 @@ module BELParser
           puts "...complete parameters for #{string_literal}"
           namespace_value_completions = ParameterCompleter
             .new(spec, search, namespaces)
-            .complete(string_literal, caret_position - value.range_start, prefix: nil)
+            .complete(string_literal, caret_position - value.range_start, prefix: prefix_str)
             .map { |(ns_value, completion_ast)|
               completion = "(#{serialize(completion_ast)})"
 
