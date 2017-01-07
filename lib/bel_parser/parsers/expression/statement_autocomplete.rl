@@ -64,8 +64,40 @@
         character_range: [@statement_ast.range_start, range_end])
 
     # return to term scanner
+    trace('fret; returning to term scanner')
     fret;
 
+# end ruby
+  }
+
+  action EOF_RELATIONSHIP {
+# begin ruby
+    trace('EOF_RELATIONSHIP')
+
+    @relationship =
+      relationship(
+        nil,
+        character_range: [ts, ts])
+
+    range_end =
+      if @statement_ast.object?
+        @statement_ast.object.range_end
+      else
+        @relationship.range_end
+      end
+
+    @statement_ast =
+      statement(
+        @statement_ast.subject,
+        @relationship,
+        @statement_ast.object,
+        character_range: [@statement_ast.range_start, range_end])
+
+    # go back one char to force EOF on return to term scanner
+    p -= 1
+
+    # return to term scanner
+    fret;
 # end ruby
   }
 
@@ -299,26 +331,33 @@
     spaces = te-ts
     trace("SPACES (#{spaces})")
 
-    if @relationship
+    case
+    when @relationship
       # relationship was just completed, set part back to :term
       @bel_part   = :term
       @term_stack = []
-    end
-
-    if @bel_part == :relationship
+    when @bel_part == :relationship
       trace("...completing relationship, squeezing down to one space")
       spaces -= 1
 
       # push the target state, jump to relationship scanner
       # ...eventually to return
+      @relationship = nil
+      trace('fcall; calling relationship scanner')
       fcall relationship;
-    end
+    else
+      # remove spaces and adjust pointers by the number of spaces removed
+      data.slice!(ts, spaces)
+      p   -= spaces
+      pe  -= spaces
+      eof -= spaces
 
-    if @original_caret > ts
-      if @original_caret < te
-        @space_adjusted_caret_position -= (@original_caret - ts)
-      else
-        @space_adjusted_caret_position -= spaces
+      if @original_caret > ts
+        if @original_caret < te
+          @space_adjusted_caret_position -= (@original_caret - ts)
+        else
+          @space_adjusted_caret_position -= spaces
+        end
       end
     end
 # end ruby
@@ -467,6 +506,7 @@
 
   relationship := |*
       RELATIONSHIP => RELATIONSHIP;
+      any          => EOF_RELATIONSHIP;
   *|;
 
   term := |*

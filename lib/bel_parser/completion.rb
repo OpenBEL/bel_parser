@@ -389,6 +389,39 @@ module BELParser
           # TODO Completing term argument, will we ever get here?
           puts "#{completing_node.type}: child is a term, who do we proceed"
         end
+      when :relationship
+        string_literal = completing_node.string_literal
+        puts "#{completing_node.type}: complete relationships for #{string_literal}"
+
+        completer =
+          if string_literal.nil?
+            AllRelationshipCompleter.new(spec, search, namespaces)
+          else
+            RelationshipCompleter.new(spec, search, namespaces)
+          end
+
+        relationship_completions = completer
+          .complete(string_literal, caret_position)
+          .map { |(relationship, completion_ast)|
+            short = relationship.short.to_s
+            long  = relationship.long.to_s
+
+            completion_ast.character_range = [
+              completing_node.range_start,
+              completing_node.range_start + short.length
+            ]
+            completion = serialize(MergeCompletion.new(completion_ast).process(ast))
+
+            {
+              type:           :relationship,
+              id:             long,
+              label:          long,
+              value:          completion,
+              caret_position: short.length + 1
+            }
+          }
+
+        relationship_completions
       else
         []
       end
@@ -404,7 +437,7 @@ module BELParser
         case node.type
         when :argument
           return node if node.child.nil? || node.parameter?
-        when :parameter, :function
+        when :parameter, :function, :relationship
           return node
         end
       end
@@ -661,6 +694,38 @@ module BELParser
                       ns)),
                   value))
             ]
+          }
+      end
+    end
+
+    class RelationshipCompleter < BaseCompleter
+
+      def complete(string_literal, caret_position)
+        @spec.relationships
+          .select { |relationship|
+            relationship =~ /.*#{Regexp.quote(string_literal)}.*/
+          }
+          .map    { |relationship|
+            make_completion(relationship)
+          }
+      end
+
+      def make_completion(relationship)
+        short = relationship.short.to_s
+        [
+          relationship,
+          relationship(
+            short)
+        ]
+      end
+    end
+
+    class AllRelationshipCompleter < RelationshipCompleter
+
+      def complete(string_literal, caret_position)
+        @spec.relationships
+          .map    { |relationship|
+            make_completion(relationship)
           }
       end
     end
