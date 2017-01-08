@@ -229,6 +229,7 @@ self.statement_autocomplete_en_term = 0;
             @prefix        = nil
             @param         = nil
             @term_stack    = []
+            @paren_counter = 0
             @relationship  = nil
             @bel_part      = :term
             @statement_ast = statement(nil, nil, nil)
@@ -337,8 +338,8 @@ te = p+1
 te = p
 p = p - 1; begin 
 # begin ruby
-    @last_state = :RELATIONSHIP
     trace('RELATIONSHIP')
+    @last_state = :RELATIONSHIP
 
     @relationship =
       relationship(
@@ -360,7 +361,6 @@ p = p - 1; begin
         character_range: [@statement_ast.range_start, range_end])
 
     # return to term scanner
-    trace('fret; returning to term scanner')
     	begin
 		top -= 1
 		cs = stack[top]
@@ -377,9 +377,9 @@ p = p - 1; begin
 te = p+1
  begin 
 # begin ruby
+    trace('STRING')
     @last_state = :STRING
 
-    trace('STRING')
     @value =
       string(
         utf8_string(data[ts...te]),
@@ -402,9 +402,10 @@ te = p+1
 te = p+1
  begin 
 # begin ruby
-    @last_state = :O_PAREN
-
     trace('O_PAREN')
+    @last_state     = :O_PAREN
+    @paren_counter += 1
+
     term =
       if @value == nil
         term(
@@ -431,6 +432,8 @@ te = p+1
  begin 
 # begin ruby
     trace('C_PAREN')
+    @paren_counter -= 1
+
     if @last_state == :COMMA || @last_state == :O_PAREN
       @last_state = :C_PAREN
       function, *arguments = @term_stack[-1].children
@@ -461,9 +464,7 @@ te = p+1
         arg_from_value      =
           argument(
             parameter(
-              prefix(
-                nil,
-                character_range: [@value.range_start, @value.range_start]),
+              nil,
               value(
                 @value,
                 character_range: @value.character_range),
@@ -511,33 +512,8 @@ te = p+1
           character_range: [outer.range_start, inner.range_end + 1])
     end
 
-    if @term_stack.length == 1
-      # we completed an outer term
-
-      # add to statement_ast
-      completed_term = @term_stack[-1]
-      if @statement_ast.subject.nil?
-        @statement_ast =
-          statement(
-            subject(
-              completed_term,
-              character_range: completed_term.character_range),
-            nil,
-            nil,
-            character_range: completed_term.character_range)
-        @bel_part = :relationship
-      elsif @statement_ast.object.nil?
-        object_node =
-          object(
-            completed_term,
-            character_range: completed_term.character_range)
-        @statement_ast =
-          statement(
-            @statement_ast.subject,
-            @statement_ast.relationship,
-            object_node,
-            character_range: [@statement_ast.range_start, object_node.range_end])
-      end
+    if @paren_counter == 0 && @term_stack.length == 1
+      @bel_part = :relationship
     end
 # end ruby
    end
@@ -547,9 +523,9 @@ te = p+1
 te = p+1
  begin 
 # begin ruby
+    trace('COLON')
     @last_state = :COLON
 
-    trace('COLON')
     if !@value.nil?
       @prefix =
         prefix(
@@ -570,9 +546,9 @@ te = p+1
 te = p+1
  begin 
 # begin ruby
+    trace('COMMA')
     @last_state = :COMMA
 
-    trace('COMMA')
     if !@term_stack.empty?
       if !@param.nil?
         function, *arguments = @term_stack[-1].children
@@ -584,17 +560,12 @@ te = p+1
           term(
             *([function, arguments, arg_from_param].flatten.compact),
             character_range: [function.range_start, @param.range_end + 1])
-        @param              = nil
-        @prefix             = nil
-        @value              = nil
       elsif !@value.nil?
         function, *arguments = @term_stack[-1].children
         arg_from_value      =
           argument(
             parameter(
-              prefix(
-                nil,
-                character_range: [@value.range_start, @value.range_start]),
+              nil,
               value(
                 @value,
                 character_range: @value.character_range),
@@ -604,11 +575,12 @@ te = p+1
           term(
             *[function, arguments, arg_from_value].flatten.compact,
             character_range: [function.range_start, arg_from_value.range_end + 1])
-        @param              = nil
-        @prefix             = nil
-        @value              = nil
       end
     end
+
+    @param  = nil
+    @prefix = nil
+    @value  = nil
 # end ruby
    end
 		end
@@ -618,42 +590,44 @@ te = p+1
  begin 
 # begin ruby
     trace('EOF')
-    # yield the statement if we at least completed the subject
-    if !@statement_ast.subject.nil?
-      yield @statement_ast
-      return
-    end
 
-    if !@param.nil?
-      @term_stack[0]
-    end
-
-    trace("last state in EOF: " + @last_state.to_s)
     if @term_stack.empty?
-      trace('term stack is empty')
+      # coerce what has been completed into a term
       if !@param.nil?
-        yield @param
-      elsif !@prefix.nil?
-        yield(
-          parameter(
-            @prefix,
+        @term_stack[0] =
+          term(
             nil,
-            character_range: [@prefix.range_start, @prefix.range_end + 1])
-        )
+            argument(
+              @param,
+              character_range: @param.character_range),
+            character_range: @param.character_range)
+      elsif !@prefix.nil?
+        range = [@prefix.range_start, @prefix.range_end + 1]
+        @term_stack[0] =
+          term(
+            nil,
+            argument(
+              parameter(
+                @prefix,
+                nil,
+                character_range: range),
+              character_range: range),
+            character_range: range)
       elsif !@value.nil?
-        yield(
-          parameter(
-            prefix(
-              nil,
-              character_range: [@value.range_start, @value.range_start]),
-            value(
-              @value,
+        @term_stack[0] =
+          term(
+            nil,
+            argument(
+              parameter(
+                nil,
+                value(
+                  @value,
+                  character_range: @value.character_range),
+                character_range: @value.character_range),
               character_range: @value.character_range),
             character_range: @value.character_range)
-        )
       end
     else
-      trace('term stack is not empty')
       case @last_state
       when :IDENT
         if !@param.nil?
@@ -671,9 +645,7 @@ te = p+1
           arg_from_value      =
             argument(
               parameter(
-                prefix(
-                  nil,
-                  character_range: [@value.range_start, @value.range_start]),
+                nil,
                 value(
                   @value,
                   character_range: @value.character_range),
@@ -700,9 +672,7 @@ te = p+1
           arg_from_value      =
             argument(
               parameter(
-                prefix(
-                  nil,
-                  character_range: [@value.range_start, @value.range_start]),
+                nil,
                 value(
                   @value,
                   character_range: @value.character_range),
@@ -710,7 +680,7 @@ te = p+1
               character_range: @value.character_range)
           @term_stack[-1]     =
             term(
-              *[function, arguments, arg_from_value].flatten.compact,
+              *[function, *arguments, arg_from_value],
               character_range: [function.range_start, arg_from_value.range_end])
         end
       when :COMMA, :O_PAREN
@@ -721,7 +691,7 @@ te = p+1
             character_range: [te - 1, te - 1])
         @term_stack[-1]     =
           term(
-            *([function, arguments, empty_argument].flatten.compact),
+            *[function, *arguments, empty_argument],
             character_range: [function.range_start, empty_argument.range_end])
       when :COLON
         function, *arguments = @term_stack[-1].children
@@ -734,11 +704,14 @@ te = p+1
             character_range: [@prefix.range_start, @prefix.range_end + 1])
         @term_stack[-1]     =
           term(
-            *[function, arguments, empty_argument].flatten.compact,
+            *[function, *arguments, empty_argument].flatten.compact,
             character_range: [function.range_start, empty_argument.range_end])
       end
+    end
 
-      # yield combined term
+    # iff we have completed any term-related node
+    if !@term_stack.empty?
+      # combine terms
       while @term_stack.length > 1
         # pop stack
         inner = @term_stack.pop
@@ -751,8 +724,34 @@ te = p+1
             *(outer.arguments << argument(inner, character_range: inner.character_range)),
             character_range: [outer.range_start, inner.range_end + 1])
       end
-      yield @term_stack.pop
+
+      # add to statement_ast
+      completed_term = @term_stack[-1]
+      if @statement_ast.subject.nil?
+        @statement_ast =
+          statement(
+            subject(
+              completed_term,
+              character_range: completed_term.character_range),
+            nil,
+            nil,
+            character_range: completed_term.character_range)
+      elsif @statement_ast.object.nil?
+        object_node =
+          object(
+            completed_term,
+            character_range: completed_term.character_range)
+        @statement_ast =
+          statement(
+            @statement_ast.subject,
+            @statement_ast.relationship,
+            object_node,
+            character_range: [@statement_ast.range_start, object_node.range_end])
+      end
     end
+
+    # yield statement
+    yield @statement_ast
 # end ruby
    end
 		end
@@ -761,10 +760,9 @@ te = p+1
 te = p
 p = p - 1; begin 
 # begin ruby
-    @last_state = :IDENT
     trace('IDENT')
+    @last_state = :IDENT
 
-    trace('...completing :term part')
     @value =
       identifier(
         utf8_string(data[ts...te]),
@@ -787,9 +785,9 @@ p = p - 1; begin
 te = p
 p = p - 1; begin 
 # begin ruby
+    trace('STRING')
     @last_state = :STRING
 
-    trace('STRING')
     @value =
       string(
         utf8_string(data[ts...te]),
@@ -815,20 +813,71 @@ p = p - 1; begin
     spaces = te-ts
     trace("SPACES (#{spaces})")
 
-    case
-    when @relationship
-      # relationship was just completed, set part back to :term
-      @bel_part   = :term
-      @term_stack = []
-    when @bel_part == :relationship
-      trace("...completing relationship, squeezing down to one space")
-      spaces -= 1
+    case @bel_part
+    when :relationship
+      if @relationship
+        spaces -= 1
+        @bel_part   = :term
 
-      # push the target state, jump to relationship scanner
-      # ...eventually to return
-      @relationship = nil
-      trace('fcall; calling relationship scanner')
-      	begin
+        # remove spaces and adjust pointers by the number of spaces removed
+        data.slice!(ts, spaces)
+        p   -= spaces
+        pe  -= spaces
+        eof -= spaces
+
+        if @original_caret > ts
+          if @original_caret < te
+            @space_adjusted_caret_position -= (@original_caret - ts)
+          else
+            @space_adjusted_caret_position -= spaces
+          end
+        end
+      else
+        spaces -= 1
+        # remove spaces and adjust pointers by the number of spaces removed
+        data.slice!(ts, spaces)
+        p   -= spaces
+        pe  -= spaces
+        eof -= spaces
+
+        if @original_caret > ts
+          if @original_caret < te
+            @space_adjusted_caret_position -= (@original_caret - ts)
+          else
+            @space_adjusted_caret_position -= spaces
+          end
+        end
+
+        # pop off term; add to statement_ast
+        completed_term = @term_stack[-1]
+        if @statement_ast.subject.nil?
+          @statement_ast =
+            statement(
+              subject(
+                completed_term,
+                character_range: completed_term.character_range),
+              nil,
+              nil,
+              character_range: completed_term.character_range)
+        elsif @statement_ast.object.nil?
+          object_node =
+            object(
+              completed_term,
+              character_range: completed_term.character_range)
+          @statement_ast =
+            statement(
+              @statement_ast.subject,
+              @statement_ast.relationship,
+              object_node,
+              character_range: [@statement_ast.range_start, object_node.range_end])
+        end
+
+        @term_stack = []
+
+        # push the target state, jump to relationship scanner
+        # ...eventually to return
+        @relationship = nil
+        	begin
 		stack[top] = cs
 		top+= 1
 		cs = 5
@@ -836,7 +885,12 @@ p = p - 1; begin
 		next
 	end
 
-    else
+      end
+    when :term
+      if @last_state == :COMMA
+        spaces -= 1
+      end
+
       # remove spaces and adjust pointers by the number of spaces removed
       data.slice!(ts, spaces)
       p   -= spaces
