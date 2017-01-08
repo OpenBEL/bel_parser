@@ -285,7 +285,7 @@ module BELParser
           parameter     = completing_node.child
           prefix, value = parameter.children
 
-          if Range.new(*prefix.character_range, false).include?(caret_position)
+          if prefix && Range.new(*prefix.character_range, false).include?(caret_position)
             prefix_str = prefix.identifier.string_literal
             puts "...within prefix range, completing namespace prefixes that match #{prefix_str}"
 
@@ -344,7 +344,13 @@ module BELParser
               end
 
             puts "...completing functions for #{value_str}"
-            function_completions = FunctionArgumentCompleter
+            completer =
+              if ast.subject.term.arguments[0] == completing_node || (!ast.object.nil? && ast.object.term? && ast.object.child.function.nil? && ast.object.child.arguments[0] == completing_node)
+                FunctionTermCompleter
+              else
+                FunctionArgumentCompleter
+              end
+            function_completions = completer
               .new(spec, search, namespaces)
               .complete(value_str, caret_position)
               .map { |(function, completion_ast)|
@@ -362,7 +368,7 @@ module BELParser
                   id:             long,
                   label:          long,
                   value:          completion,
-                  caret_position: short.length + 1
+                  caret_position: completing_node.range_start + short.length + 1
                 }
               }
 
@@ -464,8 +470,9 @@ module BELParser
       def complete(string_literal, caret_position)
         pattern = /.*#{Regexp.quote(string_literal)}.*/i
         @spec.functions
-          .select { |function| function =~ pattern }
-          .map    { |function|
+          .select  { |function| function =~ pattern }
+          .sort_by { |function| function.long       }
+          .map     { |function|
             make_completion(function)
           }
       end
@@ -513,7 +520,8 @@ module BELParser
 
       def complete(_, _)
         @spec.functions
-          .map { |function|
+          .sort_by { |function| function.long }
+          .map     { |function|
             make_completion(function)
           }
       end
@@ -562,10 +570,11 @@ module BELParser
       def complete(string_literal, _)
         lowercase_substring = string_literal.downcase
         @namespaces.each
-          .map    { |ns| ns.prefix.first }
+          .map     { |ns| ns.prefix.first }
           .compact
-          .select { |px| px.include?(lowercase_substring) }
-          .map    { |px|
+          .select  { |px| px.include?(lowercase_substring) }
+          .sort
+          .map     { |px|
             make_completion(px.upcase)
           }
       end
@@ -605,6 +614,7 @@ module BELParser
         @namespaces.each
           .map    { |ns| ns.prefix.first }
           .compact
+          .sort
           .map    { |px|
             make_completion(px.upcase)
           }
@@ -617,6 +627,7 @@ module BELParser
         @namespaces.each
           .map    { |ns| ns.prefix.first }
           .compact
+          .sort
           .map    { |px|
             make_completion(px.upcase)
           }
@@ -670,7 +681,8 @@ module BELParser
           }
           .compact
           .take(20)
-          .map { |(ns, v)|
+          .sort_by { |(_, v)| v }
+          .map     { |(ns, v)|
             ns_value = nil
             value =
               if !v.scan(/[^\w]/).empty?
@@ -702,10 +714,11 @@ module BELParser
 
       def complete(string_literal, caret_position)
         @spec.relationships
-          .select { |relationship|
-            relationship =~ /.*#{Regexp.quote(string_literal)}.*/
+          .select  { |relationship|
+            relationship =~ /.*#{Regexp.quote(string_literal)}.*/i
           }
-          .map    { |relationship|
+          .sort_by { |relationship| relationship.long }
+          .map     { |relationship|
             make_completion(relationship)
           }
       end
@@ -724,7 +737,8 @@ module BELParser
 
       def complete(string_literal, caret_position)
         @spec.relationships
-          .map    { |relationship|
+          .sort_by { |relationship| relationship.long }
+          .map     { |relationship|
             make_completion(relationship)
           }
       end
