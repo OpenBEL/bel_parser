@@ -680,16 +680,17 @@ module BELParser
           uri = nil
         end
 
-        exact_match = @search
-          .search(string_literal, :namespace_concept, uri, nil, size: 1, exact_match: true)
+        exact_matches = @search
+          .search(string_literal, :namespace_concept, uri, nil, size: 100, exact_match: true)
           .map { |match|
             ns = @namespaces.find(match.scheme_uri).first
             next unless ns
 
             [ns.prefix.first.upcase, match.pref_label]
-          }.first
+          }
+          .to_a
+          .compact
 
-        puts "exact: #{exact_match}"
         @search
           .search(query, :namespace_concept, uri, nil, size: 100)
           .sort { |match1, match2|
@@ -707,7 +708,7 @@ module BELParser
           .compact
           .take(20)
           .sort_by { |(_, v)| v }
-          .tap     { |matches| matches.insert(0, exact_match) if exact_match }
+          .tap     { |matches| matches.unshift(*exact_matches) }
           .uniq
           .map     { |(ns, v)|
             ns_value = nil
