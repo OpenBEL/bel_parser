@@ -140,7 +140,13 @@ module BELParser
           end
         else
           puts "#{completing_node.type}: within value range"
-          string_literal = value.first_child.string_literal
+          string_literal =
+            case value.first_child.type
+            when :identifier
+              value.first_child.string_literal
+            when :string
+              value.first_child.string_value
+            end
 
           prefix_str =
             if prefix && prefix.identifier
@@ -309,8 +315,14 @@ module BELParser
             prefix_completions
           else
             # completing value of parameter
-            value_str = value.first_child.string_literal
-            puts "...completing #{value_str} within value range"
+            value_str =
+              case value.first_child.type
+              when :identifier
+                value.first_child.string_literal
+              when :string
+                value.first_child.string_value
+              end
+              puts "...completing #{value_str} within value range"
 
             prefix_string      = nil
             prefix_completions =
@@ -343,34 +355,37 @@ module BELParser
                   }
               end
 
-            puts "...completing functions for #{value_str}"
-            completer =
-              if ast.subject.term.arguments[0] == completing_node || (!ast.object.nil? && ast.object.term? && ast.object.child.function.nil? && ast.object.child.arguments[0] == completing_node)
-                FunctionTermCompleter
-              else
-                FunctionArgumentCompleter
-              end
-            function_completions = completer
-              .new(spec, search, namespaces)
-              .complete(value_str, caret_position)
-              .map { |(function, completion_ast)|
-                short = function.short.to_s
-                long  = function.long.to_s
+            function_completions = []
+            if prefix_string.nil?
+              puts "...completing functions for #{value_str}"
+              completer =
+                if ast.subject.term.arguments[0] == completing_node || (!ast.object.nil? && ast.object.term? && ast.object.child.function.nil? && ast.object.child.arguments[0] == completing_node)
+                  FunctionTermCompleter
+                else
+                  FunctionArgumentCompleter
+                end
+              function_completions = completer
+                .new(spec, search, namespaces)
+                .complete(value_str, caret_position)
+                .map { |(function, completion_ast)|
+                  short = function.short.to_s
+                  long  = function.long.to_s
 
-                completion_ast.character_range = [
-                  completing_node.range_start,
-                  completing_node.range_start + short.length
-                ]
-                completion = serialize(MergeCompletion.new(completion_ast).process(ast))
+                  completion_ast.character_range = [
+                    completing_node.range_start,
+                    completing_node.range_start + short.length
+                  ]
+                  completion = serialize(MergeCompletion.new(completion_ast).process(ast))
 
-                {
-                  type:           :function,
-                  id:             long,
-                  label:          long,
-                  value:          completion,
-                  caret_position: completing_node.range_start + short.length + 1
+                  {
+                    type:           :function,
+                    id:             long,
+                    label:          long,
+                    value:          completion,
+                    caret_position: completing_node.range_start + short.length + 1
+                  }
                 }
-              }
+            end
 
             puts "...completing parameters for #{value_str}, prefix is #{prefix_string}"
             parameter_completions = ParameterCompleter
@@ -665,8 +680,18 @@ module BELParser
           uri = nil
         end
 
+        exact_match = @search
+          .search(string_literal, :namespace_concept, uri, nil, size: 1, exact_match: true)
+          .map { |match|
+            ns = @namespaces.find(match.scheme_uri).first
+            next unless ns
+
+            [ns.prefix.first.upcase, match.pref_label]
+          }.first
+
+        puts "exact: #{exact_match}"
         @search
-          .search(query, :namespace_concept, uri, nil, size: 200)
+          .search(query, :namespace_concept, uri, nil, size: 100)
           .sort { |match1, match2|
             L.distance(string_literal.downcase, match1.pref_label.downcase) <=>
             L.distance(string_literal.downcase, match2.pref_label.downcase)
@@ -682,6 +707,8 @@ module BELParser
           .compact
           .take(20)
           .sort_by { |(_, v)| v }
+          .tap     { |matches| matches.insert(0, exact_match) if exact_match }
+          .uniq
           .map     { |(ns, v)|
             ns_value = nil
             value =
