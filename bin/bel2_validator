@@ -105,14 +105,16 @@ BELParser::Expression::Validator
 
     puts "  Semantics results:"
     results.semantics_results.each do |res|
-      if res.is_a?(BELParser::Language::Semantics::SignatureMappingSuccess)
+      case res
+      when BELParser::Language::Semantics::SignatureMappingSuccess
         puts "    Matched signature: #{res.signature.string_form}"
-      end
-      if res.is_a?(BELParser::Language::Semantics::SignatureMappingWarning)
+      when BELParser::Language::Semantics::SignatureMappingWarning
         puts "    Failed signature: #{res.signature.string_form}"
         res.results.select(&:failure?).each do |warning|
           puts "      #{warning}"
         end
+      when BELParser::Language::Semantics::SemanticsWarning
+        puts "    Warning: #{res}"
       end
     end
   end

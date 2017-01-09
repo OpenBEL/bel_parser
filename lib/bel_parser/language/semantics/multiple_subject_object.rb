@@ -13,6 +13,7 @@ module BELParser
 
         def self.map(stmt_node, spec, _namespaces)
           return nil unless stmt_node.is_a?(BELParser::Parsers::AST::Statement)
+          return nil unless stmt_node.relationship?
           return nil if stmt_node.relationship.string_literal.nil?
           rel = spec.relationship(stmt_node.relationship.string_literal.to_sym)
           return nil unless rel
@@ -20,6 +21,7 @@ module BELParser
 
           list_func = spec.function(:list)
           return nil unless list_func
+          return nil unless stmt_node.object?
           return nil unless stmt_node.object.term?
 
           map_subject_object(stmt_node, rel, spec)
@@ -29,7 +31,9 @@ module BELParser
           sub_term  = stmt_node.subject.term
           list_term = stmt_node.object.child
 
-          if list_term.arguments.any? { |arg| sub_term == arg.child }
+          return nil if list_term.arguments.empty?
+          if list_term.arguments.any? { |arg| arg.child && sub_term == arg.child }
+            puts "warning!"
             MultipleSubjectObjectWarning.new(stmt_node, spec, rel)
           end
         end

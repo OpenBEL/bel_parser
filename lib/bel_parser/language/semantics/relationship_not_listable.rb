@@ -14,6 +14,7 @@ module BELParser
         def self.map(node, spec, _namespaces)
           return nil unless node.is_a?(BELParser::Parsers::AST::Statement)
           return nil unless node.relationship?
+          return nil unless node.object?
           return nil unless node.object.term?
 
           map_statement(node, spec)
@@ -22,6 +23,7 @@ module BELParser
         def self.map_statement(stmt_node, spec)
           list_func = spec.function(:list)
           return nil unless list_func
+          return nil unless stmt_node.object.child.function
 
           obj_func = stmt_node.object.child.function.identifier.string_literal
           return nil unless spec.function(obj_func.to_sym) == list_func

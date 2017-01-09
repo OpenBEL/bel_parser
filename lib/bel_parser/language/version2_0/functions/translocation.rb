@@ -15,8 +15,7 @@ module BELParser
           SHORT       = :tloc
           LONG        = :translocation
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::Abundance
-          DESCRIPTION = 'Denotes the frequency or abundance of events
-          in which members move between locations'.freeze
+          DESCRIPTION = 'Denotes the frequency or abundance of events in which members move between locations'.freeze
 
           def self.short
             SHORT

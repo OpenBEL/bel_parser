@@ -14,8 +14,7 @@ module BELParser
           SHORT       = :var
           LONG        = :variant
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::Variant
-          DESCRIPTION = 'Denotes a sequence variant of the specified
-          abundance.'.freeze
+          DESCRIPTION = 'Denotes a sequence variant of the specified abundance.'.freeze
 
           def self.short
             SHORT

@@ -13,6 +13,8 @@ module BELParser
 
         def self.map(stmt_node, spec, _namespaces)
           return nil unless stmt_node.is_a?(BELParser::Parsers::AST::Statement)
+          return nil unless stmt_node.relationship?
+          return nil unless stmt_node.object?
           return nil if stmt_node.relationship.string_literal.nil?
 
           list_func = spec.function(:list)
@@ -31,6 +33,7 @@ module BELParser
             spec,
             rel) unless obj_node.term?
 
+          return nil unless obj_node.child.function
           obj_func = obj_node.child.function.identifier.string_literal
           NonObjectListWarning.new(
             obj_node,
