@@ -33,7 +33,6 @@ module BELParser
 
           return nil if list_term.arguments.empty?
           if list_term.arguments.any? { |arg| arg.child && sub_term == arg.child }
-            puts "warning!"
             MultipleSubjectObjectWarning.new(stmt_node, spec, rel)
           end
         end
