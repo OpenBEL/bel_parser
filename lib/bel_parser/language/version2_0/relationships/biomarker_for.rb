@@ -14,11 +14,13 @@ module BELParser
 
           SHORT       = :biomarkerFor
           LONG        = :biomarkerFor
-          DESCRIPTION = ' +A biomarkerFor P+ -  For term A and process
-          erm P, +A biomarkerFor P+ indicates that changes
-          n or detection of A is used in some way to be
-           biomarker for pathology or biological process
-          .'.freeze
+
+          DESCRIPTION = <<-DOC
+BiomarkerFor:  +A biomarkerFor P+ -  For term A and process term
+P, +A biomarkerFor P+ indicates that changes in or detection
+of A is used in some way to be a biomarker for pathology or
+biological process P.
+          DOC
 
           def self.short
             SHORT

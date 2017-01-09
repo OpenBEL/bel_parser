@@ -16,14 +16,15 @@ module BELParser
 
           SHORT       = :reg
           LONG        = :regulates
-          DESCRIPTION = '+A regulates B+ - For terms A and B, A regulates
-           or A reg B indicate that A is reported to
-          ave an effect on B, but information is missing
-          bout whether A increases B or A decreases
-          . This relationship provides more information
-          han association, because the upstream entity
-          source term) and downstream entity (target term)
-          an be assigned.'.freeze
+
+          DESCRIPTION = <<-DOC
+Regulates:  +A regulates B+ - For terms A and B, A regulates
+B or A reg B indicate that A is reported to have an effect on
+B, but information is missing about whether A increases B or
+A decreases B. This relationship provides more information
+than association, because the upstream entity (source term)
+and downstream entity (target term) can be assigned.
+          DOC
 
           def self.short
             SHORT

@@ -14,11 +14,13 @@ module BELParser
 
           SHORT       = :positiveCorrelation
           LONG        = :positiveCorrelation
-          DESCRIPTION = ' +A positiveCorrelation B+ -  For terms A and B,
-          A positiveCorrelation B+ indicates that changes
-          n A and B have been observed to be positively
-          orrelated, thus B positiveCorrelation A is
-          quivalent to A positiveCorrelation B.'.freeze
+
+          DESCRIPTION = <<-DOC
+PositiveCorrelation:  +A positiveCorrelation B+ -  For terms
+A and B, +A positiveCorrelation B+ indicates that changes in
+A and B have been observed to be positively correlated, thus B
+positiveCorrelation A is equivalent to A positiveCorrelation B.
+          DOC
 
           def self.short
             SHORT

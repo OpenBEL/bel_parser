@@ -15,13 +15,14 @@ module BELParser
 
           SHORT       = :':>'
           LONG        = :transcribedTo
-          DESCRIPTION = ' +G :> R+ -  For rnaAbundance term R and
-          eneAbundance term G, +G transcribedTo R+ or +G :>
-          + indicates that members of R are produced by
-          he transcription of members of G. For example:
-          g(HGNC:AKT1) :> r(HGNC:AKT1)+ indicates that
-          he human AKT1 RNA is transcribed from the human
-          KT1 gene.'.freeze
+
+          DESCRIPTION = <<-DOC
+TranscribedTo:  +G :> R+ -  For rnaAbundance term R and
+geneAbundance term G, +G transcribedTo R+ or +G :> R+ indicates
+that members of R are produced by the transcription of members
+of G. For example: +g(HGNC:AKT1) :> r(HGNC:AKT1)+ indicates
+that the human AKT1 RNA is transcribed from the human AKT1 gene.
+          DOC
 
           def self.short
             SHORT

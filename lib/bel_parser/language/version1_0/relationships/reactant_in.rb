@@ -17,14 +17,16 @@ module BELParser
 
           SHORT       = :reactantIn
           LONG        = :reactantIn
-          DESCRIPTION = ' +A reactantIn reaction(reactants(A),
-          roducts(B))+ -  This relationship links abundance
-          erms from the +reactants(<list>)+ in a reaction
-          o the reaction. This is a direct relationship
-          ecause it is a _self_ relationship. Reactants are
-          onsumed directly by a reaction. This relationship
-          s introduced by the BEL Compiler and may not be
-          sed by statements in BEL documents.'.freeze
+
+          DESCRIPTION = <<-DOC
+ReactantIn:  +A reactantIn reaction(reactants(A),
+products(B))+ -  This relationship links abundance
+terms from the +reactants(<list>)+ in a reaction to the
+reaction. This is a direct relationship because it is a
+_self_ relationship. Reactants are consumed directly by a
+reaction. This relationship is introduced by the BEL Compiler
+and may not be used by statements in BEL documents.
+          DOC
 
           def self.short
             SHORT

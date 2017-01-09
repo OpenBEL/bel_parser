@@ -16,13 +16,15 @@ module BELParser
 
           SHORT       = :causesNoChange
           LONG        = :causesNoChange
-          DESCRIPTION = ' +A causesNoChange B+ -  For terms A and B, +A
-          ausesNoChange B+ indicates that B was observed not
-          o change in response to changes in A. Statements
-          sing this relationship correspond to cases where
-          xplicit measurement of B demonstrates lack of
-          ignificant change, not for cases where the state
-          f B is unknown.'.freeze
+
+          DESCRIPTION = <<-DOC
+CausesNoChange:  +A causesNoChange B+ -  For terms A and B,
++A causesNoChange B+ indicates that B was observed not to
+change in response to changes in A. Statements using this
+relationship correspond to cases where explicit measurement
+of B demonstrates lack of significant change, not for cases
+where the state of B is unknown.
+          DOC
 
           def self.short
             SHORT

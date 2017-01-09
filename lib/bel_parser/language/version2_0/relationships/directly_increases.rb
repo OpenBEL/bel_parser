@@ -15,12 +15,14 @@ module BELParser
 
           SHORT       = :'=>'
           LONG        = :directlyIncreases
-          DESCRIPTION = ' +A => B+ -  For terms A and B,
-          A directlyIncreases B or A => B+ indicate A
-          ncreases B and that the mechanism of the causal
-          elationship is based on physical interaction
-          f entities related to A and B. This is a direct
-          ersion of the increases relationship.'.freeze
+
+          DESCRIPTION = <<-DOC
+DirectlyIncreases:  +A => B+ -  For terms A and B, +A
+directlyIncreases B or A => B+ indicate A increases B and that
+the mechanism of the causal relationship is based on physical
+interaction of entities related to A and B. This is a direct
+version of the increases relationship.
+          DOC
 
           def self.short
             SHORT

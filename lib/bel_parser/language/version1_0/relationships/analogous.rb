@@ -14,10 +14,12 @@ module BELParser
 
           SHORT       = :analogous
           LONG        = :analogous
-          DESCRIPTION = ' +A analogous B+ -  For terms A and B, +A
-          nalogousTo B+ indicates that A and B represent
-          bundances or molecular activities in different
-          pecies which function in a similar manner.'.freeze
+          DESCRIPTION = <<-DOC
+Analogous:  +A analogous B+ -  For terms A and B, +A analogousTo
+B+ indicates that A and B represent abundances or molecular
+activities in different species which function in a similar
+manner.
+DOC
 
           def self.short
             SHORT
