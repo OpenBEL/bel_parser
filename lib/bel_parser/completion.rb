@@ -66,7 +66,6 @@ module BELParser
           []
         end
 
-      # semantics this shit
       urir = BELParser::Resource.default_uri_reader
       urlr = BELParser::Resource.default_url_reader
       validator             = BELParser::Language::ExpressionValidator.new(spec, namespaces, urir, urlr)
