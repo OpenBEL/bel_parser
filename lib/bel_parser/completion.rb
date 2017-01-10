@@ -287,7 +287,7 @@ module BELParser
             ]
           }
 
-        namespace_value_completions = ParameterCompleter
+        exact_match_completions = ExactMatchParameterCompleter
           .new(spec, search, namespaces)
           .complete(string_literal, caret_position - value.range_start, prefix: prefix_str)
           .map { |(ns_value, completion_ast)|
@@ -305,7 +305,25 @@ module BELParser
             ]
           }
 
-        function_completions + prefix_completions + namespace_value_completions
+        wildcard_completions = WildcardMatchParameterCompleter
+          .new(spec, search, namespaces)
+          .complete(string_literal, caret_position - value.range_start, prefix: prefix_str)
+          .map { |(ns_value, completion_ast)|
+            completion = "(#{serialize(completion_ast)})"
+
+            [
+              completion_ast,
+              {
+                type:           :namespace_value,
+                id:             ns_value,
+                label:          ns_value,
+                value:          completion,
+                caret_position: 0
+              }
+            ]
+          }
+
+        function_completions + prefix_completions + (exact_match_completions + wildcard_completions).uniq
       end
     end
 
@@ -436,7 +454,7 @@ module BELParser
           function_completions = []
           if prefix_string.nil?
             completer =
-              if ast.subject.term.arguments[0] == completing_node || (!ast.object.nil? && ast.object.term? && ast.object.child.function.nil? && ast.object.child.arguments[0] == completing_node)
+              if ast.subject.term.function.nil? || (!ast.object.nil? && ast.object.term? && ast.object.child.function.nil?)
                 FunctionTermCompleter
               else
                 FunctionArgumentCompleter
@@ -469,7 +487,7 @@ module BELParser
               }
           end
 
-          parameter_completions = ParameterCompleter
+          exact_match_completions = ExactMatchParameterCompleter
             .new(spec, search, namespaces)
             .complete(value_str, caret_position - value.range_start, prefix: prefix_string)
             .map { |(ns_value, completion_ast)|
@@ -490,7 +508,28 @@ module BELParser
               ]
             }
 
-          prefix_completions + function_completions + parameter_completions
+          wildcard_completions = WildcardMatchParameterCompleter
+            .new(spec, search, namespaces)
+            .complete(value_str, caret_position - value.range_start, prefix: prefix_string)
+            .map { |(ns_value, completion_ast)|
+              completion_ast.character_range = completing_node.character_range
+
+              completion_ast = MergeCompletion.new(completion_ast).process(ast)
+              completion     = serialize(completion_ast)
+
+              [
+                completion_ast,
+                {
+                  type:           :namespace_value,
+                  id:             ns_value,
+                  label:          ns_value,
+                  value:          completion,
+                  caret_position: value.range_start + ns_value.length
+                }
+              ]
+            }
+
+          prefix_completions + function_completions + (exact_match_completions + wildcard_completions).uniq
         end
       else
         # TODO Completing term argument, will we ever get here?
@@ -694,10 +733,35 @@ module BELParser
       end
     end
 
-    class ParameterCompleter < BaseCompleter
+    module QuotedValue
+
+      def map_value(prefix, pref_label)
+        if !pref_label.scan(/[^\w]/).empty?
+          [
+            %Q{#{prefix}:"#{pref_label}"},
+            value(
+              string(
+                pref_label))
+          ]
+        else
+          [
+            %Q{#{prefix}:#{pref_label}},
+            value(
+              identifier(
+                pref_label))
+          ]
+        end
+      end
+    end
+
+    class WildcardMatchParameterCompleter < BaseCompleter
+      include QuotedValue
+
       L = BELParser::Levenshtein
 
       def complete(string_literal, caret_position, options = {})
+        return [] if string_literal.length < 3
+
         query =
           case
           when caret_position == string_literal.length
@@ -720,17 +784,6 @@ module BELParser
           uri = nil
         end
 
-        exact_matches = @search
-          .search(string_literal, :namespace_concept, uri, nil, size: 100, exact_match: true)
-          .map { |match|
-            match_namespace = @namespaces.values.find { |ns| ns.uri == match.scheme_uri }
-            next unless match_namespace
-
-            [match_namespace.keyword, match.pref_label]
-          }
-          .to_a
-          .compact
-
         @search
           .search(query, :namespace_concept, uri, nil, size: 100)
           .sort { |match1, match2|
@@ -748,22 +801,9 @@ module BELParser
           .compact
           .take(20)
           .sort_by { |(_, v)| v }
-          .tap     { |matches| matches.unshift(*exact_matches) }
           .uniq
           .map     { |(ns, v)|
-            ns_value = nil
-            value =
-              if !v.scan(/[^\w]/).empty?
-                ns_value = %Q{#{ns}:"#{v}"}
-                value(
-                  string(
-                    v))
-              else
-                ns_value = %Q{#{ns}:#{v}}
-                value(
-                  identifier(
-                    v))
-              end
+            ns_value, value_ast = map_value(ns, v)
 
             [
               ns_value,
@@ -772,9 +812,47 @@ module BELParser
                   prefix(
                     identifier(
                       ns)),
-                  value))
+                  value_ast))
             ]
           }
+      end
+    end
+
+    class ExactMatchParameterCompleter < BaseCompleter
+      include QuotedValue
+
+      def complete(string_literal, caret_position, options = {})
+        # find namespace URI if prefix was provided
+        prefix = options[:prefix]
+        if prefix
+          specified_prefix  = prefix.to_s.upcase
+          matched_namespace = @namespaces[specified_prefix]
+          uri               = matched_namespace ? matched_namespace.uri : nil
+        else
+          uri = nil
+        end
+
+        @search
+          .search(string_literal, :namespace_concept, uri, nil, size: 100, exact_match: true)
+          .map { |match|
+            match_namespace = @namespaces.values.find { |ns| ns.uri == match.scheme_uri }
+            next unless match_namespace
+
+            prefix              = match_namespace.keyword
+            ns_value, value_ast = map_value(prefix, match.pref_label)
+
+            [
+              ns_value,
+              argument(
+                parameter(
+                  prefix(
+                    identifier(
+                      prefix)),
+                  value_ast))
+            ]
+          }
+          .to_a
+          .compact
       end
     end
 
