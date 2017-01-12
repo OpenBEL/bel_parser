@@ -46,18 +46,18 @@
         character_range: [ts, te])
 
     range_end =
-      if @statement_ast.object?
-        @statement_ast.object.range_end
+      if @statement_stack[-1].object?
+        @statement_stack[-1].object.range_end
       else
         @relationship.range_end
       end
 
-    @statement_ast =
+    @statement_stack[-1] =
       statement(
-        @statement_ast.subject,
+        @statement_stack[-1].subject,
         @relationship,
-        @statement_ast.object,
-        character_range: [@statement_ast.range_start, range_end])
+        @statement_stack[-1].object,
+        character_range: [@statement_stack[-1].range_start, range_end])
 
     # return to term scanner
     fret;
@@ -75,18 +75,18 @@
         character_range: [ts, ts])
 
     range_end =
-      if @statement_ast.object?
-        @statement_ast.object.range_end
+      if @statement_stack[-1].object?
+        @statement_stack[-1].object.range_end
       else
         @relationship.range_end
       end
 
-    @statement_ast =
+    @statement_stack[-1] =
       statement(
-        @statement_ast.subject,
+        @statement_stack[-1].subject,
         @relationship,
-        @statement_ast.object,
-        character_range: [@statement_ast.range_start, range_end])
+        @statement_stack[-1].object,
+        character_range: [@statement_stack[-1].range_start, range_end])
 
     # go back one char to force EOF on return to term scanner
     p -= 1
@@ -121,26 +121,34 @@
   action O_PAREN {
 # begin ruby
     trace('O_PAREN')
-    @last_state     = :O_PAREN
+
+    case @last_state
+    when :RELATIONSHIP
+      @statement_stack    << @statement_stack[-1]
+      @statement_stack[-1] = statement(nil, nil, nil)
+      @relationship        = nil
+    else
+      term =
+        if @value == nil
+          term(
+            function(
+              nil,
+              character_range: [ts, ts]),
+            character_range: [ts, te])
+        else
+          term(
+            function(
+              @value,
+              character_range: @value.character_range),
+            character_range: [@value.range_start, @value.range_end + 1])
+        end
+
+      @term_stack << term
+      @value       = nil
+    end
+
     @paren_counter += 1
-
-    term =
-      if @value == nil
-        term(
-          function(
-            nil,
-            character_range: [ts, ts]),
-          character_range: [ts, te])
-      else
-        term(
-          function(
-            @value,
-            character_range: @value.character_range),
-          character_range: [@value.range_start, @value.range_end + 1])
-      end
-
-    @term_stack << term
-    @value = nil
+    @last_state =  :O_PAREN
 # end ruby
   }
 
@@ -149,8 +157,8 @@
     trace('C_PAREN')
     @paren_counter -= 1
 
-    if @last_state == :COMMA || @last_state == :O_PAREN
-      @last_state = :C_PAREN
+    case @last_state
+    when :COMMA, :O_PAREN
       function, *arguments = @term_stack[-1].children
       empty_argument      =
         argument(
@@ -161,7 +169,6 @@
           *[function, arguments, empty_argument].flatten.compact,
           character_range: [function.range_start, te])
     else
-      @last_state = :C_PAREN
       if !@param.nil?
         function, *arguments = @term_stack[-1].children
         arg_from_param      =
@@ -227,9 +234,13 @@
           character_range: [outer.range_start, inner.range_end + 1])
     end
 
-    if @paren_counter == 0 && @term_stack.length == 1
+    trace("C_PAREN: @term_stack is\n#{@term_stack}")
+    if @term_stack.length == 1
       @bel_part = :relationship
+      trace("set @bel_part to #{@bel_part}")
     end
+
+    @last_state = :C_PAREN
 # end ruby
   }
 
@@ -335,8 +346,8 @@
 
         # pop off term; add to statement_ast
         completed_term = @term_stack[-1]
-        if @statement_ast.subject.nil?
-          @statement_ast =
+        if @statement_stack[-1].subject.nil?
+          @statement_stack[-1] =
             statement(
               subject(
                 completed_term,
@@ -344,17 +355,17 @@
               nil,
               nil,
               character_range: completed_term.character_range)
-        elsif @statement_ast.object.nil?
+        elsif @statement_stack[-1].object.nil?
           object_node =
             object(
               completed_term,
               character_range: completed_term.character_range)
-          @statement_ast =
+          @statement_stack[-1] =
             statement(
-              @statement_ast.subject,
-              @statement_ast.relationship,
+              @statement_stack[-1].subject,
+              @statement_stack[-1].relationship,
               object_node,
-              character_range: [@statement_ast.range_start, object_node.range_end])
+              character_range: [@statement_stack[-1].range_start, object_node.range_end])
         end
 
         @term_stack = []
@@ -526,8 +537,8 @@
 
       # add to statement_ast
       completed_term = @term_stack[-1]
-      if @statement_ast.subject.nil?
-        @statement_ast =
+      if @statement_stack[-1].subject.nil?
+        @statement_stack[-1] =
           statement(
             subject(
               completed_term,
@@ -535,22 +546,37 @@
             nil,
             nil,
             character_range: completed_term.character_range)
-      elsif @statement_ast.object.nil?
+      elsif @statement_stack[-1].object.nil?
         object_node =
           object(
             completed_term,
             character_range: completed_term.character_range)
-        @statement_ast =
+        @statement_stack[-1] =
           statement(
-            @statement_ast.subject,
-            @statement_ast.relationship,
+            @statement_stack[-1].subject,
+            @statement_stack[-1].relationship,
             object_node,
-            character_range: [@statement_ast.range_start, object_node.range_end])
+            character_range: [@statement_stack[-1].range_start, object_node.range_end])
       end
     end
 
     # yield statement
-    yield @statement_ast
+    while @statement_stack.length > 1
+      # pop stack
+      nested = @statement_stack.pop
+      outer  = @statement_stack[-1]
+
+      # reconstruct previous statement on stack
+      @statement_stack[-1] =
+        statement(
+          outer.subject,
+          outer.relationship,
+          object(
+            nested,
+            character_range: nested.character_range),
+          character_range: [outer.range_start, nested.range_end + 1])
+    end
+    yield @statement_stack.pop
 # end ruby
   }
 
@@ -621,22 +647,22 @@ module BELParser
           end
 
           def each
-            @last_state    = nil
-            @spaces        = 0
-            @value         = nil
-            @prefix        = nil
-            @param         = nil
-            @term_stack    = []
-            @paren_counter = 0
-            @relationship  = nil
-            @bel_part      = :term
-            @statement_ast = statement(nil, nil, nil)
+            @last_state      = nil
+            @spaces          = 0
+            @value           = nil
+            @prefix          = nil
+            @param           = nil
+            @term_stack      = []
+            @statement_stack = [statement(nil, nil, nil)]
+            @paren_counter   = 0
+            @relationship    = nil
+            @bel_part        = :term
 
-            stack          = []
-            data           = @content.unpack('C*')
-            p              = 0
-            pe             = data.length
-            eof            = data.length
+            stack            = []
+            data             = @content.unpack('C*')
+            p                = 0
+            pe               = data.length
+            eof              = data.length
 
             # begin: ragel
             %% write init;

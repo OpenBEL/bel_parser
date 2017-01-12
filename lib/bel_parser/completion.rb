@@ -1,4 +1,5 @@
 require 'bel_parser/language/expression_validator'
+require 'bel_parser/language/semantics'
 require 'bel_parser/resource'
 require 'bel_parser/parsers/ast/node'
 require 'bel_parser/parsers/expression/statement_autocomplete'
@@ -66,23 +67,62 @@ module BELParser
           []
         end
 
-      urir = BELParser::Resource.default_uri_reader
-      urlr = BELParser::Resource.default_url_reader
-      validator             = BELParser::Language::ExpressionValidator.new(spec, namespaces, urir, urlr)
+      urir      = BELParser::Resource.default_uri_reader
+      urlr      = BELParser::Resource.default_url_reader
+      validator = BELParser::Language::ExpressionValidator.new(spec, namespaces, urir, urlr)
+
       validated_completions =
         completions
           .map { |(completion_ast, completion_result)|
-            wrapped_ast =
-              if !completion_ast.object?
-                BELParser::Parsers::AST::ObservedTerm.new([completion_ast])
-              else
-                BELParser::Parsers::AST::SimpleStatement.new([completion_ast])
+            terms               = completion_ast.traverse.select { |node| node.type == :term }.to_a
+            semantic_warnings   = ''
+            semantics_functions =
+              BELParser::Language::Semantics.semantics_functions.reject { |fun|
+                fun == BELParser::Language::Semantics::SignatureMapping
+              }
+
+            completion_ast
+              .traverse
+              .flat_map { |node|
+                semantics_functions.flat_map { |func|
+                  func.map(node, spec, namespaces)
+                }
+              }
+              .compact
+              .map { |warning|
+                semantic_warnings << "#{warning}\n"
+              }
+
+            if semantic_warnings.empty?
+              valid = true
+            else
+              valid = false
+              semantic_warnings << "\n"
+            end
+            valid &= semantic_warnings.empty?
+
+            terms.map { |term|
+              term_result = validator.validate(term)
+              valid      &= term_result.valid_semantics?
+              bel_term    = serialize(term)
+
+              unless valid
+                semantic_warnings << "Term: #{bel_term}\n"
+                term_result.invalid_signature_mappings.map { |m|
+                  semantic_warnings << "  #{m}\n"
+                }
+                semantic_warnings << "\n"
               end
 
-            result                                = validator.validate(wrapped_ast)
-            completion_result[:semantics]         = result.valid? ? :valid : :invalid
-            completion_result[:semantic_warnings] = result.to_s
+              {
+                term:               bel_term,
+                valid_signatures:   term_result.valid_signature_mappings.map(&:to_s),
+                invalid_signatures: term_result.invalid_signature_mappings.map(&:to_s)
+              }
+            }
 
+            completion_result[:semantics]         = valid ? :valid : :invalid
+            completion_result[:semantic_warnings] = semantic_warnings
             completion_result
           }
           .group_by { |completion_result|

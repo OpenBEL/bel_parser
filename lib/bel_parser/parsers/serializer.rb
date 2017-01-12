@@ -53,7 +53,9 @@ module BELParser
       end
 
       def on_function(function_node)
-        @string << function_node.identifier.string_literal
+        if function_node.identifier
+          @string << function_node.identifier.string_literal
+        end
       end
 
       def on_identifier(identifier_node)

@@ -13,7 +13,12 @@ module BELParser
         def self.map(func_node, spec, _namespaces)
           return nil unless func_node.is_a?(BELParser::Parsers::AST::Function)
 
-          function_name = func_node.identifier.string_literal
+          function_name =
+            if func_node.identifier
+              func_node.identifier.string_literal
+            else
+              ''
+            end
           unless spec.function(function_name.to_sym)
             InvalidFunctionSyntaxError.new(func_node, spec, function_name)
           end
