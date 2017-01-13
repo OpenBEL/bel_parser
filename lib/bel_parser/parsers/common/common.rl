@@ -3,6 +3,7 @@
 machine bel;
 
   NL          = '\n';
+  ALL_BUT_NL  = [^NL]+;
   SP          = ' ' | '\t';
   WS          = space;
   EQL         = '=';

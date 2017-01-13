@@ -60,6 +60,10 @@ module BELParser
         })
       end
 
+      def =~(regexp)
+        short =~ regexp || long =~ regexp
+      end
+
       private
 
       def _form_value(form = :short)

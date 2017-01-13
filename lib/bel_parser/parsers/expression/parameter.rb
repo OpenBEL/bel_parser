@@ -313,7 +313,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 17 then
@@ -322,7 +322,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 29 then
@@ -331,7 +331,7 @@ begin
     trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     yield ast_node
   		end
 	when 7 then
@@ -347,7 +347,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 11 then
@@ -356,7 +356,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 	when 22 then
@@ -364,7 +364,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 	when 2 then
@@ -373,7 +373,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -381,7 +381,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 9 then
@@ -396,7 +396,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 26 then
@@ -412,6 +412,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -428,6 +429,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -445,7 +448,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
@@ -472,7 +475,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 14 then
@@ -487,7 +490,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -500,7 +503,7 @@ begin
 
     trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
-    value_node = value(string_node, complete: string_node.complete)
+    value_node = value(string_node, complete: string_node.complete, character_range: string_node.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -515,6 +518,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -531,6 +535,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -548,7 +554,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
@@ -563,6 +569,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -579,6 +586,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -598,14 +607,14 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
 
     trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
-    value_node = value(ident, complete: ident.complete)
+    value_node = value(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -620,6 +629,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -636,6 +646,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -666,7 +678,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -731,7 +743,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -745,7 +757,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -780,7 +792,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -796,7 +808,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -812,6 +824,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -828,6 +841,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -846,7 +861,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -854,7 +869,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -889,7 +904,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -897,7 +912,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -910,7 +925,7 @@ begin
 
     trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
-    value_node = value(string_node, complete: string_node.complete)
+    value_node = value(string_node, complete: string_node.complete, character_range: string_node.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -925,6 +940,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -941,6 +957,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -961,7 +979,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -970,7 +988,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -978,7 +996,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1015,7 +1033,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1023,7 +1041,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
@@ -1038,6 +1056,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -1054,6 +1073,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -1073,7 +1094,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1083,7 +1104,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1091,7 +1112,7 @@ begin
 
     trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
-    value_node = value(ident, complete: ident.complete)
+    value_node = value(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -1106,6 +1127,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -1122,6 +1144,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -1142,7 +1166,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -1152,14 +1176,14 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
 
     trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
-    value_node = value(ident, complete: ident.complete)
+    value_node = value(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -1174,6 +1198,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -1190,6 +1215,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -1523,7 +1550,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 17 then
@@ -1532,7 +1559,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 29 then
@@ -1541,7 +1568,7 @@ begin
     trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     yield ast_node
   		end
 	when 7 then
@@ -1557,7 +1584,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 11 then
@@ -1566,7 +1593,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 	when 22 then
@@ -1574,7 +1601,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 	when 2 then
@@ -1583,7 +1610,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1591,7 +1618,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 9 then
@@ -1606,7 +1633,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 26 then
@@ -1622,6 +1649,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -1638,6 +1666,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -1655,7 +1685,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
@@ -1682,7 +1712,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 14 then
@@ -1697,7 +1727,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1710,7 +1740,7 @@ begin
 
     trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
-    value_node = value(string_node, complete: string_node.complete)
+    value_node = value(string_node, complete: string_node.complete, character_range: string_node.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -1725,6 +1755,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -1741,6 +1772,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -1758,7 +1791,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
@@ -1773,6 +1806,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -1789,6 +1823,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -1808,14 +1844,14 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
 
     trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
-    value_node = value(ident, complete: ident.complete)
+    value_node = value(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -1830,6 +1866,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -1846,6 +1883,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -1876,7 +1915,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1941,7 +1980,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -1955,7 +1994,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -1990,7 +2029,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -2006,7 +2045,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -2022,6 +2061,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -2038,6 +2078,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -2056,7 +2098,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -2064,7 +2106,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -2099,7 +2141,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -2107,7 +2149,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -2120,7 +2162,7 @@ begin
 
     trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
-    value_node = value(string_node, complete: string_node.complete)
+    value_node = value(string_node, complete: string_node.complete, character_range: string_node.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -2135,6 +2177,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -2151,6 +2194,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -2171,7 +2216,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -2180,7 +2225,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -2188,7 +2233,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -2225,7 +2270,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -2233,7 +2278,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
@@ -2248,6 +2293,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -2264,6 +2310,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -2283,7 +2331,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -2293,7 +2341,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -2301,7 +2349,7 @@ begin
 
     trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
-    value_node = value(ident, complete: ident.complete)
+    value_node = value(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -2316,6 +2364,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -2332,6 +2381,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -2352,7 +2403,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -2362,14 +2413,14 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
 
     trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
-    value_node = value(ident, complete: ident.complete)
+    value_node = value(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -2384,6 +2435,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -2400,6 +2452,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -2790,7 +2844,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 17 then
@@ -2799,7 +2853,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 	when 29 then
@@ -2808,7 +2862,7 @@ begin
     trace('IDENTIFIER ident_node_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     yield ast_node
   		end
 	when 7 then
@@ -2824,7 +2878,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 11 then
@@ -2833,7 +2887,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 	when 22 then
@@ -2841,7 +2895,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 	when 2 then
@@ -2850,7 +2904,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -2858,7 +2912,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 9 then
@@ -2873,7 +2927,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 26 then
@@ -2889,6 +2943,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -2905,6 +2960,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -2922,7 +2979,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
@@ -2949,7 +3006,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 	when 14 then
@@ -2964,7 +3021,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -2977,7 +3034,7 @@ begin
 
     trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
-    value_node = value(string_node, complete: string_node.complete)
+    value_node = value(string_node, complete: string_node.complete, character_range: string_node.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -2992,6 +3049,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -3008,6 +3066,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -3025,7 +3085,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
@@ -3040,6 +3100,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -3056,6 +3117,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -3075,14 +3138,14 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
 
     trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
-    value_node = value(ident, complete: ident.complete)
+    value_node = value(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -3097,6 +3160,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -3113,6 +3177,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -3143,7 +3209,7 @@ begin
     trace('STRING string_end')
     completed = @string_opened && @string_closed
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true)
+    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3208,7 +3274,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3222,7 +3288,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3257,7 +3323,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -3273,7 +3339,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3289,6 +3355,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -3305,6 +3372,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -3323,7 +3392,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3331,7 +3400,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3366,7 +3435,7 @@ begin
     trace('STRING eof_string')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3374,7 +3443,7 @@ begin
     trace('STRING string_node_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     yield ast_node
   		end
 		begin
@@ -3387,7 +3456,7 @@ begin
 
     trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
-    value_node = value(string_node, complete: string_node.complete)
+    value_node = value(string_node, complete: string_node.complete, character_range: string_node.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -3402,6 +3471,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -3418,6 +3488,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -3438,7 +3510,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3447,7 +3519,7 @@ begin
     trace('IDENTIFIER an_ident_err')
     id_end = p
     chars = data[id_start...id_end]
-    ast_node = identifier(utf8_string(chars), complete: false)
+    ast_node = identifier(utf8_string(chars), complete: false, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3455,7 +3527,7 @@ begin
     trace('STRING a_string_err')
     p_end = p
     chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false)
+    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
     @buffers[:string] = ast_node
   		end
 		begin
@@ -3492,7 +3564,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3500,7 +3572,7 @@ begin
 
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   		end
 		begin
@@ -3515,6 +3587,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -3531,6 +3604,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -3550,7 +3625,7 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
@@ -3560,7 +3635,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3568,7 +3643,7 @@ begin
 
     trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
-    value_node = value(ident, complete: ident.complete)
+    value_node = value(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -3583,6 +3658,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -3599,6 +3675,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -3619,7 +3697,7 @@ begin
       id_end = p
       chars = data[id_start...id_end]
       completed = !chars.empty?
-      ast_node = identifier(utf8_string(chars), complete: completed)
+      ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
       @buffers[:ident] = ast_node
     end
   		end
@@ -3629,14 +3707,14 @@ begin
     id_end = p
     chars = data[id_start...id_end]
     completed = !chars.empty?
-    ast_node = identifier(utf8_string(chars), complete: completed)
+    ast_node = identifier(utf8_string(chars), complete: completed, character_range: [id_start, id_end])
     @buffers[:ident] = ast_node
   		end
 		begin
 
     trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
-    value_node = value(ident, complete: ident.complete)
+    value_node = value(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_value] = value_node
   		end
 		begin
@@ -3651,6 +3729,7 @@ begin
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -3667,6 +3746,8 @@ begin
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end

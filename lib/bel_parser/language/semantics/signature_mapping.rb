@@ -19,6 +19,8 @@ module BELParser
         # includes both successful and failed signature matches.
         def self.map(term_node, spec, _namespaces)
           return nil unless term_node.is_a?(BELParser::Parsers::AST::Term)
+          return nil unless term_node.function
+          return nil unless term_node.function.identifier
 
           function_name = term_node.function.identifier.string_literal
           function      = spec.function(function_name.to_sym)

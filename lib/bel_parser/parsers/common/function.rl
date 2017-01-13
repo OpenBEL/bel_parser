@@ -16,8 +16,8 @@
     p_end = p
     chars = data[p_start...p_end]
     completed = !chars.empty?
-    ident_node = identifier(utf8_string(chars), complete: completed)
-    fx_node = function(ident_node, complete: ident_node.complete)
+    ident_node = identifier(utf8_string(chars), complete: completed, character_range: [p_start, p_end])
+    fx_node = function(ident_node, complete: ident_node.complete, character_range: ident_node.character_range)
     @buffers[:function] = fx_node
   }
 
@@ -27,8 +27,8 @@
       p_end = p
       chars = data[p_start...p_end]
       completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: ident_node.complete)
+      ident_node = identifier(utf8_string(chars), complete: completed, character_range: [p_start, p_end])
+      fx_node = function(ident_node, complete: ident_node.complete, character_range: ident_node.character_range)
       @buffers[:function] = fx_node
     end
   }
@@ -40,8 +40,8 @@
       p_end = p + 1
       chars = data[p_start...p_end]
       completed = !chars.empty?
-      ident_node = identifier(utf8_string(chars), complete: completed)
-      fx_node = function(ident_node, complete: false)
+      ident_node = identifier(utf8_string(chars), complete: completed, character_range: [p_start, p_end])
+      fx_node = function(ident_node, complete: false, character_range: ident_node.character_range)
       @buffers[:function] = fx_node
       yield @buffers[:function]
     end

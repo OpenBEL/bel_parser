@@ -61,7 +61,7 @@ module BELParser
         # Get the character range enclosing this AST node.  It is defined
         # as the close interval containing all the characters of this
         # AST node.
-        attr_reader :character_range
+        attr_accessor :character_range
 
         # Get/Set the complete property.
         attr_accessor :complete
@@ -445,7 +445,7 @@ module BELParser
         end
       end
 
-      # AST node representing the definition of a namespace.
+      # AST node representing an identifier (e.g. non-quoted value).
       class Identifier < Node
         # AST node type
         @ast_type = :identifier
@@ -457,6 +457,26 @@ module BELParser
         # @see Node#initialize Node class for basic properties
         def initialize(children = [], properties = {})
           super(Identifier.ast_type, children, properties)
+        end
+
+        # Get the string literal.
+        def string_literal
+          children[0]
+        end
+      end
+
+      # AST node representing a multi-valued identifier without needing quotes (e.g. greedy).
+      class MultiIdentifier < Node
+        # AST node type
+        @ast_type = :multi_identifier
+        # MultiIdentifier have no semantics
+        @has_semantics = false
+
+        # New MultiIdentifier AST node.
+        #
+        # @see Node#initialize Node class for basic properties
+        def initialize(children = [], properties = {})
+          super(MultiIdentifier.ast_type, children, properties)
         end
 
         # Get the string literal.
@@ -825,6 +845,15 @@ module BELParser
         def string_literal
           children[0]
         end
+
+        def string_value
+          return nil if children[0].nil?
+
+          value = children[0].dup
+          value.slice!(0)  if value[0]  == '"'
+          value.slice!(-1) if value[-1] == '"'
+          value
+        end
       end
 
       # AST node representing a term.
@@ -944,6 +973,20 @@ module BELParser
       #
       # @see https://en.wikipedia.org/wiki/S-expression S-expression
       module Sexp
+        def self.build(&block)
+          raise ArgumentError, 'expecting block' unless block_given?
+
+          builder = _builder_class.new
+          builder.instance_eval(&block)
+        end
+
+        def self._builder_class
+          Class.new do
+            include Sexp
+          end
+        end
+        private_class_method :_builder_class
+
         def nested_statement(*children, **props)
           NestedStatement.new(children, props)
         end
@@ -1002,6 +1045,10 @@ module BELParser
 
         def identifier(*children, **props)
           Identifier.new(children, props)
+        end
+
+        def multi_identifier(*children, **props)
+          MultiIdentifier.new(children, props)
         end
 
         def string(*children, **props)

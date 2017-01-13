@@ -279,7 +279,7 @@ describe ObservedTerm do
                       s(:prefix,
                         s(:identifier, 'SCOMP')),
                       s(:value,
-                        s(:string, '"p85/p110 PI3Kinase Complex"')))))))),
+                        s(:string, 'p85/p110 PI3Kinase Complex')))))))),
           s(:relationship, nil),
           s(:object, nil),
           s(:comment, nil)))
@@ -401,15 +401,15 @@ describe BELParser::Parsers::Expression::NestedStatement do
                         s(:identifier, 'B')))))),
               s(:relationship, '-|'),
               s(:object,
-                s(:object,
-                  s(:term,
-                    s(:function,
-                      s(:identifier, 'c')),
-                    s(:argument,
-                      s(:parameter,
-                        s(:prefix, nil),
-                        s(:value,
-                          s(:identifier, 'C')))))))))))
+								s(:term,
+									s(:function,
+										s(:identifier, 'c')),
+									s(:argument,
+										s(:parameter,
+											s(:prefix, nil),
+											s(:value,
+												s(:identifier, 'C')))))))),
+              nil))
     )
 
     assert_ast(
@@ -452,7 +452,6 @@ describe BELParser::Parsers::Expression::NestedStatement do
                             s(:identifier, 'C')))))),
                   s(:relationship, ':>'),
                   s(:object,
-                    s(:object,
                       s(:term,
                         s(:function,
                           s(:identifier, 'd')),
@@ -460,7 +459,8 @@ describe BELParser::Parsers::Expression::NestedStatement do
                           s(:parameter,
                             s(:prefix, nil),
                             s(:value,
-                              s(:identifier, 'D')))))))))))))
+                              s(:identifier, 'D')))))))))),
+          nil))
     )
 
     assert_ast(
@@ -482,7 +482,7 @@ describe BELParser::Parsers::Expression::NestedStatement do
                       s(:prefix,
                         s(:identifier, 'SCOMP')),
                       s(:value,
-                        s(:string, '"p85/p110 PI3Kinase Complex"')))))))),
+                        s(:string, 'p85/p110 PI3Kinase Complex')))))))),
           s(:relationship, 'increases'),
           s(:object,
             s(:statement,
@@ -502,7 +502,6 @@ describe BELParser::Parsers::Expression::NestedStatement do
                             s(:identifier, 'PLAUR')))))))),
               s(:relationship, 'increases'),
               s(:object,
-                s(:object,
                   s(:term,
                     s(:function,
                       s(:identifier, 'bp')),
@@ -511,7 +510,8 @@ describe BELParser::Parsers::Expression::NestedStatement do
                         s(:prefix,
                           s(:identifier, 'GOBP')),
                         s(:value,
-                          s(:string, '"cell migration"')))))))))))
+                          s(:string, 'cell migration')))))))),
+          nil))
     )
   end
 end
@@ -603,7 +603,7 @@ describe BELParser::Parsers::BELScript::DefineAnnotation do
           s(:identifier, 'Species')),
         s(:domain,
           s(:url,
-            s(:string, '"http://resources/species.belanno"'))))
+            s(:string, 'http://resources/species.belanno'))))
     )
     assert_ast(
       BELParser::Parsers::BELScript::DefineAnnotation,
@@ -614,9 +614,9 @@ describe BELParser::Parsers::BELScript::DefineAnnotation do
         s(:domain,
           s(:list,
             s(:list_item,
-              s(:string, '"Approved"')),
+              s(:string, 'Approved')),
             s(:list_item,
-              s(:string, '"Rejected"')))))
+              s(:string, 'Rejected')))))
     )
     assert_ast(
       BELParser::Parsers::BELScript::DefineAnnotation,
@@ -626,7 +626,7 @@ describe BELParser::Parsers::BELScript::DefineAnnotation do
           s(:identifier, 'Identifier')),
         s(:domain,
           s(:pattern,
-            s(:string, '"[-+]?[0-9]+"'))))
+            s(:string, '[-+]?[0-9]+'))))
     )
   end
 end
@@ -643,7 +643,7 @@ describe BELParser::Parsers::BELScript::DefineNamespace do
           s(:identifier, 'HGNC')),
         s(:domain,
           s(:url,
-            s(:string, '"http://resources/hgnc.belns"'))))
+            s(:string, 'http://resources/hgnc.belns'))))
     )
     assert_ast(
       BELParser::Parsers::BELScript::DefineNamespace,
@@ -653,7 +653,7 @@ describe BELParser::Parsers::BELScript::DefineNamespace do
           s(:identifier, 'HGNC')),
         s(:domain,
           s(:url,
-            s(:string, '"http://resources/hgnc.belns"'))))
+            s(:string, 'http://resources/hgnc.belns'))))
     )
     assert_ast(
       BELParser::Parsers::BELScript::DefineNamespace,
@@ -663,7 +663,7 @@ describe BELParser::Parsers::BELScript::DefineNamespace do
           s(:identifier, 'HGNC')),
         s(:domain,
           s(:url,
-            s(:string, '"http://resources/hgnc.belns"'))))
+            s(:string, 'http://resources/hgnc.belns'))))
     )
   end
 end

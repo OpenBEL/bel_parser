@@ -5,7 +5,6 @@
 
 =end
 # end: ragel
-# ('\"' | ^(0 .. 31 | 34))* ^'\\"'
 
 require_relative '../ast/node'
 require_relative '../mixin/buffer'
@@ -15,7 +14,7 @@ require_relative '../tracer'
 module BELParser
   module Parsers
     module Common
-      module String
+      module MultiIdentifier
 
         class << self
 
@@ -47,9 +46,8 @@ class << self
 	private :_bel_trans_keys, :_bel_trans_keys=
 end
 self._bel_trans_keys = [
-	0, 0, 9, 34, 34, 92, 
-	34, 92, 0, 0, 0, 
-	0, 0
+	0, 0, 76, 78, 10, 78, 
+	0
 ]
 
 class << self
@@ -57,7 +55,7 @@ class << self
 	private :_bel_key_spans, :_bel_key_spans=
 end
 self._bel_key_spans = [
-	0, 26, 59, 59, 0, 0
+	0, 3, 69
 ]
 
 class << self
@@ -65,7 +63,7 @@ class << self
 	private :_bel_index_offsets, :_bel_index_offsets=
 end
 self._bel_index_offsets = [
-	0, 0, 27, 87, 147, 148
+	0, 0, 4
 ]
 
 class << self
@@ -73,25 +71,16 @@ class << self
 	private :_bel_indicies, :_bel_indicies=
 end
 self._bel_indicies = [
-	1, 1, 1, 1, 1, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 1, 
-	0, 2, 0, 4, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 3, 3, 3, 
-	3, 3, 3, 3, 3, 5, 3, 7, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 6, 6, 6, 6, 6, 6, 6, 
-	6, 8, 6, 6, 0, 0
+	1, 0, 1, 0, 3, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 2, 2, 
+	2, 2, 2, 2, 2, 2, 4, 2, 
+	4, 2, 0
 ]
 
 class << self
@@ -99,8 +88,7 @@ class << self
 	private :_bel_trans_targs, :_bel_trans_targs=
 end
 self._bel_trans_targs = [
-	0, 1, 2, 3, 5, 4, 3, 5, 
-	4
+	2, 0, 2, 2, 0
 ]
 
 class << self
@@ -108,8 +96,7 @@ class << self
 	private :_bel_trans_actions, :_bel_trans_actions=
 end
 self._bel_trans_actions = [
-	2, 0, 0, 4, 5, 4, 0, 6, 
-	0
+	1, 0, 0, 3, 4
 ]
 
 class << self
@@ -117,7 +104,7 @@ class << self
 	private :_bel_eof_actions, :_bel_eof_actions=
 end
 self._bel_eof_actions = [
-	0, 1, 3, 3, 3, 0
+	0, 0, 2
 ]
 
 class << self
@@ -127,33 +114,32 @@ self.bel_start = 1;
 class << self
 	attr_accessor :bel_first_final
 end
-self.bel_first_final = 5;
+self.bel_first_final = 2;
 class << self
 	attr_accessor :bel_error
 end
 self.bel_error = 0;
 
 class << self
-	attr_accessor :bel_en_string_node
+	attr_accessor :bel_en_multi_ident_node
 end
-self.bel_en_string_node = 1;
+self.bel_en_multi_ident_node = 1;
 
 
       # end: ragel
           end
 
           def each
-            @buffers        = {}
-            @incomplete     = {}
-            @string_opened  = false
-            @string_closed  = false
-            data            = @content.unpack('C*')
-            p_start         = 0
-            p_end           = 0
-            p               = 0
-            pe              = data.length
-            eof             = data.length
+            @buffers    = {}
+            @incomplete = {}
+            data        = @content.unpack('C*')
+            p           = 0
+            id_start    = 0
+            id_end      = 0
+            pe          = data.length
+            eof         = data.length
 
+            identifier_started = false
       # begin: ragel
             
 begin
@@ -199,67 +185,32 @@ begin
 	cs = _bel_trans_targs[_trans]
 	if _bel_trans_actions[_trans] != 0
 	case _bel_trans_actions[_trans]
+	when 1 then
+		begin
+
+    trace('IDENTIFIER start_multi_identifier')
+    @multi_identifier_started = true
+    multi_id_start = p;
+  		end
+	when 3 then
+		begin
+
+    trace('IDENTIFIER end_multi_identifier')
+    # exclude the NL from the chars
+    multi_id_end = p - 1
+    chars = data[multi_id_start...multi_id_end]
+    completed = !chars.empty?
+    ast_node = multi_identifier(utf8_string(chars), complete: completed, character_range: [multi_id_start, multi_id_end])
+    @buffers[:multi_ident] = ast_node
+  		end
 	when 4 then
 		begin
 
-    trace('STRING start_string')
-    @string_opened = true
-    p_start = p
-  		end
-	when 2 then
-		begin
-
-    trace('STRING string_node_err')
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
+    trace('IDENTIFIER multi_ident_node_err')
+    multi_id_end = p
+    chars = data[multi_id_start...multi_id_end]
+    ast_node = multi_identifier(utf8_string(chars), complete: false, character_range: [multi_id_start, multi_id_end])
     yield ast_node
-  		end
-	when 6 then
-		begin
-
-    trace('STRING stop_string')
-    @string_closed = true
-    p_end = p
-  		end
-		begin
-
-    trace('STRING string_end')
-    completed = @string_opened && @string_closed
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    trace('STRING yield_string')
-    yield @buffers[:string]
-  		end
-	when 5 then
-		begin
-
-    trace('STRING start_string')
-    @string_opened = true
-    p_start = p
-  		end
-		begin
-
-    trace('STRING stop_string')
-    @string_closed = true
-    p_end = p
-  		end
-		begin
-
-    trace('STRING string_end')
-    completed = @string_opened && @string_closed
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: true, character_range: [p_start, p_end])
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    trace('STRING yield_string')
-    yield @buffers[:string]
   		end
 	end
 	end
@@ -278,41 +229,21 @@ begin
 	if _goto_level <= _test_eof
 	if p == eof
 	  case _bel_eof_actions[cs]
-	when 1 then
+	when 2 then
 		begin
 
-    trace('STRING string_node_err')
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
-    yield ast_node
+    trace('IDENTIFIER end_multi_identifier')
+    # exclude the NL from the chars
+    multi_id_end = p - 1
+    chars = data[multi_id_start...multi_id_end]
+    completed = !chars.empty?
+    ast_node = multi_identifier(utf8_string(chars), complete: completed, character_range: [multi_id_start, multi_id_end])
+    @buffers[:multi_ident] = ast_node
   		end
 		begin
 
-    trace('STRING string_node_eof')
-    yield @buffers[:string]
-  		end
-	when 3 then
-		begin
-
-    trace('STRING eof_string')
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
-    @buffers[:string] = ast_node
-  		end
-		begin
-
-    trace('STRING string_node_err')
-    p_end = p
-    chars = data[p_start...p_end]
-    ast_node = string(utf8_string(chars), complete: false, character_range: [p_start, p_end])
-    yield ast_node
-  		end
-		begin
-
-    trace('STRING string_node_eof')
-    yield @buffers[:string]
+    trace('IDENTIFIER yield_multi_identifier')
+    yield @buffers[:multi_ident]
   		end
 	  end
 	end
@@ -334,7 +265,7 @@ end
 
 if __FILE__ == $0
   $stdin.each_line do |line|
-    BELParser::Parsers::Common::String.parse(line) { |obj|
+    BELParser::Parsers::Common::MultiIdentifier.parse(line) { |obj|
       puts obj.inspect
     }
   end

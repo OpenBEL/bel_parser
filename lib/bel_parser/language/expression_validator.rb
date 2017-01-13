@@ -123,7 +123,7 @@ module BELParser
         end
 
         def semantics_errors_s
-          return nil if @semantics_results.empty?
+          return nil if @semantics_results.nil? || @semantics_results.empty?
 
           report = "Semantic errors\n"
           @semantics_results.each { |res| report += "#{res}\n" }
@@ -406,7 +406,6 @@ module BELParser
         end
 
         def to_s
-          report = @object_result.to_s
           <<-HEADER.gsub(/^ {12}/, '')
             Syntax:    #{valid_syntax?    ? 'Valid' : 'Invalid'}
             Semantics: #{valid_semantics? ? 'Valid' : 'Invalid'}

@@ -7,7 +7,6 @@ RAGEL_INCLUDES = [
 
 task(:ragel) {
   require 'find'
-  
   def which(command)
     path = `which #{command}`
     if $?.exitstatus.zero?
@@ -22,7 +21,7 @@ task(:ragel) {
   ragel_includes = RAGEL_INCLUDES.map { |d| "-I #{d}" }.join(' ')
 
   Find.find('.').grep(/.*?rl$/).each do |ragel_file|
-    `ragel #{ragel_includes} -R -T0 -L #{ragel_file}`
+    `ragel #{ragel_includes} -R -F1 -L #{ragel_file}`
     fail if !$?.exitstatus.zero?
   end
 }

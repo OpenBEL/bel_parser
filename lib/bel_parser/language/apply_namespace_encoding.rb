@@ -69,11 +69,11 @@ module BELParser
 
       def on_value(value_node)
         return value_node unless @namespace
+
         value_node.prefix    = @prefix
         value_node.namespace = @namespace
-
-        value_literal        = value_node.children[0].string_literal
-        value                = @namespace[value_literal]
+        string_literal       = value_literal(value_node.children[0])
+        value                = @namespace[string_literal]
 
         if value
           value_node.encoding =
@@ -85,6 +85,17 @@ module BELParser
           value_node.namespace_value = nil
         end
         value_node
+      end
+
+      private
+
+      def value_literal(node)
+        case node.type
+        when :identifier
+          node.string_literal
+        when :string
+          node.string_value
+        end
       end
     end
   end

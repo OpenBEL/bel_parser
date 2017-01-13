@@ -53,7 +53,9 @@ module BELParser
       end
 
       def on_function(function_node)
-        @string << function_node.identifier.string_literal
+        if function_node.identifier
+          @string << function_node.identifier.string_literal
+        end
       end
 
       def on_identifier(identifier_node)
@@ -138,9 +140,11 @@ module BELParser
 
       def on_statement(statement_node)
         process(statement_node.subject)
-        return if statement_node.object.child.nil?
 
+        return unless statement_node.relationship?
         process(statement_node.relationship)
+
+        return unless statement_node.object?
         object_node = statement_node.object
         if object_node.statement?
           @string << '('
@@ -152,7 +156,7 @@ module BELParser
       end
 
       def on_string(string_node)
-        @string << %("#{string_node.string_literal}")
+        @string << %("#{string_node.string_value}")
       end
 
       def on_subject(subject_node)
@@ -197,7 +201,7 @@ if __FILE__ == $PROGRAM_NAME
 
   types      = ARGV.map(&:to_sym)
   generator  = BELParser::ASTGenerator.new($stdin)
-  BELParser::ASTFilter.new(generator, *types).each do |(num, line, results)|
+  BELParser::ASTFilter.new(generator, *types).each do |(_, _, results)|
     serializer = BELParser::Parsers::Serializer.new
     serializer.process(results.first)
     puts serializer.string

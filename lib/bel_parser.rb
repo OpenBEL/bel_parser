@@ -1,3 +1,6 @@
+# library version
+require 'bel_parser/version'
+
 # vendored 'ast' gem
 require 'bel_parser/vendor/ast'
 

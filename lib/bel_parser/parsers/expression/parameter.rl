@@ -10,14 +10,14 @@
   action add_ident_param_value {
     trace('PARAMETER add_ident_param_value')
     ident = @buffers.delete(:ident)
-    value_node = value(ident, complete: ident.complete)
+    value_node = value(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_value] = value_node
   }
 
   action add_string_param_value {
     trace('PARAMETER add_string_param_value')
     string_node = @buffers.delete(:string)
-    value_node = value(string_node, complete: string_node.complete)
+    value_node = value(string_node, complete: string_node.complete, character_range: string_node.character_range)
     @buffers[:param_value] = value_node
   }
 
@@ -32,6 +32,7 @@
         trace('PN incomplete')
         completed = false
       end
+      param_start = prefix_node.range_start
     else
       prefix_node          = prefix(nil)
       prefix_node.complete = true
@@ -48,6 +49,8 @@
         trace('VN incomplete')
         completed = false
       end
+      param_start ||= value_node.range_start
+      param_node.character_range = [param_start, value_node.range_end]
     else
       completed = false
     end
@@ -59,7 +62,7 @@
   action add_prefix {
     trace('PARAMETER add_prefix')
     ident = @buffers.delete(:ident)
-    prefix_node = prefix(ident, complete: ident.complete)
+    prefix_node = prefix(ident, complete: ident.complete, character_range: ident.character_range)
     @buffers[:param_prefix] = prefix_node
   }
 

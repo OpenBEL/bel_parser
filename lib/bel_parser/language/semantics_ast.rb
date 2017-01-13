@@ -69,18 +69,11 @@ module BELParser
 
           builder = _builder_class.new
           builder.instance_eval(&block)
-          builder.result
         end
 
         def self._builder_class
           Class.new do
             include Builder
-
-            attr_reader :result
-
-            def term(function, *arguments, **properties)
-              @result = super
-            end
           end
         end
         private_class_method :_builder_class
