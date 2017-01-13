@@ -12,14 +12,17 @@ module BELParser
     extend BELParser::Parsers
 
     def self.complete(input, spec, search, namespaces, caret_position = input.length)
+      # Algorithm
       # 1. Parse AST using statement_autocomplete ragel FSM.
-      # 2. For cursor, find node in AST.
-      # 3. Determine the node type being completed.
+      # 2. Given cursor find node to complete.
+      # 3. Determine completers that should run given node type and surrounding nodes in the AST.
       # 4. Compute completion AST for each suggestion.
       # 5. For each suggestion, transform original AST into full completion.
-      ast, caret_position = BELParser::Parsers::Expression::StatementAutocomplete.parse(input, caret_position)
+      # 6. Run semantic validation on each completion AST.
+      # 7. Return combined completion AST and semantic details.
 
-      completing_node = find_node(ast, caret_position)
+      ast, caret_position = BELParser::Parsers::Expression::StatementAutocomplete.parse(input, caret_position)
+      completing_node     = find_node(ast, caret_position)
       return [] unless completing_node
 
       completions =
@@ -43,62 +46,67 @@ module BELParser
       validated_completions =
         completions
           .map { |(completion_ast, completion_result)|
+            message             = ''
             terms               = completion_ast.traverse.select { |node| node.type == :term }.to_a
-            semantic_warnings   = ''
             semantics_functions =
               BELParser::Language::Semantics.semantics_functions.reject { |fun|
                 fun == BELParser::Language::Semantics::SignatureMapping
               }
 
-            completion_ast
-              .traverse
-              .flat_map { |node|
-                semantics_functions.flat_map { |func|
-                  func.map(node, spec, namespaces)
+            semantic_warnings =
+              completion_ast
+                .traverse
+                .flat_map { |node|
+                  semantics_functions.flat_map { |func|
+                    func.map(node, spec, namespaces)
+                  }
                 }
-              }
-              .compact
-              .map { |warning|
-                semantic_warnings << "#{warning}\n"
-              }
+                .compact
 
             if semantic_warnings.empty?
               valid = true
             else
               valid = false
-              semantic_warnings << "\n"
-            end
-            valid &= semantic_warnings.empty?
-
-            terms.map { |term|
-              term_result = validator.validate(term)
-              valid      &= term_result.valid_semantics?
-              bel_term    = serialize(term)
-
-              unless valid
-                semantic_warnings << "Term: #{bel_term}\n"
-                term_result.invalid_signature_mappings.map { |m|
-                  semantic_warnings << "  #{m}\n"
+              message =
+                semantic_warnings.reduce('') { |msg, warning|
+                  msg << "#{warning}\n"
                 }
-                semantic_warnings << "\n"
-              end
+              message << "\n"
+            end
 
-              {
-                term:               bel_term,
-                valid_signatures:   term_result.valid_signature_mappings.map(&:to_s),
-                invalid_signatures: term_result.invalid_signature_mappings.map(&:to_s)
+            term_semantics =
+              terms.map { |term|
+                term_result = validator.validate(term)
+                valid      &= term_result.valid_semantics?
+                bel_term    = serialize(term)
+
+                unless valid
+                  message << "Term: #{bel_term}\n"
+                  term_result.invalid_signature_mappings.map { |m|
+                    message << "  #{m}\n"
+                  }
+                  message << "\n"
+                end
+
+                {
+                  term:               bel_term,
+                  valid_signatures:   term_result.valid_signature_mappings.map(&:to_s),
+                  invalid_signatures: term_result.invalid_signature_mappings.map(&:to_s)
+                }
               }
-            }
 
-            completion_result[:semantics]         = valid ? :valid : :invalid
-            completion_result[:semantic_warnings] = semantic_warnings
+            completion_result[:semantics] = {
+              valid:   valid,
+              detail:  term_semantics,
+              message: valid ? 'Valid semantics' : message
+            }
             completion_result
           }
           .group_by { |completion_result|
-            completion_result[:semantics]
+            completion_result[:semantics][:valid]
           }
 
-      (validated_completions[:valid] || []) + (validated_completions[:invalid] || [])
+      (validated_completions[true] || []) + (validated_completions[false] || [])
     end
 
     def self.complete_function(
