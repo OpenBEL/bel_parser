@@ -95,15 +95,18 @@ module BELParser
                 }
               }
 
-            completion_result[:semantics] = {
-              valid:   valid,
-              detail:  term_semantics,
-              message: valid ? 'Valid semantics' : message
+            completion_result[:validation] = {
+              expression:      completion_result[:value],
+              valid_syntax:    true,
+              valid_semantics: valid,
+              message:         valid ? 'Valid semantics' : message,
+              warnings:        semantic_warnings.map(&:to_s),
+              term_signatures: term_semantics
             }
             completion_result
           }
           .group_by { |completion_result|
-            completion_result[:semantics][:valid]
+            completion_result[:validation][:valid_semantics]
           }
 
       (validated_completions[true] || []) + (validated_completions[false] || [])
