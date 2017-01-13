@@ -127,6 +127,13 @@
       @statement_stack    << @statement_stack[-1]
       @statement_stack[-1] = statement(nil, nil, nil)
       @relationship        = nil
+
+      @term_stack <<
+        term(
+          function(
+            nil,
+            character_range: [ts, ts]),
+          character_range: [ts, te])
     else
       term =
         if @value == nil

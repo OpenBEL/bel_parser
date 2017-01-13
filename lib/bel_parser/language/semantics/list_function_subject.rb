@@ -20,6 +20,7 @@ module BELParser
           return nil unless list_func
 
           return nil unless node.term.function
+          return nil unless node.term.function.identifier
           func_name = node.term.function.identifier.string_literal
           sub_func  = spec.function(func_name.to_sym)
           ListFunctionSubjectWarning.new(node, spec) if sub_func == list_func

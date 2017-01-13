@@ -14,6 +14,7 @@ module BELParser
 
         def self.map(node, spec, _namespaces)
           return nil unless node.is_a?(BELParser::Parsers::AST::Function)
+          return nil unless node.identifier
 
           function_name = node.identifier.string_literal
           func          = spec.function(function_name.to_sym)
