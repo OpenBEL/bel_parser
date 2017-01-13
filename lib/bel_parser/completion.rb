@@ -6,36 +6,6 @@ require 'bel_parser/parsers/expression/statement_autocomplete'
 require 'bel_parser/parsers/serializer'
 require_relative 'mixin/levenshtein'
 
-class ::AST::Node
-
-  def _metadata
-    ivars = instance_variables - [:@type, :@children, :@hash]
-    ivars.map { |iv| [iv, instance_variable_get(iv)] }.to_s
-  end
-  private :_metadata
-
-  def to_sexp(indent=0)
-    indented = "  " * indent
-    sexp = "#{indented}(#{fancy_type} #{_metadata}"
-
-    first_node_child = children.index do |child|
-      child.is_a?(::AST::Node) || child.is_a?(Array)
-    end || children.count
-
-    children.each_with_index do |child, idx|
-      if child.is_a?(::AST::Node) && idx >= first_node_child
-        sexp << "\n#{child.to_sexp(indent + 1)}"
-      else
-        sexp << " #{child.inspect}"
-      end
-    end
-
-    sexp << ")"
-
-    sexp
-  end
-end
-
 module BELParser
   module Completion
     extend BELParser::Parsers::AST::Sexp
@@ -47,7 +17,6 @@ module BELParser
       # 3. Determine the node type being completed.
       # 4. Compute completion AST for each suggestion.
       # 5. For each suggestion, transform original AST into full completion.
-
       ast, caret_position = BELParser::Parsers::Expression::StatementAutocomplete.parse(input, caret_position)
 
       completing_node = find_node(ast, caret_position)
@@ -958,41 +927,47 @@ module BELParser
   end
 end
 
-if __FILE__ == $0
+if RUBY_ENGINE =~ /jruby/ && __FILE__ == $0
   require 'bel_parser'
+  require 'bel_parser/resource/jena_tdb_reader'
   require 'bel'
-  include BELParser::Parsers::AST::Sexp
 
-  #spec   = BELParser::Language.specification('2.0')
-  #search = BEL::Resource::Search.plugins[:sqlite].create_search(
-    #:database_file => '/home/tony/projects/openbel/openbel-api/data/rdf_resources.db'
-  #)
+  # RdfRepository using Jena.
+  tdb        = ARGV.shift
+  rr         = BEL::RdfRepository.plugins[:jena].create_repository(:tdb_directory => tdb)
+  namespaces = BEL::Resource::Namespaces.new(rr)
 
-  #caret_position = ARGV.shift
+  BELParser::Resource.default_uri_reader = BELParser::Resource::JenaTDBReader.new(tdb)
 
-  puts "Ready."
-  #$stdin.each_line do |line|
-    #line.strip!
-    #puts search.search(line, :namespace_concept, nil, nil, size: 10).to_a.map(&:to_h)
-  #end
+  ns_hash = Hash[
+    namespaces.each.map { |ns|
+      prefix = ns.prefix.first.upcase
 
-  #$stdin.each_line do |line|
-    #line.strip!
-    #puts BELParser::Completion.complete(line, spec, search, caret_position.to_i)
-  #end
+      [
+        prefix,
+        BELParser::Expression::Model::Namespace.new(
+          prefix,
+          ns.uri
+        )
+      ]
+    }
+  ]
 
-  ast = BELParser::Parsers::Expression::StatementAutocomplete.parse('bp()')
-  puts BELParser::Completion::MergeCompletion.new(
-    argument(
-      parameter(
-        prefix(
-          identifier(
-            "HGNC")),
-        value(
-          identifier(
-            "AKT1"))),
-      character_range: [3,3])
-  ).process(ast)
+
+  puts "Available namespaces:"
+  ns_hash.each do |_, ns|
+    puts "  #{ns.keyword}: #{ns.uri}"
+  end
+
+  spec   = BELParser::Language.specification('2.0')
+  search = BEL::Resource::Search.plugins[:sqlite].create_search(
+    :database_file => '/home/tony/projects/openbel/openbel-api/data/rdf_resources.db'
+  )
+
+  $stdin.each_line do |line|
+    line.strip!
+    puts BELParser::Completion.complete(line, spec, search, ns_hash)
+  end
 end
 # vim: ft=ruby ts=2 sw=2:
 # encoding: utf-8
