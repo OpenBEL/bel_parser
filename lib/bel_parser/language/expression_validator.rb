@@ -28,31 +28,41 @@ module BELParser
         case expression_node
         when BELParser::Parsers::AST::SimpleStatement
           SimpleStatementResult.new(
+            expression_node,
             validate(expression_node.statement.subject.term),
             validate(expression_node.statement.object.child),
             syntax(expression_node),
             semantics(expression_node))
         when BELParser::Parsers::AST::ObservedTerm
           ObservedTermResult.new(
+            expression_node,
             validate(expression_node.statement.subject.term),
             syntax(expression_node),
             semantics(expression_node))
         when BELParser::Parsers::AST::NestedStatement
           NestedStatementResult.new(
+            expression_node,
             validate(expression_node.statement.subject.term),
             validate(expression_node.statement.object.child),
             syntax(expression_node),
             semantics(expression_node))
         when BELParser::Parsers::AST::Statement
           SimpleStatementResult.new(
+            expression_node,
             validate(expression_node.subject.term),
             validate(expression_node.object.child),
             syntax(expression_node),
             semantics(expression_node))
         when BELParser::Parsers::AST::Term
-          TermResult.new(syntax(expression_node), semantics(expression_node))
+          TermResult.new(
+            expression_node,
+            syntax(expression_node),
+            semantics(expression_node))
         when BELParser::Parsers::AST::Parameter
-          ParameterResult.new(syntax(expression_node), semantics(expression_node))
+          ParameterResult.new(
+            expression_node,
+            syntax(expression_node),
+            semantics(expression_node))
         else
           nil
         end
@@ -87,16 +97,17 @@ module BELParser
 
         def valid_signature_mappings
           @semantics_results
-            .select do |res|
+            .select { |res|
               res.is_a?(Semantics::SignatureMappingSuccess)
-            end.uniq
+            }
+            .uniq
         end
 
         def invalid_signature_mappings
           @semantics_results
-            .select do |res|
+            .select { |res|
               res.is_a?(Semantics::SignatureMappingWarning)
-            end
+            }
         end
 
         def detail
@@ -135,7 +146,8 @@ module BELParser
         attr_reader :syntax_results, :semantics_results
         include Result
 
-        def initialize(syntax_results, semantics_results)
+        def initialize(expression_node, syntax_results, semantics_results)
+          @expression_node   = expression_node
           @syntax_results    = syntax_results
           @semantics_results = semantics_results
         end
@@ -153,14 +165,15 @@ module BELParser
         attr_reader :syntax_results, :semantics_results
         include Result
 
-        def initialize(syntax_results, semantics_results)
+        def initialize(expression_node, syntax_results, semantics_results)
+          @expression_node   = expression_node
           @syntax_results    = syntax_results
           @semantics_results = semantics_results
         end
 
         def valid_semantics?
           @semantics_results.any? do |res|
-            res.is_a?(Semantics::SignatureMappingSuccess)
+            res.is_a?(Semantics::SignatureMappingSuccess) && res.expression_node == @expression_node
           end
         end
 
@@ -189,7 +202,8 @@ module BELParser
         attr_reader :syntax_results, :semantics_results
         include Result
 
-        def initialize(subject_result, syntax, semantics)
+        def initialize(expression_node, subject_result, syntax, semantics)
+          @expression_node   = expression_node
           @subject_result    = subject_result
           @syntax_results    = syntax
           @semantics_results =
@@ -236,7 +250,8 @@ module BELParser
         attr_reader :syntax_results, :semantics_results
         include Result
 
-        def initialize(subject_result, object_result, syntax, semantics)
+        def initialize(expression_node, subject_result, object_result, syntax, semantics)
+          @expression_node   = expression_node
           @subject_result    = subject_result
           @object_result     = object_result
           @syntax_results    = syntax
@@ -342,7 +357,8 @@ module BELParser
         attr_reader :syntax_results, :semantics_results
         include Result
 
-        def initialize(subject_result, object_result, syntax, semantics)
+        def initialize(expression_node, subject_result, object_result, syntax, semantics)
+          @expression_node   = expression_node
           @subject_result    = subject_result
           @object_result     = object_result
           @syntax_results    = syntax
