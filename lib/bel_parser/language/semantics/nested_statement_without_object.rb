@@ -17,7 +17,7 @@ module BELParser
 
           nested = node.object.child
 
-          if nested.object?
+          unless nested.object?
             NestedStatementWithoutObjectWarning.new(node, spec)
           end
         end
