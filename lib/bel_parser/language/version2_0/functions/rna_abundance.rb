@@ -13,7 +13,7 @@ module BELParser
 
           SHORT       = :r
           LONG        = :rnaAbundance
-          RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::GeneAbundance
+          RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::RNAAbundance
           R_ENC       = Version2_0::ValueEncodings::RNAAbundance
           DESCRIPTION = 'Denotes the abundance of a gene'.freeze
 
