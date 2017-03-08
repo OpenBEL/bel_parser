@@ -14,7 +14,7 @@ module BELParser
           SHORT       = :loc
           LONG        = :location
           RETURN_TYPE = BELParser::Language::Version2_0::ReturnTypes::Location
-          L_ENC       = Version2_0::ValueEncodings::Location
+          A_ENC       = Version2_0::ValueEncodings::Abundance
           DESCRIPTION = 'Denotes the cellular location of the abundance.'.freeze
 
           def self.short
@@ -56,7 +56,7 @@ module BELParser
                         namespace_of(:*)),
                       value(
                         has_encoding,
-                        encoding_of(L_ENC)))))
+                        encoding_of(A_ENC)))))
               end
               private_constant :AST
 

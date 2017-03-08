@@ -5,7 +5,7 @@ module BELParser
     module Version2_0
       module ValueEncodings
         # Location value encoding.
-        class Location < Any
+        class Location < Abundance
           # Return the {Symbol} value.
           #
           # @note This method should be overridden in subclasses.
