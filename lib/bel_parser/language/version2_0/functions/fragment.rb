@@ -70,6 +70,35 @@ module BELParser
               end
             end
 
+            class FragmentWithAnySignature
+              extend BELParser::Language::Signature
+
+              private_class_method :new
+
+              AST = BELParser::Language::Semantics::Builder.build do
+                term(
+                    function(
+                        identifier(
+                            function_of(Fragment))),
+                    argument(
+                        parameter(
+                            prefix(any),
+                            value(any))))
+              end
+              private_constant :AST
+
+              STRING_FORM = 'fragment(E:*)abundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+
             # FragmentWithRangeDescriptorSignature
             class FragmentWithRangeDescriptorSignature
               extend BELParser::Language::Signature
@@ -104,6 +133,41 @@ module BELParser
                 STRING_FORM
               end
             end
+
+            # FragmentWithRangeDescriptorSignature
+            class FragmentWithAnyDescriptorSignature
+              extend BELParser::Language::Signature
+
+              private_class_method :new
+
+              AST = BELParser::Language::Semantics::Builder.build do
+                term(
+                    function(
+                        identifier(
+                            function_of(Fragment))),
+                    argument(
+                        parameter(
+                            prefix(any),
+                            value(any))),
+                    argument(
+                        parameter(
+                            prefix(any),
+                            value(any))))
+              end
+              private_constant :AST
+
+              STRING_FORM = 'fragment(E:*,E:*)abundance'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+
           end
 
           SIGNATURES = Signatures.constants.map do |const|

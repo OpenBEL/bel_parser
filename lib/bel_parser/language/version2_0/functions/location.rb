@@ -71,6 +71,39 @@ module BELParser
                 STRING_FORM
               end
             end
+
+            # LocationSignature
+            class LocationAnySignature
+              extend BELParser::Language::Signature
+
+              private_class_method :new
+
+              AST = BELParser::Language::Semantics::Builder.build do
+                term(
+                    function(
+                        identifier(
+                            function_of(Location))),
+                    argument(
+                        parameter(
+                            prefix(
+                                has_namespace,
+                                namespace_of(:*)),
+                            value(any))))
+              end
+              private_constant :AST
+
+              STRING_FORM = 'location(Any)location'.freeze
+              private_constant :STRING_FORM
+
+              def self.semantic_ast
+                AST
+              end
+
+              def self.string_form
+                STRING_FORM
+              end
+            end
+
           end
 
           SIGNATURES = Signatures.constants.map do |const|

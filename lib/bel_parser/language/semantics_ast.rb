@@ -727,9 +727,9 @@ module BELParser
 
       # AST node for IsAminoAcidRange is a semantic AST.
       class SemanticIsAminoAcidRange < SemanticASTNode
-        START_STOP         = /[1-9][0-9]*_[1-9][0-9]*/
-        UNDETERMINED       = /[1?]_[?*]/
-        UNKNOWN_START_STOP = '?'.freeze
+        START_STOP         = /\"?[1-9][0-9]*_[1-9][0-9]*\"?/
+        UNDETERMINED       = /\"?[1?]_[?*]\"?/
+        UNKNOWN_START_STOP = /\"?[?]\"?/
 
         def initialize(**properties)
           super(:is_amino_acid_range, [], properties)
