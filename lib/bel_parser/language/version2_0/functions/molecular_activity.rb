@@ -76,6 +76,38 @@ module BELParser
             end
           end
 
+          # TODO this should be removed when GO activity namespace is available
+          class MolecularActivityAnySignature
+            extend BELParser::Language::Signature
+
+            private_class_method :new
+
+            AST = BELParser::Language::Semantics::Builder.build do
+              term(
+                  function(
+                      identifier(
+                          function_of(MolecularActivity))),
+                  argument(
+                      parameter(
+                          prefix(
+                              has_namespace,
+                              namespace_of(:*)),
+                          value(any))))
+            end
+            private_constant :AST
+
+            STRING_FORM = 'molecularActivity(Any)molecularActivity'.freeze
+            private_constant :STRING_FORM
+
+            def self.semantic_ast
+              AST
+            end
+
+            def self.string_form
+              STRING_FORM
+            end
+          end
+        end
           SIGNATURES = Signatures.constants.map do |const|
             Signatures.const_get(const)
           end.freeze
