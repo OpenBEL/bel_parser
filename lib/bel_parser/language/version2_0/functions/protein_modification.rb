@@ -55,9 +55,10 @@ module BELParser
                   argument(
                     parameter(
                       prefix(any),
-                      value(
-                        has_encoding,
-                        encoding_of(E_ENC)))))
+                      value(any))))
+                      # value(
+                      #   has_encoding,
+                      #   encoding_of(E_ENC)))))
               end
               private_constant :AST
 
@@ -90,9 +91,10 @@ module BELParser
                   argument(
                     parameter(
                       prefix(any),
-                      value(
-                        has_encoding,
-                        encoding_of(E_ENC)))),
+                      value(any))),
+                      # value(
+                      #   has_encoding,
+                      #   encoding_of(E_ENC)))),
                   argument(
                     parameter(
                       prefix(any),
@@ -130,9 +132,10 @@ module BELParser
                   argument(
                     parameter(
                       prefix(any),
-                      value(
-                        has_encoding,
-                        encoding_of(E_ENC)))),
+                      value(any))),
+                      # value(
+                      #   has_encoding,
+                      #   encoding_of(E_ENC)))),
                   argument(
                     parameter(
                       prefix(any),
