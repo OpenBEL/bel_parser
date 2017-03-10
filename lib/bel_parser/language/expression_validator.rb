@@ -1,5 +1,6 @@
 require_relative 'syntax'
 require_relative 'semantics'
+require_relative 'apply_default_namespace'
 require_relative 'apply_namespace_encoding'
 
 module BELParser
@@ -9,11 +10,13 @@ module BELParser
     # namespaces.
     class ExpressionValidator
       def initialize(spec, namespaces, uri_reader, url_reader)
-        @spec                = spec
-        @namespaces          = namespaces || {}
-        @syntax_functions    = Syntax.syntax_functions
-        @semantics_functions = Semantics.semantics_functions
-        @transform           =
+        @spec                         = spec
+        @namespaces                   = namespaces || {}
+        @syntax_functions             = Syntax.syntax_functions
+        @semantics_functions          = Semantics.semantics_functions
+        @default_namespace_transform  =
+          ApplyDefaultNamespace.new(@spec, @namespaces, uri_reader, url_reader)
+        @namespace_encoding_transform =
           ApplyNamespaceEncoding.new(@spec, @namespaces, uri_reader, url_reader)
       end
 
@@ -23,7 +26,11 @@ module BELParser
       # @param  [BELParser::Parsers::AST::Node] expression_node to validate
       # @return [BELParser::Language::Syntax::SyntaxResult] syntax results
       def validate(expression_node)
-        @transform.process(expression_node)
+        if @spec.version >= "2.0"
+          expression_node = @default_namespace_transform.process(expression_node)
+        end
+
+        @namespace_encoding_transform.process(expression_node)
 
         case expression_node
         when BELParser::Parsers::AST::SimpleStatement
