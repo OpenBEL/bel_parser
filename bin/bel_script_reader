@@ -81,7 +81,11 @@ url_reader = options[:url_reader]
 namespaces = Hash[
   ARGV.map do |ns|
     keyword, identifier = ns.split('=')
-    [keyword, BELParser::Expression::Model::Namespace.new(keyword, identifier, nil)]
+    if identifier.end_with?('.belns')
+      [keyword, BELParser::Expression::Model::Namespace.new(keyword, nil, identifier)]
+    else
+      [keyword, BELParser::Expression::Model::Namespace.new(keyword, identifier, nil)]
+    end
   end.compact
 ]
 
