@@ -574,7 +574,7 @@ module BELParser
           unless prefix_node.respond_to?(:namespace) && prefix_node.namespace
             return invalid_namespace(prefix_node, spec, namespaces)
           end
-          
+
           if namespaces.any? { |i| i == :* || i == input_namespace }
             success(prefix_node, spec)
           else
@@ -727,17 +727,25 @@ module BELParser
 
       # AST node for IsAminoAcidRange is a semantic AST.
       class SemanticIsAminoAcidRange < SemanticASTNode
-        START_STOP         = /\"?[1-9][0-9]*_[1-9][0-9]*\"?/
-        UNDETERMINED       = /\"?[1?]_[?*]\"?/
-        UNKNOWN_START_STOP = /\"?[?]\"?/
+        START_STOP         = /[1-9][0-9]*_[1-9][0-9]*/
+        UNDETERMINED       = /[1?]_[?*]/
+        UNKNOWN_START_STOP = '?'.freeze
 
         def initialize(**properties)
           super(:is_amino_acid_range, [], properties)
         end
 
         def match(value_node, spec)
-          string_literal = value_node.children[0]
-          case string_literal
+          ident_or_string = value_node.children[0]
+          value =
+            case ident_or_string
+            when BELParser::Parsers::AST::String
+              ident_or_string.string_value
+            else
+              ident_or_string.string_literal
+            end
+
+          case value
           when START_STOP, UNDETERMINED, UNKNOWN_START_STOP
             success(value_node, spec)
           else
