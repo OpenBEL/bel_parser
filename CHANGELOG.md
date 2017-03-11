@@ -8,3 +8,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 [1.0.0]:    https://github.com/OpenBEL/bel_parser/compare/0.0.0...1.0.0
+
+[1.1.3]:    https://github.com/OpenBEL/bel_parser/compare/1.0.0...1.1.3
+
