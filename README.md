@@ -61,7 +61,7 @@ To make a release, perform the following steps:
 
   Ruby: `gem build .gemspec`
 
-  Java: `gem build .gemspec-java`
+  Java: `jruby -S gem build .gemspec`
 
 - Create a release on GitHub with both gems and a summary of the changes in this version.
 
