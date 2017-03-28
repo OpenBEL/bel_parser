@@ -11,7 +11,8 @@ module BELParser
     extend BELParser::Parsers::AST::Sexp
     extend BELParser::Parsers
 
-    def self.complete(input, spec, search, namespaces, caret_position = input.length)
+    def self.complete(input, spec, search, namespaces,
+                      caret_position = input.length, include_invalid_semantics = false)
       # Algorithm
       # 1. Parse AST using statement_autocomplete ragel FSM.
       # 2. Given cursor find node to complete.
@@ -128,7 +129,11 @@ module BELParser
             completion_result[:validation][:valid_semantics]
           }
 
-      (validated_completions[true] || []) + (validated_completions[false] || [])
+      if include_invalid_semantics
+        (validated_completions[true] || []) + (validated_completions[false] || [])
+      else
+        validated_completions[true] || []
+      end
     end
 
     def self.complete_function(
