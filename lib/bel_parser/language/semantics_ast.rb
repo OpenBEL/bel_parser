@@ -47,12 +47,14 @@ module BELParser
               end
             end
           else
-            semantic_ast
-              .children
-              .zip(input_ast.children)
-              .each do |semantic_child, input_child|
-                match(input_child, semantic_child, spec, match_results)
-              end
+            if input_ast
+              semantic_ast
+                .children
+                .zip(input_ast.children)
+                .each do |semantic_child, input_child|
+                  match(input_child, semantic_child, spec, match_results)
+                end
+            end
           end
         end
         match_results.flatten

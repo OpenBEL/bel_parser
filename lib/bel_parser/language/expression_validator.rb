@@ -9,15 +9,20 @@ module BELParser
     # when supplied a {BELParser::Language::Specification} and Hash of
     # namespaces.
     class ExpressionValidator
-      def initialize(spec, namespaces, uri_reader, url_reader)
+      def initialize(spec, namespaces, uri_reader, url_reader, will_match_partial = false)
         @spec                         = spec
         @namespaces                   = namespaces || {}
+
+        # double negate truthy or falsey value to strict boolean
+        @will_match_partial           = !!will_match_partial
+
         @syntax_functions             = Syntax.syntax_functions
         @semantics_functions          = Semantics.semantics_functions
         @default_namespace_transform  =
           ApplyDefaultNamespace.new(@spec, @namespaces, uri_reader, url_reader)
         @namespace_encoding_transform =
           ApplyNamespaceEncoding.new(@spec, @namespaces, uri_reader, url_reader)
+
       end
 
       # Validate the syntax and semantics of
@@ -85,7 +90,9 @@ module BELParser
 
       def semantics(expression_node)
         expression_node.traverse.flat_map do |node|
-          @semantics_functions.flat_map { |func| func.map(node, @spec, @namespaces) }
+          @semantics_functions.flat_map { |func|
+            func.map(node, @spec, @namespaces, @will_match_partial)
+          }
         end.compact
       end
 
