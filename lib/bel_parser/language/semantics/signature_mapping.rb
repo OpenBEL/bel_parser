@@ -37,14 +37,15 @@ module BELParser
         private
 
         def self._map_signature(term_node, spec, signature, will_match_partial)
-          results = BELParser::Language::Semantics.match(
-            term_node,
-            signature.semantic_ast,
-            spec)
+          results =
+            BELParser::Language::Semantics.match(
+              term_node,
+              signature.semantic_ast,
+              spec,
+              will_match_partial
+            )
 
-          if will_match_partial and term_node.arguments.empty?
-            _remove_partial_warnings!(results)
-          end
+          _remove_partial_warnings!(results) if will_match_partial
 
           if results.all?(&:success?)
             SignatureMappingSuccess.new(term_node, spec, signature, results)
@@ -55,7 +56,7 @@ module BELParser
 
         def self._remove_partial_warnings!(semantic_results)
           semantic_results.reject! { |res|
-            res.is_a?(SemanticsNilNodeWarning) || res.is_a?(SemanticsArgumentLengthWarning)
+            res.is_a?(SemanticsNilNodeWarning)
           }
         end
       end
