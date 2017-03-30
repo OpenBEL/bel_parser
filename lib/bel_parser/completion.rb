@@ -11,7 +11,8 @@ module BELParser
     extend BELParser::Parsers::AST::Sexp
     extend BELParser::Parsers
 
-    def self.complete(input, spec, search, namespaces, caret_position = input.length)
+    def self.complete(input, spec, search, namespaces,
+                      caret_position = input.length, include_invalid_semantics = false)
       # Algorithm
       # 1. Parse AST using statement_autocomplete ragel FSM.
       # 2. Given cursor find node to complete.
@@ -39,77 +40,100 @@ module BELParser
           []
         end
 
-      urir      = BELParser::Resource.default_uri_reader
-      urlr      = BELParser::Resource.default_url_reader
-      validator = BELParser::Language::ExpressionValidator.new(spec, namespaces, urir, urlr)
+      will_match_partial = true
+      urir               = BELParser::Resource.default_uri_reader
+      urlr               = BELParser::Resource.default_url_reader
+
+      validator =
+        BELParser::Language::ExpressionValidator.new(
+          spec, namespaces, urir, urlr, will_match_partial
+        )
 
       validated_completions =
         completions
           .map { |(completion_ast, completion_result)|
-            message             = ''
-            terms               = completion_ast.traverse.select { |node| node.type == :term }.to_a
-            semantics_functions =
-              BELParser::Language::Semantics.semantics_functions.reject { |fun|
-                fun == BELParser::Language::Semantics::SignatureMapping
+
+            if completion_result[:type] == :namespace_prefix
+              # namespace_prefix completions are always valid
+              completion_result[:validation] = {
+                expression:      completion_result[:value],
+                valid_syntax:    true,
+                valid_semantics: true,
+                message:         'Valid semantics',
+                warnings:        [],
+                term_signatures: []
               }
-
-            semantic_warnings =
-              completion_ast
-                .traverse
-                .flat_map { |node|
-                  semantics_functions.flat_map { |func|
-                    func.map(node, spec, namespaces)
-                  }
-                }
-                .compact
-
-            if semantic_warnings.empty?
-              valid = true
+              completion_result
             else
-              valid = false
-              message =
-                semantic_warnings.reduce('') { |msg, warning|
-                  msg << "#{warning}\n"
+              message             = ''
+              terms               = completion_ast.traverse.select { |node| node.type == :term }.to_a
+              semantics_functions =
+                BELParser::Language::Semantics.semantics_functions.reject { |fun|
+                  fun == BELParser::Language::Semantics::SignatureMapping
                 }
-              message << "\n"
-            end
 
-            term_semantics =
-              terms.map { |term|
-                term_result = validator.validate(term)
-                valid      &= term_result.valid_semantics?
-                bel_term    = serialize(term)
-
-                unless valid
-                  message << "Term: #{bel_term}\n"
-                  term_result.invalid_signature_mappings.map { |m|
-                    message << "  #{m}\n"
+              semantic_warnings =
+                completion_ast
+                  .traverse
+                  .flat_map { |node|
+                    semantics_functions.flat_map { |func|
+                      func.map(node, spec, namespaces, will_match_partial)
+                    }
                   }
-                  message << "\n"
-                end
+                  .compact
 
-                {
-                  term:               bel_term,
-                  valid_signatures:   term_result.valid_signature_mappings.map(&:to_s),
-                  invalid_signatures: term_result.invalid_signature_mappings.map(&:to_s)
+              if semantic_warnings.empty?
+                valid = true
+              else
+                valid = false
+                message =
+                  semantic_warnings.reduce('') { |msg, warning|
+                    msg << "#{warning}\n"
+                  }
+                message << "\n"
+              end
+
+              term_semantics =
+                terms.map { |term|
+                  term_result = validator.validate(term)
+                  valid      &= term_result.valid_semantics?
+                  bel_term    = serialize(term)
+
+                  unless valid
+                    message << "Term: #{bel_term}\n"
+                    term_result.invalid_signature_mappings.map { |m|
+                      message << "  #{m}\n"
+                    }
+                    message << "\n"
+                  end
+
+                  {
+                    term:               bel_term,
+                    valid_signatures:   term_result.valid_signature_mappings.map(&:to_s),
+                    invalid_signatures: term_result.invalid_signature_mappings.map(&:to_s)
+                  }
                 }
-              }
 
-            completion_result[:validation] = {
-              expression:      completion_result[:value],
-              valid_syntax:    true,
-              valid_semantics: valid,
-              message:         valid ? 'Valid semantics' : message,
-              warnings:        semantic_warnings.map(&:to_s),
-              term_signatures: term_semantics
-            }
-            completion_result
+              completion_result[:validation] = {
+                expression:      completion_result[:value],
+                valid_syntax:    true,
+                valid_semantics: valid,
+                message:         valid ? 'Valid semantics' : message,
+                warnings:        semantic_warnings.map(&:to_s),
+                term_signatures: term_semantics
+              }
+              completion_result
+            end
           }
           .group_by { |completion_result|
             completion_result[:validation][:valid_semantics]
           }
 
-      (validated_completions[true] || []) + (validated_completions[false] || [])
+      if include_invalid_semantics
+        (validated_completions[true] || []) + (validated_completions[false] || [])
+      else
+        validated_completions[true] || []
+      end
     end
 
     def self.complete_function(

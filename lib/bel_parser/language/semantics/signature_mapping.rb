@@ -17,29 +17,47 @@ module BELParser
         # Map {BELParser::Parsers::AST::Term term} to BEL signatures
         # defined by a {BELParser::Language::Specification}. The mapping
         # includes both successful and failed signature matches.
-        def self.map(term_node, spec, _namespaces)
+        def self.map(term_node, spec, _namespaces, will_match_partial = false)
           return nil unless term_node.is_a?(BELParser::Parsers::AST::Term)
           return nil unless term_node.function
           return nil unless term_node.function.identifier
+
+          # double negate truthy or falsey value to strict boolean
+          will_match_partial = !!will_match_partial
 
           function_name = term_node.function.identifier.string_literal
           function      = spec.function(function_name.to_sym)
           return nil unless function
 
-          mapsig = method(:map_signature).to_proc.curry[term_node][spec]
-          function.signatures.map(&mapsig)
+          function.signatures.map { |signature|
+            self._map_signature(term_node, spec, signature, will_match_partial)
+          }
         end
 
-        def self.map_signature(term_node, spec, signature)
-          results = BELParser::Language::Semantics.match(
-            term_node,
-            signature.semantic_ast,
-            spec)
+        private
+
+        def self._map_signature(term_node, spec, signature, will_match_partial)
+          results =
+            BELParser::Language::Semantics.match(
+              term_node,
+              signature.semantic_ast,
+              spec,
+              will_match_partial
+            )
+
+          _remove_partial_warnings!(results) if will_match_partial
+
           if results.all?(&:success?)
             SignatureMappingSuccess.new(term_node, spec, signature, results)
           else
             SignatureMappingWarning.new(term_node, spec, signature, results)
           end
+        end
+
+        def self._remove_partial_warnings!(semantic_results)
+          semantic_results.reject! { |res|
+            res.is_a?(SemanticsNilNodeWarning)
+          }
         end
       end
 

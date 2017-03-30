@@ -18,7 +18,7 @@ module BELParser
 
         private_class_method :new
 
-        def self.map(node, spec, _namespaces)
+        def self.map(node, spec, _namespaces, will_match_partial = false)
           return nil unless node.is_a?(BELParser::Parsers::AST::NestedStatement)
 
           nested_number = count_nested_statements(node)

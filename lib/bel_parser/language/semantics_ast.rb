@@ -10,8 +10,8 @@ module BELParser
     module Semantics
       # rubocop:disable Metrics/MethodLength
       # rubocop:disable Metrics/AbcSize
-      def self.match(input_ast, semantic_ast, spec, match_results = [])
-        res = semantic_ast.match(input_ast, spec)
+      def self.match(input_ast, semantic_ast, spec, will_match_partial = false, match_results = [])
+        res = semantic_ast.match(input_ast, spec, will_match_partial)
         match_results.concat(res)
         if res.flatten.all?(&:success?) && !semantic_ast.terminal?
           return match_results if semantic_ast.children.empty?
@@ -35,24 +35,26 @@ module BELParser
                   input_children[input_children.index(input_child)..-1]
                 argument_pattern = semantic_child.children.first
                 input_arguments.each do |argument_child|
-                  res = semantic_child.match(argument_child, spec)
+                  res = semantic_child.match(argument_child, spec, will_match_partial)
                   match_results << res
                   if res.all?(&:success?)
                     param_or_term = argument_child.children.first
-                    match(param_or_term, argument_pattern, spec, match_results)
+                    match(param_or_term, argument_pattern, spec, will_match_partial, match_results)
                   end
                 end
               else
-                match(input_child, semantic_child, spec, match_results)
+                match(input_child, semantic_child, spec, will_match_partial, match_results)
               end
             end
           else
-            semantic_ast
-              .children
-              .zip(input_ast.children)
-              .each do |semantic_child, input_child|
-                match(input_child, semantic_child, spec, match_results)
-              end
+            if input_ast
+              semantic_ast
+                .children
+                .zip(input_ast.children)
+                .each do |semantic_child, input_child|
+                  match(input_child, semantic_child, spec, will_match_partial, match_results)
+                end
+            end
           end
         end
         match_results.flatten
@@ -268,7 +270,7 @@ module BELParser
           children[1..-1]
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, spec, will_match_partial = false)
           return nil_node_warning(
             parse_node,
             spec,
@@ -279,12 +281,16 @@ module BELParser
             BELParser::Parsers::AST::Term,
             parse_node) if parse_node.type != type
 
-          # Return success if semantic AST does not supply argument patterns.
+          # Allowed empty.
           if arguments.empty? || variadic_arguments?
             success(parse_node, spec)
-          # Or, check argument length.
+          # Partial match on arity.
+          elsif will_match_partial && parse_node.arguments.length < arguments.length
+            success(parse_node, spec)
+          # Or, check full arity
           elsif arguments.length == parse_node.arguments.length
             success(parse_node, spec)
+          # Mismatch, warning
           else
             argument_length_warning(
               parse_node,
@@ -301,7 +307,7 @@ module BELParser
           super(:statement, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, spec, will_match_partial = false)
           return nil_node_warning(
             parse_node,
             spec,
@@ -325,7 +331,7 @@ module BELParser
           super(:parameter, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, spec, will_match_partial = false)
           return nil_node_warning(
             parse_node,
             spec,
@@ -349,7 +355,7 @@ module BELParser
           super(:function, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, spec, will_match_partial = false)
           return nil_node_warning(
             parse_node,
             spec,
@@ -373,7 +379,7 @@ module BELParser
           super(:argument, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, spec, will_match_partial = false)
           return nil_node_warning(
             parse_node,
             spec,
@@ -397,7 +403,7 @@ module BELParser
           super(:variadic_arguments, children, properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, spec, will_match_partial = false)
           return nil_node_warning(
             parse_node,
             spec,
@@ -429,7 +435,7 @@ module BELParser
           children
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, spec, will_match_partial = false)
           return nil_node_warning(
             parse_node,
             spec,
@@ -463,7 +469,7 @@ module BELParser
           children
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, spec, will_match_partial = false)
           return nil_node_warning(
             parse_node,
             spec,
@@ -493,7 +499,7 @@ module BELParser
           true
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, spec, will_match_partial = false)
           if parse_node.nil?
             success(parse_node, spec)
           else
@@ -516,7 +522,7 @@ module BELParser
           children
         end
 
-        def match(identifier, spec)
+        def match(identifier, spec, will_match_partial = false)
           return nil_node_warning(
             identifier,
             spec,
@@ -540,7 +546,7 @@ module BELParser
           super(:any, [], properties)
         end
 
-        def match(parse_node, spec)
+        def match(parse_node, spec, will_match_partial = false)
           success(parse_node, spec)
         end
       end
@@ -551,7 +557,7 @@ module BELParser
           super(:has_namespace, [], properties)
         end
 
-        def match(prefix, spec)
+        def match(prefix, spec, will_match_partial = false)
           if prefix.respond_to?(:namespace) && prefix.namespace
             success(prefix, spec)
           else
@@ -570,7 +576,7 @@ module BELParser
           children
         end
 
-        def match(prefix_node, spec)
+        def match(prefix_node, spec, will_match_partial = false)
           unless prefix_node.respond_to?(:namespace) && prefix_node.namespace
             return invalid_namespace(prefix_node, spec, namespaces)
           end
@@ -589,7 +595,7 @@ module BELParser
           super(:has_encoding, [], properties)
         end
 
-        def match(value_node, spec)
+        def match(value_node, spec, will_match_partial = false)
           if value_node.respond_to?(:encoding) && value_node.encoding
             success(value_node, spec)
           else
@@ -608,7 +614,7 @@ module BELParser
           children
         end
 
-        def match(value_node, spec)
+        def match(value_node, spec, will_match_partial = false)
           unless value_node.respond_to?(:encoding) && value_node.encoding
             return invalid_encoding_warning(value_node, spec, match_encoding)
           end
@@ -637,7 +643,7 @@ module BELParser
           children
         end
 
-        def match(identifier, spec)
+        def match(identifier, spec, will_match_partial = false)
           return success(identifier, spec) if functions.include?(:*)
 
           function = spec.function(identifier.string_literal.to_sym)
@@ -659,7 +665,7 @@ module BELParser
           children
         end
 
-        def match(identifier, spec)
+        def match(identifier, spec, will_match_partial = false)
           return success(identifier, spec) if return_types.include?(:*)
 
           function = spec.function(identifier.string_literal.to_sym)
@@ -687,7 +693,7 @@ module BELParser
           children
         end
 
-        def match(value_node, spec)
+        def match(value_node, spec, will_match_partial = false)
           string_literal_sym = value_node.children[0].string_literal.to_sym
           return success(value_node, spec) if @hashed[:*]
 
@@ -713,7 +719,7 @@ module BELParser
           children
         end
 
-        def match(value_node, spec)
+        def match(value_node, spec, will_match_partial = false)
           string_literal_sym = value_node.children[0].string_literal.to_sym
           return success(value_node, spec) if @hashed[:*]
 
@@ -735,7 +741,7 @@ module BELParser
           super(:is_amino_acid_range, [], properties)
         end
 
-        def match(value_node, spec)
+        def match(value_node, spec, will_match_partial = false)
           ident_or_string = value_node.children[0]
           value =
             case ident_or_string
@@ -760,7 +766,7 @@ module BELParser
           super(:is_sequence_position, [], properties)
         end
 
-        def match(value_node, spec)
+        def match(value_node, spec, will_match_partial = false)
           string_literal = value_node.children[0].string_literal
           integer_position =
             begin

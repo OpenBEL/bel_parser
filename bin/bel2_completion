@@ -1,0 +1,127 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift(
+  File.join(File.expand_path(File.dirname(__FILE__)), '..', 'lib'))
+
+require 'optparse'
+require 'bel_parser'
+require 'bel_parser/parsers/expression/statement_autocomplete'
+require 'bel_parser/expression/validator'
+require 'bel_parser/resource/resource_url_reader'
+
+options = {
+  uri_reader: BELParser::Resource.default_uri_reader,
+  url_reader: BELParser::Resource.default_url_reader,
+  spec: BELParser::Language.specification(
+    BELParser::Language.latest_supported_version),
+  will_match_partial: false
+}
+OptionParser.new do |opts|
+  opts.banner = <<-USAGE.gsub(/^ {4}/, '')
+    Provides completions for BEL expressions.
+
+    Read from standard input.
+    usage: #$PROGRAM_NAME
+  USAGE
+
+  opts.on(
+    '-v',
+    '--[no-]verbose',
+    'Enable verbose logging.') do |verbose|
+      options[:verbose] = verbose
+    end
+
+  opts.on(
+    '-s',
+    '--specification VERSION',
+    'BEL specification version (e.g. 1.0, 2.0).') do |spec|
+      unless BELParser::Language.defines_version?(spec)
+        $stderr.puts %(Invalid BEL specification "#{spec}")
+        exit 1
+      end
+
+      options[:spec] = BELParser::Language.specification(spec)
+    end
+
+  opts.on(
+    '-p',
+    '--[no-]match-partial',
+    'Partial semantic matches are allowed.') do |will_match_partial|
+      options[:will_match_partial] = will_match_partial
+    end
+
+  if RUBY_ENGINE =~ /^jruby/i
+    opts.on(
+      '-t',
+      '--read-jena-tdb DIRECTORY',
+      'Jena TDB directory containing BEL RDF resources.') do |tdb|
+
+        require 'bel_parser/resource/jena_tdb_reader'
+        options[:uri_reader] = BELParser::Resource::JenaTDBReader.new(tdb)
+        BELParser::Resource.default_uri_reader = options[:uri_reader]
+      end
+  end
+end.parse!
+
+io = $stdin
+
+class ::AST::Node
+
+  def _metadata
+    ivars = instance_variables - [:@type, :@children, :@hash]
+    ivars.map { |iv| [iv, instance_variable_get(iv)] }.to_s
+  end
+  private :_metadata
+
+  def to_sexp(indent=0)
+    indented = "  " * indent
+    sexp = "#{indented}(#{fancy_type} #{_metadata}"
+
+    first_node_child = children.index do |child|
+      child.is_a?(::AST::Node) || child.is_a?(Array)
+    end || children.count
+
+    children.each_with_index do |child, idx|
+      if child.is_a?(::AST::Node) && idx >= first_node_child
+        sexp << "\n#{child.to_sexp(indent + 1)}"
+      else
+        sexp << " #{child.inspect}"
+      end
+    end
+
+    sexp << ")"
+
+    sexp
+  end
+end
+
+#uri_reader, url_reader = options.values_at(:uri_reader, :url_reader)
+
+namespaces = Hash[
+  ARGV.map do |ns|
+    keyword, identifier = ns.split('=')
+    if identifier.end_with?('.belns')
+      [keyword, BELParser::Expression::Model::Namespace.new(keyword, nil, identifier)]
+    else
+      [keyword, BELParser::Expression::Model::Namespace.new(keyword, identifier, nil)]
+    end
+  end.compact
+]
+
+autocomplete = BELParser::Parsers::Expression::StatementAutocomplete
+validator    = BELParser::Language::ExpressionValidator.new(
+  BELParser::Language.specification('2.0'),
+  namespaces,
+  BELParser::Resource.default_uri_reader,
+  BELParser::Resource.default_url_reader,
+  options[:will_match_partial]
+)
+
+io.each_line do |line|
+  line.strip!
+  ast, _ = autocomplete.parse("#{line}\n", line.length)
+  puts "AST:\n#{ast.to_sexp(1)}"
+  term_result = validator.validate(ast.subject.term)
+  puts "     Syntax: #{term_result.valid_syntax?}"
+  puts "  Semantics: #{term_result.valid_semantics?}"
+  puts term_result
+end

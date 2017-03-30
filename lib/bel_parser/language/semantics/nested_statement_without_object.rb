@@ -11,7 +11,7 @@ module BELParser
 
         private_class_method :new
 
-        def self.map(node, spec, _namespaces)
+        def self.map(node, spec, _namespacesi, will_match_partial = false)
           return nil unless node.is_a?(BELParser::Parsers::AST::Statement)
           return nil unless node.object? && node.object.statement?
 
