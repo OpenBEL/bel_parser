@@ -90,8 +90,17 @@ module BELParser
             end
 
           if resolved_value
-            value = resolved_value.first
-            Parameter.new(self, value.name, value.encodings)
+            match =
+              if resolved_value.size == 1
+                resolved_value.first
+              else
+                # first, find match by name, identifier, title
+                # otherwise, select first match (e.g. multiple match by synonym)
+                resolved_value.find { |v|
+                  [v.name, v.identifier, v.title].any? { |s| s == value }
+                } || resolved_value.first
+              end
+            Parameter.new(self, match.name, match.encodings)
           else
             Parameter.new(self, value, nil)
           end
